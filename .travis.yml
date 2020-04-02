@@ -9,7 +9,7 @@ jdk:
   - oraclejdk8
 before_install:
   - sudo apt-get install unzip wget -y
-  - sudo mkdir lib/ && chmod a+x lib
+  - sudo mkdir lib
   - cd lib 
   - sudo wget http://deps.terranetichosting.com/libs.zip
   - unzip libs.zip
