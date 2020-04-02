@@ -9,11 +9,11 @@ notifications:
 jdk:
   - oraclejdk8
 before_install:
-  - apt install unzip wget -y
-  - mkdir lib/ && chmod a+x lib
+  - sudo apt install unzip wget -y
+  - sudo mkdir lib/ && chmod a+x lib
   - cd lib 
-  - wget http://deps.terranetichosting.com/libs.zip
-  - unzip libs.zip
+  - sudo wget http://deps.terranetichosting.com/libs.zip
+  - sudo unzip libs.zip
   - chmod a+x gradlew
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew clean build -S
