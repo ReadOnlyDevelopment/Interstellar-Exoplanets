@@ -71,7 +71,7 @@ def versionBuild = 0
 if (System.getenv("BUILD_NUMBER") != null)
     versionBuild = System.getenv("BUILD_NUMBER")
 
-version = "${mc_version}-${versionMajor}.${versionMinor}.${versionRev}-${cf_release_type}"
+version = "${versionMajor}.${versionMinor}.${versionRev}-${cf_release_type}"
 group = "${group}"
 archivesBaseName = "${name}"
 
@@ -96,7 +96,7 @@ dependencies {
 	"lib/GalacticraftCore-Dev-1.12.2-${gcversion}.jar",
 	"lib/Galacticraft-Planets-Dev-1.12.2-${gcversion}.jar",
 	"lib/MicdoodleCore-Dev-1.12.2-${gcversion}.jar",
-	"lib/ReadOnlyCore-1.12.2-1.0.3.jar",
+	"lib/ReadOnlyCore-1.12.2-1.0.5.jar",
 	)
 
 }
@@ -487,7 +487,7 @@ task gitChangelog(type: GitChangelogTask) {
 task generateGitReleasenotes11RepoPath(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
     group = 'GithubChangeLog'
     description = 'creates a Changelog for Git'
- 	file = new File("C:\\Users\\AJ\\git\\MODS\\ReadOnlyCore\\CHANGELOG.md");
+ 	file = new File("C:\\Users\\AJ\\git\\Interstellar-Exoplanets\\CHANGELOG.md");
  	fromRepo = file(".");
  	fromRef = "1.0.1";
  	toRef = "1.0.2";

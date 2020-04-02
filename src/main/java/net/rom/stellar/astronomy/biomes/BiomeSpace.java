@@ -9,8 +9,8 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.block.Block;
-import net.rom.core.space.ExoPlanet;
-import net.rom.core.space.WorldProviderExoPlanet;
+import net.rom.core.space.implemtations.planet.ExoPlanet;
+import net.rom.core.space.world.WorldProviderExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 
