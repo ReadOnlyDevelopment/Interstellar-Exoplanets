@@ -1,15 +1,11 @@
-dist: trusty
 language: java
-sudo: false
+jdk:
+  - oraclejdk8
 cache:
   directories:
     - $HOME/.gradle
-notifications:
-  email: false
-jdk:
-  - oraclejdk8
 before_install:
-  - sudo apt install unzip wget -y
+  - sudo apt-get install unzip wget -y
   - sudo mkdir lib/ && chmod a+x lib
   - cd lib 
   - sudo wget http://deps.terranetichosting.com/libs.zip
