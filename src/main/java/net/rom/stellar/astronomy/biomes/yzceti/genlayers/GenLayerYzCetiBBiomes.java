@@ -15,18 +15,18 @@ import net.rom.stellar.astronomy.biomes.ExoplanetBiomes;
 import net.rom.stellar.util.CachedEnum;
 
 public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
-	
+
 	@SuppressWarnings("unchecked")
 	private List<BiomeEntry>[] biomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
 	private ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
-	
+
 	public GenLayerYzCetiBBiomes(long seed) {
 		super(seed);
-		
+
 		for (BiomeType type : CachedEnum.valuesBiomeCached()) {
 			ImmutableList<BiomeEntry> biomesToAdd = this.getBiomes(type);
 			int idx = type.ordinal();
-			
+
 			if (this.biomes[idx] == null) {
 				this.biomes[idx] = new ArrayList<>();
 			}
@@ -35,7 +35,7 @@ public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
 			}
 		}
 	}
-	
+
 	private ArrayList<BiomeEntry>[] setupBiomes() {
 		@SuppressWarnings("unchecked")
 		ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
@@ -45,17 +45,17 @@ public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
 		currentBiomes[BiomeType.WARM.ordinal()] = new ArrayList<>(list);
 		return currentBiomes;
 	}
-	
+
 	private ImmutableList<BiomeEntry> getBiomes(BiomeType type) {
 		int idx = type.ordinal();
 		List<BiomeEntry> list = idx >= this.biomesList.length ? null : this.biomesList[idx];
 		return list != null ? ImmutableList.copyOf(list) : null;
 	}
-	
+
 	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight) {
 		int[] dest = IntCache.getIntCache(areaWidth * areaHeight);
-		
+
 		for (int dz = 0; dz < areaHeight; dz++) {
 			for (int dx = 0; dx < areaWidth; dx++) {
 				this.initChunkSeed(dx + areaX, dz + areaY);
@@ -64,11 +64,12 @@ public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
 		}
 		return dest;
 	}
-	
+
 	protected BiomeEntry getWeightedBiomeEntry(BiomeType type) {
 		List<BiomeEntry> biomeList = this.biomes[type.ordinal()];
 		int totalWeight = WeightedRandom.getTotalWeight(biomeList);
-		int weight = BiomeManager.isTypeListModded(type) ? this.nextInt(totalWeight) : this.nextInt(totalWeight / 10) * 10;
+		int weight = BiomeManager.isTypeListModded(type) ? this.nextInt(totalWeight)
+				: this.nextInt(totalWeight / 10) * 10;
 		return WeightedRandom.getRandomItem(biomeList, weight);
 	}
 }

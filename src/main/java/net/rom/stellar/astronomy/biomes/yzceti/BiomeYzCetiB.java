@@ -19,9 +19,4 @@ public class BiomeYzCetiB extends BiomeYzCetiBBase {
 		this.fillerBlock = ExoplanetsBlocks.yzb_metamorphic.getDefaultState();
 		this.stoneBlock = ExoplanetsBlocks.yzb_ingneous;
 	}
-	
-	@Override
-	public float getSpawningChance() {
-		return 0.01F;
-	}
 }

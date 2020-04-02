@@ -150,7 +150,6 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
 	@Override
 	public ResourceLocation getDungeonChestType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

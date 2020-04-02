@@ -11,7 +11,7 @@ public abstract class GenLayerYzCetiC extends GenLayer {
 	}
 	
 	public static GenLayer[] createWorld(long l) {
-		GenLayer biomes = new GenLayerZyCetiCBiomes(l);
+		GenLayer biomes = new GenLayerYzCetiCBiomes(l);
 		biomes = new GenLayerZoom(1000L, biomes);
 		biomes = new GenLayerZoom(1001L, biomes);
 		biomes = new GenLayerZoom(1002L, biomes);

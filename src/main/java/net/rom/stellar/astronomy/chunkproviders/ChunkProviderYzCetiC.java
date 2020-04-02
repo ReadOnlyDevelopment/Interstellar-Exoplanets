@@ -30,11 +30,10 @@ import net.rom.stellar.init.ExoplanetsBlocks;
 
 public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
-	public static final IBlockState STONE = ExoplanetsBlocks.yzc_metamorphic.getDefaultState();
-	public static final IBlockState WATER = Blocks.WATER.getDefaultState();
+	public static final IBlockState BLOCK_FILL = ExoplanetsBlocks.yzc_metamorphic.getDefaultState();
 
-	public static final double CHUNK_HEIGHT = 44.0D;
-	public static final int SEA_LEVEL = 57;
+	public static final double CHUNK_HEIGHT = 85.0D;
+	public static final int SEA_LEVEL = 15;
 
 	private static final int CHUNK_SIZE_X = 16;
 	private static final int CHUNK_SIZE_Z = 16;
@@ -54,8 +53,7 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 	private final double[] terrainCalcs;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
-	private MapGenStellarCaveGen caveGenerator = new MapGenStellarCaveGen(ExoplanetsBlocks.yzb_sedimentary, 0, 0, 0);
-	private MapGenStellarCaveGen caveGenerator2 = new MapGenStellarCaveGen(ExoplanetsBlocks.yzb_sedimentary, 0, 0, 0);
+	private MapGenStellarCaveGen caveGenerator = new MapGenStellarCaveGen(ExoplanetsBlocks.yzc_sedimentary, 0, 1, 2);
 	private final MapGenStellarRavinGen ravineGenerator = new MapGenStellarRavinGen();
 	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private Biome[] biomesForGeneration;
@@ -139,17 +137,9 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 							double lvt_45_1_ = d10 - d16;
 
 							for (int l2 = 0; l2 < 4; ++l2) {
-								int x = i * 4 + k2;
-								int y = i2 * 8 + j2;
-								int z = l * 4 + l2;
-
-								if ((lvt_45_1_ += d16) > this.noiseGenSmooth1.getNoise(chunkX * 16 + x, chunkZ * 16 + z)
-										* CHUNK_HEIGHT) {
-									primer.setBlockState(x, y, z, STONE);
-								} else if (y < SEA_LEVEL) {
-									Biome biome = world.getBiome(new BlockPos(x, y, z));
-									IBlockState blockToUse = WATER;
-									primer.setBlockState(x, y, z, blockToUse);
+								if ((lvt_45_1_ += d16) > this.noiseGenSmooth1.getNoise(chunkX * 16 + (i * 4 + k2),
+										chunkZ * 16 + (l * 4 + l2)) * 20.0) {
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, BLOCK_FILL);
 								}
 							}
 
@@ -192,10 +182,8 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 		this.replaceBlocksForBiome(x, z, chunkprimer, this.biomesForGeneration);
 
 		this.caveGenerator.generate(this.world, x, z, chunkprimer);
-		this.caveGenerator2.generate(this.world, x, z, chunkprimer);
 		this.ravineGenerator.generate(this.world, x, z, chunkprimer);
-		// this.villageGenerator.generate(this.world, x, z, chunkprimer);
-		// this.mineshaftGenerator.generate(this.world, x, z, chunkprimer);
+		this.mineshaftGenerator.generate(this.world, x, z, chunkprimer);
 
 		Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
@@ -382,10 +370,12 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
 	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		return null;
+		Biome biomegenbase = this.world.getBiome(pos);
+		return biomegenbase.getSpawnableList(creatureType);
 	}
 
 	@Override
 	public void recreateStructures(Chunk chunk, int x, int z) {
+		this.mineshaftGenerator.generate(this.world, x, z, null);
 	}
 }

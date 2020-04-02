@@ -18,6 +18,7 @@ import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiB;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiBDirty;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiC;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiCBase;
+import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiCUnknown;
 
 public class ExoplanetBiomes {
 
@@ -27,6 +28,7 @@ public class ExoplanetBiomes {
 	public static final Biome CETIB_DIRTY = new BiomeYzCetiBDirty(new BiomeProperties("Yz Ceti B Dirty"));
 	
 	public static final Biome CETIC_BASE = new BiomeYzCetiC(new BiomeProperties("Yz Ceti C"));
+	public static final Biome CETIC_UNKNWON = new BiomeYzCetiCUnknown(new BiomeProperties("Yz Ceti Unknown"));
 
 	public static void init() {
 

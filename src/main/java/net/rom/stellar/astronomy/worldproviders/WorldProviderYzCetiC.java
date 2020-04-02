@@ -174,12 +174,12 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	
 	@Override
 	public double getHorizon() {
-		return 74.0D;
+		return 44.0D;
 	}
 	
 	@Override
 	public int getAverageGroundLevel() {
-		return 62;
+		return 76;
 	}
 	
 	@Override

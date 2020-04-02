@@ -1,10 +1,3 @@
-/**
- * Zollern Galaxy by @author Zollern Wolf
- * Copyright 2016 - 2025
- * You may use this code to learn from, but do not
- * claim it as your own, and do not
- * redistribute it.
- */
 package net.rom.stellar.astronomy.biomes.yzceti.genlayers;
 
 import java.util.ArrayList;
@@ -21,13 +14,13 @@ import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.rom.stellar.astronomy.biomes.ExoplanetBiomes;
 import net.rom.stellar.util.CachedEnum;
 
-public class GenLayerZyCetiCBiomes extends GenLayerYzCetiC {
+public class GenLayerYzCetiCBiomes extends GenLayerYzCetiC {
 
 	@SuppressWarnings("unchecked")
 	private List<BiomeEntry>[] biomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
 	private ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
 
-	public GenLayerZyCetiCBiomes(long seed) {
+	public GenLayerYzCetiCBiomes(long seed) {
 		super(seed);
 
 		for (BiomeType type : CachedEnum.valuesBiomeCached()) {
@@ -48,7 +41,7 @@ public class GenLayerZyCetiCBiomes extends GenLayerYzCetiC {
 		ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
 		List<BiomeEntry> list = new ArrayList<>();
 		list.add(new BiomeEntry(ExoplanetBiomes.CETIC_BASE, 75));
-
+		list.add(new BiomeEntry(ExoplanetBiomes.CETIC_UNKNWON, 90));
 		currentBiomes[BiomeType.WARM.ordinal()] = new ArrayList<>(list);
 		return currentBiomes;
 	}

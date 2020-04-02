@@ -98,68 +98,63 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	}
 
 	private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
-        this.noiseGenSmooth1.setFrequency(0.015F);
-        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
-        this.createLandPerBiome(chunkX * 4, chunkZ * 4);
+		this.noiseGenSmooth1.setFrequency(0.015F);
+		this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration,
+				chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
+		this.createLandPerBiome(chunkX * 4, chunkZ * 4);
 
-        for (int i = 0; i < 4; ++i)
-        {
-            int j = i * 5;
-            int k = (i + 1) * 5;
+		for (int i = 0; i < 4; ++i) {
+			int j = i * 5;
+			int k = (i + 1) * 5;
 
-            for (int l = 0; l < 4; ++l)
-            {
-                int i1 = (j + l) * 33;
-                int j1 = (j + l + 1) * 33;
-                int k1 = (k + l) * 33;
-                int l1 = (k + l + 1) * 33;
+			for (int l = 0; l < 4; ++l) {
+				int i1 = (j + l) * 33;
+				int j1 = (j + l + 1) * 33;
+				int k1 = (k + l) * 33;
+				int l1 = (k + l + 1) * 33;
 
-                for (int i2 = 0; i2 < 32; ++i2)
-                {
-                    double d0 = 0.125D;
-                    double d1 = this.terrainCalcs[i1 + i2];
-                    double d2 = this.terrainCalcs[j1 + i2];
-                    double d3 = this.terrainCalcs[k1 + i2];
-                    double d4 = this.terrainCalcs[l1 + i2];
-                    double d5 = (this.terrainCalcs[i1 + i2 + 1] - d1) * d0;
-                    double d6 = (this.terrainCalcs[j1 + i2 + 1] - d2) * d0;
-                    double d7 = (this.terrainCalcs[k1 + i2 + 1] - d3) * d0;
-                    double d8 = (this.terrainCalcs[l1 + i2 + 1] - d4) * d0;
+				for (int i2 = 0; i2 < 32; ++i2) {
+					double d0 = 0.125D;
+					double d1 = this.terrainCalcs[i1 + i2];
+					double d2 = this.terrainCalcs[j1 + i2];
+					double d3 = this.terrainCalcs[k1 + i2];
+					double d4 = this.terrainCalcs[l1 + i2];
+					double d5 = (this.terrainCalcs[i1 + i2 + 1] - d1) * d0;
+					double d6 = (this.terrainCalcs[j1 + i2 + 1] - d2) * d0;
+					double d7 = (this.terrainCalcs[k1 + i2 + 1] - d3) * d0;
+					double d8 = (this.terrainCalcs[l1 + i2 + 1] - d4) * d0;
 
-                    for (int j2 = 0; j2 < 8; ++j2)
-                    {
-                        double d9 = 0.25D;
-                        double d10 = d1;
-                        double d11 = d2;
-                        double d12 = (d3 - d1) * d9;
-                        double d13 = (d4 - d2) * d9;
+					for (int j2 = 0; j2 < 8; ++j2) {
+						double d9 = 0.25D;
+						double d10 = d1;
+						double d11 = d2;
+						double d12 = (d3 - d1) * d9;
+						double d13 = (d4 - d2) * d9;
 
-                        for (int k2 = 0; k2 < 4; ++k2)
-                        {
-                            double d14 = 0.25D;
-                            double d16 = (d11 - d10) * d14;
-                            double lvt_45_1_ = d10 - d16;
+						for (int k2 = 0; k2 < 4; ++k2) {
+							double d14 = 0.25D;
+							double d16 = (d11 - d10) * d14;
+							double lvt_45_1_ = d10 - d16;
 
-                            for (int l2 = 0; l2 < 4; ++l2)
-                            {
-                                if ((lvt_45_1_ += d16) > this.noiseGenSmooth1.getNoise(chunkX * 16 + (i * 4 + k2), chunkZ * 16 + (l * 4 + l2)) * 20.0)
-                                {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, BLOCK_FILL);
-                                }
-                            }
+							for (int l2 = 0; l2 < 4; ++l2) {
+								if ((lvt_45_1_ += d16) > this.noiseGenSmooth1.getNoise(chunkX * 16 + (i * 4 + k2),
+										chunkZ * 16 + (l * 4 + l2)) * 20.0) {
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, BLOCK_FILL);
+								}
+							}
 
-                            d10 += d12;
-                            d11 += d13;
-                        }
+							d10 += d12;
+							d11 += d13;
+						}
 
-                        d1 += d5;
-                        d2 += d6;
-                        d3 += d7;
-                        d4 += d8;
-                    }
-                }
-            }
-        }
+						d1 += d5;
+						d2 += d6;
+						d3 += d7;
+						d4 += d8;
+					}
+				}
+			}
+		}
 	}
 
 	private void replaceBlocksForBiome(int p_180517_1_, int p_180517_2_, ChunkPrimer p_180517_3_, Biome[] p_180517_4_) {

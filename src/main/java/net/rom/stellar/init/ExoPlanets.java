@@ -43,9 +43,8 @@ public class ExoPlanets {
 		yzcetib.setAtmos();
 		yzcetib.setBiomeInfo(ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
 		yzcetib.addChecklistKeys("equipOxygenSuit");
-		yzcetib.setDimensionInfo(SConfigSystems.id_yz_b, WorldProviderYzCetiB.class);
 
-		yzcetic = builder.buildExoPlanet(ExoStarSystem.YZCETI, "yzcetic", WorldProviderYzCetiB.class,
+		yzcetic = builder.buildExoPlanet(ExoStarSystem.YZCETI, "yzcetic", WorldProviderYzCetiC.class,
 				SConfigSystems.id_yz_c, 3, 0.0F, 0.4F, 0.9F);
 
 		yzcetic.setExoClass(EnumClass.D);
@@ -58,9 +57,8 @@ public class ExoPlanets {
 		yzcetic.setAtmosGasses(EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN,
 				EnumAtmosphericGas.ARGON);
 		yzcetic.setAtmos();
-		yzcetic.setBiomeInfo(ExoplanetBiomes.CETIC_BASE);
+		yzcetic.setBiomeInfo(ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
 		yzcetic.addChecklistKeys("equipOxygenSuit");
-		yzcetic.setDimensionInfo(SConfigSystems.id_yz_c, WorldProviderYzCetiC.class);
 		
 		yzcetid = builder.buildUnreachablePlanet(ExoStarSystem.YZCETI, "yzcetid");
 		yzcetid.setDistanceFromCenter(0.5F);
