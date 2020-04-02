@@ -1,15 +1,19 @@
+dist: trusty
 language: java
-jdk:
-  - oraclejdk8
+sudo: true
 cache:
   directories:
     - $HOME/.gradle
+notifications:
+  email: false
+jdk:
+  - oraclejdk8
 before_install:
-  - sudo apt-get install unzip wget -y
-  - sudo mkdir lib/ && chmod a+x lib
+  - apt-get install unzip wget -y
+  - mkdir lib/ && chmod a+x lib
   - cd lib 
-  - sudo wget http://deps.terranetichosting.com/libs.zip
-  - sudo unzip libs.zip
+  - wget http://deps.terranetichosting.com/libs.zip
+  - unzip libs.zip
   - chmod a+x gradlew
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew clean build -S
