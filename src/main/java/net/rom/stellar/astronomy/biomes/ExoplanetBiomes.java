@@ -34,6 +34,9 @@ public class ExoplanetBiomes {
 
 		ExoplanetBiomes.addBiome(ExoplanetBiomes.CETIB_BASE, DEAD, DRY);
 		ExoplanetBiomes.addBiome(ExoplanetBiomes.CETIB_DIRTY, SPOOKY, DEAD);
+		
+		ExoplanetBiomes.addBiome(ExoplanetBiomes.CETIC_BASE, DEAD, DRY);
+		ExoplanetBiomes.addBiome(ExoplanetBiomes.CETIC_UNKNWON, SPOOKY, DEAD);
 	}
 
 	private static void addBiome(Biome biome, BiomeDictionary.Type... biomeType) {

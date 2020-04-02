@@ -41,7 +41,7 @@ public class GenLayerYzCetiCBiomes extends GenLayerYzCetiC {
 		ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
 		List<BiomeEntry> list = new ArrayList<>();
 		list.add(new BiomeEntry(ExoplanetBiomes.CETIC_BASE, 75));
-		list.add(new BiomeEntry(ExoplanetBiomes.CETIC_UNKNWON, 90));
+		list.add(new BiomeEntry(ExoplanetBiomes.CETIC_UNKNWON, 50));
 		currentBiomes[BiomeType.WARM.ordinal()] = new ArrayList<>(list);
 		return currentBiomes;
 	}

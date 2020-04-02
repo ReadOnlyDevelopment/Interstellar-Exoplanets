@@ -36,15 +36,6 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 		this.setPlanetForBiome(ExoPlanets.yzcetic);
 	}
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new BiomeDecoratorYzCetiC();
-	}
-
-	protected BiomeDecoratorYzCetiC getBiomeDecorator() {
-		return (BiomeDecoratorYzCetiC) this.decorator;
-	}
-
 	public final void generateYzCetiCTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
 			double noiseVal) {
 		int i = worldIn.getSeaLevel();
@@ -112,5 +103,19 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		this.generateYzCetiCTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
+	}
+	
+	@Override
+	public BiomeDecorator createBiomeDecorator() {
+		return new BiomeDecoratorYzCetiC();
+	}
+	
+	@Override
+	public float getSpawningChance() {
+		return 0.1F;
+	}
+
+	protected BiomeDecoratorYzCetiC getBiomeDecorator() {
+		return (BiomeDecoratorYzCetiC) this.decorator;
 	}
 }
