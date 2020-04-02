@@ -12,7 +12,7 @@ before_install:
   - sudo mkdir lib
   - cd lib 
   - sudo wget http://deps.terranetichosting.com/libs.zip
-  - unzip libs.zip
+  - sudo unzip libs.zip
   - chmod a+x gradlew && cd / ..
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew clean build -S
