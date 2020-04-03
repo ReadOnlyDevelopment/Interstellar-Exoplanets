@@ -15,6 +15,7 @@ before_install:
   - sudo wget -O /lib/libs.zip http://deps.terranetichosting.com/libs.zip
   - sudo unzip /lib/libs.zip
   - chmod a+x gradlew
-install: ./gradlew setupCIWorkspace -S
-script: ./gradlew --refresh-dependencies
+install: ./gradlew setupDeompWorkspace
+before_script:
+  - ./gradlew --refresh-dependencies
 script: ./gradlew build
