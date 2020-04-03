@@ -1,5 +1,7 @@
 dist: trusty
 language: java
+before_cache:
+  - rm -fr $HOME/lib/
 cache:
   directories:
     - $HOME/.gradle
@@ -14,4 +16,5 @@ before_install:
   - sudo unzip /lib/libs.zip
   - chmod a+x gradlew
 install: ./gradlew setupCIWorkspace -S
-script: ./gradlew clean build -S
+script: ./gradlew --refresh-dependencies
+script: ./gradlew build
