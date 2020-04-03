@@ -10,9 +10,8 @@ jdk:
 before_install:
   - sudo apt-get install unzip wget -y
   - sudo mkdir lib
-  - cd lib 
-  - sudo wget http://deps.terranetichosting.com/libs.zip
-  - sudo unzip libs.zip
+  - sudo wget /lib/libs.zip http://deps.terranetichosting.com/libs.zip
+  - sudo unzip /lib/libs.zip
   - chmod a+x gradlew && cd / ..
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew clean build -S
