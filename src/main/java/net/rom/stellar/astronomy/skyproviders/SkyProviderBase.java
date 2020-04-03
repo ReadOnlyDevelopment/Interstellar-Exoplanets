@@ -1,6 +1,7 @@
 package net.rom.stellar.astronomy.skyproviders;
 
 import java.util.Random;
+
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

@@ -6,6 +6,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.rom.stellar.astronomy.enums.EnumBiomeType;
 
+
+
+/**
+ * credit for this class goes to aplhawolf918 / Zollern
+ * 
+ * https://github.com/alphawolf918/Zollern-Galaxy/blob/master/src/main/java/zollerngalaxy/biomes/ZGBiomeBase.java
+ */
 public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
 
 	protected TempCategory tempBiomeCtg = TempCategory.COLD;

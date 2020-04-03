@@ -82,23 +82,23 @@ compileJava {
 
 repositories {
 	maven { url 'https://jitpack.io' }
+	maven { url 'http://host.terranetichosting.com:8081/repository/maven-releases/' }
     mavenLocal()
     jcenter()
     mavenCentral()
 }
 
 dependencies {
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-	compile 'com.github.ronmamo:reflections:21959e6e'
 
- 	compile files (
- 	"lib/Galacticraft-API-1.12.2-${gcversion}.jar",	
-	"lib/GalacticraftCore-Dev-1.12.2-${gcversion}.jar",
-	"lib/Galacticraft-Planets-Dev-1.12.2-${gcversion}.jar",
-	"lib/MicdoodleCore-Dev-1.12.2-${gcversion}.jar",
-	"lib/ReadOnlyCore-1.12.2-1.0.5.jar",
+	compile 'net.romvoid.libs:readonlycore:1.0.5'
+	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:api'
+	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:core'
+	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:planets'
+	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:miccore'
+	
+	compile files (
+		'lib/AsmodeusCore-1.12.2-0.0.13-dev.jar'
 	)
-
 }
 
 minecraft {
@@ -161,6 +161,7 @@ jar {
             attributes 'FMLAT': project.at_file
         }
     }
+    
 }
 
 task apiJar(type: Jar) {
@@ -186,7 +187,7 @@ task deobfJar(type: Jar) {
         getBooleanProperty('create_deobf_jar')
     }
 
-    classifier = 'deobf'
+    classifier = 'dev'
     from sourceSets.main.output
     manifest {
         mainAttributes(

@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiB;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiBDirty;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiC;
-import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiCBase;
 import net.rom.stellar.astronomy.biomes.yzceti.BiomeYzCetiCUnknown;
 
 public class ExoplanetBiomes {

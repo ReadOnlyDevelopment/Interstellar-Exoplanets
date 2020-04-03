@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.rom.core.space.world.EnumOreGen;
+import net.rom.stellar.util.EnumOreGen;
 
 public abstract class BiomeDecoratorExoplanet extends BiomeDecorator {
 

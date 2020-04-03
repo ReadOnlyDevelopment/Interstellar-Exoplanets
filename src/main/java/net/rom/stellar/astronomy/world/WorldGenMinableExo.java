@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.rom.core.space.world.EnumOreGen;
+import net.rom.stellar.util.EnumOreGen;
 
 public class WorldGenMinableExo extends ExoWorldGenMaster {
 	
