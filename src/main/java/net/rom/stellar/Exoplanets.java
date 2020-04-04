@@ -36,7 +36,7 @@ public class Exoplanets implements IMod {
 	public static final String VERSION = "${version}";
 	public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
 	public static final String ACCEPTED_MC_VERSION = ForgeVersion.mcVersion;
-	public static final String DEPENDENCIES_MODS = "required-after:readonlycore; required-after:galacticraftcore@[4.0.2.237,); required-after:galacticraftplanets@[4.0.2.237,);";
+	public static final String DEPENDENCIES_MODS = "required-after:readonlycore; required-after:galacticraftcore; required-after:galacticraftplanets;";
 	public static final String RESOURCE_PREFIX = MODID + ":";
 	public static final Logger LOGGER = LogManager.getLogger(Exoplanets.MODID);
 	public static final StellarRegistry REGISTRY = new StellarRegistry();
@@ -46,7 +46,6 @@ public class Exoplanets implements IMod {
 
 	@SidedProxy(clientSide = "net.rom.stellar.proxy.ExoClientProxy", serverSide = "net.rom.stellar.proxy.ExoCommonProxy")
 	public static ExoCommonProxy proxy;
-
 
 	@EventHandler
 	public static void onFingerprintViolation(final FMLFingerprintViolationEvent event) {
