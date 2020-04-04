@@ -23,7 +23,7 @@ public class ExoStarSystem {
 
 	private static void registerSolarSystems() {
 		
-		YZCETI = b.buildSolarSystem("yzceti", "milky_way", new Vector3(1.0F,  1.0F, 0.0F), ExoHostStar.yzcetia);
+		YZCETI = b.buildSolarSystem("yzceti", "milky_way", new Vector3(1.0F, 1.0F, 0.0F), ExoHostStar.yzcetia);
 		
 		// ######################## SET ASMODEUSCORE MAP DATA  ########################
 		

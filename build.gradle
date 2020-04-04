@@ -90,7 +90,7 @@ repositories {
 
 dependencies {
 
-	compile 'net.romvoid.libs:readonlycore:1.0.5'
+	compile 'net.romvoid.libs:readonlycore:1.0.6'
 	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:api'
 	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:core'
 	compile 'micdoodle8.mods.galacticraft:devapi:4.0.2.244:planets'
