@@ -3,7 +3,10 @@ buildscript {
       	mavenLocal()
         jcenter()
         mavenCentral()
-        maven { url = "https://files.minecraftforge.net/maven" }
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/maven"
+        }        
         maven {
             name = 'gradle'
             url 'https://plugins.gradle.org/m2/'
@@ -20,6 +23,7 @@ buildscript {
 }
 
 plugins {
+  	id "com.wynprice.cursemaven" version "2.1.1"
     id 'com.matthewprenger.cursegradle' version '1.2.0'
     id 'maven-publish'
     id 'maven'
@@ -81,21 +85,23 @@ compileJava {
 }
 
 repositories {
-	maven { url 'https://jitpack.io' }
-	maven { url 'http://host.terranetichosting.com:8081/repository/maven-releases/' }
-    mavenLocal()
+	maven {
+		name = 'curseforge'
+		url = 'https://minecraft.curseforge.com/api/maven/'
+	}    
     jcenter()
     mavenCentral()
 }
 
 dependencies {
-	compile 'net.romvoid.libs:readonlycore:1.0.5'
+	compile 'curse.maven:readonly-core:2919209'
 
  	compile files (
  	"lib/Galacticraft-API-1.12.2-${gcversion}.jar",	
 	"lib/GalacticraftCore-Dev-1.12.2-${gcversion}.jar",
 	"lib/Galacticraft-Planets-Dev-1.12.2-${gcversion}.jar",
 	"lib/MicdoodleCore-Dev-1.12.2-${gcversion}.jar",
+	"lib/AsmodeusCore-1.12.2-0.0.13-dev.jar"
 	)
 
 }
@@ -185,7 +191,7 @@ task deobfJar(type: Jar) {
         getBooleanProperty('create_deobf_jar')
     }
 
-    classifier = 'deobf'
+    classifier = 'dev'
     from sourceSets.main.output
     manifest {
         mainAttributes(
@@ -488,8 +494,8 @@ task generateGitReleasenotes11RepoPath(type: se.bjurr.gitchangelog.plugin.gradle
     description = 'creates a Changelog for Git'
  	file = new File("C:\\Users\\AJ\\git\\Interstellar-Exoplanets\\CHANGELOG.md");
  	fromRepo = file(".");
- 	fromRef = "1.0.1";
- 	toRef = "1.0.2";
+ 	fromRef = "0.0.2";
+ 	toRef = "0.0.2f";
  	templateContent = """
 # {{repoName}} Changelog
 
