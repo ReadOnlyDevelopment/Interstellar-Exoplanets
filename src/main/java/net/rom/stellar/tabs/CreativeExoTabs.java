@@ -6,7 +6,8 @@ import net.rom.stellar.init.ExoplanetsBlocks;
 
 public class CreativeExoTabs {
 
-	public static final CreativeTabs TERRAIN = new ExoTab("terrain", "") {
+	public static final CreativeTabs TERRAIN = new ExoTab("terrain", "tab_terrain.png") {
+
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(ExoplanetsBlocks.tiles);
