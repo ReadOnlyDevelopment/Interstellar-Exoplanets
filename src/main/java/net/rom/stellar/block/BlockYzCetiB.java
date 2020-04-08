@@ -11,7 +11,7 @@ public class BlockYzCetiB extends BasicBlock {
 		super(Material.ROCK);
 		setHardness(3.0f);
 		setResistance(30.0f);
-		setCreativeTab(CreativeExoTabs.TERRAIN);
+		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 
 	public ItemStack getStack(int count) {

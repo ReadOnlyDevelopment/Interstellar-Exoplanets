@@ -8,7 +8,7 @@ public class BasicBlock extends BlockBaseRO {
 
 	public BasicBlock(Material materialIn) {
 		super(materialIn);
-		setCreativeTab(CreativeExoTabs.TERRAIN);
+		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 
 }

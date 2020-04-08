@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -46,6 +47,8 @@ public class Exoplanets implements IMod {
 
 	@SidedProxy(clientSide = "net.rom.stellar.proxy.ExoClientProxy", serverSide = "net.rom.stellar.proxy.ExoCommonProxy")
 	public static ExoCommonProxy proxy;
+	
+	private InterstellarSounds sounds;
 
 
 	@EventHandler
@@ -62,6 +65,9 @@ public class Exoplanets implements IMod {
 		ExoplanetBiomes.init();
 		ExoStarSystem.init();
 		ExoPlanets.init();
+		sounds = new InterstellarSounds();
+		
+		MinecraftForge.EVENT_BUS.register(sounds);
 		proxy.preInit(REGISTRY, event);
 	}
 
