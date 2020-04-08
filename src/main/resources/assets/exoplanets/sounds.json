@@ -1,0 +1,15 @@
+{
+    "block.spacedoor.open": {
+        "category": "block",
+        "sounds": [
+            "exoplanets:spacedoor_open"
+        ]
+    },
+    
+    "block.spacedoor.close": {
+        "category": "block",
+        "sounds": [
+            "exoplanets:spacedoor_close"
+        ]
+    }
+}
