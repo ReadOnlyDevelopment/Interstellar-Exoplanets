@@ -84,23 +84,49 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
+String GCBuild = "243"
+String GCVersion = "1.12.2-4.0.2.${GCBuild}"
+
 repositories {
+    ivy {
+        url "https://ci.micdoodle8.com/job/"
+        layout 'pattern', {
+            artifact "[organization]/${GCBuild}/artifact/Forge/build/libs/[module]-[revision].jar"
+        }
+        metadataSources { 
+            artifact()
+        }
+    }
 	maven {
 		name = 'curseforge'
 		url = 'https://minecraft.curseforge.com/api/maven/'
 	}    
+	maven {
+	    name 'MJRLegends'
+	    url = "https://maven.mjrlegends.com/"
+    }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
     jcenter()
     mavenCentral()
 }
 
 dependencies {
-	compile 'curse.maven:readonly-core:2919209'
 
+	compile 'curse.maven:readonly-core:2919209'
+	compile "com.mjr.planetprogression:PlanetProgression:1.12.2-0.4.2:api"
+	
+    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    	runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    	
+    compile "Galacticraft-1.12-dev:GalacticraftCore-Dev:${GCVersion}"
+    compile "Galacticraft-1.12-dev:Galacticraft-API:${GCVersion}"
+    compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
+    compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
+    
  	compile files (
- 	"lib/Galacticraft-API-1.12.2-${gcversion}.jar",	
-	"lib/GalacticraftCore-Dev-1.12.2-${gcversion}.jar",
-	"lib/Galacticraft-Planets-Dev-1.12.2-${gcversion}.jar",
-	"lib/MicdoodleCore-Dev-1.12.2-${gcversion}.jar",
 	"lib/AsmodeusCore-1.12.2-0.0.13-dev.jar"
 	)
 
