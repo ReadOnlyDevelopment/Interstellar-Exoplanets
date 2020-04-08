@@ -1,0 +1,8 @@
+{
+   "parent": "block/orientable",
+   "textures": {
+      "top": "exoplanets:blocks/control_side",
+      "front": "exoplanets:blocks/control",
+      "side": "exoplanets:blocks/control_side"
+   }
+}

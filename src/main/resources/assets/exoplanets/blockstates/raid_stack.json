@@ -1,0 +1,8 @@
+{
+   "variants": {
+      "facing=north": {"model":"exoplanets:raid_stack"},
+      "facing=south": {"model":"exoplanets:raid_stack","y":180},
+      "facing=west": {"model":"exoplanets:raid_stack","y":270},
+      "facing=east": {"model":"exoplanets:raid_stack","y":90}
+   }
+}
