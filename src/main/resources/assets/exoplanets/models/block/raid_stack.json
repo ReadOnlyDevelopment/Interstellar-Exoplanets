@@ -1,8 +1,0 @@
-{
-   "parent": "block/orientable",
-   "textures": {
-      "top": "exoplanets:blocks/raid_side",
-      "front": "exoplanets:blocks/raid_stack",
-      "side": "exoplanets:blocks/raid_side"
-   }
-}

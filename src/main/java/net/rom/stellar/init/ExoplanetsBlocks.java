@@ -24,10 +24,10 @@ public class ExoplanetsBlocks {
 	
 	public static final SpaceDoor spaceDoor = new SpaceDoor();
 
-	public static final BlockElectronic raid0 = new BlockElectronic();
-	public static final BlockElectronic raid1 = new BlockElectronic();
-	public static final BlockElectronic raidStack = new BlockElectronic();
-	public static final BlockElectronic screen = new BlockElectronic();
+	public static final BlockElectronic raidController = new BlockElectronic();
+	public static final BlockElectronic lower_raidController = new BlockElectronic();
+	public static final BlockElectronic raidcluster = new BlockElectronic();
+	public static final BlockElectronic dataMonitor = new BlockElectronic();
 	public static final BlockElectronic com = new BlockElectronic();
 	public static final BlockElectronic control = new BlockElectronic();
 	
@@ -49,10 +49,10 @@ public class ExoplanetsBlocks {
 		
 		registry.registerBlock(com, "com_relay", new ItemBlock(com));
 		registry.registerBlock(control, "control", new ItemBlock(control));
-		registry.registerBlock(raid0, "raid_0", new ItemBlock(raid0));
-		registry.registerBlock(raid1, "raid_1", new ItemBlock(raid1));
-		registry.registerBlock(raidStack, "raid_stack", new ItemBlock(raidStack));
-		registry.registerBlock(screen, "screen", new ItemBlock(screen));
+		registry.registerBlock(raidController, "raidcontroller", new ItemBlock(raidController));
+		registry.registerBlock(lower_raidController, "lower_raidcontroller", new ItemBlock(lower_raidController));
+		registry.registerBlock(raidcluster, "raidcluster", new ItemBlock(raidcluster));
+		registry.registerBlock(dataMonitor, "datamonitor", new ItemBlock(dataMonitor));
 		
 		registry.registerBlock(spaceDoor, "spacedoor", new ItemBlock(spaceDoor));
 		

@@ -6,11 +6,17 @@ import net.rom.stellar.init.ExoplanetsBlocks;
 
 public class CreativeExoTabs {
 
-	public static final CreativeTabs DECO_CREATIVE_TABS = new ExoTab("Exoplanets Decoration", "terrain.png") {
+	public static final CreativeTabs DECO_CREATIVE_TABS = new ExoTab("decoration", "decoration.png") {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ExoplanetsBlocks.raid0);
+			return new ItemStack(ExoplanetsBlocks.com);
+		}
+		
+		@Override
+		public boolean hasSearchBar()
+		{
+			return false;
 		}
 	};
 

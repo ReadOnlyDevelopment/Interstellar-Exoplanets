@@ -5,4 +5,12 @@ planet.yzcetid=Yz Ceti D
 solarsystem.yzceti=Yz Ceti
 
 ## CREATIVE TAB ##
-itemGroup.exoplanets.terrain=Exoplanets
+itemGroup.decoration=§6Exo Decoration§r
+
+## BLOCKS ##
+tile.exoplanets.com_relay.name=Communication Relay
+tile.exoplanets.raidcluster.name=RAID Cluster
+tile.exoplanets.raidcontroller.name=RAID Controller
+tile.exoplanets.lower_raidcontroller.name=Lower RAID Controller
+tile.exoplanets.control.name=Electronic Panel
+tile.exoplanets.datamonitor.name=Data Monitor
