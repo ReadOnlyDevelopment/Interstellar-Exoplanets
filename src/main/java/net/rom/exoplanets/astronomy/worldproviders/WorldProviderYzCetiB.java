@@ -7,6 +7,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import micdoodle8.mods.galacticraft.planets.venus.client.SkyProviderVenus;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -20,6 +21,7 @@ import net.rom.api.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.biomes.yzceti.providers.BiomeProviderYzCetiB;
 import net.rom.exoplanets.astronomy.chunkproviders.ChunkProviderYzCetiB;
+import net.rom.exoplanets.astronomy.skyproviders.SkyProviderYzCetiB;
 import net.rom.exoplanets.init.BlocksRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
 
@@ -154,7 +156,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
 	@Override
 	protected void renderSky() {
-		//this.setSkyRenderer(new SkyProviderPurgot(this));
+		this.setSkyRenderer(new SkyProviderYzCetiB());
 	}
 	
 	@Override
@@ -195,6 +197,11 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	@Override
 	public Class<? extends IChunkGenerator> getChunkProviderClass() {
 		return ChunkProviderYzCetiB.class;
+	}
+	
+	@Override
+	public long getDayLength() {
+		return 22000L;
 	}
 	
 }
