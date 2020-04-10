@@ -9,7 +9,7 @@ import net.rom.stellar.block.BlockYzCetiC;
 import net.rom.stellar.block.decoration.BlockElectronic;
 import net.rom.stellar.block.doors.SpaceDoor;
 
-public class ExoplanetsBlocks {
+public class BlocksRegister {
 	
 	public static final BlockYzCetiB yzb_sedimentary = new BlockYzCetiB();
 	public static final BlockYzCetiB yzb_ingneous = new BlockYzCetiB();

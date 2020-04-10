@@ -11,16 +11,16 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.stellar.astronomy.biomes.BiomeSpace;
 import net.rom.stellar.astronomy.biomes.yzceti.decorators.BiomeDecoratorYzCetiB;
 import net.rom.stellar.astronomy.enums.EnumBiomeType;
-import net.rom.stellar.init.ExoPlanets;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.PlanetsRegister;
+import net.rom.stellar.init.BlocksRegister;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
 	
-	protected static final IBlockState STONE = ExoplanetsBlocks.yzb_sedimentary.getDefaultState();
+	protected static final IBlockState STONE = BlocksRegister.yzb_sedimentary.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState GRAVEL = ExoplanetsBlocks.tiles.getDefaultState();
-	protected static final IBlockState DIRT = ExoplanetsBlocks.dirt.getDefaultState();
+	protected static final IBlockState GRAVEL = BlocksRegister.tiles.getDefaultState();
+	protected static final IBlockState DIRT = BlocksRegister.dirt.getDefaultState();
 	protected static final IBlockState ICE = Blocks.PACKED_ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 	
@@ -31,7 +31,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.COLD);
 		this.clearAllSpawning(); 
-		this.setPlanetForBiome(ExoPlanets.yzcetib);
+		this.setPlanetForBiome(PlanetsRegister.yzcetib);
 	}
 	
 	public final void generateYzCetiBTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
@@ -62,7 +62,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 				} else {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
-					} else if (iblockstate2.getBlock() == ExoplanetsBlocks.yzb_metamorphic) {
+					} else if (iblockstate2.getBlock() == BlocksRegister.yzb_metamorphic) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState = AIR;

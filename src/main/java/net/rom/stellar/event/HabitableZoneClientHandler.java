@@ -9,15 +9,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.core.utils.CoreUtil;
 import net.rom.stellar.Exoplanets;
-import net.rom.stellar.init.ExoPlanets;
-import net.rom.stellar.init.ExoStarSystem;
+import net.rom.stellar.init.PlanetsRegister;
+import net.rom.stellar.init.SystemRegister;
 
 public class HabitableZoneClientHandler {
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
-		if (renderEvent.celestialBody.equals(ExoPlanets.yzcetib)) {
+		if (renderEvent.celestialBody.equals(PlanetsRegister.yzcetib)) {
 			if (CoreUtil.getClient().currentScreen instanceof GuiCelestialSelection)
 				GL11.glColor4f(0.0F, 0.0F, 0.7F, 0.5F);
 			else
@@ -29,8 +29,8 @@ public class HabitableZoneClientHandler {
 			final float cos = (float) Math.cos(theta);
 			final float sin = (float) Math.sin(theta);
 
-			float min = 63.0F;
-			float max = 90.0F;
+			float min = 100.0F;
+			float max = 32.0F;
 
 			float x = max * renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance;
 			float y = 0;

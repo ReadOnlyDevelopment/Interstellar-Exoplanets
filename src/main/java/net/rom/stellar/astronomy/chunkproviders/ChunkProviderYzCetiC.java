@@ -26,11 +26,11 @@ import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.rom.core.space.world.gen.MapGenStellarCaveGen;
 import net.rom.core.space.world.gen.MapGenStellarRavinGen;
 import net.rom.stellar.astronomy.biomes.yzceti.decorators.BiomeDecoratorYzCetiC;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.BlocksRegister;
 
 public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
-	public static final IBlockState BLOCK_FILL = ExoplanetsBlocks.yzc_metamorphic.getDefaultState();
+	public static final IBlockState BLOCK_FILL = BlocksRegister.yzc_metamorphic.getDefaultState();
 
 	public static final double CHUNK_HEIGHT = 85.0D;
 	public static final int SEA_LEVEL = 15;
@@ -53,7 +53,7 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 	private final double[] terrainCalcs;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
-	private MapGenStellarCaveGen caveGenerator = new MapGenStellarCaveGen(ExoplanetsBlocks.yzc_sedimentary, 0, 1, 2);
+	private MapGenStellarCaveGen caveGenerator = new MapGenStellarCaveGen(BlocksRegister.yzc_sedimentary, 0, 1, 2);
 	private final MapGenStellarRavinGen ravineGenerator = new MapGenStellarRavinGen();
 	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private Biome[] biomesForGeneration;

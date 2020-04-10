@@ -21,8 +21,8 @@ import net.rom.core.space.world.WorldProviderExoPlanet;
 import net.rom.stellar.astronomy.ExoDimensions;
 import net.rom.stellar.astronomy.biomes.yzceti.providers.BiomeProviderYzCetiC;
 import net.rom.stellar.astronomy.chunkproviders.ChunkProviderYzCetiC;
-import net.rom.stellar.init.ExoPlanets;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.PlanetsRegister;
+import net.rom.stellar.init.BlocksRegister;
 
 public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	
@@ -169,7 +169,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	
 	@Override
 	public CelestialBody getCelestialBody() {
-		return ExoPlanets.yzcetic;
+		return PlanetsRegister.yzcetic;
 	}
 	
 	@Override
@@ -195,7 +195,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks() {
 		ArrayList<Block> blockList = new ArrayList<Block>();
-		blockList.add(ExoplanetsBlocks.yzc_sedimentary);
+		blockList.add(BlocksRegister.yzc_sedimentary);
 		return blockList;
 	}
 	
@@ -226,7 +226,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	
 	@Override
 	public Class<? extends BiomeProvider> getBiomeProviderClass() {
-		BiomeAdaptive.setBodyMultiBiome(ExoPlanets.yzcetic);
+		BiomeAdaptive.setBodyMultiBiome(PlanetsRegister.yzcetic);
 		return BiomeProviderYzCetiC.class;
 	}
 	

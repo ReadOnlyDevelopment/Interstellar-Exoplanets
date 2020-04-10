@@ -1,7 +1,7 @@
 package net.rom.stellar.astronomy.biomes.yzceti;
 
 import net.rom.stellar.astronomy.enums.EnumBiomeType;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.BlocksRegister;
 
 public class BiomeYzCetiCUnknown extends BiomeYzCetiBBase {
 	
@@ -16,8 +16,8 @@ public class BiomeYzCetiCUnknown extends BiomeYzCetiBBase {
 		this.setTemp(2F);
 		this.setBiomeHeight(82);
 		this.setBiomeType(EnumBiomeType.ABANDONED);
-		this.topBlock = ExoplanetsBlocks.yzc_sedimentary.getDefaultState();
-		this.fillerBlock = ExoplanetsBlocks.yzc_metamorphic.getDefaultState();
-		this.stoneBlock = ExoplanetsBlocks.yzc_ingneous;
+		this.topBlock = BlocksRegister.yzc_sedimentary.getDefaultState();
+		this.fillerBlock = BlocksRegister.yzc_metamorphic.getDefaultState();
+		this.stoneBlock = BlocksRegister.yzc_ingneous;
 	}
 }

@@ -11,16 +11,16 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.stellar.astronomy.biomes.BiomeSpace;
 import net.rom.stellar.astronomy.biomes.yzceti.decorators.BiomeDecoratorYzCetiC;
 import net.rom.stellar.astronomy.enums.EnumBiomeType;
-import net.rom.stellar.init.ExoPlanets;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.PlanetsRegister;
+import net.rom.stellar.init.BlocksRegister;
 
 public abstract class BiomeYzCetiCBase extends BiomeSpace {
 
-	protected static final IBlockState STONE = ExoplanetsBlocks.yzc_sedimentary.getDefaultState();
+	protected static final IBlockState STONE = BlocksRegister.yzc_sedimentary.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState CONSTRUCT = ExoplanetsBlocks.tiles.getDefaultState();
-	protected static final IBlockState DIRT = ExoplanetsBlocks.dirt.getDefaultState();
+	protected static final IBlockState CONSTRUCT = BlocksRegister.tiles.getDefaultState();
+	protected static final IBlockState DIRT = BlocksRegister.dirt.getDefaultState();
 	protected static final IBlockState ICE = Blocks.ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 
@@ -32,8 +32,8 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 	public BiomeYzCetiCBase(String singleName, BiomeProperties props) {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.MEDIUM);
-		this.setStoneBlock(ExoplanetsBlocks.yzc_metamorphic);
-		this.setPlanetForBiome(ExoPlanets.yzcetic);
+		this.setStoneBlock(BlocksRegister.yzc_metamorphic);
+		this.setPlanetForBiome(PlanetsRegister.yzcetic);
 	}
 
 	public final void generateYzCetiCTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
@@ -65,7 +65,7 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 				} else {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
-					} else if (iblockstate2.getBlock() == ExoplanetsBlocks.yzc_metamorphic) {
+					} else if (iblockstate2.getBlock() == BlocksRegister.yzc_metamorphic) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState = AIR;

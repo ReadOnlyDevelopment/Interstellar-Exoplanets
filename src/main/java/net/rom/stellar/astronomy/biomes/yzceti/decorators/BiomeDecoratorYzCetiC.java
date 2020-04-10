@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.rom.core.space.world.EnumOreGen;
 import net.rom.stellar.astronomy.BiomeDecoratorExoplanet;
 import net.rom.stellar.astronomy.world.WorldGenMinableExo;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.BlocksRegister;
 
 public class BiomeDecoratorYzCetiC extends BiomeDecoratorExoplanet {
 

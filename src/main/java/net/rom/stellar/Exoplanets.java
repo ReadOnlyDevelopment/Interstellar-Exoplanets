@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
+import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandlerClient;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,9 +24,10 @@ import net.rom.stellar.astronomy.ExoDimensions;
 import net.rom.stellar.astronomy.biomes.ExoplanetBiomes;
 import net.rom.stellar.conf.SConfigCore;
 import net.rom.stellar.conf.SConfigSystems;
-import net.rom.stellar.init.ExoPlanets;
-import net.rom.stellar.init.ExoStarSystem;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.event.HabitableZoneClientHandler;
+import net.rom.stellar.init.PlanetsRegister;
+import net.rom.stellar.init.SystemRegister;
+import net.rom.stellar.init.BlocksRegister;
 import net.rom.stellar.proxy.ExoCommonProxy;
 
 
@@ -61,12 +63,13 @@ public class Exoplanets implements IMod {
 		REGISTRY.setMod(this);
 		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Interstellar/dimensions.cfg"));
 		new SConfigCore(new File(event.getModConfigurationDirectory(), "Interstellar/core.cfg"));
-		REGISTRY.addRegistrationHandler(ExoplanetsBlocks::registerAll, Block.class);
+		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
 		ExoplanetBiomes.init();
-		ExoStarSystem.init();
-		ExoPlanets.init();
+		SystemRegister.init();
+		PlanetsRegister.init();
 		sounds = new InterstellarSounds();
-		
+        HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
+        MinecraftForge.EVENT_BUS.register(clientEventHandler);
 		MinecraftForge.EVENT_BUS.register(sounds);
 		proxy.preInit(REGISTRY, event);
 	}

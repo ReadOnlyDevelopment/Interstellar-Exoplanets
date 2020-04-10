@@ -2,7 +2,7 @@ package net.rom.stellar.tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.rom.stellar.init.ExoplanetsBlocks;
+import net.rom.stellar.init.BlocksRegister;
 
 public class CreativeExoTabs {
 
@@ -10,7 +10,7 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ExoplanetsBlocks.com);
+			return new ItemStack(BlocksRegister.com);
 		}
 		
 		@Override
