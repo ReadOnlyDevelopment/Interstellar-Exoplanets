@@ -33,7 +33,7 @@ public class PlanetsRegister {
 	public static ExoPlanet wolf1061d;
 
 	// HD 219134
-	private static Float[] hdAu = { 0.1F, 0.2f, 0.4f, 0.6f, 0.8f, 2.7f };
+	private static Float[] hdAu = { 0.2F, 0.3f, 0.4f, 0.6f, 0.8f, 2.7f };
 	public static ExoPlanet hd219134b;
 	public static ExoPlanet hd219134c;
 	public static ExoPlanet hd219134d;
@@ -77,7 +77,7 @@ public class PlanetsRegister {
 	public static void registerPlanetData() {
 		yzcetib.setPlanetGravity(0.35F);
 		yzcetib.setDistanceFromCenter(yzCetiAu[0]);
-		yzcetib.setOrbitPeriod(yzCetiAu[0] + 0.3F);
+		yzcetib.setRelativeOrbitTime(yzCetiAu[0] + 0.5F);
 		yzcetib.setDayLength(0.93F);
 		yzcetib.setExoClass(EnumClass.D);
 		yzcetib.setPlanetTemp(-54.5F);
@@ -91,7 +91,7 @@ public class PlanetsRegister {
 
 		yzcetib.setPlanetGravity(0.42F);
 		yzcetic.setDistanceFromCenter(yzCetiAu[1]);
-		yzcetic.setOrbitPeriod(yzCetiAu[1] + 0.3F);
+		yzcetic.setRelativeOrbitTime(yzCetiAu[1] + 0.5F);
 		yzcetib.setDayLength(1.0F);
 		yzcetic.setExoClass(EnumClass.D);
 		yzcetic.setPlanetTemp(-54.5F);

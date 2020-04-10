@@ -197,6 +197,12 @@ task apiJar(type: Jar) {
     onlyIf {
         getBooleanProperty('create_api_jar')
     }
+    from(sourceSets.main.output) {
+        include "net/rom/api/**"
+    }
+	from(sourceSets.main.java) {
+        include "net/rom/api/**"
+    }
 
     classifier = 'api'
     from apiClasses

@@ -62,9 +62,9 @@ public class Exoplanets implements IMod {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		REGISTRY.setMod(this);
-		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Interstellar/systems.cfg"));
-		new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Interstellar/dimensions.cfg"));
-		new SConfigCore(new File(event.getModConfigurationDirectory(), "Interstellar/core.cfg"));
+		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Exoplanets/systems.cfg"));
+		new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg"));
+		new SConfigCore(new File(event.getModConfigurationDirectory(), "Exoplanets/core.cfg"));
 		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
 		ExoplanetBiomes.init();
 		SystemRegister.init();

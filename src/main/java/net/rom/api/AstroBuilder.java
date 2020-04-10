@@ -69,7 +69,8 @@ public class AstroBuilder {
 		if(!SConfigCore.enableRealism) {
 			main.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
-		} else {
+		} 	
+		if(SConfigCore.enableRealism) {
 			main.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + "_real.png"));
 		}
@@ -86,7 +87,8 @@ public class AstroBuilder {
 		body.setRelativeSize(1.0F);
 		if(!SConfigCore.enableRealism) {
 			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
-		} else {
+		} 
+		if(SConfigCore.enableRealism) {
 			body.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + system.getName() + "_real.png"));
 		}
@@ -210,7 +212,7 @@ public class AstroBuilder {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
 		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
 		unreachable.setDistanceFromCenter(au);
-		unreachable.setOrbitPeriod(au + 0.3F);
+		unreachable.setRelativeOrbitTime(au + 0.5F);
 		unreachable.setPhaseShift(randomPhase);
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);

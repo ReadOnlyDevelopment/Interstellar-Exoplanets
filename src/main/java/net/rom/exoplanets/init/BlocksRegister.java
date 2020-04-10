@@ -59,7 +59,7 @@ public class BlocksRegister {
 		
 		registry.registerBlock(deco, "deco", new BlockDeco.ItemBlock(deco));
 		
-		registry.registerBlock(spaceDoor, "spacedoor", new ItemBlock(spaceDoor));
+		//registry.registerBlock(spaceDoor, "spacedoor", new ItemBlock(spaceDoor));
 		
 	}
 
