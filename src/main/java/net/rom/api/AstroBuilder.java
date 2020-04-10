@@ -22,6 +22,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.rom.api.implemtations.planet.ExoPlanet;
 import net.rom.api.implemtations.star.ExoStar;
+import net.rom.exoplanets.conf.SConfigCore;
 
 public class AstroBuilder {
 	
@@ -65,28 +66,15 @@ public class AstroBuilder {
 		body.setMapPosition(new Vector3(pos));
 		Star main = new Star(starname);
 		main.setParentSolarSystem(body);
-		main.setBodyIcon(
-				new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
+		if(!SConfigCore.enableRealism) {
+			main.setBodyIcon(
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
+		} else {
+			main.setBodyIcon(
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + "_real.png"));
+		}
+
 		body.setMainStar(main);
-		return body;
-	}
-	
-	/**
-	 * Builds the solar system.
-	 *
-	 * @param name the name
-	 * @param galaxy the galaxy
-	 * @param pos the pos
-	 * @param exoStar the exo star
-	 * @return the solar system
-	 */
-	public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, ExoStar exoStar) {
-		SolarSystem body = new SolarSystem(name, galaxy);
-		body.setMapPosition(new Vector3(pos));
-		exoStar.setParentSolarSystem(body);
-		exoStar.setBodyIcon(
-				new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + exoStar.getName() + ".png"));
-		body.setMainStar(exoStar);
 		return body;
 	}
 
@@ -96,7 +84,13 @@ public class AstroBuilder {
 		body.setPhaseShift(phase);
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
-		body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
+		if(!SConfigCore.enableRealism) {
+			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
+		} else {
+			body.setBodyIcon(
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + system.getName() + "_real.png"));
+		}
+		
 		if (provider != null) {
 			body.setTierRequired(tier);
 			body.setDimensionInfo(dimID, provider);
@@ -212,9 +206,11 @@ public class AstroBuilder {
 	 * @param solarSystem the solar system
 	 * @return the planet
 	 */
-	public ExoPlanet buildUnreachablePlanet(ExoPlanet planet, SolarSystem solarSystem, float randomPhase) {
-		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planet.getPlanetName()).setParentSolarSystem(solarSystem);
-		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planet.getPlanetName() + ".png"));
+	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
+		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
+		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
+		unreachable.setDistanceFromCenter(au);
+		unreachable.setOrbitPeriod(au + 0.3F);
 		unreachable.setPhaseShift(randomPhase);
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);

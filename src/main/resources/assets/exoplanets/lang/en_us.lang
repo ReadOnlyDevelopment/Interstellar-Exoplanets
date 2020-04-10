@@ -1,9 +1,45 @@
 ## ASTRONOMY ##
-star.yzcetia=Yz Ceti A
-planet.yzcetib=Yz Ceti B
-planet.yzcetic=Yz Ceti C
-planet.yzcetid=Yz Ceti D
-solarsystem.yzceti=Yz Ceti
+solarsystem.yz_ceti=Yz Ceti
+solarsystem.wolf_1061=Wolf 1061
+solarsystem.hd_219134=HD 219134
+solarsystem.trappist_1=Trappist 1
+
+star.yz_ceti_star=Yz Ceti A
+star.trappist_star=Trappist 1 A
+star.hd_219134_star=HD 219134 A
+star.wolf_1061_star=Wolf 1061 A
+
+planet.yz_ceti_b=Yz Ceti B
+planet.yz_ceti_c=Yz Ceti C
+planet.yz_ceti_d=Yz Ceti D
+
+planet.wolf_1061_b=B
+planet.wolf_1061_c=C
+planet.wolf_1061_d=D
+
+planet.hd_219134_b=B
+planet.hd_219134_c=C
+planet.hd_219134_d=D
+planet.hd_219134_f=F
+planet.hd_219134_g=G
+planet.hd_219134_h=H
+
+planet.trappist_b=B
+planet.trappist_c=C
+planet.trappist_d=D
+planet.trappist_e=E
+planet.trappist_f=F
+planet.trappist_g=G
+planet.trappist_h=H
+
+## CONFIG GUI ##
+exoplanets.configgui.title=Exoplanets Settings
+exoplanets.configgui.category.generalmain=Core Settings
+exoplanets.configgui.category.dimensionids=Exoplanets Dimension ID's
+exoplanets.configgui.category.generalsystemsconf=General Solar Systems Settings
+exoplanets.configgui.category.systemstier=Solar System Tier Requirements
+exoplanets.configgui.category.systemsmappos=Solar System Map Positions
+
 
 ## CREATIVE TAB ##
 itemGroup.decoration=§6Exo Decoration§r

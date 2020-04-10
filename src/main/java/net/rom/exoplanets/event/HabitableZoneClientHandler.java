@@ -11,6 +11,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.SystemRegister;
 
 /**
@@ -29,14 +30,16 @@ public class HabitableZoneClientHandler {
 		if (renderEvent.celestialBody.equals(SystemRegister.yzCeti.getMainStar())) {
 			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
 		}
-		if (renderEvent.celestialBody.equals(SystemRegister.wolf1061.getMainStar())) {
-			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
-		}
-		if (renderEvent.celestialBody.equals(SystemRegister.hd219134.getMainStar())) {
-			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
-		}
-		if (renderEvent.celestialBody.equals(SystemRegister.trappist1.getMainStar())) {
-			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
+		if(!SConfigSystems.hideUnfinishedSystems) {
+			if (renderEvent.celestialBody.equals(SystemRegister.wolf1061.getMainStar())) {
+				this.RingRender(renderEvent, renderEvent.celestialBody, 45F, 85F);
+			}
+			if (renderEvent.celestialBody.equals(SystemRegister.hd219134.getMainStar())) {
+				this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 135F);
+			}
+			if (renderEvent.celestialBody.equals(SystemRegister.trappist1.getMainStar())) {
+				this.RingRender(renderEvent, renderEvent.celestialBody, 55F, 100F);
+			}
 		}
 	}
 

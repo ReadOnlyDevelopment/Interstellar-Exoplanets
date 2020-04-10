@@ -1,7 +1,5 @@
 package net.rom.exoplanets.init;
 
-import java.util.Random;
-
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
@@ -22,39 +20,36 @@ import net.rom.exoplanets.conf.SConfigSystems;
 
 public class PlanetsRegister {
 
-	static Random random = new Random();
-	static float randomf = (float) (random.nextDouble() * (8.0 - 0.0));
-
 	// Yz Ceti
 	private static Float[] yzCetiAu = { 0.3F, 0.4f, 0.6f };
-	public static ExoPlanet yzcetib = new ExoPlanet("yzcetib").setAUFromStar(yzCetiAu[0]);
-	public static ExoPlanet yzcetic = new ExoPlanet("yzcetic").setAUFromStar(yzCetiAu[1]);
-	public static ExoPlanet yzcetid = new ExoPlanet("yzcetid").setAUFromStar(yzCetiAu[2]);
+	public static ExoPlanet yzcetib;
+	public static ExoPlanet yzcetic;
+	public static ExoPlanet yzcetid;
 
 	// Wolf 1061
-	private static Float[] wolfAu = { 0.2F, 0.4f, 1.0f };
-	public static ExoPlanet wolf1061b = new ExoPlanet("wolf1061b").setAUFromStar(wolfAu[0]);
-	public static ExoPlanet wolf1061c = new ExoPlanet("wolf1061c").setAUFromStar(wolfAu[1]);
-	public static ExoPlanet wolf1061d = new ExoPlanet("wolf1061d").setAUFromStar(wolfAu[2]);
+	private static Float[] wolfAu = { 0.2F, 0.4f, 2.5f };
+	public static ExoPlanet wolf1061b;
+	public static ExoPlanet wolf1061c;
+	public static ExoPlanet wolf1061d;
 
 	// HD 219134
-	private static Float[] hdAu = { 0.2F, 0.3f, 0.5f, 0.8f, 1.1f, 1.6f };
-	public static ExoPlanet hd219134b = new ExoPlanet("hd219134b").setAUFromStar(hdAu[0]);
-	public static ExoPlanet hd219134c = new ExoPlanet("hd219134c").setAUFromStar(hdAu[1]);
-	public static ExoPlanet hd219134d = new ExoPlanet("hd219134d").setAUFromStar(hdAu[2]);
-	public static ExoPlanet hd219134f = new ExoPlanet("hd219134f").setAUFromStar(hdAu[3]);
-	public static ExoPlanet hd219134g = new ExoPlanet("hd219134g").setAUFromStar(hdAu[4]);
-	public static ExoPlanet hd219134h = new ExoPlanet("hd219134h").setAUFromStar(hdAu[5]);
+	private static Float[] hdAu = { 0.1F, 0.2f, 0.4f, 0.6f, 0.8f, 2.7f };
+	public static ExoPlanet hd219134b;
+	public static ExoPlanet hd219134c;
+	public static ExoPlanet hd219134d;
+	public static ExoPlanet hd219134f;
+	public static ExoPlanet hd219134g;
+	public static ExoPlanet hd219134h;
 
 	// Trappist 1
-	private static Float[] trappistAu = { 0.2F, 0.3f, 0.5f, 0.8f, 1.1f, 1.6f, 1.8f };
-	public static ExoPlanet trappistb = new ExoPlanet("trappistb").setAUFromStar(trappistAu[0]);
-	public static ExoPlanet trappistc = new ExoPlanet("trappistc").setAUFromStar(trappistAu[1]);
-	public static ExoPlanet trappistd = new ExoPlanet("trappistd").setAUFromStar(trappistAu[2]);
-	public static ExoPlanet trappiste = new ExoPlanet("trappiste").setAUFromStar(trappistAu[3]);
-	public static ExoPlanet trappistf = new ExoPlanet("trappistf").setAUFromStar(trappistAu[4]);
-	public static ExoPlanet trappistg = new ExoPlanet("trappistg").setAUFromStar(trappistAu[5]);
-	public static ExoPlanet trappisth = new ExoPlanet("trappisth").setAUFromStar(trappistAu[6]);
+	private static Float[] trappistAu = { 0.3F, 0.4f, 0.6f, 0.8f, 1.0f, 1.2f, 1.6f };
+	public static ExoPlanet trappistb;
+	public static ExoPlanet trappistc;
+	public static ExoPlanet trappistd;
+	public static ExoPlanet trappiste;
+	public static ExoPlanet trappistf;
+	public static ExoPlanet trappistg;
+	public static ExoPlanet trappisth;
 
 	static AstroBuilder builder = new AstroBuilder(Exoplanets.MODID);
 
@@ -68,11 +63,11 @@ public class PlanetsRegister {
 
 	public static void initPlanets() {
 
-		yzcetib = builder.buildExoPlanet(SystemRegister.yzCeti, "yzcetib", WorldProviderYzCetiB.class,
-				SConfigDimensionID.id_yz_b, 3, randomf);
+		yzcetib = builder.buildExoPlanet(SystemRegister.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class,
+				SConfigDimensionID.id_yz_b, 3, 4.50F);
 
-		yzcetic = builder.buildExoPlanet(SystemRegister.yzCeti, "yzcetic", WorldProviderYzCetiC.class,
-				SConfigDimensionID.id_hd_c, 3, randomf);
+		yzcetic = builder.buildExoPlanet(SystemRegister.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class,
+				SConfigDimensionID.id_yz_c, 3, 1.5F);
 
 		if (Loader.isModLoaded("asmodeuscore")) {
 			asmodeusData();
@@ -80,7 +75,10 @@ public class PlanetsRegister {
 	}
 
 	public static void registerPlanetData() {
-		yzcetib.setPlanetMass(0.75F);
+		yzcetib.setPlanetGravity(0.35F);
+		yzcetib.setDistanceFromCenter(yzCetiAu[0]);
+		yzcetib.setOrbitPeriod(yzCetiAu[0] + 0.3F);
+		yzcetib.setDayLength(0.93F);
 		yzcetib.setExoClass(EnumClass.D);
 		yzcetib.setPlanetTemp(-54.5F);
 		yzcetib.setBaseToxicity(15.2F);
@@ -91,6 +89,10 @@ public class PlanetsRegister {
 		yzcetib.setBiomeInfo(ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
 		yzcetib.addChecklistKeys("equipOxygenSuit");
 
+		yzcetib.setPlanetGravity(0.42F);
+		yzcetic.setDistanceFromCenter(yzCetiAu[1]);
+		yzcetic.setOrbitPeriod(yzCetiAu[1] + 0.3F);
+		yzcetib.setDayLength(1.0F);
 		yzcetic.setExoClass(EnumClass.D);
 		yzcetic.setPlanetTemp(-54.5F);
 		yzcetic.setBaseToxicity(15.2F);
@@ -158,29 +160,29 @@ public class PlanetsRegister {
 	public static void buildUnreachable() {
 
 		if (!SConfigSystems.hideUnfinishedSystems) {
-			yzcetid = builder.buildUnreachablePlanet(yzcetid, SystemRegister.yzCeti, randomf);
+			yzcetid = builder.buildUnreachablePlanet("yz_ceti_d", SystemRegister.yzCeti, 4.793016F, yzCetiAu[2]);
 
 			// Wolf 1061
-			wolf1061b = builder.buildUnreachablePlanet(wolf1061b, SystemRegister.wolf1061, randomf);
-			wolf1061c = builder.buildUnreachablePlanet(wolf1061c, SystemRegister.wolf1061, randomf);
-			wolf1061d = builder.buildUnreachablePlanet(wolf1061d, SystemRegister.wolf1061, randomf);
+			wolf1061b = builder.buildUnreachablePlanet("wolf_1061_b", SystemRegister.wolf1061, 2.9495497F, wolfAu[0]);
+			wolf1061c = builder.buildUnreachablePlanet("wolf_1061_c", SystemRegister.wolf1061, 1.7264397F, wolfAu[1]);
+			wolf1061d = builder.buildUnreachablePlanet("wolf_1061_d", SystemRegister.wolf1061, 7.132725F, wolfAu[2]);
 
 			// HD 219134
-			hd219134b = builder.buildUnreachablePlanet(hd219134b, SystemRegister.hd219134, randomf);
-			hd219134c = builder.buildUnreachablePlanet(hd219134c, SystemRegister.hd219134, randomf);
-			hd219134d = builder.buildUnreachablePlanet(hd219134d, SystemRegister.hd219134, randomf);
-			hd219134f = builder.buildUnreachablePlanet(hd219134f, SystemRegister.hd219134, randomf);
-			hd219134g = builder.buildUnreachablePlanet(hd219134g, SystemRegister.hd219134, randomf);
-			hd219134h = builder.buildUnreachablePlanet(hd219134h, SystemRegister.hd219134, randomf);
+			hd219134b = builder.buildUnreachablePlanet("hd_219134_b", SystemRegister.hd219134, 0.292421F, hdAu[0]);
+			hd219134c = builder.buildUnreachablePlanet("hd_219134_c", SystemRegister.hd219134, 2.9495497F, hdAu[1]);
+			hd219134d = builder.buildUnreachablePlanet("hd_219134_d", SystemRegister.hd219134, 0.896365F, hdAu[2]);
+			hd219134f = builder.buildUnreachablePlanet("hd_219134_f", SystemRegister.hd219134, 4.305977F, hdAu[3]);
+			hd219134g = builder.buildUnreachablePlanet("hd_219134_g", SystemRegister.hd219134, 1.932375F, hdAu[4]);
+			hd219134h = builder.buildUnreachablePlanet("hd_219134_h", SystemRegister.hd219134, 7.906747F, hdAu[5]);
 
 			// Trappist 1
-			trappistb = builder.buildUnreachablePlanet(trappistb, SystemRegister.trappist1, randomf);
-			trappistc = builder.buildUnreachablePlanet(trappistc, SystemRegister.trappist1, randomf);
-			trappistd = builder.buildUnreachablePlanet(trappistd, SystemRegister.trappist1, randomf);
-			trappiste = builder.buildUnreachablePlanet(trappiste, SystemRegister.trappist1, randomf);
-			trappistf = builder.buildUnreachablePlanet(trappistf, SystemRegister.trappist1, randomf);
-			trappistg = builder.buildUnreachablePlanet(trappistg, SystemRegister.trappist1, randomf);
-			trappisth = builder.buildUnreachablePlanet(trappisth, SystemRegister.trappist1, randomf);
+			trappistb = builder.buildUnreachablePlanet("trappist_b", SystemRegister.trappist1, 3.254752F, trappistAu[0]);
+			trappistc = builder.buildUnreachablePlanet("trappist_c", SystemRegister.trappist1, 0.6451158F, trappistAu[1]);
+			trappistd = builder.buildUnreachablePlanet("trappist_d", SystemRegister.trappist1, 5.6336107F, trappistAu[2]);
+			trappiste = builder.buildUnreachablePlanet("trappist_e", SystemRegister.trappist1, 0.6451158F, trappistAu[3]);
+			trappistf = builder.buildUnreachablePlanet("trappist_f", SystemRegister.trappist1, 5.396859F, trappistAu[4]);
+			trappistg = builder.buildUnreachablePlanet("trappist_g", SystemRegister.trappist1, 7.957024F, trappistAu[5]);
+			trappisth = builder.buildUnreachablePlanet("trappist_h", SystemRegister.trappist1, 2.711277F, trappistAu[6]);
 		}
 	}
 
@@ -195,10 +197,10 @@ public class PlanetsRegister {
 	}
 
 	public static float getGravity(ExoPlanet planet) {
-		return planet.getExoPlanetProvider().getGravity();
+		return planet.getGravity();
 	}
 
 	public static long getDayLength(ExoPlanet planet) {
-		return planet.getExoPlanetProvider().getDayLength();
+		return planet.getDayLength();
 	}
 }

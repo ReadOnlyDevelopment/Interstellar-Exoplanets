@@ -21,6 +21,7 @@ import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.biomes.ExoplanetBiomes;
 import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.BlocksRegister;
@@ -31,7 +32,7 @@ import net.rom.exoplanets.internal.network.NHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 
 
-@Mod(modid = Exoplanets.MODID, name = Exoplanets.NAME, version = Exoplanets.VERSION, dependencies = Exoplanets.DEPENDENCIES_MODS, acceptedMinecraftVersions = Exoplanets.ACCEPTED_MC_VERSION, certificateFingerprint = "@FINGERPRINT@")
+@Mod(modid = Exoplanets.MODID, name = Exoplanets.NAME, version = Exoplanets.VERSION, dependencies = Exoplanets.DEPENDENCIES_MODS, acceptedMinecraftVersions = Exoplanets.ACCEPTED_MC_VERSION, certificateFingerprint = "@FINGERPRINT@", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
 public class Exoplanets implements IMod {
 
 	public static final String MODID = "exoplanets";
@@ -61,7 +62,8 @@ public class Exoplanets implements IMod {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		REGISTRY.setMod(this);
-		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Interstellar/dimensions.cfg"));
+		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Interstellar/systems.cfg"));
+		new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Interstellar/dimensions.cfg"));
 		new SConfigCore(new File(event.getModConfigurationDirectory(), "Interstellar/core.cfg"));
 		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
 		ExoplanetBiomes.init();

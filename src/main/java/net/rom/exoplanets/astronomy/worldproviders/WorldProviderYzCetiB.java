@@ -25,11 +25,7 @@ import net.rom.exoplanets.init.PlanetsRegister;
 
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
-	@Override
-	public float getGravity() {
-		return 0.052F;
-	}
-	
+
 	@Override
 	public double getMeteorFrequency() {
 		return 2.0;
@@ -144,11 +140,6 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	}
 	
 	@Override
-	public long getDayLength() {
-		return 22000L;
-	}
-	
-	@Override
 	public ResourceLocation getDungeonChestType() {
 		return null;
 	}
@@ -204,11 +195,6 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	@Override
 	public Class<? extends IChunkGenerator> getChunkProviderClass() {
 		return ChunkProviderYzCetiB.class;
-	}
-
-	@Override
-	public float calculateDayLength() {
-		return 0.6f;
 	}
 	
 }

@@ -1,16 +1,14 @@
 package net.rom.exoplanets.conf;
 
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.rom.exoplanets.Exoplanets;
 
@@ -19,8 +17,8 @@ public class SConfigDimensionID {
 	static Configuration config;
 
 	public SConfigDimensionID(File file) {
-		SConfigCore.config = new Configuration(file);
-		SConfigCore.syncConfig(true);
+		SConfigDimensionID.config = new Configuration(file);
+		SConfigDimensionID.syncConfig(true);
 	}
 
 	//yzCeti
@@ -50,139 +48,46 @@ public class SConfigDimensionID {
 	public static int id_trap_g;
 	public static int id_trap_h;
 	
-	public static void syncConfig(boolean load) {
-		List<String> propOrder = new ArrayList<String>();
+	private static String CATEGORY_DIMENSION_IDS = "Exoplanets Dimension ID's";
 
+	public static void syncConfig(boolean load) {
 		try {
-			propOrder.clear();
-			Property prop;
 			if (!config.isChild) {
 				if (load) {
 					config.load();
 				}
 			}
-			//Yz Ceti
-			prop = config.get("Yz Ceti", "Yz Ceti B ID", -4101);
-			prop.setComment("Dimension ID for Yz Ceti c");
-			prop.setLanguageKey("interstellar.configgui.id_yz_b").setRequiresMcRestart(true);
-			id_yz_b = prop.getInt();
-			propOrder.add(prop.getName());
 			
-			prop = config.get("Yz Ceti", "Yz Ceti C ID", -4102);
-			prop.setComment("Enable/Disable Yz Ceti c");
-			prop.setLanguageKey("interstellar.configgui.id_yz_c").setRequiresMcRestart(true);
-			id_yz_c = prop.getInt();
-			propOrder.add(prop.getName());
+			config.addCustomCategoryComment(CATEGORY_DIMENSION_IDS,
+					"Change the Dimension IDs of Exoplanets if Conflicts Arise");
+			config.setCategoryLanguageKey(CATEGORY_DIMENSION_IDS, "exoplanets.configgui.category.dimensionids");
+			config.setCategoryRequiresMcRestart(CATEGORY_DIMENSION_IDS, true);
 			
-			prop = config.get("Yz Ceti", "Yz Ceti D ID", -4103);
-			prop.setComment("Dimension ID for Yz Ceti b");
-			prop.setLanguageKey("interstellar.configgui.id_yz_d").setRequiresMcRestart(true);
-			id_yz_d = prop.getInt();
-			propOrder.add(prop.getName());
-			
+			id_yz_b = config.getInt("Yz Ceti B", CATEGORY_DIMENSION_IDS, -4101, -2147483647, 2147483647, "Yz Ceti B Dimension ID", "interstellar.configgui.id_yz_b");
+			id_yz_c = config.getInt("Yz Ceti C", CATEGORY_DIMENSION_IDS, -4102, -2147483647, 2147483647, "Yz Ceti C Dimension ID", "interstellar.configgui.id_yz_c");
+			id_yz_d = config.getInt("Yz Ceti D", CATEGORY_DIMENSION_IDS, -4103, -2147483647, 2147483647, "Yz Ceti D Dimension ID", "interstellar.configgui.id_yz_d");
+
 			//wolf1061
-			prop = config.get("Wolf 1061", "Wolf 1061 B ID", -4301);
-			prop.setComment("Dimension ID for Wolf 1061 B");
-			prop.setLanguageKey("interstellar.configgui.id_wolf_b").setRequiresMcRestart(true);
-			id_wolf_b = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Wolf 1061", "Wolf 1061 C ID", -4302);
-			prop.setComment("Dimension ID for Wolf 1061 C");
-			prop.setLanguageKey("interstellar.configgui.id_wolf_c").setRequiresMcRestart(true);
-			id_wolf_c = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Wolf 1061", "Wolf 1061 D ID", -4303);
-			prop.setComment("Dimension ID for Wolf 1061 D");
-			prop.setLanguageKey("interstellar.configgui.id_wolf_d").setRequiresMcRestart(true);
-			id_wolf_d = prop.getInt();
-			propOrder.add(prop.getName());
+			id_wolf_b = config.getInt("Wolf 1061 B", CATEGORY_DIMENSION_IDS, -4201, -2147483647, 2147483647, "Wolf 1061 B Dimension ID", "interstellar.configgui.id_wolf_b");
+			id_wolf_c = config.getInt("Wolf 1061 C", CATEGORY_DIMENSION_IDS, -4202, -2147483647, 2147483647, "Wolf 1061 C Dimension ID", "interstellar.configgui.id_wolf_c");
+			id_wolf_d = config.getInt("Wolf 1061 D", CATEGORY_DIMENSION_IDS, -4203, -2147483647, 2147483647, "Wolf 1061 D Dimension ID", "interstellar.configgui.id_wolf_d");
 			
 			//hd19134
-			prop = config.get("HD 19134", "HD 19134 B ID", -4401);
-			prop.setComment("Dimension ID for Wolf 1061 B");
-			prop.setLanguageKey("interstellar.configgui.id_hd_b").setRequiresMcRestart(true);
-			id_hd_b = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("HD 19134", "HD 19134 C ID", -4402);
-			prop.setComment("Dimension ID for Wolf 1061 C");
-			prop.setLanguageKey("interstellar.configgui.id_hd_c").setRequiresMcRestart(true);
-			id_hd_c = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("HD 19134", "HD 19134 D ID", -4403);
-			prop.setComment("Dimension ID for Wolf 1061 D");
-			prop.setLanguageKey("interstellar.configgui.id_hd_d").setRequiresMcRestart(true);
-			id_hd_d = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("HD 19134", "HD 19134 F ID", -4404);
-			prop.setComment("Dimension ID for Wolf 1061 F");
-			prop.setLanguageKey("interstellar.configgui.id_hd_f").setRequiresMcRestart(true);
-			id_hd_f = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("HD 19134", "HD 19134 G ID", -4405);
-			prop.setComment("Dimension ID for Wolf 1061 G");
-			prop.setLanguageKey("interstellar.configgui.id_hd_g").setRequiresMcRestart(true);
-			id_hd_g = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("HD 19134", "HD 19134 H ID", -4406);
-			prop.setComment("Dimension ID for Wolf 1061 H");
-			prop.setLanguageKey("interstellar.configgui.id_hd_h").setRequiresMcRestart(true);
-			id_hd_h = prop.getInt();
-			propOrder.add(prop.getName());
+			id_hd_b = config.getInt("HD 219134 B", CATEGORY_DIMENSION_IDS, -4401, -2147483647, 2147483647, "HD 219134 B Dimension ID", "interstellar.configgui.id_hd_b");
+			id_hd_c = config.getInt("HD 219134 C", CATEGORY_DIMENSION_IDS, -4402, -2147483647, 2147483647, "HD 219134 C Dimension ID", "interstellar.configgui.id_hd_c");
+			id_hd_d = config.getInt("HD 219134 D", CATEGORY_DIMENSION_IDS, -4403, -2147483647, 2147483647, "HD 219134 D Dimension ID", "interstellar.configgui.id_hd_d");
+			id_hd_f = config.getInt("HD 219134 F", CATEGORY_DIMENSION_IDS, -4404, -2147483647, 2147483647, "HD 219134 F Dimension ID", "interstellar.configgui.id_hd_f");
+			id_hd_g = config.getInt("HD 219134 G", CATEGORY_DIMENSION_IDS, -4405, -2147483647, 2147483647, "HD 219134 G Dimension ID", "interstellar.configgui.id_hd_g");
+			id_hd_h = config.getInt("HD 219134 H", CATEGORY_DIMENSION_IDS, -4406, -2147483647, 2147483647, "HD 219134 H Dimension ID", "interstellar.configgui.id_hd_h");
 			
 			//trappist1
-			prop = config.get("Trappist 1", "Trappist 1 B ID", -4601);
-			prop.setComment("Dimension ID for Trappist 1 B");
-			prop.setLanguageKey("interstellar.configgui.id_trap_b").setRequiresMcRestart(true);
-			id_trap_b = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 C ID", -4602);
-			prop.setComment("Dimension ID for Trappist 1 C");
-			prop.setLanguageKey("interstellar.configgui.id_trap_c").setRequiresMcRestart(true);
-			id_trap_c = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 D ID", -4603);
-			prop.setComment("Dimension ID for Trappist 1 D");
-			prop.setLanguageKey("interstellar.configgui.id_trap_d").setRequiresMcRestart(true);
-			id_trap_d = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 E ID", -4604);
-			prop.setComment("Dimension ID for Trappist 1 E");
-			prop.setLanguageKey("interstellar.configgui.id_trap_e").setRequiresMcRestart(true);
-			id_trap_e = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 F ID", -4605);
-			prop.setComment("Dimension ID for Trappist 1 F");
-			prop.setLanguageKey("interstellar.configgui.id_trap_f").setRequiresMcRestart(true);
-			id_trap_f = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 G ID", -4607);
-			prop.setComment("Dimension ID for Trappist 1 G");
-			prop.setLanguageKey("interstellar.configgui.id_trap_g").setRequiresMcRestart(true);
-			id_trap_g = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			prop = config.get("Trappist 1", "Trappist 1 H ID", -4608);
-			prop.setComment("Dimension ID for Trappist 1 H");
-			prop.setLanguageKey("interstellar.configgui.id_trap_h").setRequiresMcRestart(true);
-			id_trap_h = prop.getInt();
-			propOrder.add(prop.getName());
-			
-			config.setCategoryPropertyOrder("Yz Ceti", propOrder);
-			config.setCategoryPropertyOrder("Wolf 1061", propOrder);
-			config.setCategoryPropertyOrder("HD 19134", propOrder);
-			config.setCategoryPropertyOrder("Trappist 1", propOrder);
+			id_trap_b = config.getInt("Trappist 1 B", CATEGORY_DIMENSION_IDS, -4501, -2147483647, 2147483647, "Trappist 1 B Dimension ID", "interstellar.configgui.id_trap_b");
+			id_trap_c = config.getInt("Trappist 1 C", CATEGORY_DIMENSION_IDS, -4502, -2147483647, 2147483647, "Trappist 1 C Dimension ID", "interstellar.configgui.id_trap_c");
+			id_trap_d = config.getInt("Trappist 1 D", CATEGORY_DIMENSION_IDS, -4503, -2147483647, 2147483647, "Trappist 1 D Dimension ID", "interstellar.configgui.id_trap_d");
+			id_trap_e = config.getInt("Trappist 1 E", CATEGORY_DIMENSION_IDS, -4504, -2147483647, 2147483647, "Trappist 1 E Dimension ID", "interstellar.configgui.id_trap_e");
+			id_trap_f = config.getInt("Trappist 1 F", CATEGORY_DIMENSION_IDS, -4505, -2147483647, 2147483647, "Trappist 1 F Dimension ID", "interstellar.configgui.id_trap_f");
+			id_trap_g = config.getInt("Trappist 1 G", CATEGORY_DIMENSION_IDS, -4506, -2147483647, 2147483647, "Trappist 1 G Dimension ID", "interstellar.configgui.id_trap_g");
+			id_trap_h = config.getInt("Trappist 1 H", CATEGORY_DIMENSION_IDS, -4507, -2147483647, 2147483647, "Trappist 1 H Dimension ID", "interstellar.configgui.id_trap_h");
 
 			if (config.hasChanged()) {
 				config.save();
@@ -194,10 +99,11 @@ public class SConfigDimensionID {
 
 	public static List<IConfigElement> getConfigElements() {
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
-		list.addAll(new ConfigElement(config.getCategory("Yz Ceti")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("Wolf 1061")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("HD 19134")).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("Trappist 1")).getChildElements());
+		
+		ConfigCategory configYzId = config.getCategory(CATEGORY_DIMENSION_IDS);
+		configYzId.setComment("Yz Ceti Planet Dimension ID's");
+		list.add(new ConfigElement(configYzId));
+
 
 		return list;
 	}

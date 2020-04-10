@@ -65,11 +65,8 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 	
 	@Override
     public long getDayLength() {
-		return dayLength = (int) (24000L * this.calculateDayLength());
+		return this.getPlanet().getDayLength();
 	}
-
-	public abstract float calculateDayLength();
-	
 	
 	@Override
 	public void updateWeather() {
@@ -129,6 +126,11 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 	@Override
 	public boolean hasBreathableAtmosphere() {
 		return this.getPlanet().isBreathable();
+	}
+	
+	@Override
+	public float getGravity() {
+		return this.getPlanet().getGravity();
 	}
 	
 	@Override

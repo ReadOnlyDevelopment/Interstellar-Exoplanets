@@ -27,11 +27,6 @@ import net.rom.exoplanets.init.PlanetsRegister;
 public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	
 	@Override
-	public float getGravity() {
-		return 0.014F;
-	}
-	
-	@Override
 	public float getSolarSize() {
 		return 2.0F;
 	}
@@ -115,12 +110,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	public boolean hasSunset() {
 		return true;
 	}
-	
-	@Override
-	public long getDayLength() {
-		return 10000L;
-	}
-	
+
 	@Override
 	public boolean shouldDisablePrecipitation() {
 		return !this.canRainOrSnow();
@@ -233,11 +223,6 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	public Class<? extends IChunkGenerator> getChunkProviderClass() {
 		return ChunkProviderYzCetiC.class;
-	}
-
-	@Override
-	public float calculateDayLength() {
-		return 0.9f;
 	}
 	
 }

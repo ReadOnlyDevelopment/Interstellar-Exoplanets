@@ -30,6 +30,8 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	private float planetTemp;
 	private float baseRadiation;
 	private float baseToxicity;
+	private float gravity;
+	private long dayLength;
 	private boolean breathable;
 	private boolean rains;
 	private AtmosphereInfo atmos;
@@ -39,7 +41,6 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	public ExoPlanet(String planetName) {
 		super(planetName);
 		this.setAtmos();
-		this.setRelativeOrbitTime(distanceFromCenter);
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		
 	}
@@ -97,6 +98,19 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 		this.planetLetter = planetLetter;
 		return this;
 	}
+	
+	public ExoPlanet setDayLength(float dayLength) {
+		this.dayLength = (long) (24000L * dayLength);
+		return this;
+	}
+	
+	/**
+	 * @param gravity the gravity to set
+	 */
+	public ExoPlanet setPlanetGravity(float gravity) {
+		this.gravity = gravity;
+		return this;
+	}
 
 	/**
 	 * @param orbitPeriod the orbitPeriod to set
@@ -114,14 +128,16 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 		return this;
 	}
 	
-	/**
-	 * @param planetDensity the planetDensity to set
-	 */
-	public ExoPlanet setAUFromStar(float au) {
-		this.distanceFromCenter = au;
-		this.setRelativeDistanceFromCenter(new ScalableDistance(au, au));
+	public ExoPlanet setDistanceFromCenter(float par1, float par2) {
+		this.setRelativeDistanceFromCenter(new ScalableDistance(par1, par2));
 		return this;
 	}
+	
+	public ExoPlanet setDistanceFromCenter(float par1) {
+		this.setDistanceFromCenter(par1, par1);
+		return this;
+	}
+
 
 
 	/**
@@ -255,6 +271,11 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	public float getOrbitPeriod() {
 		return this.orbitPeriod;
 	}
+	
+	@Override
+	public float getGravity() {
+		return this.gravity;
+	}
 
 	@Override
 	public int getPlanetDensity() {
@@ -294,6 +315,11 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	@Override
 	public AtmosphereInfo getAtmos() {
 		return null;
+	}
+	
+	@Override
+	public long getDayLength() {
+		return this.dayLength;
 	}
 
 	@Override

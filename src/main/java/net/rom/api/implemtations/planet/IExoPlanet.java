@@ -100,6 +100,15 @@ public interface IExoPlanet {
 	public float getBaseToxicity();
 	
 	/**
+	 * Gets the planets gravity.
+	 *
+	 * @return the gravity
+	 */
+	public float getGravity();
+	
+	public long getDayLength();
+	
+	/**
 	 * Checks if is breathable.
 	 *
 	 * @return the isBreathable

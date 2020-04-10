@@ -29,19 +29,18 @@ public class SystemRegister {
 
 	private static void registerSolarSystems() {
 		
-		yzCeti = b.buildSolarSystem("yz_ceti", "milky_way", yzPos(), "yz_ceti_a");
+		yzCeti = b.buildSolarSystem("yz_ceti", "milky_way", yzPos(), "yz_ceti_star");
 		
 		//BUILD UNIMPLEMENTED SYSTEMS
 		if (!SConfigSystems.hideUnfinishedSystems) {
-			wolf1061 = b.buildSolarSystem("wolf_1061", "milky_way", wolfPos(), "wolf_1061_a");
-			hd219134 = b.buildSolarSystem("hd_219134", "milky_way", hdPos(), "hd_219134_a");
-			trappist1 = b.buildSolarSystem("trappist_1", "milky_way", trapPos(), "trappist_1_a");
+			wolf1061 = b.buildSolarSystem("wolf_1061", "milky_way", wolfPos(), "wolf_1061_star");
+			hd219134 = b.buildSolarSystem("hd_219134", "milky_way", hdPos(), "hd_219134_star");
+			trappist1 = b.buildSolarSystem("trappist_1", "milky_way", trapPos(), "trappist_star");
 		}
 		
 		if(Loader.isModLoaded("asmodeuscore")) {
 			BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 	        BodiesHelper.registerBody(yzCeti.getMainStar(), data, false);
-	        
 	        
 	        data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 	        BodiesHelper.registerBody(wolf1061.getMainStar(), data, false);
@@ -57,6 +56,11 @@ public class SystemRegister {
 
 	private static void initializeSolarSystems() {
 		b.registerSolarSystem(yzCeti);
+		if (!SConfigSystems.hideUnfinishedSystems) {
+			b.registerSolarSystem(wolf1061);
+			b.registerSolarSystem(hd219134);
+			b.registerSolarSystem(trappist1);
+		}
 	}
 	
 	public static Vector3 yzPos() {
