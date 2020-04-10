@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.core.utils.CoreUtil;
+import net.rom.stellar.Exoplanets;
+import net.rom.stellar.init.ExoPlanets;
 import net.rom.stellar.init.ExoStarSystem;
 
 public class HabitableZoneClientHandler {
@@ -15,7 +17,7 @@ public class HabitableZoneClientHandler {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
-		if (renderEvent.celestialBody.equals(ExoStarSystem.YZCETI.getMainStar())) {
+		if (renderEvent.celestialBody.equals(ExoPlanets.yzcetib)) {
 			if (CoreUtil.getClient().currentScreen instanceof GuiCelestialSelection)
 				GL11.glColor4f(0.0F, 0.0F, 0.7F, 0.5F);
 			else
