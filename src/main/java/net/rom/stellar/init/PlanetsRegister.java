@@ -37,7 +37,7 @@ public class PlanetsRegister {
 
 		yzcetib.setExoClass(EnumClass.D);
 		yzcetib.setRingColorRGB(0.1F, 0.9F, 2.6F);
-		yzcetib.setRelativeSize(40.0F);
+		yzcetib.setRelativeSize(1.0F);
 		yzcetib.setPlanetTemp(-54.5F);
 		yzcetib.setBaseToxicity(15.2F);
 		yzcetib.setBaseRadiation(2.2F);
@@ -53,7 +53,7 @@ public class PlanetsRegister {
 
 		yzcetic.setExoClass(EnumClass.D);
 		yzcetic.setRingColorRGB(0.1F, 0.9F, 2.6F);
-		yzcetic.setRelativeSize(40.0F);
+		yzcetic.setRelativeSize(1.0F);
 		yzcetic.setPlanetTemp(-54.5F);
 		yzcetic.setBaseToxicity(15.2F);
 		yzcetic.setBaseRadiation(2.2F);
