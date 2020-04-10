@@ -8,21 +8,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.core.utils.CoreUtil;
-import net.rom.stellar.Exoplanets;
-import net.rom.stellar.init.PlanetsRegister;
 import net.rom.stellar.init.SystemRegister;
 
 public class HabitableZoneClientHandler {
+	
+	// It works but it draws the zone over the main solar system and not the custom solar system
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
-		if (renderEvent.celestialBody.equals(PlanetsRegister.yzcetib)) {
+		if (renderEvent.celestialBody.equals(SystemRegister.YZCETI.getMainStar())) {
 			if (CoreUtil.getClient().currentScreen instanceof GuiCelestialSelection)
 				GL11.glColor4f(0.0F, 0.0F, 0.7F, 0.5F);
 			else
 				GL11.glColor4f(0.1F, 0.1F, 0.3F, 1.0F);
 			renderEvent.setCanceled(true);
+			renderEvent.parentOffset.set(0.7F,  1.3F);
 			GL11.glBegin(GL11.GL_LINE_LOOP);
 
 			final float theta = (float) (2 * Math.PI / 90);
