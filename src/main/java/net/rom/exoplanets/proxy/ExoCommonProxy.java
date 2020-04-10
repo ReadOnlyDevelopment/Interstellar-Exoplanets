@@ -7,9 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.rom.core.autoreg.StellarRegistry;
-import net.rom.core.proxy.IProxy;
+
 import net.rom.exoplanets.fluids.IFluid;
+import net.rom.exoplanets.internal.IProxy;
+import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoCommonProxy implements IProxy {
 	

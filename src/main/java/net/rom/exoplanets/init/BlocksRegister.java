@@ -2,13 +2,13 @@ package net.rom.exoplanets.init;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
-import net.rom.core.autoreg.StellarRegistry;
 import net.rom.exoplanets.block.BasicBlock;
 import net.rom.exoplanets.block.BlockYzCetiB;
 import net.rom.exoplanets.block.BlockYzCetiC;
 import net.rom.exoplanets.block.decoration.BlockDeco;
 import net.rom.exoplanets.block.decoration.BlockElectronic;
 import net.rom.exoplanets.block.doors.SpaceDoor;
+import net.rom.exoplanets.internal.StellarRegistry;
 
 public class BlocksRegister {
 	

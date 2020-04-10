@@ -19,6 +19,7 @@ import net.rom.api.implemtations.planet.ExoPlanet;
 public abstract class WorldProviderExoPlanet extends WorldProviderSpace implements ISolarLevel, IExitHeight {
 
 	private static WorldProviderExoPlanet instance;
+	private static int dayLength;
 
 	public WorldProviderExoPlanet() {
 		instance = this;
@@ -61,11 +62,14 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
 		return false;
 	}
-
-	static long calculateDayLength(float trueTime) {
-		return (long) (24000L * trueTime);
-
+	
+	@Override
+    public long getDayLength() {
+		return dayLength = (int) (24000L * this.calculateDayLength());
 	}
+
+	public abstract float calculateDayLength();
+	
 	
 	@Override
 	public void updateWeather() {

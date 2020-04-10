@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.rom.core.autoreg.StellarRegistry;
 import net.rom.exoplanets.fluids.IFluid;
+import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoClientProxy extends ExoCommonProxy {
 	

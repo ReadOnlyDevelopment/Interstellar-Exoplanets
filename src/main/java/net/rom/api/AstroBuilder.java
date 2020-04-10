@@ -89,31 +89,13 @@ public class AstroBuilder {
 		body.setMainStar(exoStar);
 		return body;
 	}
-	
-	
-	/**
-	 * builds planet.
-	 *
-	 * @param system             the system
-	 * @param name               the name
-	 * @param prefix             the prefix
-	 * @param provider           the provider
-	 * @param dimID              the dim ID
-	 * @param tier               the tier
-	 * @param phase              the phase
-	 * @param size               the size
-	 * @param distancefromcenter the distancefromcenter
-	 * @param relativetime       the relativetime
-	 * @param biome              the biome
-	 * @return the planet
-	 */
+
 	public ExoPlanet buildExoPlanet(SolarSystem system, String name,
-			Class<? extends WorldProvider> provider, int dimID, int tier, float phase,
-			float distancefromcenter, float relativetime) {
+			Class<? extends WorldProvider> provider, int dimID, int tier, float phase) {
 		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
 		body.setPhaseShift(phase);
-		body.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(distancefromcenter, distancefromcenter));
-		body.setRelativeOrbitTime(relativetime);
+		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
+		body.setRelativeSize(1.0F);
 		body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
 		if (provider != null) {
 			body.setTierRequired(tier);
@@ -230,9 +212,12 @@ public class AstroBuilder {
 	 * @param solarSystem the solar system
 	 * @return the planet
 	 */
-	public ExoPlanet buildUnreachablePlanet(SolarSystem solarSystem, String planetName) {
-		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
-		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
+	public ExoPlanet buildUnreachablePlanet(ExoPlanet planet, SolarSystem solarSystem, float randomPhase) {
+		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planet.getPlanetName()).setParentSolarSystem(solarSystem);
+		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planet.getPlanetName() + ".png"));
+		unreachable.setPhaseShift(randomPhase);
+		unreachable.setRelativeSize(1.0F);
+		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
 		GalaxyRegistry.registerPlanet(unreachable);
 		return unreachable;
 	}

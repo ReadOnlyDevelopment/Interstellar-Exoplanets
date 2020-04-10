@@ -20,6 +20,7 @@ public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
 	protected float temp = 0.0F;
 	protected int BIOME_HEIGHT = 72;
 
+	@SuppressWarnings("unused")
 	private String singleName = "";
 
 	protected Block stoneBlock;

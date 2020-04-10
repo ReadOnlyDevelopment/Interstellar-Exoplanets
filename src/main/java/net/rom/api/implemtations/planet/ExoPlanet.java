@@ -24,6 +24,7 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	private SolarSystem planetSystem;
 	private String planetLetter;
 	private float orbitPeriod;
+	private float distanceFromCenter;
 	private int planetDensity;
 	private float planetMass;
 	private float planetTemp;
@@ -37,6 +38,8 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 
 	public ExoPlanet(String planetName) {
 		super(planetName);
+		this.setAtmos();
+		this.setRelativeOrbitTime(distanceFromCenter);
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		
 	}
@@ -74,7 +77,7 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	 * @param planetHost the planetHost to set
 	 */
 	public ExoPlanet setPlanetHost(Star planetHost) {
-		this.planetHost = planetHost;
+		this.planetHost = planetHost; 
 		return this;
 	}
 
@@ -83,6 +86,7 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	 */
 	public ExoPlanet setPlanetSystem(SolarSystem planetSystem) {
 		this.planetSystem = planetSystem;
+		setParentSolarSystem(planetSystem);
 		return this;
 	}
 
@@ -109,6 +113,16 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 		this.planetDensity = planetDensity;
 		return this;
 	}
+	
+	/**
+	 * @param planetDensity the planetDensity to set
+	 */
+	public ExoPlanet setAUFromStar(float au) {
+		this.distanceFromCenter = au;
+		this.setRelativeDistanceFromCenter(new ScalableDistance(au, au));
+		return this;
+	}
+
 
 	/**
 	 * @param planetMass the planetMass to set
@@ -155,16 +169,6 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	 */
 	public Planet setRains(boolean rains) {
 		this.rains = rains;
-		return this;
-	}
-	
-	public ExoPlanet setDistanceFromCenter(float par1, float par2) {
-		this.setRelativeDistanceFromCenter(new ScalableDistance(par1, par2));
-		return this;
-	}
-	
-	public ExoPlanet setDistanceFromCenter(float par1) {
-		this.setDistanceFromCenter(par1, par1);
 		return this;
 	}
 

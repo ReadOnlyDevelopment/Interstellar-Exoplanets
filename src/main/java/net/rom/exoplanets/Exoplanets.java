@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
-import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandlerClient;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,8 +17,7 @@ import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.rom.core.autoreg.StellarRegistry;
-import net.rom.core.base.IMod;
+import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.biomes.ExoplanetBiomes;
 import net.rom.exoplanets.conf.SConfigCore;
@@ -28,6 +26,8 @@ import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.BlocksRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
 import net.rom.exoplanets.init.SystemRegister;
+import net.rom.exoplanets.internal.StellarRegistry;
+import net.rom.exoplanets.internal.network.NHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 
 
@@ -45,9 +45,9 @@ public class Exoplanets implements IMod {
 	public static final StellarRegistry REGISTRY = new StellarRegistry();
 	@Instance(MODID)
 	public static Exoplanets instance;
+	public static NHandler network;
 
-
-	@SidedProxy(clientSide = "net.rom.stellar.proxy.ExoClientProxy", serverSide = "net.rom.stellar.proxy.ExoCommonProxy")
+	@SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
 	public static ExoCommonProxy proxy;
 	
 	private InterstellarSounds sounds;

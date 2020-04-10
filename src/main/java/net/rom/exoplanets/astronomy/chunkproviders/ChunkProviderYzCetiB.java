@@ -23,8 +23,8 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
-import net.rom.core.space.world.gen.MapGenStellarCaveGen;
-import net.rom.core.space.world.gen.MapGenStellarRavinGen;
+import net.rom.api.world.gen.MapGenExoCaveGen;
+import net.rom.api.world.gen.MapGenExoRavinGen;
 import net.rom.exoplanets.astronomy.biomes.yzceti.decorators.BiomeDecoratorYzCetiB;
 import net.rom.exoplanets.init.BlocksRegister;
 
@@ -53,8 +53,8 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private final double[] terrainCalcs;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
-	private MapGenStellarCaveGen caveGenerator = new MapGenStellarCaveGen(BlocksRegister.yzb_metamorphic, 0, 1, 2);
-	private final MapGenStellarRavinGen ravineGenerator = new MapGenStellarRavinGen();
+	private MapGenExoCaveGen caveGenerator = new MapGenExoCaveGen(BlocksRegister.yzb_metamorphic, 0, 1, 2);
+	private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
 	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private Biome[] biomesForGeneration;
 	private double[] octaves1;

@@ -9,8 +9,8 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.block.Block;
-import net.rom.core.space.implemtations.planet.ExoPlanet;
-import net.rom.core.space.world.WorldProviderExoPlanet;
+import net.rom.api.implemtations.planet.ExoPlanet;
+import net.rom.api.world.WorldProviderExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 
@@ -121,6 +121,7 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 		ExoPlanet planet = this.getPlanetForBiome();
 
 		float biomeTemp = this.getBiomeTemp();
+		@SuppressWarnings("unused")
 		Random rand = new Random();
 
 		float planetTemp = planet.getPlanetTemp();

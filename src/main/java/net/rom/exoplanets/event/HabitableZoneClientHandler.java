@@ -19,15 +19,24 @@ import net.rom.exoplanets.init.SystemRegister;
  * 
  * tweaked a little to allow easier setting of Solar Systems habitable zones
  * 
- * All credit goes to BleddeNtumble
+ * All credit goes to BlesseNtumble
  */
 public class HabitableZoneClientHandler {
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
-		if (renderEvent.celestialBody.equals(SystemRegister.YZCETI.getMainStar())) {
-			this.RingRender(renderEvent, renderEvent.celestialBody, 65F, 105F);
+		if (renderEvent.celestialBody.equals(SystemRegister.yzCeti.getMainStar())) {
+			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
+		}
+		if (renderEvent.celestialBody.equals(SystemRegister.wolf1061.getMainStar())) {
+			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
+		}
+		if (renderEvent.celestialBody.equals(SystemRegister.hd219134.getMainStar())) {
+			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
+		}
+		if (renderEvent.celestialBody.equals(SystemRegister.trappist1.getMainStar())) {
+			this.RingRender(renderEvent, renderEvent.celestialBody, 75F, 115F);
 		}
 	}
 

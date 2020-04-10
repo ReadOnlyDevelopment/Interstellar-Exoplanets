@@ -15,8 +15,8 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.core.space.implemtations.planet.ExoPlanet;
-import net.rom.core.space.world.WorldProviderExoPlanet;
+import net.rom.api.implemtations.planet.ExoPlanet;
+import net.rom.api.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.biomes.yzceti.providers.BiomeProviderYzCetiB;
 import net.rom.exoplanets.astronomy.chunkproviders.ChunkProviderYzCetiB;
@@ -204,6 +204,11 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	@Override
 	public Class<? extends IChunkGenerator> getChunkProviderClass() {
 		return ChunkProviderYzCetiB.class;
+	}
+
+	@Override
+	public float calculateDayLength() {
+		return 0.6f;
 	}
 	
 }
