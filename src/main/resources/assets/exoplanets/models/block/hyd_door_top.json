@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "exoplanets:blocks/door_strontenit_lower",
+        "top": "exoplanets:blocks/door_strontenit_upper"
+    }
+}

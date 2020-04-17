@@ -184,7 +184,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks() {
 		ArrayList<Block> blockList = new ArrayList<Block>();
-		blockList.add(BlocksRegister.yzc_sedimentary);
+		blockList.add(BlocksRegister.YZC_SEDIMENTARY);
 		return blockList;
 	}
 

@@ -146,8 +146,8 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks() {
 		List<Block> list = new LinkedList<>();
-		list.add(BlocksRegister.yzb_sedimentary);
-		list.add(BlocksRegister.yzb_ingneous);
+		list.add(BlocksRegister.YZB_SEDIMENTARY);
+		list.add(BlocksRegister.YZB_INGNEOUS);
 		return list;
 	}
 	

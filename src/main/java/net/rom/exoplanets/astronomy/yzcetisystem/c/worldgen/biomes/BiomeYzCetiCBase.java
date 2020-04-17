@@ -16,11 +16,11 @@ import net.rom.exoplanets.init.PlanetsRegister;
 
 public abstract class BiomeYzCetiCBase extends BiomeSpace {
 
-	protected static final IBlockState STONE = BlocksRegister.yzc_sedimentary.getDefaultState();
+	protected static final IBlockState STONE = BlocksRegister.YZC_SEDIMENTARY.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState CONSTRUCT = BlocksRegister.tiles.getDefaultState();
-	protected static final IBlockState DIRT = BlocksRegister.dirt.getDefaultState();
+	protected static final IBlockState CONSTRUCT = BlocksRegister.TILES.getDefaultState();
+	protected static final IBlockState DIRT = BlocksRegister.DIRT.getDefaultState();
 	protected static final IBlockState ICE = Blocks.ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 
@@ -32,7 +32,7 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 	public BiomeYzCetiCBase(String singleName, BiomeProperties props) {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.MEDIUM);
-		this.setStoneBlock(BlocksRegister.yzc_metamorphic);
+		this.setStoneBlock(BlocksRegister.YZC_METAMORPHIC);
 		this.setPlanetForBiome(PlanetsRegister.yzcetic);
 	}
 
@@ -65,7 +65,7 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 				} else {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
-					} else if (iblockstate2.getBlock() == BlocksRegister.yzc_metamorphic) {
+					} else if (iblockstate2.getBlock() == BlocksRegister.YZC_METAMORPHIC) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState = AIR;

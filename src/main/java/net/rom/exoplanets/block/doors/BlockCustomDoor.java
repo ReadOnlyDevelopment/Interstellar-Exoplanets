@@ -1,4 +1,6 @@
-package net.rom.exoplanets.block;
+package net.rom.exoplanets.block.doors;
+
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -6,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -14,13 +17,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public abstract class InterstellarDoor extends BlockDoor {
+public abstract class BlockCustomDoor extends BlockDoor {
 
-	protected InterstellarDoor() {
+	public BlockCustomDoor() {
 		super(Material.IRON);
-		setHardness(3);
-		setResistance(20);
+		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 
 	@Override
@@ -41,6 +44,23 @@ public abstract class InterstellarDoor extends BlockDoor {
 				worldIn.playSound(null, pos, getDoorSoundEvent(state), SoundCategory.BLOCKS, 1.0F,
 						(worldIn.rand.nextFloat() * 0.1F) + 0.9F);
 				return true;
+			}
+		}
+	}
+	
+	@Override
+	public void toggleDoor(World worldIn, BlockPos pos, boolean open) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+
+		if (iblockstate.getBlock() == this) {
+			BlockPos blockpos = iblockstate.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
+			IBlockState iblockstate1 = pos == blockpos ? iblockstate : worldIn.getBlockState(blockpos);
+
+			if ((iblockstate1.getBlock() == this) && (iblockstate1.getValue(OPEN).booleanValue() != open)) {
+				worldIn.setBlockState(blockpos, iblockstate1.withProperty(OPEN, Boolean.valueOf(open)), 10);
+				worldIn.markBlockRangeForRenderUpdate(blockpos, pos);
+				worldIn.playSound(null, pos, getDoorSoundEvent(iblockstate1), SoundCategory.BLOCKS, 1.0F,
+						(worldIn.rand.nextFloat() * 0.1F) + 0.9F);
 			}
 		}
 	}
@@ -98,11 +118,16 @@ public abstract class InterstellarDoor extends BlockDoor {
 	}
 
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World worldIn, BlockPos pos,
-			EntityPlayer player) {
-		return getItem(worldIn, pos, state);
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(this);
 	}
 
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player) {
+		return new ItemStack(this);
+	}
+	
 	protected SoundEvent getCloseSound() {
 		return SoundEvents.BLOCK_WOODEN_DOOR_CLOSE;
 	}
@@ -112,7 +137,7 @@ public abstract class InterstellarDoor extends BlockDoor {
 	}
 
 	private SoundEvent getDoorSoundEvent(IBlockState state) {
-		return (state.getValue(OPEN)).booleanValue() ? getOpenSound() : getCloseSound();
+		return state.getValue(OPEN).booleanValue() ? getOpenSound() : getCloseSound();
 	}
 
 }

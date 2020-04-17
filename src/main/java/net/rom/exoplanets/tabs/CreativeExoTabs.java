@@ -10,7 +10,7 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(BlocksRegister.com);
+			return new ItemStack(BlocksRegister.COM);
 		}
 		
 		@Override
@@ -24,7 +24,7 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(BlocksRegister.yzc_sedimentary);
+			return new ItemStack(BlocksRegister.YZC_SEDIMENTARY);
 		}
 		
 		@Override

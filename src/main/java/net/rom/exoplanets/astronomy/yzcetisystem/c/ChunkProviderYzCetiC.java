@@ -29,7 +29,7 @@ import net.rom.exoplanets.init.BlocksRegister;
 
 public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
-	public static final IBlockState BLOCK_FILL = BlocksRegister.yzc_metamorphic.getDefaultState();
+	public static final IBlockState BLOCK_FILL = BlocksRegister.YZC_METAMORPHIC.getDefaultState();
 
 	public static final double CHUNK_HEIGHT = 85.0D;
 	public static final int SEA_LEVEL = 15;
@@ -52,7 +52,7 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 	private final double[] terrainCalcs;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
-	private MapGenExoCaveGen caveGenerator = new MapGenExoCaveGen(BlocksRegister.yzc_sedimentary, 0, 1, 2);
+	private MapGenExoCaveGen caveGenerator = new MapGenExoCaveGen(BlocksRegister.YZC_SEDIMENTARY, 0, 1, 2);
 	private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
 	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private Biome[] biomesForGeneration;

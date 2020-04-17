@@ -1,6 +1,6 @@
 {
    "parent": "block/cube_all",
    "textures": {
-      "all": "exoplanets:blocks/yzc_sedimentary"
+      "all": "exoplanets:blocks/YZC_SEDIMENTARY"
    }
 }

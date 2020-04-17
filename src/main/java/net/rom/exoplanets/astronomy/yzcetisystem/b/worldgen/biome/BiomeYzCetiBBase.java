@@ -16,11 +16,11 @@ import net.rom.exoplanets.init.PlanetsRegister;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
 	
-	protected static final IBlockState STONE = BlocksRegister.yzb_sedimentary.getDefaultState();
+	protected static final IBlockState STONE = BlocksRegister.YZB_SEDIMENTARY.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState GRAVEL = BlocksRegister.tiles.getDefaultState();
-	protected static final IBlockState DIRT = BlocksRegister.dirt.getDefaultState();
+	protected static final IBlockState GRAVEL = BlocksRegister.TILES.getDefaultState();
+	protected static final IBlockState DIRT = BlocksRegister.DIRT.getDefaultState();
 	protected static final IBlockState ICE = Blocks.PACKED_ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 	
@@ -62,7 +62,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 				} else {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
-					} else if (iblockstate2.getBlock() == BlocksRegister.yzb_metamorphic) {
+					} else if (iblockstate2.getBlock() == BlocksRegister.YZB_METAMORPHIC) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState = AIR;

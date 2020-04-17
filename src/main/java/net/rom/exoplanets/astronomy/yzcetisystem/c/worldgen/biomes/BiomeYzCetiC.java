@@ -16,8 +16,8 @@ public class BiomeYzCetiC extends BiomeYzCetiBBase {
 		this.setTemp(5F);
 		this.setBiomeHeight(72);
 		this.setBiomeType(EnumBiomeType.DARK);
-		this.topBlock = BlocksRegister.yzc_sedimentary.getDefaultState();
-		this.fillerBlock = BlocksRegister.yzc_metamorphic.getDefaultState();
-		this.stoneBlock = BlocksRegister.yzc_ingneous;
+		this.topBlock = BlocksRegister.YZC_SEDIMENTARY.getDefaultState();
+		this.fillerBlock = BlocksRegister.YZC_METAMORPHIC.getDefaultState();
+		this.stoneBlock = BlocksRegister.YZC_INGNEOUS;
 	}
 }
