@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,12 +21,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
-import net.rom.exoplanets.astronomy.biomes.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.BlocksRegister;
+import net.rom.exoplanets.init.ItemsRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
 import net.rom.exoplanets.init.SystemRegister;
 import net.rom.exoplanets.internal.StellarRegistry;
@@ -50,9 +53,6 @@ public class Exoplanets implements IMod {
 
 	@SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
 	public static ExoCommonProxy proxy;
-	
-	private InterstellarSounds sounds;
-
 
 	@EventHandler
 	public static void onFingerprintViolation(final FMLFingerprintViolationEvent event) {
@@ -61,18 +61,25 @@ public class Exoplanets implements IMod {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		//Set Modid for Interal Registry
 		REGISTRY.setMod(this);
+		
+		//Register Config Files
 		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Exoplanets/systems.cfg"));
 		new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg"));
 		new SConfigCore(new File(event.getModConfigurationDirectory(), "Exoplanets/core.cfg"));
+		
+		//Set all registries
 		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
+		REGISTRY.addRegistrationHandler(ItemsRegister::registerAll, Item.class);
+		REGISTRY.addRegistrationHandler(ExoplanetsCustomSounds::registerAll, SoundEvent.class);
+		
+		//initialize Exoplanets
 		ExoplanetBiomes.init();
 		SystemRegister.init();
 		PlanetsRegister.init();
-		sounds = new InterstellarSounds();
         HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
         MinecraftForge.EVENT_BUS.register(clientEventHandler);
-		MinecraftForge.EVENT_BUS.register(sounds);
 		proxy.preInit(REGISTRY, event);
 	}
 

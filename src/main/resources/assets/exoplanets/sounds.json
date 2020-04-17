@@ -1,15 +1,31 @@
 {
-    "block.spacedoor.open": {
+    "space_door_open": {
         "category": "block",
-        "sounds": [
-            "exoplanets:spacedoor_open"
-        ]
+        "sounds": [ "exoplanets:space_door_open" ]
     },
     
-    "block.spacedoor.close": {
+    "space_door_close": {
         "category": "block",
-        "sounds": [
-            "exoplanets:spacedoor_close"
-        ]
+        "sounds": [ "exoplanets:space_door_close" ]
+    },
+    
+    "customdoor_open": {
+        "category": "block",
+        "sounds": [ "exoplanets:customdoor_open" ]
+    },
+    
+    "customdoor_close": {
+        "category": "block",
+        "sounds": [ "exoplanets:customdoor_close" ]
+    },
+    
+    "hydoor_open": {
+        "category": "block",
+        "sounds": [ "exoplanets:hydoor_open" ]
+    },
+    
+    "hydoor_close": {
+        "category": "block",
+        "sounds": [ "exoplanets:hydoor_close" ]
     }
 }
