@@ -1,10 +1,8 @@
 # Exoplanets Changelog
 
-## 0.0.3-beta
+## 0.0.4-beta
 
- - **Added Unfinished SolarSystems & Planets**
- - **Create Mod Config GUI**
- - **Fixed Creative Tab missing texture**
- - **Added a few Decoration Blocks**
- - **No Longer Requires ReadOnlyCore to Run**
- - **API Only jar included in releases**
+ - **Fixed critical dimensiontp issue**
+ - **added skyprovider to YzCeti B**
+ - *skyprovider is not finished at all*
+
