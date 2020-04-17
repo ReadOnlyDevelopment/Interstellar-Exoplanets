@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,7 +26,6 @@ import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.BlocksRegister;
-import net.rom.exoplanets.init.ItemsRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
 import net.rom.exoplanets.init.SystemRegister;
 import net.rom.exoplanets.internal.StellarRegistry;
@@ -71,7 +69,7 @@ public class Exoplanets implements IMod {
 		
 		//Set all registries
 		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
-		REGISTRY.addRegistrationHandler(ItemsRegister::registerAll, Item.class);
+		//REGISTRY.addRegistrationHandler(ItemsRegister::registerAll, Item.class);
 		REGISTRY.addRegistrationHandler(ExoplanetsCustomSounds::registerAll, SoundEvent.class);
 		
 		//initialize Exoplanets
