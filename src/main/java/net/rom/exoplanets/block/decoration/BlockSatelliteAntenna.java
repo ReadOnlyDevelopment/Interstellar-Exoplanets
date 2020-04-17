@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.block.BasicBlock;
+import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class BlockSatelliteAntenna extends BasicBlock {
 
@@ -25,7 +26,7 @@ public class BlockSatelliteAntenna extends BasicBlock {
 		setHardness(2F);
 		setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-
+		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 		setLightOpacity(1);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}

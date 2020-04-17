@@ -33,7 +33,7 @@ planet.trappist_g=G
 planet.trappist_h=H
 
 # Messages
-information.exoplanets:beta.1=The Current ExoPlanets version Is in Early Beta!
+information.exoplanets:beta.1=§bThe Current ExoPlanets version Is in Early Beta!§r
 information.exoplanets:beta.2=This means that there may be things in the mod that do not work as intended.
 information.exoplanets:beta.3=This is either by deisgn as it may not be finished and/or optimized.
 information.exoplanets:beta.4=If there are any bugs that are found with compatibility please visit my discord.
@@ -49,8 +49,11 @@ exoplanets.configgui.category.systemstier=Solar System Tier Requirements
 exoplanets.configgui.category.systemsmappos=Solar System Map Positions
 
 
+## tile.exoplanets..name=
+
 ## CREATIVE TAB ##
 itemGroup.decoration=§6Exo Decoration§r
+itemGroup.terrain=§aExo Decoration§r
 
 ## BLOCKS ##
 tile.exoplanets.com_relay.name=Communication Relay
@@ -59,3 +62,19 @@ tile.exoplanets.raidcontroller.name=RAID Controller
 tile.exoplanets.lower_raidcontroller.name=Lower RAID Controller
 tile.exoplanets.control.name=Electronic Panel
 tile.exoplanets.datamonitor.name=Data Monitor
+tile.exoplanets.deco0.name=Grating
+tile.exoplanets.deco1.name=Stipe Brating
+tile.exoplanets.basic1.name=Sediment
+tile.exoplanets.basic2.name=Tiled Metal
+tile.exoplanets.satellite_antenna.name=Satellite Antenna
+tile.exoplanets.stand_console.name=Console Stand
+
+tile.exoplanets.yzb_sedimentary.name=(§eYz Ceti B§r) Sedimentary Rock
+tile.exoplanets.yzb_smoothsedimentary.name=(§eYz Ceti B§r) Smooth Sedimentary Rock
+tile.exoplanets.yzb_ingneous.name=(§eYz Ceti B§r) Ingneous Rock
+tile.exoplanets.yzb_metamorphic.name=(§eYz Ceti B§r) Metamorphic Rock
+
+tile.exoplanets.yzc_sedimentary.name=(§eYz Ceti C§r) Sedimentary Rock
+tile.exoplanets.yzc_smoothsedimentary.name=(§eYz Ceti C§r) Smooth Sedimentary Rock
+tile.exoplanets.yzc_ingneous.name=(§eYz Ceti C§r) Ingneous Rock
+tile.exoplanets.yzc_metamorphic.name=(§eYz Ceti C§r) Metamorphic Rock

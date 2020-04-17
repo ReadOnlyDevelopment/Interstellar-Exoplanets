@@ -45,9 +45,9 @@ public class BlocksRegister {
 		registry.registerBlock(YZB_INGNEOUS, "yzb_ingneous", new ItemBlock(YZB_INGNEOUS));
 		registry.registerBlock(YZB_METAMORPHIC, "yzb_metamorphic", new ItemBlock(YZB_METAMORPHIC));
 		registry.registerBlock(YZB_SMOOTHSEDIMENTARY, "yzb_smoothsedimentary", new ItemBlock(YZB_SMOOTHSEDIMENTARY));
-		registry.registerBlock(YZC_SEDIMENTARY, "YZC_SEDIMENTARY", new ItemBlock(YZC_SEDIMENTARY));
+		registry.registerBlock(YZC_SEDIMENTARY, "yzc_sedimentary", new ItemBlock(YZC_SEDIMENTARY));
 		registry.registerBlock(YZC_INGNEOUS, "yzc_ingneous", new ItemBlock(YZC_INGNEOUS));
-		registry.registerBlock(YZC_METAMORPHIC, "YZC_METAMORPHIC", new ItemBlock(YZC_METAMORPHIC));
+		registry.registerBlock(YZC_METAMORPHIC, "yzc_metamorphic", new ItemBlock(YZC_METAMORPHIC));
 		registry.registerBlock(YZC_SMOOTHSEDIMENTARY, "yzc_smoothsedimentary", new ItemBlock(YZC_SMOOTHSEDIMENTARY));
 
 		// DECORATION
