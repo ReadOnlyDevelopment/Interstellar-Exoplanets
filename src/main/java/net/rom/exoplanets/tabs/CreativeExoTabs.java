@@ -19,5 +19,19 @@ public class CreativeExoTabs {
 			return false;
 		}
 	};
+	
+	public static final CreativeTabs TERRAIN_CREATIVE_TABS = new ExoTab("terrain", "terrain.png") {
+
+		@Override
+		public ItemStack getTabIconItem() {
+			return new ItemStack(BlocksRegister.yzc_sedimentary);
+		}
+		
+		@Override
+		public boolean hasSearchBar()
+		{
+			return false;
+		}
+	};
 
 }
