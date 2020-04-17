@@ -12,9 +12,9 @@ import net.rom.api.AstroBuilder;
 import net.rom.api.enums.EnumClass;
 import net.rom.api.implemtations.planet.ExoPlanet;
 import net.rom.exoplanets.Exoplanets;
-import net.rom.exoplanets.astronomy.biomes.ExoplanetBiomes;
-import net.rom.exoplanets.astronomy.worldproviders.WorldProviderYzCetiB;
-import net.rom.exoplanets.astronomy.worldproviders.WorldProviderYzCetiC;
+import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
+import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 

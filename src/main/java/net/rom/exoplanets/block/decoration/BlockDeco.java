@@ -16,6 +16,7 @@ import net.rom.exoplanets.Exoplanets;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
 import net.rom.exoplanets.internal.client.ICustomModel;
 import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
+import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class BlockDeco extends BlockMetaSubtypes implements ICustomModel {
 
@@ -38,6 +39,7 @@ public class BlockDeco extends BlockMetaSubtypes implements ICustomModel {
 	        setHardness(3.0f);
 	        setResistance(30.0f);
 	        setDefaultState(blockState.getBaseState().withProperty(VARIANT, Type.GRATING));
+			setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	    }
 
 	    public ItemStack getStack(Type type, int count) {

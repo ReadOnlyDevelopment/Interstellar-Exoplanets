@@ -42,9 +42,9 @@ public final class MLeftClick extends LibMessage{
         if (!heldItem.isEmpty() && heldItem.getItem() instanceof ILeftClickItem) {
             ILeftClickItem item = (ILeftClickItem) heldItem.getItem();
             if (type == Type.EMPTY.ordinal()) {
-                item.onItemLeftClickSL(player.world, player, hand);
+                item.onItemLeftClick(player.world, player, hand);
             } else {
-                item.onItemLeftClickBlockSL(player.world, player, hand);
+                item.onItemLeftClickBlock(player.world, player, hand);
             }
         }
 
