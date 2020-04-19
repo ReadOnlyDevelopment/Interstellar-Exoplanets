@@ -35,7 +35,7 @@ public class GuiBeta extends GuiScreen {
         int x = this.width / 2;
         int y = this.height / 4;
 
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 6; i++)
         {
             String s = I18n.format("information." + Exoplanets.MODID + ":beta." + (i + 1));
             this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);

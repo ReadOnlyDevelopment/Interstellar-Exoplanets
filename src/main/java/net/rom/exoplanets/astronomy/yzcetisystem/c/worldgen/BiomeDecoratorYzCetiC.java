@@ -8,8 +8,6 @@ import net.rom.api.world.biome.BiomeDecoratorExoBase;
 
 public class BiomeDecoratorYzCetiC extends BiomeDecoratorExoBase {
 
-
-
 	public BiomeDecoratorYzCetiC() {
 	}
 

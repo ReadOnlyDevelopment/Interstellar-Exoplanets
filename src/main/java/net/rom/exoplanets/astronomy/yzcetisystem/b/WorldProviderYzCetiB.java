@@ -21,6 +21,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.BiomeProviderYzCetiB;
 import net.rom.exoplanets.init.BlocksRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
+import static net.rom.exoplanets.util.ModSupport.asmodeusLoaded;
 
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
@@ -153,7 +154,6 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
 	@Override
 	protected void renderSky() {
-		this.setSkyRenderer(new SkyProviderYzCetiB());
 	}
 	
 	@Override

@@ -84,7 +84,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
-String GCBuild = "243"
+String GCBuild = "251"
 String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 
 repositories {
@@ -526,7 +526,7 @@ task generateGitReleasenotes11RepoPath(type: se.bjurr.gitchangelog.plugin.gradle
  	file = new File("C:\\Users\\AJ\\git\\Interstellar-Exoplanets\\CHANGELOG.md");
  	fromRepo = file(".");
  	fromRef = "0.0.2";
- 	toRef = "0.0.2f";
+ 	toRef = "0.0.5";
  	templateContent = """
 # {{repoName}} Changelog
 
@@ -534,7 +534,7 @@ task generateGitReleasenotes11RepoPath(type: se.bjurr.gitchangelog.plugin.gradle
 ## {{name}}
 
   {{#commits}}
- - **{{{messageTitle}}}** - *[link](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}})*
+ - **{{{messageTitle}}}**
 
 {{#messageBodyItems}}
  * {{.}} 

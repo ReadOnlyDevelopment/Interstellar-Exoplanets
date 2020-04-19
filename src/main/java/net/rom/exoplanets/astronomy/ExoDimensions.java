@@ -6,11 +6,10 @@ import net.rom.exoplanets.conf.SConfigDimensionID;
 
 public class ExoDimensions {
 
-
-
 	public static void init() {
 		YzCetiDimensions.YZCETIB = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_b);
 		YzCetiDimensions.YZCETIC = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_c);
+		YzCetiDimensions.YZCETID = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_d);
 
 	}
 }

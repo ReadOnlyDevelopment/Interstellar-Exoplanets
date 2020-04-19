@@ -191,7 +191,6 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void renderSky() {
-		// this.setSkyRenderer(new SkyProviderAtheon(this));
 	}
 
 	@Override

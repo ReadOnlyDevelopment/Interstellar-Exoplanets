@@ -6,4 +6,5 @@ public class YzCetiDimensions {
 
 	public static DimensionType YZCETIB;
 	public static DimensionType YZCETIC;
+	public static DimensionType YZCETID;
 }

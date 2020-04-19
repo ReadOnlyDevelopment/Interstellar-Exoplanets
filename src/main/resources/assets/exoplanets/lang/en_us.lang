@@ -38,6 +38,7 @@ information.exoplanets:beta.2=This means that there may be things in the mod tha
 information.exoplanets:beta.3=This is either by deisgn as it may not be finished and/or optimized.
 information.exoplanets:beta.4=If there are any bugs that are found with compatibility please visit my discord.
 information.exoplanets:beta.5=and report the issue.
+information.exoplanets:beta.6=§e(To disable this from appearing, set §6B:warnOnBetaBuild§r§e to false in §bcore.cfg§r§e file in configs)§r
 information.exoplanets:gui.discord=Discord Link
 
 ## CONFIG GUI ##
