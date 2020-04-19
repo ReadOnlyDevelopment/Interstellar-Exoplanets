@@ -1,5 +1,5 @@
 {
-   "parent": "exoplanets:block/yzc_sedimentary",
+   "parent": "exoplanets:block/YZC_SEDIMENTARY",
    "display": {
       "thirdperson": {
          "rotation": [10,-45,170],

@@ -23,7 +23,7 @@ public class BlockElectronic extends BasicBlock {
 		setHardness(2F);
 		setResistance(5F);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

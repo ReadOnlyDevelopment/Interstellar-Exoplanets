@@ -72,7 +72,7 @@ public class AstroBuilder {
 		} 	
 		if(SConfigCore.enableRealism) {
 			main.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + "_real.png"));
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + starname + ".png"));
 		}
 
 		body.setMainStar(main);
@@ -90,7 +90,7 @@ public class AstroBuilder {
 		} 
 		if(SConfigCore.enableRealism) {
 			body.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + system.getName() + "_real.png"));
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/realism/" + name + ".png"));
 		}
 		
 		if (provider != null) {

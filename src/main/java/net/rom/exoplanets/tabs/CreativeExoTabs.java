@@ -10,7 +10,21 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(BlocksRegister.com);
+			return new ItemStack(BlocksRegister.COM);
+		}
+		
+		@Override
+		public boolean hasSearchBar()
+		{
+			return false;
+		}
+	};
+	
+	public static final CreativeTabs TERRAIN_CREATIVE_TABS = new ExoTab("terrain", "terrain.png") {
+
+		@Override
+		public ItemStack getTabIconItem() {
+			return new ItemStack(BlocksRegister.YZC_SEDIMENTARY);
 		}
 		
 		@Override

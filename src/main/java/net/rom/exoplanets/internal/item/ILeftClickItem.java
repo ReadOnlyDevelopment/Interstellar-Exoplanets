@@ -14,7 +14,7 @@ public interface ILeftClickItem {
      *
      * @return If this returns SUCCESS on the client-side, a packet will be sent to the server.
      */
-    default ActionResult<ItemStack> onItemLeftClickSL(World world, EntityPlayer player, EnumHand hand) {
+    default ActionResult<ItemStack> onItemLeftClick(World world, EntityPlayer player, EnumHand hand) {
         return new ActionResult<>(EnumActionResult.PASS, player.getHeldItem(hand));
     }
 
@@ -24,7 +24,7 @@ public interface ILeftClickItem {
      *
      * @return If this returns SUCCESS on the client-side, a packet will be sent to the server.
      */
-    default ActionResult<ItemStack> onItemLeftClickBlockSL(World world, EntityPlayer player, EnumHand hand) {
-        return onItemLeftClickSL(world, player, hand);
+    default ActionResult<ItemStack> onItemLeftClickBlock(World world, EntityPlayer player, EnumHand hand) {
+        return onItemLeftClick(world, player, hand);
     }
 }

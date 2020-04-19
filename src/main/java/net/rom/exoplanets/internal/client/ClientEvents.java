@@ -17,7 +17,7 @@ public final class ClientEvents {
 		ItemStack stack = event.getItemStack();
 		if (!stack.isEmpty() && stack.getItem() instanceof ILeftClickItem) {
 			// Client-side call
-			ActionResult<ItemStack> result = ((ILeftClickItem) stack.getItem()).onItemLeftClickSL(event.getWorld(),
+			ActionResult<ItemStack> result = ((ILeftClickItem) stack.getItem()).onItemLeftClick(event.getWorld(),
 					event.getEntityPlayer(), event.getHand());
 			// Server-side call
 			if (result.getType() == EnumActionResult.SUCCESS) {
@@ -32,7 +32,7 @@ public final class ClientEvents {
 		ItemStack stack = event.getItemStack();
 		if (!stack.isEmpty() && stack.getItem() instanceof ILeftClickItem) {
 			// Client-side call
-			ActionResult<ItemStack> result = ((ILeftClickItem) stack.getItem()).onItemLeftClickBlockSL(event.getWorld(),
+			ActionResult<ItemStack> result = ((ILeftClickItem) stack.getItem()).onItemLeftClickBlock(event.getWorld(),
 					event.getEntityPlayer(), event.getHand());
 			// Server-side call
 			if (result.getType() == EnumActionResult.SUCCESS) {

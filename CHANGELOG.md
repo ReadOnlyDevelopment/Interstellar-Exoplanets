@@ -1,10 +1,33 @@
-# Exoplanets Changelog
 
-## 0.0.3-beta
+# Interstellar-Exoplanets Changelog
 
- - **Added Unfinished SolarSystems & Planets**
- - **Create Mod Config GUI**
- - **Fixed Creative Tab missing texture**
- - **Added a few Decoration Blocks**
- - **No Longer Requires ReadOnlyCore to Run**
- - **API Only jar included in releases**
+## 0.0.5
+
+ - **update readme**
+
+
+ - **Update CHANGELOG.md**
+
+
+ - **models classes, lander try**
+
+
+ - **add door, cap block fields**
+
+
+ - **blocks antenna, gratings, console**
+
+
+ - **add beta version info menu on startup**
+
+
+ - **normalize package names**
+
+
+ - **add decoration tab**
+
+
+ - **add custom sounds**
+
+
+ - **add celestialscreen realism option**

@@ -1,5 +1,7 @@
 package net.rom.exoplanets.util;
 
+import java.util.Random;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 
@@ -318,4 +320,19 @@ public class MathUtil {
 
         return -1;
     }
+    
+    private static Random rand = new Random();
+    
+	public static Random getRNG() {
+		return rand;
+	}
+	
+	public static int randomInt(int min, int max) {
+		assert min >= max : "Min can't be greater than max!";
+		int randInt = rand.nextInt(max);
+		return randInt < min ? min : null;
+		/*
+		 * if (randInt < min) { randInt = min; } return randInt;
+		 */
+	}
 }
