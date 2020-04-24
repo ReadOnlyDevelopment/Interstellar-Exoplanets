@@ -14,7 +14,6 @@ import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoCommonProxy implements IProxy {
 	
-	private static List<IFluid> modelRegisters = new ArrayList();
 
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
@@ -36,22 +35,5 @@ public class ExoCommonProxy implements IProxy {
     @Override
     public EntityPlayer getClientPlayer() {
         return null;
-    }
-	
-    public boolean isClientPlayerHoldingDebugItem() {
-		return false;
-//        EntityPlayer player = getClientPlayer();
-//        if (player == null) {
-//            return false;
-//        }
-//
-//        ItemStack mainhand = player.getHeldItemMainhand();
-//        ItemStack offhand = player.getHeldItemOffhand();
-//        return mainhand.getItem() == ModItems.debugItem || offhand.getItem() == ModItems.debugItem;
-    }
-    
-    public boolean addIModelRegister(IFluid model) {
-		return false;
-    	
     }
 }

@@ -85,8 +85,10 @@ public class Exoplanets implements IMod {
 		ExoplanetBiomes.init();
 		SystemRegister.init();
 		PlanetsRegister.init();
-        HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
-        MinecraftForge.EVENT_BUS.register(clientEventHandler);
+		
+		// Disable due to recent GC Update that broke this
+//        HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
+//        MinecraftForge.EVENT_BUS.register(clientEventHandler);
 		proxy.preInit(REGISTRY, event);
 	}
 
