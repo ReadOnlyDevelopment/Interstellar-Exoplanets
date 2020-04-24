@@ -19,8 +19,7 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 	protected static final IBlockState STONE = BlocksRegister.YZC_SEDIMENTARY.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState CONSTRUCT = BlocksRegister.TILES.getDefaultState();
-	protected static final IBlockState DIRT = BlocksRegister.DIRT.getDefaultState();
+	protected static final IBlockState DIRT = BlocksRegister.YZC_INGNEOUS.getDefaultState();
 	protected static final IBlockState ICE = Blocks.ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 

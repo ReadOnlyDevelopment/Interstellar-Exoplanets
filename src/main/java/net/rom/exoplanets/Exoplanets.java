@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
@@ -27,12 +28,15 @@ import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.BlocksRegister;
+import net.rom.exoplanets.init.FluidsReigster;
 import net.rom.exoplanets.init.ItemsRegister;
 import net.rom.exoplanets.init.PlanetsRegister;
 import net.rom.exoplanets.init.SystemRegister;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.network.NHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
+import net.rom.exoplanets.util.I18nUtil;
+import net.rom.exoplanets.world.OverworldOreGen;
 
 
 @Mod(modid = Exoplanets.MODID, name = Exoplanets.NAME, version = Exoplanets.VERSION, dependencies = Exoplanets.DEPENDENCIES_MODS, acceptedMinecraftVersions = Exoplanets.ACCEPTED_MC_VERSION, certificateFingerprint = "@FINGERPRINT@", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
@@ -47,6 +51,8 @@ public class Exoplanets implements IMod {
 	public static final String RESOURCE_PREFIX = MODID + ":";
 	public static final Logger LOGGER = LogManager.getLogger(Exoplanets.MODID);
 	public static final StellarRegistry REGISTRY = new StellarRegistry();
+    public static I18nUtil i18n = new I18nUtil(MODID);
+
 	@Instance(MODID)
 	public static Exoplanets instance;
 	public static NHandler network;
@@ -73,8 +79,9 @@ public class Exoplanets implements IMod {
 		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
 		REGISTRY.addRegistrationHandler(ItemsRegister::registerAll, Item.class);
 		REGISTRY.addRegistrationHandler(ExoplanetsCustomSounds::registerAll, SoundEvent.class);
-		
+		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
 		//initialize Exoplanets
+		FluidsReigster.init();
 		ExoplanetBiomes.init();
 		SystemRegister.init();
 		PlanetsRegister.init();

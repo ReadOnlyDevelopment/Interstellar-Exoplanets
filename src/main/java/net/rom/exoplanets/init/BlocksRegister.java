@@ -3,13 +3,13 @@ package net.rom.exoplanets.init;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.rom.exoplanets.block.BasicBlock;
-import net.rom.exoplanets.block.BlockYzCetiB;
-import net.rom.exoplanets.block.BlockYzCetiC;
 import net.rom.exoplanets.block.decoration.BlockDeco;
 import net.rom.exoplanets.block.decoration.BlockElectronic;
 import net.rom.exoplanets.block.decoration.BlockSatelliteAntenna;
 import net.rom.exoplanets.block.decoration.BlockStandConsole;
 import net.rom.exoplanets.block.ore.BlockOverworldOre;
+import net.rom.exoplanets.block.terrain.BlockYzCetiB;
+import net.rom.exoplanets.block.terrain.BlockYzCetiC;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class BlocksRegister {
@@ -23,8 +23,6 @@ public class BlocksRegister {
 	public static final BlockYzCetiC YZC_INGNEOUS = new BlockYzCetiC();
 	public static final BlockYzCetiC YZC_METAMORPHIC = new BlockYzCetiC();
 	public static final BlockYzCetiC YZC_SMOOTHSEDIMENTARY = new BlockYzCetiC();
-	public static final BasicBlock DIRT = new BasicBlock(Material.GROUND);
-	public static final BasicBlock TILES = new BasicBlock(Material.ROCK);
 	
 	// ORES
 	public static final BlockOverworldOre OVERWORLD_ORE = new BlockOverworldOre();
@@ -43,8 +41,6 @@ public class BlocksRegister {
 	public static void registerAll(StellarRegistry registry) {
 
 		// TERRAIN
-		registry.registerBlock(DIRT, "basic1", new ItemBlock(DIRT));
-		registry.registerBlock(TILES, "basic2", new ItemBlock(TILES));
 		registry.registerBlock(YZB_SEDIMENTARY, "yzb_sedimentary", new ItemBlock(YZB_SEDIMENTARY));
 		registry.registerBlock(YZB_INGNEOUS, "yzb_ingneous", new ItemBlock(YZB_INGNEOUS));
 		registry.registerBlock(YZB_METAMORPHIC, "yzb_metamorphic", new ItemBlock(YZB_METAMORPHIC));

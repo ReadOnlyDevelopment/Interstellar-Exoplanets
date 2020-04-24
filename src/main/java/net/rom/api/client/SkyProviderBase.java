@@ -1,4 +1,4 @@
-package net.rom.api.world;
+package net.rom.api.client;
 
 import java.util.Random;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;

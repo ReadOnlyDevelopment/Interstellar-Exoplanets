@@ -1,8 +1,9 @@
-package net.rom.exoplanets.block;
+package net.rom.exoplanets.block.terrain;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.ItemStack;
+import net.rom.exoplanets.block.BasicBlock;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class BlockYzCetiC extends BasicBlock {

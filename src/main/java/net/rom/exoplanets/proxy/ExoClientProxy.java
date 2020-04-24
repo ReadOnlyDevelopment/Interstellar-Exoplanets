@@ -10,19 +10,17 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.exoplanets.fluids.IFluid;
+import net.rom.exoplanets.init.FluidsReigster;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoClientProxy extends ExoCommonProxy {
 	
-	private static List<IFluid> modelRegisters = new ArrayList();
 
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
 		super.preInit(registry, event);
 		
-		for (IFluid model : modelRegisters) {
-			model.registerModels();
-		}
+		FluidsReigster.bakeModels();
 		
 		registry.clientPreInit(event);
 		
@@ -49,10 +47,5 @@ public class ExoClientProxy extends ExoCommonProxy {
     @Override
     public EntityPlayer getClientPlayer() {
         return Minecraft.getMinecraft().player;
-    }
-    
-    public boolean addIModelRegister(IFluid model) {
-		return modelRegisters.add(model);
-    	
     }
 }

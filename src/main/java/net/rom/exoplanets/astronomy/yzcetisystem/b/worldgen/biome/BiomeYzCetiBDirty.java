@@ -16,7 +16,7 @@ public class BiomeYzCetiBDirty extends BiomeYzCetiBBase {
 		this.setTemp(2F);
 		this.setBiomeHeight(82);
 		this.setBiomeType(EnumBiomeType.ABANDONED);
-		this.topBlock = BlocksRegister.DIRT.getDefaultState();
+		this.topBlock = BlocksRegister.YZB_METAMORPHIC.getDefaultState();
 		this.fillerBlock = BlocksRegister.YZB_METAMORPHIC.getDefaultState();
 		this.stoneBlock = BlocksRegister.YZB_INGNEOUS;
 	}

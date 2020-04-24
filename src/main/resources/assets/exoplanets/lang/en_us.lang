@@ -13,24 +13,24 @@ planet.yz_ceti_b=Yz Ceti B
 planet.yz_ceti_c=Yz Ceti C
 planet.yz_ceti_d=Yz Ceti D
 
-planet.wolf_1061_b=B
-planet.wolf_1061_c=C
-planet.wolf_1061_d=D
+planet.wolf_1061_b=Wolf 1061 B
+planet.wolf_1061_c=Wolf 1061 C
+planet.wolf_1061_d=Wolf 1061 D
 
-planet.hd_219134_b=B
-planet.hd_219134_c=C
-planet.hd_219134_d=D
-planet.hd_219134_f=F
-planet.hd_219134_g=G
-planet.hd_219134_h=H
+planet.hd_219134_b=HD 219134 B
+planet.hd_219134_c=HD 219134 C
+planet.hd_219134_d=HD 219134 D
+planet.hd_219134_f=HD 219134 F
+planet.hd_219134_g=HD 219134 G
+planet.hd_219134_h=HD 219134 H
 
-planet.trappist_b=B
-planet.trappist_c=C
-planet.trappist_d=D
-planet.trappist_e=E
-planet.trappist_f=F
-planet.trappist_g=G
-planet.trappist_h=H
+planet.trappist_b=Trappist 1 B
+planet.trappist_c=Trappist 1 C
+planet.trappist_d=Trappist 1 D
+planet.trappist_e=Trappist 1 E
+planet.trappist_f=Trappist 1 F
+planet.trappist_g=Trappist 1 G
+planet.trappist_h=Trappist 1 H
 
 # Messages
 information.exoplanets:beta.1=§bThe Current ExoPlanets version Is in Early Beta!§r
@@ -53,7 +53,8 @@ exoplanets.configgui.category.systemsmappos=Solar System Map Positions
 
 ## CREATIVE TAB ##
 itemGroup.decoration=§6Exo Decoration§r
-itemGroup.terrain=§aExo Decoration§r
+itemGroup.terrain=§aExo Terrain§r
+itemGroup.items=§eExo Items§r
 
 ## BLOCKS ##
 tile.exoplanets.com_relay.name=Communication Relay
@@ -64,8 +65,6 @@ tile.exoplanets.control.name=Electronic Panel
 tile.exoplanets.datamonitor.name=Data Monitor
 tile.exoplanets.deco0.name=Grating
 tile.exoplanets.deco1.name=Stipe Brating
-tile.exoplanets.basic1.name=Sediment
-tile.exoplanets.basic2.name=Tiled Metal
 tile.exoplanets.satellite_antenna.name=Satellite Antenna
 tile.exoplanets.stand_console.name=Console Stand
 
@@ -78,3 +77,17 @@ tile.exoplanets.yzc_sedimentary.name=(§eYz Ceti C§r) Sedimentary Rock
 tile.exoplanets.yzc_smoothsedimentary.name=(§eYz Ceti C§r) Smooth Sedimentary Rock
 tile.exoplanets.yzc_ingneous.name=(§eYz Ceti C§r) Ingneous Rock
 tile.exoplanets.yzc_metamorphic.name=(§eYz Ceti C§r) Metamorphic Rock
+
+tile.exoplanets.overworldore0.name=Limonite Ore
+tile.exoplanets.overworldore1.name=Ruthenium Ore
+tile.exoplanets.overworldore2.name=Rutile Ore
+
+
+## ITEMS ##
+item.exoplanets.rutile.name=Rutile Ingot
+item.exoplanets.ruthenium.name=Ruthenium Ingot
+item.exoplanets.limonite.name=Limonite Ingot
+
+## FLUIDS ##
+fluid.exoplanets.mantle.name=Molten Mantle
+exoplanets.mantle=Molten Mantle

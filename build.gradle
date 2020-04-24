@@ -23,6 +23,7 @@ buildscript {
 }
 
 plugins {
+    id 'net.ltgt.apt' version '0.10' // for lombok
   	id "com.wynprice.cursemaven" version "2.1.1"
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'maven-publish'
@@ -107,6 +108,9 @@ repositories {
 }
 
 dependencies {
+
+    compile "org.projectlombok:lombok:${project.lombok_version}"
+    apt "org.projectlombok:lombok:${project.lombok_version}"
 
 	compile "com.mjr.planetprogression:PlanetProgression:1.12.2-0.4.2:api"
 	
