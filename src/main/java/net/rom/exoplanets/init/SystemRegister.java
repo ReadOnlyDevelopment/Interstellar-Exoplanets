@@ -1,5 +1,6 @@
 package net.rom.exoplanets.init;
 
+
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;

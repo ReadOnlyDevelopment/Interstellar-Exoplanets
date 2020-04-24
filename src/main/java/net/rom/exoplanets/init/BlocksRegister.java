@@ -9,6 +9,7 @@ import net.rom.exoplanets.block.decoration.BlockDeco;
 import net.rom.exoplanets.block.decoration.BlockElectronic;
 import net.rom.exoplanets.block.decoration.BlockSatelliteAntenna;
 import net.rom.exoplanets.block.decoration.BlockStandConsole;
+import net.rom.exoplanets.block.ore.BlockOverworldOre;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class BlocksRegister {
@@ -24,6 +25,9 @@ public class BlocksRegister {
 	public static final BlockYzCetiC YZC_SMOOTHSEDIMENTARY = new BlockYzCetiC();
 	public static final BasicBlock DIRT = new BasicBlock(Material.GROUND);
 	public static final BasicBlock TILES = new BasicBlock(Material.ROCK);
+	
+	// ORES
+	public static final BlockOverworldOre OVERWORLD_ORE = new BlockOverworldOre();
 
 	// DECORATION BLOCKS
 	public static final BlockElectronic RAIDCONTROLLER = new BlockElectronic();
@@ -49,6 +53,9 @@ public class BlocksRegister {
 		registry.registerBlock(YZC_INGNEOUS, "yzc_ingneous", new ItemBlock(YZC_INGNEOUS));
 		registry.registerBlock(YZC_METAMORPHIC, "yzc_metamorphic", new ItemBlock(YZC_METAMORPHIC));
 		registry.registerBlock(YZC_SMOOTHSEDIMENTARY, "yzc_smoothsedimentary", new ItemBlock(YZC_SMOOTHSEDIMENTARY));
+		
+		// ORE
+		registry.registerBlock(OVERWORLD_ORE, "overworldore", new BlockOverworldOre.ItemBlock(OVERWORLD_ORE));
 
 		// DECORATION
 		registry.registerBlock(COM, "com_relay", new ItemBlock(COM));
@@ -62,5 +69,7 @@ public class BlocksRegister {
 		registry.registerBlock(STAND_CONSOLE, "stand_console", new ItemBlock(STAND_CONSOLE));
 
 	}
+	
+	
 
 }

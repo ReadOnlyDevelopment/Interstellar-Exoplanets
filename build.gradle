@@ -51,7 +51,7 @@ final def secretFile
 if (System.getenv('SECRET_FILE')) {
     secretFile = file System.getenv().SECRET_FILE
 } else {
-    secretFile = file 'secret.json'
+    secretFile = file 'secrets.json'
 }
 
 import se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
@@ -62,20 +62,13 @@ if (secretFile.exists()) {
     secretFile.withReader {
         project.secret.m_data = new JsonSlurper().parse it
     }
-} else {
-    project.secret.m_data = new JsonSlurper().parseText(
-            '{ "username" : "' + (System.getenv('userMaven') ?: '') + '",'
-                    + '"password" : "' + (System.getenv('authMaven') ?: '') + '",'
-                    + '"url" : "' + (System.getenv('urlMaven') ?: '') + '",'
-                    + '"curseforgeAPIKey" : "' + (System.getenv('curse_auth') ?: '00000000-0000-0000-0000-000000000000') + '"}'
-    )
 }
 
 def versionBuild = 0
 if (System.getenv("BUILD_NUMBER") != null)
     versionBuild = System.getenv("BUILD_NUMBER")
 
-version = "${versionMajor}.${versionMinor}.${versionRev}-${cf_release_type}"
+version = "${mc_version}-${versionMajor}.${versionMinor}.${versionRev}-[${versionBuild}]"
 group = "${group}"
 archivesBaseName = "${name}"
 
@@ -84,7 +77,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
-String GCBuild = "251"
+String GCBuild = "261"
 String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 
 repositories {
@@ -132,10 +125,10 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
+    version = "${mc_version}-${forge_version}"
     runDir = "run"
     replace '${version}', project.version
-    mappings = "snapshot_20171003"
+    mappings = "${mcp}"
     
     if (project.hasProperty('signSHA1') && getBooleanProperty('do_sign_jar')) {
         replace '@FINGERPRINT@', secret.signSHA1
@@ -372,7 +365,7 @@ curseforge {
             if (project.hasProperty('cf_changelog_filename')) {
                 changelog = file(project.cf_changelog_filename)
             } else {
-                changelog = ''
+                changelog = getGitChangelog
             }
             if (project.hasProperty('cf_changelog_type')) {
                 changelogType = project.cf_changelog_type
@@ -500,48 +493,38 @@ String getModVersion(final String type, final String modFile) {
     return '0.0.0'
 }
 
+def getGitChangelog() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        def gitHash = System.getenv('GIT_COMMIT')
+        def gitPrevHash = System.getenv('GIT_PREVIOUS_COMMIT')
+        def travisRange = System.getenv('TRAVIS_COMMIT_RANGE')
+        if(gitHash && gitPrevHash) {
+            exec {
+            	println gitHash
+            	println gitPrevHash
+                commandLine 'git', 'log', '--pretty=tformat:- %s - %aN', '' + gitPrevHash + '...' + gitHash
+                standardOutput = stdout
+            }
+            return stdout.toString().trim()
+        } else if(travisRange) {
+            exec {
+                commandLine 'git', 'log', '--pretty=tformat:- %s - %aN', '' + travisRange
+                standardOutput = stdout
+            }
+            return stdout.toString().trim()
+        } else {
+            return "";
+        }
+    } catch(ignored) {
+        return "";
+    }
+}
+
 boolean getBooleanProperty(final String property) {
     if (project.hasProperty(property)) {
         return ((String) project.findProperty(property)).toBoolean()
     } else {
         return false
     }
-}
-
-task gitChangelog(type: GitChangelogTask) {
-    group = 'GithubChangeLog'
-    description = 'creates a Changelog for Git'
-    file = new File('C:\\Users\\AJ\\git\\MODS\\ReadOnlyCore\\CHANGELOG.md')
-    fromRepo = file(".");
-
-    templateContent = file('changelog.mustache').getText('UTF-8')
-}
-
-//
-// Set references to create releasenotes for version 1.1
-//
-task generateGitReleasenotes11RepoPath(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
-    group = 'GithubChangeLog'
-    description = 'creates a Changelog for Git'
- 	file = new File("C:\\Users\\AJ\\git\\Interstellar-Exoplanets\\CHANGELOG.md");
- 	fromRepo = file(".");
- 	fromRef = "0.0.2";
- 	toRef = "0.0.5";
- 	templateContent = """
-# {{repoName}} Changelog
-
-{{#tags}}
-## {{name}}
-
-  {{#commits}}
- - **{{{messageTitle}}}**
-
-{{#messageBodyItems}}
- * {{.}} 
-{{/messageBodyItems}}
-
-  {{/commits}}
-
-{{/tags}}
-""";
 }
