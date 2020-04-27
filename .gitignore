@@ -35,3 +35,4 @@ libs/*
 .DS_Store
 .okhttpcache/*
 /lib/
+*secrets*

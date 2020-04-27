@@ -1,7 +1,7 @@
 [
  {
    "modid": "exoplanets",
-   "name": "Interstellar: Exoplanets",
+   "name": "Exoplanets",
    "description": "Yet another Galacticraft Addon",
    "version": "${version}",
    "mcversion": "${mcversion}",

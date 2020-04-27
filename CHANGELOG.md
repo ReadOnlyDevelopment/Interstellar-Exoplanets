@@ -1,10 +1,15 @@
 [Additions]
 
- - Complete Rewrite
- - Added "Mobs Breathe In Space" Option
- - Added Modpack Module
- - Added custom crashlog data
+ - Additional Terrain Blocks
+ - Overworld Ores
+ - Ore Ingots
+ - Molten Mantle Fluid
+ - Items Creative Tab
  
  [Changes]
 
- - Oxygen Items are configurable to spawn with
+ - Habitable Zone Renders
+ 
+ [Removed]
+ 
+ - Old Terrain Blocks
