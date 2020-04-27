@@ -4,7 +4,7 @@ import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.item.IEnumItems;
 import net.rom.exoplanets.item.EnumIngots;
 
-public class ItemsRegister {
+public class ExoItems {
 
 	public static void registerAll(StellarRegistry registry) {
 	

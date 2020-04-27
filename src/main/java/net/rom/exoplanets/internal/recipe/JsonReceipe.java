@@ -17,7 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.util.LogHelper;
 
 public final class JsonReceipe {
 
@@ -106,7 +106,7 @@ public final class JsonReceipe {
 
             // Warn about items with NBT, but go ahead and serialize what we can
             if (stack.hasTagCompound()) {
-                Exoplanets.LOGGER.warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
+                LogHelper.formatted_Warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
             }
 
             return ret;

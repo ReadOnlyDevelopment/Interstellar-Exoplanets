@@ -13,6 +13,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.oredict.OreDictionary;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.Exoplanets;
 import net.rom.exoplanets.internal.IAddRecipe;
 import net.rom.exoplanets.internal.RecipeBuilder;
@@ -73,7 +74,7 @@ public class BlockOverworldOre extends BlockMetaSubtypes implements ICustomModel
     @Override
     public void registerModels() {
         Item item = Item.getItemFromBlock(this);
-        String fullName = Exoplanets.RESOURCE_PREFIX + "overworldore";
+        String fullName = ExoInfo.RESOURCE_PREFIX + "overworldore";
         for (Type type : Type.values()) {
             ModelResourceLocation model = new ModelResourceLocation(fullName, "type=" + type.getName());
             ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), model);

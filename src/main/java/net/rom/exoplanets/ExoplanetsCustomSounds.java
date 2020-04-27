@@ -30,7 +30,7 @@ public class ExoplanetsCustomSounds {
 	}
 	
     private static SoundEvent create(String soundId) {
-        SoundEvent soundEvent = new SoundEvent(new ResourceLocation(Exoplanets.MODID, soundId));
+        SoundEvent soundEvent = new SoundEvent(new ResourceLocation(ExoInfo.MODID, soundId));
         ALL.add(soundEvent);
         return soundEvent;
     }

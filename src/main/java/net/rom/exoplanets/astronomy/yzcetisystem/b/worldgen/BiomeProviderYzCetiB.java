@@ -19,7 +19,7 @@ import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.biome.genlayer.GenLayerYzCetiB;
-import net.rom.exoplanets.init.PlanetsRegister;
+import net.rom.exoplanets.init.InitPlanets;
 
 public class BiomeProviderYzCetiB extends BiomeProvider {
 	
@@ -30,7 +30,7 @@ public class BiomeProviderYzCetiB extends BiomeProvider {
 	private CelestialBody body;
 	
 	protected BiomeProviderYzCetiB() {
-		body = PlanetsRegister.yzcetib;
+		body = InitPlanets.yzcetib;
 		biomeCache = new BiomeCache(this);
 		biomesToSpawnIn = new ArrayList<>();
 	}

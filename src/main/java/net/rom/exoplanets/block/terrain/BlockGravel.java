@@ -1,4 +1,4 @@
-package net.rom.exoplanets.internal.block;
+package net.rom.exoplanets.block.terrain;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class BlockGravel extends BlockFalling {
-	public BlockGravel(String name) {
+	public BlockGravel() {
 		super();
 		this.setHardness(0.6F);
 	}

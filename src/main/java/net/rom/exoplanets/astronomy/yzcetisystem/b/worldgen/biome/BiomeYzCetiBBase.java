@@ -10,17 +10,17 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.api.enums.EnumBiomeType;
 import net.rom.api.world.biome.BiomeSpace;
+import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.BiomeDecoratorYzCetiB;
-import net.rom.exoplanets.init.BlocksRegister;
-import net.rom.exoplanets.init.PlanetsRegister;
+import net.rom.exoplanets.init.InitPlanets;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
 	
-	protected static final IBlockState STONE = BlocksRegister.YZB_SEDIMENTARY.getDefaultState();
+	protected static final IBlockState STONE = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState GRAVEL = BlocksRegister.YZB_INGNEOUS.getDefaultState();
-	protected static final IBlockState DIRT = BlocksRegister.YZB_METAMORPHIC.getDefaultState();
+	protected static final IBlockState GRAVEL = YzCetiBlocks.CetiB.B_IGNEOUS.getDefaultState();
+	protected static final IBlockState DIRT = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 	protected static final IBlockState ICE = Blocks.PACKED_ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 	
@@ -31,7 +31,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.COLD);
 		this.clearAllSpawning(); 
-		this.setPlanetForBiome(PlanetsRegister.yzcetib);
+		this.setPlanetForBiome(InitPlanets.yzcetib);
 	}
 	
 	public final void generateYzCetiBTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
@@ -62,7 +62,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 				} else {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
-					} else if (iblockstate2.getBlock() == BlocksRegister.YZB_METAMORPHIC) {
+					} else if (iblockstate2.getBlock() == YzCetiBlocks.CetiB.B_METAMORPHIC) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState = AIR;

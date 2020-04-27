@@ -10,7 +10,7 @@ import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.IConfigElement;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.util.LogHelper;
 
 public class SConfigCore {
 
@@ -62,7 +62,7 @@ public class SConfigCore {
 				config.save();
 			}
 		} catch (final Exception e) {
-			Exoplanets.LOGGER.log(Level.ERROR, "Intersteller Core Config had an issue loading the config file!");
+			LogHelper.bigError("Intersteller Core Config had an issue loading the config file!");
 		}
 	}
 

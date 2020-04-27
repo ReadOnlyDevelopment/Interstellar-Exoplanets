@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoInfo;
 
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {
@@ -37,7 +37,7 @@ public class GuiBeta extends GuiScreen {
 
         for(int i = 0; i < 6; i++)
         {
-            String s = I18n.format("information." + Exoplanets.MODID + ":beta." + (i + 1));
+            String s = I18n.format("information." + ExoInfo.MODID + ":beta." + (i + 1));
             this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);
             y += 12;
         }

@@ -1,15 +1,6 @@
 package net.rom.exoplanets;
 
-import java.io.File;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -23,108 +14,108 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
-import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.conf.SConfigDimensionID;
-import net.rom.exoplanets.conf.SConfigSystems;
+import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
-import net.rom.exoplanets.init.BlocksRegister;
-import net.rom.exoplanets.init.FluidsReigster;
-import net.rom.exoplanets.init.ItemsRegister;
-import net.rom.exoplanets.init.PlanetsRegister;
-import net.rom.exoplanets.init.SystemRegister;
+import net.rom.exoplanets.init.ExoFluids;
+import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.InitSolarSystems;
+import net.rom.exoplanets.init.RegistrationHandler;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.network.NHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
+import net.rom.exoplanets.util.BiomeDebug;
+import net.rom.exoplanets.util.Deobf;
 import net.rom.exoplanets.util.I18nUtil;
+import net.rom.exoplanets.util.LangFileHelper;
+import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.world.OverworldOreGen;
 
-
-@Mod(modid = Exoplanets.MODID, name = Exoplanets.NAME, version = Exoplanets.VERSION, dependencies = Exoplanets.DEPENDENCIES_MODS, acceptedMinecraftVersions = Exoplanets.ACCEPTED_MC_VERSION, certificateFingerprint = "@FINGERPRINT@", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
+@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "@FINGERPRINT@", guiFactory = "net.rom.Ref.client.ExoplanetsConfigGuiFactory")
 public class Exoplanets implements IMod {
 
-	public static final String MODID = "exoplanets";
-	public static final String NAME = "Interstellar: Exoplanets";
-	public static final String VERSION = "${version}";
-	public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
-	public static final String ACCEPTED_MC_VERSION = ForgeVersion.mcVersion;
-	public static final String DEPENDENCIES_MODS = "required-after:galacticraftcore; required-after:galacticraftplanets;";
-	public static final String RESOURCE_PREFIX = MODID + ":";
-	public static final Logger LOGGER = LogManager.getLogger(Exoplanets.MODID);
-	public static final StellarRegistry REGISTRY = new StellarRegistry();
-    public static I18nUtil i18n = new I18nUtil(MODID);
-
-	@Instance(MODID)
+	@Instance(ExoInfo.MODID)
 	public static Exoplanets instance;
+	public static StellarRegistry REGISTRY = new StellarRegistry();
 	public static NHandler network;
+	public static I18nUtil i18n = new I18nUtil(ExoInfo.MODID);
 
 	@SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
 	public static ExoCommonProxy proxy;
 
-	@EventHandler
-	public static void onFingerprintViolation(final FMLFingerprintViolationEvent event) {
-		LOGGER.warn("Invalid Fingerprint");
-	}
+///////////////////////// DEV ONLY /////////////////////////////
+
+	private static boolean biomeDebug = false;
+	private static boolean langHelper = false;
+
+/////////////////////////////////////////////////////////////////
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		//Set Modid for Interal Registry
 		REGISTRY.setMod(this);
-		
-		//Register Config Files
-		new SConfigSystems(new File(event.getModConfigurationDirectory(), "Exoplanets/systems.cfg"));
-		new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg"));
-		new SConfigCore(new File(event.getModConfigurationDirectory(), "Exoplanets/core.cfg"));
-		
-		//Set all registries
-		REGISTRY.addRegistrationHandler(BlocksRegister::registerAll, Block.class);
-		REGISTRY.addRegistrationHandler(ItemsRegister::registerAll, Item.class);
-		REGISTRY.addRegistrationHandler(ExoplanetsCustomSounds::registerAll, SoundEvent.class);
+
+		InitConfigFiles.init(event);
+		RegistrationHandler.init(REGISTRY);
 		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
-		//initialize Exoplanets
-		FluidsReigster.init();
+		ExoFluids.init();
 		ExoplanetBiomes.init();
-		SystemRegister.init();
-		PlanetsRegister.init();
-		
-		// Disable due to recent GC Update that broke this
-//        HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
-//        MinecraftForge.EVENT_BUS.register(clientEventHandler);
+		InitSolarSystems.init();
+		InitPlanets.init();
+
+		HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
+		MinecraftForge.EVENT_BUS.register(clientEventHandler);
 		proxy.preInit(REGISTRY, event);
 	}
 
-    @EventHandler
+	@EventHandler
 	public static void init(FMLInitializationEvent event) {
-    	
+
 		for (BiomeGenBaseGC biome : ExoplanetBiomes.biomeList) {
 			biome.registerTypes(biome);
 		}
 		proxy.init(REGISTRY, event);
 	}
 
-    @EventHandler
+	@EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {
-    	
-    	ExoDimensions.init();
+		ExoDimensions.init();
+
+		if(Deobf.isDeobfuscated()) {
+			LogHelper.bigDebug("WE ARE IN DEV ENVIORMENT | CHECK HELPER BOOLEANS");
+			if(biomeDebug) {
+				BiomeDebug.createFile();
+			}
+			if(langHelper) {
+				LangFileHelper.createFile();
+			}
+		}
+
 		proxy.postInit(REGISTRY, event);
+	}
+
+	@EventHandler
+	public static void onFingerprintViolation(final FMLFingerprintViolationEvent event) {
+		LogHelper.warn("Invalid Fingerprint");
 	}
 
 	@Override
 	public String getModId() {
-		return MODID;
+		return ExoInfo.MODID;
 	}
 
 	@Override
 	public String getModName() {
-		return NAME;
+		return ExoInfo.NAME;
 	}
 
 	@Override
 	public String getVersion() {
-		return VERSION;
+		return ExoInfo.VERSION;
 	}
 
 	@Override
 	public int getBuildNum() {
-		return 0;
+		return 16;
 	}
+
+
 }

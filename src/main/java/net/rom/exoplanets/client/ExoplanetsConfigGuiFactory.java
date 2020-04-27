@@ -7,8 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
-import net.minecraftforge.fml.client.config.IConfigElement;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
@@ -18,7 +17,7 @@ public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
 	public static class ExoCoreConfGui extends GuiConfig {
 
 		public ExoCoreConfGui(GuiScreen parent) {
-			super(parent, SConfigCore.getConfigElements(), Exoplanets.MODID, false, true,
+			super(parent, SConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
 					GCCoreUtil.translate("exoplanets.configgui.coretitle"));
 			this.configElements.addAll(SConfigDimensionID.getConfigElements());
 			this.configElements.addAll(SConfigSystems.getConfigElements());

@@ -11,7 +11,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
@@ -22,14 +21,13 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.rom.api.world.gen.MapGenExoCaveGen;
 import net.rom.api.world.gen.MapGenExoRavinGen;
-import net.rom.exoplanets.init.BlocksRegister;
+import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 
 public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
-	public static final IBlockState BLOCK_FILL = BlocksRegister.YZB_METAMORPHIC.getDefaultState();
+	public static final IBlockState BLOCK_FILL = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 
 	public static final double CHUNK_HEIGHT = 85.0D;
 	public static final int SEA_LEVEL = 15;
@@ -37,7 +35,6 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private static final int CHUNK_SIZE_X = 16;
 	private static final int CHUNK_SIZE_Z = 16;
 
-	//private final BiomeDecoratorYzCetiB biomeDecoratorYzCetiB = new BiomeDecoratorYzCetiB();
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves noiseGen2;
@@ -52,9 +49,8 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private final double[] terrainCalcs;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
-	private MapGenExoCaveGen caveGenerator = new MapGenExoCaveGen(BlocksRegister.YZB_METAMORPHIC, 0, 1, 2);
+	private MapGenExoCaveGen caveGenerator = new MapGenExoCaveGen(YzCetiBlocks.CetiB.B_DARK_LOOSE_SEDIMENT, 0, 1, 2);
 	private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
-	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private Biome[] biomesForGeneration;
 	private double[] octaves1;
 	private double[] octaves2;
@@ -85,8 +81,8 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 			}
 		}
 
-		NoiseGenerator[] noiseGens = { noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6,
-				mobSpawnerNoise };
+		NoiseGenerator[] noiseGens = { this.noiseGen1, this.noiseGen2, this.noiseGen3, this.noiseGen4, this.noiseGen5, this.noiseGen6,
+				this.mobSpawnerNoise };
 		this.noiseGen1 = (NoiseGeneratorOctaves) noiseGens[0];
 		this.noiseGen2 = (NoiseGeneratorOctaves) noiseGens[1];
 		this.noiseGen3 = (NoiseGeneratorOctaves) noiseGens[2];
@@ -182,7 +178,6 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 		this.caveGenerator.generate(this.world, x, z, chunkprimer);
 		this.ravineGenerator.generate(this.world, x, z, chunkprimer);
-		this.mineshaftGenerator.generate(this.world, x, z, chunkprimer);
 
 		Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
@@ -357,7 +352,6 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 		long k = this.rand.nextLong() / 2L * 2L + 1L;
 		long l = this.rand.nextLong() / 2L * 2L + 1L;
 		this.rand.setSeed(x * k + z * l ^ this.world.getSeed());
-		this.mineshaftGenerator.generateStructure(this.world, this.rand, new ChunkPos(x, z));
 
 		biomegenbase.decorate(this.world, this.rand, new BlockPos(i, 0, j));
 		WorldEntitySpawner.performWorldGenSpawning(this.world, biomegenbase, i + 8, j + 8, 16, 16, this.rand);
@@ -373,6 +367,5 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 	@Override
 	public void recreateStructures(Chunk chunk, int x, int z) {
-		this.mineshaftGenerator.generate(this.world, x, z, null);
 	}
 }

@@ -17,11 +17,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.api.implemtations.planet.ExoPlanet;
 import net.rom.api.world.WorldProviderExoPlanet;
+import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.BiomeProviderYzCetiB;
-import net.rom.exoplanets.init.BlocksRegister;
-import net.rom.exoplanets.init.PlanetsRegister;
-import static net.rom.exoplanets.util.ModSupport.asmodeusLoaded;
+import net.rom.exoplanets.init.InitPlanets;
 
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
@@ -68,7 +67,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
 	@Override
 	public CelestialBody getCelestialBody() {
-		return PlanetsRegister.yzcetib;
+		return InitPlanets.yzcetib;
 	}
 	
 	@Override
@@ -147,8 +146,8 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks() {
 		List<Block> list = new LinkedList<>();
-		list.add(BlocksRegister.YZB_SEDIMENTARY);
-		list.add(BlocksRegister.YZB_INGNEOUS);
+		list.add(YzCetiBlocks.CetiB.B_METAMORPHIC);
+		list.add(YzCetiBlocks.CetiB.B_LOOSE_SEDIMENT);
 		return list;
 	}
 	
@@ -167,7 +166,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 	
 	@Override
 	public Class<? extends BiomeProvider> getBiomeProviderClass() {
-		BiomeAdaptive.setBodyMultiBiome(PlanetsRegister.yzcetib);
+		BiomeAdaptive.setBodyMultiBiome(InitPlanets.yzcetib);
 		return BiomeProviderYzCetiB.class;
 	}
 	

@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.util.MapUtil;
 
 public class ExoFluid extends BlockFluidClassic implements IFluid {
@@ -69,7 +69,7 @@ public class ExoFluid extends BlockFluidClassic implements IFluid {
 	@SideOnly(Side.CLIENT)
 	public void registerModels() {
 		Item item = Item.getItemFromBlock(this);
-		MapUtil mapper = new MapUtil(Exoplanets.MODID, "fluid", nameString);
+		MapUtil mapper = new MapUtil(ExoInfo.MODID, "fluid", nameString);
 
 		ModelBakery.registerItemVariants(item);
 		ModelLoader.setCustomMeshDefinition(item, mapper);

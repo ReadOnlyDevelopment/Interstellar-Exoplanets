@@ -79,10 +79,18 @@ import net.rom.exoplanets.util.MCUtil;
 public class StellarRegistry {
     private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
 
-    private final List<Block> blocks = NonNullList.create();
-    private final List<Item> items = NonNullList.create();
+    public final List<Block> blocks = NonNullList.create();
+    public final List<Item> items = NonNullList.create();
+    
+    public List<Block> getBlocks() {
+		return blocks;
+	}
 
-    private final List<IAddRecipe> recipeAdders = NonNullList.create();
+	public List<Item> getItems() {
+		return items;
+	}
+
+	private final List<IAddRecipe> recipeAdders = NonNullList.create();
     private final List<Block> coloredBlocks = NonNullList.create();
     private final List<Item> coloredItems = NonNullList.create();
 

@@ -2,7 +2,6 @@ package net.rom.exoplanets.tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.rom.exoplanets.Exoplanets;
 
 public class ExoTab extends CreativeTabs {
 

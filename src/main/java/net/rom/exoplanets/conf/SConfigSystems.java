@@ -8,7 +8,7 @@ import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.IConfigElement;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.util.LogHelper;
 
 public class SConfigSystems {
 
@@ -117,7 +117,7 @@ public class SConfigSystems {
 				config.save();
 			}
 		} catch (Exception e) {
-			Exoplanets.LOGGER.fatal("exoplanets Systems Configuration File had an issue loding correctly");
+			LogHelper.fatal("exoplanets Systems Configuration File had an issue loding correctly");
 		}
 	}
 

@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.Exoplanets;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
 import net.rom.exoplanets.internal.client.ICustomModel;
@@ -66,7 +67,7 @@ public class BlockDeco extends BlockMetaSubtypes implements ICustomModel {
 	    @Override
 	    public void registerModels() {
 	        Item item = Item.getItemFromBlock(this);
-	        String fullName = Exoplanets.RESOURCE_PREFIX + "deco";
+	        String fullName = ExoInfo.RESOURCE_PREFIX + "deco";
 	        for (Type type : Type.values()) {
 	            ModelResourceLocation model = new ModelResourceLocation(fullName, "type=" + type.getName());
 	            ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), model);

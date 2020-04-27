@@ -11,10 +11,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.rom.exoplanets.block.BasicBlock;
+import net.rom.exoplanets.internal.block.BlockBase;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockElectronic extends BasicBlock {
+public class BlockElectronic extends BlockBase {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 

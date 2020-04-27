@@ -17,33 +17,30 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.Exoplanets;
-import net.rom.exoplanets.block.terrain.BlockMoltenFluid;
+import net.rom.exoplanets.block.fluid.BlockMoltenFluid;
 
-public class FluidsReigster {
-	
-	static {
-		FluidRegistry.enableUniversalBucket();
-	}
+public class ExoFluids {
 
     public static Fluid fluidmantle;
     public static BlockFluidBase fluidBlockMantle;
 
     private static final Map<Fluid, BlockFluidBase> fluidBlocks = new HashMap<>();
     private static final Map<BlockFluidBase, String> fluidBlockNames = new HashMap<>();
-    
+
     public static void init() {
         fluidmantle = newFluid("mantle", 4000, 20000, 5000, 200);
 
         fluidBlockMantle = registerFluidBlock(fluidmantle, new BlockMoltenFluid(fluidmantle), "mantle");
     }
-    
+
     private static Fluid newFluid(String name, int density, int viscosity, int temperature, int luminosity) {
-        Fluid fluid = new Fluid(name, new ResourceLocation(Exoplanets.MODID + ":blocks/molten_" + name), new ResourceLocation(Exoplanets.MODID + ":blocks/molten_" + name + "_flow")) {
+        Fluid fluid = new Fluid(name, new ResourceLocation(ExoInfo.MODID + ":blocks/molten_" + name), new ResourceLocation(ExoInfo.MODID + ":blocks/molten_" + name + "_flow")) {
 
             @Override
             public String getLocalizedName(FluidStack stack) {
-                return Exoplanets.i18n.translate(unlocalizedName);
+                return Exoplanets.i18n.translate(this.unlocalizedName);
             }
         };
 
@@ -51,16 +48,16 @@ public class FluidsReigster {
         fluid.setViscosity(viscosity);
         fluid.setTemperature(temperature);
         fluid.setLuminosity(luminosity);
-        fluid.setUnlocalizedName(Exoplanets.MODID + "." + name);
+        fluid.setUnlocalizedName(ExoInfo.MODID + "." + name);
         FluidRegistry.registerFluid(fluid);
         FluidRegistry.addBucketForFluid(fluid);
         return fluid;
     }
-    
+
     private static BlockFluidClassic registerFluidBlock(Fluid fluid, BlockFluidClassic block, String name) {
         String blockName = "Molten" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
         Exoplanets.REGISTRY.registerBlock(block, blockName);
-        block.setUnlocalizedName(Exoplanets.RESOURCE_PREFIX + blockName);
+        block.setUnlocalizedName(ExoInfo.RESOURCE_PREFIX + blockName);
         fluidBlocks.put(fluid, block);
         fluidBlockNames.put(block, name);
         return block;
@@ -74,7 +71,7 @@ public class FluidsReigster {
             String name = fluidBlockNames.get(block);
             name = "Molten" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
             final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
-            		Exoplanets.RESOURCE_PREFIX + name, "fluid");
+            		ExoInfo.RESOURCE_PREFIX + name, "fluid");
             ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, stack -> fluidModelLocation);
             ModelLoader.setCustomStateMapper(block, new StateMapperBase() {

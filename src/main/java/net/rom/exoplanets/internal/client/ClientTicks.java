@@ -9,10 +9,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.util.MCUtil;
 
-@Mod.EventBusSubscriber(modid = Exoplanets.MODID, value = Side.CLIENT)
+@Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class ClientTicks {
     @Deprecated
     public static final ClientTicks INSTANCE = new ClientTicks();
@@ -32,13 +33,13 @@ public class ClientTicks {
         if (MCUtil.isClient())
             scheduledActions.add(action);
         else
-        	Exoplanets.LOGGER.error("Tried to add client tick action on server side? {}", action);
+        	LogHelper.formatted_Error("Tried to add client tick action on server side? {}", action);
 
         if (scheduledActions.size() >= QUEUE_OVERFLOW_LIMIT) {
             // Queue overflow?
-        	Exoplanets.LOGGER.warn("Too many client tick actions queued! Currently at {} items. Would have added '{}'.",
+        	LogHelper.formatted_Warn("Too many client tick actions queued! Currently at {} items. Would have added '{}'.",
                     scheduledActions.size(), action);
-        	Exoplanets.LOGGER.catching(new IllegalStateException("ClientTicks queue overflow"));
+        	LogHelper.catching(new IllegalStateException("ClientTicks queue overflow"));
             scheduledActions.clear();
         }
     }

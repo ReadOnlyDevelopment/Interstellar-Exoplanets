@@ -12,9 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.block.BasicBlock;
+import net.rom.exoplanets.internal.block.BlockBase;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockStandConsole extends BasicBlock {
+public class BlockStandConsole extends BlockBase {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.20D, 0.0D, 0.15D, 0.80D, 1.30D, 0.80D);
 

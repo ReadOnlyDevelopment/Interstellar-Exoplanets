@@ -7,18 +7,18 @@ import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
-import net.minecraftforge.fml.common.Loader;
 import net.rom.api.AstroBuilder;
 import net.rom.api.enums.EnumClass;
 import net.rom.api.implemtations.planet.ExoPlanet;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
+import net.rom.exoplanets.util.ModSupport;
 
-public class PlanetsRegister {
+public class InitPlanets {
 
 	// Yz Ceti
 	private static Float[] yzCetiAu = { 0.3F, 0.4f, 0.6f };
@@ -51,25 +51,25 @@ public class PlanetsRegister {
 	public static ExoPlanet trappistg;
 	public static ExoPlanet trappisth;
 
-	static AstroBuilder builder = new AstroBuilder(Exoplanets.MODID);
+	static AstroBuilder builder = new AstroBuilder(ExoInfo.MODID);
 
 	public static void init() {
-		PlanetsRegister.initPlanets();
-		PlanetsRegister.registerPlanets();
-		PlanetsRegister.registerPlanetData();
-		PlanetsRegister.buildUnreachable();
-		PlanetsRegister.registerTeleportTypes();
+		InitPlanets.initPlanets();
+		InitPlanets.registerPlanets();
+		InitPlanets.registerPlanetData();
+		InitPlanets.buildUnreachable();
+		InitPlanets.registerTeleportTypes();
 	}
 
 	public static void initPlanets() {
 
-		yzcetib = builder.buildExoPlanet(SystemRegister.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class,
+		yzcetib = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class,
 				SConfigDimensionID.id_yz_b, 3, 4.50F);
 
-		yzcetic = builder.buildExoPlanet(SystemRegister.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class,
+		yzcetic = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class,
 				SConfigDimensionID.id_yz_c, 3, 1.5F);
 
-		if (Loader.isModLoaded("asmodeuscore")) {
+		if (ModSupport.asmodeusLoaded()) {
 			asmodeusData();
 		}
 	}
@@ -138,7 +138,7 @@ public class PlanetsRegister {
 			BodiesHelper.registerBody(hd219134g, data, false);
 			data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
 			BodiesHelper.registerBody(hd219134h, data, false);
-			
+
 			// Trappist 1
 			data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
 			BodiesHelper.registerBody(trappistb, data, false);
@@ -160,29 +160,29 @@ public class PlanetsRegister {
 	public static void buildUnreachable() {
 
 		if (!SConfigSystems.hideUnfinishedSystems) {
-			yzcetid = builder.buildUnreachablePlanet("yz_ceti_d", SystemRegister.yzCeti, 4.793016F, yzCetiAu[2]);
+			yzcetid = builder.buildUnreachablePlanet("yz_ceti_d", InitSolarSystems.yzCeti, 4.793016F, yzCetiAu[2]);
 
 			// Wolf 1061
-			wolf1061b = builder.buildUnreachablePlanet("wolf_1061_b", SystemRegister.wolf1061, 2.9495497F, wolfAu[0]);
-			wolf1061c = builder.buildUnreachablePlanet("wolf_1061_c", SystemRegister.wolf1061, 1.7264397F, wolfAu[1]);
-			wolf1061d = builder.buildUnreachablePlanet("wolf_1061_d", SystemRegister.wolf1061, 7.132725F, wolfAu[2]);
+			wolf1061b = builder.buildUnreachablePlanet("wolf_1061_b", InitSolarSystems.wolf1061, 2.9495497F, wolfAu[0]);
+			wolf1061c = builder.buildUnreachablePlanet("wolf_1061_c", InitSolarSystems.wolf1061, 1.7264397F, wolfAu[1]);
+			wolf1061d = builder.buildUnreachablePlanet("wolf_1061_d", InitSolarSystems.wolf1061, 7.132725F, wolfAu[2]);
 
 			// HD 219134
-			hd219134b = builder.buildUnreachablePlanet("hd_219134_b", SystemRegister.hd219134, 0.292421F, hdAu[0]);
-			hd219134c = builder.buildUnreachablePlanet("hd_219134_c", SystemRegister.hd219134, 2.9495497F, hdAu[1]);
-			hd219134d = builder.buildUnreachablePlanet("hd_219134_d", SystemRegister.hd219134, 0.896365F, hdAu[2]);
-			hd219134f = builder.buildUnreachablePlanet("hd_219134_f", SystemRegister.hd219134, 4.305977F, hdAu[3]);
-			hd219134g = builder.buildUnreachablePlanet("hd_219134_g", SystemRegister.hd219134, 1.932375F, hdAu[4]);
-			hd219134h = builder.buildUnreachablePlanet("hd_219134_h", SystemRegister.hd219134, 7.906747F, hdAu[5]);
+			hd219134b = builder.buildUnreachablePlanet("hd_219134_b", InitSolarSystems.hd219134, 0.292421F, hdAu[0]);
+			hd219134c = builder.buildUnreachablePlanet("hd_219134_c", InitSolarSystems.hd219134, 2.9495497F, hdAu[1]);
+			hd219134d = builder.buildUnreachablePlanet("hd_219134_d", InitSolarSystems.hd219134, 0.896365F, hdAu[2]);
+			hd219134f = builder.buildUnreachablePlanet("hd_219134_f", InitSolarSystems.hd219134, 4.305977F, hdAu[3]);
+			hd219134g = builder.buildUnreachablePlanet("hd_219134_g", InitSolarSystems.hd219134, 1.932375F, hdAu[4]);
+			hd219134h = builder.buildUnreachablePlanet("hd_219134_h", InitSolarSystems.hd219134, 7.906747F, hdAu[5]);
 
 			// Trappist 1
-			trappistb = builder.buildUnreachablePlanet("trappist_b", SystemRegister.trappist1, 3.254752F, trappistAu[0]);
-			trappistc = builder.buildUnreachablePlanet("trappist_c", SystemRegister.trappist1, 0.6451158F, trappistAu[1]);
-			trappistd = builder.buildUnreachablePlanet("trappist_d", SystemRegister.trappist1, 5.6336107F, trappistAu[2]);
-			trappiste = builder.buildUnreachablePlanet("trappist_e", SystemRegister.trappist1, 0.6451158F, trappistAu[3]);
-			trappistf = builder.buildUnreachablePlanet("trappist_f", SystemRegister.trappist1, 5.396859F, trappistAu[4]);
-			trappistg = builder.buildUnreachablePlanet("trappist_g", SystemRegister.trappist1, 7.957024F, trappistAu[5]);
-			trappisth = builder.buildUnreachablePlanet("trappist_h", SystemRegister.trappist1, 2.711277F, trappistAu[6]);
+			trappistb = builder.buildUnreachablePlanet("trappist_b", InitSolarSystems.trappist1, 3.254752F, trappistAu[0]);
+			trappistc = builder.buildUnreachablePlanet("trappist_c", InitSolarSystems.trappist1, 0.6451158F, trappistAu[1]);
+			trappistd = builder.buildUnreachablePlanet("trappist_d", InitSolarSystems.trappist1, 5.6336107F, trappistAu[2]);
+			trappiste = builder.buildUnreachablePlanet("trappist_e", InitSolarSystems.trappist1, 0.6451158F, trappistAu[3]);
+			trappistf = builder.buildUnreachablePlanet("trappist_f", InitSolarSystems.trappist1, 5.396859F, trappistAu[4]);
+			trappistg = builder.buildUnreachablePlanet("trappist_g", InitSolarSystems.trappist1, 7.957024F, trappistAu[5]);
+			trappisth = builder.buildUnreachablePlanet("trappist_h", InitSolarSystems.trappist1, 2.711277F, trappistAu[6]);
 		}
 	}
 

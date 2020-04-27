@@ -11,8 +11,8 @@ import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
+import net.rom.api.enums.CachedEnum;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
-import net.rom.exoplanets.util.CachedEnum;
 
 public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
 
