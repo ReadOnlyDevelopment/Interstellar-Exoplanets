@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.Exoplanets;
 import net.rom.exoplanets.block.fluid.BlockMoltenFluid;
+import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class ExoFluids {
 
@@ -58,6 +59,7 @@ public class ExoFluids {
         String blockName = "Molten" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
         Exoplanets.REGISTRY.registerBlock(block, blockName);
         block.setUnlocalizedName(ExoInfo.RESOURCE_PREFIX + blockName);
+        block.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
         fluidBlocks.put(fluid, block);
         fluidBlockNames.put(block, name);
         return block;
