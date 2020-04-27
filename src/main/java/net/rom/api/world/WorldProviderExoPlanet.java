@@ -24,12 +24,13 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 	public WorldProviderExoPlanet() {
 		instance = this;
 	}
-	
+
 	public static WorldProviderExoPlanet instance() {
 		return instance;
 	}
 
-	public String getSaveFolder() {
+	@Override
+    public String getSaveFolder() {
 		return "planets/" + this.getPlanet().getName();
 	}
 
@@ -47,27 +48,27 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 		ExoPlanet exo = (ExoPlanet) planet;
 		return exo;
 	}
-	
+
 	@Override
 	public float getSolarSize() {
 		return 1.0F;
 	}
-	
+
 	@Override
 	public Vector3 getFogColor() {
 		return new Vector3(0, 0, 0);
 	}
-	
+
 	@Override
 	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
 		return false;
 	}
-	
+
 	@Override
     public long getDayLength() {
 		return this.getPlanet().getDayLength();
 	}
-	
+
 	@Override
 	public void updateWeather() {
 		World worldObj = this.getWorldObj();
@@ -83,17 +84,17 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 			worldObj.thunderingStrength = 0.0F;
 		}
 	}
-	
+
 	@Override
 	public float getWindLevel() {
 		return 0.0F;
 	}
-	
+
 	@Override
 	public Vector3 getSkyColor() {
 		return new Vector3(0, 0, 0);
 	}
-	
+
 	@Override
 	public boolean canRespawnHere() {
 		if (EventHandlerGC.bedActivated) {
@@ -102,93 +103,60 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 		}
 		return false;
 	}
-	
+
 	@Override
 	public double getFuelUsageMultiplier() {
 		return 0.5D;
 	}
-	
+
 	@Override
 	public double getMeteorFrequency() {
 		return 0.0;
 	}
-	
+
 	@Override
 	public float getArrowGravity() {
 		return 0.003F;
 	}
-	
+
 	@Override
 	public int getDungeonSpacing() {
 		return 704;
 	}
-	
+
 	@Override
 	public boolean hasBreathableAtmosphere() {
 		return this.getPlanet().isBreathable();
 	}
-	
+
 	@Override
 	public float getGravity() {
 		return this.getPlanet().getGravity();
 	}
-	
+
 	@Override
 	public boolean canSpaceshipTierPass(int tier) {
 		return tier >= this.getPlanet().getTierRequirement();
 	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer() {
-		if (super.getSkyRenderer() == null) {
-			this.renderSky();
-		}
-		return super.getSkyRenderer();
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getCloudRenderer() {
-		if (super.getCloudRenderer() == null) {
-			this.renderCloud();
-		}
-		return super.getCloudRenderer();
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getWeatherRenderer() {
-		if (super.getWeatherRenderer() == null) {
-			this.renderWeather();
-		}
-		return super.getWeatherRenderer();
-	}
-	
+
 	@Override
 	public boolean hasSkyLight() {
 		return true;
 	}
-	
-	protected abstract void renderSky();
-	
-	protected abstract void renderCloud();
-	
-	protected abstract void renderWeather();
-	
+
 	public float getPlanetTemp() {
 		ExoPlanet planet = this.getPlanet();
 		float planetTemp = planet.getPlanetTemp();
-		
+
 		if (this.isDaytime()) {
 			planetTemp /= 2.2F;
 		} else {
 			planetTemp = planet.getPlanetTemp();
 		}
-		
+
 		return planetTemp;
 	}
-	
+
 	@Override
 	public abstract Class<? extends IChunkGenerator> getChunkProviderClass();
 
