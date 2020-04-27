@@ -8,11 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.ForgeVersion;
 
 public class ExoInfo {
-	
+
 	public static final List<Block> blocks = new ArrayList<>();
 	public static final List<Item> items = new ArrayList<>();
 
-	
+
 	public static final String MODID = "exoplanets";
 	public static final String NAME = "Interstellar: Exoplanets";
 	public static final String VERSION = "${version}";

@@ -51,18 +51,13 @@ final def secretFile
 if (System.getenv('SECRET_FILE')) {
     secretFile = file System.getenv().SECRET_FILE
 } else {
-    secretFile = file 'secrets.json'
+    secretFile = file 'secrets.gradle'
 }
 
 import se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
 import java.util.regex.Matcher
 
 project.ext.secret = new Secrets()
-if (secretFile.exists()) {
-    secretFile.withReader {
-        project.secret.m_data = new JsonSlurper().parse it
-    }
-}
 
 def versionBuild = 21
 if (System.getenv("BUILD_NUMBER") != null)
@@ -131,12 +126,6 @@ minecraft {
     runDir = "run"
     replace '${version}', project.version
     mappings = "${mcp}"
-    
-    if (project.hasProperty('signSHA1') && getBooleanProperty('do_sign_jar')) {
-        replace '@FINGERPRINT@', secret.signSHA1
-    } else {
-        replace '@FINGERPRINT@', ''
-    }
     
     makeObfSourceJar = getBooleanProperty('create_source_jar')
 }
@@ -256,30 +245,25 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 task signJar(type: SignJar, dependsOn: reobfJar) {
     onlyIf {
-        getBooleanProperty('do_sign_jar') &&
-                project.hasProperty('keyStore')
+        project.hasProperty('keyStore')
     }
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
 
     inputFile = jar.archivePath
     outputFile = jar.archivePath
-
-    keyStore = secret.keyStore
-    alias = secret.keyStoreAlias
-    storePass = secret.keyStorePass
-    keyPass = secret.keyStoreKeyPass
 }
 
 task signApiJar(type: SignJar) {
     onlyIf {
-        getBooleanProperty('create_api_jar') &&
-                getBooleanProperty('do_sign_jar') &&
-                project.hasProperty('keyStore')
+        project.hasProperty('keyStore')
     }
-
-    keyStore = secret.keyStore
-    alias = secret.keyStoreAlias
-    storePass = secret.keyStorePass
-    keyPass = secret.keyStoreKeyPass
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
 
     inputFile = apiJar.archivePath
     outputFile = apiJar.archivePath
@@ -287,15 +271,12 @@ task signApiJar(type: SignJar) {
 
 task signDeobfJar(type: SignJar) {
     onlyIf {
-        getBooleanProperty('create_deobf_jar') &&
-                getBooleanProperty('do_sign_jar') &&
-                project.hasProperty('keyStore')
+        project.hasProperty('keyStore')
     }
-
-    keyStore = secret.keyStore
-    alias = secret.keyStoreAlias
-    storePass = secret.keyStorePass
-    keyPass = secret.keyStoreKeyPass
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
 
     inputFile = deobfJar.archivePath
     outputFile = deobfJar.archivePath
@@ -303,15 +284,12 @@ task signDeobfJar(type: SignJar) {
 
 task signSourceJar(type: SignJar) {
     onlyIf {
-        getBooleanProperty('create_source_jar') &&
-                getBooleanProperty('do_sign_jar') &&
-                project.hasProperty('keyStore')
+        project.hasProperty('keyStore')
     }
-
-    keyStore = secret.keyStore
-    alias = secret.keyStoreAlias
-    storePass = secret.keyStorePass
-    keyPass = secret.keyStoreKeyPass
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
 
     inputFile = sourceJar.archivePath
     outputFile = sourceJar.archivePath
@@ -319,28 +297,18 @@ task signSourceJar(type: SignJar) {
 
 task signJavadocJar(type: SignJar) {
     onlyIf {
-        getBooleanProperty('create_javadoc_jar') &&
-                getBooleanProperty('do_sign_jar') &&
-                project.hasProperty('keyStore')
+        project.hasProperty('keyStore')
     }
-
-    keyStore = secret.keyStore
-    alias = secret.keyStoreAlias
-    storePass = secret.keyStorePass
-    keyPass = secret.keyStoreKeyPass
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
 
     inputFile = javadocJar.archivePath
     outputFile = javadocJar.archivePath
 }
 
-if (getBooleanProperty('do_sign_jar')) {
-    build.dependsOn signJar
-    build.dependsOn signApiJar
-    build.dependsOn signDeobfJar
-    build.dependsOn signSourceJar
-    build.dependsOn signJavadocJar
-}
-
+build.dependsOn signJar
 tasks.publish.dependsOn build
 tasks.curseforge.dependsOn publish
 
