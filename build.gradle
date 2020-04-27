@@ -104,8 +104,9 @@ repositories {
 dependencies {
 
     compile "org.projectlombok:lombok:${project.lombok_version}"
-
-	compile "com.mjr.planetprogression:PlanetProgression:1.12.2-0.4.2:api"
+    
+    compile "curse.maven:plprogapi-0.4.4:2941452"
+    compile "curse.maven:asmodeusdev-0.0.14:2941700"
 	
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
@@ -116,7 +117,7 @@ dependencies {
     compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
     
  	compile files (
-	"lib/AsmodeusCore-1.12.2-0.0.14-dev.jar"
+	//"lib/AsmodeusCore-1.12.2-0.0.14-dev.jar"
 	)
 
 }
