@@ -13,7 +13,7 @@
 //
 //public class SkyProviderYzCetiB extends SkyProviderBase {
 //
-//	private static final ResourceLocation yzcetiCTexture = new ResourceLocation(Exoplanets.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_c.png");
+//	private static final ResourceLocation yzcetiCTexture = new ResourceLocation(Ref.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_c.png");
 //	  
 //	@Override
 //	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
@@ -58,7 +58,7 @@
 //
 //	@Override
 //	protected ResourceLocation sunImage() {
-//		return new ResourceLocation(Exoplanets.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_star.png");
+//		return new ResourceLocation(Ref.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_star.png");
 //	}
 //
 //	@Override

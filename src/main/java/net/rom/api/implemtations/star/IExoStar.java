@@ -1,6 +1,5 @@
 package net.rom.api.implemtations.star;
 
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import net.rom.api.enums.SpectralClass;
 
 public interface IExoStar {
@@ -12,12 +11,12 @@ public interface IExoStar {
 	 */
 	public String getStarName();
 	
-	/**
-	 * Gets Solar System the star belongs too.
-	 *
-	 * @return the planetSystem
-	 */
-	public SolarSystem getStarSystem();
+//	/**
+//	 * Gets Solar System the star belongs too.
+//	 *
+//	 * @return the planetSystem
+//	 */
+//	public SolarSystem getStarSystem();
 	
 	/**
 	 * Gets the surface temperature of the star in Kelvins

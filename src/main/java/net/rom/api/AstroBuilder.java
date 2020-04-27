@@ -52,6 +52,7 @@ public class AstroBuilder {
 	}
 
 	/**
+	 * @deprecated
 	 * builds solar system.
 	 *
 	 * @param name     the name
@@ -76,6 +77,32 @@ public class AstroBuilder {
 		}
 
 		body.setMainStar(main);
+		return body;
+	}
+
+	public ExoStar buildExoStar(String starName, int temp, double mass, double radius) {
+		ExoStar star = new ExoStar(starName);
+		star.setStarName(starName);
+		star.setSurfaceTemp(temp);
+		star.setStarMass(mass);
+		star.setStarRadius(radius);
+		star.setSpectralClass();
+		return star;
+	}
+	
+	public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, ExoStar exoStar) {
+		SolarSystem body = new SolarSystem(name, galaxy);
+		body.setMapPosition(new Vector3(pos));
+		exoStar.setParentSolarSystem(body);
+		if(!SConfigCore.enableRealism) {
+			exoStar.setBodyIcon(
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + exoStar.getStarName() + ".png"));
+		} 	
+		if(SConfigCore.enableRealism) {
+			exoStar.setBodyIcon(
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + exoStar.getStarName() + ".png"));
+		}
+		body.setMainStar(exoStar);
 		return body;
 	}
 

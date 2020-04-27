@@ -22,7 +22,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.rom.exoplanets.util.CoreUtil;
+import net.rom.exoplanets.util.MCUtil;
 
 public class ModelsHelper {
 	public static void drawBakedModel(IBakedModel model) {
@@ -89,12 +89,12 @@ public class ModelsHelper {
 	}
 
 	public static IBakedModel getModelFromRegistry(ModelResourceLocation modelResourceLocation) {
-		return CoreUtil.getClient().getRenderItem().getItemModelMesher().getModelManager()
+		return MCUtil.getClient().getRenderItem().getItemModelMesher().getModelManager()
 				.getModel(modelResourceLocation);
 	}
 
 	public static IBakedModel getModelFromRegistry(String texturePrefix, String name) {
-		return CoreUtil.getClient().getRenderItem().getItemModelMesher().getModelManager()
+		return MCUtil.getClient().getRenderItem().getItemModelMesher().getModelManager()
 				.getModel(new ModelResourceLocation(texturePrefix + name, "inventory"));
 	}
 }

@@ -1,6 +1,5 @@
 package net.rom.api.implemtations.star;
 
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import net.rom.api.enums.SpectralClass;
 
@@ -8,7 +7,6 @@ public class ExoStar extends Star implements IExoStar {
 	
 	private SpectralClass spectralClass;
 	private String starName;
-	private SolarSystem starSystem;
 	private int surfaceTemp;
 	private double radius;
 	private double mass;
@@ -23,10 +21,10 @@ public class ExoStar extends Star implements IExoStar {
 		return this;
 	}
 	
-	public ExoStar setStarSolarSystem(SolarSystem solarSystem) {
-		this.starSystem = solarSystem;
-		return this;
-	}
+//	public ExoStar setStarSolarSystem(SolarSystem solarSystem) {
+//		this.starSystem = solarSystem;
+//		return this;
+//	}
 	
 	public ExoStar setSurfaceTemp(int surfaceTemp) {
 		this.surfaceTemp = surfaceTemp;
@@ -53,10 +51,10 @@ public class ExoStar extends Star implements IExoStar {
 		return this.starName;
 	}
 
-	@Override
-	public SolarSystem getStarSystem() {
-		return this.starSystem;
-	}
+//	@Override
+//	public SolarSystem getStarSystem() {
+//		return this.starSystem;
+//	}
 
 	@Override
 	public int getSurfaceTemp() {
