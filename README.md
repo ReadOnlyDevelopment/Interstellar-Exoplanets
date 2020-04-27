@@ -1,17 +1,32 @@
 
-###           ![](https://i.imgur.com/cU1Tx2F.png)
+<h1 align="center">
+  <br>
+  <img src="https://i.imgur.com/cU1Tx2F.png?1" alt="">
+</h1>
 
-## **Bringing Real Exo Planets to Galacticraft**
+<h4 align="center">Bringing Real Exo Planets to Galacticraft</h4>
 
-## **THIS ADDON IS STILL IN EARLY BETA AND IS NOT SUITABLE FOR USE ON MULTIPLAYER SERVERS**
+<p align="center">
+    <a href="https://github.com/ROMVoid95/Custom-Modpack-Assets/blob/master/LICENSE">
+    <img src="https://badgen.net/github/license/micromatch/micromatch"
+         alt="MIT License">
+    <a href="">
+    <img src="https://badgen.net/dependabot/thepracticaldev/dev.to?icon=dependabot">
+    <a href="">
+    <img src="https://badgen.net/badge/Made%20With/Love/pink"
+         alt="Made With love">
+</p>
+<p align="center">
+<img src="http://cf.way2muchnoise.eu/full_interstellar-exoplanets_downloads.svg">
+<img src="http://cf.way2muchnoise.eu/versions/interstellar-exoplanets.svg">
+</p>
+---
 
 ![](https://i.imgur.com/UDlILuz.png)
 
 This is the release and very early beta of my new Galacticraft Addon. Every planet that will be added is a confirmed Exoplanet that is documented in the NASA's Exoplanet Archive.
 
 The addon will also feature material aimed at education into Astronomy. And other features and ideas that are not yet implemented.
-
-[![](https://i.imgur.com/iKIG1Ii.png)](https://discord.gg/fscJ2gG)
 
 #### **Solar Systems & Planets**
 
