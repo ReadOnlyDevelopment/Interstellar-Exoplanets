@@ -68,15 +68,26 @@ tile.exoplanets.deco1.name=Stipe Brating
 tile.exoplanets.satellite_antenna.name=Satellite Antenna
 tile.exoplanets.stand_console.name=Console Stand
 
-tile.exoplanets.yzb_sedimentary.name=(§eYz Ceti B§r) Sedimentary Rock
-tile.exoplanets.yzb_smoothsedimentary.name=(§eYz Ceti B§r) Smooth Sedimentary Rock
-tile.exoplanets.yzb_ingneous.name=(§eYz Ceti B§r) Ingneous Rock
+tile.exoplanets.yzb_loose_sediment.name=(§eYz Ceti B§r) Loose Sediment
+tile.exoplanets.yzb_dark_loose_sediment.name=(§eYz Ceti B§r) Loose Sediment 2
+tile.exoplanets.yzb_gravel.name=(§eYz Ceti B§r) Gravel
+tile.exoplanets.yzb_igneous.name=(§eYz Ceti B§r) Igneous Rock
 tile.exoplanets.yzb_metamorphic.name=(§eYz Ceti B§r) Metamorphic Rock
+tile.exoplanets.yzb_sedimentary_rock.name=(§eYz Ceti B§r) Sedimentary Rock
 
-tile.exoplanets.yzc_sedimentary.name=(§eYz Ceti C§r) Sedimentary Rock
-tile.exoplanets.yzc_smoothsedimentary.name=(§eYz Ceti C§r) Smooth Sedimentary Rock
-tile.exoplanets.yzc_ingneous.name=(§eYz Ceti C§r) Ingneous Rock
-tile.exoplanets.yzc_metamorphic.name=(§eYz Ceti C§r) Metamorphic Rock
+tile.exoplanets.yzc_loose_sediment.name=(§6Yz Ceti C§r) Loose Sediment
+tile.exoplanets.yzc_dark_loose_sediment.name=(§6Yz Ceti C§r) Loose Sediment 2
+tile.exoplanets.yzc_gravel.name=(§6Yz Ceti C§r) Gravel
+tile.exoplanets.yzc_igneous.name=(§6Yz Ceti C§r) Igneous Rock
+tile.exoplanets.yzc_metamorphic.name=(§6Yz Ceti C§r) Metamorphic Rock
+tile.exoplanets.yzc_sedimentary_rock.name=(§6Yz Ceti C§r) Sedimentary Rock
+
+tile.exoplanets.yzd_loose_sediment.name=(§bYz Ceti D§r) Loose Sediment
+tile.exoplanets.yzd_dark_loose_sediment.name=(§bYz Ceti D§r) Loose Sediment 2
+tile.exoplanets.yzd_gravel.name=(§bYz Ceti D§r) Gravel
+tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Igneous Rock
+tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Metamorphic Rock
+tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Sedimentary Rock
 
 tile.exoplanets.overworldore0.name=Limonite Ore
 tile.exoplanets.overworldore1.name=Ruthenium Ore
