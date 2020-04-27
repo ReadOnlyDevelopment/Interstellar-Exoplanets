@@ -7,12 +7,12 @@
 <h4 align="center">Bringing Real Exo Planets to Galacticraft</h4>
 
 <p align="center">
-    <a href="https://github.com/ROMVoid95/Custom-Modpack-Assets/blob/master/LICENSE">
+    <a href="https://github.com/ROMVoid95/Custom-Modpack-Assets/blob/master/LICENSE"></a>
     <img src="https://badgen.net/github/license/micromatch/micromatch"
          alt="MIT License">
-    <a href="">
+    <a href=""></a>
     <img src="https://badgen.net/dependabot/thepracticaldev/dev.to?icon=dependabot">
-    <a href="">
+    <a href=""></a>
     <img src="https://badgen.net/badge/Made%20With/Love/pink"
          alt="Made With love">
 </p>
@@ -20,9 +20,8 @@
 <img src="http://cf.way2muchnoise.eu/full_interstellar-exoplanets_downloads.svg">
 <img src="http://cf.way2muchnoise.eu/versions/interstellar-exoplanets.svg">
 </p>
+      
 ---
-
-![](https://i.imgur.com/UDlILuz.png)
 
 This is the release and very early beta of my new Galacticraft Addon. Every planet that will be added is a confirmed Exoplanet that is documented in the NASA's Exoplanet Archive.
 
