@@ -7,7 +7,7 @@
 <h4 align="center">Bringing Real Exo Planets to Galacticraft</h4>
 
 <p align="center">
-    <a href="https://github.com/ROMVoid95/Custom-Modpack-Assets/blob/master/LICENSE"></a>
+    <a href="https://github.com/ROMVoid95/Interstellar-Exoplanets/blob/master/LICENSE"></a>
     <img src="https://badgen.net/github/license/micromatch/micromatch"
          alt="MIT License">
     <a href=""></a>
@@ -17,9 +17,11 @@
          alt="Made With love">
 </p>
 <p align="center">
+<a href="https://www.curseforge.com/minecraft/mc-mods/interstellar-exoplanets">
 <img src="http://cf.way2muchnoise.eu/full_interstellar-exoplanets_downloads.svg">
+<a href="https://www.curseforge.com/minecraft/mc-mods/interstellar-exoplanets">
 <img src="http://cf.way2muchnoise.eu/versions/interstellar-exoplanets.svg">
-</p>
+</p></a>
       
 ---
 
