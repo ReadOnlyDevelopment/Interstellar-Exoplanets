@@ -1,13 +1,13 @@
 package net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.biomes;
 
-import net.rom.api.enums.EnumBiomeType;
+import net.rom.api.stellar.enums.EnumBiomeType;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.biome.BiomeYzCetiBBase;
 
 public class BiomeYzCetiCUnknown extends BiomeYzCetiBBase {
-	
+
 	public static int grassFoilageColorMultiplier = 0x000000;
-	
+
 	public BiomeYzCetiCUnknown(BiomeProperties props) {
 		super("unknown", props);
 		props.setRainDisabled();

@@ -8,14 +8,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.rom.api.enums.EnumBiomeType;
-import net.rom.api.world.biome.BiomeSpace;
+import net.rom.api.stellar.enums.EnumBiomeType;
+import net.rom.api.stellar.world.biome.BiomeSpace;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.BiomeDecoratorYzCetiB;
 import net.rom.exoplanets.init.InitPlanets;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
-	
+
 	protected static final IBlockState STONE = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
@@ -23,17 +23,17 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 	protected static final IBlockState DIRT = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 	protected static final IBlockState ICE = Blocks.PACKED_ICE.getDefaultState();
 	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
-	
+
 	protected static final int SEA_LEVEL = 63;
 	protected static final int SEA_FLOOR_LEVEL = 42;
-	
+
 	public BiomeYzCetiBBase(String singleName, BiomeProperties props) {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.COLD);
-		this.clearAllSpawning(); 
+		this.clearAllSpawning();
 		this.setPlanetForBiome(InitPlanets.yzcetib);
 	}
-	
+
 	public final void generateYzCetiBTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		int i = worldIn.getSeaLevel();
 		//float biomeHeight = this.getBiomeHeight();
@@ -43,7 +43,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		int l = x & 15;
 		int i1 = z & 15;
-		
+
 		for (int j1 = 255; j1 >= 0; --j1) {
 			if (j1 == 0) {
 				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
@@ -71,13 +71,13 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 								topState = this.topBlock;
 								fillState = this.fillerBlock;
 							}
-							
+
 							if (j1 < i && (topState == null || topState.getMaterial() == Material.AIR)) {
 								topState = ICE;
 							}
-							
+
 							j = k;
-							
+
 							if (j1 >= i - 1) {
 								chunkPrimerIn.setBlockState(i1, j1, l, topState);
 							} else if (j1 < i - 7 - k) {
@@ -96,22 +96,22 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 			}
 		}
 	}
-	
+
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		this.generateYzCetiBTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
-	
+
 	@Override
 	public float getSpawningChance() {
 		return 0.1F;
 	}
-	
+
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
 		return new BiomeDecoratorYzCetiB();
 	}
-	
+
 	protected BiomeDecoratorYzCetiB getBiomeDecorator() {
 		return (BiomeDecoratorYzCetiB) this.decorator;
 	}
