@@ -10,8 +10,8 @@ import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import net.rom.api.AstroBuilder;
-import net.rom.api.implemtations.star.ExoStar;
+import net.rom.api.stellar.AstroBuilder;
+import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.util.LogHelper;
@@ -37,6 +37,10 @@ public class InitSolarSystems {
 		registerExoStars();
 		registerSolarSystems();
 		initializeSolarSystems();
+	}
+
+	private static void registerData() {
+
 	}
 
 	private static void registerExoStars() {

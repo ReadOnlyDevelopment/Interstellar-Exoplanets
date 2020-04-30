@@ -7,10 +7,11 @@ import net.rom.exoplanets.item.EnumIngots;
 public class ExoItems {
 
 	public static void registerAll(StellarRegistry registry) {
-	
+
 		IEnumItems.RegistrationHelper enumItems = new IEnumItems.RegistrationHelper(registry);
-		
+
 		enumItems.registerItems(EnumIngots.values());
+
 	}
 
 }

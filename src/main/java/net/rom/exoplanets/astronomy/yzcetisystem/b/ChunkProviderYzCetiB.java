@@ -21,8 +21,8 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.rom.api.world.gen.MapGenExoCaveGen;
-import net.rom.api.world.gen.MapGenExoRavinGen;
+import net.rom.api.stellar.world.gen.MapGenExoCaveGen;
+import net.rom.api.stellar.world.gen.MapGenExoRavinGen;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 
 public class ChunkProviderYzCetiB extends ChunkProviderBase {

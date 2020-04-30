@@ -34,11 +34,6 @@ apply plugin: 'se.bjurr.gitchangelog.git-changelog-gradle-plugin'
 
 import groovy.json.JsonSlurper
 
-eclipse.project {
-    buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
-    natures 'org.eclipse.buildship.core.gradleprojectnature'
-}
-
 class Secrets {
     Map m_data = null
 
@@ -51,15 +46,20 @@ final def secretFile
 if (System.getenv('SECRET_FILE')) {
     secretFile = file System.getenv().SECRET_FILE
 } else {
-    secretFile = file 'secrets.gradle'
+    secretFile = file 'secret.json'
 }
 
 import se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
 import java.util.regex.Matcher
 
 project.ext.secret = new Secrets()
+if (secretFile.exists()) {
+    secretFile.withReader {
+        project.secret.m_data = new JsonSlurper().parse it
+    }
+}
 
-def versionBuild = 21
+def versionBuild = 11
 if (System.getenv("BUILD_NUMBER") != null)
     versionBuild = System.getenv("BUILD_NUMBER")
 
@@ -116,9 +116,6 @@ dependencies {
     compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
     compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
     
- 	compile files (
-	//"lib/AsmodeusCore-1.12.2-0.0.14-dev.jar"
-	)
 
 }
 

@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.block.fluid.BlockMoltenFluid;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
@@ -31,7 +31,7 @@ public class ExoFluids {
     private static final Map<BlockFluidBase, String> fluidBlockNames = new HashMap<>();
 
     public static void init() {
-        fluidmantle = newFluid("mantle", 4000, 20000, 5000, 200);
+        fluidmantle = newFluid("mantle", 100, 500, 2500, 5);
 
         fluidBlockMantle = registerFluidBlock(fluidmantle, new BlockMoltenFluid(fluidmantle), "mantle");
     }
@@ -41,7 +41,7 @@ public class ExoFluids {
 
             @Override
             public String getLocalizedName(FluidStack stack) {
-                return Exoplanets.i18n.translate(this.unlocalizedName);
+                return ExoplanetsMod.i18n.translate(this.unlocalizedName);
             }
         };
 
@@ -57,7 +57,7 @@ public class ExoFluids {
 
     private static BlockFluidClassic registerFluidBlock(Fluid fluid, BlockFluidClassic block, String name) {
         String blockName = "Molten" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
-        Exoplanets.REGISTRY.registerBlock(block, blockName);
+        ExoplanetsMod.REGISTRY.registerBlock(block, blockName);
         block.setUnlocalizedName(ExoInfo.RESOURCE_PREFIX + blockName);
         block.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
         fluidBlocks.put(fluid, block);

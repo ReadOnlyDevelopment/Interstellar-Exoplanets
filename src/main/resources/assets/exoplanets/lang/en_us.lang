@@ -93,6 +93,17 @@ tile.exoplanets.overworldore0.name=Limonite Ore
 tile.exoplanets.overworldore1.name=Ruthenium Ore
 tile.exoplanets.overworldore2.name=Rutile Ore
 
+tile.exoplanets.alarm_light.name=Alarm Lamp
+tile.exoplanets.alarm_light_lit.name=Alarm Lamp
+tile.exoplanets.wall_lamp.name=Wall Light
+tile.exoplanets.wall_lamp_lit.name=Wall Light
+tile.exoplanets.metal_lamp.name=MetalBlock Lamp
+tile.exoplanets.metal_lamp_lit.name=MetalBlock Lamp
+tile.exoplanets.cellar_lamp.name=Cellar Lamp
+tile.exoplanets.cellar_lamp_lit.name=Cellar Lamp
+tile.exoplanets.inset_lamp.name=Inset Lamp
+tile.exoplanets.inset_lamp_lit.name=Inset Lamp
+
 
 ## ITEMS ##
 item.exoplanets.rutile.name=Rutile Ingot

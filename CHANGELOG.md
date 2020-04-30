@@ -1,15 +1,11 @@
 [Additions]
 
- - Additional Terrain Blocks
- - Overworld Ores
- - Ore Ingots
- - Molten Mantle Fluid
- - Items Creative Tab
+  - Yz Ceti D Planet
+  - new Lights/Lamps
+  - Sky Renderers for Yz Ceti System
+  - Sky Renderers Star Texture can render realistic
+  - Yz Ceti D uses Moon Lander to move while landing
  
- [Changes]
-
- - Habitable Zone Renders
+[TODO]
  
- [Removed]
- 
- - Old Terrain Blocks
+  - Make Decoration Recipes

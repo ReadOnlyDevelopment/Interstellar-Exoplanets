@@ -6,7 +6,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.internal.item.ILeftClickItem;
 import net.rom.exoplanets.internal.network.MLeftClick;
 
@@ -21,7 +21,7 @@ public final class ClientEvents {
 					event.getEntityPlayer(), event.getHand());
 			// Server-side call
 			if (result.getType() == EnumActionResult.SUCCESS) {
-				Exoplanets.network.wrapper.sendToServer(new MLeftClick(MLeftClick.Type.EMPTY, event.getHand()));
+				ExoplanetsMod.network.wrapper.sendToServer(new MLeftClick(MLeftClick.Type.EMPTY, event.getHand()));
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public final class ClientEvents {
 					event.getEntityPlayer(), event.getHand());
 			// Server-side call
 			if (result.getType() == EnumActionResult.SUCCESS) {
-				Exoplanets.network.wrapper.sendToServer(new MLeftClick(MLeftClick.Type.BLOCK, event.getHand()));
+				ExoplanetsMod.network.wrapper.sendToServer(new MLeftClick(MLeftClick.Type.BLOCK, event.getHand()));
 			}
 		}
 	}

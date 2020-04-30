@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.oredict.OreDictionary;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.internal.IAddRecipe;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
