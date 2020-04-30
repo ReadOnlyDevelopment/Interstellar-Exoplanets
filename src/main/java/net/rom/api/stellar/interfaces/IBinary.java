@@ -1,6 +1,6 @@
-package net.rom.api.implemtations;
+package net.rom.api.stellar.interfaces;
 
-import net.rom.api.implemtations.star.IExoStar;
+import net.rom.api.stellar.impl.BinaryStar;
 
 public interface IBinary extends IExoStar {
 	
