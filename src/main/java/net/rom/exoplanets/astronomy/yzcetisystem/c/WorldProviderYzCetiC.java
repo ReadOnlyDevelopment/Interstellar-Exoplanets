@@ -6,7 +6,6 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -16,8 +15,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.api.implemtations.planet.ExoPlanet;
-import net.rom.api.world.WorldProviderExoPlanet;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
+import net.rom.api.stellar.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.BiomeProviderYzCetiC;
@@ -27,7 +26,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 
 	@Override
 	public float getSolarSize() {
-		return 2.0F;
+		return 1.0F;
 	}
 
 	@Override
@@ -88,17 +87,10 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 		return 128F;
 	}
 
-	@Override
-	public Vector3 getFogColor() {
-		float f = 1.1F - this.getStarBrightness(1.0F);
-		return new Vector3(232F / 255F * f, 180F / 255F * f, 56F / 255F * f);
-	}
-
-	@Override
-	public Vector3 getSkyColor() {
-		float f = 1.15F - this.getStarBrightness(1.0F);
-		return new Vector3(255 / 255F * f, 241 / 255F * f, 91 / 255F * f);
-	}
+    @Override
+    public Vector3 getSkyColor() {
+        return new Vector3(0, 0, 0);
+    }
 
 	@Override
 	public boolean canRainOrSnow() {
@@ -187,20 +179,6 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 		blockList.add(YzCetiBlocks.CetiC.C_SEDIMENTARYROCK);
 		blockList.add(YzCetiBlocks.CetiC.C_IGNEOUS);
 		return blockList;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	protected void renderSky() {
-	}
-
-	@Override
-	protected void renderCloud() {
-		this.setCloudRenderer(new CloudRenderer());
-	}
-
-	@Override
-	protected void renderWeather() {
 	}
 
 	@Override
