@@ -1,4 +1,4 @@
-  package net.rom.api;
+  package net.rom.api.stellar;
 
 import java.awt.Color;
 
@@ -20,18 +20,18 @@ import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
-import net.rom.api.implemtations.planet.ExoPlanet;
-import net.rom.api.implemtations.star.ExoStar;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
+import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.conf.SConfigCore;
 
 public class AstroBuilder {
-	
+
 	private String modid;
-	
+
 	public AstroBuilder() {
 		super();
 	}
-	
+
 	public AstroBuilder(String modid) {
 		super();
 		this.setModid(modid);
@@ -62,7 +62,8 @@ public class AstroBuilder {
 	 * @param size     the size
 	 * @return the solar system
 	 */
-	public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, String starname) {
+	@Deprecated
+    public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, String starname) {
 		SolarSystem body = new SolarSystem(name, galaxy);
 		body.setMapPosition(new Vector3(pos));
 		Star main = new Star(starname);
@@ -70,7 +71,7 @@ public class AstroBuilder {
 		if(!SConfigCore.enableRealism) {
 			main.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
-		} 	
+		}
 		if(SConfigCore.enableRealism) {
 			main.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + starname + ".png"));
@@ -89,7 +90,7 @@ public class AstroBuilder {
 		star.setSpectralClass();
 		return star;
 	}
-	
+
 	public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, ExoStar exoStar) {
 		SolarSystem body = new SolarSystem(name, galaxy);
 		body.setMapPosition(new Vector3(pos));
@@ -97,7 +98,7 @@ public class AstroBuilder {
 		if(!SConfigCore.enableRealism) {
 			exoStar.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + exoStar.getStarName() + ".png"));
-		} 	
+		}
 		if(SConfigCore.enableRealism) {
 			exoStar.setBodyIcon(
 					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + exoStar.getStarName() + ".png"));
@@ -113,20 +114,20 @@ public class AstroBuilder {
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
 		if(!SConfigCore.enableRealism) {
-			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
-		} 
+			body.setBodyIcon(new ResourceLocation("exoplanets", "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
+		}
 		if(SConfigCore.enableRealism) {
 			body.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + system.getName().toLowerCase() + "/realism/" + name + ".png"));
+					new ResourceLocation("exoplanets", "textures/celestialbodies/" + system.getName().toLowerCase() + "/realism/" + name + ".png"));
 		}
-		
+
 		if (provider != null) {
 			body.setTierRequired(tier);
 			body.setDimensionInfo(dimID, provider);
 		}
 		return body;
 	}
-	
+
 	/**
 	 * builds planet.
 	 *
@@ -227,7 +228,7 @@ public class AstroBuilder {
 		}
 		return body;
 	}
-	
+
 	/**
 	 * Builds unreachable planet.
 	 *
@@ -246,7 +247,7 @@ public class AstroBuilder {
 		GalaxyRegistry.registerPlanet(unreachable);
 		return unreachable;
 	}
-	
+
 	/**
 	 * Builds unreachable planet.
 	 *
@@ -260,13 +261,13 @@ public class AstroBuilder {
 		GalaxyRegistry.registerPlanet(unreachable);
 		return unreachable;
 	}
-	
+
 	public void setRingColor(Planet planet, double r, double g, double b) {
 		float rf = (float) r;
 		float gf = (float) g;
 		float bf = (float) b;
 		planet.setRingColorRGB(rf, gf, bf);
-		
+
 	}
 
 	/**
@@ -309,7 +310,7 @@ public class AstroBuilder {
 		celestial.setAtmosphere(
 				new AtmosphereInfo(breathable, precipitation, corrosive, relativeTemperature, windLevel, density));
 	}
-	
+
 	/**
 	 * Sets the biomes.
 	 *
@@ -382,21 +383,22 @@ public class AstroBuilder {
 		Color c = decodeColor(color);
 		return c.getRGBColorComponents(null);
 	}
-	
+
 	private static Color decodeColor(String color) {
 	    String colorVal = "";
 	    if (color.length() > 0) {
 	        colorVal = color.trim();
-	        if (colorVal.startsWith("#"))
-	            colorVal = colorVal.substring(1);            
+	        if (colorVal.startsWith("#")) {
+                colorVal = colorVal.substring(1);
+            }
 	            colorVal = new Integer(Integer.parseInt(colorVal, 16)).toString();
 	            return Color.decode(colorVal.toLowerCase());
 	    }
 		return null;
 	}
-	
+
 	private Color decodeColor(Color color) {
-	    String colorVal = "";         
+	    String colorVal = "";
 	            colorVal = new Integer(Integer.parseInt(colorVal, 16)).toString();
 	            return Color.decode(colorVal.toLowerCase());
 

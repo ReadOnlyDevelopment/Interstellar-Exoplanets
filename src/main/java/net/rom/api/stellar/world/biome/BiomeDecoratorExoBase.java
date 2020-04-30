@@ -1,4 +1,4 @@
-package net.rom.api.world.biome;
+package net.rom.api.stellar.world.biome;
 
 import java.util.Random;
 
@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.rom.api.world.EnumOreGen;
+import net.rom.api.stellar.world.EnumOreGen;
 
 public abstract class BiomeDecoratorExoBase extends BiomeDecorator {
 

@@ -1,4 +1,4 @@
-package net.rom.api.world;
+package net.rom.api.stellar.world;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
@@ -14,7 +14,7 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.api.implemtations.planet.ExoPlanet;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
 
 public abstract class WorldProviderExoPlanet extends WorldProviderSpace implements ISolarLevel, IExitHeight {
 

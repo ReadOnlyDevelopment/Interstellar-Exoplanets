@@ -1,4 +1,4 @@
-package net.rom.api.annotations;
+package net.rom.api.stellar.annotations;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.TYPE;
@@ -16,6 +16,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target({ TYPE, FIELD })
-public @interface MoonType {
+public @interface PlanetType {
 
 }

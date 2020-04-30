@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "exoplanets:blocks/metal_lamp_lit"
+    }
+}

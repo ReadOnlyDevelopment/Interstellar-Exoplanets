@@ -1,4 +1,4 @@
-package net.rom.api.world.biome;
+package net.rom.api.stellar.world.biome;
 
 import java.util.Random;
 
@@ -9,8 +9,8 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.block.Block;
-import net.rom.api.implemtations.planet.ExoPlanet;
-import net.rom.api.world.WorldProviderExoPlanet;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
+import net.rom.api.stellar.world.WorldProviderExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 

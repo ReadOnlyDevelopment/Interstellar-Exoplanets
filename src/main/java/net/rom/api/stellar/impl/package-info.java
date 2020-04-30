@@ -8,4 +8,4 @@
  * @author ROMVoid
  * @version 1.0.4
  */
-package net.rom.api.implemtations;
+package net.rom.api.stellar.impl;

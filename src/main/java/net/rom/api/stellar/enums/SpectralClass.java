@@ -1,6 +1,6 @@
-package net.rom.api.enums;
+package net.rom.api.stellar.enums;
 
-import net.rom.api.interfaces.ISpectral;
+import net.rom.api.stellar.interfaces.ISpectral;
 
 public enum SpectralClass implements ISpectral {
 	

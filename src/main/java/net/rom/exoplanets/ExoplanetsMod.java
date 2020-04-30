@@ -31,10 +31,10 @@ import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
-public class Exoplanets implements IMod {
+public class ExoplanetsMod implements IMod {
 
     @Instance(ExoInfo.MODID)
-    public static Exoplanets instance;
+    public static ExoplanetsMod instance;
     public static StellarRegistry REGISTRY = new StellarRegistry();
     public static NHandler network;
     public static I18nUtil i18n = new I18nUtil(ExoInfo.MODID);
@@ -45,7 +45,7 @@ public class Exoplanets implements IMod {
     ///////////////////////// DEV ONLY /////////////////////////////
 
     private static boolean biomeDebug = false;
-    private static boolean langHelper = true;
+    private static boolean langHelper = false;
 
     /////////////////////////////////////////////////////////////////
 
@@ -104,7 +104,7 @@ public class Exoplanets implements IMod {
 
     @Override
     public int getBuildNum() {
-        return 16;
+        return 1;
     }
 
 }
