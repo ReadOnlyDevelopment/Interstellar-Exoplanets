@@ -1,4 +1,4 @@
-package net.rom.api.world.chunk;
+package net.rom.api.stellar.world.chunk;
 
 import java.util.List;
 import java.util.Random;
@@ -13,9 +13,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.rom.api.world.gen.MapGenBaseMeta;
+import net.rom.api.stellar.world.gen.MapGenBaseMeta;
 
 public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	protected Random rand;
@@ -298,6 +299,8 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	protected abstract void decoratePlanet(World world, Random rand, int x, int z);
 
 	protected abstract List<MapGenBaseMeta> getWorldGenerators();
+
+	//protected abstract List<MapGenBase> getWorldGeneratorsOther();
 
 	protected abstract void onChunkProvide(int cX, int cZ, ChunkPrimer primer);
 

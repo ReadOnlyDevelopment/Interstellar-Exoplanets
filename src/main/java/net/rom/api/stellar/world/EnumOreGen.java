@@ -1,4 +1,4 @@
-package net.rom.api.world;
+package net.rom.api.stellar.world;
 
 import net.minecraft.util.IStringSerializable;
 

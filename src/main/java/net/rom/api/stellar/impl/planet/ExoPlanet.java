@@ -1,4 +1,4 @@
-package net.rom.api.implemtations.planet;
+package net.rom.api.stellar.impl.planet;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,11 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import net.rom.api.enums.EnumClass;
-import net.rom.api.enums.EnumDiscMethod;
-import net.rom.api.enums.EnumTPHClass;
-import net.rom.api.world.WorldProviderExoPlanet;
+import net.rom.api.stellar.enums.EnumClass;
+import net.rom.api.stellar.enums.EnumDiscMethod;
+import net.rom.api.stellar.enums.EnumTPHClass;
+import net.rom.api.stellar.interfaces.IExoPlanet;
+import net.rom.api.stellar.world.WorldProviderExoPlanet;
 
 
 public class ExoPlanet extends Planet implements IExoPlanet {

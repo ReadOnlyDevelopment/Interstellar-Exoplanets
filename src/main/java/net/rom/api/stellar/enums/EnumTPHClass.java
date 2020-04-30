@@ -1,4 +1,4 @@
-package net.rom.api.enums;
+package net.rom.api.stellar.enums;
 
 /**
  * Thermal Planetary Habitability Classification<br><br>

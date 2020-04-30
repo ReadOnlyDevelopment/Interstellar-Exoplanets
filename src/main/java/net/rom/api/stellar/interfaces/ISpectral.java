@@ -1,4 +1,4 @@
-package net.rom.api.interfaces;
+package net.rom.api.stellar.interfaces;
 
 public interface ISpectral {
 	

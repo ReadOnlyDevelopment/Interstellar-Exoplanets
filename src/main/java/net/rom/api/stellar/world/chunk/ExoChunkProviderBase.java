@@ -1,4 +1,4 @@
-package net.rom.api.world.chunk;
+package net.rom.api.stellar.world.chunk;
 
 import javax.annotation.Nullable;
 

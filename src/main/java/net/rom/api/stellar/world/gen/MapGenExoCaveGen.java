@@ -1,4 +1,4 @@
-package net.rom.api.world.gen;
+package net.rom.api.stellar.world.gen;
 
 import java.util.Random;
 

@@ -1,7 +1,8 @@
-package net.rom.api.implemtations.star;
+package net.rom.api.stellar.impl.star;
 
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
-import net.rom.api.enums.SpectralClass;
+import net.rom.api.stellar.enums.SpectralClass;
+import net.rom.api.stellar.interfaces.IExoStar;
 
 public class ExoStar extends Star implements IExoStar {
 	

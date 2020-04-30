@@ -1,10 +1,10 @@
-package net.rom.api.world.biome;
+package net.rom.api.stellar.world.biome;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
-import net.rom.api.enums.EnumBiomeType;
+import net.rom.api.stellar.enums.EnumBiomeType;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 
 public class ExoPlanetBiomeBase extends BiomeGenBaseGC {

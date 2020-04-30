@@ -1,4 +1,4 @@
-package net.rom.api.enums;
+package net.rom.api.stellar.enums;
 
 import micdoodle8.mods.galacticraft.api.entity.IRocketType;
 import net.minecraft.item.EnumDyeColor;

@@ -1,6 +1,6 @@
-package net.rom.api.implemtations.star;
+package net.rom.api.stellar.interfaces;
 
-import net.rom.api.enums.SpectralClass;
+import net.rom.api.stellar.enums.SpectralClass;
 
 public interface IExoStar {
 	

@@ -1,4 +1,4 @@
-package net.rom.api.enums;
+package net.rom.api.stellar.enums;
 
 import net.minecraft.util.IStringSerializable;
 
