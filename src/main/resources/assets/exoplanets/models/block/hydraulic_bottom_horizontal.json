@@ -1,0 +1,338 @@
+{
+    "__comment": "Terra Decorations",
+    "textures": {
+        "particle": "exoplanets:blocks/hydraulic_bottom",
+        "texture": "exoplanets:blocks/hydraulic_bottom1"
+    },
+    "elements": [
+        {
+            "__comment": "basis",
+            "from": [
+                0,
+                0,
+                13
+            ],
+            "to": [
+                16,
+                16,
+                16
+            ],
+            "faces": {
+                "down": {
+                    "uv": [
+                        16,
+                        16,
+                        0,
+                        13
+                    ],
+                    "texture": "#texture"
+                },
+                "up": {
+                    "uv": [
+                        0,
+                        13,
+                        16,
+                        16
+                    ],
+                    "texture": "#texture"
+                },
+                "north": {
+                    "uv": [
+                        16,
+                        16,
+                        0,
+                        0
+                    ],
+                    "texture": "#texture",
+                    "rotation": 180
+                },
+                "south": {
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        16
+                    ],
+                    "texture": "#particle",
+                    "rotation": 180
+                },
+                "west": {
+                    "uv": [
+                        0,
+                        13,
+                        16,
+                        16
+                    ],
+                    "texture": "#texture",
+                    "rotation": 270
+                },
+                "east": {
+                    "uv": [
+                        0,
+                        13,
+                        16,
+                        16
+                    ],
+                    "texture": "#texture",
+                    "rotation": 90
+                }
+            }
+        },
+        {
+            "__comment": "rueckwand",
+            "from": [
+                0,
+                0.01,
+                0
+            ],
+            "to": [
+                16,
+                10.75,
+                13
+            ],
+            "faces": {
+                "down": {
+                    "uv": [
+                        16,
+                        16,
+                        0,
+                        0
+                    ],
+                    "texture": "#particle"
+                },
+                "up": {
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        13
+                    ],
+                    "texture": "#texture"
+                },
+                "north": {
+                    "uv": [
+                        0,
+                        13,
+                        16,
+                        0
+                    ],
+                    "texture": "#texture",
+                    "rotation": 180
+                },
+                "south": {
+                    "uv": [
+                        0,
+                        0.125,
+                        16,
+                        11.125
+                    ],
+                    "texture": "#texture",
+                    "rotation": 180
+                },
+                "west": {
+                    "uv": [
+                        0.125,
+                        0,
+                        16,
+                        16
+                    ],
+                    "texture": "#particle",
+                    "rotation": 270
+                },
+                "east": {
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        16
+                    ],
+                    "texture": "#particle",
+                    "rotation": 90
+                }
+            }
+        },
+        {
+            "__comment": "schraege",
+            "from": [
+                0.01,
+                9,
+                -0.8
+            ],
+            "to": [
+                15.99,
+                16,
+                13
+            ],
+            "rotation": {
+                "origin": [
+                    15.99,
+                    16,
+                    13
+                ],
+                "axis": "x",
+                "angle": -22.5
+            },
+            "faces": {
+                "down": {
+                    "uv": [
+                        16,
+                        13,
+                        0,
+                        0
+                    ],
+                    "texture": "#texture"
+                },
+                "up": {
+                    "uv": [
+                        0,
+                        0,
+                        16,
+                        13
+                    ],
+                    "texture": "#texture"
+                },
+                "north": {
+                    "uv": [
+                        0,
+                        7,
+                        16,
+                        0
+                    ],
+                    "texture": "#texture",
+                    "rotation": 180
+                },
+                "south": {
+                    "uv": [
+                        0,
+                        9,
+                        16,
+                        16
+                    ],
+                    "texture": "#texture",
+                    "rotation": 180
+                },
+                "west": {
+                    "uv": [
+                        0,
+                        4.5,
+                        10,
+                        16
+                    ],
+                    "texture": "#particle",
+                    "rotation": 90
+                },
+                "east": {
+                    "uv": [
+                        0,
+                        0,
+                        10,
+                        11.5
+                    ],
+                    "texture": "#particle",
+                    "rotation": 90
+                }
+            }
+        }
+    ],
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [
+                75,
+                45,
+                0
+            ],
+            "translation": [
+                0,
+                2.5,
+                0
+            ],
+            "scale": [
+                0.375,
+                0.375,
+                0.375
+            ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [
+                75,
+                45,
+                0
+            ],
+            "translation": [
+                0,
+                2.5,
+                0
+            ],
+            "scale": [
+                0.375,
+                0.375,
+                0.375
+            ]
+        },
+        "firstperson_righthand": {
+            "rotation": [
+                0,
+                134,
+                0
+            ],
+            "translation": [
+                -1.391,
+                0,
+                0
+            ],
+            "scale": [
+                0.4,
+                0.4,
+                0.4
+            ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [
+                0,
+                134,
+                0
+            ],
+            "translation": [
+                -1.391,
+                0,
+                0
+            ],
+            "scale": [
+                0.4,
+                0.4,
+                0.4
+            ]
+        },
+        "gui": {
+            "rotation": [
+                30,
+                225,
+                0
+            ],
+            "scale": [
+                0.625,
+                0.625,
+                0.625
+            ]
+        },
+        "ground": {
+            "translation": [
+                0,
+                3,
+                0
+            ],
+            "scale": [
+                0.25,
+                0.25,
+                0.25
+            ]
+        },
+        "fixed": {
+            "scale": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        }
+    }
+}
