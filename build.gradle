@@ -116,7 +116,10 @@ dependencies {
     compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
     compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
     
-    compile 'org.junit.jupiter:junit-jupiter-api:5.7.0-M1'
+    compile 'org.apache.commons:commons-math3:3.6.1'
+    
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
     
 
 }
