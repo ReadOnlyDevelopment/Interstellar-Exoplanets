@@ -1,6 +1,7 @@
 package net.rom.api.stellar.interfaces;
 
-import net.rom.api.stellar.enums.SpectralClass;
+import net.rom.api.stellar.enums.EnumLuminosityClass;
+import net.rom.api.stellar.enums.EnumSpectralClass;
 
 public interface IExoStar {
 	
@@ -44,6 +45,8 @@ public interface IExoStar {
 	 *
 	 * @return the SpectralClassifcation
 	 */
-	public SpectralClass getSpectralClassifcation();
+	public EnumSpectralClass getSpectralClassifcation();
+	
+	public EnumLuminosityClass getLuminosityClass();
 
 }

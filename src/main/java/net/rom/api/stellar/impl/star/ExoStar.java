@@ -1,12 +1,14 @@
 package net.rom.api.stellar.impl.star;
 
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
-import net.rom.api.stellar.enums.SpectralClass;
+import net.rom.api.stellar.enums.EnumLuminosityClass;
+import net.rom.api.stellar.enums.EnumSpectralClass;
 import net.rom.api.stellar.interfaces.IExoStar;
 
 public class ExoStar extends Star implements IExoStar {
 
-	private SpectralClass spectralClass;
+	private EnumSpectralClass spectralClass;
+	private EnumLuminosityClass luminosityClass;
 	private String starName;
 	private int surfaceTemp;
 	private double radius;
@@ -39,10 +41,15 @@ public class ExoStar extends Star implements IExoStar {
 	}
 
 	public ExoStar setSpectralClass() {
-		this.spectralClass = SpectralClass.getClass(getSurfaceTemp());
+		this.spectralClass = EnumSpectralClass.getClass(getSurfaceTemp());
 		return this;
 	}
-
+	
+	public ExoStar setLuminosityClass(EnumLuminosityClass luminosityClass) {
+		this.luminosityClass = luminosityClass;
+		return this;
+	}
+	
 	@Override
 	public String getStarName() {
 		return this.starName;
@@ -59,8 +66,12 @@ public class ExoStar extends Star implements IExoStar {
 	}
 
 	@Override
-	public SpectralClass getSpectralClassifcation() {
+	public EnumSpectralClass getSpectralClassifcation() {
 		return this.spectralClass;
+	}
+	
+	public EnumLuminosityClass getLuminosityClass() {
+		return this.luminosityClass;
 	}
 
 	@Override

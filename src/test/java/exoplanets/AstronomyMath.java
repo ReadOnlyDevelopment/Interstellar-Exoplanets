@@ -24,7 +24,6 @@ public class AstronomyMath {
 	
 	@Test
 	public void starColor() {
-		System.out.println(EnumLuminosityClass.GIANTS_III.getName());
 	}
 
 }

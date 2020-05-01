@@ -2,7 +2,7 @@ package net.rom.api.stellar.impl;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
-import net.rom.api.stellar.enums.SpectralClass;
+import net.rom.api.stellar.enums.EnumSpectralClass;
 import net.rom.api.stellar.interfaces.IBinary;
 import net.rom.api.stellar.interfaces.IExoStar;
 
@@ -16,9 +16,9 @@ import net.rom.api.stellar.interfaces.IExoStar;
  * @author ROMVoid
  *
  */
-public class BinaryStar extends CelestialBody implements IBinary {
+public abstract class BinaryStar extends CelestialBody implements IBinary {
 
-	private SpectralClass spectralClass;
+	private EnumSpectralClass spectralClass;
 	private BinaryStar companionStar;
 	private String starName;
 	private int surfaceTemp;
@@ -51,7 +51,7 @@ public class BinaryStar extends CelestialBody implements IBinary {
 	}
 
 	@Override
-	public SpectralClass getSpectralClassifcation() {
+	public EnumSpectralClass getSpectralClassifcation() {
 		return null;
 	}
 
