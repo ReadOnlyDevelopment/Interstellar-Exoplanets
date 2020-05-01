@@ -7,8 +7,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import net.rom.api.stellar.AstronomicalConstants;
-import net.rom.api.stellar.Calculations;
+import net.rom.api.stellar.calc.AstronomicalConstants;
+import net.rom.api.stellar.calc.Calculations;
+import net.rom.api.stellar.enums.EnumLuminosityClass;
 
 public class AstronomyMath {
 
@@ -19,6 +20,11 @@ public class AstronomyMath {
 		double rounded = Precision.round(answer, 6);
 		System.out.println(answer);
 		System.out.println(rounded);
+	}
+	
+	@Test
+	public void starColor() {
+		System.out.println(EnumLuminosityClass.GIANTS_III.getName());
 	}
 
 }

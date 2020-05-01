@@ -1,4 +1,4 @@
-package net.rom.api.stellar;
+package net.rom.api.stellar.calc;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package net.rom.api;
+package net.rom.api.stellar.calc;
 
 public final class StaticConstants {
 
