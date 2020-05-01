@@ -227,7 +227,7 @@ public class AstronomicalConstants {
 	public static final double PROTON_MASS = 1.672621898E-27;
 
 	/** Solar mean radius in km. From Marcelo Emilio et al. 2012 (Wikipedia). */
-	public static final double SUN_RADIUS = 696342.0;
+	public static final double SUN_RADIUS = 695700.0;
 
 	/** Fine structure constant. Value from CODATA 2014. */
 	public static final double FINE_STRUCTURE_CONSTANT = 0.0072973525664;
