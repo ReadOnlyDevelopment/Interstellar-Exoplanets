@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import micdoodle8.mods.galacticraft.core.fluid.ThreadFindSeal.intBucket;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -88,7 +89,7 @@ public class SConfigDimensionID {
 			id_trap_f = config.getInt("Trappist 1 F", CATEGORY_DIMENSION_IDS, -4505, -2147483647, 2147483647, "Trappist 1 F Dimension ID", "interstellar.configgui.id_trap_f");
 			id_trap_g = config.getInt("Trappist 1 G", CATEGORY_DIMENSION_IDS, -4506, -2147483647, 2147483647, "Trappist 1 G Dimension ID", "interstellar.configgui.id_trap_g");
 			id_trap_h = config.getInt("Trappist 1 H", CATEGORY_DIMENSION_IDS, -4507, -2147483647, 2147483647, "Trappist 1 H Dimension ID", "interstellar.configgui.id_trap_h");
-
+			
 			if (config.hasChanged()) {
 				config.save();
 			}

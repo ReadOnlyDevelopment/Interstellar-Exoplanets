@@ -1,11 +1,15 @@
 package net.rom.exoplanets.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.world.WorldProvider;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.block.decoration.BlockCellarLamp;
+import net.rom.exoplanets.block.decoration.BlockCustomLever;
 import net.rom.exoplanets.block.decoration.BlockElectronic;
 import net.rom.exoplanets.block.decoration.BlockInsetLamp;
+import net.rom.exoplanets.block.decoration.BlockMetalDiagonal;
 import net.rom.exoplanets.block.decoration.BlockMetalLamp;
 import net.rom.exoplanets.block.decoration.BlockSatelliteAntenna;
 import net.rom.exoplanets.block.decoration.BlockStandConsole;
@@ -15,6 +19,8 @@ import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class ExoBlocks {
+	
+	private static StellarRegistry reg;
 
     //ELECTRONIC
 	public static final BlockOverworldOre OVERWORLD_ORE = new BlockOverworldOre();
@@ -26,6 +32,12 @@ public class ExoBlocks {
 	public static final BlockElectronic CONTROL = new BlockElectronic();
 	public static final BlockSatelliteAntenna SATELLITE_ANTENNA = new BlockSatelliteAntenna();
 	public static final BlockStandConsole STAND_CONSOLE = new BlockStandConsole();
+	public static final BlockMetalDiagonal METAL_DIAGONAL = new BlockMetalDiagonal();
+	
+	//LEVERS
+	public static final BlockCustomLever LEVER1 = new BlockCustomLever();
+	public static final BlockCustomLever LEVER2 = new BlockCustomLever();
+	public static final BlockCustomLever LEVER3 = new BlockCustomLever();
 
 	//LIGHTS
     public static final BlockAlarmLight ALARM_LIGHT = new BlockAlarmLight(false);
@@ -40,28 +52,52 @@ public class ExoBlocks {
     public static final BlockInsetLamp INSET_LAMP_LIT = new BlockInsetLamp(true);
 
 
-	public static void registerAll(StellarRegistry registry) {
-		YzCetiBlocks.registerAll(registry);
+	public static void registerAll(StellarRegistry reg) {
+		setReg(reg);
+		YzCetiBlocks.registerAll(reg);
+        
+		// ORES
+		reg.registerBlock(OVERWORLD_ORE, "overworldore", new BlockOverworldOre.ItemBlock(OVERWORLD_ORE));
+		
+		//DECORATIONS
+		register(COM, "com_relay");
+		register(CONTROL, "control");
+		register(RAIDCONTROLLER, "raidcontroller");
+		register(LOWER_RAIDCONTROLLER, "lower_raidcontroller");
+		register(RAIDCLUSTER, "raidcluster");
+		register(DATAMONITOR, "datamonitor");
+		register(SATELLITE_ANTENNA, "satellite_antenna");
+		register(STAND_CONSOLE, "stand_console");
+		register(METAL_DIAGONAL, "metal_diagonal");
+		
+		//LEVERS
+		register(LEVER1, "lever1");
+		register(LEVER2, "lever2");
+		register(LEVER3, "lever3");
+		
+		// LAMPS / LIGHTS
+		registerWithDecoTab(ALARM_LIGHT, "alarm_light");
+		register(ALARM_LIGHT_LIT, "alarm_light_lit");
+		registerWithDecoTab(WALL_LAMP, "wall_lamp");
+	    register(WALL_LAMP_LIT, "wall_lamp_lit");
+	    registerWithDecoTab(METAL_LAMP, "metal_lamp");
+	    register(METAL_LAMP_LIT, "metal_lamp_lit");
+	    registerWithDecoTab(CELLAR_LAMP, "cellar_lamp");
+	    register(CELLAR_LAMP_LIT, "cellar_lamp_lit");
+	    registerWithDecoTab(INSET_LAMP, "inset_lamp");
+        register(INSET_LAMP_LIT, "inset_lamp_lit");
 
-		registry.registerBlock(OVERWORLD_ORE, "overworldore", new BlockOverworldOre.ItemBlock(OVERWORLD_ORE));
-		registry.registerBlock(COM, "com_relay", new ItemBlock(COM));
-		registry.registerBlock(CONTROL, "control", new ItemBlock(CONTROL));
-		registry.registerBlock(RAIDCONTROLLER, "raidcontroller", new ItemBlock(RAIDCONTROLLER));
-		registry.registerBlock(LOWER_RAIDCONTROLLER, "lower_raidcontroller", new ItemBlock(LOWER_RAIDCONTROLLER));
-		registry.registerBlock(RAIDCLUSTER, "raidcluster", new ItemBlock(RAIDCLUSTER));
-		registry.registerBlock(DATAMONITOR, "datamonitor", new ItemBlock(DATAMONITOR));
-		registry.registerBlock(SATELLITE_ANTENNA, "satellite_antenna", new ItemBlock(SATELLITE_ANTENNA));
-		registry.registerBlock(STAND_CONSOLE, "stand_console", new ItemBlock(STAND_CONSOLE));
-		registry.registerBlock(ALARM_LIGHT, "alarm_light", new ItemBlock(ALARM_LIGHT)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);;
-		registry.registerBlock(ALARM_LIGHT_LIT, "alarm_light_lit", new ItemBlock(ALARM_LIGHT_LIT));
-	    registry.registerBlock(WALL_LAMP, "wall_lamp", new ItemBlock(ALARM_LIGHT)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);;
-	    registry.registerBlock(WALL_LAMP_LIT, "wall_lamp_lit", new ItemBlock(ALARM_LIGHT_LIT));
-	    registry.registerBlock(METAL_LAMP, "metal_lamp", new ItemBlock(METAL_LAMP)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);;
-	    registry.registerBlock(METAL_LAMP_LIT, "metal_lamp_lit", new ItemBlock(METAL_LAMP_LIT));
-	    registry.registerBlock(CELLAR_LAMP, "cellar_lamp", new ItemBlock(CELLAR_LAMP)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);;
-	    registry.registerBlock(CELLAR_LAMP_LIT, "cellar_lamp_lit", new ItemBlock(CELLAR_LAMP_LIT));
-        registry.registerBlock(INSET_LAMP, "inset_lamp", new ItemBlock(INSET_LAMP)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);;
-        registry.registerBlock(INSET_LAMP_LIT, "inset_lamp_lit", new ItemBlock(INSET_LAMP_LIT));
+	}
+	
+	private static void register(Block block, String blockName) {
+		reg.registerBlock(block, blockName, new ItemBlock(block));
+	}
+	
+	private static void registerWithDecoTab(Block block, String blockName) {
+		reg.registerBlock(block, blockName, new ItemBlock(block)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+	}
 
+	public static void setReg(StellarRegistry reg) {
+		ExoBlocks.reg = reg;
 	}
 }
