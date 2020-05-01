@@ -5,43 +5,38 @@ import net.rom.api.stellar.enums.SpectralClass;
 import net.rom.api.stellar.interfaces.IExoStar;
 
 public class ExoStar extends Star implements IExoStar {
-	
+
 	private SpectralClass spectralClass;
 	private String starName;
 	private int surfaceTemp;
 	private double radius;
 	private double mass;
-	
+
 
 	public ExoStar(String starName) {
 		super(starName);
 	}
-	
+
 	public ExoStar setStarName(String starName) {
 		this.starName = starName;
 		return this;
 	}
-	
-//	public ExoStar setStarSolarSystem(SolarSystem solarSystem) {
-//		this.starSystem = solarSystem;
-//		return this;
-//	}
-	
+
 	public ExoStar setSurfaceTemp(int surfaceTemp) {
 		this.surfaceTemp = surfaceTemp;
 		return this;
 	}
-	
+
 	public ExoStar setStarMass(double mass) {
 		this.mass = mass;
 		return this;
 	}
-	
+
 	public ExoStar setStarRadius(double radius) {
 		this.radius = radius;
 		return this;
 	}
-	
+
 	public ExoStar setSpectralClass() {
 		this.spectralClass = SpectralClass.getClass(getSurfaceTemp());
 		return this;

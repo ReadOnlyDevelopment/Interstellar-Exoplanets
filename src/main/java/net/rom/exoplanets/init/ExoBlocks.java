@@ -6,6 +6,7 @@ import net.minecraft.world.WorldProvider;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.block.decoration.BlockCellarLamp;
+import net.rom.exoplanets.block.decoration.BlockCustomHydraulic;
 import net.rom.exoplanets.block.decoration.BlockCustomLever;
 import net.rom.exoplanets.block.decoration.BlockElectronic;
 import net.rom.exoplanets.block.decoration.BlockInsetLamp;
@@ -33,6 +34,12 @@ public class ExoBlocks {
 	public static final BlockSatelliteAntenna SATELLITE_ANTENNA = new BlockSatelliteAntenna();
 	public static final BlockStandConsole STAND_CONSOLE = new BlockStandConsole();
 	public static final BlockMetalDiagonal METAL_DIAGONAL = new BlockMetalDiagonal();
+	public static final BlockCustomHydraulic HYDRAULIC_TOP = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic HYDRAULIC_BOTTOM = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic HYDRAULIC_MIDDLE = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic HYDRAULIC_BOTTOM_H = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic HYDRAULIC_MIDDLE_H = new BlockCustomHydraulic();
+
 	
 	//LEVERS
 	public static final BlockCustomLever LEVER1 = new BlockCustomLever();
@@ -69,6 +76,11 @@ public class ExoBlocks {
 		register(SATELLITE_ANTENNA, "satellite_antenna");
 		register(STAND_CONSOLE, "stand_console");
 		register(METAL_DIAGONAL, "metal_diagonal");
+		register(HYDRAULIC_TOP, "hydraulic_top");
+		register(HYDRAULIC_BOTTOM, "hydraulic_bottom");
+		register(HYDRAULIC_MIDDLE, "hydraulic_middle");
+		register(HYDRAULIC_BOTTOM_H, "hydraulic_bottom_horizontal");
+		register(HYDRAULIC_MIDDLE_H, "hydraulic_middle_horizontal");
 		
 		//LEVERS
 		register(LEVER1, "lever1");
