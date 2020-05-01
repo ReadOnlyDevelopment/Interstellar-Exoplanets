@@ -116,6 +116,8 @@ dependencies {
     compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
     compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
     
+    compile 'org.junit.jupiter:junit-jupiter-api:5.7.0-M1'
+    
 
 }
 
