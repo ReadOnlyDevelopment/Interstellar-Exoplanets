@@ -15,6 +15,7 @@ public class ExoStar extends Star implements IExoStar {
 
 	public ExoStar(String starName) {
 		super(starName);
+		this.setSpectralClass();
 	}
 
 	public ExoStar setStarName(String starName) {
@@ -46,11 +47,6 @@ public class ExoStar extends Star implements IExoStar {
 	public String getStarName() {
 		return this.starName;
 	}
-
-//	@Override
-//	public SolarSystem getStarSystem() {
-//		return this.starSystem;
-//	}
 
 	@Override
 	public int getSurfaceTemp() {
