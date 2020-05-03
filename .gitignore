@@ -36,3 +36,4 @@ libs/*
 .okhttpcache/*
 /lib/
 *secrets*
+/gradle.properties
