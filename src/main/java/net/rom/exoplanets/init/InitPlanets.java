@@ -1,6 +1,7 @@
 package net.rom.exoplanets.init;
 
-import static net.rom.exoplanets.astronomy.ExoSystems.yzCeti;
+import static micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas.ARGON;
+import static micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas.METHANE;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_b;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_c;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_d;
@@ -14,9 +15,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.rom.api.stellar.AstroBuilder;
-import net.rom.api.stellar.enums.EnumClass;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
-import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
@@ -79,17 +78,12 @@ public class InitPlanets {
     }
 
     public static void registerPlanetData() {
-        yzcetib.setPlanetGravity(0.35F);
+        yzcetib.setPlanetGravity(0.035F);
         yzcetib.setDistanceFromCenter(yzCetiAu[0]);
         yzcetib.setRelativeOrbitTime(yzCetiAu[0] + 0.5F);
         yzcetib.setDayLength(0.93F);
-        yzcetib.setExoClass(EnumClass.D);
-        yzcetib.setPlanetTemp(-54.5F);
-        yzcetib.setBaseToxicity(15.2F);
-        yzcetib.setBaseRadiation(2.2F);
-        yzcetib.setPlanetDensity(5);
-        yzcetib.setAtmosGasses(EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN,
-                EnumAtmosphericGas.ARGON);
+        yzcetib.setPlanetTemp(-400.0F);
+        yzcetib.setAtmosGasses(METHANE, ARGON);
         yzcetib.setBiomeInfo(ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
         yzcetib.addChecklistKeys("equipOxygenSuit");
 
@@ -97,11 +91,7 @@ public class InitPlanets {
         yzcetic.setDistanceFromCenter(yzCetiAu[1]);
         yzcetic.setRelativeOrbitTime(yzCetiAu[1] + 0.5F);
         yzcetic.setDayLength(1.0F);
-        yzcetic.setExoClass(EnumClass.D);
         yzcetic.setPlanetTemp(-54.5F);
-        yzcetic.setBaseToxicity(15.2F);
-        yzcetic.setBaseRadiation(2.2F);
-        yzcetic.setPlanetDensity(5);
         yzcetic.setAtmosGasses(EnumAtmosphericGas.OXYGEN, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN,
                 EnumAtmosphericGas.ARGON);
         yzcetic.setBiomeInfo(ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
@@ -111,11 +101,7 @@ public class InitPlanets {
         yzcetid.setDistanceFromCenter(yzCetiAu[2]);
         yzcetid.setRelativeOrbitTime(yzCetiAu[2] + 0.5F);
         yzcetid.setDayLength(15.0F);
-        yzcetid.setExoClass(EnumClass.D);
         yzcetid.setPlanetTemp(-150.5F);
-        yzcetid.setBaseToxicity(0.2F);
-        yzcetid.setBaseRadiation(0.0F);
-        yzcetid.setPlanetDensity(5);
         yzcetid.setAtmosGasses(EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
         yzcetid.setBiomeInfo(YzCetiDBiomes.yz_ceti_d, YzCetiDBiomes.yz_ceti_d_mantle);
         yzcetid.addChecklistKeys("equipOxygenSuit");
@@ -216,7 +202,7 @@ public class InitPlanets {
     }
 
     public static float getGravity(ExoPlanet planet) {
-        return planet.getGravity();
+        return (float) planet.getGravity();
     }
 
     public static long getDayLength(ExoPlanet planet) {

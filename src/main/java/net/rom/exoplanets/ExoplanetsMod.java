@@ -1,6 +1,10 @@
 package net.rom.exoplanets;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
+import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -14,7 +18,9 @@ import net.rom.api.IMod;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.conf.InitConfigFiles;
+import net.rom.exoplanets.event.ExoEventHandler;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
+import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.init.InitSolarSystems;
@@ -26,6 +32,7 @@ import net.rom.exoplanets.util.BiomeDebug;
 import net.rom.exoplanets.util.Deobf;
 import net.rom.exoplanets.util.I18nUtil;
 import net.rom.exoplanets.util.LangFileHelper;
+import net.rom.exoplanets.world.OreGenerator;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
@@ -43,7 +50,7 @@ public class ExoplanetsMod implements IMod {
     ///////////////////////// DEV ONLY /////////////////////////////
 
     private static boolean biomeDebug = false;
-    private static boolean langHelper = false;
+    private static boolean langHelper = true;
 
     /////////////////////////////////////////////////////////////////
 
@@ -53,12 +60,14 @@ public class ExoplanetsMod implements IMod {
 
         InitConfigFiles.init(event);
         RegistrationHandler.init(REGISTRY);
-        GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
+        ExoBlocks.registerAstroidCores();
+        GameRegistry.registerWorldGenerator(new OverworldOreGen(), 4);
         ExoFluids.init();
         ExoplanetBiomes.init();
         InitSolarSystems.init();
         InitPlanets.init();
-
+        ExoEventHandler eventHandler = new ExoEventHandler();
+        MinecraftForge.EVENT_BUS.register(eventHandler);
         HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
         MinecraftForge.EVENT_BUS.register(clientEventHandler);
         proxy.preInit(REGISTRY, event);

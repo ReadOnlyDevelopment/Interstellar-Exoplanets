@@ -8,6 +8,7 @@ import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.storage.WorldInfo;
@@ -36,11 +37,6 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 
 	public World getWorldObj() {
 		return this.world;
-	}
-
-	@Override
-	public boolean shouldForceRespawn() {
-		return !ConfigManagerCore.forceOverworldRespawn;
 	}
 
 	protected ExoPlanet getPlanet() {
@@ -156,6 +152,31 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 
 		return planetTemp;
 	}
+	
+    @Override
+    public boolean shouldForceRespawn() {
+        return !ConfigManagerCore.forceOverworldRespawn;
+    }    
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getStarBrightness(float par1)
+    {
+        final float var2 = this.world.getCelestialAngle(par1);
+        float var3 = 1.0F - (MathHelper.cos(var2 * (float) Math.PI * 2.0F) * 2.0F + 0.25F);
+
+        if (var3 < 0.0F)
+        {
+            var3 = 0.0F;
+        }
+
+        if (var3 > 1.0F)
+        {
+            var3 = 1.0F;
+        }
+
+        return var3 * var3 * 0.5F + 0.3F;
+    }
 
 	@Override
 	public abstract Class<? extends IChunkGenerator> getChunkProviderClass();

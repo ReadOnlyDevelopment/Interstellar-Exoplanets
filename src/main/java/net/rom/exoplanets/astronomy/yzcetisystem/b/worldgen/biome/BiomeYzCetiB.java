@@ -1,6 +1,6 @@
 package net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.biome;
 
-import net.rom.api.stellar.enums.EnumBiomeType;
+import net.rom.api.stellar.world.biome.BiomeType;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 
 
@@ -14,7 +14,7 @@ public class BiomeYzCetiB extends BiomeYzCetiBBase {
 		props.setTemperature(5.0F);
 		this.setTemp(5F);
 		this.setBiomeHeight(72);
-		this.setBiomeType(EnumBiomeType.DARK);
+		this.setBiomeType(BiomeType.DARK);
 		this.topBlock = YzCetiBlocks.CetiB.B_DARK_LOOSE_SEDIMENT.getDefaultState();
 		this.fillerBlock = YzCetiBlocks.CetiB.B_METAMORPHIC.getDefaultState();
 		this.stoneBlock = YzCetiBlocks.CetiB.B_IGNEOUS;

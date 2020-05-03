@@ -1,6 +1,6 @@
-package net.rom.api.stellar.enums;
+package net.rom.api.stellar.world.biome;
 
-public enum EnumBiomeType {
+public enum BiomeType {
 	SPACE,
 	NORMAL,
 	OCEAN,

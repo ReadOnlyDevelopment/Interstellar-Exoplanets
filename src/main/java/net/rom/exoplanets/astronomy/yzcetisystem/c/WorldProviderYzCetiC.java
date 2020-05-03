@@ -62,12 +62,12 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	public float getPlanetTemp() {
 		ExoPlanet planet = this.getPlanet();
-		float planetTemp = planet.getPlanetTemp();
+		float planetTemp = (float) planet.getPlanetTemp();
 
 		if (this.isDaytime()) {
 			planetTemp *= 4.5F;
 		} else {
-			planetTemp = planet.getPlanetTemp();
+			planetTemp = (float) planet.getPlanetTemp();
 		}
 		return planetTemp;
 	}

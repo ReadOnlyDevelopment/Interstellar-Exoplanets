@@ -26,11 +26,11 @@ public class LangFileHelper {
 			PrintWriter print_line = new PrintWriter(new FileWriter(debug));
 			IForgeRegistry<Block> blocks = GameRegistry.findRegistry(Block.class);
 			for (Block b : blocks.getValuesCollection()) {
-				print_line.println(b.getUnlocalizedName());
+				print_line.println(b.getRegistryName());
 			}
 			IForgeRegistry<Item> items = GameRegistry.findRegistry(Item.class);
 			for (Item b : items.getValuesCollection()) {
-				print_line.println(b.getUnlocalizedName());
+				print_line.println(b.getRegistryName());
 			}
 			print_line.flush();
 			print_line.close();

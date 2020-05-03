@@ -8,8 +8,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.rom.api.stellar.enums.EnumBiomeType;
 import net.rom.api.stellar.world.biome.BiomeSpace;
+import net.rom.api.stellar.world.biome.BiomeType;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.BiomeDecoratorYzCetiC;
 import net.rom.exoplanets.init.InitPlanets;
@@ -51,7 +51,7 @@ public abstract class BiomeYzCetiCBase extends BiomeSpace {
 				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
 			} else {
 				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
-				if (this.getBiomeType() == EnumBiomeType.OCEAN) {
+				if (this.getBiomeType() == BiomeType.OCEAN) {
 					if ((j1 < SEA_LEVEL) && (j1 > SEA_FLOOR_LEVEL)) {
 						chunkPrimerIn.setBlockState(i1, j1, l, WATER);
 					} else if (j1 < SEA_FLOOR_LEVEL) {

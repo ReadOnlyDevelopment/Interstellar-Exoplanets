@@ -27,31 +27,31 @@ public class SkyProviders {
             // Planets
             if (world.provider instanceof WorldProviderYzCetiB) {
                 if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiB.instance().getSolarSize()));
+                    world.provider.setSkyRenderer(new SkyProviderYzCetiB());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {
                     world.provider.setCloudRenderer(new CloudRenderer());
                 }
             }
-            if (world.provider instanceof WorldProviderYzCetiC) {
-                if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiC.instance().getSolarSize()));
-                }
-
-                if (world.provider.getCloudRenderer() == null) {
-                    world.provider.setCloudRenderer(new CloudRenderer());
-                }
-            }
-            if (world.provider instanceof WorldProviderYzCetiD) {
-                if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiD.instance().getSolarSize()));
-                }
-
-                if (world.provider.getCloudRenderer() == null) {
-                    world.provider.setCloudRenderer(new CloudRenderer());
-                }
-            }
+//            if (world.provider instanceof WorldProviderYzCetiC) {
+//                if (world.provider.getSkyRenderer() == null) {
+//                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiC.instance().getSolarSize()));
+//                }
+//
+//                if (world.provider.getCloudRenderer() == null) {
+//                    world.provider.setCloudRenderer(new CloudRenderer());
+//                }
+//            }
+//            if (world.provider instanceof WorldProviderYzCetiD) {
+//                if (world.provider.getSkyRenderer() == null) {
+//                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiD.instance().getSolarSize()));
+//                }
+//
+//                if (world.provider.getCloudRenderer() == null) {
+//                    world.provider.setCloudRenderer(new CloudRenderer());
+//                }
+//            }
         }
     }
 }
