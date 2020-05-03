@@ -1,125 +1,57 @@
 package net.rom.exoplanets.astronomy.yzcetisystem.b;
 
-import org.lwjgl.opengl.GL11;
-
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.rom.api.client.ExoSkyProvider;
-import net.rom.api.stellar.enums.EnumStarColor;
+import net.rom.api.client.SkyProviderBase;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.util.CoreUtil;
 
-public class SkyProviderYzCetiB extends ExoSkyProvider {
+public class SkyProviderYzCetiB extends SkyProviderBase {
 
-	private static final ResourceLocation YZCETI_A_REALISTIC = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/realism/yz_ceti_starB.png");
-	private static final ResourceLocation YZCETI_A = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/yz_ceti_star.png");
+    private static final ResourceLocation YZCETI_A_REALISTIC = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/realism/yz_ceti_starB.png");
+    private static final ResourceLocation YZCETI_A = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_star.png");
 
-	private static final ResourceLocation YZCETI_C = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/yz_ceti_c.png");
-	private static final ResourceLocation YZCETI_D = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/yz_ceti_d.png");
+    private static final ResourceLocation YZCETI_C = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_c.png");
+    private static final ResourceLocation YZCETI_D = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_d.png");
 
-	@Override
-	protected void render(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		
-		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-		
+    public SkyProviderYzCetiB(float solarSize) {
+        this.solarSize = 50.0F * solarSize;
+    }
 
-		f10 = 1.5F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);			
-		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
-		GL11.glRotatef(this.getCelestialAngle(daylength / 2), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.YZCETI_C);
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-			
+    @Override
+    protected void renderObjects(float partialTicks, WorldClient world, Minecraft mc) {
+        this.renderSolarAura(14.0F, 75.0F, world.getStarBrightness(partialTicks), CoreUtil.stringToRGB("217, 123, 38, 102"), partialTicks);
+        if(SConfigCore.enableRealism) {
+            this.renderSolar(SkyProviderYzCetiB.YZCETI_A_REALISTIC, this.solarSize, false, true, 4.0F);
+        } else {
+            this.renderSolar(SkyProviderYzCetiB.YZCETI_A, this.solarSize, false, true, 4.0F);
+        }
+        this.renderObject(1.0F, 0.0F, 220.0F, false, SkyProviderYzCetiB.YZCETI_C, partialTicks);
+        this.renderObject(2.55F, 0.0F, 220.0F, false, SkyProviderYzCetiB.YZCETI_D, partialTicks);
+    }
 
-		f10 = 1.0F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);			
-		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
-		GL11.glRotatef(this.getCelestialAngle(daylength), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-95F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.YZCETI_D);
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		
-        float f = 0.8F;
-        this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 8, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
-	}
+    @Override
+    protected void renderStars(float starBrightness)
+    {
+        GlStateManager.color(starBrightness, starBrightness, starBrightness, this.getStarBrightness());
+    }
 
-	@Override
-	protected int modeLight() {
-		return 0;
-	}
+    @Override
+    protected int getStarCount() {
+        return 100000;
+    }
 
-	@Override
-	protected boolean enableBaseImages() {
-		return true;
-	}
+    @Override
+    protected double getStarSpreadMultiplier() {
+        return 50.0D;
+    }
 
-	@Override
-	protected float sunSize() {
-		return 20.0F;
-	}
-
-	@Override
-	protected ResourceLocation sunImage() {
-		if (SConfigCore.enableRealism) {
-			return YZCETI_A_REALISTIC;
-		} else {
-			return YZCETI_A;
-		}
-	}
-
-	@Override
-	protected boolean enableStar() {
-		return true;
-	}
-
-	@Override
-	protected Vector3 colorSunAura() {
-		return EnumStarColor.RED.getColor();
-	}
-
-	@Override
-	protected Vector3 getAtmosphereColor() {
-		return null;
-	}
-
-	@Override
-	public boolean enableSmoothRender() {
-		return true;
-	}
-
-	@Override
-	public int addSizeAura() {
-		return 20;
-	}
+    @Override
+    protected float getStarBrightness() {
+        return 1.0F;
+    }
 
 }

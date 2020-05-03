@@ -56,7 +56,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
     @Override
     public float getPlanetTemp() {
         ExoPlanet planet = this.getPlanet();
-        float planetTemp = (float) planet.getPlanetTemp();
+        float planetTemp = planet.getPlanetTemp();
         if (!this.isDaytime()) {
             planetTemp /= 1.4F;
         }
@@ -164,12 +164,12 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public long getDayLength() {
-        return getPlanet().getDayLength();
+        return 220000L;
     }
 
     @Override
     public float getGravity() {
-        return (float) getPlanet().getGravity();
+        return 0.010F;
     }
 
 }

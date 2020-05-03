@@ -1,7 +1,5 @@
 package net.rom.exoplanets.init;
 
-import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.SpecialAsteroidBlock;
-import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.SpecialAsteroidBlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.WorldProvider;
@@ -100,16 +98,7 @@ public class ExoBlocks {
 	    register(CELLAR_LAMP_LIT, "cellar_lamp_lit");
 	    registerWithDecoTab(INSET_LAMP, "inset_lamp");
         register(INSET_LAMP_LIT, "inset_lamp_lit");
-        
-	}
-	
-	public static void registerAstroidCores() {
-		SpecialAsteroidBlockHandler newHandler = new SpecialAsteroidBlockHandler();
-		SpecialAsteroidBlock block = new SpecialAsteroidBlock(OVERWORLD_ORE, (byte) 1, 32, 3);
-		
-		newHandler.addBlock(block);
-		
-		
+
 	}
 	
 	private static void register(Block block, String blockName) {

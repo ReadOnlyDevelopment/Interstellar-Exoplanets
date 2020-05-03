@@ -4,12 +4,13 @@ import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.rom.api.stellar.enums.EnumBiomeType;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 
 public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
 
 	protected TempCategory tempBiomeCtg = TempCategory.COLD;
-	protected BiomeType biomeType = BiomeType.SPACE;
+	protected EnumBiomeType biomeType = EnumBiomeType.SPACE;
 
 	protected boolean hasMutation = false;
 	protected boolean enableSnow = false;
@@ -186,11 +187,11 @@ public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
 		return this.tempBiomeCtg;
 	}
 
-	public BiomeType getBiomeType() {
+	public EnumBiomeType getBiomeType() {
 		return this.biomeType;
 	}
 
-	public Biome setBiomeType(BiomeType t) {
+	public Biome setBiomeType(EnumBiomeType t) {
 		this.biomeType = t;
 		return this;
 	}

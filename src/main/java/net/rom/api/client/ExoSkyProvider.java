@@ -65,15 +65,15 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		final byte byte2 = 64;
 		final int i = 256 / byte2 + 2;
 		float f = 16F;
-		BufferBuilder buffer = tessellator.getBuffer();
+		BufferBuilder worldRenderer = tessellator.getBuffer();
 
 		for (int j = -byte2 * i; j <= byte2 * i; j += byte2) {
 			for (int l = -byte2 * i; l <= byte2 * i; l += byte2) {
-				buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-				buffer.pos(j + 0, f, l + 0).endVertex();
-				buffer.pos(j + byte2, f, l + 0).endVertex();
-				buffer.pos(j + byte2, f, l + byte2).endVertex();
-				buffer.pos(j + 0, f, l + byte2).endVertex();
+				worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+				worldRenderer.pos(j + 0, f, l + 0).endVertex();
+				worldRenderer.pos(j + byte2, f, l + 0).endVertex();
+				worldRenderer.pos(j + byte2, f, l + byte2).endVertex();
+				worldRenderer.pos(j + 0, f, l + byte2).endVertex();
 				tessellator.draw();
 			}
 		}
@@ -81,14 +81,14 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		GL11.glEndList();
 		GL11.glNewList(this.glSkyListB, GL11.GL_COMPILE);
 		f = -16F;
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
 
 		for (int k = -byte2 * i; k <= byte2 * i; k += byte2) {
 			for (int i1 = -byte2 * i; i1 <= byte2 * i; i1 += byte2) {
-				buffer.pos(k + byte2, f, i1).endVertex();
-				buffer.pos(k, f, i1).endVertex();
-				buffer.pos(k, f, i1 + byte2).endVertex();
-				buffer.pos(k + byte2, f, i1 + byte2).endVertex();
+				worldRenderer.pos(k + byte2, f, i1).endVertex();
+				worldRenderer.pos(k, f, i1).endVertex();
+				worldRenderer.pos(k, f, i1 + byte2).endVertex();
+				worldRenderer.pos(k + byte2, f, i1 + byte2).endVertex();
 			}
 		}
 
@@ -105,9 +105,11 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 			GL11.glColor4f(1, 1, 1, starBrightness);
 			GL11.glColor4f(x, y, z, starBrightness);
 
-			//GL11.glRotatef(-37.0F, 1, 0, 0);
+			// if(count % 5 == 0)
+			GL11.glRotatef(-37.0F, 1, 0, 0);
 
-			//GL11.glRotatef(-15.0F, 0.0F, 1.0F, 0.0F);
+			// if(count % 3 == 0)
+			GL11.glRotatef(-15.0F, 0.0F, 1.0F, 0.0F);
 
 			GL11.glCallList(this.starList);
 		}
@@ -122,6 +124,15 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		float f2 = (float) vec3.y;
 		float f3 = (float) vec3.z;
 		float f6;
+
+		if (mc.gameSettings.anaglyph) {
+			float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
+			float f5 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
+			f6 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
+			f1 = f4;
+			f2 = f5;
+			f3 = f6;
+		}
 
 		GL11.glColor3f(f1, f2, f3);
 		Tessellator tessellator1 = Tessellator.getInstance();
@@ -158,9 +169,9 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 			GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(1.0F, 1.0F, 0.0F, 0.0F);
-			renderStarMap(2, EnumStarColor.BRIGHT_BLUE, starBrightness);
-			renderStarMap(8, EnumStarColor.WHITE, starBrightness);
-			renderStarMap(1, EnumStarColor.DARK_WHTIE, starBrightness);
+			renderStarMap(2, EnumStarColor.BRIGHT_BLUE, starBrightness); // orange
+			renderStarMap(8, EnumStarColor.WHITE, starBrightness); // white
+			renderStarMap(1, EnumStarColor.DARK_WHTIE, starBrightness); // blue
 
 			GL11.glPopMatrix();
 		}
@@ -169,12 +180,12 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		// TODO Sun Aura
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
+		float f11;
 
 		quadFloatArray[0] = 255 / 255.0F;
 		quadFloatArray[1] = 194 / 255.0F;
 		quadFloatArray[2] = 180 / 255.0F;
 		quadFloatArray[3] = 0.3F;
-		
 		if (this.colorSunAura() != null) {
 			quadFloatArray[0] = this.colorSunAura().intX() / 255.0F;
 			quadFloatArray[1] = this.colorSunAura().intY() / 255.0F;
@@ -183,6 +194,15 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		f6 = quadFloatArray[0];
 		f7 = quadFloatArray[1];
 		f8 = quadFloatArray[2];
+
+		if (mc.gameSettings.anaglyph) {
+			f9 = (f6 * 30.0F + f7 * 59.0F + f8 * 11.0F) / 100.0F;
+			f10 = (f6 * 30.0F + f7 * 70.0F) / 100.0F;
+			f11 = (f6 * 30.0F + f8 * 70.0F) / 100.0F;
+			f6 = f9;
+			f7 = f10;
+			f8 = f11;
+		}
 
 		starBrightness = 1.0F - starBrightness;
 		sunBrightness = starBrightness;
@@ -253,7 +273,7 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 
 			GL11.glDisable(GL11.GL_BLEND);
 
-			this.render(tessellator1, worldRenderer1, f10, partialTicks);
+			this.rendererSky(tessellator1, worldRenderer1, f10, partialTicks);
 		}
 
 		GL11.glPopMatrix();
@@ -374,14 +394,14 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 
 			BufferBuilder worldRenderer = tessellator1.getBuffer();
 			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-			worldRenderer.color(color[0], color[1], color[2], 0.09F);
+			// worldRenderer.color(color[0], color[1], color[2], 0.09F);
 
-//			for (int i = 0; i < 5; i++) {
-//				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, -f10, -f10, 0, 0, f14, f15, f16, f17);
-//				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, 0, 0, f10, f10, f14, f15, f16, f17);
-//				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, -f10, 0, 0, f10, f14, f15, f16, f17);
-//				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, 0, -f10, f10, 0, f14, f15, f16, f17);
-//			}
+			for (int i = 0; i < 5; i++) {
+				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, -f10, -f10, 0, 0, f14, f15, f16, f17);
+				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, 0, 0, f10, f10, f14, f15, f16, f17);
+				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, -f10, 0, 0, f10, f14, f15, f16, f17);
+				renderTestWithUV(worldRenderer, color, dist + i * scalingMult, 0, -f10, f10, 0, f14, f15, f16, f17);
+			}
 			tessellator1.draw();
 		}
 
@@ -398,7 +418,8 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 	}
 
 	protected void renderSunAura(Tessellator tessellator1, float f10, float f18) {
-		BufferBuilder buffer = tessellator1.getBuffer();
+		BufferBuilder worldRenderer = tessellator1.getBuffer();
+		// GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
 		Vec3d vec3 = this.mc.world.getSkyColor(mc.getRenderViewEntity(), this.ticks);
 		float f1 = (float) vec3.x;
 		float f2 = (float) vec3.y;
@@ -447,9 +468,9 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		float a = quadFloatArray[3] * 2 / f18 - Minecraft.getMinecraft().world.getRainStrength(this.ticks);
 
 		if (this.modeLight() != 2) {
-			buffer.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+			worldRenderer.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
 
-			buffer.pos(0.0D, 100.0D, 0.0D).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0.0D, 100.0D, 0.0D).color(r, g, b, a).endVertex();
 
 			byte b0 = 16;
 			r = quadFloatArray[0] * f18;
@@ -458,15 +479,15 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 			a = 0.0F;
 
 			// Render sun aura
-			buffer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
-			buffer.pos(0, 100.0D, (double) -f10 * 1.5F).color(r, g, b, a).endVertex();
-			buffer.pos(f10, 100.0D, -f10).color(r, g, b, a).endVertex();
-			buffer.pos((double) f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
-			buffer.pos(f10, 100.0D, f10).color(r, g, b, a).endVertex();
-			buffer.pos(0, 100.0D, (double) f10 * 1.5F).color(r, g, b, a).endVertex();
-			buffer.pos(-f10, 100.0D, f10).color(r, g, b, a).endVertex();
-			buffer.pos((double) -f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
-			buffer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0, 100.0D, (double) -f10 * 1.5F).color(r, g, b, a).endVertex();
+			worldRenderer.pos(f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos((double) f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
+			worldRenderer.pos(f10, 100.0D, f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0, 100.0D, (double) f10 * 1.5F).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos((double) -f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
 
 			tessellator1.draw();
 		}
@@ -477,7 +498,7 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		}
 
 		if (enableLargeSunAura()) {
-			buffer.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+			worldRenderer.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
 
 			r = f6 * f18;
 			g = f7 * f18;
@@ -486,7 +507,7 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 					? quadFloatArray[3] * 2 / f18 - Minecraft.getMinecraft().world.getRainStrength(this.ticks)
 					: quadFloatArray[3] * f18;
 
-			buffer.pos(0.0D, 100.0D, 0.0D).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0.0D, 100.0D, 0.0D).color(r, g, b, a).endVertex();
 
 			r = quadFloatArray[0] * f18;
 			g = quadFloatArray[1] * f18;
@@ -497,18 +518,18 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 			f10 = f10 + 10.0F;
 			int i = enableSmoothRender() ? 8 : 0;
 			f10 += i;
-			buffer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
-			buffer.pos(0, 100.0D, (double) -f10 * 1.5F).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0, 100.0D, (double) -f10 * 1.5F).color(r, g, b, a).endVertex();
 			f10 -= i + i;
-			buffer.pos(f10, 100.0D, -f10).color(r, g, b, a).endVertex();
-			buffer.pos((double) f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
+			worldRenderer.pos(f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos((double) f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
 			f10 += i;
-			buffer.pos(f10, 100.0D, f10).color(r, g, b, a).endVertex();
-			buffer.pos(0, 100.0D, (double) f10 * 1.5F).color(r, g, b, a).endVertex();
+			worldRenderer.pos(f10, 100.0D, f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(0, 100.0D, (double) f10 * 1.5F).color(r, g, b, a).endVertex();
 			f10 -= i;
-			buffer.pos(-f10, 100.0D, f10).color(r, g, b, a).endVertex();
-			buffer.pos((double) -f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
-			buffer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, f10).color(r, g, b, a).endVertex();
+			worldRenderer.pos((double) -f10 * 1.5F, 100.0D, 0).color(r, g, b, a).endVertex();
+			worldRenderer.pos(-f10, 100.0D, -f10).color(r, g, b, a).endVertex();
 
 			tessellator1.draw();
 		}
@@ -587,7 +608,7 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		return var3 * var3 * 1F;
 	}
 
-	protected abstract void render(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks);
+	protected abstract void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks);
 
 	protected abstract int modeLight();
 
@@ -637,8 +658,13 @@ public abstract class ExoSkyProvider extends IRenderHandler {
 		int j = (int) (worldtime % daylenght);
 		float f1 = ((float) j + ticks) / daylenght - 0.25F;
 
-		f1 = f1 < 0.0F ? ++f1 : --f1;
+		if (f1 < 0.0F) {
+			++f1;
+		}
 
+		if (f1 > 1.0F) {
+			--f1;
+		}
 
 		float f2 = f1;
 		f1 = 1.0F - (float) ((Math.cos((double) f1 * Math.PI) + 1.0D) / 2.0D);
