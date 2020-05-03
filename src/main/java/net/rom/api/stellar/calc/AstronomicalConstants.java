@@ -181,9 +181,10 @@ public class AstronomicalConstants {
 	/** cm^-1 to K transform coefficient. */
 	public static final double CM_TO_K = HZ_TO_K * AstronomicalConstants.SPEED_OF_LIGHT * 100.0;
 
-	/** Mass of the sun in Kg. From Williams 2004 (Wikipedia). */
+	/** Mass of the sun in Kg. */
 	public static final double SUN_MASS = 1.9891E30;
 	
+	/** Mass of the Earth in Kg. */
 	public static final double EARTH_MASS = 5.972E24;
 
 	/** Luminosity of the sun in W. From Williams 2004 (Wikipedia). */
