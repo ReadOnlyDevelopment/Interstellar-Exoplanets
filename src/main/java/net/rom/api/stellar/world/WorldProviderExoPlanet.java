@@ -131,7 +131,7 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 
 	@Override
 	public float getGravity() {
-		return this.getPlanet().getGravity();
+		return (float) this.getPlanet().getGravity();
 	}
 
 	@Override
@@ -146,12 +146,12 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 
 	public float getPlanetTemp() {
 		ExoPlanet planet = this.getPlanet();
-		float planetTemp = planet.getPlanetTemp();
+		float planetTemp = (float) planet.getPlanetTemp();
 
 		if (this.isDaytime()) {
 			planetTemp /= 2.2F;
 		} else {
-			planetTemp = planet.getPlanetTemp();
+			planetTemp = (float) planet.getPlanetTemp();
 		}
 
 		return planetTemp;

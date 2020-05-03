@@ -183,6 +183,8 @@ public class AstronomicalConstants {
 
 	/** Mass of the sun in Kg. From Williams 2004 (Wikipedia). */
 	public static final double SUN_MASS = 1.9891E30;
+	
+	public static final double EARTH_MASS = 5.972E24;
 
 	/** Luminosity of the sun in W. From Williams 2004 (Wikipedia). */
 	public static final double SUN_LUMINOSITY = 3.846E26;

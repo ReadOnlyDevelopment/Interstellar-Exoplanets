@@ -18,6 +18,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * 
 	 */
 	ASTEROIDAN("Asteroidan"),
+	
 	/**
 	 * <b>Mercurian</b><br>
 	 * <b>Mass </b> = 0.00001 - 0.1</br>
@@ -28,6 +29,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * <p>
 	 */
 	MERCURIAN("Mercurian"),
+	
 	/**
 	 * <b>SubTerran</b><br>
 	 * <b>Mass </b> = 0.1 - 0.5</br>
@@ -38,6 +40,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * <p>
 	 */
 	SUBTERRAN("Subterran"),
+	
 	/**
 	 * <b>Terran</b><br>
 	 * <b>Mass </b> = 0.5 - 2</br>
@@ -48,6 +51,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * <p>
 	 */
 	TERRAN("Terran"),
+	
 	/**
 	 * <b>SuperTerran</b><br>
 	 * <b>Mass </b> = 2 - 10</br>
@@ -58,6 +62,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * <p>
 	 */
 	SUPERTERRAN("Superterran"),
+	
 	/**
 	 * <b>Neptunian</b><br>
 	 * <b>Mass </b> = 10 - 50</br>
@@ -67,6 +72,7 @@ public enum EnumPlanetType implements IStringSerializable{
 	 * <p>
 	 */
 	NEPTUNIAN("Neptunian"),
+	
 	/**
 	 * <b>Jovian</b><br>
 	 * <b>Mass </b> = 50 - 5000</br>

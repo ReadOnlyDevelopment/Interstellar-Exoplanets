@@ -9,6 +9,7 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.block.Block;
+import net.rom.api.stellar.enums.EnumTPHClass;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.api.stellar.world.WorldProviderExoPlanet;
 
@@ -118,15 +119,15 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 		@SuppressWarnings("unused")
 		Random rand = new Random();
 
-		float planetTemp = planet.getPlanetTemp();
+		float planetTemp = (float) planet.getPlanetTemp();
 		float flucTemp = planetTemp;
 
 		float maxTemp = planetTemp + 25;
 		float minTemp = planetTemp - 25;
 
-		if (planet.getIsColdPlanet()) {
+		if (planet.getTphClass() == EnumTPHClass.HP || planet.getTphClass() == EnumTPHClass.P) {
 			flucTemp -= biomeTemp;
-		} else if (planet.getIsHotPlanet()) {
+		} else if (planet.getTphClass() == EnumTPHClass.T || planet.getTphClass() == EnumTPHClass.HT) {
 			flucTemp += biomeTemp;
 		} else {
 			flucTemp = planetTemp + biomeTemp;

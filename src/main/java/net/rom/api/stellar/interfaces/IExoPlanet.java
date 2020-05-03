@@ -8,6 +8,8 @@ import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import net.rom.api.stellar.enums.EnumClass;
 import net.rom.api.stellar.enums.EnumDiscMethod;
+import net.rom.api.stellar.enums.EnumPlanetType;
+import net.rom.api.stellar.enums.EnumTPHClass;
 import net.rom.api.stellar.world.WorldProviderExoPlanet;
 
 /**
@@ -37,75 +39,66 @@ public interface IExoPlanet {
 	public Star getPlanetHost();
 	
 	/**
-	 * Gets the planets letter assignment by Solar System name.
-	 *
-	 * @return the planetLetter
-	 */
-	public String getPlanetLetter();
-	
-	/**
-	 * Gets ExoPlanet classifcation set by 
-	 *
-	 * @return the exoClass
-	 */
-	public EnumClass getExoClass();
-	
-	/**
 	 * Gets the method.
 	 *
 	 * @return the method
 	 */
-	public EnumDiscMethod getMethod();
+	public EnumDiscMethod getDiscoveryMethod();
+	
+	/**
+	 * Gets the EnumTPHClass.
+	 *
+	 * @return the method
+	 */
+	public EnumTPHClass getTphClass();
+	
+	/**
+	 * Gets the EnumPlanetType.
+	 *
+	 * @return the method
+	 */
+	public EnumPlanetType getPlanetType();
 	
 	/**
 	 * Gets the orbit period.
 	 *
 	 * @return the orbitPeriod
 	 */
-	public float getOrbitPeriod();
-	
-	/**
-	 * Gets the planet density.
-	 *
-	 * @return the planetDensity
-	 */
-	public int getPlanetDensity();
+	public double getOrbitPeriod();
 	
 	/**
 	 * Gets the planet mass.
 	 *
 	 * @return the planetMass
 	 */
-	public float getPlanetMass();
+	public double getPlanetMass();
+	
+	/**
+	 * Gets the planet radius.
+	 *
+	 * @return the planetMass
+	 */
+	public double getPlanetRadius();
 	
 	/**
 	 * Gets the planet temp.
 	 *
 	 * @return the planetTemp
 	 */
-	public float getPlanetTemp();
-	
-	/**
-	 * Gets the base radiation.
-	 *
-	 * @return the baseRadiation
-	 */
-	public float getBaseRadiation();
-	
-	/**
-	 * Gets the base toxicity.
-	 *
-	 * @return the baseToxicity
-	 */
-	public float getBaseToxicity();
+	public double getPlanetTemp();
 	
 	/**
 	 * Gets the planets gravity.
 	 *
 	 * @return the gravity
 	 */
-	public float getGravity();
+	public double getGravity();
 	
+	/**
+	 * Gets the planets day length.
+	 *
+	 * @return the day length
+	 */
 	public long getDayLength();
 	
 	/**

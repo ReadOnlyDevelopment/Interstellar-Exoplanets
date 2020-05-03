@@ -10,8 +10,17 @@ import org.junit.Test;
 import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.api.stellar.calc.Calculations;
 import net.rom.api.stellar.enums.EnumLuminosityClass;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
 
 public class AstronomyMath {
+	
+	private ExoPlanet b;
+	private ExoPlanet c;
+	private ExoPlanet d;
+	
+    @Before
+    public void setUp() {
+    }
 
 	@Test
 	public void testEventHorizonCalculation() {
@@ -23,7 +32,14 @@ public class AstronomyMath {
 	}
 	
 	@Test
-	public void starColor() {
+	public void getPlanetInfo() {
+		
+		System.out.println(5.972D * Math.pow(10, 24));
+	}
+	
+	@Test
+	public void getStarInfo() {
+		
 	}
 
 }
