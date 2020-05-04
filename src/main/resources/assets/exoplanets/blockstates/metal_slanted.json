@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "exoplanets:metal_slanted",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "exoplanets:metal_slanted",
+            "y": 270
+        },
+        "facing=west": {
+            "model": "exoplanets:metal_slanted"
+        },
+        "facing=east": {
+            "model": "exoplanets:metal_slanted",
+            "y": 180
+        }
+    }
+}
