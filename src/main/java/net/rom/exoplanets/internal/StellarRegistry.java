@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.ICriterionTrigger;
@@ -72,8 +75,6 @@ import net.rom.exoplanets.internal.client.ICustomModel;
 import net.rom.exoplanets.internal.item.IColorItem;
 import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
 import net.rom.exoplanets.util.MCUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class StellarRegistry {
     private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");

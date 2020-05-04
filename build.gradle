@@ -3,13 +3,14 @@ buildscript {
       	mavenLocal()
         jcenter()
         mavenCentral()
-        maven {
-            name = "forge"
-            url = "https://files.minecraftforge.net/maven"
-        }        
+        maven { url = "https://files.minecraftforge.net/maven" }
         maven {
             name = 'gradle'
             url 'https://plugins.gradle.org/m2/'
+        }
+        maven {
+            name = 'sonatype'
+            url = 'https://oss.sonatype.org/content/groups/public'
         }
     }
     dependencies {
@@ -18,78 +19,172 @@ buildscript {
 }
 
 plugins {
-	id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'com.matthewprenger.cursegradle' version '1.2.0'
     id "com.wynprice.cursemaven" version "2.1.1"
-    id 'com.github.kt3k.coveralls' version '2.8.2'
     id 'maven-publish'
     id 'maven'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-loadProperties()
-
-version = config.mod_version
-group = "net.rom"
-archivesBaseName = "Exoplanets"
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-
-def loadProperties() {
-    // Config file with custom properties
-    ext.configFile = file "build.properties"
-    configFile.withReader {
-        def prop = new Properties()
-        prop.load(it)
-        ext.config = new ConfigSlurper().parse prop
-    }
-
-    // grab buildNumber
-    ext.buildnumber = "DEV" // this will be referenced as simply project.buildnumber from now on.
-    if (System.getenv().BUILD_NUMBER)
-        project.buildnumber = System.getenv().BUILD_NUMBER
-    if (System.getenv().TRAVIS_BUILD_NUMBER)
-        project.buildnumber = System.getenv().TRAVIS_BUILD_NUMBER
-    if (System.getenv().CI) {
-        //project.buildnumber += "-DEV"
-    }
-
-    if (System.getenv().RELEASE || System.getenv().TRAVIS_TAG)
-        project.buildnumber = "RELEASE"
-    logger.lifecycle "BUILDING VERSION: " + project.buildnumber
-}
-
 eclipse.project {
-  buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
-  natures 'org.eclipse.buildship.core.gradleprojectnature'
+    buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+    natures 'org.eclipse.buildship.core.gradleprojectnature'
 }
 
-apply from: 'gradle/artifacts.gradle'
-apply from: 'gradle/forge.gradle'
-apply from: 'gradle/publish.gradle'
 apply from: 'gradle/secret.gradle'
-apply from: 'gradle/signing.gradle'
-apply from: 'gradle/changelog.gradle'
+
+def versionBuild = 0
+if (System.getenv("BUILD_NUMBER") != null)
+    versionBuild = System.getenv("BUILD_NUMBER")
+
+version = "${mod_version}"
+group = "${group}"
+archivesBaseName = "${name}"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+String GCBuild = "261"
+String GCVersion = "1.12.2-4.0.2.${GCBuild}"
+
+repositories {
+    ivy {
+        url "https://ci.micdoodle8.com/job/"
+        layout 'pattern', {
+            artifact "[organization]/${GCBuild}/artifact/Forge/build/libs/[module]-[revision].jar"
+        }
+        metadataSources { 
+            artifact()
+        }
+    }
+	maven {
+		name = 'curseforge'
+		url = 'https://minecraft.curseforge.com/api/maven/'
+	}    
+	maven {
+	    name 'MJRLegends'
+	    url = "https://maven.mjrlegends.com/"
+    }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+
+    compile "org.projectlombok:lombok:${lombok_version}"
+    
+    compile "curse.maven:plprogapi-0.4.4:2941452"
+    compile "curse.maven:asmodeusdev-0.0.14:2947667"
+	
+    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    	
+    compile "Galacticraft-1.12-dev:GalacticraftCore-Dev:${GCVersion}"
+    compile "Galacticraft-1.12-dev:Galacticraft-API:${GCVersion}"
+    compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
+    compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
+    
+    compile 'org.apache.commons:commons-math3:3.6.1'
+    
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    
+
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    replace '${version}', project.version
+    mappings = "snapshot_20171003"
+    
+    if (project.hasProperty('signSHA1') && getBooleanProperty('do_sign_jar')) {
+        replace '@FINGERPRINT@', secret.signSHA1
+    } else {
+        replace '@FINGERPRINT@', ''
+    }
+    
+    makeObfSourceJar = getBooleanProperty('create_source_jar')
+}
+
+allprojects {
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
 
 
-curseforge {
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-    apiKey = project.hasProperty('authCurse')
-
-    project {
-        id = "${config.cf_project_id}"
-        releaseType = "${config.release_type}"
-        changelog = getGitChangelog
-        changelogType = 'markdown'
-        addGameVersion "${config.cf_versions}"
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
         
-    	relations {
-            requiredLibrary "${config.cf_required}"
-    		}
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
 
-        addArtifact(sourcesJar)
-        addArtifact(javadocJar)
-        addArtifact(deobfJar)
+apply from: 'gradle/jars_maven.gradle'
+
+apply from: 'gradle/curseforge.gradle'
+
+import java.util.regex.Matcher
+
+String getModFile() {
+    String path = ''
+    final FileTree tree = fileTree(dir: 'src/main/java')
+    tree.include '**/*.java'
+    tree.visit { final element ->
+        if (element.file.isFile()) {
+            element.file.eachLine { final String s ->
+                final String sTrim = s.trim()
+                if (sTrim.startsWith('@Mod(')) {
+                    path = "src/main/java/${element.relativePath}"
+                }
+            }
+        }
+    }
+    return path
+}
+
+String getModVersion(final String type) {
+    return getModVersion(type, modFile)
+}
+
+String getModVersion(final String type, final String modFile) {
+    if ((modFile != null) && (modFile != '')) {
+        final File file = file(modFile)
+        final def prefix = ~/^(?:\s*)(?:(?<modifier>public|protected|private) )?(?:(?<static>static) )?(?:(?<final>final) )?String $type = "(?:(?<major>\d*)\.)?(?:(?<minor>\d*)\.)?(?:(?<patch>[^."]*)\.?)(?<build>[^"]*)";$/
+        for (final String s in file.readLines()) {
+            final Matcher matcher = (s.trim() =~ prefix)
+            if (matcher.matches()) {
+                return "${matcher.group('major') ?: '0'}.${matcher.group('minor') ?: '0'}.${matcher.group('patch')}"
+            }
+        }
+    }
+    return '0.0.0'
+}
+
+boolean getBooleanProperty(final String property) {
+    if (project.hasProperty(property)) {
+        return ((String) project.findProperty(property)).toBoolean()
+    } else {
+        return false
     }
 }

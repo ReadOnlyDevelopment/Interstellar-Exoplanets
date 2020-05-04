@@ -151,8 +151,8 @@ public class Calculations {
 	 * @return Gravity in m/s^2.
 	 */
 	public static double getPlanetSurfaceGravity(double mass, double radius) {
-		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.EARTH_RADIUS
-				/ (Math.pow(radius * AstronomicalConstants.EARTH_RADIUS * 1000.0, 2.0));
+		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS)
+				/ (Math.pow(radius * AstronomicalConstants.EARTH_RADIUS, 2.0));
 		return g;
 	}
 

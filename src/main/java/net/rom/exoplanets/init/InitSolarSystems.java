@@ -38,11 +38,7 @@ public class InitSolarSystems {
 		registerSolarSystems();
 		initializeSolarSystems();
 	}
-
-	private static void registerData() {
-
-	}
-
+	
 	private static void registerExoStars() {
 		yzCetiStar = b.buildExoStar("yz_ceti_star", 3058, 0.130D, 0.168D);
 		wolf1061Star = b.buildExoStar("wolf_1061_star", 3342, 0.294D, 0.307D);

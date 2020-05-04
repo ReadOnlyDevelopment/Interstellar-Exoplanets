@@ -9,9 +9,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.SkyProviderYzCetiB;
+import net.rom.exoplanets.astronomy.yzcetisystem.b.SkyProviderB;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
+import net.rom.exoplanets.astronomy.yzcetisystem.c.SkyProviderC;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
+import net.rom.exoplanets.astronomy.yzcetisystem.d.SkyProviderD;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
 import net.rom.exoplanets.util.MCUtil;
 
@@ -27,7 +29,7 @@ public class SkyProviders {
             // Planets
             if (world.provider instanceof WorldProviderYzCetiB) {
                 if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiB.instance().getSolarSize()));
+                    world.provider.setSkyRenderer(new SkyProviderB());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {
@@ -36,7 +38,7 @@ public class SkyProviders {
             }
             if (world.provider instanceof WorldProviderYzCetiC) {
                 if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiC.instance().getSolarSize()));
+                    world.provider.setSkyRenderer(new SkyProviderC());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {
@@ -45,7 +47,7 @@ public class SkyProviders {
             }
             if (world.provider instanceof WorldProviderYzCetiD) {
                 if (world.provider.getSkyRenderer() == null) {
-                    world.provider.setSkyRenderer(new SkyProviderYzCetiB(WorldProviderYzCetiD.instance().getSolarSize()));
+                    world.provider.setSkyRenderer(new SkyProviderD());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {

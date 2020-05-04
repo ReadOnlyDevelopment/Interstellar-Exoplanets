@@ -1,5 +1,7 @@
 package net.rom.exoplanets.event;
 
+import static net.rom.exoplanets.DevHelper.disableZoneRender;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -9,7 +11,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import static net.rom.exoplanets.DevHelper.disableZoneRender;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.InitSolarSystems;
 import net.rom.exoplanets.util.ModSupport;
