@@ -21,8 +21,10 @@ buildscript {
 plugins {
     id 'com.matthewprenger.cursegradle' version '1.2.0'
     id "com.wynprice.cursemaven" version "2.1.1"
+    id "ru.vyarus.pom" version "2.1.0"
     id 'maven-publish'
     id 'maven'
+    id 'java'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
