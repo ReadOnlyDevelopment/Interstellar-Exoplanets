@@ -12,10 +12,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.rom.exoplanets.internal.block.BlockBase;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockSatelliteAntenna extends BlockBase {
+public class BlockSatelliteAntenna extends BlockDecoration {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -26,7 +26,6 @@ public class BlockSatelliteAntenna extends BlockBase {
 		setHardness(2F);
 		setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 		setLightOpacity(1);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}

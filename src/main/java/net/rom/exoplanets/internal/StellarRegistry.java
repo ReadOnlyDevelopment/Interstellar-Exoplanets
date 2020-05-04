@@ -67,6 +67,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfessio
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
 import net.rom.exoplanets.internal.block.IColorBlock;
 import net.rom.exoplanets.internal.block.ITEBlock;
@@ -74,6 +75,7 @@ import net.rom.exoplanets.internal.client.ICustomMesh;
 import net.rom.exoplanets.internal.client.ICustomModel;
 import net.rom.exoplanets.internal.item.IColorItem;
 import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
+import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.util.MCUtil;
 
 public class StellarRegistry {
@@ -94,11 +96,10 @@ public class StellarRegistry {
     private final List<Block> coloredBlocks = NonNullList.create();
     private final List<Item> coloredItems = NonNullList.create();
 
-    private final List<IPhaseInit> phasedInitializers = new ArrayList<>();
     private final Map<Class<? extends IForgeRegistryEntry<?>>, Consumer<StellarRegistry>> registrationHandlers = new HashMap<>();
 
     private Object mod;
-    private final Logger logger;
+    private final LogHelper logger;
     private final String modId;
     private final String resourcePrefix;
 
@@ -107,6 +108,9 @@ public class StellarRegistry {
 
     @Nullable
     private CreativeTabs defaultCreativeTab = null;
+    
+    @Nullable
+    private CreativeTabs creativeTab = null;
 
     /**
      * Constructor which automatically acquires the mod container to populate required fields.
@@ -116,7 +120,7 @@ public class StellarRegistry {
         ModContainer mod = Objects.requireNonNull(Loader.instance().activeModContainer());
         this.modId = mod.getModId();
         this.resourcePrefix = this.modId + ":";
-        this.logger = LogManager.getLogger(mod.getName() + "/ModRegistry");
+        this.logger = ExoplanetsMod.logger;
         this.recipes = new RecipeBuilder(this.modId);
         MinecraftForge.EVENT_BUS.register(new EventHandler(this));
     }
@@ -130,18 +134,6 @@ public class StellarRegistry {
      */
     public void setMod(Object mod) {
         this.mod = mod;
-    }
-
-    /**
-     * Add a phased initializer, which has preInit, init, and postInit methods which ModRegistry will
-     * call automatically.
-     * <p>This method should be called during <em>pre-init</em> in the proper proxy,
-     * <em>before</em> calling the ModRegistry's preInit method.</p>
-     *
-     * @param instance Your initializer (singleton design is recommended)
-     */
-    public void addPhasedInitializer(IPhaseInit instance) {
-        this.phasedInitializers.add(instance);
     }
 
     /**
@@ -160,25 +152,6 @@ public class StellarRegistry {
         }
         this.registrationHandlers.put(registryClass, registerFunction);
     }
-
-    public CreativeTabs makeCreativeTab(String label, Supplier<ItemStack> icon) {
-        CreativeTabs tab = new CreativeTabs(label) {
-
-			@Override
-			public ItemStack getTabIconItem() {
-				return icon.get();
-			}
-
-        };
-        if (this.defaultCreativeTab == null) {
-            this.defaultCreativeTab = tab;
-        }
-        return tab;
-    }
-
-    //region Standard register methods (usually called within a registration handler)
-
-    // Block
 
     /**
      * Register a Block. Its name (registry key/name) must be provided. Uses a new ItemBlockSL.
@@ -208,7 +181,6 @@ public class StellarRegistry {
         safeSetRegistryName(block, name);
         ForgeRegistries.BLOCKS.register(block);
 
-        // Register ItemBlock; TODO: Should this be done in Item register event?
         safeSetRegistryName(itemBlock, name);
         ForgeRegistries.ITEMS.register(itemBlock);
 
@@ -226,8 +198,8 @@ public class StellarRegistry {
             this.coloredBlocks.add(block);
         }
 
-        if (this.defaultCreativeTab != null) {
-            block.setCreativeTab(this.defaultCreativeTab);
+        if (this.creativeTab != null) {
+            block.setCreativeTab(this.creativeTab);
         }
 
         return block;
@@ -356,7 +328,7 @@ public class StellarRegistry {
         if (entry.getRegistryName() == null) {
             entry.setRegistryName(name);
         } else {
-            this.logger.warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
+            this.logger.formatted_Warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
         }
     }
 
@@ -366,7 +338,7 @@ public class StellarRegistry {
      */
     private void validateRegistryName(String name) {
         if (PATTERN_REGISTRY_NAME.matcher(name).matches()) {
-            this.logger.warn("Invalid name for object: {}", name);
+            this.logger.formatted_Warn("Invalid name for object: {}", name);
         }
     }
 
@@ -436,19 +408,18 @@ public class StellarRegistry {
         }
 
         verifyOrFindModObject();
-        this.phasedInitializers.forEach(i -> i.preInit(this, event));
         this.preInitDone = true;
     }
 
     private void verifyOrFindModObject() {
         if (this.mod == null) {
-            this.logger.warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
+            this.logger.formatted_Warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
             ModContainer container = Loader.instance().getIndexedModList().get(this.modId);
             if (container != null) {
                 this.mod = container.getMod();
-                this.logger.warn("Automatically acquired mod object for {}", this.modId);
+                this.logger.formatted_Warn("Automatically acquired mod object for {}", this.modId);
             } else {
-                this.logger.warn("Could not find mod object. The mod ID is likely incorrect.");
+                this.logger.formatted_Warn("Could not find mod object. The mod ID is likely incorrect.");
             }
         }
     }
@@ -461,7 +432,6 @@ public class StellarRegistry {
             this.logger.warn("init called more than once!");
             return;
         }
-        this.phasedInitializers.forEach(i -> i.init(this, event));
         this.initDone = true;
     }
 
@@ -480,11 +450,10 @@ public class StellarRegistry {
                     .map(ResourceLocation::getResourceDomain)
                     .filter(s -> s.equals(this.modId))
                     .count();
-            this.logger.warn("Mod '{}' is still registering recipes with RecipeMaker ({} recipes, out of {} total)",
+            this.logger.formatted_Warn("Mod '{}' is still registering recipes with RecipeMaker ({} recipes, out of {} total)",
                     this.modId, oldRecipeRegisterCount, totalRecipes);
         }
 
-        this.phasedInitializers.forEach(i -> i.postInit(this, event));
         this.postInitDone = true;
     }
 
@@ -562,6 +531,14 @@ public class StellarRegistry {
 
 	public void setDefaultCreativeTab(CreativeTabs defaultCreativeTab) {
 		this.defaultCreativeTab = defaultCreativeTab;
+	}
+	
+	public CreativeTabs getCreativeTabs() {
+		return this.creativeTab;
+	}
+	
+	public void setCreativeTab(CreativeTabs creativeTabs) {
+		this.creativeTab = creativeTabs;
 	}
 
 	/**

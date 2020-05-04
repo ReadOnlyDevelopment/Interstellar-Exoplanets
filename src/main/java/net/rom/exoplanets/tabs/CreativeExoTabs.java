@@ -2,6 +2,7 @@ package net.rom.exoplanets.tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.item.EnumIngots;
 
@@ -11,7 +12,7 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ExoBlocks.COM);
+			return new ItemStack(ExoBlocks.stand_console);
 		}
 		
 		@Override
@@ -25,7 +26,7 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ExoBlocks.SATELLITE_ANTENNA);
+			return new ItemStack(YzCetiBlocks.CetiB.B_METAMORPHIC);
 		}
 		
 		@Override

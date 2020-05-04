@@ -2,6 +2,8 @@ package net.rom.exoplanets.block.terrain;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
@@ -10,8 +12,9 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.internal.block.BlockBreakable;
+import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockGlacialIce extends BlockBreakable {
+public class BlockGlacialIce extends BlockBreakable implements ISortableBlock {
 
 	public BlockGlacialIce() {
 		super(Material.ICE);
@@ -21,6 +24,8 @@ public class BlockGlacialIce extends BlockBreakable {
 		this.setLightOpacity(3);
 		this.setTickRandomly(true);
 		this.setSoundType(SoundType.GLASS);
+		this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
+
 	}
 
 	@Override
@@ -47,6 +52,11 @@ public class BlockGlacialIce extends BlockBreakable {
 	@Override
 	protected boolean renderSideWithState() {
 		return false;
+	}
+
+	@Override
+	public EnumSortCategoryBlock getCategory(int meta) {
+		return EnumSortCategoryBlock.DECORATION;
 	}
 
 }

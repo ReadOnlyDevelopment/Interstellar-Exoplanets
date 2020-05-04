@@ -1,7 +1,13 @@
 package net.rom.exoplanets.init;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.block.decoration.BlockCellarLamp;
@@ -22,92 +28,89 @@ public class ExoBlocks {
 	
 	private static StellarRegistry reg;
 
-    //ELECTRONIC
-	public static final BlockOverworldOre OVERWORLD_ORE = new BlockOverworldOre();
-	public static final BlockElectronic RAIDCONTROLLER = new BlockElectronic();
-	public static final BlockElectronic LOWER_RAIDCONTROLLER = new BlockElectronic();
-	public static final BlockElectronic RAIDCLUSTER = new BlockElectronic();
-	public static final BlockElectronic DATAMONITOR = new BlockElectronic();
-	public static final BlockElectronic COM = new BlockElectronic();
-	public static final BlockElectronic CONTROL = new BlockElectronic();
-	public static final BlockSatelliteAntenna SATELLITE_ANTENNA = new BlockSatelliteAntenna();
-	public static final BlockStandConsole STAND_CONSOLE = new BlockStandConsole();
-	public static final BlockMetalDiagonal METAL_DIAGONAL = new BlockMetalDiagonal();
-	public static final BlockCustomHydraulic HYDRAULIC_TOP = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic HYDRAULIC_BOTTOM = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic HYDRAULIC_MIDDLE = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic HYDRAULIC_BOTTOM_H = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic HYDRAULIC_MIDDLE_H = new BlockCustomHydraulic();
+	// ELECTRONIC
+	public static final BlockOverworldOre overworldore = new BlockOverworldOre();
+	public static final BlockElectronic raidcontroller = new BlockElectronic();
+	public static final BlockElectronic lower_raidcontroller = new BlockElectronic();
+	public static final BlockElectronic raidcluster = new BlockElectronic();
+	public static final BlockElectronic datamonitor = new BlockElectronic();
+	public static final BlockElectronic com_relay = new BlockElectronic();
+	public static final BlockElectronic control = new BlockElectronic();
+	public static final BlockSatelliteAntenna satellite_antenna = new BlockSatelliteAntenna();
+	public static final BlockStandConsole stand_console = new BlockStandConsole();
+	public static final BlockMetalDiagonal metal_diagonal = new BlockMetalDiagonal();
+	public static final BlockMetalDiagonal metal_slanted = new BlockMetalDiagonal();
+	public static final BlockCustomHydraulic hydraulic_top = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic hydraulic_bottom = new BlockCustomHydraulic();
+	public static final BlockCustomHydraulic hydraulic_middle = new BlockCustomHydraulic();
 
-	
-	//LEVERS
-	public static final BlockCustomLever LEVER1 = new BlockCustomLever();
-	public static final BlockCustomLever LEVER2 = new BlockCustomLever();
-	public static final BlockCustomLever LEVER3 = new BlockCustomLever();
 
-	//LIGHTS
-    public static final BlockAlarmLight ALARM_LIGHT = new BlockAlarmLight(false);
-    public static final BlockAlarmLight ALARM_LIGHT_LIT = new BlockAlarmLight(true);
-    public static final BlockWallLamp WALL_LAMP = new BlockWallLamp(false);
-    public static final BlockWallLamp WALL_LAMP_LIT = new BlockWallLamp(true);
-    public static final BlockMetalLamp METAL_LAMP = new BlockMetalLamp(false);
-    public static final BlockMetalLamp METAL_LAMP_LIT = new BlockMetalLamp(true);
-    public static final BlockCellarLamp CELLAR_LAMP = new BlockCellarLamp(false);
-    public static final BlockCellarLamp CELLAR_LAMP_LIT = new BlockCellarLamp(true);
-    public static final BlockInsetLamp INSET_LAMP = new BlockInsetLamp(false);
-    public static final BlockInsetLamp INSET_LAMP_LIT = new BlockInsetLamp(true);
+	// LEVERS
+	public static final BlockCustomLever lever1 = new BlockCustomLever();
+	public static final BlockCustomLever lever2 = new BlockCustomLever();
+	public static final BlockCustomLever lever3 = new BlockCustomLever();
 
+	// LIGHTS
+	public static final BlockAlarmLight alarm_light = new BlockAlarmLight(false);
+	public static final BlockAlarmLight alarm_light_lit = new BlockAlarmLight(true);
+	public static final BlockWallLamp wall_lamp = new BlockWallLamp(false);
+	public static final BlockWallLamp wall_lamp_lit = new BlockWallLamp(true);
+	public static final BlockMetalLamp metal_lamp = new BlockMetalLamp(false);
+	public static final BlockMetalLamp metal_lamp_lit = new BlockMetalLamp(true);
+	public static final BlockCellarLamp cellar_lamp = new BlockCellarLamp(false);
+	public static final BlockCellarLamp cellar_lamp_lit = new BlockCellarLamp(true);
+	public static final BlockInsetLamp inset_lamp = new BlockInsetLamp(false);
+	public static final BlockInsetLamp inset_lamp_lit = new BlockInsetLamp(true);
 
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
 		YzCetiBlocks.registerAll(reg);
-        
+
 		// ORES
-		reg.registerBlock(OVERWORLD_ORE, "overworldore", new BlockOverworldOre.ItemBlock(OVERWORLD_ORE));
+		reg.registerBlock(overworldore, "overworldore", new BlockOverworldOre.ItemBlock(overworldore));
 		
-		//DECORATIONS
-		register(COM, "com_relay");
-		register(CONTROL, "control");
-		register(RAIDCONTROLLER, "raidcontroller");
-		register(LOWER_RAIDCONTROLLER, "lower_raidcontroller");
-		register(RAIDCLUSTER, "raidcluster");
-		register(DATAMONITOR, "datamonitor");
-		register(SATELLITE_ANTENNA, "satellite_antenna");
-		register(STAND_CONSOLE, "stand_console");
-		register(METAL_DIAGONAL, "metal_diagonal");
-		register(HYDRAULIC_TOP, "hydraulic_top");
-		register(HYDRAULIC_BOTTOM, "hydraulic_bottom");
-		register(HYDRAULIC_MIDDLE, "hydraulic_middle");
-		register(HYDRAULIC_BOTTOM_H, "hydraulic_bottom_horizontal");
-		register(HYDRAULIC_MIDDLE_H, "hydraulic_middle_horizontal");
-		
-		//LEVERS
-		register(LEVER1, "lever1");
-		register(LEVER2, "lever2");
-		register(LEVER3, "lever3");
-		
+		// DECORATIONS
+		register(com_relay, "com_relay");
+		register(control, "control");
+		register(raidcontroller, "raidcontroller");
+		register(lower_raidcontroller, "lower_raidcontroller");
+		register(raidcluster, "raidcluster");
+		register(datamonitor, "datamonitor");
+		register(satellite_antenna, "satellite_antenna");
+		register(stand_console, "stand_console");
+		register(metal_diagonal, "metal_diagonal");
+		register(metal_slanted, "metal_slanted");
+		register(hydraulic_top, "hydraulic_top");
+		register(hydraulic_bottom, "hydraulic_bottom");
+		register(hydraulic_middle, "hydraulic_middle");
+
+		// LEVERS
+		register(lever1, "lever1");
+		register(lever2, "lever2");
+		register(lever3, "lever3");
+
 		// LAMPS / LIGHTS
-		registerWithDecoTab(ALARM_LIGHT, "alarm_light");
-		register(ALARM_LIGHT_LIT, "alarm_light_lit");
-		registerWithDecoTab(WALL_LAMP, "wall_lamp");
-	    register(WALL_LAMP_LIT, "wall_lamp_lit");
-	    registerWithDecoTab(METAL_LAMP, "metal_lamp");
-	    register(METAL_LAMP_LIT, "metal_lamp_lit");
-	    registerWithDecoTab(CELLAR_LAMP, "cellar_lamp");
-	    register(CELLAR_LAMP_LIT, "cellar_lamp_lit");
-	    registerWithDecoTab(INSET_LAMP, "inset_lamp");
-        register(INSET_LAMP_LIT, "inset_lamp_lit");
+		registerWithDecoTab(alarm_light, "alarm_light");
+		register(alarm_light_lit, "alarm_light_lit");
+		registerWithDecoTab(wall_lamp, "wall_lamp");
+		register(wall_lamp_lit, "wall_lamp_lit");
+		registerWithDecoTab(metal_lamp, "metal_lamp");
+		register(metal_lamp_lit, "metal_lamp_lit");
+		registerWithDecoTab(cellar_lamp, "cellar_lamp");
+		register(cellar_lamp_lit, "cellar_lamp_lit");
+		registerWithDecoTab(inset_lamp, "inset_lamp");
+		register(inset_lamp_lit, "inset_lamp_lit");
 
 	}
-	
+
 	private static void register(Block block, String blockName) {
 		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
-	
+
 	private static void registerWithDecoTab(Block block, String blockName) {
 		reg.registerBlock(block, blockName, new ItemBlock(block)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
-
+	
 	public static void setReg(StellarRegistry reg) {
 		ExoBlocks.reg = reg;
 	}

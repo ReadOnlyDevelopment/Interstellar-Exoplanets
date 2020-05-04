@@ -12,9 +12,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.init.ExoBlocks;
 
-public class BlockInsetLamp extends Block {
+public class BlockInsetLamp extends BlockDecoration {
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.20D, 0.0D, 0.15D, 0.80D, 0.80D, 0.80D);
 
 	private final boolean isOn;
@@ -37,9 +38,9 @@ public class BlockInsetLamp extends Block {
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
 		if (!worldIn.isRemote) {
 			if (isOn && !worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.INSET_LAMP.getDefaultState(), 2);
+				worldIn.setBlockState(pos, ExoBlocks.inset_lamp.getDefaultState(), 2);
 			} else if (!isOn && worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.INSET_LAMP_LIT.getDefaultState(), 2);
+				worldIn.setBlockState(pos, ExoBlocks.inset_lamp_lit.getDefaultState(), 2);
 			}
 		}
 	}
@@ -50,7 +51,7 @@ public class BlockInsetLamp extends Block {
 			if (isOn && !worldIn.isBlockPowered(pos)) {
 				worldIn.scheduleUpdate(pos, this, 4);
 			} else if (!isOn && worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.INSET_LAMP_LIT.getDefaultState(), 2);
+				worldIn.setBlockState(pos, ExoBlocks.inset_lamp_lit.getDefaultState(), 2);
 			}
 		}
 	}
@@ -59,24 +60,24 @@ public class BlockInsetLamp extends Block {
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
 			if (isOn && !worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.INSET_LAMP.getDefaultState(), 2);
+				worldIn.setBlockState(pos, ExoBlocks.inset_lamp.getDefaultState(), 2);
 			}
 		}
 	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(ExoBlocks.INSET_LAMP);
+		return Item.getItemFromBlock(ExoBlocks.inset_lamp);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(ExoBlocks.INSET_LAMP);
+		return new ItemStack(ExoBlocks.inset_lamp);
 	}
 
 	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state) {
-		return new ItemStack(ExoBlocks.INSET_LAMP);
+		return new ItemStack(ExoBlocks.inset_lamp);
 	}
 
 	@Override

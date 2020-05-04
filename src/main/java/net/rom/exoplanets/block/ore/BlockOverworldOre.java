@@ -2,6 +2,8 @@ package net.rom.exoplanets.block.ore;
 
 import java.util.Locale;
 
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -23,7 +25,7 @@ import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
 import net.rom.exoplanets.item.EnumIngots;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockOverworldOre extends BlockMetaSubtypes implements ICustomModel, IAddRecipe {
+public class BlockOverworldOre extends BlockMetaSubtypes implements ICustomModel, IAddRecipe, ISortableBlock {
 	
 	public enum Type implements IStringSerializable {
 		ORELIMONITE, ORERUTHENIUM, ORERUTILE;
@@ -109,5 +111,10 @@ public class BlockOverworldOre extends BlockMetaSubtypes implements ICustomModel
             super(block);
         }
     }
+
+	@Override
+	public EnumSortCategoryBlock getCategory(int meta) {
+		return EnumSortCategoryBlock.ORE;
+	}
 
 }

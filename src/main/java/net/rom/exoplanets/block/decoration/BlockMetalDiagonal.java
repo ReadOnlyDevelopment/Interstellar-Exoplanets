@@ -10,9 +10,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockGeneral;
 import net.rom.exoplanets.internal.block.BlockBase;
 
-public class BlockMetalDiagonal extends BlockBase {
+public class BlockMetalDiagonal extends BlockGeneral {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 

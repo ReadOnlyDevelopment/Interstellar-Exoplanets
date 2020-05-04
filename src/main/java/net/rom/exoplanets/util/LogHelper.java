@@ -19,7 +19,7 @@ public class LogHelper {
 	private static Logger LOG = LogManager.getFormatterLogger(ExoInfo.NAME);
 
 	/** The Constant obf. */
-	public static final boolean obf;
+	public final static boolean obf;
 
 	static {
 		boolean flag = true;
@@ -43,7 +43,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void dev(Object object) {
+	public void dev(Object object) {
 		if (!obf)
 			log(Level.INFO, "[DEV]: " + object);
 	}
@@ -53,7 +53,7 @@ public class LogHelper {
 	 *
 	 * @param throwable the throwable
 	 */
-	public static void catching(Throwable throwable) {
+	public void catching(Throwable throwable) {
 		LOG.catching(throwable);
 	}
 
@@ -62,7 +62,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void all(Object object) {
+	public void all(Object object) {
 
 		log(Level.ALL, object);
 	}
@@ -72,7 +72,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void debug(Object object) {
+	public void debug(Object object) {
 		log(Level.DEBUG, object);
 	}
 
@@ -81,7 +81,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void error(Object object) {
+	public void error(Object object) {
 		log(Level.ERROR, object);
 	}
 
@@ -90,7 +90,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void fatal(Object object) {
+	public void fatal(Object object) {
 		log(Level.FATAL, object);
 	}
 
@@ -99,7 +99,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void info(Object object) {
+	public void info(Object object) {
 		log(Level.INFO, object);
 	}
 
@@ -108,7 +108,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void trace(Object object) {
+	public void trace(Object object) {
 		log(Level.TRACE, object);
 	}
 
@@ -117,7 +117,7 @@ public class LogHelper {
 	 *
 	 * @param object the object
 	 */
-	public static void warn(Object object) {
+	public void warn(Object object) {
 		log(Level.WARN, object);
 	}
 
@@ -127,7 +127,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_All(String format, Object... object) {
+	public void formatted_All(String format, Object... object) {
 		log(Level.ALL, String.format(format, object));
 	}
 
@@ -137,7 +137,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Debug(String format, Object... object) {
+	public void formatted_Debug(String format, Object... object) {
 		log(Level.DEBUG, String.format(format, object));
 	}
 
@@ -147,7 +147,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Error(String format, Object... object) {
+	public void formatted_Error(String format, Object... object) {
 		log(Level.ERROR, String.format(format, object));
 	}
 
@@ -157,7 +157,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Fatal(String format, Object... object) {
+	public void formatted_Fatal(String format, Object... object) {
 		log(Level.FATAL, String.format(format, object));
 	}
 
@@ -167,7 +167,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Info(String format, Object... object) {
+	public void formatted_Info(String format, Object... object) {
 		log(Level.INFO, String.format(format, object));
 	}
 
@@ -177,7 +177,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Trace(String format, Object... object) {
+	public void formatted_Trace(String format, Object... object) {
 		log(Level.TRACE, String.format(format, object));
 	}
 
@@ -187,7 +187,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public static void formatted_Warn(String format, Object... object) {
+	public void formatted_Warn(String format, Object... object) {
 		log(Level.WARN, String.format(format, object));
 	}
 
@@ -197,7 +197,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_All(String object, Throwable throwable) {
+	public void throwable_All(String object, Throwable throwable) {
 		log(Level.ALL, object, throwable);
 	}
 
@@ -207,7 +207,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_Debug(String object, Throwable throwable) {
+	public void throwable_Debug(String object, Throwable throwable) {
 		log(Level.DEBUG, object, throwable);
 	}
 
@@ -217,7 +217,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_Error(String object, Throwable throwable) {
+	public void throwable_Error(String object, Throwable throwable) {
 		log(Level.ERROR, object, throwable);
 	}
 
@@ -227,7 +227,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_Fatal(String object, Throwable throwable) {
+	public void throwable_Fatal(String object, Throwable throwable) {
 		log(Level.FATAL, object, throwable);
 	}
 
@@ -237,7 +237,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_Info(String object, Throwable throwable) {
+	public void throwable_Info(String object, Throwable throwable) {
 		log(Level.INFO, object, throwable);
 	}
 
@@ -247,7 +247,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void throwable_Trace(String object, Throwable throwable) {
+	public void throwable_Trace(String object, Throwable throwable) {
 		log(Level.TRACE, object, throwable);
 	}
 
@@ -257,7 +257,7 @@ public class LogHelper {
 	 * @param object the object
 	 * @param throwable the throwable
 	 */
-	public static void Throwable_Warn(String object, Throwable throwable) {
+	public void Throwable_Warn(String object, Throwable throwable) {
 		log(Level.WARN, object, throwable);
 	}
 
@@ -267,7 +267,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigAll(String format, Object... data) {
+	public void bigAll(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		all("****************************************");
 		formatted_All("* " + format, data);
@@ -283,7 +283,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigDebug(String format, Object... data) {
+	public void bigDebug(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		debug("****************************************");
 		formatted_Debug("* " + format, data);
@@ -299,7 +299,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigError(String format, Object... data) {
+	public void bigError(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		error("****************************************");
 		formatted_Error("* " + format, data);
@@ -315,7 +315,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigFatal(String format, Object... data) {
+	public void bigFatal(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		fatal("****************************************");
 		formatted_Fatal("* " + format, data);
@@ -331,7 +331,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigInfo(String format, Object... data) {
+	public void bigInfo(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		info("****************************************");
 		formatted_Info("* " + format, data);
@@ -347,7 +347,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigTrace(String format, Object... data) {
+	public void bigTrace(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		trace("****************************************");
 		formatted_Trace("* " + format, data);
@@ -363,7 +363,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param data the data
 	 */
-	public static void bigWarn(String format, Object... data) {
+	public void bigWarn(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		warn("****************************************");
 		formatted_Warn("* " + format, data);

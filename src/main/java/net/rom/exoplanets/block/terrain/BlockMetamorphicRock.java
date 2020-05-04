@@ -1,8 +1,8 @@
 package net.rom.exoplanets.block.terrain;
 
-import net.rom.exoplanets.block.BasicBlock;
+import net.rom.exoplanets.block.BlockTerrain;
 
-public class BlockMetamorphicRock extends BasicBlock {
+public class BlockMetamorphicRock extends BlockTerrain {
 	
 	public BlockMetamorphicRock() {
 		super();

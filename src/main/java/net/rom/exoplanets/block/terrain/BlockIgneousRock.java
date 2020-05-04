@@ -1,8 +1,6 @@
 package net.rom.exoplanets.block.terrain;
 
-import net.minecraft.block.material.Material;
-import net.rom.exoplanets.block.BasicBlock;
-import net.rom.exoplanets.internal.block.BlockBase;
+import net.rom.exoplanets.block.BlockTerrain;
 
 /**
  * Igneous rock, or magmatic rock, is one of the three main rock types, the
@@ -14,7 +12,7 @@ import net.rom.exoplanets.internal.block.BlockBase;
  * 
  *
  */
-public class BlockIgneousRock extends BasicBlock {
+public class BlockIgneousRock extends BlockTerrain {
 
 	public BlockIgneousRock() {
 		super();

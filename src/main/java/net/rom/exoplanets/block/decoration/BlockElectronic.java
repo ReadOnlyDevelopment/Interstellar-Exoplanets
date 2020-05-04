@@ -11,10 +11,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockGeneral;
 import net.rom.exoplanets.internal.block.BlockBase;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockElectronic extends BlockBase {
+public class BlockElectronic extends BlockGeneral {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -23,7 +24,6 @@ public class BlockElectronic extends BlockBase {
 		setHardness(2F);
 		setResistance(5F);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

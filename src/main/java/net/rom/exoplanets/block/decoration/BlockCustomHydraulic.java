@@ -1,6 +1,5 @@
 package net.rom.exoplanets.block.decoration;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -13,9 +12,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockCustomHydraulic extends Block {
+public class BlockCustomHydraulic extends BlockDecoration {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -23,7 +23,6 @@ public class BlockCustomHydraulic extends Block {
 
 		super(Material.ROCK);
 		blockSoundType = SoundType.STONE;
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 		setHardness(2F);
 		setResistance(5F);
 		this.setHarvestLevel("pickaxe", 2);

@@ -20,12 +20,12 @@ import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.init.InitSolarSystems;
 import net.rom.exoplanets.init.RegistrationHandler;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.internal.network.NHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.BiomeDebug;
 import net.rom.exoplanets.util.Deobf;
-import net.rom.exoplanets.util.I18nUtil;
 import net.rom.exoplanets.util.LangFileHelper;
+import net.rom.exoplanets.util.LogHelper;
+import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
@@ -34,16 +34,16 @@ public class ExoplanetsMod implements IMod {
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
     public static StellarRegistry REGISTRY = new StellarRegistry();
-    public static NHandler network;
-    public static I18nUtil i18n = new I18nUtil(ExoInfo.MODID);
+    public static TranslateUtil i18n = new TranslateUtil(ExoInfo.MODID);
+    public static LogHelper logger = new LogHelper();
 
     @SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
     public static ExoCommonProxy proxy;
 
     ///////////////////////// DEV ONLY /////////////////////////////
 
-    private static boolean biomeDebug = false;
-    private static boolean langHelper = false;
+    private static boolean biomeDebug = true;
+    private static boolean langHelper = true;
 
     /////////////////////////////////////////////////////////////////
 
@@ -77,7 +77,7 @@ public class ExoplanetsMod implements IMod {
     public static void postInit(FMLPostInitializationEvent event) {
         ExoDimensions.init();
 
-        if (Deobf.isDeobfuscated() && biomeDebug || langHelper) {
+        if (!(Deobf.isDeobfuscated()) && (biomeDebug || langHelper)) {
             BiomeDebug.createFile();
             LangFileHelper.createFile();
         }

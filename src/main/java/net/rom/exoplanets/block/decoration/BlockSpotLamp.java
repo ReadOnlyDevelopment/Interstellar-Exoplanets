@@ -1,6 +1,5 @@
 package net.rom.exoplanets.block.decoration;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -8,8 +7,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.rom.exoplanets.block.BlockDecoration;
 
-public class BlockSpotLamp extends Block {
+public class BlockSpotLamp extends BlockDecoration {
 
 	protected static final AxisAlignedBB AABB_UP = new AxisAlignedBB(0.0D, 0.85D, 0.0D, 1.0D, 1.0D, 1.0D);
 

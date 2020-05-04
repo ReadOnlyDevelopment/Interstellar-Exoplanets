@@ -18,10 +18,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.init.ExoBlocks;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockWallLamp extends Block{
+public class BlockWallLamp extends BlockDecoration {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.25D, 0.25D, 0.80D, 0.75D, 0.90D, 1.0D);
 	protected static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.25D, 0.25D, 0.0D, 0.75D, 0.90D, 0.20D);
@@ -108,10 +108,10 @@ public class BlockWallLamp extends Block{
             }
 
 			if (isOn && !worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.WALL_LAMP.getDefaultState().withProperty(FACING,
+				worldIn.setBlockState(pos, ExoBlocks.wall_lamp.getDefaultState().withProperty(FACING,
 						worldIn.getBlockState(pos).getValue(FACING)), 2);
 			} else if (!isOn && worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.WALL_LAMP_LIT.getDefaultState().withProperty(FACING,
+				worldIn.setBlockState(pos, ExoBlocks.wall_lamp_lit.getDefaultState().withProperty(FACING,
 						worldIn.getBlockState(pos).getValue(FACING)), 2);
 			}
 		}
@@ -127,7 +127,7 @@ public class BlockWallLamp extends Block{
 			if (isOn && !worldIn.isBlockPowered(pos)) {
 				worldIn.scheduleUpdate(pos, this, 4);
 			} else if (!isOn && worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.WALL_LAMP_LIT.getDefaultState().withProperty(FACING,
+				worldIn.setBlockState(pos, ExoBlocks.wall_lamp_lit.getDefaultState().withProperty(FACING,
 						worldIn.getBlockState(pos).getValue(FACING)), 2);
 			}
 		}
@@ -137,7 +137,7 @@ public class BlockWallLamp extends Block{
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
 			if (isOn && !worldIn.isBlockPowered(pos)) {
-				worldIn.setBlockState(pos, ExoBlocks.WALL_LAMP.getDefaultState().withProperty(FACING,
+				worldIn.setBlockState(pos, ExoBlocks.wall_lamp.getDefaultState().withProperty(FACING,
 						worldIn.getBlockState(pos).getValue(FACING)), 2);
 			}
 		}
@@ -145,17 +145,17 @@ public class BlockWallLamp extends Block{
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(ExoBlocks.WALL_LAMP);
+		return Item.getItemFromBlock(ExoBlocks.wall_lamp);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(ExoBlocks.WALL_LAMP);
+		return new ItemStack(ExoBlocks.wall_lamp);
 	}
 
 	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state) {
-		return new ItemStack(ExoBlocks.WALL_LAMP);
+		return new ItemStack(ExoBlocks.wall_lamp);
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class BlockWallLamp extends Block{
             return true;
         } else {
 			if (worldIn.getBlockState(pos).getBlock() == this) {
-				dropBlockAsItem(worldIn, pos, ExoBlocks.WALL_LAMP.getDefaultState(), 0);
+				dropBlockAsItem(worldIn, pos, ExoBlocks.wall_lamp.getDefaultState(), 0);
 				worldIn.setBlockToAir(pos);
 			}
 

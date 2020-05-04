@@ -1,8 +1,8 @@
 package net.rom.exoplanets.block.decoration;
 
-import javax.annotation.Nullable;
-
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,10 +18,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.init.ExoBlocks;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockAlarmLight extends Block {
+public class BlockAlarmLight extends BlockDecoration {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.25D, 0.25D, 0.5D, 0.75D, 0.75D, 1.0D);
@@ -108,9 +108,9 @@ public class BlockAlarmLight extends Block {
             }
 
             if (isOn && !worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, ExoBlocks.ALARM_LIGHT.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
+                worldIn.setBlockState(pos, ExoBlocks.alarm_light.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
             } else if (!isOn && worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, ExoBlocks.ALARM_LIGHT_LIT.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
+                worldIn.setBlockState(pos, ExoBlocks.alarm_light_lit.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
             }
         }
     }
@@ -125,7 +125,7 @@ public class BlockAlarmLight extends Block {
             if (isOn && !worldIn.isBlockPowered(pos)) {
                 worldIn.scheduleUpdate(pos, this, 4);
             } else if (!isOn && worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, ExoBlocks.ALARM_LIGHT_LIT.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
+                worldIn.setBlockState(pos, ExoBlocks.alarm_light_lit.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
             }
         }
     }
@@ -134,24 +134,24 @@ public class BlockAlarmLight extends Block {
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isRemote) {
             if (isOn && !worldIn.isBlockPowered(pos)) {
-                worldIn.setBlockState(pos, ExoBlocks.ALARM_LIGHT.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
+                worldIn.setBlockState(pos, ExoBlocks.alarm_light.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos).getValue(FACING)), 2);
             }
         }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(ExoBlocks.ALARM_LIGHT);
+        return Item.getItemFromBlock(ExoBlocks.alarm_light);
     }
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return new ItemStack(ExoBlocks.ALARM_LIGHT);
+        return new ItemStack(ExoBlocks.alarm_light);
     }
 
     @Override
     protected ItemStack getSilkTouchDrop(IBlockState state) {
-        return new ItemStack(ExoBlocks.ALARM_LIGHT);
+        return new ItemStack(ExoBlocks.alarm_light);
     }
 
     @Override
@@ -190,7 +190,7 @@ public class BlockAlarmLight extends Block {
             return true;
         } else {
             if (worldIn.getBlockState(pos).getBlock() == this) {
-                dropBlockAsItem(worldIn, pos, ExoBlocks.ALARM_LIGHT.getDefaultState(), 0);
+                dropBlockAsItem(worldIn, pos, ExoBlocks.alarm_light.getDefaultState(), 0);
                 worldIn.setBlockToAir(pos);
             }
 

@@ -1,6 +1,5 @@
 package net.rom.exoplanets.block.decoration;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,9 +13,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.block.BlockDecoration;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
-public class BlockCustomNoticeBoard extends Block {
+public class BlockCustomNoticeBoard extends BlockDecoration {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.12D, 0.12D, 0.9D, 0.88D, 0.88D, 1.0D);
@@ -32,7 +32,6 @@ public class BlockCustomNoticeBoard extends Block {
 		setResistance(5F);
 		this.setHarvestLevel("axe", 1);
 		setLightOpacity(1);
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 

@@ -18,9 +18,9 @@ public class OverworldOreGen implements IWorldGenerator {
 	public WorldGenerator ORERUTILE;
 	
 	public OverworldOreGen() {
-		ORELIMONITE = new WorldGenMinable(ExoBlocks.OVERWORLD_ORE.getStateFromMeta(0), 5);
-		ORERUTHENIUM = new WorldGenMinable(ExoBlocks.OVERWORLD_ORE.getStateFromMeta(1), 5);
-		ORERUTILE = new WorldGenMinable(ExoBlocks.OVERWORLD_ORE.getStateFromMeta(2), 6);
+		ORELIMONITE = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(0), 5);
+		ORERUTHENIUM = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(1), 5);
+		ORERUTILE = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(2), 6);
 	}
 	
 	private void runGenerator(WorldGenerator generator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight) {
@@ -41,9 +41,9 @@ public class OverworldOreGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimensionType().getId()) {
 		case 0: //Overworld Dimension
-			runGenerator(ORELIMONITE, world, random, chunkX, chunkZ, 10, 45, 150);
-			runGenerator(ORERUTHENIUM, world, random, chunkX, chunkZ, 15, 0, 64);
-			runGenerator(ORERUTILE, world, random, chunkX, chunkZ, 12, 0, 64);
+			runGenerator(ORELIMONITE, world, random, chunkX, chunkZ, 3, 45, 150);
+			runGenerator(ORERUTHENIUM, world, random, chunkX, chunkZ, 8, 0, 64);
+			runGenerator(ORERUTILE, world, random, chunkX, chunkZ, 5, 0, 64);
 		}
 		
 	}

@@ -1,6 +1,6 @@
 package net.rom.exoplanets.block.terrain;
 
-import net.rom.exoplanets.block.BasicBlock;
+import net.rom.exoplanets.block.BlockTerrain;
 
 /**
  * Sedimentary rocks are types of rock that are formed by the accumulation or
@@ -8,7 +8,7 @@ import net.rom.exoplanets.block.BasicBlock;
  * organic particles on the floor of oceans or other bodies of water
  * 
  */
-public class BlockSedimentaryRock extends BasicBlock{
+public class BlockSedimentaryRock extends BlockTerrain {
 	
 	public BlockSedimentaryRock() {
 		super();

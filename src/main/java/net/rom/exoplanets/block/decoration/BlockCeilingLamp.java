@@ -2,7 +2,6 @@ package net.rom.exoplanets.block.decoration;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -15,9 +14,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.block.BlockDecoration;
 
-public class BlockCeilingLamp extends Block {
+public class BlockCeilingLamp extends BlockDecoration {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	protected static final AxisAlignedBB AABB_UP = new AxisAlignedBB(0.0D, 0.85D, 0.0D, 1.0D, 1.0D, 1.0D);
 

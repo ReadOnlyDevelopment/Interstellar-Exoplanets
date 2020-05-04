@@ -13,6 +13,7 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.util.ModSupport;
@@ -51,11 +52,6 @@ public class InitSolarSystems {
 		wolf1061 = b.buildSolarSystem("wolf_1061", "milky_way", wolfPos(), wolf1061Star);
 		hd219134 = b.buildSolarSystem("hd_219134", "milky_way", hdPos(), hd219134Star);
 		trappist1 = b.buildSolarSystem("trappist_1", "milky_way", trapPos(), trappist1Star);
-
-		LogHelper.info(yzCeti.getMainStar().getName());
-
-
-
 
 		if (ModSupport.asmodeusLoaded()) {
 			BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
