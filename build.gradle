@@ -19,7 +19,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.2.0'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
     id "com.wynprice.cursemaven" version "2.1.1"
     id "ru.vyarus.pom" version "2.1.0"
     id 'maven-publish'
@@ -96,7 +96,7 @@ dependencies {
     compile 'org.apache.commons:commons-math3:3.6.1'
     
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     
 
 }
