@@ -22,7 +22,7 @@ plugins {
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id "com.wynprice.cursemaven" version "2.1.1"
     id "com.jfrog.bintray" version "1.8.1"
-    id 'net.ltgt.apt' version '0.10' // for lombok
+    id 'net.ltgt.apt' version '0.21' // for lombok
     id 'maven-publish'
     //id 'maven'
     id 'java'
