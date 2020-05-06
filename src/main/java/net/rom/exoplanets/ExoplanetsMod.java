@@ -1,5 +1,8 @@
 package net.rom.exoplanets;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -29,7 +32,16 @@ import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
+	
+    ///////////////////////// DEV ONLY /////////////////////////////
+
+    private static boolean biomeDebug = true;
+    private static boolean langHelper = true;
+
+    /////////////////////////////////////////////////////////////////
 
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
@@ -39,13 +51,6 @@ public class ExoplanetsMod implements IMod {
 
     @SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
     public static ExoCommonProxy proxy;
-
-    ///////////////////////// DEV ONLY /////////////////////////////
-
-    private static boolean biomeDebug = true;
-    private static boolean langHelper = true;
-
-    /////////////////////////////////////////////////////////////////
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -59,8 +64,7 @@ public class ExoplanetsMod implements IMod {
         InitSolarSystems.init();
         InitPlanets.init();
 
-        HabitableZoneClientHandler clientEventHandler = new HabitableZoneClientHandler();
-        MinecraftForge.EVENT_BUS.register(clientEventHandler);
+        MinecraftForge.EVENT_BUS.register(new HabitableZoneClientHandler());
         proxy.preInit(REGISTRY, event);
     }
 
@@ -102,7 +106,7 @@ public class ExoplanetsMod implements IMod {
 
     @Override
     public int getBuildNum() {
-        return 1;
+        return ExoInfo.BUILD;
     }
 
 }

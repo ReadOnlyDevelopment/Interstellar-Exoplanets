@@ -12,12 +12,15 @@ public class AstronomicalConstants {
 
 	/** PI number as a big decimal with 100 decimal places */
 	public static final BigDecimal BIG_PI = new BigDecimal("3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679");
-
+	
 	/** 2 PI number as a big decimal with 100 decimal places */
 	public static final BigDecimal BIG_TWO_PI = BIG_PI.multiply(new BigDecimal(2.0));
 
 	/** Two times Pi. */
 	public static final double TWO_PI = 2.0 * Math.PI;
+	
+	/** Two times Pi. */
+	public static final float TWO_PI_F = (float) (2.0F * Math.PI);
 
 	/** The inverse of two times Pi. */
 	public static final double TWO_PI_INVERSE = 1.0 / (2.0 * Math.PI);

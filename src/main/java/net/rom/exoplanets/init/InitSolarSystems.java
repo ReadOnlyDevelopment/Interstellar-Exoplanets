@@ -9,7 +9,11 @@ import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
+import micdoodle8.mods.galacticraft.api.galaxies.Star;
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import net.minecraft.network.play.server.SPacketPlayerListItem.AddPlayerData;
+import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.ExoInfo;
@@ -20,17 +24,17 @@ import net.rom.exoplanets.util.ModSupport;
 
 public class InitSolarSystems {
 
-	public static ExoStar yzCetiStar;
-	public static ExoStar wolf1061Star;
-	public static ExoStar hd219134Star;
-	public static ExoStar trappist1Star;
+    public static ExoStar yzCetiStar;
+    public static ExoStar wolf1061Star;
+    public static ExoStar hd219134Star;
+    public static ExoStar trappist1Star;
+    public static ExoStar Gliese667b;
+    public static ExoStar Gliese667c;
 
-	public static SolarSystem yzCeti;
-	public static SolarSystem wolf1061;
-	public static SolarSystem hd219134;
-	public static SolarSystem trappist1;
-
-	public static List<SolarSystem> systems = new ArrayList<>();
+    public static SolarSystem yzCeti;
+    public static SolarSystem wolf1061;
+    public static SolarSystem hd219134;
+    public static SolarSystem trappist1;
 
 	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
@@ -74,7 +78,7 @@ public class InitSolarSystems {
 		b.registerSolarSystem(wolf1061);
 		b.registerSolarSystem(hd219134);
 		b.registerSolarSystem(trappist1);
-
+		
 	}
 
 	public static Vector3 yzPos() {

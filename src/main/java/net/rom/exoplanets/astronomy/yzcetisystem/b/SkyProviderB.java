@@ -87,7 +87,7 @@ public class SkyProviderB extends SkyProviderBase {
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return EnumStarColor.RED.getColor();
+		return new Vector3(0, 0, 0);
 	}
 
 	@Override

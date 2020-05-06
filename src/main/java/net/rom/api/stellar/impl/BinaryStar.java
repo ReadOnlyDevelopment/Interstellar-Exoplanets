@@ -69,5 +69,7 @@ public abstract class BinaryStar extends CelestialBody implements IBinary {
 	public String getUnlocalizedNamePrefix() {
 		return null;
 	}
+	
+	
 
 }

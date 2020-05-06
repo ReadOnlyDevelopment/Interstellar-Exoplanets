@@ -14,6 +14,7 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.api.stellar.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
@@ -30,7 +31,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public float getSolarSize() {
-        return 1.5F;
+        return 2.5F;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public float getThermalLevelModifier() {
-        return -2.2F;
+        return 5.5F;
     }
 
     @Override
@@ -77,7 +78,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float partialTicks) {
         float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * ((float) Math.PI * 2.0F)) * 2.0F + 0.25F);
+        float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
         value = MathHelper.clamp(value, 0.0F, 1.0F);
         return value * value * 0.5F + 0.3F;
     }
@@ -85,11 +86,11 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
     @Override
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float partialTicks) {
-        float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * ((float) Math.PI * 2.0F)) * 2.0F + 0.1F);
-        value = MathHelper.clamp(value, 0.55F, 1.0F);
-        value = 1.0F - value;
-        return value * 0.9F;
+        float f1 = this.world.getCelestialAngle(1.0F);
+        float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
+        f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
+        f2 = 1.2F - f2;
+        return f2 * 0.8F;
     }
 
     @Override
@@ -103,8 +104,18 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
     }
 
     @Override
-    public Vector3 getSkyColor() {
-        return new Vector3(0, 0, 0);
+    public Vector3 getFogColor()
+    {
+        float f = 0.6F - this.getStarBrightness(1.0F);
+        return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);        
+    }
+
+    @Override
+    public Vector3 getSkyColor()
+    {
+        float f = 0.3F - this.getStarBrightness(1.0F);
+        return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+       
     }
 
     @Override

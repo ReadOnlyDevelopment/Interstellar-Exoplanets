@@ -12,8 +12,10 @@ import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
+import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
@@ -184,6 +186,7 @@ public class InitPlanets {
             trappistf = builder.buildUnreachablePlanet("trappist_f", InitSolarSystems.trappist1, 5.396859F, trappistAu[4]);
             trappistg = builder.buildUnreachablePlanet("trappist_g", InitSolarSystems.trappist1, 7.957024F, trappistAu[5]);
             trappisth = builder.buildUnreachablePlanet("trappist_h", InitSolarSystems.trappist1, 2.711277F, trappistAu[6]);
+
         }
     }
 

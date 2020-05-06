@@ -74,7 +74,7 @@ public class AstroBuilder {
 		}
 		if(SConfigCore.enableRealism) {
 			main.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + starname + ".png"));
+					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
 		}
 
 		body.setMainStar(main);
@@ -227,6 +227,22 @@ public class AstroBuilder {
 			body.setBiomeInfo(new Biome[] { BiomeOrbit.space });
 		}
 		return body;
+	}
+	
+	/**
+	 * Builds unreachable planet.
+	 *
+	 * @param planetName the planet name
+	 * @param solarSystem the solar system
+	 * @return the planet
+	 */
+	public ExoPlanet buildSpecialUnreachable(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
+		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
+		unreachable.setDistanceFromCenter(au);
+		unreachable.setPhaseShift(randomPhase);
+		unreachable.setRelativeSize(1.0F);
+		GalaxyRegistry.registerPlanet(unreachable);
+		return unreachable;
 	}
 
 	/**
