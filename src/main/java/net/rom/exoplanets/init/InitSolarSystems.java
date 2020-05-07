@@ -19,7 +19,7 @@ import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.conf.SConfigSystems;
-import net.rom.exoplanets.util.LogHelper;
+import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.util.ModSupport;
 
 public class InitSolarSystems {

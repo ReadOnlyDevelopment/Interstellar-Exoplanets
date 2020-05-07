@@ -9,7 +9,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.util.LogHelper;
+import net.rom.exoplanets.internal.LogHelper;
 
 public class SConfigDimensionID {
 

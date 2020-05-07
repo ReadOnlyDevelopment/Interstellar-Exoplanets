@@ -45,7 +45,6 @@ abstract public class ModelTransWrapper implements IBakedModel {
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
 	public ItemCameraTransforms getItemCameraTransforms() {
 		return parent.getItemCameraTransforms();
 	}

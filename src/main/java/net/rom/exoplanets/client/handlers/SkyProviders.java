@@ -15,7 +15,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.c.SkyProviderC;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.SkyProviderD;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
-import net.rom.exoplanets.util.MCUtil;
+import net.rom.exoplanets.internal.MCUtil;
 
 public class SkyProviders {
     @SideOnly(Side.CLIENT)

@@ -11,6 +11,7 @@ import asmodeuscore.core.astronomy.BodiesHelper;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
@@ -70,11 +71,10 @@ public class InitPlanets {
     public static void initPlanets() {
         yzcetib = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 4.50F);
         yzcetic = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 1.5F);
-        yzcetid = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 3.6F);
+        yzcetid = builder.buildExoPlanet(GalacticraftCore.solarSystemSol, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 3.6F);
 
-        if (ModSupport.asmodeusLoaded()) {
-            asmodeusData();
-        }
+        asmodeusData();
+
     }
 
     public static void registerPlanetData() {
@@ -112,12 +112,15 @@ public class InitPlanets {
         // Yz Ceti
         BodiesData data = new BodiesData(ClassBody.DESERT, BodiesHelper.calculateGravity(getGravity(yzcetib)), 0, getDayLength(yzcetib), false);
         BodiesHelper.registerBody(yzcetib, data, SConfigSystems.disable_yzceti_system);
+        BodiesHelper.setOrbitData(yzcetib, (float)Math.PI / 4, 1.0f, 15F, 10.3F, 5.0F, 5F, 6.0F);
+
 
         data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(getGravity(yzcetic)), 0, getDayLength(yzcetic), false);
         BodiesHelper.registerBody(yzcetic, data, false);
 
         data = new BodiesData(ClassBody.SELENA, BodiesHelper.calculateGravity(getGravity(yzcetid)), 0, getDayLength(yzcetid), false);
-        BodiesHelper.registerBody(yzcetid, data, false);
+        BodiesHelper.setOrbitData(yzcetid, (float)Math.PI / 4, 1.0F, 32F, 10.3F, 10.0F, 5F, 0.0F);
+        BodiesHelper.registerBodyData(yzcetid, data);
 
         if (!SConfigSystems.hideUnfinishedSystems) {
 
@@ -128,6 +131,8 @@ public class InitPlanets {
             BodiesHelper.registerBody(wolf1061c, data, false);
             data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
             BodiesHelper.registerBody(wolf1061d, data, false);
+
+           
 
             // HD 219134
             data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
@@ -158,6 +163,8 @@ public class InitPlanets {
             BodiesHelper.registerBody(trappistg, data, false);
             data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
             BodiesHelper.registerBody(trappisth, data, false);
+            
+            
         }
     }
 
@@ -188,6 +195,10 @@ public class InitPlanets {
             trappisth = builder.buildUnreachablePlanet("trappist_h", InitSolarSystems.trappist1, 2.711277F, trappistAu[6]);
 
         }
+    }
+    
+    private static void registerOrbits(ExoPlanet planet) {
+
     }
 
     public static void registerPlanets() {

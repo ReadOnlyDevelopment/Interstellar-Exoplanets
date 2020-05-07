@@ -1,19 +1,14 @@
 package net.rom.exoplanets.internal;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.ICriterionInstance;
@@ -29,7 +24,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
@@ -75,8 +69,6 @@ import net.rom.exoplanets.internal.client.ICustomMesh;
 import net.rom.exoplanets.internal.client.ICustomModel;
 import net.rom.exoplanets.internal.item.IColorItem;
 import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
-import net.rom.exoplanets.util.LogHelper;
-import net.rom.exoplanets.util.MCUtil;
 
 public class StellarRegistry {
     private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");

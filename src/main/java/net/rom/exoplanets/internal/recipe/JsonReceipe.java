@@ -18,7 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.util.LogHelper;
+import net.rom.exoplanets.internal.LogHelper;
 
 public final class JsonReceipe {
 
