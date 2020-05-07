@@ -2,6 +2,9 @@ package net.rom.api.stellar.impl.planet;
 
 import java.util.ArrayList;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.space.IExBody;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
@@ -13,9 +16,10 @@ import net.rom.api.stellar.enums.EnumPlanetType;
 import net.rom.api.stellar.enums.EnumTPHClass;
 import net.rom.api.stellar.interfaces.IExoPlanet;
 import net.rom.api.stellar.world.WorldProviderExoPlanet;
+import net.rom.exoplanets.ExoInfo;
 
 
-public class ExoPlanet extends Planet implements IExoPlanet {
+public class ExoPlanet extends Planet implements IExBody, IExoPlanet {
 
 	private EnumTPHClass habibilityClass;
 	private EnumPlanetType planetType;
@@ -35,9 +39,11 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	private AtmosphereInfo atmos;
 	private ArrayList<EnumAtmosphericGas> atmosGasses = new ArrayList<EnumAtmosphericGas>();
 	private WorldProviderExoPlanet planetProvider = null;
+	private ClassBody classBody;
 
 	public ExoPlanet(String planetName) {
 		super(planetName);
+		BodiesHelper.registerExPlanet(planetSystem, planetName, ExoInfo.MODID, (float)distanceFromCenter);
 		this.setAtmos();
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		this.setPlanetType();
@@ -239,8 +245,8 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	}
 	
 	@Override
-	public double getGravity() {
-		return this.gravity;
+	public float getGravity() {
+		return (float)this.gravity;
 	}
 
 	@Override
@@ -286,6 +292,35 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 	@Override
 	public WorldProviderExoPlanet getPlanetProvider() {
 		return null;
+	}
+
+	@Override
+	public long getDayLenght() {
+		return getDayLength();
+	}
+
+	@Override
+	public int getAtmosphericPressure() {
+		return 0;
+	}
+
+	@Override
+	public float getSolarRadiationMod() {
+		return 0;
+	}
+
+	public ExoPlanet setClassBody(ClassBody classBody) {
+		this.classBody = classBody;
+		return this;
+	}
+
+	@Override
+	public ClassBody getClassPlanet() {
+		return this.classBody;
+	}
+
+	public double getDistanceFromCenter() {
+		return this.distanceFromCenter;
 	}
 
 }

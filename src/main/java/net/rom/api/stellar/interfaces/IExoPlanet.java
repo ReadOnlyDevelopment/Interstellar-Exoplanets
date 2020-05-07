@@ -2,21 +2,23 @@ package net.rom.api.stellar.interfaces;
 
 import java.util.ArrayList;
 
+import asmodeuscore.api.space.IExBody;
+import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import net.rom.api.stellar.enums.EnumClass;
 import net.rom.api.stellar.enums.EnumDiscMethod;
 import net.rom.api.stellar.enums.EnumPlanetType;
 import net.rom.api.stellar.enums.EnumTPHClass;
+import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.api.stellar.world.WorldProviderExoPlanet;
 
 /**
  * The Interface IExoPlanet.
  */
 public interface IExoPlanet {
-	
+		
 	/**
 	 * Gets the planet name.
 	 *
@@ -92,7 +94,7 @@ public interface IExoPlanet {
 	 *
 	 * @return the gravity
 	 */
-	public double getGravity();
+	public float getGravity();
 	
 	/**
 	 * Gets the planets day length.
