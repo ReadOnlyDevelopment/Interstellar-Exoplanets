@@ -28,6 +28,8 @@ plugins {
     id 'java'
 }
 
+//apply from: "https://raw.githubusercontent.com/ROMVoid95/Common-Gradle/master/build.gradle"
+
 repositories {
     flatDir {
         name "fileRepo"
@@ -112,7 +114,7 @@ dependencies {
     }
     
     compile "curse.maven:plprogapi-0.4.4:2941452"
-    compile "curse.maven:asmodeusdev-0.0.14:2947667"
+    compile "curse.maven:asmodeusdev-0.0.15:2950370"
 	
     compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"

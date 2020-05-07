@@ -1,4 +1,4 @@
-package net.rom.exoplanets.util;
+package net.rom.exoplanets.internal;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.launchwrapper.Launch;

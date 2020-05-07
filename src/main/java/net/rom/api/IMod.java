@@ -1,6 +1,6 @@
 package net.rom.api;
 
-import net.rom.exoplanets.util.MCUtil;
+import net.rom.exoplanets.internal.MCUtil;
 
 public interface IMod {
 	

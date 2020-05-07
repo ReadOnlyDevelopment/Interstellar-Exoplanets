@@ -22,7 +22,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.rom.exoplanets.util.MCUtil;
+import net.rom.exoplanets.internal.MCUtil;
 
 public class ModelsHelper {
 	public static void drawBakedModel(IBakedModel model) {

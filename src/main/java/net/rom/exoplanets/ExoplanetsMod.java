@@ -22,12 +22,12 @@ import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.init.InitSolarSystems;
 import net.rom.exoplanets.init.RegistrationHandler;
+import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.BiomeDebug;
 import net.rom.exoplanets.util.Deobf;
 import net.rom.exoplanets.util.LangFileHelper;
-import net.rom.exoplanets.util.LogHelper;
 import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.OverworldOreGen;
 
