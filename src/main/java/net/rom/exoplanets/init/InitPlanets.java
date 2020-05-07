@@ -8,22 +8,20 @@ import static net.rom.exoplanets.conf.SConfigSystems.yzceti_tier;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
-import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
-import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.YzCetiDBiomes;
 import net.rom.exoplanets.conf.SConfigSystems;
-import net.rom.exoplanets.util.ModSupport;
 
 public class InitPlanets {
 
@@ -69,9 +67,9 @@ public class InitPlanets {
     }
 
     public static void initPlanets() {
-        yzcetib = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 4.50F);
+    	yzcetib = builder.registerExPlanet(InitSolarSystems.yzCeti,"yz_ceti_c", builder.getModid(), yzCetiAu[0]);
         yzcetic = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 1.5F);
-        yzcetid = builder.buildExoPlanet(GalacticraftCore.solarSystemSol, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 3.6F);
+        yzcetid = builder.buildExoPlanet(InitSolarSystems.yzCeti, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 3.6F);
 
         asmodeusData();
 
@@ -109,16 +107,19 @@ public class InitPlanets {
     }
 
     public static void asmodeusData() {
+    	
+    	BodiesData data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
         // Yz Ceti
-        BodiesData data = new BodiesData(ClassBody.DESERT, BodiesHelper.calculateGravity(getGravity(yzcetib)), 0, getDayLength(yzcetib), false);
-        BodiesHelper.registerBody(yzcetib, data, SConfigSystems.disable_yzceti_system);
         BodiesHelper.setOrbitData(yzcetib, (float)Math.PI / 4, 1.0f, 15F, 10.3F, 5.0F, 5F, 6.0F);
+        BodiesHelper.registerBodyData(yzcetib, data);
+        
 
 
-        data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(getGravity(yzcetic)), 0, getDayLength(yzcetic), false);
+
+        data = new BodiesData(ClassBody.TERRA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
         BodiesHelper.registerBody(yzcetic, data, false);
 
-        data = new BodiesData(ClassBody.SELENA, BodiesHelper.calculateGravity(getGravity(yzcetid)), 0, getDayLength(yzcetid), false);
+        data = new BodiesData(ClassBody.SELENA, BodiesHelper.calculateGravity(0.45F), 0, 24000L, false);
         BodiesHelper.setOrbitData(yzcetid, (float)Math.PI / 4, 1.0F, 32F, 10.3F, 10.0F, 5F, 0.0F);
         BodiesHelper.registerBodyData(yzcetid, data);
 
@@ -196,10 +197,6 @@ public class InitPlanets {
 
         }
     }
-    
-    private static void registerOrbits(ExoPlanet planet) {
-
-    }
 
     public static void registerPlanets() {
         GalaxyRegistry.registerPlanet(yzcetib);
@@ -214,11 +211,11 @@ public class InitPlanets {
         GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeVenus());
     }
 
-    public static float getGravity(ExoPlanet planet) {
-        return (float) planet.getGravity();
+    public static float getGravity(ExPlanet yzcetib2) {
+        return (float) yzcetib2.getGravity();
     }
 
-    public static long getDayLength(ExoPlanet planet) {
-        return planet.getDayLength();
+    public static long getDayLength(ExPlanet yzcetib2) {
+        return yzcetib2.getDayLenght();
     }
 }
