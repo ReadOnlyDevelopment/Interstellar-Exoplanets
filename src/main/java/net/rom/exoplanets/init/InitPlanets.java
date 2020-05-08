@@ -53,6 +53,10 @@ public class InitPlanets {
 	public static ExoPlanet trappistf;
 	public static ExoPlanet trappistg;
 	public static ExoPlanet trappisth;
+	
+	public static float[] kepler1649Au = { 0.4f, 0.7f };
+	public static ExoPlanet kepler1649b;
+	public static ExoPlanet kepler1649c;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -143,6 +147,13 @@ public class InitPlanets {
 			
 			trappisth = builder.buildUnreachablePlanet("trappist_h", IniSystems.trappist1, 0.896365F, trappistAu[6]);
 			builder.setData(trappisth, ClassBody.SELENA,trappistAu[6],  0.45F, trappistAu[6], 0, 24000L);
+			
+			//kepler 1649
+			kepler1649b = builder.buildUnreachablePlanet("kepler1649_b", IniSystems.kepler1649, 0.6451158F, kepler1649Au[0]);
+			builder.setData(trappistg, ClassBody.SELENA, kepler1649Au[0],  0.55F, kepler1649Au[0], 0, 24000L);
+			
+			kepler1649c = builder.buildUnreachablePlanet("kepler1649_c", IniSystems.kepler1649, 1.932375F, kepler1649Au[1]);
+			builder.setData(trappisth, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
 
 		}
 	}

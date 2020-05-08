@@ -151,7 +151,7 @@ public final class Data {
 		ExoplanetsMod.logger.info(SEPARATOR);
 	}
 	
-	public static void dumpCelestialBodies() {
+	public static void dumpSolarSystemData() {
 		ExoplanetsMod.logger.info(SEPARATOR);
 		ExoplanetsMod.logger.info("REGISTERED CELESTIALBODIES AS OF EXOPLANETS PRE-INIT");
 		for (SolarSystem entry : GalaxyRegistry.getRegisteredSolarSystems().values()) {

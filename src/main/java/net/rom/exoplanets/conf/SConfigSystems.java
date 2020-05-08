@@ -36,6 +36,7 @@ public class SConfigSystems {
 	public static int wolf_tier;
 	public static int hd_tier;
 	public static int trap_tier;
+	public static int k1649_tier;
 
 	// SYSTEMS MAP OFFSETS
 	public static double yzceti_x;
@@ -50,11 +51,14 @@ public class SConfigSystems {
 	public static double trap_x;
 	public static double trap_y;
 	
+	public static double k1649_x;
+	public static double k1649_y;
+	
 	private static String CATEGORY_SYSTEMS_PARENT = "Systems Parents";
 
 	private static String CATEGORY_GENERAL_SYSTEMS_CONFIG = "general systems configuration";
 	private static String CATEGORY_SYSTEM_WIDE_TIERS = "solar system wide tiers";
-	private static String CATEGORY_SYSTEMS_MAP_POSITION = "map postition - yz ceti";
+	private static String CATEGORY_SYSTEMS_MAP_POSITION = "map postition";
 
 
 	public static void syncConfig(boolean load) {
@@ -113,6 +117,11 @@ public class SConfigSystems {
 					"Y Coord for the Trappist 1 System", "exoplanets.configgui.trap_x");
 			trap_y = config.getFloat("Trappist 1 Y", CATEGORY_SYSTEMS_MAP_POSITION, 1.2F, -1000.0F, 1000.0F,
 					"Y Coord for the Trappist 1 System", "exoplanets.configgui.trap_y");
+			
+			k1649_x = config.getFloat("Kepler 1649 X", CATEGORY_SYSTEMS_MAP_POSITION, 2.0F, -1000.0F, 1000.0F,
+					"Y Coord for the Kepler 1649 System", "exoplanets.configgui.k1649_x");
+			k1649_y = config.getFloat("Kepler 1649 Y", CATEGORY_SYSTEMS_MAP_POSITION, -3.0F, -1000.0F, 1000.0F,
+					"Y Coord for the Kepler 1649 System", "exoplanets.configgui.k1649_y");
 
 			if (config.hasChanged()) {
 				config.save();

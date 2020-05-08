@@ -3,11 +3,13 @@ solarsystem.yz_ceti=Yz Ceti
 solarsystem.wolf_1061=Wolf 1061
 solarsystem.hd_219134=HD 219134
 solarsystem.trappist_1=Trappist 1
+solarsystem.kepler1649=Kepler 1649
 
 star.yz_ceti_star=Yz Ceti A
 star.trappist_star=Trappist 1 A
 star.hd_219134_star=HD 219134 A
 star.wolf_1061_star=Wolf 1061 A
+star.kepler1649_star=Kepler 1649 A
 
 planet.yz_ceti_b=Yz Ceti B
 planet.yz_ceti_c=Yz Ceti C
@@ -31,6 +33,9 @@ planet.trappist_e=Trappist 1 E
 planet.trappist_f=Trappist 1 F
 planet.trappist_g=Trappist 1 G
 planet.trappist_h=Trappist 1 H
+
+planet.kepler1649_b=Kepler 1649b
+planet.kepler1649_c=Kepler 1649c
 
 # Messages
 information.exoplanets:beta.1=§bThe Current ExoPlanets version Is in Early Beta!§r
