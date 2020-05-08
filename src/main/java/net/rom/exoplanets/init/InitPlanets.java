@@ -23,7 +23,7 @@ import net.rom.exoplanets.conf.SConfigSystems;
 
 public class InitPlanets {
 
-	public static Float[] yzCetiAu = { 0.3F, 0.4f, 0.55f };
+	public static Float[] yzCetiAu = { 0.3F, 0.4f, 0.590f };
 
 	public static ExoPlanet yzcetib;
 	public static ExoPlanet yzcetic;
@@ -58,7 +58,6 @@ public class InitPlanets {
 
 	public static void init() {
 		InitPlanets.initPlanets();
-		InitPlanets.registerPlanetData();
 		InitPlanets.registerPlanets();
 		InitPlanets.unreachables();
 		InitPlanets.registerTeleportTypes();
@@ -85,20 +84,10 @@ public class InitPlanets {
 
 		yzcetid = builder.buildExoPlanet(yzCet, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 0.9F);
 		builder.setData(yzcetid, ClassBody.SELENA, yzCetiAu[2], 0.005f, 0.6f, 0, 26500L);
-		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.5f, 4.5f);
-//		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.0f, 4.0f);
-//		builder.setOrbit(yzcetid, 1.0f, 1.0f, 5.0f, 5.0f);
-		//builder.setOrbit(yzcetid, 1.3f, 1.5f, 5.0f, 1.3f);
-		//builder.setOrbit(yzcetid, 2.0f, 1.5f, 0.0f, 1.3f);
+		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.3f, 4.3f);
 		builder.setExoData(yzcetid, 5.0f, 1.14f, 1.05f);
 		builder.setAtmos(yzcetid, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d, YzCetiDBiomes.yz_ceti_d_mantle);
-	}
-
-	public static void registerPlanetData() {
-		// builder.setData(body, class, distance, gravity, orbit, pressure, day);
-		// builder.setExoData(body, temp, mass, radius);
-
 	}
 
 	public static void unreachables() {

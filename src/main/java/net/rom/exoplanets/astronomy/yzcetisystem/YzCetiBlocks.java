@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import net.minecraft.block.Block;
-import net.rom.exoplanets.block.terrain.BlockGravel;
-import net.rom.exoplanets.block.terrain.BlockIgneousRock;
-import net.rom.exoplanets.block.terrain.BlockMetamorphicRock;
-import net.rom.exoplanets.block.terrain.BlockSediment;
-import net.rom.exoplanets.block.terrain.BlockSedimentaryRock;
+import net.rom.exoplanets.content.block.terrain.BlockGravel;
+import net.rom.exoplanets.content.block.terrain.BlockIgneousRock;
+import net.rom.exoplanets.content.block.terrain.BlockMetamorphicRock;
+import net.rom.exoplanets.content.block.terrain.BlockSediment;
+import net.rom.exoplanets.content.block.terrain.BlockSedimentaryRock;
 import net.rom.exoplanets.internal.StellarRegistry;
 import static net.rom.exoplanets.ExoInfo.blocks;
 

@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.block.fluid.BlockMoltenFluid;
+import net.rom.exoplanets.content.block.fluid.BlockMoltenFluid;
 import net.rom.exoplanets.tabs.CreativeExoTabs;
 
 public class ExoFluids {
