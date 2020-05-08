@@ -1,28 +1,19 @@
 package net.rom.exoplanets.init;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
-import micdoodle8.mods.galacticraft.api.galaxies.Star;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import net.minecraft.network.play.server.SPacketPlayerListItem.AddPlayerData;
-import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.star.ExoStar;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.conf.SConfigSystems;
-import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.util.ModSupport;
 
-public class InitSolarSystems {
+public class IniSystems {
 
     public static ExoStar yzCetiStar;
     public static ExoStar wolf1061Star;

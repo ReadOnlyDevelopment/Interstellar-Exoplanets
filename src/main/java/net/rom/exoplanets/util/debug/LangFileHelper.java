@@ -1,4 +1,4 @@
-package net.rom.exoplanets.util;
+package net.rom.exoplanets.util.debug;
 
 import java.io.File;
 import java.io.FileWriter;

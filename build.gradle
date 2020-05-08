@@ -120,7 +120,7 @@ dependencies {
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     	
     compile "Galacticraft-1.12-dev:GalacticraftCore-Dev:${GCVersion}"
-    compile "Galacticraft-1.12-dev:Galacticraft-API:${GCVersion}"
+    deobfProvided  "Galacticraft-1.12-dev:Galacticraft-API:${GCVersion}"
     compile "Galacticraft-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
     compile "Galacticraft-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
     

@@ -5,6 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -20,15 +21,15 @@ import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.event.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.InitPlanets;
-import net.rom.exoplanets.init.InitSolarSystems;
+import net.rom.exoplanets.init.IniSystems;
 import net.rom.exoplanets.init.RegistrationHandler;
 import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
-import net.rom.exoplanets.util.BiomeDebug;
 import net.rom.exoplanets.util.Deobf;
-import net.rom.exoplanets.util.LangFileHelper;
 import net.rom.exoplanets.util.TranslateUtil;
+import net.rom.exoplanets.util.debug.BiomeDebug;
+import net.rom.exoplanets.util.debug.LangFileHelper;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.client.ExoplanetsConfigGuiFactory")
@@ -37,10 +38,8 @@ import net.rom.exoplanets.world.OverworldOreGen;
 public class ExoplanetsMod implements IMod {
 	
     ///////////////////////// DEV ONLY /////////////////////////////
-
     private static boolean biomeDebug = true;
     private static boolean langHelper = true;
-
     /////////////////////////////////////////////////////////////////
 
     @Instance(ExoInfo.MODID)
@@ -48,9 +47,12 @@ public class ExoplanetsMod implements IMod {
     public static StellarRegistry REGISTRY = new StellarRegistry();
     public static TranslateUtil i18n = new TranslateUtil(ExoInfo.MODID);
     public static LogHelper logger = new LogHelper();
-
     @SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
     public static ExoCommonProxy proxy;
+    
+    static {
+    	FluidRegistry.enableUniversalBucket();
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -61,7 +63,7 @@ public class ExoplanetsMod implements IMod {
         GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
         ExoFluids.init();
         ExoplanetBiomes.init();
-        InitSolarSystems.init();
+        IniSystems.init();
         InitPlanets.init();
 
         MinecraftForge.EVENT_BUS.register(new HabitableZoneClientHandler());

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.space.IExBody;
 import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
@@ -19,7 +20,7 @@ import net.rom.api.stellar.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.ExoInfo;
 
 
-public class ExoPlanet extends Planet implements IExBody, IExoPlanet {
+public class ExoPlanet extends ExPlanet implements IExoPlanet {
 
 	private EnumTPHClass habibilityClass;
 	private EnumPlanetType planetType;
@@ -43,7 +44,7 @@ public class ExoPlanet extends Planet implements IExBody, IExoPlanet {
 
 	public ExoPlanet(String planetName) {
 		super(planetName);
-		BodiesHelper.registerExPlanet(planetSystem, planetName, ExoInfo.MODID, (float)distanceFromCenter);
+		//BodiesHelper.registerExPlanet(planetSystem, planetName, ExoInfo.MODID, (float)distanceFromCenter);
 		this.setAtmos();
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		this.setPlanetType();
