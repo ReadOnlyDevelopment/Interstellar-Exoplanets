@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.conf.SConfigSystems;
-import net.rom.exoplanets.init.InitSolarSystems;
+import net.rom.exoplanets.init.IniSystems;
 import net.rom.exoplanets.util.ModSupport;
 
 /**
@@ -31,17 +31,17 @@ public class HabitableZoneClientHandler {
 
         if (!disableZoneRender) {
             if (ModSupport.asmodeusLoaded()) {
-                if (renderEvent.celestialBody.equals(InitSolarSystems.yzCeti.getMainStar())) {
+                if (renderEvent.celestialBody.equals(IniSystems.yzCeti.getMainStar())) {
                     this.RingRender(renderEvent, 75F, 115F);
                 }
                 if (!SConfigSystems.hideUnfinishedSystems) {
-                    if (renderEvent.celestialBody.equals(InitSolarSystems.wolf1061.getMainStar())) {
+                    if (renderEvent.celestialBody.equals(IniSystems.wolf1061.getMainStar())) {
                         this.RingRender(renderEvent, 45F, 85F);
                     }
-                    if (renderEvent.celestialBody.equals(InitSolarSystems.hd219134.getMainStar())) {
+                    if (renderEvent.celestialBody.equals(IniSystems.hd219134.getMainStar())) {
                         this.RingRender(renderEvent, 75F, 135F);
                     }
-                    if (renderEvent.celestialBody.equals(InitSolarSystems.trappist1.getMainStar())) {
+                    if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
                         this.RingRender(renderEvent, 55F, 100F);
                     }
                 }
