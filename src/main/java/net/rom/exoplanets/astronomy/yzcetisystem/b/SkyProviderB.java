@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.astronomy.yzcetisystem.b;
 
 import org.lwjgl.opengl.GL11;
@@ -12,19 +36,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.api.stellar.enums.EnumStarColor;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.Textures;
 import net.rom.exoplanets.conf.SConfigCore;
 
 public class SkyProviderB extends SkyProviderBase {
-
-	private static final ResourceLocation cetiC = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/yz_ceti_c.png");
-	private static final ResourceLocation cetiD = new ResourceLocation(ExoInfo.MODID,
-			"textures/celestialbodies/yz_ceti/yz_ceti_d.png");
-	private static final ResourceLocation sun = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_star.png");
 	
-	private static final ResourceLocation sunReal = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/realism/yz_ceti_star.png");
 	
-
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
 		GL11.glPopMatrix();
@@ -39,7 +56,7 @@ public class SkyProviderB extends SkyProviderBase {
 		GL11.glRotatef(this.getCelestialAngle(daylength / 2), 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.cetiC);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiC);
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
 		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
@@ -56,7 +73,7 @@ public class SkyProviderB extends SkyProviderBase {
 		GL11.glRotatef(this.getCelestialAngle(daylength), 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-180.0F, 1.0F, 1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.cetiD);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiD);
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
 		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
@@ -85,7 +102,7 @@ public class SkyProviderB extends SkyProviderBase {
 
 	@Override
 	protected ResourceLocation sunImage() {
-		 return SConfigCore.enableRealism ? sunReal : sun;
+		 return SConfigCore.enableRealism ? Textures.redDwarfReal : Textures.redDwarf;
 	}
 
 	@Override
