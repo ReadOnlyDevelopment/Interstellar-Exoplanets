@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.api.stellar;
 
 import java.awt.Color;
@@ -26,6 +50,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.api.stellar.impl.star.ExoStar;
+import net.rom.exoplanets.Textures;
 import net.rom.exoplanets.conf.SConfigCore;
 
 // TODO: Auto-generated Javadoc
@@ -33,6 +58,8 @@ import net.rom.exoplanets.conf.SConfigCore;
  * The Class AstroBuilder.
  */
 public class AstroBuilder {
+
+	public static final boolean REALISM = !SConfigCore.enableRealism;
 
 	/** The modid. */
 	private String modid;
@@ -73,41 +100,12 @@ public class AstroBuilder {
 	}
 
 	/**
-	 * Builds the solar system.
-	 *
-	 * @param name     the name
-	 * @param galaxy   the galaxy
-	 * @param pos      the pos
-	 * @param starname the starname
-	 * @return the solar system
-	 * @deprecated builds solar system.
-	 */
-	@Deprecated
-	public SolarSystem buildSolarSystem(String name, String galaxy, Vector3 pos, String starname) {
-		SolarSystem body = new SolarSystem(name, galaxy);
-		body.setMapPosition(new Vector3(pos));
-		Star main = new Star(starname);
-		main.setParentSolarSystem(body);
-		if (!SConfigCore.enableRealism) {
-			main.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
-		}
-		if (SConfigCore.enableRealism) {
-			main.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + starname + ".png"));
-		}
-
-		body.setMainStar(main);
-		return body;
-	}
-
-	/**
 	 * Builds the exo star.
 	 *
 	 * @param starName the star name
-	 * @param temp the temp
-	 * @param mass the mass
-	 * @param radius the radius
+	 * @param temp     the temp
+	 * @param mass     the mass
+	 * @param radius   the radius
 	 * @return the exo star
 	 */
 	public ExoStar buildExoStar(String starName, int temp, double mass, double radius) {
@@ -123,9 +121,9 @@ public class AstroBuilder {
 	/**
 	 * Builds the solar system.
 	 *
-	 * @param name the name
-	 * @param galaxy the galaxy
-	 * @param pos the pos
+	 * @param name    the name
+	 * @param galaxy  the galaxy
+	 * @param pos     the pos
 	 * @param exoStar the exo star
 	 * @return the solar system
 	 */
@@ -133,13 +131,13 @@ public class AstroBuilder {
 		SolarSystem body = new SolarSystem(name, galaxy);
 		body.setMapPosition(new Vector3(pos));
 		exoStar.setParentSolarSystem(body);
-		if (!SConfigCore.enableRealism) {
-			exoStar.setBodyIcon(new ResourceLocation(getModid(),
-					"textures/celestialbodies/" + name + "/" + exoStar.getStarName() + ".png"));
-		}
-		if (SConfigCore.enableRealism) {
-			exoStar.setBodyIcon(new ResourceLocation(getModid(),
-					"textures/celestialbodies/" + name + "/realism/" + exoStar.getStarName() + ".png"));
+		if (AstroBuilder.REALISM) {
+			if (SConfigCore.enableRealism) {
+				exoStar.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/realism/" + exoStar.getStarName() + ".png"));
+			} else {
+				exoStar.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + name + "/" + exoStar.getStarName() + ".png"));
+			}
+
 		}
 		body.setMainStar(exoStar);
 		return body;
@@ -156,21 +154,16 @@ public class AstroBuilder {
 	 * @param phase    the phase
 	 * @return the exo planet
 	 */
-	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID,
-			int tier, float phase) {
+	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase) {
 		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
 		body.setPhaseShift(phase);
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
-		if (!SConfigCore.enableRealism) {
-			body.setBodyIcon(new ResourceLocation("exoplanets",
-					"textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
+		if (AstroBuilder.REALISM) {
+			body.setBodyIcon(new ResourceLocation("exoplanets", "textures/celestialbodies/" + system.getName().toLowerCase() + "/realism/" + name + ".png"));
+		} else {
+			body.setBodyIcon(new ResourceLocation("exoplanets", "textures/celestialbodies/" + system.getName().toLowerCase() + "/" + name + ".png"));
 		}
-		if (SConfigCore.enableRealism) {
-			body.setBodyIcon(new ResourceLocation("exoplanets",
-					"textures/celestialbodies/" + system.getName().toLowerCase() + "/realism/" + name + ".png"));
-		}
-
 		if (provider != null) {
 			body.setTierRequired(tier);
 			body.setDimensionInfo(dimID, provider);
@@ -182,7 +175,7 @@ public class AstroBuilder {
 	/**
 	 * Sets the biomes.
 	 *
-	 * @param body the body
+	 * @param body   the body
 	 * @param biomes the biomes
 	 */
 	public void setBiomes(CelestialBody body, Biome... biomes) {
@@ -192,24 +185,23 @@ public class AstroBuilder {
 	/**
 	 * Sets the atmos.
 	 *
-	 * @param body the body
+	 * @param body   the body
 	 * @param gasses the gasses
 	 */
 	public void setAtmos(CelestialBody body, EnumAtmosphericGas... gasses) {
 		((ExoPlanet) body).setAtmosGasses(gasses);
 	}
-	
 
 	/**
 	 * Sets the data.
 	 *
-	 * @param body the body
-	 * @param clazz the clazz
+	 * @param body     the body
+	 * @param clazz    the clazz
 	 * @param distance the distance
-	 * @param gravity the gravity
-	 * @param orbit the orbit
+	 * @param gravity  the gravity
+	 * @param orbit    the orbit
 	 * @param pressure the pressure
-	 * @param day the day
+	 * @param day      the day
 	 */
 	public void setData(CelestialBody body, ClassBody clazz, float distance, float gravity, float orbit, int pressure, long day) {
 		((ExPlanet) body).setClassPlanet(clazz);
@@ -225,9 +217,9 @@ public class AstroBuilder {
 	/**
 	 * Sets the exo data.
 	 *
-	 * @param body the body
-	 * @param temp the temp
-	 * @param mass the mass
+	 * @param body   the body
+	 * @param temp   the temp
+	 * @param mass   the mass
 	 * @param radius the radius
 	 */
 	public void setExoData(CelestialBody body, float temp, float mass, float radius) {
@@ -235,7 +227,7 @@ public class AstroBuilder {
 		((ExoPlanet) body).setPlanetMass(mass);
 		((ExoPlanet) body).setPlanetRadius(radius);
 	}
-	
+
 	/**
 	 * Sets the normal orbit.
 	 *
@@ -249,11 +241,11 @@ public class AstroBuilder {
 	/**
 	 * Sets the orbit.
 	 *
-	 * @param body the body
+	 * @param body          the body
 	 * @param eccentricityX the eccentricity X
 	 * @param eccentricityY the eccentricity Y
-	 * @param orbitOffsetX the orbit offset X
-	 * @param orbitOffsetY the orbit offset Y
+	 * @param orbitOffsetX  the orbit offset X
+	 * @param orbitOffsetY  the orbit offset Y
 	 */
 	public void setOrbit(CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
 		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
@@ -266,7 +258,7 @@ public class AstroBuilder {
 	 * builds SpaceStation.
 	 *
 	 * @param parent             the parent
-	 * @param color the color
+	 * @param color              the color
 	 * @param provider           the provider
 	 * @param dimID              the dim ID
 	 * @param dimIDStatic        the dim ID static
@@ -274,21 +266,19 @@ public class AstroBuilder {
 	 * @param size               the size
 	 * @param distancefromcenter the distancefromcenter
 	 * @param relativetime       the relativetime
-	 * @param customStationIcon the custom station icon
-	 * @param bodyIcon the body icon
+	 * @param customStationIcon  the custom station icon
+	 * @param bodyIcon           the body icon
 	 * @return the satellite
 	 */
-	public Satellite buildSpaceStation(Planet parent, String color, Class<? extends WorldProvider> provider, int dimID,
-			int dimIDStatic, float phase, float size, float distancefromcenter, float relativetime,
-			boolean customStationIcon, @Nullable String bodyIcon) {
+	public Satellite buildSpaceStation(Planet parent, String color, Class<? extends WorldProvider> provider, int dimID, int dimIDStatic, float phase, float size,
+			float distancefromcenter, float relativetime, boolean customStationIcon, @Nullable String bodyIcon) {
 		Satellite body = new Satellite("spacestation." + parent.getUnlocalizedName().replace("planet.", ""));
 		body.setParentBody(parent);
 		body.setRelativeOrbitTime(relativetime);
 		body.setPhaseShift(phase);
 		body.setRelativeSize(size);
 		if (customStationIcon) {
-			body.setBodyIcon(
-					new ResourceLocation(getModid(), "textures/celestialbodies/spacestations/" + bodyIcon + ".png"));
+			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/spacestations/" + bodyIcon + ".png"));
 		} else {
 			body.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
 		}
@@ -306,7 +296,7 @@ public class AstroBuilder {
 	 * @param planetName  the planet name
 	 * @param solarSystem the solar system
 	 * @param randomPhase the random phase
-	 * @param au the au
+	 * @param au          the au
 	 * @return the planet
 	 */
 	public ExoPlanet buildSpecialUnreachable(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
@@ -324,13 +314,12 @@ public class AstroBuilder {
 	 * @param planetName  the planet name
 	 * @param solarSystem the solar system
 	 * @param randomPhase the random phase
-	 * @param au the au
+	 * @param au          the au
 	 * @return the planet
 	 */
 	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
-		unreachable.setBodyIcon(new ResourceLocation(getModid(),
-				"textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
+		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
 		unreachable.setDistanceFromCenter(au);
 		unreachable.setRelativeOrbitTime(au + 0.5F);
 		unreachable.setPhaseShift(randomPhase);
@@ -384,7 +373,6 @@ public class AstroBuilder {
 	 * @param resource the resource
 	 */
 	public void registerRocketGui(Class<? extends WorldProvider> clazz, String resource) {
-		GalacticraftRegistry.registerRocketGui(clazz,
-				new ResourceLocation(getModid() + ":textures/gui/rocket/" + resource + ".png"));
+		GalacticraftRegistry.registerRocketGui(clazz, new ResourceLocation(getModid() + ":textures/gui/rocket/" + resource + ".png"));
 	}
 }
