@@ -37,3 +37,4 @@ libs/*
 /lib/
 *secrets*
 /gradle.properties
+/acore-0.16.jar

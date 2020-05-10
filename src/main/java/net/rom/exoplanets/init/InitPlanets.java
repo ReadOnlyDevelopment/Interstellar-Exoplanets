@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.init;
 
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_b;
@@ -6,14 +30,18 @@ import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_d;
 import static net.rom.exoplanets.conf.SConfigSystems.yzceti_tier;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.rom.api.stellar.AstroBuilder;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
@@ -57,6 +85,8 @@ public class InitPlanets {
 	public static float[] kepler1649Au = { 0.4f, 0.7f };
 	public static ExoPlanet kepler1649b;
 	public static ExoPlanet kepler1649c;
+	
+	public static Satellite earth_highorbit;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -154,7 +184,6 @@ public class InitPlanets {
 			
 			kepler1649c = builder.buildUnreachablePlanet("kepler1649_c", IniSystems.kepler1649, 1.932375F, kepler1649Au[1]);
 			builder.setData(trappisth, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
-
 		}
 	}
 
@@ -176,6 +205,6 @@ public class InitPlanets {
 	}
 
 	public static long getDayLength(ExPlanet planet) {
-		return planet.getDayLenght();
+		return planet.getDayLength();
 	}
 }
