@@ -1,8 +1,33 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.astronomy.yzcetisystem.b;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import asmodeuscore.api.dimension.IAdvancedSpace;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -22,7 +47,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.BiomeProviderYzCetiB;
 import net.rom.exoplanets.init.InitPlanets;
 
-public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
+public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdvancedSpace {
 
     @Override
     public double getMeteorFrequency() {
@@ -71,7 +96,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public double getSolarEnergyMultiplier() {
-        return 0.95F;
+        return 6.5F;
     }
 
     @Override
@@ -125,7 +150,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public boolean hasSunset() {
-        return true;
+        return false;
     }
 
     @Override
@@ -155,7 +180,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public double getYCoordinateToTeleport() {
-        return 120;
+        return 1500.0D;
     }
 
     @Override
@@ -175,12 +200,37 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet {
 
     @Override
     public long getDayLength() {
-        return 220000L;
+        return 15000L;
     }
 
     @Override
     public float getGravity() {
-        return 0.010F;
+        return getPlanet().getGravity();
     }
+
+	@Override
+	public int AtmosphericPressure() {
+		return 5;
+	}
+
+	@Override
+	public boolean SolarRadiation() {
+		return true;
+	}
+
+	@Override
+	public double getSolarWindMultiplier() {
+		return 0.6D;
+	}
+
+	@Override
+	public ClassBody getClassBody() {
+		return ClassBody.SELENA;
+	}
+
+	@Override
+	public float getSolarRadiationModify() {
+		return 5.0f;
+	}
 
 }
