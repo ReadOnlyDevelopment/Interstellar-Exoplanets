@@ -37,6 +37,8 @@ planet.trappist_h=Trappist 1 H
 planet.kepler1649_b=Kepler 1649b
 planet.kepler1649_c=Kepler 1649c
 
+galaxy.wormhole=§eWormhole
+
 # Messages
 information.exoplanets:beta.1=§bThe Current ExoPlanets version Is in Early Beta!§r
 information.exoplanets:beta.2=This means that there may be things in the mod that do not work as intended.
