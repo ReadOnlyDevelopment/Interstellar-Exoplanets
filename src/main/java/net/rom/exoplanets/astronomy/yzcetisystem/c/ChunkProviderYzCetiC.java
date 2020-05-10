@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.astronomy.yzcetisystem.c;
 
 import java.util.List;
@@ -24,6 +48,7 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.rom.api.stellar.world.gen.MapGenExoCaveGen;
 import net.rom.api.stellar.world.gen.MapGenExoRavinGen;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
+import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.BiomeDecoratorYzCetiC;
 
 public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
@@ -35,7 +60,7 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 	private static final int CHUNK_SIZE_X = 16;
 	private static final int CHUNK_SIZE_Z = 16;
 
-	//private final BiomeDecoratorYzCetiC biomeDecoratorYzCetiC = new BiomeDecoratorYzCetiC();
+	private final BiomeDecoratorYzCetiC biomeDecoratorYzCetiC = new BiomeDecoratorYzCetiC();
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves noiseGen2;
@@ -208,7 +233,7 @@ public class ChunkProviderYzCetiC extends ChunkProviderBase {
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				int i1 = 2;
-				//Biome biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
+				Biome biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
 				for (int j1 = -i1; j1 <= i1; ++j1) {
 					for (int k1 = -i1; k1 <= i1; ++k1) {
