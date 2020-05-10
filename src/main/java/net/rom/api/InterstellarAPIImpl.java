@@ -22,37 +22,26 @@
  * THE SOFTWARE.
  */
 
-package net.rom.api.stellar.enums;
+package net.rom.api;
 
-public enum EnumClass {
+import java.lang.reflect.Field;
 
-	D("D"), H("H"), J("J"), K("K"), L("L"), M("M"), N("N"), R("R"), T("T"), Y("Y");
+//TODO Finish
+final class InterstellarAPIImpl {
+    private static final String CORE_API_CLASS = "net.rom.exoplanets.internal.APIInternal";
+    private static final String CORE_API_FIELD = "INSTANCE";
+    private static InterstellarAPI API_INSTANCE;
 
-	private EnumClass planetClass;
-	private String planetClassStr;
-
-	private EnumClass(String strClass) {
-		this.planetClassStr = strClass;
-	}
-
-	private EnumClass(EnumClass pClass) {
-		this.planetClass = pClass;
-	}
-
-	public void setPlanetStrClass(String strClass) {
-		this.planetClassStr = strClass;
-	}
-
-	public void setPlanetClass(EnumClass pClass) {
-		this.planetClass = pClass;
-	}
-
-	public String getPlanetStrClass() {
-		return this.planetClassStr;
-	}
-
-	public EnumClass getPlanetClass() {
-		return this.planetClass;
-	}
-
+    static InterstellarAPI instance() {
+        if (API_INSTANCE == null) {
+            try {
+                final Class<?> apiClass = Class.forName(CORE_API_CLASS);
+                final Field apiField = apiClass.getField(CORE_API_FIELD);
+                API_INSTANCE = (InterstellarAPI) apiField.get(apiClass);
+            } catch (Exception e) {
+            	//TODO
+			}
+        }
+        return API_INSTANCE;
+    }
 }
