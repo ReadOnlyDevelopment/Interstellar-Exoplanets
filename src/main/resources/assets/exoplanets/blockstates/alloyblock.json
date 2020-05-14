@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "alloy=bronze": { "model": "exoplanets:blockbronze" },
+    "alloy=brass": { "model": "exoplanets:blockbrass" },
+    "alloy=steel": { "model": "exoplanets:blocksteel" }
+  }
+}

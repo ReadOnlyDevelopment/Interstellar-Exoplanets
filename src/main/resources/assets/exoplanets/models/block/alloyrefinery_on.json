@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "exoplanets:blocks/alloyrefinery_top",
+    "front": "exoplanets:blocks/alloyrefinery_front_on",
+    "side": "exoplanets:blocks/furnace_side"
+  }
+}
