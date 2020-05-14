@@ -38,15 +38,21 @@ import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
+import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.AstroBuilder;
+import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.trappist1.c.TeleportTypeTrappist1C;
+import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.YzCetiDBiomes;
+import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
 
 public class InitPlanets {
@@ -101,6 +107,7 @@ public class InitPlanets {
 	public static void initPlanets() {
 
 		SolarSystem yzCet = IniSystems.yzCeti;
+		SolarSystem trap1 = IniSystems.trappist1;
 
 		yzcetib = builder.buildExoPlanet(yzCet, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 0.5F);
 		builder.setData(yzcetib, ClassBody.SELENA, yzCetiAu[0], 0.015f, 0.4f, 0, 0L);
@@ -121,7 +128,15 @@ public class InitPlanets {
 		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.3f, 4.3f);
 		builder.setExoData(yzcetid, 5.0f, 1.14f, 1.05f);
 		builder.setAtmos(yzcetid, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
-		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d, YzCetiDBiomes.yz_ceti_d_mantle);
+		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
+		
+//		trappistc = builder.buildExoPlanet(trap1, "trappist_1_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
+//		builder.setData(trappistc, ClassBody.SELENA, trappistAu[1], 0.005f, 0.6f, 0, 26500L);
+//		builder.setNormalOrbit(trappistc);
+//		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
+//		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
+		
+		
 	}
 
 	public static void unreachables() {
@@ -187,17 +202,30 @@ public class InitPlanets {
 		}
 	}
 
+	public static float calcNew(float si) {
+		return (float) (AstronomicalConstants.GRAVITY_FIELD * si / 1000);
+	}
+	
 	public static void registerPlanets() {
 		GalaxyRegistry.registerPlanet(yzcetib);
 		GalaxyRegistry.registerPlanet(yzcetic);
 		GalaxyRegistry.registerPlanet(yzcetid);
+		
+		//GalaxyRegistry.registerPlanet(trappistc);
+
 
 	}
 
 	public static void registerTeleportTypes() {
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
-		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeVenus());
+		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiB.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetib.png"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiC.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetic.png"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
+		
+//		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeTrappist1C());
+//		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
 	}
 
 	public static float getGravity(ExPlanet planet) {

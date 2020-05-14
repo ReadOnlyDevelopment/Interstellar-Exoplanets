@@ -30,15 +30,20 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.block.BlockDecoration;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.internal.IAddRecipe;
+import net.rom.exoplanets.internal.RecipeBuilder;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
-public class BlockStandConsole extends BlockDecoration {
+public class BlockStandConsole extends BlockDecoration implements IAddRecipe {
 	
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.20D, 0.0D, 0.15D, 0.80D, 1.30D, 0.80D);
@@ -100,6 +105,16 @@ public class BlockStandConsole extends BlockDecoration {
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
+	}
+	
+	@Override
+	public void addRecipes(RecipeBuilder recipes) {
+		ItemStack alumIngot = EnumMetal.ALUMINIUM.getIngot();
+		ItemStack alumGear = EnumMetal.ALUMINIUM.getGear();
+		
+        ItemStack result = new ItemStack(this);
+        recipes.addShapedOre("console_stand", result, "igi", " a ", " a ", 'i', alumIngot, 'a', "ingotIron", 'g', alumGear);
+
 	}
 
 }

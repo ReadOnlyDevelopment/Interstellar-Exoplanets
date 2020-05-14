@@ -22,12 +22,31 @@
  * THE SOFTWARE.
  */
 
-package net.rom.exoplanets;
+package net.rom.exoplanets.util;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 
-public final class DevHelper {
+public class ExoTab extends CreativeTabs {
 
-    public static final boolean disableZoneRender = false;
-    public static final boolean disableCustomMap = false;
+	public String backgroundName = "";
+
+	public ExoTab(String label, String backgroundName)
+	{
+		super(label);
+		setBackgroundImageName(backgroundName);
+	}
+
+	@Override
+	public boolean hasSearchBar()
+	{
+		return true;
+	}
+
+	@Override
+	public ItemStack getTabIconItem() {
+		return null;
+	}
+
 
 }

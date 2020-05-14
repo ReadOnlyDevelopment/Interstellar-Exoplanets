@@ -38,7 +38,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.BiomeDecoratorYzCetiC;
 import net.rom.exoplanets.init.InitPlanets;
 
-public abstract class BiomeYzCetiCBase extends BiomeSpace {
+public class BiomeYzCetiCBase extends BiomeSpace {
 
 	protected static final IBlockState STONE = YzCetiBlocks.CetiC.C_METAMORPHIC.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();

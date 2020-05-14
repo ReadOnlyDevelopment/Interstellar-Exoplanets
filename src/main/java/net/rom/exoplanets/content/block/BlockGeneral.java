@@ -29,10 +29,12 @@ import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.ItemStack;
+import net.rom.exoplanets.internal.IAddRecipe;
+import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockBase;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
-public class BlockGeneral extends BlockBase implements ISortableBlock {
+public abstract class BlockGeneral extends BlockBase implements ISortableBlock, IAddRecipe {
 
 	public BlockGeneral(Material materialIn) {
 		super(materialIn);
@@ -52,5 +54,7 @@ public class BlockGeneral extends BlockBase implements ISortableBlock {
 	public EnumSortCategoryBlock getCategory(int meta) {
 		return EnumSortCategoryBlock.GENERAL;
 	}
+	
+    public abstract void addRecipes(RecipeBuilder recipes);
 
 }

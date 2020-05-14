@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "exoplanets:floor1" },
+        "facing=west": { "model": "exoplanets:floor1", "y": 90 },
+        "facing=north": { "model": "exoplanets:floor1", "y": 180 },
+        "facing=east": { "model": "exoplanets:floor1", "y": 270 }
+    }
+}

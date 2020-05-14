@@ -76,24 +76,24 @@ public class RandomResearchText extends GenericResearch {
 
 	@Override
 	public String getTitle(ResearchStack researchStack) {
-		return researchLogic.modifyTitle(researchStack, ExoplanetsMod.i18n.translate("research." + title + "." + getVariation(researchStack) + ".title"));
+		return researchLogic.modifyTitle(researchStack, ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".title"));
 	}
 
 	@Override
 	public String getTitle(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.i18n.translate("research." + title + "." + getVariation(researchStack) + ".title"),
+		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".title"),
 				entityPlayer));
 	}
 
 	@Override
 	public String getInfo(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.i18n.translate("research." + title + "." + getVariation(researchStack) + ".info"),
+		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".info"),
 				entityPlayer));
 	}
 
 	@Override
 	public String getObjective(ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
-		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.i18n.translate("research." + title + "." + getVariation(researchStack)
+		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack)
 				+ ".objective." + objectiveIndex), entityPlayer), objectiveIndex);
 	}
 }

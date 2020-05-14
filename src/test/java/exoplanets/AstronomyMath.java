@@ -24,12 +24,13 @@
 
 package exoplanets;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.apache.commons.math3.util.Precision;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.theories.Theory;
 
 import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
@@ -38,7 +39,6 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.util.ResourceLocation;
 import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.api.stellar.calc.Calculations;
-import net.rom.api.stellar.enums.EnumLuminosityClass;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.exoplanets.ExoInfo;
 
@@ -64,6 +64,33 @@ public class AstronomyMath {
 		SolarSystem TESTSYSTEM = BodiesHelper.registerSolarSystem("exoplanets", "testsystem", TESTGALAXY, new Vector3(0.0, 0.0, 0.0), "teststar", 2.0F);
 		System.out.println(TESTGALAXY.getName());
 		System.out.println(TESTSYSTEM.getUnlocalizedParentGalaxyName());
+	}
+	
+	@Test
+	public void getGravity() {
+		
+		//assertNotEquals("Gravity Calculated: %s", calc((float) AstronomicalConstants.GRAVITY_FIELD) + 6.5, 0.0);
+		System.out.println(calcNew(1.50f));
+		//System.out.println(BodiesHelper.calculateGravity((float) ((float) AstronomicalConstants.GRAVITY_FIELD + 6.5)));
+	}
+	
+	@Theory
+	public float calc(float si) {
+		System.out.println("Si Value input: " + si);
+		float a = 9.91F - si;
+		System.out.println("And we subtract the value of earths own gravity from itself?: " + a);
+		float b = 0.085F / 9.81F;
+		System.out.println("Now assuming this is Overworld gravity value * earths Si value: " + b);
+		float i = a * b;
+		System.out.println(i);
+		float k = Math.round(i * 1000);
+		System.out.println(k);
+		return k;
+	}
+	
+	@Theory
+	public float calcNew(float si) {
+		return (float) (AstronomicalConstants.GRAVITY_FIELD * si / 1000);
 	}
 
 	public static void blockIcon(ExoPlanet planet, String name) {

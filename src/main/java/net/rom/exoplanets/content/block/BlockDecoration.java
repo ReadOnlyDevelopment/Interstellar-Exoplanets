@@ -30,7 +30,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.internal.block.BlockBase;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockDecoration extends BlockBase implements ISortableBlock {
 

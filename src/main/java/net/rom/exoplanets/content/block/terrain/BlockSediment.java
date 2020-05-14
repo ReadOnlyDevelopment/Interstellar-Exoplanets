@@ -28,7 +28,7 @@ import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockSediment extends BlockFalling implements ISortableBlock {
 	

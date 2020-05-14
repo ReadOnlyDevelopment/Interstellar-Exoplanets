@@ -43,7 +43,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.biomes.BiomeGenYzCet
 public class YzCetiDBiomes extends BiomeGenBaseGC {
 
 	public static final Biome yz_ceti_d = new BiomeGenYzCetiD(new BiomeProperties("YzCeti D").setBaseHeight(0.125F).setHeightVariation(0.5F).setRainfall(0.0F).setRainDisabled());
-	public static final Biome yz_ceti_d_mantle = new BiomeGenYzCetiMoltenMantleSea(new BiomeProperties("YzCeti D Mantle Sea").setBaseHeight(-1.0F).setHeightVariation(0.2F).setRainfall(0.0F).setRainDisabled());
+	//public static final Biome yz_ceti_d_mantle = new BiomeGenYzCetiMoltenMantleSea(new BiomeProperties("YzCeti D Mantle Sea").setBaseHeight(-1.0F).setHeightVariation(0.2F).setRainfall(0.0F).setRainDisabled());
 
 	protected YzCetiDBiomes(BiomeProperties properties) {
 		super(properties, true);

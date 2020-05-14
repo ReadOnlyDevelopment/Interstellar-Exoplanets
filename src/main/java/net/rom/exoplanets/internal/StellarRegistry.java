@@ -466,8 +466,8 @@ public class StellarRegistry {
                     .map(ResourceLocation::getResourceDomain)
                     .filter(s -> s.equals(this.modId))
                     .count();
-            this.logger.formatted_Warn("Mod '{}' is still registering recipes with RecipeMaker ({} recipes, out of {} total)",
-                    this.modId, oldRecipeRegisterCount, totalRecipes);
+//            this.logger.formatted_Warn("Mod '{}' is still registering recipes with RecipeMaker ({} recipes, out of {} total)",
+//                    this.modId, oldRecipeRegisterCount, totalRecipes);
         }
 
         this.postInitDone = true;

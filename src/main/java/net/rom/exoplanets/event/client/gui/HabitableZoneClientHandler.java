@@ -24,8 +24,6 @@
 
 package net.rom.exoplanets.event.client.gui;
 
-import static net.rom.exoplanets.DevHelper.disableZoneRender;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -49,107 +47,105 @@ import net.rom.exoplanets.util.ModSupport;
  */
 public class HabitableZoneClientHandler {
 
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
-        if (!disableZoneRender) {
-            if (ModSupport.asmodeusLoaded()) {
-                if (renderEvent.celestialBody.equals(IniSystems.yzCeti.getMainStar())) {
-                    this.RingRender(renderEvent, 75F, 115F);
-                }
-                if (!SConfigSystems.hideUnfinishedSystems) {
-                    if (renderEvent.celestialBody.equals(IniSystems.wolf1061.getMainStar())) {
-                        this.RingRender(renderEvent, 45F, 85F);
-                    }
-                    if (renderEvent.celestialBody.equals(IniSystems.hd219134.getMainStar())) {
-                        this.RingRender(renderEvent, 75F, 135F);
-                    }
-                    if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
-                        this.RingRender(renderEvent, 55F, 100F);
-                    }
-                }
-            }
-        }
-    }
+		if (ModSupport.asmodeusLoaded()) {
+			if (renderEvent.celestialBody.equals(IniSystems.yzCeti.getMainStar())) {
+				this.RingRender(renderEvent, 75F, 115F);
+			}
+			if (!SConfigSystems.hideUnfinishedSystems) {
+				if (renderEvent.celestialBody.equals(IniSystems.wolf1061.getMainStar())) {
+					this.RingRender(renderEvent, 45F, 85F);
+				}
+				if (renderEvent.celestialBody.equals(IniSystems.hd219134.getMainStar())) {
+					this.RingRender(renderEvent, 75F, 135F);
+				}
+				if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
+					this.RingRender(renderEvent, 55F, 100F);
+				}
+			}
+		}
+	}
 
-    public void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, float start, float end) {
-        Vector3f mapPos = renderEvent.parentOffset;
+	public void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, float start, float end) {
+		Vector3f mapPos = renderEvent.parentOffset;
 
-        float sum = renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - renderEvent.celestialBody.getRelativeDistanceFromCenter().scaledDistance;
+		float sum = renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - renderEvent.celestialBody.getRelativeDistanceFromCenter().scaledDistance;
 
-        float xOffset = (float) mapPos.x;
-        float yOffset = (float) mapPos.y;
+		float xOffset = (float) mapPos.x;
+		float yOffset = (float) mapPos.y;
 
-        if (FMLClientHandler.instance().getClient().currentScreen instanceof GuiCelestialSelection) {
-            GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.5F);
-        } else {
-            GL11.glColor4f(0.3F, 0.1F, 0.1F, 0.0F);
-        }
+		if (FMLClientHandler.instance().getClient().currentScreen instanceof GuiCelestialSelection) {
+			GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.5F);
+		} else {
+			GL11.glColor4f(0.3F, 0.1F, 0.1F, 0.0F);
+		}
 
-        renderEvent.setCanceled(true);
+		renderEvent.setCanceled(true);
 
-        final float theta = (float) (2 * Math.PI / 90);
-        final float cos = (float) Math.cos(theta);
-        final float sin = (float) Math.sin(theta);
+		final float theta = (float) (2 * Math.PI / 90);
+		final float cos = (float) Math.cos(theta);
+		final float sin = (float) Math.sin(theta);
 
-        float min = start;
-        float max = end;
+		float min = start;
+		float max = end;
 
-        float x = max * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance + sum);
-        float y = 0;
+		float x = max * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance + sum);
+		float y = 0;
 
-        float temp;
-        // OUTER LINE
-        GL11.glBegin(GL11.GL_LINE_LOOP);
-        for (int i = 0; i < 90; i++) {
+		float temp;
+		// OUTER LINE
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		for (int i = 0; i < 90; i++) {
 
-            GL11.glVertex2f(x + xOffset, y + yOffset);
+			GL11.glVertex2f(x + xOffset, y + yOffset);
 
-            temp = x;
-            x = cos * x - sin * y;
-            y = sin * temp + cos * y;
+			temp = x;
+			x = cos * x - sin * y;
+			y = sin * temp + cos * y;
 
-        }
+		}
 
-        GL11.glEnd();
+		GL11.glEnd();
 
-        GL11.glBegin(GL11.GL_LINE_LOOP);
-        x = min * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - sum);
-        y = 0;
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		x = min * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - sum);
+		y = 0;
 
-        for (int i = 0; i < 90; i++) {
-            GL11.glVertex2f(x + xOffset, y + yOffset);
+		for (int i = 0; i < 90; i++) {
+			GL11.glVertex2f(x + xOffset, y + yOffset);
 
-            temp = x;
-            x = cos * x - sin * y;
-            y = sin * temp + cos * y;
-        }
-        GL11.glEnd();
-        GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.1F);
+			temp = x;
+			x = cos * x - sin * y;
+			y = sin * temp + cos * y;
+		}
+		GL11.glEnd();
+		GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.1F);
 
-        GL11.glBegin(GL11.GL_QUADS);
-        x = min * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - sum);
-        y = 0;
-        float x2 = max * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance + sum);
-        float y2 = 0;
+		GL11.glBegin(GL11.GL_QUADS);
+		x = min * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance - sum);
+		y = 0;
+		float x2 = max * (renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance + sum);
+		float y2 = 0;
 
-        for (int i = 0; i < 90; i++) {
+		for (int i = 0; i < 90; i++) {
 
-            GL11.glVertex2f(x2 + xOffset, y2 + yOffset);
-            GL11.glVertex2f(x + xOffset, y + yOffset);
+			GL11.glVertex2f(x2 + xOffset, y2 + yOffset);
+			GL11.glVertex2f(x + xOffset, y + yOffset);
 
-            temp = x;
-            x = cos * x - sin * y;
-            y = sin * temp + cos * y;
-            temp = x2;
-            x2 = cos * x2 - sin * y2;
-            y2 = sin * temp + cos * y2;
+			temp = x;
+			x = cos * x - sin * y;
+			y = sin * temp + cos * y;
+			temp = x2;
+			x2 = cos * x2 - sin * y2;
+			y2 = sin * temp + cos * y2;
 
-            GL11.glVertex2f(x + xOffset, y + yOffset);
-            GL11.glVertex2f(x2 + xOffset, y2 + yOffset);
-        }
-        GL11.glEnd();
+			GL11.glVertex2f(x + xOffset, y + yOffset);
+			GL11.glVertex2f(x2 + xOffset, y2 + yOffset);
+		}
+		GL11.glEnd();
 
-    }
+	}
 }

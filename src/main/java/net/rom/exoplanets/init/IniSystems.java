@@ -52,7 +52,7 @@ public class IniSystems {
 	public static SolarSystem trappist1;
 	public static SolarSystem kepler1649;
 	
-	public static Galaxies TESTGALAXY;
+	//public static Galaxies TESTGALAXY;
 	
 	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
@@ -71,7 +71,7 @@ public class IniSystems {
 	}
 
 	private static void registerSolarSystems() {
-		TESTGALAXY = BodiesHelper.registerGalaxy("wormhole", new ResourceLocation(ExoInfo.MODID, "textures/gui/galaxy/wormhole.png"));
+		//TESTGALAXY = BodiesHelper.registerGalaxy("wormhole", new ResourceLocation(ExoInfo.MODID, "textures/gui/galaxy/wormhole.png"));
 		
 		yzCeti = b.buildSolarSystem("yz_ceti", "milky_way", yzPos(), yzCetiStar);
 		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
@@ -85,11 +85,11 @@ public class IniSystems {
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesHelper.registerBodyData(hd219134.getMainStar(), data);
 
-		trappist1 = b.buildSolarSystem("trappist_1", TESTGALAXY.getName(), trapPos(), trappist1Star);
+		trappist1 = b.buildSolarSystem("trappist_1", "milky_way", trapPos(), trappist1Star);
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(trappist1.getMainStar(), data);
 
-		kepler1649 = b.buildSolarSystem("kepler1649", TESTGALAXY.getName(), k1649Pos(), kepler1649star);
+		kepler1649 = b.buildSolarSystem("kepler1649", "milky_way", k1649Pos(), kepler1649star);
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(kepler1649.getMainStar(), data);
 	}

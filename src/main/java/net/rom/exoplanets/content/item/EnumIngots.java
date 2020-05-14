@@ -29,7 +29,7 @@ import java.util.Locale;
 import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
 import net.rom.exoplanets.internal.item.IEnumItems;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public enum EnumIngots implements IStringSerializable, IEnumItems<EnumIngots, EnumIngots.ItemIngot> {
 

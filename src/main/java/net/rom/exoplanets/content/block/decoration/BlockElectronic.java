@@ -36,8 +36,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.block.BlockGeneral;
+import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockBase;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockElectronic extends BlockGeneral {
 
@@ -83,6 +84,10 @@ public class BlockElectronic extends BlockGeneral {
 	@Override
 	public int quantityDropped(IBlockState state, int fortune, Random random) {
 		return 1;
+	}
+
+	@Override
+	public void addRecipes(RecipeBuilder recipes) {
 	}
 
 }

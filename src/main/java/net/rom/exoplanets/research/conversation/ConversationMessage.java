@@ -194,7 +194,7 @@ public class ConversationMessage implements IConversationMessage, IConversationM
 
 	protected String formatMessage(String text, IConversationNpc npc, EntityPlayer player) {
 		if (text != null) {
-			return String.format(unlocalized ? ExoplanetsMod.i18n.translate(text) : text, player.getDisplayName().getFormattedText(), npc.getEntity().getDisplayName()
+			return String.format(unlocalized ? ExoplanetsMod.translate.translate(text) : text, player.getDisplayName().getFormattedText(), npc.getEntity().getDisplayName()
 					.getFormattedText());
 		}
 		return null;
@@ -202,7 +202,7 @@ public class ConversationMessage implements IConversationMessage, IConversationM
 
 	protected String formatResearchion(String text, IConversationNpc npc, EntityPlayer player) {
 		if (text != null) {
-			return String.format(unlocalized ? ExoplanetsMod.i18n.translate(text) : text, player.getDisplayName().getFormattedText(), npc.getEntity().getDisplayName()
+			return String.format(unlocalized ? ExoplanetsMod.translate.translate(text) : text, player.getDisplayName().getFormattedText(), npc.getEntity().getDisplayName()
 					.getFormattedText());
 		}
 		return null;

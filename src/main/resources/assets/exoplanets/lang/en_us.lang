@@ -111,12 +111,97 @@ tile.exoplanets.cellar_lamp_lit.name=Cellar Lamp
 tile.exoplanets.inset_lamp.name=Inset Lamp
 tile.exoplanets.inset_lamp_lit.name=Inset Lamp
 
+tile.exoplanets.alloyblock0.name=Bronze Block
+tile.exoplanets.alloyblock1.name=Brass Block
+tile.exoplanets.alloyblock2.name=Steel Block
+
+tile.exoplanets.metalore0.name=Copper Ore
+tile.exoplanets.metalore1.name=Tin Ore
+tile.exoplanets.metalore2.name=Lead Ore
+tile.exoplanets.metalore3.name=Nickel Ore
+tile.exoplanets.metalore4.name=Platinum Ore
+tile.exoplanets.metalore5.name=Aluminium Ore
+tile.exoplanets.metalore6.name=Titanium Ore
+
+tile.exoplanets.alloyrefinery.name=Alloy Refinery
+tile.exoplanets.metalfurnace.name=Metal Furnace
 
 ## ITEMS ##
 item.exoplanets.rutile.name=Rutile Ingot
 item.exoplanets.ruthenium.name=Ruthenium Ingot
 item.exoplanets.limonite.name=Limonite Ingot
 
+item.exoplanets.alloydust0.name=Bronze Alloy Dust
+item.exoplanets.alloydust1.name=Brass Alloy Dust
+item.exoplanets.alloydust2.name=Steel Alloy Dust
+
+item.exoplanets.alloyingot0.name=Bronze Alloy Ingot
+item.exoplanets.alloyingot1.name=Brass Alloy Ingot
+item.exoplanets.alloyingot2.name=Steel Alloy Ingot
+
+item.exoplanets.alloynugget0.name=Bronze Alloy Nugget
+item.exoplanets.alloynugget1.name=Brass Alloy Nugget
+item.exoplanets.alloynugget2.name=Steel Alloy Nugget
+
+item.exoplanets.metaldust0.name=Copper Dust
+item.exoplanets.metaldust1.name=Tin Dust
+item.exoplanets.metaldust2.name=Lead Dust
+item.exoplanets.metaldust3.name=Nickel Dust
+item.exoplanets.metaldust4.name=Platinum Dust
+item.exoplanets.metaldust5.name=Aluminium Dust
+item.exoplanets.metaldust6.name=Titanium Dust
+item.exoplanets.metaldust7.name=Tungsten Dust
+
+item.exoplanets.metalingot0.name=Copper Ingot
+item.exoplanets.metalingot1.name=Tin Ingot
+item.exoplanets.metalingot2.name=Lead Ingot
+item.exoplanets.metalingot3.name=Nickel Ingot
+item.exoplanets.metalingot4.name=Platinum Ingot
+item.exoplanets.metalingot5.name=Aluminium Ingot
+item.exoplanets.metalingot6.name=Titanium Ingot
+item.exoplanets.metalingot7.name=Tungsten Ingot
+
+item.exoplanets.metalnugget0.name=Copper Nugget
+item.exoplanets.metalnugget1.name=Tin Nugget
+item.exoplanets.metalnugget2.name=Lead Nugget
+item.exoplanets.metalnugget3.name=Nickel Nugget
+item.exoplanets.metalnugget4.name=Platinum Nugget
+item.exoplanets.metalnugget5.name=Aluminium Nugget
+item.exoplanets.metalnugget6.name=Titanium Nugget
+item.exoplanets.metalnugget7.name=Tungsten Nugget
+
+item.exoplanets.platecopper.name=Copper Plate
+item.exoplanets.platetin.name=Tin Plate
+item.exoplanets.platelead.name=Lead Plate
+item.exoplanets.platenickel.name=Nickel Plate
+item.exoplanets.plateplatinum.name=Platinum Plate
+item.exoplanets.platealuminium.name=Aluminium Plate
+item.exoplanets.platetitanium.name=Titanium Plate
+item.exoplanets.platetungsten.name=Tungsten Plate
+
+item.exoplanets.gearcopper.name=Copper Gear
+item.exoplanets.geartin.name=Tin Gear
+item.exoplanets.gearlead.name=Lead Gear
+item.exoplanets.gearnickel.name=Nickel Gear
+item.exoplanets.gearplatinum.name=Platinum Gear
+item.exoplanets.gearaluminium.name=Aluminium Gear
+item.exoplanets.geartitanium.name=Titanium Gear
+item.exoplanets.gearTungsten.name=Tungsten Gear
+
+item.exoplanets.platebronze.name=Bronze Alloy Plate
+item.exoplanets.platebrass.name=Brass Alloy Plate
+item.exoplanets.platesteel.name=Steel Alloy Plate
+
+item.exoplanets.gearbronze.name=Bronze Alloy Gear
+item.exoplanets.gearbrass.name=Brass Alloy Gear
+item.exoplanets.gearsteel.name=Steel Alloy Gear
+
 ## FLUIDS ##
 fluid.exoplanets.mantle.name=Molten Mantle
 exoplanets.mantle=Molten Mantle
+
+# JEI
+
+jei.exoplanets.recipe.alloyrefinery=Alloy Refinery (Exoplanets)
+jei.exoplanets.desc.metal_furnace=Ores cook more slowly and with more fuel, but will produce dust in addition to the usual ingot.
+jei.exoplanets.desc.alloy_refinery=WIP

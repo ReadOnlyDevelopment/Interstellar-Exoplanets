@@ -24,8 +24,8 @@
 
 package net.rom.exoplanets;
 
-import java.io.File;
 import java.util.Collections;
+import java.util.Random;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -41,14 +41,15 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.client.gui.GuiHandlerExo;
 import net.rom.exoplanets.conf.InitConfigFiles;
-import net.rom.exoplanets.conf.SConfigDimensionID;
-import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.event.client.gui.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
+import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.IniSystems;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.init.RegistrationHandler;
@@ -75,10 +76,11 @@ public class ExoplanetsMod implements IMod {
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
     public static StellarRegistry REGISTRY = new StellarRegistry();
-    public static TranslateUtil i18n = new TranslateUtil(ExoInfo.MODID);
+    public static TranslateUtil translate = new TranslateUtil(ExoInfo.MODID);
     public static LogHelper logger = new LogHelper();
     @SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
     public static ExoCommonProxy proxy;
+    public static Random random = new Random();
 
     static {
     	FluidRegistry.enableUniversalBucket();
@@ -87,6 +89,7 @@ public class ExoplanetsMod implements IMod {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         REGISTRY.setMod(this);
+        REGISTRY.getRecipeMaker();
         initModInfo(event.getModMetadata());
         InitConfigFiles.init(event);
         RegistrationHandler.init(REGISTRY);
@@ -95,7 +98,7 @@ public class ExoplanetsMod implements IMod {
         ExoplanetBiomes.init();
         IniSystems.init();
         InitPlanets.init();
-
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerExo());
         MinecraftForge.EVENT_BUS.register(new HabitableZoneClientHandler());
         proxy.preInit(REGISTRY, event);
     }
@@ -112,12 +115,12 @@ public class ExoplanetsMod implements IMod {
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
         ExoDimensions.init();
-
-        if (!(Deobf.isDeobfuscated()) && (biomeDebug || langHelper)) {
+        ExoRecipes.alloySmelterRecipes();
+        if ((Deobf.isDeobfuscated()) && (biomeDebug || langHelper)) {
             BiomeDebug.createFile();
             LangFileHelper.createFile();
         }
-
+        
         proxy.postInit(REGISTRY, event);
     }
 

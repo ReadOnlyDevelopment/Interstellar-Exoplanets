@@ -24,17 +24,29 @@
 
 package net.rom.exoplanets.astronomy.trappist1;
 
+import net.minecraft.item.ItemBlock;
+import net.rom.exoplanets.content.block.BlockTerrain;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class TrappistBlocks {
 	
 	public static void registerAll(StellarRegistry registry) {
 		
+		registry.registerBlock(SharedTerrain.TE1_TOP, "t1e_top", new ItemBlock(SharedTerrain.TE1_TOP));
+		registry.registerBlock(SharedTerrain.TE1_TOP_ALT, "t1e_top_alt", new ItemBlock(SharedTerrain.TE1_TOP_ALT));
+		registry.registerBlock(SharedTerrain.HOT_GROUND_1, "dark_hot", new ItemBlock(SharedTerrain.HOT_GROUND_1));
+		registry.registerBlock(SharedTerrain.HOT_GROUND_2, "solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_2));
+		registry.registerBlock(SharedTerrain.HOT_GROUND_3, "bright_solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_3));
+		
 	}
 	
 	public static class SharedTerrain {
 		
-		
+		public static final BlockTerrain TE1_TOP = new BlockTerrain();
+		public static final BlockTerrain TE1_TOP_ALT = new BlockTerrain();
+		public static final BlockTerrain HOT_GROUND_1 = new BlockTerrain();
+		public static final BlockTerrain HOT_GROUND_2 = new BlockTerrain();
+		public static final BlockTerrain HOT_GROUND_3 = new BlockTerrain();
 		
 	}
 	

@@ -35,6 +35,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.block.BlockGeneral;
+import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockBase;
 
 public class BlockMetalDiagonal extends BlockGeneral {
@@ -92,5 +93,9 @@ public class BlockMetalDiagonal extends BlockGeneral {
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
+	}
+
+	@Override
+	public void addRecipes(RecipeBuilder recipes) {
 	}
 }

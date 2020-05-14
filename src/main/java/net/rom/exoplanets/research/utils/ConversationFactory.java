@@ -56,7 +56,7 @@ public class ConversationFactory {
             ConversationMessage child = new ConversationMessage("", nextLineResearchion);
             registry.registerMessage(child);
             child.setMessages(new String[]{String.format("%s.%s.line", unlocalizedName, i)});
-            if (ExoplanetsMod.i18n.hasKey(String.format("%s.%s.researchion", unlocalizedName, i))) {
+            if (ExoplanetsMod.translate.hasKey(String.format("%s.%s.researchion", unlocalizedName, i))) {
                 child.setResearchions(new String[]{String.format("%s.%s.researchion", unlocalizedName, i)});
             }
             child.setUnlocalized(true);

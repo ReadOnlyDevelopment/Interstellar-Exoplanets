@@ -33,7 +33,6 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
@@ -43,7 +42,7 @@ public class SConfigSystems {
 	static Configuration config;
 
 	public SConfigSystems(File file) {
-		SConfigSystems.config = new Configuration((file), "1.0");
+		SConfigSystems.config = new Configuration((file), "1.1");
 		SConfigSystems.syncConfig(true);
 
 	}
@@ -110,18 +109,20 @@ public class SConfigSystems {
 					"exoplanets.configgui.hd_tier");
 			trap_tier = config.getInt("Tier Required for Trappist 1", CATEGORY_SYSTEM_WIDE_TIERS, 3, -1, 10, "Set the Rocket Tier Required for Trappist 1 System",
 					"exoplanets.configgui.trap_tier");
+			k1649_tier = config.getInt("Tier Required for Trappist 1", CATEGORY_SYSTEM_WIDE_TIERS, 3, -1, 10, "Set the Rocket Tier Required for Trappist 1 System",
+					"exoplanets.configgui.trap_tier");
 
-			yzceti_x = config.getFloat("Yz Ceti X", CATEGORY_SYSTEMS_MAP_POSITION, 1.3F, -1000.0F, 1000.0F, "X Coord for the Yz Ceti System", "exoplanets.configgui.yzceti_x");
-			yzceti_y = config.getFloat("Yz Ceti Y", CATEGORY_SYSTEMS_MAP_POSITION, -2.14F, -1000.0F, 1000.0F, "Y Coord for the Yz Ceti System", "exoplanets.configgui.yzceti_y");
+			yzceti_x = config.getFloat("Yz Ceti X", CATEGORY_SYSTEMS_MAP_POSITION, -1.0F, -1000.0F, 1000.0F, "X Position | Yz Ceti System", "exoplanets.configgui.yzceti_x");
+			yzceti_y = config.getFloat("Yz Ceti Y", CATEGORY_SYSTEMS_MAP_POSITION, -1.1F, -1000.0F, 1000.0F, "Y Position | Yz Ceti System", "exoplanets.configgui.yzceti_y");
 
-			wolf_x = config.getFloat("Wolf 1061 X", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "Y Coord for the Wolf 1061 System", "exoplanets.configgui.wolf_x");
-			wolf_y = config.getFloat("Wolf 1061 Y", CATEGORY_SYSTEMS_MAP_POSITION, 1.1F, -1000.0F, 1000.0F, "Y Coord for the Wolf 1061 System", "exoplanets.configgui.wolf_y");
+			wolf_x = config.getFloat("Wolf 1061 X", CATEGORY_SYSTEMS_MAP_POSITION, -2.0F, -1000.0F, 1000.0F, "Y Position | 1061 System", "exoplanets.configgui.wolf_x");
+			wolf_y = config.getFloat("Wolf 1061 Y", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "Y Position | Wolf 1061 System", "exoplanets.configgui.wolf_y");
 
-			hd_x = config.getFloat("HD 219134 X", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "Y Coord for the HD 219134 System", "exoplanets.configgui.hd_x");
-			hd_y = config.getFloat("HD 219134 Y", CATEGORY_SYSTEMS_MAP_POSITION, -2.50F, -1000.0F, 1000.0F, "Y Coord for the HD 219134 System", "exoplanets.configgui.hd_y");
+			hd_x = config.getFloat("HD 219134 X", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "X Position | HD 219134", "exoplanets.configgui.hd_x");
+			hd_y = config.getFloat("HD 219134 Y", CATEGORY_SYSTEMS_MAP_POSITION, -2.50F, -1000.0F, 1000.0F, "Y Position | HD 219134 System", "exoplanets.configgui.hd_y");
 
-			trap_x = config.getFloat("Trappist 1 X", CATEGORY_SYSTEMS_MAP_POSITION, 2.0F, -1000.0F, 1000.0F, "Y Coord for the Trappist 1 System", "exoplanets.configgui.trap_x");
-			trap_y = config.getFloat("Trappist 1 Y", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "Y Coord for the Trappist 1 System", "exoplanets.configgui.trap_y");
+			trap_x = config.getFloat("Trappist 1 X", CATEGORY_SYSTEMS_MAP_POSITION, 2.0F, -1000.0F, 1000.0F, "Y Position | Trappist 1 System", "exoplanets.configgui.trap_x");
+			trap_y = config.getFloat("Trappist 1 Y", CATEGORY_SYSTEMS_MAP_POSITION, -1.5F, -1000.0F, 1000.0F, "Y Position | Trappist 1 System", "exoplanets.configgui.trap_y");
 
 			k1649_x = config.getFloat("Kepler 1649 X", CATEGORY_SYSTEMS_MAP_POSITION, 1.3F, -1000.0F, 1000.0F, "Y Coord for the Kepler 1649 System",
 					"exoplanets.configgui.k1649_x");

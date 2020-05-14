@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.content.block.fluid.BlockMoltenFluid;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class ExoFluids {
 
@@ -65,7 +65,7 @@ public class ExoFluids {
 
             @Override
             public String getLocalizedName(FluidStack stack) {
-                return ExoplanetsMod.i18n.translate(this.unlocalizedName);
+                return ExoplanetsMod.translate.translate(this.unlocalizedName);
             }
         };
 

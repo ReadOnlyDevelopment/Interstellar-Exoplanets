@@ -5,7 +5,7 @@ import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.api.stellar.impl.star.ExoStar;
 
 public class Textures {
-	public static final ResourceLocation cetiB = new ResourceLocation(ExoInfo.MODID, "textures/gui/celestialbodies/yz_ceti/yz_ceti_b.png");
+	public static final ResourceLocation cetiB = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_b.png");
 	public static final ResourceLocation cetiC = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_c.png");
 	public static final ResourceLocation cetiD = new ResourceLocation(ExoInfo.MODID, "textures/celestialbodies/yz_ceti/yz_ceti_d.png");
 		
