@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/oretin",
+  "textures": {
+    "layer0": "exoplanets:blocks/oretin"
+  }
+}

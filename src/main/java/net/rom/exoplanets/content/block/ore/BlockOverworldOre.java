@@ -47,7 +47,7 @@ import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
 import net.rom.exoplanets.internal.client.ICustomModel;
 import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockOverworldOre extends BlockMetaSubtypes implements ICustomModel, IAddRecipe, ISortableBlock {
 	

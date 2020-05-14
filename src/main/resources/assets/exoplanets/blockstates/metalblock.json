@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "metal=copper": { "model": "exoplanets:blockcopper" },
+    "metal=tin": { "model": "exoplanets:blocktin" },
+    "metal=lead": { "model": "exoplanets:blocklead" },
+    "metal=nickel": { "model": "exoplanets:blocknickel" },
+    "metal=platinum": { "model": "exoplanets:blockplatinum" },
+    "metal=aluminium": { "model": "exoplanets:blockaluminium" },
+    "metal=titanium": { "model": "exoplanets:blocktitanium" },
+	"metal=tungsten": { "model": "exoplanets:blocktungsten" }
+  }
+}

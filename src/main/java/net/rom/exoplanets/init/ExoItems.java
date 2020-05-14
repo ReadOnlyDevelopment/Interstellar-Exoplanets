@@ -25,6 +25,14 @@
 package net.rom.exoplanets.init;
 
 import net.rom.exoplanets.content.item.EnumIngots;
+import net.rom.exoplanets.content.item.ItemCraftingItem;
+import net.rom.exoplanets.content.item.ItemDustAlloy;
+import net.rom.exoplanets.content.item.ItemDustByproduct;
+import net.rom.exoplanets.content.item.ItemDustMetal;
+import net.rom.exoplanets.content.item.ItemIngotAlloy;
+import net.rom.exoplanets.content.item.ItemIngotMetal;
+import net.rom.exoplanets.content.item.ItemNuggetAlloy;
+import net.rom.exoplanets.content.item.ItemNuggetMetal;
 import net.rom.exoplanets.content.item.ItemTwoPlayerRocket;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.item.IEnumItems;
@@ -32,6 +40,17 @@ import net.rom.exoplanets.internal.item.IEnumItems;
 public class ExoItems {
 	
 	public static final ItemTwoPlayerRocket passengerRocket = new ItemTwoPlayerRocket();
+    public static final ItemIngotMetal metalIngot = new ItemIngotMetal();
+    public static final ItemNuggetMetal metalNugget = new ItemNuggetMetal();
+    public static final ItemDustMetal metalDust = new ItemDustMetal();
+    public static final ItemIngotAlloy alloyIngot = new ItemIngotAlloy();
+    public static final ItemNuggetAlloy alloyNugget = new ItemNuggetAlloy();
+    public static final ItemDustAlloy alloyDust = new ItemDustAlloy();
+    public static final ItemDustByproduct dustByproduct = new ItemDustByproduct();
+    public static final ItemCraftingItem plateBasic = new ItemCraftingItem("plate", false);
+    public static final ItemCraftingItem plateAlloy = new ItemCraftingItem("plate", true);
+    public static final ItemCraftingItem gearBasic = new ItemCraftingItem("gear", false);
+    public static final ItemCraftingItem gearAlloy = new ItemCraftingItem("gear", true);
 
 	public static void registerAll(StellarRegistry registry) {
 		
@@ -39,6 +58,17 @@ public class ExoItems {
 
 		IEnumItems.RegistrationHelper enumItems = new IEnumItems.RegistrationHelper(registry);
 		enumItems.registerItems(EnumIngots.values());
+		registry.registerItem(metalIngot, "metalingot");
+		registry.registerItem(metalNugget, "metalnugget");
+		registry.registerItem(metalDust, "metaldust");
+		registry.registerItem(alloyIngot, "alloyingot");
+		registry.registerItem(alloyNugget, "alloynugget");
+		registry.registerItem(alloyDust, "alloydust");
+		registry.registerItem(dustByproduct, "byproductdust");
+		registry.registerItem(plateBasic, "metalplate");
+		registry.registerItem(plateAlloy, "alloyplate");
+		registry.registerItem(gearBasic, "metalgear");
+		registry.registerItem(gearAlloy, "alloygear");
 
 	}
 

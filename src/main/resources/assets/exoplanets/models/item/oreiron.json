@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/oreiron",
+  "textures": {
+    "layer0": "exoplanets:blocks/oreiron"
+  }
+}

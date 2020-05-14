@@ -24,29 +24,32 @@
 
 package net.rom.exoplanets.init;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.content.block.decoration.BlockCellarLamp;
 import net.rom.exoplanets.content.block.decoration.BlockCustomHydraulic;
 import net.rom.exoplanets.content.block.decoration.BlockCustomLever;
 import net.rom.exoplanets.content.block.decoration.BlockElectronic;
+import net.rom.exoplanets.content.block.decoration.BlockFloorDecoration;
 import net.rom.exoplanets.content.block.decoration.BlockInsetLamp;
+import net.rom.exoplanets.content.block.decoration.BlockMetalDecoration;
 import net.rom.exoplanets.content.block.decoration.BlockMetalDiagonal;
 import net.rom.exoplanets.content.block.decoration.BlockMetalLamp;
 import net.rom.exoplanets.content.block.decoration.BlockSatelliteAntenna;
 import net.rom.exoplanets.content.block.decoration.BlockStandConsole;
 import net.rom.exoplanets.content.block.decoration.BlockWallLamp;
+import net.rom.exoplanets.content.block.machine.BlockAlloyRefinery;
+import net.rom.exoplanets.content.block.machine.BlockMetalFurnace;
+import net.rom.exoplanets.content.block.ore.BlockAlloy;
+import net.rom.exoplanets.content.block.ore.BlockMetal;
+import net.rom.exoplanets.content.block.ore.BlockOreMetal;
 import net.rom.exoplanets.content.block.ore.BlockOverworldOre;
+import net.rom.exoplanets.content.item.ItemBlockOre;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.tabs.CreativeExoTabs;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class ExoBlocks {
 	
@@ -67,8 +70,19 @@ public class ExoBlocks {
 	public static final BlockCustomHydraulic hydraulic_top = new BlockCustomHydraulic();
 	public static final BlockCustomHydraulic hydraulic_bottom = new BlockCustomHydraulic();
 	public static final BlockCustomHydraulic hydraulic_middle = new BlockCustomHydraulic();
+	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
+	
+    public static final BlockOreMetal metalOre = new BlockOreMetal();
+    public static final BlockMetal metalBlock = new BlockMetal();
+    public static final BlockAlloy alloyBlock = new BlockAlloy();
 
-
+    public static final BlockMetalFurnace metalFurnace = new BlockMetalFurnace();
+    public static final BlockAlloyRefinery alloyRefinery = new BlockAlloyRefinery();
+    
+    public static final BlockFloorDecoration floor1 = new BlockFloorDecoration();
+    public static final BlockFloorDecoration floor2 = new BlockFloorDecoration();
+    public static final BlockFloorDecoration floor3 = new BlockFloorDecoration();
+    
 	// LEVERS
 	public static final BlockCustomLever lever1 = new BlockCustomLever();
 	public static final BlockCustomLever lever2 = new BlockCustomLever();
@@ -89,9 +103,18 @@ public class ExoBlocks {
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
 		YzCetiBlocks.registerAll(reg);
+		TrappistBlocks.registerAll(reg);
 
 		// ORES
 		reg.registerBlock(overworldore, "overworldore", new BlockOverworldOre.ItemBlock(overworldore));
+        reg.registerBlock(metalOre, "metalore", new ItemBlockOre(metalOre));
+        reg.registerBlock(metalBlock, "metalblock");
+        reg.registerBlock(alloyBlock, "alloyblock");
+        
+        reg.registerBlock(metalFurnace, "metalfurnace");
+        reg.registerBlock(alloyRefinery, "alloyrefinery");
+        
+        reg.registerBlock(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
 		
 		// DECORATIONS
 		register(com_relay, "com_relay");
@@ -107,6 +130,11 @@ public class ExoBlocks {
 		register(hydraulic_top, "hydraulic_top");
 		register(hydraulic_bottom, "hydraulic_bottom");
 		register(hydraulic_middle, "hydraulic_middle");
+		
+		//FLOOR
+		register(floor1, "floor1");
+		register(floor2, "floor2");
+		register(floor3, "floor3");
 
 		// LEVERS
 		register(lever1, "lever1");

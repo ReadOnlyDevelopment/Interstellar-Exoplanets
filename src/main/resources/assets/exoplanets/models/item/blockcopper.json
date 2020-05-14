@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/blockcopper",
+  "textures": {
+    "layer0": "exoplanets:blocks/blockcopper"
+  }
+}

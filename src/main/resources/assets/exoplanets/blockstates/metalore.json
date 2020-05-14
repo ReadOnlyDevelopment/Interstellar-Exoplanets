@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "metal=copper": { "model": "exoplanets:orecopper" },
+    "metal=tin": { "model": "exoplanets:oretin" },
+    "metal=lead": { "model": "exoplanets:orelead" },
+    "metal=nickel": { "model": "exoplanets:orenickel" },
+    "metal=platinum": { "model": "exoplanets:oreplatinum" },
+    "metal=aluminium": { "model": "exoplanets:orealuminium" },
+    "metal=titanium": { "model": "exoplanets:oretitanium" },
+	"metal=tungsten": { "model": "exoplanets:oretungsten" }
+  }
+}
