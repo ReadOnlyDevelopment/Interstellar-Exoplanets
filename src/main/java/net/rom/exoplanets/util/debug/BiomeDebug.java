@@ -47,7 +47,7 @@ public class BiomeDebug {
 			print_line.println("|--------------------|--------------------|-----------|");
 			for (Biome b : biomeRegistry.getValuesCollection()) {
 				print_line.println(
-						"| " + b.getBiomeName() + " | " + b.getRegistryName() + " | " + Biome.getIdForBiome(b) + " |");
+						"|| " + b.getRegistryName() + " | " + Biome.getIdForBiome(b) + " |");
 			}
 			print_line.flush();
 			print_line.close();
