@@ -33,7 +33,6 @@ import net.rom.exoplanets.content.block.decoration.BlockCellarLamp;
 import net.rom.exoplanets.content.block.decoration.BlockCustomHydraulic;
 import net.rom.exoplanets.content.block.decoration.BlockCustomLever;
 import net.rom.exoplanets.content.block.decoration.BlockElectronic;
-import net.rom.exoplanets.content.block.decoration.BlockFloorDecoration;
 import net.rom.exoplanets.content.block.decoration.BlockInsetLamp;
 import net.rom.exoplanets.content.block.decoration.BlockMetalDecoration;
 import net.rom.exoplanets.content.block.decoration.BlockMetalDiagonal;
@@ -78,10 +77,6 @@ public class ExoBlocks {
 
     public static final BlockMetalFurnace metalFurnace = new BlockMetalFurnace();
     public static final BlockAlloyRefinery alloyRefinery = new BlockAlloyRefinery();
-    
-    public static final BlockFloorDecoration floor1 = new BlockFloorDecoration();
-    public static final BlockFloorDecoration floor2 = new BlockFloorDecoration();
-    public static final BlockFloorDecoration floor3 = new BlockFloorDecoration();
     
 	// LEVERS
 	public static final BlockCustomLever lever1 = new BlockCustomLever();
@@ -130,11 +125,6 @@ public class ExoBlocks {
 		register(hydraulic_top, "hydraulic_top");
 		register(hydraulic_bottom, "hydraulic_bottom");
 		register(hydraulic_middle, "hydraulic_middle");
-		
-		//FLOOR
-		register(floor1, "floor1");
-		register(floor2, "floor2");
-		register(floor3, "floor3");
 
 		// LEVERS
 		register(lever1, "lever1");

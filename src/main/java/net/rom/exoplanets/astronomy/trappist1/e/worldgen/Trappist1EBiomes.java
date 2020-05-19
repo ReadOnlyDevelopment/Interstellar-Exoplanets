@@ -38,10 +38,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.BiomeGenTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.BiomeGenTrappist1ESea;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.BiomeDecoratorOther;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.biomes.BiomeGenYzCetiD;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.biomes.BiomeGenYzCetiMoltenMantleSea;
 
 public class Trappist1EBiomes extends BiomeGenBaseGC {
 
@@ -78,11 +75,11 @@ public class Trappist1EBiomes extends BiomeGenBaseGC {
 				IBlockState iblockstate2 = chunk.getBlockState(i1, j1, l);
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-				} else if (iblockstate2.getBlock() == TrappistBlocks.SharedTerrain.TE1_TOP) {
+				} else if (iblockstate2.getBlock() == TrappistBlocks.TrappistE.trap1e_grass) {
 					if (j == -1) {
 						if (k <= 0) {
-							iblockstate = null;
-							iblockstate1 = TrappistBlocks.SharedTerrain.TE1_TOP_ALT.getDefaultState();
+							iblockstate = TrappistBlocks.TrappistE.trap1e_grass.getDefaultState();
+							iblockstate1 = TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState();
 						} else if (j1 >= 63 - 4 && j1 <= 63 + 1) {
 							iblockstate = this.topBlock;
 							iblockstate1 = this.fillerBlock;
@@ -102,7 +99,7 @@ public class Trappist1EBiomes extends BiomeGenBaseGC {
 							chunk.setBlockState(i1, j1, l, iblockstate);
 						} else if (j1 < 63 - 7 - k) {
 							iblockstate = null;
-							iblockstate1 = TrappistBlocks.SharedTerrain.TE1_TOP_ALT.getDefaultState();
+							iblockstate1 = TrappistBlocks.TrappistE.trap1e_grass.getDefaultState();
 							chunk.setBlockState(i1, j1, l, TrappistBlocks.SharedTerrain.HOT_GROUND_2.getDefaultState());
 						} else {
 							chunk.setBlockState(i1, j1, l, iblockstate1);

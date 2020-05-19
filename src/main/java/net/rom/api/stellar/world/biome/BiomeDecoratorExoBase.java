@@ -31,7 +31,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.rom.api.stellar.world.EnumOreGen;
 
 public abstract class BiomeDecoratorExoBase extends BiomeDecorator {
 
@@ -44,9 +43,9 @@ public abstract class BiomeDecoratorExoBase extends BiomeDecorator {
 	protected void generateOres(World world, Random rand) {
 	}
 
-	protected void generateOre(WorldGenerator generator, EnumOreGen oreGen, World world, Random rand) {
-		this.generateOre(generator, oreGen.getBlockCount(), oreGen.getMinHeight(), oreGen.getMaxHeight(), world, rand);
-	}
+//	protected void generateOre(WorldGenerator generator, EnumOreGen oreGen, World world, Random rand) {
+//		this.generateOre(generator, oreGen.getBlockCount(), oreGen.getMinHeight(), oreGen.getMaxHeight(), world, rand);
+//	}
 
 	public void generateOre(WorldGenerator generator, int blockCount, int minHeight, int maxHeight, World world,
 			Random rand) {

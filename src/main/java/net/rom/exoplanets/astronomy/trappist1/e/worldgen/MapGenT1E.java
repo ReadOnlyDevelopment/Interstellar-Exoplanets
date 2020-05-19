@@ -191,8 +191,7 @@ public class MapGenT1E extends MapGenBaseMeta {
 										if (var51 > -0.7D) {
 											Block block = primer.getBlockState(var42, var50, var45).getBlock();
 
-											if (block == TrappistBlocks.SharedTerrain.TE1_TOP
-													|| block == TrappistBlocks.SharedTerrain.TE1_TOP_ALT) {
+											if (block == TrappistBlocks.TrappistE.trap1e_grass) {
 												primer.setBlockState(var42, var50, var45, Blocks.AIR.getDefaultState());
 											}
 										}

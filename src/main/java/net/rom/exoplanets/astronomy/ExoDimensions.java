@@ -31,7 +31,7 @@ import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 
 public class ExoDimensions {
-	
+
 	//public static DimensionType HIGHORBIT;
 
 	public static void init() {

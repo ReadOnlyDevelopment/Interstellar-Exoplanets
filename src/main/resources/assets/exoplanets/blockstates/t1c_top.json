@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [ 
+		{ "model": "exoplanets:t1c_top", "weight": 40 },
+		{ "model": "exoplanets:t1c_top_1", "weight": 30 },
+		{ "model": "exoplanets:t1c_top_2", "weight": 30 }
+		]
+    }
+}
+

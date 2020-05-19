@@ -16,7 +16,7 @@ import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 
 public class AlloyRefineryRecipeCategory implements IRecipeCategory {
-    public static final String UID = ExoInfo.RESOURCE_PREFIX + "alloy_smelter";
+    public static final String UID = ExoInfo.RESOURCE_PREFIX + "alloy_refinery";
 
     private final IDrawable background;
     private final IDrawableAnimated flame;

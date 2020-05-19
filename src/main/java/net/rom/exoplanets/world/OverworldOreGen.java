@@ -33,18 +33,22 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.init.ExoBlocks;
 
 public class OverworldOreGen implements IWorldGenerator {
 
-	public WorldGenerator ORELIMONITE;
-	public WorldGenerator ORERUTHENIUM;
-	public WorldGenerator ORERUTILE;
+	public WorldGenerator oreCopper, oreTin, oreLead, oreNickel, orePlatnium, oreAluminium, oreTitanium, oreTungsten;
 	
 	public OverworldOreGen() {
-		ORELIMONITE = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(0), 5);
-		ORERUTHENIUM = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(1), 5);
-		ORERUTILE = new WorldGenMinable(ExoBlocks.overworldore.getStateFromMeta(2), 6);
+		oreCopper = new WorldGenMinable(EnumMetal.COPPER.getOre(), 4);
+		oreTin = new WorldGenMinable(EnumMetal.TIN.getOre(), 5);
+		oreLead = new WorldGenMinable(EnumMetal.LEAD.getOre(), 3);
+		oreNickel = new WorldGenMinable(EnumMetal.NICKEL.getOre(), 5);
+		orePlatnium = new WorldGenMinable(EnumMetal.PLATINUM.getOre(), 2);
+		oreAluminium = new WorldGenMinable(EnumMetal.ALUMINIUM.getOre(), 4);
+		oreTitanium = new WorldGenMinable(EnumMetal.TITANIUM.getOre(), 2);
+		oreTungsten = new WorldGenMinable(EnumMetal.TUNGSTEN.getOre(), 3);
 	}
 	
 	private void runGenerator(WorldGenerator generator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight) {
@@ -65,9 +69,14 @@ public class OverworldOreGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimensionType().getId()) {
 		case 0: //Overworld Dimension
-			runGenerator(ORELIMONITE, world, random, chunkX, chunkZ, 3, 45, 150);
-			runGenerator(ORERUTHENIUM, world, random, chunkX, chunkZ, 8, 0, 64);
-			runGenerator(ORERUTILE, world, random, chunkX, chunkZ, 5, 0, 64);
+			runGenerator(oreCopper, world, random, chunkX, chunkZ, 6, 35, 64);
+			runGenerator(oreTin, world, random, chunkX, chunkZ, 4, 0, 64);
+			runGenerator(oreLead, world, random, chunkX, chunkZ, 5, 0, 64);
+			runGenerator(oreNickel, world, random, chunkX, chunkZ, 5, 0, 64);
+			runGenerator(orePlatnium, world, random, chunkX, chunkZ, 1, 3, 25);
+			runGenerator(oreAluminium, world, random, chunkX, chunkZ, 4, 45, 64);
+			runGenerator(oreTitanium, world, random, chunkX, chunkZ, 2, 35, 75);
+			runGenerator(oreTungsten, world, random, chunkX, chunkZ, 3, 6, 50);
 		}
 		
 	}

@@ -11,6 +11,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.content.EnumMetal;
+import net.rom.exoplanets.content.IMetal;
+import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.internal.IAddRecipe;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.ITEBlock;
@@ -33,9 +36,14 @@ public class BlockAlloyRefinery extends BlockMachine implements IAddRecipe, ITEB
 
     @Override
     public void addRecipes(RecipeBuilder recipes) {
-        ItemStack result = new ItemStack(this);
-            recipes.addShapedOre("alloy_refinery_1", result, "iii", "a a", "bab", 'i', "plateIron", 'a', "plateAluminum", 'b', Blocks.BRICK_BLOCK);
-            recipes.addShapedOre("alloy_refinery_2", result, "iii", "a a", "bab", 'i', "plateIron", 'a', "plateAluminium", 'b', Blocks.BRICK_BLOCK);
+    	
+    	for (IMetal metals : EnumMetal.values()) {
+
+    		ItemStack metalBlocks = metals.getBlock();
+            ItemStack result = new ItemStack(this);
+            recipes.addShaped("alloy_refinery", result, "iii", "afa", "bab", 'i', "plateTitanium", 'a', "platePlatinum", 'b', metalBlocks, 'f' , ExoBlocks.metalFurnace);
+    	}
+
 
     }
 

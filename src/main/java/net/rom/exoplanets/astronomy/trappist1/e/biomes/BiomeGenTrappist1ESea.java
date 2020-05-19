@@ -39,11 +39,12 @@ public class BiomeGenTrappist1ESea extends YzCetiDBiomes {
 
 	public BiomeGenTrappist1ESea(BiomeProperties properties) {
 		super(properties);
-		this.topBlock = TrappistBlocks.SharedTerrain.TE1_TOP_ALT.getDefaultState();
-		this.fillerBlock = TrappistBlocks.SharedTerrain.HOT_GROUND_1.getDefaultState();
+		this.topBlock = TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState();
+		this.fillerBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState();
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
+        
 	}
 
 	@Override

@@ -32,6 +32,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.event.client.handlers.GuiScreenHandler;
 import net.rom.exoplanets.event.client.handlers.SkyProviders;
 import net.rom.exoplanets.init.ExoFluids;
@@ -46,6 +47,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 
 		ExoFluids.bakeModels();
 		registerEventHandler(new GuiScreenHandler());
+		registerEventHandler(new BlockHandler());
 
 		registry.clientPreInit(event);
 

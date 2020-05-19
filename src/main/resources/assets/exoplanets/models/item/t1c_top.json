@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/t1c_top",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/t1c_top"
+  }
+}

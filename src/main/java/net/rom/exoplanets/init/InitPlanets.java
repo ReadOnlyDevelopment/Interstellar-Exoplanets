@@ -44,6 +44,7 @@ import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.Trappist1EBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
@@ -128,8 +129,15 @@ public class InitPlanets {
 		builder.setAtmos(yzcetid, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
 		
+		trappistc = builder.buildExoPlanet(trap1, "trappist_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
+		builder.setData(trappistc, ClassBody.SELENA, trappistAu[1], 0.005f, 0.6f, 0, 26500L);
+		builder.setNormalOrbit(trappistc);
+		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
+		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
+		//builder.setBiomes(trappistc,);
+		
 		trappiste = builder.buildExoPlanet(trap1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
-		builder.setData(trappiste, ClassBody.SELENA, trappistAu[5], 0.005f, 0.6f, 0, 26500L);
+		builder.setData(trappiste, ClassBody.SELENA, trappistAu[3], 0.005f, 0.6f, 0, 26500L);
 		builder.setNormalOrbit(trappiste);
 		builder.setExoData(trappiste, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
@@ -174,8 +182,8 @@ public class InitPlanets {
 			trappistb = builder.buildUnreachablePlanet("trappist_b", IniSystems.trappist1, 3.254752F, trappistAu[0]);
 			builder.setData(trappistb, ClassBody.SELENA,trappistAu[0],  0.45F, trappistAu[0], 0, 24000L);
 			
-			trappistc = builder.buildUnreachablePlanet("trappist_c", IniSystems.trappist1, 0.6451158F, trappistAu[1]);
-			builder.setData(trappistc, ClassBody.SELENA,trappistAu[1],  0.45F, trappistAu[1], 0, 24000L);
+//			trappistc = builder.buildUnreachablePlanet("trappist_c", IniSystems.trappist1, 0.6451158F, trappistAu[1]);
+//			builder.setData(trappistc, ClassBody.SELENA,trappistAu[1],  0.45F, trappistAu[1], 0, 24000L);
 			
 			trappistd = builder.buildUnreachablePlanet("trappist_d", IniSystems.trappist1, 1.932375F, trappistAu[2]);
 			builder.setData(trappistd, ClassBody.SELENA,trappistAu[2],  0.45F, trappistAu[2], 0, 24000L);
@@ -211,6 +219,7 @@ public class InitPlanets {
 		GalaxyRegistry.registerPlanet(yzcetid);
 		
 		GalaxyRegistry.registerPlanet(trappiste);
+		GalaxyRegistry.registerPlanet(trappistc);
 
 
 	}
@@ -225,6 +234,9 @@ public class InitPlanets {
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1E.class, new TeleportTypeMoon());
 		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1E.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
+		
+		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
 	}
 
 	public static float getGravity(ExPlanet planet) {

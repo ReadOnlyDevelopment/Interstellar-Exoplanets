@@ -30,7 +30,6 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
@@ -41,10 +40,6 @@ import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeProviderTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.ChunkProviderTrappist1E;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.BiomeProviderYzCetiD;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.ChunkProviderYzCetiD;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.InitPlanets;
 
@@ -160,8 +155,7 @@ public class WorldProviderTrappist1E extends WorldProviderExoPlanet {
     @Override
     public List<Block> getSurfaceBlocks() {
         List<Block> list = new LinkedList<>();
-        list.add(TrappistBlocks.SharedTerrain.TE1_TOP);
-        list.add(TrappistBlocks.SharedTerrain.TE1_TOP_ALT);
+        list.add(TrappistBlocks.TrappistE.trap1e_grass);
         list.add(TrappistBlocks.SharedTerrain.HOT_GROUND_1);
         return list;
     }

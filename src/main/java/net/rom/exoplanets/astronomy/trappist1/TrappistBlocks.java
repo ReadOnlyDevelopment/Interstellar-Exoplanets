@@ -25,31 +25,52 @@
 package net.rom.exoplanets.astronomy.trappist1;
 
 import net.minecraft.item.ItemBlock;
+import net.rom.exoplanets.astronomy.trappist1.e.blocks.Trappist1E_Dirt;
+import net.rom.exoplanets.astronomy.trappist1.e.blocks.Trappist1E_Grass;
 import net.rom.exoplanets.content.block.BlockTerrain;
+import net.rom.exoplanets.content.block.terrain.BlockMetamorphicRock;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class TrappistBlocks {
 	
 	public static void registerAll(StellarRegistry registry) {
-		
-		registry.registerBlock(SharedTerrain.TE1_TOP, "t1e_top", new ItemBlock(SharedTerrain.TE1_TOP));
-		registry.registerBlock(SharedTerrain.TE1_TOP_ALT, "t1e_top_alt", new ItemBlock(SharedTerrain.TE1_TOP_ALT));
+
 		registry.registerBlock(SharedTerrain.HOT_GROUND_1, "dark_hot", new ItemBlock(SharedTerrain.HOT_GROUND_1));
 		registry.registerBlock(SharedTerrain.HOT_GROUND_2, "solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_2));
 		registry.registerBlock(SharedTerrain.HOT_GROUND_3, "bright_solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_3));
 		
+		registry.registerBlock(TrappistC.T1C_TOP, "t1c_top", new ItemBlock(TrappistC.T1C_TOP));
+		registry.registerBlock(TrappistC.T1C_Dirt_1, "trappist_1_c_dirt", new ItemBlock(TrappistC.T1C_Dirt_1));
+		registry.registerBlock(TrappistC.T1C_Dirt_2, "trappist_1_c_dirt_1", new ItemBlock(TrappistC.T1C_Dirt_2));
+		
+		registry.registerBlock(TrappistE.trap1e_grass, "trap1e_grass", new ItemBlock(TrappistE.trap1e_grass));
+		registry.registerBlock(TrappistE.trap1e_dirt, "trap1e_dirt", new ItemBlock(TrappistE.trap1e_dirt));
+		registry.registerBlock(TrappistE.trap1e_cobblestone, "trap1e_cobblestone", new ItemBlock(TrappistE.trap1e_cobblestone));
+		registry.registerBlock(TrappistE.trap1e_stone, "trap1e_stone", new ItemBlock(TrappistE.trap1e_stone));
+		
 	}
 	
 	public static class SharedTerrain {
-		
-		public static final BlockTerrain TE1_TOP = new BlockTerrain();
-		public static final BlockTerrain TE1_TOP_ALT = new BlockTerrain();
+
 		public static final BlockTerrain HOT_GROUND_1 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_2 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_3 = new BlockTerrain();
 		
 	}
 	
+	public static class TrappistC {
+		
+		public static final BlockTerrain T1C_TOP = new BlockTerrain();
+		public static final BlockTerrain T1C_Dirt_1 = new BlockTerrain();
+		public static final BlockTerrain T1C_Dirt_2 = new BlockTerrain();
+	}
 	
+	public static class TrappistE {
+		
+		public static final Trappist1E_Grass trap1e_grass = new Trappist1E_Grass();
+		public static final Trappist1E_Dirt trap1e_dirt = new Trappist1E_Dirt();
+		public static final BlockMetamorphicRock trap1e_cobblestone = new BlockMetamorphicRock();
+		public static final BlockMetamorphicRock trap1e_stone = new BlockMetamorphicRock();
+	}
 
 }

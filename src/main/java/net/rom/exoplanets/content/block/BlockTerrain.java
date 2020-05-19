@@ -38,6 +38,8 @@ public class BlockTerrain extends BlockBase implements ISortableBlock, ITerrafor
 	public BlockTerrain() {
 		super(Material.GROUND);
 		this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
+		setHardness(5.0f);
+		setHarvestLevel("pickaxe", 2);
 
 	}
 

@@ -47,13 +47,14 @@ public class ChunkProviderTrappist1E extends ExoChunkProviderMultiSpace {
 
     private final BiomeDecoratorTrappist1E cetiDBiomeDecorator = new BiomeDecoratorTrappist1E();
     private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
-    private final MapGenExoCave caveGenerator = new MapGenExoCave(TrappistBlocks.SharedTerrain.TE1_TOP.getDefaultState(), Blocks.LAVA.getDefaultState(),
+    private final MapGenExoCave caveGenerator = new MapGenExoCave(TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), Blocks.LAVA.getDefaultState(),
             Sets.newHashSet(TrappistBlocks.SharedTerrain.HOT_GROUND_3, TrappistBlocks.SharedTerrain.HOT_GROUND_1));
 
     public ChunkProviderTrappist1E(World par1World, long seed, boolean mapFeaturesEnabled) {
         super(par1World, seed, mapFeaturesEnabled);
-        //this.stoneBlock = TrappistBlocks.SharedTerrain.TE1_TOP.getDefaultState();
+        //this.stoneBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState();
         this.waterBlock = Blocks.WATER.getDefaultState();
+        
     }
 
     @Override

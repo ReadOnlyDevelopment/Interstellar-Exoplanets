@@ -27,6 +27,7 @@ package net.rom.exoplanets.astronomy.trappist1.e;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -34,46 +35,26 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.api.stellar.enums.EnumStarColor;
-import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.Textures;
 import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.internal.client.SkyProviderHelper;
 
 public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
 		GL11.glPopMatrix();
-        GL11.glPushMatrix();
-        
-        GL11.glEnable(GL11.GL_BLEND);
-        
-        f10 = 1.0F;
-        GL11.glScalef(0.6F, 0.6F, 0.6F);
-        GL11.glRotatef(-180.0F, 50.0F, 1.0F, 0.0F);
-        GL11.glRotatef(90F, 190.0F, 50.0F, 0.0F);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiC);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();		
-        
-        f10 = 2.5F;
-        GL11.glScalef(0.8F, 0.8F, 0.8F);
-        GL11.glRotatef(-80.0F, 1.0F, 0.0F, 0.0F);  
-        GL11.glRotatef(140.0F, 0.0F, 0.0F, 1.0F);	
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiB);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();
-    
-        GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPushMatrix();
+
+		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
+
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 0.5f, daylength, Textures.trappist1b, -100f);
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 1.0f, daylength, Textures.trappist1c, -85f);
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 1.5f, daylength, Textures.trappist1d, -105f);
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 2.0f, daylength, Textures.trappist1f, -95f);
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 2.5f, daylength, Textures.trappist1g, -110f);
+		SkyProviderHelper.renderPlanet(tessellator, buffer, 3.0f, daylength, Textures.trappist1h, -115f);
+
 	}
 
 	@Override
@@ -108,9 +89,14 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return new Vector3(0, 0, 0);
+		return null;
 	}
-	
+
+	@Override
+	public boolean enableSmoothRender() {
+		return true;
+	}
+
 	@Override
 	public int addSizeAura() {
 		return 10;

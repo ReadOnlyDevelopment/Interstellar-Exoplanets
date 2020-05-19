@@ -184,7 +184,7 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	}
 
 	private void generateHeightMap(int chunkX, int chunkY, int chunkZ) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX, chunkZ, 5, 5, 200.0F, 200.0F, 0.5F);
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX, chunkZ, 5, 5, 200.0F, 200.0F, 8.5F);
 		float f = 684.412F;
 		float f1 = 684.412F;
 		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, chunkX, chunkY, chunkZ, 5, 33, 5, f / 80.0F, f1 / 160.0F, f / 80.0F);

@@ -34,7 +34,8 @@ public class ExoplanetsPlugin implements IModPlugin {
         // Description pages
         String descPrefix = "jei.exoplanets.desc.";
         reg.addIngredientInfo(metalFurnace, ItemStack.class, descPrefix + "metal_furnace");
-        reg.addIngredientInfo(alloySmelter, ItemStack.class, descPrefix + "alloy_smelter");
+        reg.addIngredientInfo(alloySmelter, ItemStack.class, descPrefix + "alloy_refinery");
+        
     }
     
     @Override

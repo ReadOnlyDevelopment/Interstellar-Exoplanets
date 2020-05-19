@@ -1,7 +1,0 @@
-{
-    "parent": "exoplanets:block/floor",
-    "textures": {
-        "particle": "exoplanets:blocks/floor2",
-        "pattern": "exoplanets:blocks/floor2"
-    }
-}
