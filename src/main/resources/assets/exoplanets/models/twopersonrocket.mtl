@@ -1,0 +1,8 @@
+# Blender MTL File: 'idk.blend'
+# Material Count: 1
+
+newmtl None
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+d 1
+map_Kd exoplanets:model/twopersonrocket

@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.internal.tile;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -16,6 +40,7 @@ import javax.activation.UnsupportedDataTypeException;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.rom.exoplanets.internal.inerf.tile.INBTSerializer;
 
 @Retention(RUNTIME)
 @Target(FIELD)
@@ -52,21 +77,18 @@ public @interface SyncVariable {
     /**
      * Reads/writes sync variables for any object. Used by TileEntitySL in Lib. Gems uses this in
      * PlayerDataHandler.
-     *
-     * @author SilentChaos512
-     * @since 2.1.1
      */
     final class Helper {
         static final Map<Class, Function<NBTTagCompound, ?>> READERS = new HashMap<>();
         static final Map<Class, Function<?, NBTTagCompound>> WRITERS = new HashMap<>();
-        static final Map<Class, NBTSerializer> SERIALIZERS = new HashMap<>();
+        static final Map<Class, INBTSerializer> SERIALIZERS = new HashMap<>();
 
         private Helper() {}
 
         public static <T> void registerSerializer(Class<T> clazz,
                                                   Function<NBTTagCompound, T> reader,
                                                   BiConsumer<NBTTagCompound, T> writer) {
-            SERIALIZERS.put(clazz, new NBTSerializer<T>() {
+            SERIALIZERS.put(clazz, new INBTSerializer<T>() {
                 @Override
                 public T read(NBTTagCompound tags) {
                     return reader.apply(tags);
@@ -118,7 +140,7 @@ public @interface SyncVariable {
                             else if (field.getType() == byte.class)
                                 field.setByte(obj, tags.getByte(name));
                             else if (SERIALIZERS.containsKey(field.getType())) {
-                                NBTSerializer serializer = SERIALIZERS.get(field.getType());
+                                INBTSerializer serializer = SERIALIZERS.get(field.getType());
                                 NBTTagCompound compound = tags.getCompoundTag(name);
                                 field.set(obj, serializer.read(compound));
                             } else
@@ -178,7 +200,7 @@ public @interface SyncVariable {
                                     tags.setByte(name, field.getByte(obj));
                                 else if (SERIALIZERS.containsKey(field.getType())) {
                                     NBTTagCompound compound = new NBTTagCompound();
-                                    NBTSerializer serializer = SERIALIZERS.get(field.getType());
+                                    INBTSerializer serializer = SERIALIZERS.get(field.getType());
                                     serializer.write(compound, field.get(obj));
                                     tags.setTag(name, compound);
                                 } else

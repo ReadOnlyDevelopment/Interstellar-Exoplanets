@@ -38,3 +38,4 @@ libs/*
 *secrets*
 /gradle.properties
 /acore-0.16.jar
+/psd/

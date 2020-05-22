@@ -39,8 +39,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.block.BlockDecoration;
-import net.rom.exoplanets.internal.IAddRecipe;
 import net.rom.exoplanets.internal.RecipeBuilder;
+import net.rom.exoplanets.internal.inerf.IAddRecipe;
 import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockStandConsole extends BlockDecoration implements IAddRecipe {

@@ -47,8 +47,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import net.rom.exoplanets.internal.item.IEnumItems;
-import net.rom.exoplanets.internal.recipe.IRSerializer;
+import net.rom.exoplanets.internal.inerf.IRSerializer;
+import net.rom.exoplanets.internal.inerf.item.IEnumItems;
 import net.rom.exoplanets.internal.recipe.JsonReceipe;
 
 public final class RecipeBuilder {
@@ -454,7 +454,7 @@ public final class RecipeBuilder {
             else if (obj instanceof Block)
                 result[i] = new ItemStack((Block) obj);
             else if (obj instanceof IEnumItems)
-                result[i] = ((IEnumItems) obj).getStack();
+                result[i] = ((IEnumItems<?, ?>) obj).getStack();
             else
                 throw new IllegalArgumentException("Can't make object of type " + obj.getClass() + " into an ItemStack! Index " + i + ", obj=" + obj);
         }

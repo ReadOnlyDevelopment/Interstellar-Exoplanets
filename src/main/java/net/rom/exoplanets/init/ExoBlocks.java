@@ -40,12 +40,11 @@ import net.rom.exoplanets.content.block.decoration.BlockMetalLamp;
 import net.rom.exoplanets.content.block.decoration.BlockSatelliteAntenna;
 import net.rom.exoplanets.content.block.decoration.BlockStandConsole;
 import net.rom.exoplanets.content.block.decoration.BlockWallLamp;
+import net.rom.exoplanets.content.block.generic.BlockAlloy;
+import net.rom.exoplanets.content.block.generic.BlockMetal;
 import net.rom.exoplanets.content.block.machine.BlockAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.BlockMetalFurnace;
-import net.rom.exoplanets.content.block.ore.BlockAlloy;
-import net.rom.exoplanets.content.block.ore.BlockMetal;
 import net.rom.exoplanets.content.block.ore.BlockOreMetal;
-import net.rom.exoplanets.content.block.ore.BlockOverworldOre;
 import net.rom.exoplanets.content.item.ItemBlockOre;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.util.CreativeExoTabs;
@@ -55,7 +54,6 @@ public class ExoBlocks {
 	private static StellarRegistry reg;
 
 	// ELECTRONIC
-	public static final BlockOverworldOre overworldore = new BlockOverworldOre();
 	public static final BlockElectronic raidcontroller = new BlockElectronic();
 	public static final BlockElectronic lower_raidcontroller = new BlockElectronic();
 	public static final BlockElectronic raidcluster = new BlockElectronic();
@@ -101,7 +99,6 @@ public class ExoBlocks {
 		TrappistBlocks.registerAll(reg);
 
 		// ORES
-		reg.registerBlock(overworldore, "overworldore", new BlockOverworldOre.ItemBlock(overworldore));
         reg.registerBlock(metalOre, "metalore", new ItemBlockOre(metalOre));
         reg.registerBlock(metalBlock, "metalblock");
         reg.registerBlock(alloyBlock, "alloyblock");
@@ -145,7 +142,7 @@ public class ExoBlocks {
 
 	}
 
-	private static void register(Block block, String blockName) {
+	public static void register(Block block, String blockName) {
 		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
 

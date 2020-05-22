@@ -43,6 +43,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.internal.LogHelper;
+import net.rom.exoplanets.internal.inerf.IRSerializer;
 
 public final class JsonReceipe {
 

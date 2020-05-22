@@ -27,7 +27,7 @@ package net.rom.exoplanets.util;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
-import net.rom.exoplanets.content.item.EnumIngots;
+import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.init.ExoBlocks;
 
 public class CreativeExoTabs {
@@ -42,7 +42,7 @@ public class CreativeExoTabs {
 		@Override
 		public boolean hasSearchBar()
 		{
-			return false;
+			return true;
 		}
 	};
 	
@@ -56,7 +56,7 @@ public class CreativeExoTabs {
 		@Override
 		public boolean hasSearchBar()
 		{
-			return false;
+			return true;
 		}
 	};
 	
@@ -64,13 +64,13 @@ public class CreativeExoTabs {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(EnumIngots.RUTILE.getItem());
+			return new ItemStack(EnumMetal.PLATINUM.getPlate().getItem());
 		}
 		
 		@Override
 		public boolean hasSearchBar()
 		{
-			return false;
+			return true;
 		}
 	};
 

@@ -25,11 +25,13 @@
 package net.rom.exoplanets.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.event.TextureStitchEvent.Pre;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.rom.exoplanets.internal.IProxy;
 import net.rom.exoplanets.internal.StellarRegistry;
+import net.rom.exoplanets.internal.inerf.IProxy;
 
 public class ExoCommonProxy implements IProxy {
 	
@@ -55,4 +57,17 @@ public class ExoCommonProxy implements IProxy {
     public EntityPlayer getClientPlayer() {
         return null;
     }
+    
+	public void registerRender() {}
+
+
+	public void registerTexture(Pre event, String texture) {
+	}
+    public void registerItemRenderer(Item item, int meta, String id) {}
+    
+    public void registerVariants()
+    {
+
+    }
+
 }

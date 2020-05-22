@@ -24,6 +24,10 @@
 
 package net.rom.exoplanets.util;
 
+import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
 public class CoreUtil {
 
     public static int hexToRgb(String color) {
@@ -128,5 +132,9 @@ public class CoreUtil {
             return (int) this.alpha;
         }
     }
+    
+	public static <T extends Entity> void registerEntityRenderer(Class<T> entityClass, IRenderFactory<? super T> renderFactory) {
+		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+	}
 
 }

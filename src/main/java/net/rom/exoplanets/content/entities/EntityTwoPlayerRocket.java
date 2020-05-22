@@ -46,6 +46,7 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.advancement.GCTriggers;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.network.PacketDynamic;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityLandingPad;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityTelemetry;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -63,25 +64,28 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.rom.exoplanets.init.ExoItems;
 
 public class EntityTwoPlayerRocket extends EntityTieredRocket {
+
 	public EntityTwoPlayerRocket(World par1World) {
 		super(par1World);
-		this.setSize(1.2F, 6.5F); //todo
+		this.setSize(1.2F, 6.5F); // todo
 	}
 
 	public EntityTwoPlayerRocket(World world, double posX, double posY, double posZ) {
 		super(world, posX, posY, posZ);
-		this.setSize(1.2F, 6.5F); //todo
+		this.setSize(1.2F, 6.5F); // todo
 	}
 
 	public EntityTwoPlayerRocket(World par1World, double par2, double par4, double par6, EnumRocketType rocketType) {
 		super(par1World, par2, par4, par6);
 		this.rocketType = rocketType;
-		this.setSize(1.2F, 6.5F); //todo
+		this.setSize(1.2F, 6.5F); // todo
 		this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 	}
 
@@ -100,6 +104,35 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 		return this.getPassengers().size() <= 1;
 	}
 
+	@Override
+	public double getYOffset() {
+		return 1.5F;
+	}
+
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return new ItemStack(ExoItems.passengerRocket, 1, this.rocketType.getIndex());
+	}
+
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+	}
+
+	@Override
+	public double getMountedYOffset() {
+		return 0.75D;
+	}
+
+	@Override
+	public float getRotateOffset() {
+		return 2.25F;
+	}
+
+	@Override
+	public double getOnPadYOffset() {
+		return 0.0D;
+	}
 
 	@Override
 	public void onUpdate() {
@@ -128,20 +161,23 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 				double yDiff = this.posY - this.getOnPadYOffset() - this.targetVec.getY();
 				this.motionY = Math.max(-2.0, (yDiff - 0.04) / -55.0);
 
-				//Some lateral motion in case not exactly on target (happens if rocket was moving laterally during launch)
+				// Some lateral motion in case not exactly on target (happens if rocket was
+				// moving laterally during launch)
 				double diff = this.posX - this.targetVec.getX() - 0.5D;
 				double motX, motZ;
 				if (diff > 0D) {
 					motX = Math.max(-0.1, diff / -100.0D);
 				} else if (diff < 0D) {
 					motX = Math.min(0.1, diff / -100.0D);
-				} else motX = 0D;
+				} else
+					motX = 0D;
 				diff = this.posZ - this.targetVec.getZ() - 0.5D;
 				if (diff > 0D) {
 					motZ = Math.max(-0.1, diff / -100.0D);
 				} else if (diff < 0D) {
 					motZ = Math.min(0.1, diff / -100.0D);
-				} else motZ = 0D;
+				} else
+					motZ = 0D;
 				if (motZ != 0D || motX != 0D) {
 					double angleYaw = Math.atan(motZ / motX);
 					double signed = motX < 0 ? 50D : -50D;
@@ -166,10 +202,10 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 					int zMax = MathHelper.floor(this.posZ) + 1;
 					for (int x = MathHelper.floor(this.posX) - 1; x <= MathHelper.floor(this.posX) + 1; x++) {
 						for (int z = zMin; z <= zMax; z++) {
-							//Doing y as the inner loop may help with cacheing of chunks
+							// Doing y as the inner loop may help with cacheing of chunks
 							for (int y = yMin; y <= yMax; y++) {
 								if (this.world.getTileEntity(new BlockPos(x, y, z)) instanceof IFuelDock) {
-									//Land the rocket on the pad found
+									// Land the rocket on the pad found
 									this.rotationPitch = 0F;
 									this.failRocket();
 								}
@@ -208,7 +244,8 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 			e.fallDistance = 0.0F;
 		}
 
-		if (this.posY > (this.world.provider instanceof IExitHeight ? ((IExitHeight) this.world.provider).getYCoordinateToTeleport() : 1200) && this.launchPhase != EnumLaunchPhase.LANDING.ordinal()) {
+		if (this.posY > (this.world.provider instanceof IExitHeight ? ((IExitHeight) this.world.provider).getYCoordinateToTeleport() : 1200)
+				&& this.launchPhase != EnumLaunchPhase.LANDING.ordinal()) {
 			this.onReachAtmosphere();
 //            if (this.world.isRemote)
 //            	this.posY = 1 + (this.world.provider instanceof IExitHeight ? ((IExitHeight) this.world.provider).getYCoordinateToTeleport() : 1200);
@@ -225,7 +262,8 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 		if (!this.world.isRemote) {
 			if (this.posY < 0.0D) {
 				this.setDead();
-			} else if (this.posY > (this.world.provider instanceof IExitHeight ? ((IExitHeight) this.world.provider).getYCoordinateToTeleport() : 1200) + (this.launchPhase == EnumLaunchPhase.LANDING.ordinal() ? 355 : 100)) {
+			} else if (this.posY > (this.world.provider instanceof IExitHeight ? ((IExitHeight) this.world.provider).getYCoordinateToTeleport() : 1200)
+					+ (this.launchPhase == EnumLaunchPhase.LANDING.ordinal() ? 355 : 100)) {
 				boolean allGood = true;
 				for (Entity e : this.getPassengers()) {
 					if (e instanceof EntityPlayerMP) {
@@ -245,7 +283,8 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 							}
 						}
 					}
-					if (allGood) this.setDead();
+					if (allGood)
+						this.setDead();
 				} else {
 					this.setDead();
 				}
@@ -331,7 +370,8 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 		}
 
 		if (this.launchPhase >= EnumLaunchPhase.LAUNCHED.ordinal()) {
-			if (getPassengers().size() >= 2) //When the screen changes to the map, the player is not riding the rocket anymore.
+			if (getPassengers().size() >= 2) // When the screen changes to the map, the player is not riding the rocket
+												// anymore.
 			{
 				for (Entity entity : getPassengers()) {
 					if (entity instanceof EntityPlayerMP) {
@@ -458,7 +498,8 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 
 		//////////////////
 
-		if ((this.getLaunched() || this.launchPhase == EnumLaunchPhase.IGNITED.ordinal() && this.rand.nextInt(i) == 0) && !ConfigManagerCore.disableSpaceshipParticles && this.hasValidFuel() && this.world.isRemote) {
+		if ((this.getLaunched() || this.launchPhase == EnumLaunchPhase.IGNITED.ordinal() && this.rand.nextInt(i) == 0) && !ConfigManagerCore.disableSpaceshipParticles && this
+				.hasValidFuel() && this.world.isRemote) {
 			if (!this.isDead) {
 				double sinPitch = Math.sin((double) this.rotationPitch / 57.29577951308232D);
 				double x1 = 2.9D * Math.cos((double) this.rotationYaw / 57.29577951308232D) * sinPitch;
@@ -485,16 +526,21 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 				}
 
 				String flame = this.getLaunched() ? "launchFlameLaunched" : "launchFlameIdle";
-				EntityLivingBase riddenByEntity = !this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof EntityLivingBase ? (EntityLivingBase) this.getPassengers().get(0) : null;
+				EntityLivingBase riddenByEntity = !this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof EntityLivingBase ? (EntityLivingBase) this
+						.getPassengers().get(0) : null;
 				for (Entity entity : getPassengers()) {
 					if (entity instanceof EntityLivingBase) {
-						Object[] rider = new Object[]{entity};
+						Object[] rider = new Object[] { entity };
 						Object[] none = new Object[0];
 						Random random = this.rand;
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 + 0.4D - random.nextDouble() / 10.0D, y, z2 + 0.4D - random.nextDouble() / 10.0D), motionVec, rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D + random.nextDouble() / 10.0D, y, z2 + 0.4D - random.nextDouble() / 10.0D), motionVec, rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D + random.nextDouble() / 10.0D, y, z2 - 0.4D + random.nextDouble() / 10.0D), motionVec, rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 + 0.4D - random.nextDouble() / 10.0D, y, z2 - 0.4D + random.nextDouble() / 10.0D), motionVec, rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 + 0.4D - random.nextDouble() / 10.0D, y, z2 + 0.4D - random.nextDouble() / 10.0D), motionVec,
+								rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D + random.nextDouble() / 10.0D, y, z2 + 0.4D - random.nextDouble() / 10.0D), motionVec,
+								rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D + random.nextDouble() / 10.0D, y, z2 - 0.4D + random.nextDouble() / 10.0D), motionVec,
+								rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 + 0.4D - random.nextDouble() / 10.0D, y, z2 - 0.4D + random.nextDouble() / 10.0D), motionVec,
+								rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2, y, z2), motionVec, rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 + 0.4D, y, z2), motionVec, rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D, y, z2), motionVec, rider);
@@ -503,22 +549,38 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 						double a = 4.0D;
 						double bx = motionVec.x + 0.5D / a;
 						double bz = motionVec.z + 0.5D / a;
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 + 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 + 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 - 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 - 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 - 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 - 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 + 0.7D - random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 + 0.7D - random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 - random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 - random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + random.nextDouble() / 8.0D, y3, z3 + 0.7D + random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
-						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 + 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 + 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 - 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 - 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 - 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 - 0.4D, z3 - 0.2D + random.nextDouble() / 6.0D),
+								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 + 0.7D - random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 + 0.7D - random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.7D - random.nextDouble() / 8.0D, y3, z3 - random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.7D + random.nextDouble() / 8.0D, y3, z3 - random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + random.nextDouble() / 8.0D, y3, z3 + 0.7D + random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
+						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - random.nextDouble() / 8.0D, y3, z3 - 0.7D + random.nextDouble() / 8.0D), new Vector3(bx
+								- random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
 						GalacticraftCore.proxy.spawnParticle("blueflame", new Vector3(x2 - 0.8D, y, z2), motionVec, none);
 						GalacticraftCore.proxy.spawnParticle("blueflame", new Vector3(x2 + 0.8D, y, z2), motionVec, none);
 						GalacticraftCore.proxy.spawnParticle("blueflame", new Vector3(x2, y, z2 - 0.8D), motionVec, none);
@@ -563,7 +625,6 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 			this.motionY -= Math.abs(Math.sin(this.timeSinceLaunch / 1000.0F)) / 20.0D;
 		}
 	}
-
 
 	private void autoLaunch_r() {
 		try {
@@ -659,16 +720,27 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 
 	@Override
 	public int getRocketTier() {
-		return 1;
+		return 5;
 	}
 
 	@Override
 	public int getFuelTankCapacity() {
-		return 1500;
+		return 2800;
 	}
 
 	@Override
 	public int getPreLaunchWait() {
-		return 400;
+		return 1200;
 	}
+
+	@Override
+	public float getRenderOffsetY() {
+		return -0.15F;
+	}
+
+	@Override
+	public boolean isDockValid(IFuelDock dock) {
+		return dock instanceof TileEntityLandingPad;
+	}
+
 }

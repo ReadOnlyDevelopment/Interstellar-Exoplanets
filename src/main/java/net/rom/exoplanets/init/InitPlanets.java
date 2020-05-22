@@ -46,7 +46,6 @@ import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.rom.exoplanets.astronomy.trappist1.e.worldgen.Trappist1EBiomes;
 import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
 import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
@@ -134,14 +133,12 @@ public class InitPlanets {
 		builder.setNormalOrbit(trappistc);
 		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
-		//builder.setBiomes(trappistc,);
 		
 		trappiste = builder.buildExoPlanet(trap1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappiste, ClassBody.SELENA, trappistAu[3], 0.005f, 0.6f, 0, 26500L);
 		builder.setNormalOrbit(trappiste);
 		builder.setExoData(trappiste, 8.0f, 1.38f, 1.056f);
-		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
-		builder.setBiomes(trappiste, Trappist1EBiomes.trappist1e, Trappist1EBiomes.trappist1e_sea);
+		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.OXYGEN);
 		
 		
 	}

@@ -53,14 +53,15 @@ import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.IniSystems;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.init.RegistrationHandler;
-import net.rom.exoplanets.internal.IMod;
 import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.StellarRegistry;
+import net.rom.exoplanets.internal.inerf.IMod;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.Deobf;
 import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.util.debug.BiomeDebug;
 import net.rom.exoplanets.util.debug.LangFileHelper;
+import net.rom.exoplanets.world.ExoVillagerHandler;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.event.client.ExoplanetsConfigGuiFactory")
@@ -105,7 +106,10 @@ public class ExoplanetsMod implements IMod {
 
     @EventHandler
     public static void init(FMLInitializationEvent event) {
-
+    	
+    	proxy.registerRender();
+    	//ExoVillagerHandler.initVillageAstronomerHouse();
+    	//ExoVillagerHandler.initAstronomerVillagerTrades();
         for (BiomeGenBaseGC biome : ExoplanetBiomes.biomeList) {
             biome.registerTypes(biome);
         }
@@ -152,8 +156,8 @@ public class ExoplanetsMod implements IMod {
         info.version = ExoplanetsMod.instance.getVersion();
         info.description = "An add-on exploration with custom planets for Galacticraft!";
         info.url = "https://www.curseforge.com/minecraft/mc-mods/interstellar-exoplanets";
-        info.credits = "All credits to Galacticraft Sources/API and some people who helped.";
-        info.authorList = Collections.singletonList("SteveKunG");
+        info.credits = "credits to Galacticraft Sources/API, and Marcus8448!";
+        info.authorList = Collections.singletonList("ROMVoid");
     }
 
 }

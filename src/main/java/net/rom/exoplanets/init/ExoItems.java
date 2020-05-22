@@ -24,7 +24,6 @@
 
 package net.rom.exoplanets.init;
 
-import net.rom.exoplanets.content.item.EnumIngots;
 import net.rom.exoplanets.content.item.ItemCraftingItem;
 import net.rom.exoplanets.content.item.ItemDustAlloy;
 import net.rom.exoplanets.content.item.ItemDustByproduct;
@@ -35,7 +34,6 @@ import net.rom.exoplanets.content.item.ItemNuggetAlloy;
 import net.rom.exoplanets.content.item.ItemNuggetMetal;
 import net.rom.exoplanets.content.item.ItemTwoPlayerRocket;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.internal.item.IEnumItems;
 
 public class ExoItems {
 	
@@ -54,10 +52,8 @@ public class ExoItems {
 
 	public static void registerAll(StellarRegistry registry) {
 		
-		registry.registerItem(passengerRocket, "two_player_rocket");
+		registry.registerItem(passengerRocket, "twopersonrocket");
 
-		IEnumItems.RegistrationHelper enumItems = new IEnumItems.RegistrationHelper(registry);
-		enumItems.registerItems(EnumIngots.values());
 		registry.registerItem(metalIngot, "metalingot");
 		registry.registerItem(metalNugget, "metalnugget");
 		registry.registerItem(metalDust, "metaldust");

@@ -26,11 +26,13 @@ package net.rom.api.stellar.world.gen;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class GenUtility {
@@ -55,6 +57,12 @@ public class GenUtility {
     }
 
     public static void generateStructureWithRangeY(WorldGenerator worldGen, World world, Random rand, BlockPos pos, int minY, int maxY) {
+        int x = pos.getX() + 8;
+        int z = pos.getZ() + 8;
+        worldGen.generate(world, rand, new BlockPos(x, rand.nextInt(maxY) + minY, z));
+    }
+    
+    public static void generateStructureWithRangeY(WorldGenerator worldGen, World world, Random rand, BlockPos pos, int minY, int maxY, int chance, Set<Biome> set) {
         int x = pos.getX() + 8;
         int z = pos.getZ() + 8;
         worldGen.generate(world, rand, new BlockPos(x, rand.nextInt(maxY) + minY, z));

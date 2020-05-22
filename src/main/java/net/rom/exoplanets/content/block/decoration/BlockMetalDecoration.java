@@ -46,11 +46,11 @@ import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.content.EnumAlloy;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.IMetal;
-import net.rom.exoplanets.internal.IAddRecipe;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
-import net.rom.exoplanets.internal.client.ICustomModel;
-import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
+import net.rom.exoplanets.internal.inerf.IAddRecipe;
+import net.rom.exoplanets.internal.inerf.ICustomModel;
+import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
 import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockMetalDecoration extends BlockMetaSubtypes implements ICustomModel, IAddRecipe, ISortableBlock {
