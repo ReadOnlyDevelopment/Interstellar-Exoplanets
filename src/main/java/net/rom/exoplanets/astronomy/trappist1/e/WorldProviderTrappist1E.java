@@ -59,6 +59,7 @@ import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_River;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeDecoratorTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeProviderTrappist1E;
 import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.internal.AstronomicalConstants;
 
 public class WorldProviderTrappist1E extends WE_WorldProvider {
 	
@@ -176,6 +177,24 @@ public class WorldProviderTrappist1E extends WE_WorldProvider {
 
     @Override
     @SideOnly(Side.CLIENT)
+    public float getStarBrightness(float partialTicks) {
+        float angle = this.world.getCelestialAngle(partialTicks);
+        float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
+        value = MathHelper.clamp(value, 0.0F, 1.0F);
+        return value * value * 0.5F + 0.3F;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getSunBrightness(float partialTicks) {
+        float f1 = this.world.getCelestialAngle(1.0F);
+        float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
+        f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
+        f2 = 1.2F - f2;
+        return f2 * 0.8F;
+    }
+
+    @Override
     public Vector3 getFogColor()
     {
         float f = 0.6F - this.getStarBrightness(1.0F);
@@ -183,38 +202,11 @@ public class WorldProviderTrappist1E extends WE_WorldProvider {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public Vector3 getSkyColor()
     {
         float f = 0.3F - this.getStarBrightness(1.0F);
         return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
        
-    }
-	
-    @Override
-	public boolean isSkyColored() {
-		return false;
-	}
-	
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getStarBrightness(float par1)
-    {
-    	float f = this.world.getCelestialAngle(par1);
-        float f1 = 1.0F - (MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.25F);
-        f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
-        return f1 * f1 * 0.5F;   	
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getSunBrightness(float par1) {
-       float f1 = this.world.getCelestialAngle(1.0F);
-       float f2 = 1.0F - (MathHelper.cos(f1 * 3.1415927F * 2.0F) * 2.0F + 0.2F);
-       f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
-
-       f2 = 1.2F - f2;
-       return f2 * 0.8F;
     }
 
 	@Override

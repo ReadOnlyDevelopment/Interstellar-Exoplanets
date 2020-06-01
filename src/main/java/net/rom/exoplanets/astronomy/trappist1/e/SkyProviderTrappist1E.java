@@ -105,7 +105,7 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 		GL11.glRotatef(this.getCelestialAngle(daylength * 2), 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-105F, 1.0F, 0.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1d);
+		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1f);
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
 		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();

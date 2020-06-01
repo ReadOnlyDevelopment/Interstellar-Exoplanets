@@ -63,7 +63,7 @@ import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.ExoVillagerHandler;
 import net.rom.exoplanets.world.OverworldOreGen;
 
-@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, certificateFingerprint = "0030a289fad85affe4a366ee6009b0b35d478f63", guiFactory = "net.rom.exoplanets.event.client.ExoplanetsConfigGuiFactory")
+@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.event.ExoplanetsConfigGuiFactory")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
