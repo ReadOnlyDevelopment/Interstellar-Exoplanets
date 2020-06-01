@@ -24,11 +24,11 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 
-public class VillageAstronomerHouse extends Village {
+public class VillageAstronomerHouse extends Village { // NO_UCD (use default)
 	public VillageAstronomerHouse() {
 	}
 
-	public VillageAstronomerHouse(Start villagePiece, int par2, Random par3Random, StructureBoundingBox par4StructureBoundingBox, EnumFacing facing) {
+	public VillageAstronomerHouse(Start villagePiece, int par2, Random par3Random, StructureBoundingBox par4StructureBoundingBox, EnumFacing facing) { // NO_UCD (use private)
 		super(villagePiece, par2);
 		this.setCoordBaseMode(facing);
 		this.boundingBox = par4StructureBoundingBox;

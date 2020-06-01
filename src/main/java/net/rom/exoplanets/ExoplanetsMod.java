@@ -120,8 +120,8 @@ public class ExoplanetsMod implements IMod {
     public static void init(FMLInitializationEvent event) {
     	
     	proxy.registerRender();
-    	ExoVillagerHandler.initVillageAstronomerHouse();
-    	ExoVillagerHandler.initAstronomerVillagerTrades();
+    	//ExoVillagerHandler.initVillageAstronomerHouse();
+    	//ExoVillagerHandler.initAstronomerVillagerTrades();
         for (BiomeGenBaseGC biome : ExoplanetBiomes.biomeList) {
             biome.registerTypes(biome);
         }

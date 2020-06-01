@@ -41,7 +41,8 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class WorldProviderPlanetPrimer extends WorldProviderSpace implements IZeroGDimension, IGalacticraftWorldProvider {
+// TODO from UCDetector: Class "WorldProviderPlanetPrimer" has 0 references
+public abstract class WorldProviderPlanetPrimer extends WorldProviderSpace implements IZeroGDimension, IGalacticraftWorldProvider { // NO_UCD (unused code)
 
 	@Override
 	public float getGravity() {

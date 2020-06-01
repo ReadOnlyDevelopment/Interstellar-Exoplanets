@@ -312,11 +312,11 @@ public class AstroBuilder {
 	 * @param au          the au
 	 * @return the planet
 	 */
-	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
+	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
 		unreachable.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/" + solarSystem.getName().toLowerCase() + "/" + planetName + ".png"));
-		unreachable.setDistanceFromCenter(au);
-		unreachable.setRelativeOrbitTime(au + 0.5F);
+		//unreachable.setDistanceFromCenter(au);
+		//unreachable.setRelativeOrbitTime(au + 0.5F);
 		unreachable.setPhaseShift(randomPhase);
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
