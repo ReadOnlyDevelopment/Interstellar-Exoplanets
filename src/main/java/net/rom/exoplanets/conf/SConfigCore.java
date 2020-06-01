@@ -36,7 +36,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.internal.LogHelper;
 
 public class SConfigCore {
 

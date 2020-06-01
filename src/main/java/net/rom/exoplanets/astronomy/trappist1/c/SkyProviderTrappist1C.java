@@ -31,14 +31,11 @@ import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.rom.api.stellar.enums.EnumStarColor;
-import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.Textures;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.internal.client.SkyProviderHelper;
+import net.rom.exoplanets.internal.enums.EnumStarColor;
+import net.rom.exoplanets.util.Textures;
 
 public class SkyProviderTrappist1C extends SkyProviderBase {
 

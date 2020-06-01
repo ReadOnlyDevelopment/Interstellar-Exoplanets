@@ -24,7 +24,7 @@
 
 package net.rom.exoplanets.init;
 
-import net.rom.api.research.Research;
+import net.rom.api.research.Researches;
 
 public class Researching {
 
@@ -39,16 +39,16 @@ public class Researching {
     private static void initModdedResearch() {
     }
 
-    public static void register(Research research) {
+    public static void register(Researches research) {
         registerExoplanetsModResearch(research);
         registerModdedResearch(research);
     }
 
-    private static void registerExoplanetsModResearch(Research research) {
+    private static void registerExoplanetsModResearch(Researches research) {
 
     }
 
-    private static void registerModdedResearch(Research research) {
+    private static void registerModdedResearch(Researches research) {
     	
     }
 }

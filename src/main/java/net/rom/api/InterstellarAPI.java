@@ -27,10 +27,7 @@ package net.rom.api;
 import net.rom.api.research.conversation.IConversationRegistry;
 
 public interface InterstellarAPI {
-	static InterstellarAPI getApiInstance() {
-		return InterstellarAPIImpl.instance();
-	}
-	
+
 	IConversationRegistry getConversationRegistry();
 
 }

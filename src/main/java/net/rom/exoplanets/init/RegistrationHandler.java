@@ -28,7 +28,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.rom.exoplanets.ExoplanetsCustomSounds;
+import net.rom.exoplanets.content.ExoplanetsCustomSounds;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class RegistrationHandler {

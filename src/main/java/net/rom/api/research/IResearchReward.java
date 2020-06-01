@@ -27,6 +27,7 @@ package net.rom.api.research;
 import java.lang.ref.WeakReference;
 
 import com.google.gson.JsonObject;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 

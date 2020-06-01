@@ -30,7 +30,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -41,7 +40,6 @@ import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.block.BlockDecoration;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.IAddRecipe;
-import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockStandConsole extends BlockDecoration implements IAddRecipe {
 	

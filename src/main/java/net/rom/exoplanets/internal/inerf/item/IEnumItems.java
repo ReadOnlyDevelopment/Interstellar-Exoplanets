@@ -46,6 +46,7 @@ import net.rom.exoplanets.internal.StellarRegistry;
  * @param <E> The enum, which would typically implement this interface
  * @param <I> The Item class, provided to reduce the need for casting
  */
+@SuppressWarnings("rawtypes")
 public interface IEnumItems<E extends Enum<E>, I extends Item> extends IStringSerializable {
     /**
      * Gets the enum that represents the object. Typically, you would just {@code return this}. This
@@ -121,7 +122,7 @@ public interface IEnumItems<E extends Enum<E>, I extends Item> extends IStringSe
          * Registers items for the provided {@link IEnumItems} values.
          * @param items The {@link IEnumItems} values
          */
-        public void registerItems(IEnumItems... items) {
+		public void registerItems(IEnumItems... items) {
             for (IEnumItems item : items)
                 registry.registerItem(item.getItem(), item.getName());
         }

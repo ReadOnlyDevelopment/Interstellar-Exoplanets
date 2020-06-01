@@ -24,144 +24,223 @@
 
 package net.rom.exoplanets.astronomy.trappist1.e;
 
-import java.util.LinkedList;
 import java.util.List;
 
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.rom.api.stellar.world.WorldProviderExoPlanet;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Beach;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_DeepOcean;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_River;
+import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeDecoratorTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeProviderTrappist1E;
-import net.rom.exoplanets.astronomy.trappist1.e.worldgen.ChunkProviderTrappist1E;
-import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.InitPlanets;
 
-public class WorldProviderTrappist1E extends WorldProviderExoPlanet {
-
-    @Override
-    public Vector3 getSkyColor() {
-        return new Vector3(0, 0, 0);
-    }
-
-    @Override
-    public float getSolarSize() {
-        return 0.5F;
-    }
-
-    @Override
-    public boolean hasSunset() {
-        return false;
-    }
-
-    @Override
-    public long getDayLength() {
-        return 35000L;
-    }
-
-    @Override
-    public Class<? extends IChunkGenerator> getChunkProviderClass() {
-        return ChunkProviderTrappist1E.class;
-    }
-
-    @Override
-    public Class<? extends BiomeProvider> getBiomeProviderClass() {
-        BiomeAdaptive.setBodyMultiBiome(InitPlanets.yzcetid);
-        return BiomeProviderTrappist1E.class;
-    }
-
-    @Override
+public class WorldProviderTrappist1E extends WE_WorldProvider {
+	
+	public static WE_ChunkProvider chunk;
+	
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.2F;
+	}
+	
+	@Override
     public double getHorizon() {
         return 44.0D;
     }
 
+	@Override
+	public double getFuelUsageMultiplier() {
+		return 1.5;
+	}
+
+	@Override
+	public float getFallDamageModifier() {
+		return 0;
+	}
+
+	@Override
+	public CelestialBody getCelestialBody() {
+		return InitPlanets.trappiste;
+	}
+
+	@Override
+	public int getDungeonSpacing() {
+		return 0;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType() {
+		return null;
+	}
+
+	@Override
+	public List<Block> getSurfaceBlocks() {
+		return null;
+	}
+
+	@Override
+	public void genSettings(WE_ChunkProvider cp) {
+	chunk = cp;
+		
+		cp.createChunkGen_List .clear(); 
+		cp.createChunkGen_InXZ_List .clear(); 
+		cp.createChunkGen_InXYZ_List.clear(); 
+		cp.decorateChunkGen_List .clear(); 
+		
+		WE_Biome.setBiomeMap(cp, 1.4D, 6, 1000.0D, 1.0D);	
+
+		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
+		terrainGenerator.worldStoneBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(); 
+		terrainGenerator.worldSeaGen = true;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
+		terrainGenerator.worldSeaGenMaxY = 64;
+		cp.createChunkGen_List.add(terrainGenerator);
+		
+		//-// 
+		WE_CaveGen cg = new WE_CaveGen(); 
+		cg.replaceBlocksList .clear(); 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
+		cg.lavaMaxY = 15;
+		cp.createChunkGen_List.add(cg); 
+		//-// 
+		 
+		WE_RavineGen rg = new WE_RavineGen();
+		rg.replaceBlocksList    .clear();
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
+		rg.lavaMaxY = 15;		
+		cp.createChunkGen_List.add(rg);
+		
+		cp.worldGenerators.clear();
+		cp.biomesList.clear();
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Ocean(-3.8D, 3.8D, false));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Beach(-3.5D, 3.2D, 1));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains(-3.0D, 3.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_River(-1.5D, 1.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Dunes(-1.2D, 1.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Ocean(-0.0D, 0.0D, true));		
+	}
+
+	@Override
+	public BiomeDecoratorSpace getDecorator() {
+		return new BiomeDecoratorTrappist1E();
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {
+		
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {
+		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {
+		
+	}
+
     @Override
-    public int getAverageGroundLevel() {
-        return 44;
+    @SideOnly(Side.CLIENT)
+    public Vector3 getFogColor()
+    {
+        float f = 0.6F - this.getStarBrightness(1.0F);
+        return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);        
     }
 
     @Override
-    public boolean canCoordinateBeSpawn(int var1, int var2) {
-        return true;
+    @SideOnly(Side.CLIENT)
+    public Vector3 getSkyColor()
+    {
+        float f = 0.3F - this.getStarBrightness(1.0F);
+        return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+       
     }
-
+	
     @Override
-    public float getGravity() {
-        return 0.015F;
-    }
-
+	public boolean isSkyColored() {
+		return false;
+	}
+	
     @Override
-    public int getHeight() {
-        return 512;
+    @SideOnly(Side.CLIENT)
+    public float getStarBrightness(float par1)
+    {
+    	float f = this.world.getCelestialAngle(par1);
+        float f1 = 1.0F - (MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.25F);
+        f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
+        return f1 * f1 * 0.5F;   	
     }
-
+    
     @Override
-    public double getMeteorFrequency() {
-        return 3.0D;
+    @SideOnly(Side.CLIENT)
+    public float getSunBrightness(float par1) {
+       float f1 = this.world.getCelestialAngle(1.0F);
+       float f2 = 1.0F - (MathHelper.cos(f1 * 3.1415927F * 2.0F) * 2.0F + 0.2F);
+       f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
+
+       f2 = 1.2F - f2;
+       return f2 * 0.8F;
     }
 
+	@Override
+	public boolean hasSunset() {
+		return false;
+	}
+	
     @Override
-    public double getFuelUsageMultiplier() {
-        return 1.2D;
+    public boolean shouldForceRespawn() {
+        return !ConfigManagerCore.forceOverworldRespawn;
+    }   
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass() {
+		return WE_ChunkProvider.class;
+	}
+
+	@Override
+	public DimensionType getDimensionType() {
+		return TrappistDimensions.TRAPPIST_1E;
+	}
+	
+    @Override 
+    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
+    	return BiomeProviderTrappist1E.class; 
     }
 
-    @Override
-    public boolean canSpaceshipTierPass(int tier) {
-        return tier >= SConfigSystems.yzceti_tier;
-    }
 
-    @Override
-    public float getFallDamageModifier() {
-        return 0.38F;
-
-    }
-
-    @Override
-    public CelestialBody getCelestialBody() {
-        return InitPlanets.trappiste;
-    }
-
-    @Override
-    public float getThermalLevelModifier() {
-        return 5.0F;
-    }
-
-    @Override
-    public double getSolarEnergyMultiplier() {
-        return 3.5D;
-    }
-
-    @Override
-    public DimensionType getDimensionType() {
-        return TrappistDimensions.TRAPPIST_1E;
-    }
-
-    @Override
-    public int getDungeonSpacing() {
-        return 0;
-    }
-
-    @Override
-    public ResourceLocation getDungeonChestType() {
-        return null;
-    }
-
-    @Override
-    public List<Block> getSurfaceBlocks() {
-        List<Block> list = new LinkedList<>();
-        list.add(TrappistBlocks.TrappistE.trap1e_grass);
-        list.add(TrappistBlocks.SharedTerrain.HOT_GROUND_1);
-        return list;
-    }
-
-    @Override
-    public double getYCoordinateToTeleport() {
-        return 2000.0D;
-    }
 }

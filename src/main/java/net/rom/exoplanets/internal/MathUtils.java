@@ -24,10 +24,10 @@
 
 package net.rom.exoplanets.internal;
 
+import java.util.Random;
+
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3i;
-
-import java.util.Random;
 
 public final class MathUtils {
     private static final double DOUBLES_EQUAL_PRECISION = 0.000000001;

@@ -24,8 +24,6 @@
 
 package net.rom.exoplanets.capability;
 
-import java.lang.ref.WeakReference;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

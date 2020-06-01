@@ -47,13 +47,13 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.api.stellar.calc.AstronomicalConstants;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_River;
 import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.internal.AstronomicalConstants;
 
 public class WorldProviderTrappist1C extends WE_WorldProvider {
 	

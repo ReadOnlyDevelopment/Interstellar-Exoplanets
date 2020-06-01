@@ -33,11 +33,10 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.rom.api.stellar.enums.EnumStarColor;
-import net.rom.exoplanets.Textures;
 import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.internal.client.SkyProviderHelper;
+import net.rom.exoplanets.internal.MCUtil;
+import net.rom.exoplanets.internal.enums.EnumStarColor;
+import net.rom.exoplanets.util.Textures;
 
 public class SkyProviderTrappist1E extends SkyProviderBase {
 
@@ -45,15 +44,78 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
-
+		
 		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 0.5f, daylength, Textures.trappist1b, -100f);
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 1.0f, daylength, Textures.trappist1c, -85f);
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 1.5f, daylength, Textures.trappist1d, -105f);
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 2.0f, daylength, Textures.trappist1f, -95f);
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 2.5f, daylength, Textures.trappist1g, -110f);
-		SkyProviderHelper.renderPlanet(tessellator, buffer, 3.0f, daylength, Textures.trappist1h, -115f);
+		
+		f10 = 2.5F;
+		GL11.glScalef(0.6F, 0.6F, 0.6F);			
+		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
+		GL11.glRotatef(this.getCelestialAngle(daylength / 2), 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1b);
+		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+		
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+			
+		f10 = 2.0F;
+		GL11.glScalef(0.6F, 0.6F, 0.6F);			
+		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
+		GL11.glRotatef(this.getCelestialAngle(daylength), 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-95F, 1.0F, 0.0F, 0.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1c);
+		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+		
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		
+		f10 = 1.8F;
+		GL11.glScalef(0.6F, 0.6F, 0.6F);	
+		GL11.glRotatef(-44.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(this.getCelestialAngle(daylength * 2), 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-105F, 1.0F, 0.0F, 0.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1d);
+		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+		
+				
+        GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        
+		f10 = 1.3F;
+		GL11.glScalef(0.6F, 0.6F, 0.6F);	
+		GL11.glRotatef(-44.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(this.getCelestialAngle(daylength * 2), 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-105F, 1.0F, 0.0F, 0.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		MCUtil.getClient().renderEngine.bindTexture(Textures.trappist1d);
+		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+		
+				
+        GL11.glPopMatrix();
+        GL11.glPushMatrix();
 
 	}
 
@@ -94,7 +156,7 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	public boolean enableSmoothRender() {
-		return true;
+		return false;
 	}
 
 	@Override

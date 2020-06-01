@@ -41,7 +41,7 @@ import javax.activation.UnsupportedDataTypeException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.rom.exoplanets.internal.inerf.tile.INBTSerializer;
-
+@SuppressWarnings("rawtypes")
 @Retention(RUNTIME)
 @Target(FIELD)
 public @interface SyncVariable {
@@ -79,7 +79,7 @@ public @interface SyncVariable {
      * PlayerDataHandler.
      */
     final class Helper {
-        static final Map<Class, Function<NBTTagCompound, ?>> READERS = new HashMap<>();
+		static final Map<Class, Function<NBTTagCompound, ?>> READERS = new HashMap<>();
         static final Map<Class, Function<?, NBTTagCompound>> WRITERS = new HashMap<>();
         static final Map<Class, INBTSerializer> SERIALIZERS = new HashMap<>();
 
@@ -200,7 +200,7 @@ public @interface SyncVariable {
                                     tags.setByte(name, field.getByte(obj));
                                 else if (SERIALIZERS.containsKey(field.getType())) {
                                     NBTTagCompound compound = new NBTTagCompound();
-                                    INBTSerializer serializer = SERIALIZERS.get(field.getType());
+                                    INBTSerializer<Object> serializer = SERIALIZERS.get(field.getType());
                                     serializer.write(compound, field.get(obj));
                                     tags.setTag(name, compound);
                                 } else

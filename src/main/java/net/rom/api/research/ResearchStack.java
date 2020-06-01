@@ -169,7 +169,7 @@ public class ResearchStack {
         return completed;
     }
 
-    public void markComplited(EntityPlayer entityPlayer, boolean force) {
+    public void markCompleted(EntityPlayer entityPlayer, boolean force) {
         if (force) {
             this.completed = true;
         } else {
@@ -187,7 +187,8 @@ public class ResearchStack {
         return researchStack;
     }
 
-    public ItemStack getResearchPaper() {
+    @SuppressWarnings("null")
+	public ItemStack getResearchPaper() {
         ItemStack researchPaper = null;
         NBTTagCompound researchTag = new NBTTagCompound();
         writeToNBT(researchTag);

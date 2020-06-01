@@ -26,7 +26,7 @@ package net.rom.exoplanets.util;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
+import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.init.ExoBlocks;
 

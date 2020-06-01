@@ -42,7 +42,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.inerf.IRSerializer;
 
 public final class JsonReceipe {
@@ -99,7 +98,7 @@ public final class JsonReceipe {
      * Serializes a component so it can be used in a json file.
      *
      * @param component The component to serialize.
-     * @return A map containing the data for the componet.
+     * @return A map containing the data for the component.
      */
     private static JsonObject serializeComponent(Object component) {
         // If the ingredient is an item, run it through again as an ItemStack.

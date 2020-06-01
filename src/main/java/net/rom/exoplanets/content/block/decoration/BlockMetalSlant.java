@@ -36,7 +36,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.block.BlockGeneral;
 import net.rom.exoplanets.internal.RecipeBuilder;
-import net.rom.exoplanets.internal.block.BlockBase;
 
 public class BlockMetalSlant extends BlockGeneral {
 

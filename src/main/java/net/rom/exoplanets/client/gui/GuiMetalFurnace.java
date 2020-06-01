@@ -37,8 +37,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.container.ContainerMetalFurnace;
 import net.rom.exoplanets.content.block.machine.TileMetalFurnace;
+import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
 
 @SideOnly(Side.CLIENT)
 public class GuiMetalFurnace extends GuiContainer {

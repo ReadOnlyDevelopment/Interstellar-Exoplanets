@@ -46,7 +46,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
 import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
-import net.rom.exoplanets.container.ContainerAlloyRefinery;
+import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.internal.tile.TileSidedInventoryExo;
 
 public class TileAlloyRefinery extends TileSidedInventoryExo implements ITickable {

@@ -24,20 +24,9 @@
 
 package net.rom.exoplanets.util;
 
-import java.util.Locale;
-import java.util.Objects;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import lombok.Setter;
-import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @ParametersAreNonnullByDefault
 public class TranslateUtil {

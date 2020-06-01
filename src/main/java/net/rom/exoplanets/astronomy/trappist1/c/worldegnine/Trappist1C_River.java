@@ -26,10 +26,7 @@ package net.rom.exoplanets.astronomy.trappist1.c.worldegnine;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 
 public class Trappist1C_River extends WE_Biome {

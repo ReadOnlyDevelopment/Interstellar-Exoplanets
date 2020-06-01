@@ -29,15 +29,12 @@ import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
-import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Mountains;
 
 public class BiomeDecoratorTrappist1C extends BiomeDecoratorSpace {
 

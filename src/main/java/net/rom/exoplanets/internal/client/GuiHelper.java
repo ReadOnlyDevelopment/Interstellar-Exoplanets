@@ -25,10 +25,8 @@
 package net.rom.exoplanets.internal.client;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.List;
+
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 public class GuiHelper {

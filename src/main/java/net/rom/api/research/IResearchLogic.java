@@ -24,12 +24,13 @@
 
 package net.rom.api.research;
 
-import com.google.gson.JsonObject;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.eventhandler.Event;
-
 import java.util.List;
 import java.util.Random;
+
+import com.google.gson.JsonObject;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 public interface IResearchLogic {
     void loadFromJson(JsonObject jsonObject);

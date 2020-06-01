@@ -33,7 +33,6 @@ import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.rom.api.stellar.calc.AstronomicalConstants;
 
 public class ItemModelRocket extends ModelTransformWrapper {
 
@@ -55,13 +54,13 @@ public class ItemModelRocket extends ModelTransformWrapper {
             mul.setRotation(rot);
             ret.mul(mul);
             mul.setIdentity();
-            mul.setScale(0.61F);
+            mul.setScale(0.61F);	
             ret.mul(mul);
             mul.setIdentity();
             mul.setTranslation(new Vector3f(-0.7F, -0.7F, 0.0F));
             ret.mul(mul);
             mul.setIdentity();
-            mul.rotY((float) AstronomicalConstants.TWO_PI_INVERSE);
+            mul.rotY((float) Math.PI / 2.0F);
             ret.mul(mul);
             mul.setIdentity();
             mul.rotX((float) (Math.PI / 4.0F));
@@ -96,7 +95,7 @@ public class ItemModelRocket extends ModelTransformWrapper {
             mul.setScale(0.45F);
             ret.mul(mul);
             mul.setIdentity();
-            mul.rotX((float) AstronomicalConstants.TWO_PI_INVERSE);
+            mul.rotX((float) Math.PI / 2.0F);
             ret.mul(mul);
             mul.setIdentity();
             mul.rotZ((float) (-0.65F + Math.PI));

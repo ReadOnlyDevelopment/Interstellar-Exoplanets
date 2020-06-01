@@ -35,8 +35,8 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
+import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 
 public class GuiAlloyRefinery extends GuiContainer {
     private static final ResourceLocation guiTextures = new ResourceLocation(ExoInfo.MODID, "textures/gui/alloyrefinery.png");

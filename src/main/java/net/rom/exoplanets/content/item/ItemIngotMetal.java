@@ -31,7 +31,6 @@ import com.google.common.collect.Lists;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
-import net.rom.exoplanets.content.EnumByproduct;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.IMetal;
 import net.rom.exoplanets.internal.RecipeBuilder;

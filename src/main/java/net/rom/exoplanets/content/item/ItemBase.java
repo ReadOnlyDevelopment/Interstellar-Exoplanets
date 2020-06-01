@@ -25,6 +25,8 @@
 package net.rom.exoplanets.content.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class ItemBase extends Item {
@@ -41,5 +43,15 @@ public class ItemBase extends Item {
 
     public String getName() {
         return this.name;
+    }
+    
+    public void InitTagCompount(ItemStack stack) {
+        stack.setTagCompound(new NBTTagCompound());
+    }
+
+    public void TagCompountCheck(ItemStack stack) {
+        if (!stack.hasTagCompound()) {
+            InitTagCompount(stack);
+        }
     }
 }

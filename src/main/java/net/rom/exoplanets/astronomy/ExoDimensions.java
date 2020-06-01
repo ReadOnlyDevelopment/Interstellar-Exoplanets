@@ -25,9 +25,8 @@
 package net.rom.exoplanets.astronomy;
 
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import net.minecraft.world.DimensionType;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiDimensions;
+import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 
 public class ExoDimensions {

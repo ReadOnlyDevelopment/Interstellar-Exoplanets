@@ -24,9 +24,25 @@
 
 package net.rom.exoplanets.internal;
 
+import java.util.List;
+
+import com.google.common.base.Function;
+
+import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
+import micdoodle8.mods.galacticraft.core.util.GCLog;
+import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
@@ -75,6 +91,46 @@ public final class MCUtil {
 
 	public static Minecraft getClient() {
 		return FMLClientHandler.instance().getClient();
+	}
+
+	public static void replaceModel(String modid, ModelBakeEvent event, String resLoc, String objLoc,
+			List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState,
+			String... variants) {
+		OBJModel model;
+		try {
+			model = (OBJModel) OBJLoaderGC.instance.loadModel(new ResourceLocation(modid, objLoc));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft()
+				.getTextureMapBlocks().getAtlasSprite(location.toString());
+		IBakedModel newModelBase = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState),
+				DefaultVertexFormats.ITEM, spriteFunction);
+		IBakedModel newModelAlt = null;
+		if (variants.length == 0) {
+			variants = new String[] { "inventory" };
+		} else if (variants.length > 1 || !variants[0].equals("inventory")) {
+			newModelAlt = model.bake(new OBJModel.OBJState(visibleGroups, false, TRSRTransformation.identity()),
+					DefaultVertexFormats.ITEM, spriteFunction);
+		}
+
+		for (String variant : variants) {
+			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(modid + ":" + resLoc, variant);
+			IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+			if (object != null) {
+				IBakedModel newModel = variant.equals("inventory") ? newModelBase : newModelAlt;
+				if (clazz != null) {
+					try {
+						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
+					} catch (Exception e) {
+						GCLog.severe("ItemModel constructor problem for " + modelResourceLocation);
+						e.printStackTrace();
+					}
+				}
+				event.getModelRegistry().putObject(modelResourceLocation, newModel);
+			}
+		}
 	}
 
 }

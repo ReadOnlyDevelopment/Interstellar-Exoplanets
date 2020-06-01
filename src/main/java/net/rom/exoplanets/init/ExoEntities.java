@@ -24,7 +24,7 @@
 
 package net.rom.exoplanets.init;
 
-import net.rom.exoplanets.content.entities.EntityTwoPlayerRocket;
+import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoEntities {

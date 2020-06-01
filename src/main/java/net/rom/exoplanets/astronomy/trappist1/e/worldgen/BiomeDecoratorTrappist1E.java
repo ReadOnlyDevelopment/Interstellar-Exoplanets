@@ -24,28 +24,30 @@
 
 package net.rom.exoplanets.astronomy.trappist1.e.worldgen;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.common.base.Predicate;
+
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
+import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.rom.api.stellar.world.gen.GenUtility;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.biomes.BiomeGenYzCetiD;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.biomes.BiomeGenYzCetiMoltenMantleSea;
-import net.rom.exoplanets.init.ExoFluids;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
+import net.rom.exoplanets.internal.world.gen.GenUtility;
 
 public class BiomeDecoratorTrappist1E extends BiomeDecoratorSpace {
 
-    private int LakesPerChunk = 5;
-
     private World currentWorld;
-
-    private boolean isDecorating = false;
+    private WorldGenerator iceGen;
 
     public BiomeDecoratorTrappist1E() {
+    	
+        this.iceGen = new WorldGenMinableMeta(Blocks.ICE, 8, 4, true, TrappistBlocks.TrappistE.trap1e_stone, 1);
+
     }
 
     @Override
@@ -60,5 +62,30 @@ public class BiomeDecoratorTrappist1E extends BiomeDecoratorSpace {
 
     @Override
     protected void decorate() {
+    	
+    	int randPosX = this.posX + this.rand.nextInt(16) + 8;
+		int randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+		
+		BlockPos pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+    	
+		this.generateOre(20, iceGen, 150, 200);
+
+		pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+			GenUtility.generateDome(Blocks.GLASS.getDefaultState(), 10, pos);
     }
+    
+	static class TrappistStonePredicate implements Predicate<IBlockState> {
+		List<IBlockState> states = new ArrayList<IBlockState>();
+
+		private TrappistStonePredicate() {
+			states.add(TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState());
+		}
+
+		public boolean apply(IBlockState state) {
+			if (state != null && states.contains(state)) {
+				return true;
+			}
+			return false;
+		}
+	}
 }

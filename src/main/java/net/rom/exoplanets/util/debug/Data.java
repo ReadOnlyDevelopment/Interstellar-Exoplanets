@@ -49,7 +49,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.rom.exoplanets.ExoplanetsMod;
-
+@SuppressWarnings("unused")
 public final class Data {
 	private static final String REGISTRY_NAME_IS_NULL = "Registry name is null! This indicates a broken mod and is a serious problem!";
 	private static final String NO_MAP_POS = "Solar System does not contain a map vector value!";

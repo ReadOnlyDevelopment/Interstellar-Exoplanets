@@ -37,7 +37,9 @@ import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.IMetal;
 import net.rom.exoplanets.internal.RecipeBuilder;
 
+@SuppressWarnings("unused")
 public class ItemCraftingItem extends ItemBaseMetal {
+
 	private final String craftingItemName;
 	private final boolean isAlloy;
 	private final boolean isGear;

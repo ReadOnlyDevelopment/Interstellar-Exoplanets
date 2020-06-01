@@ -38,10 +38,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.biome.BiomeYzCetiB;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.worldgen.biome.BiomeYzCetiBDirty;
-import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.biomes.BiomeYzCetiC;
-import net.rom.exoplanets.astronomy.yzcetisystem.c.worldgen.biomes.BiomeYzCetiCUnknown;
+import net.rom.exoplanets.astronomy.yzceti.b.worldgen.biome.BiomeYzCetiB;
+import net.rom.exoplanets.astronomy.yzceti.b.worldgen.biome.BiomeYzCetiBDirty;
+import net.rom.exoplanets.astronomy.yzceti.c.worldgen.biomes.BiomeYzCetiC;
+import net.rom.exoplanets.astronomy.yzceti.c.worldgen.biomes.BiomeYzCetiCUnknown;
 
 public class ExoplanetBiomes {
 

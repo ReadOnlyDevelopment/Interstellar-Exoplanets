@@ -39,6 +39,7 @@ import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 
+@SuppressWarnings("rawtypes")
 public class AlloyRefineryRecipeCategory implements IRecipeCategory {
     public static final String UID = ExoInfo.RESOURCE_PREFIX + "alloy_refinery";
 

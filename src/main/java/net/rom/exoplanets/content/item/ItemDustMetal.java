@@ -24,7 +24,6 @@
 
 package net.rom.exoplanets.content.item;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +31,6 @@ import com.google.common.collect.Lists;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.rom.exoplanets.content.EnumByproduct;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.IMetal;
 import net.rom.exoplanets.internal.RecipeBuilder;

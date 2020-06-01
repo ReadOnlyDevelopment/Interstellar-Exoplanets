@@ -48,9 +48,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.container.ContainerMetalFurnace;
-import net.rom.exoplanets.content.EnumMetal;
-import net.rom.exoplanets.content.IMetal;
+import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
 import net.rom.exoplanets.internal.StackHelper;
 import net.rom.exoplanets.internal.tile.TileSidedInventoryExo;
 

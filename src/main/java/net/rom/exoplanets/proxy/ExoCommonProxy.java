@@ -34,40 +34,44 @@ import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.inerf.IProxy;
 
 public class ExoCommonProxy implements IProxy {
-	
 
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
-		registry.preInit(event);		
+		registry.preInit(event);
 	}
 
 	@Override
 	public void init(StellarRegistry registry, FMLInitializationEvent event) {
 		registry.init(event);
-		
+
 	}
 
 	@Override
 	public void postInit(StellarRegistry registry, FMLPostInitializationEvent event) {
 		registry.postInit(event);
-		
-	}
-	
-    @Override
-    public EntityPlayer getClientPlayer() {
-        return null;
-    }
-    
-	public void registerRender() {}
 
+	}
+
+	@Override
+	public EntityPlayer getClientPlayer() {
+		return null;
+	}
+
+	public void registerRender() {
+	}
 
 	public void registerTexture(Pre event, String texture) {
 	}
-    public void registerItemRenderer(Item item, int meta, String id) {}
-    
-    public void registerVariants()
-    {
 
-    }
+	public void registerItemRenderer(Item item, int meta, String id) {
+	}
+
+	public void registerVariants() {
+
+	}
+
+	public void registerModels() {
+		
+	}
 
 }

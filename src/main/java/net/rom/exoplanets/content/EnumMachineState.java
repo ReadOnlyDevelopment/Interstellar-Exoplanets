@@ -24,10 +24,10 @@
 
 package net.rom.exoplanets.content;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-
-import javax.annotation.Nonnull;
 
 public enum EnumMachineState implements IStringSerializable {
     NORTH_OFF(2, "north_off", false),

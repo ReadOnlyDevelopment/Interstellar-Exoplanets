@@ -37,8 +37,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.block.BlockGeneral;
 import net.rom.exoplanets.internal.RecipeBuilder;
-import net.rom.exoplanets.internal.block.BlockBase;
-import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockElectronic extends BlockGeneral {
 

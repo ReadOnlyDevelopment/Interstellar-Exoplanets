@@ -1,5 +1,5 @@
 /*
- * The MIT License (MIT)
+  * The MIT License (MIT)
  *
  * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
  *
@@ -24,48 +24,70 @@
 
 package net.rom.exoplanets.client.render;
 
+import java.io.IOException;
+import java.util.function.Function;
+
 import org.lwjgl.opengl.GL11;
 
+import com.google.common.collect.ImmutableList;
+
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
+import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
+import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.internal.client.ModelsHelper;
 
 @SideOnly(Side.CLIENT)
-public class RocketRenderer extends Render<EntityAutoRocket> {
+public class RocketRenderer extends Render<EntityTieredRocket> {
 
-	private ItemModelRocket rocketModel;
+    private OBJModel.OBJBakedModel rocketModel;
+	private String model;
 	
-	public RocketRenderer(RenderManager manager) {
+	public RocketRenderer(RenderManager manager, String model) {
 		super(manager);
-		this.shadowSize = 2F;
+        this.model = model;
+		this.shadowSize = 1F;
 	}
 
-	private void updateModel() {
-		if (this.rocketModel == null) {
-			this.rocketModel = (ItemModelRocket) ModelsHelper.getModelFromRegistry(ExoInfo.MODID, "twoplayerrocket");
-		}
-	}
+    private void updateModel()
+    {
+        if (this.rocketModel == null)
+        {
+            try
+            {
+                IModel model = OBJLoaderGC.instance.loadModel(new ResourceLocation(ExoInfo.MODID, this.model + ".obj"));
+                Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+                this.rocketModel = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Base"), false), DefaultVertexFormats.ITEM, spriteFunction);
+            }
+            catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+}
+    }
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityAutoRocket entity) {
+	protected ResourceLocation getEntityTexture(EntityTieredRocket entity) {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
 	}
 	
     @Override
-    public void doRender(EntityAutoRocket entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityTieredRocket entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks + 180;
         GlStateManager.disableRescaleNormal();
@@ -108,7 +130,7 @@ public class RocketRenderer extends Render<EntityAutoRocket> {
     }
 
     @Override
-    public boolean shouldRender(EntityAutoRocket rocket, ICamera camera, double camX, double camY, double camZ)
+    public boolean shouldRender(EntityTieredRocket rocket, ICamera camera, double camX, double camY, double camZ)
     {
         AxisAlignedBB axisalignedbb = rocket.getEntityBoundingBox().grow(0.5D, 0, 0.5D);
         return rocket.isInRangeToRender3d(camX, camY, camZ) && camera.isBoundingBoxInFrustum(axisalignedbb);

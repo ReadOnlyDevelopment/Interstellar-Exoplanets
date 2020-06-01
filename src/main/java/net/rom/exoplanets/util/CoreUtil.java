@@ -24,117 +24,105 @@
 
 package net.rom.exoplanets.util;
 
+import java.util.List;
+import java.util.function.Function;
+
+import com.google.common.collect.ImmutableMap;
+
+import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.rom.exoplanets.ExoplanetsMod;
 
 public class CoreUtil {
 
-    public static int hexToRgb(String color) {
-        return rgbToDecimal(Integer.valueOf(color.substring(1, 3), 16), Integer.valueOf(color.substring(3, 5), 16), Integer.valueOf(color.substring(5, 7), 16));
-    }
+	public static void registerObjectDomain(String id) {
+		OBJLoader.INSTANCE.addDomain(id);
+	}
+	
+	public static <T extends TileEntity> void registerTileEntityRenderer(Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer) {
+		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
+	}
 
-    public static int rgbToDecimal(int r, int g, int b) {
-        return b + 256 * g + 65536 * r;
-    }
-
-    public static RGB stringToRGB(String color) {
-        return stringToRGB(color, false, null);
-    }
-
-    public static RGB stringToRGB(String color, boolean printException, String optionName) {
-        try {
-            String[] colorArray = color.split(",");
-            float red = Float.parseFloat(colorArray[0]);
-            float green = Float.parseFloat(colorArray[1]);
-            float blue = Float.parseFloat(colorArray[2]);
-            return new RGB(red, green, blue, 255.0F);
-        } catch (Exception e) {
-            if (printException) {
-                e.printStackTrace();
-            }
-            return new RGB(true);
-        }
-    }
-
-    public static RGB toRGB(int color) {
-        float alpha = (color >> 24 & 255) / 255.0F;
-        float red = (color >> 16 & 255) / 255.0F;
-        float green = (color >> 8 & 255) / 255.0F;
-        float blue = (color & 255) / 255.0F;
-        return new RGB(red, green, blue, alpha);
-    }
-
-    public static class RGB {
-
-        float red;
-        float green;
-        float blue;
-        float alpha;
-        boolean error;
-
-        public RGB(float red, float green, float blue, float alpha) {
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
-            this.alpha = alpha;
-        }
-
-        RGB(boolean error) {
-            this.error = error;
-        }
-
-        public int packedRed() {
-            return (int) (this.red * 255.0F);
-        }
-
-        public int packedGreen() {
-            return (int) (this.green * 255.0F);
-        }
-
-        public int packedBlue() {
-            return (int) (this.blue * 255.0F);
-        }
-
-        public int packedAlpha() {
-            return (int) (this.alpha * 255.0F);
-        }
-
-        public float floatRed() {
-            return this.red / 255.0F;
-        }
-
-        public float floatGreen() {
-            return this.green / 255.0F;
-        }
-
-        public float floatBlue() {
-            return this.blue / 255.0F;
-        }
-
-        public float floatAlpha() {
-            return this.alpha / 255.0F;
-        }
-
-        public int red() {
-            return (int) this.red;
-        }
-
-        public int green() {
-            return (int) this.green;
-        }
-
-        public int blue() {
-            return (int) this.blue;
-        }
-
-        public int alpha() {
-            return (int) this.alpha;
-        }
-    }
-    
-	public static <T extends Entity> void registerEntityRenderer(Class<T> entityClass, IRenderFactory<? super T> renderFactory) {
+	public static <T extends Entity> void registerEntityRenderer(Class<T> entityClass,
+			IRenderFactory<? super T> renderFactory) {
 		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+	}
+
+	public static void registerMultiModelItems(String id, Item item, String name, int max) {
+		ModelResourceLocation modelResourceLocation;
+		for (int i = 0; i < max; ++i) {
+			modelResourceLocation = new ModelResourceLocation(id + name, "inventory");
+			registerModel(item, i, modelResourceLocation);
+		}
+	}
+
+	public static void registerModel(Item item, int meta, ModelResourceLocation location) {
+		ModelLoader.setCustomModelResourceLocation(item, meta, location);
+	}
+
+	public static void replaceModelDefault(String modID, ModelBakeEvent event, String loc, List<String> visibleGroups,
+			Class<? extends ModelTransformWrapper> clazz, String... variants) {
+		replaceModelDefault(modID, event, loc, loc + ".obj", visibleGroups, clazz, TRSRTransformation.identity(),
+				variants);
+	}
+
+	public static void replaceModelDefault(String modID, ModelBakeEvent event, String resLoc, String objLoc,
+			List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState,
+			String... variants) {
+		if (variants.length == 0) {
+			variants = new String[] { "inventory" };
+		}
+
+		OBJModel model;
+
+		try {
+			model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation(modID, objLoc));
+			model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft()
+				.getTextureMapBlocks().getAtlasSprite(location.toString());
+		for (String variant : variants) {
+			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(modID + ":" + resLoc, variant);
+			IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+			if (object != null) {
+				if (!variant.equals("inventory"))
+					parentState = TRSRTransformation.identity();
+
+				IBakedModel newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState),
+						DefaultVertexFormats.ITEM, spriteFunction);
+				if (clazz != null) {
+					try {
+						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
+					} catch (Exception e) {
+						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
+						e.printStackTrace();
+					}
+				}
+				event.getModelRegistry().putObject(modelResourceLocation, newModel);
+			}
+		}
 	}
 
 }

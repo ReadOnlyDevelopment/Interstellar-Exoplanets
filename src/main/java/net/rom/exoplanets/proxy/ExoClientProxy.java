@@ -26,12 +26,8 @@ package net.rom.exoplanets.proxy;
 
 import java.util.List;
 
-import javax.vecmath.Quat4f;
-import javax.vecmath.Vector3f;
-
 import com.google.common.collect.ImmutableList;
 
-import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -58,26 +54,24 @@ import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.ItemModelRocket;
 import net.rom.exoplanets.client.render.RocketRenderer;
-import net.rom.exoplanets.content.entities.EntityTwoPlayerRocket;
+import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.event.client.handlers.GuiScreenHandler;
 import net.rom.exoplanets.event.client.handlers.SkyProviders;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
+import net.rom.exoplanets.internal.MCUtil;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.util.CoreUtil;
-
 
 public class ExoClientProxy extends ExoCommonProxy {
-
 
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
 		super.preInit(registry, event);
-
+		registerVarients();
+		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager , "twopersonrocket"));
 		ExoFluids.bakeModels();
 		registerEventHandler(new GuiScreenHandler());
 		registerEventHandler(new BlockHandler());
-		registerEntityRenderers();
 		registry.clientPreInit(event);
 
 	}
@@ -100,21 +94,19 @@ public class ExoClientProxy extends ExoCommonProxy {
     @SideOnly(Side.CLIENT)
     public void onModelBakeEvent(ModelBakeEvent event)
     {
-    	Quat4f rot = TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0));
-        replaceModelDefault(event, "rockets/twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
-
+        replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
     }
-    
+
     private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants)
     {
-        ClientUtil.replaceModel(ExoInfo.RESOURCE_PREFIX, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
+        MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
     }
     
     @SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void loadTextures(TextureStitchEvent.Pre event) {
 
-		ExoplanetsMod.proxy.registerTexture(event, "model/rocket_tier_4");
+		ExoplanetsMod.proxy.registerTexture(event, "model/twopersonrocket");
 
 	}
 
@@ -143,9 +135,4 @@ public class ExoClientProxy extends ExoCommonProxy {
             ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
         }
     }
-    
-	public static void registerEntityRenderers() {
-		CoreUtil.registerEntityRenderer(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
-	}
-	
 }

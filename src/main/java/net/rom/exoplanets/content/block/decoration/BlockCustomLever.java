@@ -27,7 +27,6 @@ package net.rom.exoplanets.content.block.decoration;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.BlockLever;
-import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockCustomLever extends BlockLever implements ISortableBlock {
 	public BlockCustomLever() {

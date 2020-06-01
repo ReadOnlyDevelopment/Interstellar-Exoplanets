@@ -30,10 +30,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.container.ContainerAlloyRefinery;
-import net.rom.exoplanets.container.ContainerMetalFurnace;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.TileMetalFurnace;
+import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
+import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
 
 public class GuiHandlerExo implements IGuiHandler {
 	public static final int ID_METAL_FURNACE = 0;

@@ -37,12 +37,12 @@ import net.rom.exoplanets.astronomy.trappist1.c.SkyProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.SkyProviderTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.SkyProviderB;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
-import net.rom.exoplanets.astronomy.yzcetisystem.c.SkyProviderC;
-import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.SkyProviderD;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
+import net.rom.exoplanets.astronomy.yzceti.b.SkyProviderB;
+import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
+import net.rom.exoplanets.astronomy.yzceti.c.SkyProviderC;
+import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
+import net.rom.exoplanets.astronomy.yzceti.d.SkyProviderD;
+import net.rom.exoplanets.astronomy.yzceti.d.WorldProviderYzCetiD;
 import net.rom.exoplanets.internal.MCUtil;
 
 public class SkyProviders {

@@ -27,7 +27,7 @@ package net.rom.exoplanets.init;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
-import net.rom.exoplanets.astronomy.yzcetisystem.YzCetiBlocks;
+import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.content.block.decoration.BlockCellarLamp;
 import net.rom.exoplanets.content.block.decoration.BlockCustomHydraulic;

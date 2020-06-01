@@ -28,26 +28,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.lwjgl.input.Keyboard;
 
-import lombok.Setter;
-import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.rom.exoplanets.internal.LogHelper;
-import net.rom.exoplanets.internal.MCUtil;
 
 @ParametersAreNonnullByDefault
 public class StringUtil {

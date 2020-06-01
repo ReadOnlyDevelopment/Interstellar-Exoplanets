@@ -39,19 +39,19 @@ import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
-import net.rom.api.stellar.AstroBuilder;
-import net.rom.api.stellar.calc.AstronomicalConstants;
-import net.rom.api.stellar.impl.planet.ExoPlanet;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.rom.exoplanets.astronomy.yzcetisystem.b.WorldProviderYzCetiB;
-import net.rom.exoplanets.astronomy.yzcetisystem.c.WorldProviderYzCetiC;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.WorldProviderYzCetiD;
-import net.rom.exoplanets.astronomy.yzcetisystem.d.worldgen.YzCetiDBiomes;
+import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
+import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
+import net.rom.exoplanets.astronomy.yzceti.d.WorldProviderYzCetiD;
+import net.rom.exoplanets.astronomy.yzceti.d.worldgen.YzCetiDBiomes;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.conf.SConfigSystems;
+import net.rom.exoplanets.internal.AstroBuilder;
+import net.rom.exoplanets.internal.AstronomicalConstants;
+import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class InitPlanets {
 

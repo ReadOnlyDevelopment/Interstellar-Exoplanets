@@ -37,7 +37,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.rom.exoplanets.content.block.BlockDecoration;
-import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockSatelliteAntenna extends BlockDecoration {
 

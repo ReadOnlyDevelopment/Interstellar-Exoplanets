@@ -34,7 +34,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.api.research.IResearch;
 import net.rom.api.research.ResearchStack;
-import net.rom.exoplanets.ExoplanetsMod;
 
 public class ResearchFactory {
 	

@@ -1,6 +1,3 @@
-defaultTasks 'licenseFormat'
-
-
 static def getCurrentYear() {
 	def date = new Date()
 	return date.format('yyyy')

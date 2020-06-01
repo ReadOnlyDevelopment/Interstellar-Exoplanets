@@ -34,7 +34,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.rom.exoplanets.content.EnumMetal;
-import net.rom.exoplanets.init.ExoBlocks;
 
 public class OverworldOreGen implements IWorldGenerator {
 
