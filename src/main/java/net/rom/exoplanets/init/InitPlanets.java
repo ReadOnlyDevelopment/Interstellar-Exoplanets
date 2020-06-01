@@ -130,13 +130,11 @@ public class InitPlanets {
 		
 		trappistc = builder.buildExoPlanet(trap1, "trappist_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappistc, ClassBody.SELENA, trappistAu[1], 0.005f, 0.6f, 0, 26500L);
-		//builder.setNormalOrbit(trappistc);
 		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		
 		trappiste = builder.buildExoPlanet(trap1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappiste, ClassBody.SELENA, trappistAu[3], 0.005f, 0.6f, 0, 26500L);
-		builder.setNormalOrbit(trappiste);
 		builder.setExoData(trappiste, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.OXYGEN);
 		
