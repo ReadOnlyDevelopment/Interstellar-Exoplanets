@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "exoplanets:blocks/machine/alloy_top",
+    "front": "exoplanets:blocks/machine/alloy_front_off",
+    "side": "exoplanets:blocks/machine/alloy_side"
+  }
+}

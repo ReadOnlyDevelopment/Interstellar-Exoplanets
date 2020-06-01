@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/yzc_igneous",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/yzc_igneous"
+  }
+}

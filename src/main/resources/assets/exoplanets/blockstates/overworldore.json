@@ -1,0 +1,28 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "inventory": [{
+    }],
+    "type": {
+      "orerutile": {
+        "textures": {
+          "all": "exoplanets:blocks/ore/orerutile"
+        }
+      },
+      "oreruthenium": {
+        "textures": {
+          "all": "exoplanets:blocks/ore/oreruthenium"
+        }
+      },
+      "orelimonite": {
+        "textures": {
+          "all": "exoplanets:blocks/ore/orelimonite"
+        }
+      }
+    }
+  }
+}

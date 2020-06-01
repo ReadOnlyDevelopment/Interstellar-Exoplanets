@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/orebronze",
+  "textures": {
+    "layer0": "exoplanets:blocks/orebronze"
+  }
+}

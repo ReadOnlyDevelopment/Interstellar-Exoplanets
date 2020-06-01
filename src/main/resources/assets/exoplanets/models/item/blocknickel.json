@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/blocknickel",
+  "textures": {
+    "layer0": "exoplanets:blocks/blocknickel"
+  }
+}

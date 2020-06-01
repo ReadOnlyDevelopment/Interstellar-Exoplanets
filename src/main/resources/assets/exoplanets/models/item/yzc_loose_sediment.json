@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/yzc_loose_sediment",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/yzc_loose_sediment"
+  }
+}

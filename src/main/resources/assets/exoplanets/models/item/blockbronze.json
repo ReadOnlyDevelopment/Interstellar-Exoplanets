@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/blockbronze",
+  "textures": {
+    "layer0": "exoplanets:blocks/blockbronze"
+  }
+}

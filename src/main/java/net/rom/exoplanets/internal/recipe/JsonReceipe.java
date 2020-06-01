@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.internal.recipe;
 
 import java.io.File;
@@ -17,7 +41,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-import net.rom.exoplanets.Exoplanets;
+import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.internal.inerf.IRSerializer;
 
 public final class JsonReceipe {
 
@@ -73,7 +98,7 @@ public final class JsonReceipe {
      * Serializes a component so it can be used in a json file.
      *
      * @param component The component to serialize.
-     * @return A map containing the data for the componet.
+     * @return A map containing the data for the component.
      */
     private static JsonObject serializeComponent(Object component) {
         // If the ingredient is an item, run it through again as an ItemStack.
@@ -106,7 +131,7 @@ public final class JsonReceipe {
 
             // Warn about items with NBT, but go ahead and serialize what we can
             if (stack.hasTagCompound()) {
-                Exoplanets.LOGGER.warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
+                ExoplanetsMod.logger.formatted_Warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
             }
 
             return ret;

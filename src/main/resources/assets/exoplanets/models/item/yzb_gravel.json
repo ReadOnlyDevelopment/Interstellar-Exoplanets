@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/yzb_gravel",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/yzb_gravel"
+  }
+}

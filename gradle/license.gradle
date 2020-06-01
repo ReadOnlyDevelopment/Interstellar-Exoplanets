@@ -1,0 +1,17 @@
+static def getCurrentYear() {
+	def date = new Date()
+	return date.format('yyyy')
+}
+
+license {
+	ext {
+		name = "Interstellar: Exoplanets"
+		organization = "ROMVoid95"
+		email = "rom.readonlydev@gmail.com"
+		year = getCurrentYear()
+	}
+
+	header = project.file('HEADER')
+	include '**/*.java'
+	ignoreFailures = true
+}

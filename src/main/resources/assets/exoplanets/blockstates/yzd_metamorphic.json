@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "normal": [ 
+		{ "model": "exoplanets:yzd_metamorphic", "weight": 25 },
+		{ "model": "exoplanets:yzd_metamorphic_90", "weight": 25 },
+		{ "model": "exoplanets:yzd_metamorphic_180", "weight": 25 },
+		{ "model": "exoplanets:yzd_metamorphic_270", "weight": 25 }
+		]
+    }
+}
+

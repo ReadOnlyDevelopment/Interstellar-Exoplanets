@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "exoplanets:cellar_lamp"
+        },
+        "facing=south": {
+            "model": "exoplanets:cellar_lamp",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "exoplanets:cellar_lamp",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "exoplanets:cellar_lamp",
+            "y": 90
+        }
+    }
+}

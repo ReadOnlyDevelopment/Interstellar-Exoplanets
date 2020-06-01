@@ -1,19 +1,38 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package net.rom.exoplanets.internal;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.ICriterionInstance;
@@ -29,7 +48,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
@@ -67,578 +85,575 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfessio
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
-import net.rom.exoplanets.internal.block.IColorBlock;
-import net.rom.exoplanets.internal.block.ITEBlock;
-import net.rom.exoplanets.internal.client.ICustomMesh;
-import net.rom.exoplanets.internal.client.ICustomModel;
-import net.rom.exoplanets.internal.item.IColorItem;
-import net.rom.exoplanets.internal.item.ItemBlockMetaSubtypes;
-import net.rom.exoplanets.util.MCUtil;
+import net.rom.exoplanets.internal.inerf.IAddRecipe;
+import net.rom.exoplanets.internal.inerf.IColorBlock;
+import net.rom.exoplanets.internal.inerf.ICustomMesh;
+import net.rom.exoplanets.internal.inerf.ICustomModel;
+import net.rom.exoplanets.internal.inerf.ITEBlock;
+import net.rom.exoplanets.internal.inerf.item.IColorItem;
+import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
 
 public class StellarRegistry {
-    private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
+	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
 
-    private final List<Block> blocks = NonNullList.create();
-    private final List<Item> items = NonNullList.create();
+	public final List<Block> blocks = NonNullList.create();
+	public final List<Item> items = NonNullList.create();
 
-    private final List<IAddRecipe> recipeAdders = NonNullList.create();
-    private final List<Block> coloredBlocks = NonNullList.create();
-    private final List<Item> coloredItems = NonNullList.create();
+	public List<Block> getBlocks() {
+		return this.blocks;
+	}
 
-    private final List<IPhaseInit> phasedInitializers = new ArrayList<>();
-    private final Map<Class<? extends IForgeRegistryEntry<?>>, Consumer<StellarRegistry>> registrationHandlers = new HashMap<>();
+	public List<Item> getItems() {
+		return this.items;
+	}
 
-    private Object mod;
-    private final Logger logger;
-    private final String modId;
-    private final String resourcePrefix;
+	private final List<IAddRecipe> recipeAdders = NonNullList.create();
+	private final List<Block> coloredBlocks = NonNullList.create();
+	private final List<Item> coloredItems = NonNullList.create();
 
-    @Nonnull
-    private final RecipeBuilder recipes;
+	private final Map<Class<? extends IForgeRegistryEntry<?>>, Consumer<StellarRegistry>> registrationHandlers = new HashMap<>();
 
-    @Nullable
-    private CreativeTabs defaultCreativeTab = null;
+	private Object mod;
+	private final LogHelper logger;
+	private final String modId;
+	private final String resourcePrefix;
 
-    /**
-     * Constructor which automatically acquires the mod container to populate required fields.
-     *
-     */
-    public StellarRegistry() {
-        ModContainer mod = Objects.requireNonNull(Loader.instance().activeModContainer());
-        this.modId = mod.getModId();
-        this.resourcePrefix = this.modId + ":";
-        this.logger = LogManager.getLogger(mod.getName() + "/ModRegistry");
-        this.recipes = new RecipeBuilder(modId);
-        MinecraftForge.EVENT_BUS.register(new EventHandler(this));
-    }
+	@Nonnull
+	private final RecipeBuilder recipes;
 
-    public RecipeBuilder getRecipeMaker() {
-        return recipes;
-    }
+	@Nullable
+	private CreativeTabs defaultCreativeTab = null;
 
-    /**
-     * Set the mod instance object
-     */
-    public void setMod(Object mod) {
-        this.mod = mod;
-    }
+	@Nullable
+	private CreativeTabs creativeTab = null;
 
-    /**
-     * Add a phased initializer, which has preInit, init, and postInit methods which ModRegistry will
-     * call automatically.
-     * <p>This method should be called during <em>pre-init</em> in the proper proxy,
-     * <em>before</em> calling the ModRegistry's preInit method.</p>
-     *
-     * @param instance Your initializer (singleton design is recommended)
-     */
-    public void addPhasedInitializer(IPhaseInit instance) {
-        this.phasedInitializers.add(instance);
-    }
+	/**
+	 * Constructor which automatically acquires the mod container to populate
+	 * required fields.
+	 *
+	 */
+	public StellarRegistry() {
+		ModContainer mod = Objects.requireNonNull(Loader.instance().activeModContainer());
+		this.modId = mod.getModId();
+		this.resourcePrefix = this.modId + ":";
+		this.logger = ExoplanetsMod.logger;
+		this.recipes = new RecipeBuilder(this.modId);
+		MinecraftForge.EVENT_BUS.register(new EventHandler(this));
+	}
 
-    /**
-     * Adds a function that will be called when it is time to register objects for a certain class.
-     * For example, adding a handler for class {@link Item} will call the function during {@link
-     * net.minecraftforge.event.RegistryEvent.Register} for type {@link Item}.
-     * <p>This method should be called during <em>pre-init</em> in the proper proxy.</p>
-     *
-     * @param registerFunction The function to call
-     * @param registryClass    The registry object class
-     * @throws RuntimeException if a handler for the class is already registered
-     */
-    public void addRegistrationHandler(Consumer<StellarRegistry> registerFunction, Class<? extends IForgeRegistryEntry<?>> registryClass) throws RuntimeException {
-        if (this.registrationHandlers.containsKey(registryClass))
-            throw new RuntimeException("Registration handler for class " + registryClass + " already registered!");
-        this.registrationHandlers.put(registryClass, registerFunction);
-    }
+	public RecipeBuilder getRecipeMaker() {
+		return this.recipes;
+	}
 
-    public CreativeTabs makeCreativeTab(String label, Supplier<ItemStack> icon) {
-        CreativeTabs tab = new CreativeTabs(label) {
+	/**
+	 * Set the mod instance object
+	 */
+	public void setMod(Object mod) {
+		this.mod = mod;
+	}
 
-			@Override
-			public ItemStack getTabIconItem() {
-				return icon.get();
+	/**
+	 * Adds a function that will be called when it is time to register objects for a
+	 * certain class. For example, adding a handler for class {@link Item} will call
+	 * the function during {@link net.minecraftforge.event.RegistryEvent.Register}
+	 * for type {@link Item}.
+	 * <p>
+	 * This method should be called during <em>pre-init</em> in the proper proxy.
+	 * </p>
+	 *
+	 * @param registerFunction The function to call
+	 * @param registryClass    The registry object class
+	 * @throws RuntimeException if a handler for the class is already registered
+	 */
+	public void addRegistrationHandler(Consumer<StellarRegistry> registerFunction, Class<? extends IForgeRegistryEntry<?>> registryClass) throws RuntimeException {
+		if (this.registrationHandlers.containsKey(registryClass)) {
+			throw new RuntimeException("Registration handler for class " + registryClass + " already registered!");
+		}
+		this.registrationHandlers.put(registryClass, registerFunction);
+	}
+
+	/**
+	 * Register a Block. Its name (registry key/name) must be provided. Uses a new
+	 * ItemBlockSL.
+	 */
+	public <T extends Block> T registerBlock(T block, String key) {
+		return registerBlock(block, key, defaultItemBlock(block));
+	}
+
+	@Nonnull
+	private <T extends Block> ItemBlock defaultItemBlock(T block) {
+		if (block instanceof BlockMetaSubtypes) {
+			return new ItemBlockMetaSubtypes((BlockMetaSubtypes) block);
+		} else {
+			return new ItemBlock(block);
+		}
+	}
+
+	/**
+	 * Register a Block. Its name registry name and ItemBlock must be provided.
+	 */
+	public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock) {
+		this.blocks.add(block);
+		block.setUnlocalizedName(this.modId + "." + key);
+
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(block, name);
+		ForgeRegistries.BLOCKS.register(block);
+
+		safeSetRegistryName(itemBlock, name);
+		ForgeRegistries.ITEMS.register(itemBlock);
+
+		// Register TileEntity
+		if (block instanceof ITEBlock) {
+			Class<? extends TileEntity> clazz = ((ITEBlock) block).getTileEntityClass();
+			registerTileEntity(clazz, key);
+		}
+
+		if (block instanceof IAddRecipe) {
+			this.recipeAdders.add((IAddRecipe) block);
+		}
+
+		if (MCUtil.isClient() && block instanceof IColorBlock) {
+			this.coloredBlocks.add(block);
+		}
+
+		if (this.creativeTab != null) {
+			block.setCreativeTab(this.creativeTab);
+		}
+
+		return block;
+	}
+
+	// Item
+
+	/**
+	 * Register an Item. Its name (registry key/name) must be provided.
+	 */
+	public <T extends Item> T registerItem(T item, String key) {
+		this.items.add(item);
+		item.setUnlocalizedName(this.modId + "." + key.toLowerCase());
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(item, name);
+		ForgeRegistries.ITEMS.register(item);
+
+		if (item instanceof IAddRecipe) {
+			this.recipeAdders.add((IAddRecipe) item);
+		}
+
+		if (MCUtil.isClient() && item instanceof IColorItem) {
+			this.coloredItems.add(item);
+		}
+
+		if (this.defaultCreativeTab != null) {
+			item.setCreativeTab(this.defaultCreativeTab);
+		}
+
+		return item;
+	}
+
+	// Enchantment
+
+	public void registerEnchantment(Enchantment enchantment, String key) {
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(enchantment, name);
+		enchantment.setName(name.getResourceDomain() + "." + name.getResourcePath());
+		ForgeRegistries.ENCHANTMENTS.register(enchantment);
+	}
+
+	// Entity
+
+	/**
+	 * Automatically incrementing ID number for registering entities.
+	 */
+	private int lastEntityId = -1;
+
+	public void registerEntity(Class<? extends Entity> entityClass, String key) {
+		registerEntity(entityClass, key, ++this.lastEntityId, this.mod, 64, 20, true);
+	}
+
+	public void registerEntity(Class<? extends Entity> entityClass, String key, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+		registerEntity(entityClass, key, ++this.lastEntityId, this.mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+	}
+
+	public void registerEntity(Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+		ResourceLocation resource = new ResourceLocation(this.modId, key);
+		EntityRegistry.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+	}
+
+	public void registerEntity(Class<? extends Entity> entityClass, String key, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary,
+			int eggSecondary) {
+		registerEntity(entityClass, key, ++this.lastEntityId, this.mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
+	}
+
+	public void registerEntity(Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates,
+			int eggPrimary, int eggSecondary) {
+		ResourceLocation resource = new ResourceLocation(this.modId, key);
+		EntityRegistry.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public <T extends Entity> void registerEntityRenderer(Class<T> entityClass, IRenderFactory<T> renderFactory) {
+		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+	}
+
+	// Potion
+
+	public void registerPotion(Potion potion, String key) {
+		if (potion.getName().isEmpty()) {
+			potion.setPotionName("effect." + this.modId + "." + key);
+		}
+
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(potion, name);
+		ForgeRegistries.POTIONS.register(potion);
+	}
+
+	// Sound Events
+
+	public void registerSoundEvent(SoundEvent sound, String key) {
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(sound, name);
+		ForgeRegistries.SOUND_EVENTS.register(sound);
+	}
+
+	// Loot
+
+	public void registerLootCondition(LootCondition.Serializer<? extends LootCondition> serializer) {
+		LootConditionManager.registerCondition(serializer);
+	}
+
+	public void registerLootEntityProperty(EntityProperty.Serializer<? extends EntityProperty> serializer) {
+		EntityPropertyManager.registerProperty(serializer);
+	}
+
+	public void registerLootFunction(LootFunction.Serializer<? extends LootFunction> serializer) {
+		LootFunctionManager.registerFunction(serializer);
+	}
+
+	public void registerLootTable(String name) {
+		LootTableList.register(new ResourceLocation(this.modId, name));
+	}
+
+	/**
+	 * Set the object's registry name, if it has not already been set. Logs a
+	 * warning if it has.
+	 */
+	private void safeSetRegistryName(IForgeRegistryEntry<?> entry, ResourceLocation name) {
+		if (entry.getRegistryName() == null) {
+			entry.setRegistryName(name);
+		} else {
+			this.logger.formatted_Warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
+		}
+	}
+
+	/**
+	 * Ensure the given name does not contain upper case letters. This is not a
+	 * problem until 1.13, so just log it as a warning.
+	 */
+	private void validateRegistryName(String name) {
+		if (PATTERN_REGISTRY_NAME.matcher(name).matches()) {
+			this.logger.formatted_Warn("Invalid name for object: {}", name);
+		}
+	}
+
+	// Advancements
+	public <T extends ICriterionInstance> ICriterionTrigger<T> registerAdvancementTrigger(ICriterionTrigger<T> trigger) {
+		CriteriaTriggers.register(trigger);
+		return trigger;
+	}
+
+	/**
+	 * Register a TileEntity. "tile." + resourcePrefix is automatically prepended to
+	 * the key.
+	 */
+	public void registerTileEntity(Class<? extends TileEntity> tileClass, String key) {
+		GameRegistry.registerTileEntity(tileClass, new ResourceLocation(this.modId, key));
+	}
+
+	/**
+	 * Registers a renderer for a TileEntity.
+	 */
+	@SideOnly(Side.CLIENT)
+	public <T extends TileEntity> void registerTileEntitySpecialRenderer(Class<T> tileClass, TileEntitySpecialRenderer<T> renderer) {
+		ClientRegistry.bindTileEntitySpecialRenderer(tileClass, renderer);
+	}
+
+	// Model registration wrappers
+
+	@SideOnly(Side.CLIENT)
+	public void setModel(Block block, int meta, String modelPath) {
+		setModel(Item.getItemFromBlock(block), meta, modelPath, "inventory");
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setModel(Block block, int meta, String modelPath, String variant) {
+		setModel(Item.getItemFromBlock(block), meta, modelPath, variant);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setModel(Item item, int meta, String modelPath) {
+		setModel(item, meta, modelPath, "inventory");
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setModel(Item item, int meta, String modelPath, String variant) {
+		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.resourcePrefix + modelPath, variant));
+	}
+
+	// endregion
+
+	// region Initialization phases
+
+	/*
+	 * Initialization phases. Calling in either your common or client proxy is
+	 * recommended. "client" methods in your client proxy, the rest in your common
+	 * AND client proxy.
+	 */
+
+	private boolean preInitDone = false;
+	private boolean initDone = false;
+	private boolean postInitDone = false;
+
+	/**
+	 * Call in the "preInit" phase in your common proxy.
+	 */
+	public void preInit(FMLPreInitializationEvent event) {
+		if (this.preInitDone) {
+			this.logger.warn("preInit called more than once!");
+			return;
+		}
+
+		verifyOrFindModObject();
+		this.preInitDone = true;
+	}
+
+	private void verifyOrFindModObject() {
+		if (this.mod == null) {
+			this.logger.formatted_Warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
+			ModContainer container = Loader.instance().getIndexedModList().get(this.modId);
+			if (container != null) {
+				this.mod = container.getMod();
+				this.logger.formatted_Warn("Automatically acquired mod object for {}", this.modId);
+			} else {
+				this.logger.formatted_Warn("Could not find mod object. The mod ID is likely incorrect.");
 			}
-
-        };
-        if (defaultCreativeTab == null) defaultCreativeTab = tab;
-        return tab;
-    }
-
-    //region Standard register methods (usually called within a registration handler)
-
-    // Block
-
-    /**
-     * Register a Block. Its name (registry key/name) must be provided. Uses a new ItemBlockSL.
-     */
-    public <T extends Block> T registerBlock(T block, String key) {
-        return registerBlock(block, key, defaultItemBlock(block));
-    }
-
-    @Nonnull
-    private <T extends Block> ItemBlock defaultItemBlock(T block) {
-        if (block instanceof BlockMetaSubtypes)
-            return new ItemBlockMetaSubtypes((BlockMetaSubtypes) block);
-        else
-            return new ItemBlock(block);
-    }
-
-    /**
-     * Register a Block. Its name registry name and ItemBlock must be provided.
-     */
-    public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock) {
-        blocks.add(block);
-        block.setUnlocalizedName(modId + "." + key);
-
-        validateRegistryName(key);
-        ResourceLocation name = new ResourceLocation(modId, key);
-        safeSetRegistryName(block, name);
-        ForgeRegistries.BLOCKS.register(block);
-
-        // Register ItemBlock; TODO: Should this be done in Item register event?
-        safeSetRegistryName(itemBlock, name);
-        ForgeRegistries.ITEMS.register(itemBlock);
-
-        // Register TileEntity
-        if (block instanceof ITEBlock) {
-            Class<? extends TileEntity> clazz = ((ITEBlock) block).getTileEntityClass();
-            registerTileEntity(clazz, key);
-        }
-
-        if (block instanceof IAddRecipe) {
-            this.recipeAdders.add((IAddRecipe) block);
-        }
-
-        if (MCUtil.isClient() && block instanceof IColorBlock) {
-            this.coloredBlocks.add(block);
-        }
-
-        if (defaultCreativeTab != null) {
-            block.setCreativeTab(defaultCreativeTab);
-        }
-
-        return block;
-    }
-
-    // Item
-
-    /**
-     * Register an Item. Its name (registry key/name) must be provided.
-     */
-    public <T extends Item> T registerItem(T item, String key) {
-        items.add(item);
-        item.setUnlocalizedName(modId + "." + key.toLowerCase());
-        validateRegistryName(key);
-        ResourceLocation name = new ResourceLocation(modId, key);
-        safeSetRegistryName(item, name);
-        ForgeRegistries.ITEMS.register(item);
-
-        if (item instanceof IAddRecipe) {
-            this.recipeAdders.add((IAddRecipe) item);
-        }
-
-        if (MCUtil.isClient() && item instanceof IColorItem) {
-            this.coloredItems.add(item);
-        }
-
-        if (defaultCreativeTab != null) {
-            item.setCreativeTab(defaultCreativeTab);
-        }
-
-        return item;
-    }
-
-    // Enchantment
-
-    public void registerEnchantment(Enchantment enchantment, String key) {
-        validateRegistryName(key);
-        ResourceLocation name = new ResourceLocation(modId, key);
-        safeSetRegistryName(enchantment, name);
-        enchantment.setName(name.getResourceDomain() + "." + name.getResourcePath());
-        ForgeRegistries.ENCHANTMENTS.register(enchantment);
-    }
-
-    // Entity
-
-    /**
-     * Automatically incrementing ID number for registering entities.
-     */
-    private int lastEntityId = -1;
-
-    public void registerEntity(Class<? extends Entity> entityClass, String key) {
-        registerEntity(entityClass, key, ++lastEntityId, mod, 64, 20, true);
-    }
-
-    public void registerEntity(Class<? extends Entity> entityClass, String key, int trackingRange, int updateFrequency,
-                               boolean sendsVelocityUpdates) {
-        registerEntity(entityClass, key, ++lastEntityId, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-    }
-
-    public void registerEntity(Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange,
-                               int updateFrequency, boolean sendsVelocityUpdates) {
-        ResourceLocation resource = new ResourceLocation(modId, key);
-        EntityRegistry.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-    }
-
-    public void registerEntity(Class<? extends Entity> entityClass, String key, int trackingRange, int updateFrequency,
-                               boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
-        registerEntity(entityClass, key, ++lastEntityId, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
-    }
-
-    public void registerEntity(Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange,
-                               int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
-        ResourceLocation resource = new ResourceLocation(modId, key);
-        EntityRegistry.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public <T extends Entity> void registerEntityRenderer(Class<T> entityClass, IRenderFactory<T> renderFactory) {
-        RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
-    }
-
-    // Potion
-
-    public void registerPotion(Potion potion, String key) {
-        if (potion.getName().isEmpty())
-            potion.setPotionName("effect." + modId + "." + key);
-
-        validateRegistryName(key);
-        ResourceLocation name = new ResourceLocation(this.modId, key);
-        safeSetRegistryName(potion, name);
-        ForgeRegistries.POTIONS.register(potion);
-    }
-
-    // Sound Events
-
-    public void registerSoundEvent(SoundEvent sound, String key) {
-        validateRegistryName(key);
-        ResourceLocation name = new ResourceLocation(modId, key);
-        safeSetRegistryName(sound, name);
-        ForgeRegistries.SOUND_EVENTS.register(sound);
-    }
-
-    // Loot
-
-    public void registerLootCondition(LootCondition.Serializer<? extends LootCondition> serializer) {
-        LootConditionManager.registerCondition(serializer);
-    }
-
-    public void registerLootEntityProperty(EntityProperty.Serializer<? extends EntityProperty> serializer) {
-        EntityPropertyManager.registerProperty(serializer);
-    }
-
-    public void registerLootFunction(LootFunction.Serializer<? extends LootFunction> serializer) {
-        LootFunctionManager.registerFunction(serializer);
-    }
-
-    public void registerLootTable(String name) {
-        LootTableList.register(new ResourceLocation(this.modId, name));
-    }
-
-    /**
-     * Set the object's registry name, if it has not already been set. Logs a warning if it has.
-     */
-    private void safeSetRegistryName(IForgeRegistryEntry<?> entry, ResourceLocation name) {
-        if (entry.getRegistryName() == null)
-            entry.setRegistryName(name);
-        else
-            logger.warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
-    }
-
-    /**
-     * Ensure the given name does not contain upper case letters. This is not a problem until 1.13,
-     * so just log it as a warning.
-     */
-    private void validateRegistryName(String name) {
-        if (PATTERN_REGISTRY_NAME.matcher(name).matches())
-            logger.warn("Invalid name for object: {}", name);
-    }
-
-    // Advancements
-    public <T extends ICriterionInstance> ICriterionTrigger<T> registerAdvancementTrigger(ICriterionTrigger<T> trigger) {
-        CriteriaTriggers.register(trigger);
-        return trigger;
-    }
-
-    /**
-     * Register a TileEntity. "tile." + resourcePrefix is automatically prepended to the key.
-     */
-    public void registerTileEntity(Class<? extends TileEntity> tileClass, String key) {
-        GameRegistry.registerTileEntity(tileClass, new ResourceLocation(modId, key));
-    }
-
-    /**
-     * Registers a renderer for a TileEntity.
-     */
-    @SideOnly(Side.CLIENT)
-    public <T extends TileEntity> void registerTileEntitySpecialRenderer(Class<T> tileClass, TileEntitySpecialRenderer<T> renderer) {
-        ClientRegistry.bindTileEntitySpecialRenderer(tileClass, renderer);
-    }
-
-    // Model registration wrappers
-
-    @SideOnly(Side.CLIENT)
-    public void setModel(Block block, int meta, String modelPath) {
-        setModel(Item.getItemFromBlock(block), meta, modelPath, "inventory");
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setModel(Block block, int meta, String modelPath, String variant) {
-        setModel(Item.getItemFromBlock(block), meta, modelPath, variant);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setModel(Item item, int meta, String modelPath) {
-        setModel(item, meta, modelPath, "inventory");
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setModel(Item item, int meta, String modelPath, String variant) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.resourcePrefix + modelPath, variant));
-    }
-
-    //endregion
-
-    //region Initialization phases
-
-    /*
-     * Initialization phases. Calling in either your common or client proxy is recommended. "client" methods in your
-     * client proxy, the rest in your common AND client proxy.
-     */
-
-    private boolean preInitDone = false;
-    private boolean initDone = false;
-    private boolean postInitDone = false;
-
-    /**
-     * Call in the "preInit" phase in your common proxy.
-     */
-    public void preInit(FMLPreInitializationEvent event) {
-        if (this.preInitDone) {
-            logger.warn("preInit called more than once!");
-            return;
-        }
-
-        verifyOrFindModObject();
-        this.phasedInitializers.forEach(i -> i.preInit(this, event));
-        this.preInitDone = true;
-    }
-
-    private void verifyOrFindModObject() {
-        if (mod == null) {
-            logger.warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", modId);
-            ModContainer container = Loader.instance().getIndexedModList().get(modId);
-            if (container != null) {
-                this.mod = container.getMod();
-                logger.warn("Automatically acquired mod object for {}", modId);
-            } else {
-                logger.warn("Could not find mod object. The mod ID is likely incorrect.");
-            }
-        }
-    }
-
-    /**
-     * Call in the "init" phase in your common proxy.
-     */
-    public void init(FMLInitializationEvent event) {
-        if (this.initDone) {
-            logger.warn("init called more than once!");
-            return;
-        }
-        this.phasedInitializers.forEach(i -> i.init(this, event));
-        this.initDone = true;
-    }
-
-    /**
-     * Call in the "postInit" phase in your common proxy.
-     */
-    public void postInit(FMLPostInitializationEvent event) {
-        if (this.postInitDone) {
-            logger.warn("postInit called more than once!");
-            return;
-        }
-
-        int oldRecipeRegisterCount = recipes.getOldRecipeRegisterCount();
-        if (oldRecipeRegisterCount > 0) {
-            long totalRecipes = ForgeRegistries.RECIPES.getKeys().stream()
-                    .map(ResourceLocation::getResourceDomain)
-                    .filter(s -> s.equals(modId))
-                    .count();
-            logger.warn("Mod '{}' is still registering recipes with RecipeMaker ({} recipes, out of {} total)",
-                    modId, oldRecipeRegisterCount, totalRecipes);
-        }
-
-        this.phasedInitializers.forEach(i -> i.postInit(this, event));
-        this.postInitDone = true;
-    }
-
-    /**
-     * Call in the "preInit" phase in your client proxy.
-     */
-    @SideOnly(Side.CLIENT)
-    public void clientPreInit(FMLPreInitializationEvent event) {
-    }
-
-    /**
-     * Call in the "init" phase in your client proxy.
-     */
-    @SideOnly(Side.CLIENT)
-    public void clientInit(FMLInitializationEvent event) {
-        for (Block block : this.blocks) {
-            if (block instanceof ITEBlock) {
-            	ITEBlock tileBlock = (ITEBlock) block;
-                final TileEntitySpecialRenderer tesr = tileBlock.getTileRenderer();
-                if (tesr != null) {
-                    ClientRegistry.bindTileEntitySpecialRenderer(tileBlock.getTileEntityClass(), tesr);
-                }
-            }
-        }
-    }
-
-    /**
-     * Call in the "postInit" phase in your client proxy.
-     *
-     * @param event
-     */
-    @SideOnly(Side.CLIENT)
-    public void clientPostInit(FMLPostInitializationEvent event) {
-    }
-
-    //endregion
-
-    private void addRecipes() {
-        this.recipeAdders.forEach(obj -> obj.addRecipes(this.recipes));
-    }
-
-    private void addOreDictEntries() {
-        this.recipeAdders.forEach(IAddRecipe::addOreDict);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void registerModels() {
-        for (Block block : blocks) {
-            if (block instanceof ICustomModel) {
-                ((ICustomModel) block).registerModels();
-            } else {
-                ResourceLocation registryName = Objects.requireNonNull(block.getRegistryName());
-                ModelResourceLocation model = new ModelResourceLocation(registryName, "inventory");
-                ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
-            }
-        }
-        for (Item item : items) {
-            if (item instanceof ICustomMesh) {
-            	ICustomMesh customMesh = (ICustomMesh) item;
-                ModelBakery.registerItemVariants(item, customMesh.getVariants());
-                ModelLoader.setCustomMeshDefinition(item, customMesh.getCustomMesh());
-            } else if (item instanceof ICustomModel) {
-                ((ICustomModel) item).registerModels();
-            } else {
-                ResourceLocation registryName = Objects.requireNonNull(item.getRegistryName());
-                ModelResourceLocation model = new ModelResourceLocation(registryName, "inventory");
-                ModelLoader.setCustomModelResourceLocation(item, 0, model);
-            }
-        }
-    }
-
-    public CreativeTabs getDefaultCreativeTab() {
-		return defaultCreativeTab;
+		}
+	}
+
+	/**
+	 * Call in the "init" phase in your common proxy.
+	 */
+	public void init(FMLInitializationEvent event) {
+		if (this.initDone) {
+			this.logger.warn("init called more than once!");
+			return;
+		}
+		this.initDone = true;
+	}
+
+	/**
+	 * Call in the "postInit" phase in your common proxy.
+	 */
+	@SuppressWarnings("unused")
+	public void postInit(FMLPostInitializationEvent event) {
+		if (this.postInitDone) {
+			this.logger.warn("postInit called more than once!");
+			return;
+		}
+
+		int oldRecipeRegisterCount = this.recipes.getOldRecipeRegisterCount();
+		if (oldRecipeRegisterCount > 0) {
+			long totalRecipes = ForgeRegistries.RECIPES.getKeys().stream().map(ResourceLocation::getResourceDomain).filter(s -> s.equals(this.modId)).count();
+		}
+		this.postInitDone = true;
+	}
+
+	/**
+	 * Call in the "preInit" phase in your client proxy.
+	 */
+	@SideOnly(Side.CLIENT)
+	public void clientPreInit(FMLPreInitializationEvent event) {
+	}
+
+	/**
+	 * Call in the "init" phase in your client proxy.
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SideOnly(Side.CLIENT)
+	public void clientInit(FMLInitializationEvent event) {
+		for (Block block : this.blocks) {
+			if (block instanceof ITEBlock) {
+				ITEBlock tileBlock = (ITEBlock) block;
+				final TileEntitySpecialRenderer tesr = tileBlock.getTileRenderer();
+				if (tesr != null) {
+					ClientRegistry.bindTileEntitySpecialRenderer(tileBlock.getTileEntityClass(), tesr);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Call in the "postInit" phase in your client proxy.
+	 *
+	 * @param event
+	 */
+	@SideOnly(Side.CLIENT)
+	public void clientPostInit(FMLPostInitializationEvent event) {
+	}
+
+	// endregion
+
+	private void addRecipes() {
+		this.recipeAdders.forEach(obj -> obj.addRecipes(this.recipes));
+	}
+
+	private void addOreDictEntries() {
+		this.recipeAdders.forEach(IAddRecipe::addOreDict);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private void registerModels() {
+		for (Block block : this.blocks) {
+			if (block instanceof ICustomModel) {
+				((ICustomModel) block).registerModels();
+			} else {
+				ResourceLocation registryName = Objects.requireNonNull(block.getRegistryName());
+				ModelResourceLocation model = new ModelResourceLocation(registryName, "inventory");
+				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
+			}
+		}
+		for (Item item : this.items) {
+			if (item instanceof ICustomMesh) {
+				ICustomMesh customMesh = (ICustomMesh) item;
+				ModelBakery.registerItemVariants(item, customMesh.getVariants());
+				ModelLoader.setCustomMeshDefinition(item, customMesh.getCustomMesh());
+			} else if (item instanceof ICustomModel) {
+				((ICustomModel) item).registerModels();
+			} else {
+				ResourceLocation registryName = Objects.requireNonNull(item.getRegistryName());
+				ModelResourceLocation model = new ModelResourceLocation(registryName, "inventory");
+				ModelLoader.setCustomModelResourceLocation(item, 0, model);
+			}
+		}
+	}
+
+	public CreativeTabs getDefaultCreativeTab() {
+		return this.defaultCreativeTab;
 	}
 
 	public void setDefaultCreativeTab(CreativeTabs defaultCreativeTab) {
 		this.defaultCreativeTab = defaultCreativeTab;
 	}
 
+	public CreativeTabs getCreativeTabs() {
+		return this.creativeTab;
+	}
+
+	public void setCreativeTab(CreativeTabs creativeTabs) {
+		this.creativeTab = creativeTabs;
+	}
+
 	/**
-     * Handles the new Forge RegistryEvents. An instance will automatically be registered when an
-     * StellarRegistry is constructed.
+	 * Handles the new Forge RegistryEvents. An instance will automatically be
+	 * registered when an StellarRegistry is constructed.
+	 * 
+	 */
+	public static class EventHandler {
+		private final StellarRegistry ModRegistry;
 
-     */
-    public static class EventHandler {
-        private final StellarRegistry ModRegistry;
+		public EventHandler(StellarRegistry ModRegistry) {
+			this.ModRegistry = ModRegistry;
+		}
 
-        public EventHandler(StellarRegistry ModRegistry) {
-            this.ModRegistry = ModRegistry;
-        }
+		private void runRegistrationHandlerIfPresent(Class<? extends IForgeRegistryEntry<?>> registryClass) {
+			if (this.ModRegistry.registrationHandlers.containsKey(registryClass)) {
+				this.ModRegistry.registrationHandlers.get(registryClass).accept(this.ModRegistry);
+			}
+		}
 
-        private void runRegistrationHandlerIfPresent(Class<? extends IForgeRegistryEntry<?>> registryClass) {
-            if (ModRegistry.registrationHandlers.containsKey(registryClass))
-                ModRegistry.registrationHandlers.get(registryClass).accept(ModRegistry);
-        }
+		@SubscribeEvent
+		public void registerBlocks(RegistryEvent.Register<Block> event) {
+			runRegistrationHandlerIfPresent(Block.class);
+		}
 
-        @SubscribeEvent
-        public void registerBlocks(RegistryEvent.Register<Block> event) {
-            runRegistrationHandlerIfPresent(Block.class);
-        }
+		@SubscribeEvent
+		public void registerItems(RegistryEvent.Register<Item> event) {
+			runRegistrationHandlerIfPresent(Item.class);
+			this.ModRegistry.addOreDictEntries();
+		}
 
-        @SubscribeEvent
-        public void registerItems(RegistryEvent.Register<Item> event) {
-            runRegistrationHandlerIfPresent(Item.class);
-            ModRegistry.addOreDictEntries();
-        }
+		@SubscribeEvent
+		public void registerPotions(RegistryEvent.Register<Potion> event) {
+			runRegistrationHandlerIfPresent(Potion.class);
+		}
 
-        @SubscribeEvent
-        public void registerPotions(RegistryEvent.Register<Potion> event) {
-            runRegistrationHandlerIfPresent(Potion.class);
-        }
+		@SubscribeEvent
+		public void registerBiomes(RegistryEvent.Register<Biome> event) {
+			runRegistrationHandlerIfPresent(Biome.class);
+		}
 
-        @SubscribeEvent
-        public void registerBiomes(RegistryEvent.Register<Biome> event) {
-            runRegistrationHandlerIfPresent(Biome.class);
-        }
+		@SubscribeEvent
+		public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
+			runRegistrationHandlerIfPresent(SoundEvent.class);
+		}
 
-        @SubscribeEvent
-        public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
-            runRegistrationHandlerIfPresent(SoundEvent.class);
-        }
+		@SubscribeEvent
+		public void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
+			runRegistrationHandlerIfPresent(PotionType.class);
+		}
 
-        @SubscribeEvent
-        public void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
-            runRegistrationHandlerIfPresent(PotionType.class);
-        }
+		@SubscribeEvent
+		public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
+			runRegistrationHandlerIfPresent(Enchantment.class);
+		}
 
-        @SubscribeEvent
-        public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-            runRegistrationHandlerIfPresent(Enchantment.class);
-        }
+		@SubscribeEvent
+		public void registerVillagerProfessions(RegistryEvent.Register<VillagerProfession> event) {
+			runRegistrationHandlerIfPresent(VillagerProfession.class);
+		}
 
-        @SubscribeEvent
-        public void registerVillagerProfessions(RegistryEvent.Register<VillagerProfession> event) {
-            runRegistrationHandlerIfPresent(VillagerProfession.class);
-        }
+		@SubscribeEvent
+		public void registerEntities(RegistryEvent.Register<EntityEntry> event) {
+			runRegistrationHandlerIfPresent(EntityEntry.class);
+		}
 
-        @SubscribeEvent
-        public void registerEntities(RegistryEvent.Register<EntityEntry> event) {
-            runRegistrationHandlerIfPresent(EntityEntry.class);
-        }
+		@SubscribeEvent
+		public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+			runRegistrationHandlerIfPresent(IRecipe.class);
+			this.ModRegistry.addRecipes();
+		}
 
-        @SubscribeEvent
-        public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-            runRegistrationHandlerIfPresent(IRecipe.class);
-            ModRegistry.addRecipes();
-        }
+		@SubscribeEvent
+		public void registerModels(ModelRegistryEvent event) {
+			this.ModRegistry.registerModels();
+		}
 
-        @SubscribeEvent
-        public void registerModels(ModelRegistryEvent event) {
-            ModRegistry.registerModels();
-        }
+		@SideOnly(Side.CLIENT)
+		@SubscribeEvent
+		public void registerBlockColors(ColorHandlerEvent.Block event) {
+			BlockColors blockColors = event.getBlockColors();
+			for (Block block : this.ModRegistry.coloredBlocks) {
+				blockColors.registerBlockColorHandler(((IColorBlock) block).getColorHandler(), block);
+			}
+		}
 
-        @SideOnly(Side.CLIENT)
-        @SubscribeEvent
-        public void registerBlockColors(ColorHandlerEvent.Block event) {
-            BlockColors blockColors = event.getBlockColors();
-            for (Block block : ModRegistry.coloredBlocks)
-                blockColors.registerBlockColorHandler(((IColorBlock) block).getColorHandler(), block);
-        }
-
-        @SideOnly(Side.CLIENT)
-        @SubscribeEvent
-        public void registerItemColors(ColorHandlerEvent.Item event) {
-            ItemColors itemColors = event.getItemColors();
-            for (Block block : ModRegistry.coloredBlocks)
-                itemColors.registerItemColorHandler(((IColorBlock) block).getItemColorHandler(), Item.getItemFromBlock(block));
-            for (Item item : ModRegistry.coloredItems)
-                itemColors.registerItemColorHandler(((IColorItem) item).getColorHandler(), item);
-        }
-    }
+		@SideOnly(Side.CLIENT)
+		@SubscribeEvent
+		public void registerItemColors(ColorHandlerEvent.Item event) {
+			ItemColors itemColors = event.getItemColors();
+			for (Block block : this.ModRegistry.coloredBlocks) {
+				itemColors.registerItemColorHandler(((IColorBlock) block).getItemColorHandler(), Item.getItemFromBlock(block));
+			}
+			for (Item item : this.ModRegistry.coloredItems) {
+				itemColors.registerItemColorHandler(((IColorItem) item).getColorHandler(), item);
+			}
+		}
+	}
 }

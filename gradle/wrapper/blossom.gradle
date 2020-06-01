@@ -1,0 +1,10 @@
+blossom {
+	if(System.getenv("JENKINS_HOME")) {
+		rootProject.version = version + "_" + System.getenv("BUILD_NUMBER") + "-SNAPSHOT"
+		println("File name => " + archivesBaseName)
+	} else {
+		rootProject.version = version + "-SNAPSHOT"
+	}
+	replaceTokenIn('common/src/main/java/io/github/aquerr/eaglefactions/common/PluginInfo.java')
+	replaceToken('%VERSION%', rootProject.version)
+}

@@ -35,3 +35,7 @@ libs/*
 .DS_Store
 .okhttpcache/*
 /lib/
+*secrets*
+/gradle.properties
+/acore-0.16.jar
+/psd/
