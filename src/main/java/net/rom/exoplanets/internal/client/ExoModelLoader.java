@@ -42,8 +42,8 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 
-public class ObjModelLoader implements ICustomModelLoader {
-	public static final ObjModelLoader instance = new ObjModelLoader();
+public class ExoModelLoader implements ICustomModelLoader {
+	public static final ExoModelLoader instance = new ExoModelLoader();
 	private IResourceManager manager;
 	private final Set<String> enabledDomains = new HashSet<>();
 	private final Map<ResourceLocation, IModel> cache = new HashMap<>();

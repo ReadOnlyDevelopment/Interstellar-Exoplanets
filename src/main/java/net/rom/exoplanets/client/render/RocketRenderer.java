@@ -51,16 +51,16 @@ import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
+import net.rom.exoplanets.internal.client.ExoModelLoader;
 
 @SideOnly(Side.CLIENT)
-public class RocketRenderer extends Render<EntityTieredRocket> {
+public class RocketRenderer extends Render<EntityTwoPlayerRocket> {
 
     private OBJModel.OBJBakedModel rocketModel;
-	private String model;
 	
-	public RocketRenderer(RenderManager manager, String model) {
+	public RocketRenderer(RenderManager manager) {
 		super(manager);
-        this.model = model;
 		this.shadowSize = 1F;
 	}
 
@@ -70,7 +70,7 @@ public class RocketRenderer extends Render<EntityTieredRocket> {
         {
             try
             {
-                IModel model = OBJLoaderGC.instance.loadModel(new ResourceLocation(ExoInfo.MODID, this.model + ".obj"));
+                IModel model = ExoModelLoader.instance.loadModel(new ResourceLocation(ExoInfo.MODID, "twopersonrocket.obj"));
                 Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
                 this.rocketModel = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Base"), false), DefaultVertexFormats.ITEM, spriteFunction);
             }
@@ -82,12 +82,12 @@ public class RocketRenderer extends Render<EntityTieredRocket> {
     }
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityTieredRocket entity) {
+	protected ResourceLocation getEntityTexture(EntityTwoPlayerRocket entity) {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
 	}
 	
     @Override
-    public void doRender(EntityTieredRocket entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityTwoPlayerRocket entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks + 180;
         GlStateManager.disableRescaleNormal();
@@ -130,9 +130,9 @@ public class RocketRenderer extends Render<EntityTieredRocket> {
     }
 
     @Override
-    public boolean shouldRender(EntityTieredRocket rocket, ICamera camera, double camX, double camY, double camZ)
+    public boolean shouldRender(EntityTwoPlayerRocket rocket, ICamera camera, double camX, double camY, double camZ)
     {
-        AxisAlignedBB axisalignedbb = rocket.getEntityBoundingBox().grow(0.5D, 0, 0.5D);
+        AxisAlignedBB axisalignedbb = rocket.getEntityBoundingBox().grow(0.5D, 2.0D, 0.5D);
         return rocket.isInRangeToRender3d(camX, camY, camZ) && camera.isBoundingBoxInFrustum(axisalignedbb);
     }
 

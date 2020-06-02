@@ -29,6 +29,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -37,8 +38,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.event.TextureStitchEvent.Pre;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -50,7 +51,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.ItemModelRocket;
 import net.rom.exoplanets.client.render.RocketRenderer;
@@ -61,14 +61,19 @@ import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.MCUtil;
 import net.rom.exoplanets.internal.StellarRegistry;
+import net.rom.exoplanets.internal.client.ExoModelLoader;
 
 public class ExoClientProxy extends ExoCommonProxy {
 
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
 		super.preInit(registry, event);
+        ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
+        ExoModelLoader.instance.addDomain(ExoInfo.MODID);
+		registerEventHandler(this);
+
 		registerVarients();
-		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager , "twopersonrocket"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		ExoFluids.bakeModels();
 		registerEventHandler(new GuiScreenHandler());
 		registerEventHandler(new BlockHandler());
@@ -106,14 +111,15 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@SideOnly(Side.CLIENT)
 	public void loadTextures(TextureStitchEvent.Pre event) {
 
-		ExoplanetsMod.proxy.registerTexture(event, "model/twopersonrocket");
+		registerTexture(event, "rocket");
 
 	}
 
 
-    public void registerTexture(Pre event, String texture) {
-		event.getMap().registerSprite(new ResourceLocation(ExoInfo.RESOURCE_PREFIX + texture));
-	}
+    public void registerTexture(TextureStitchEvent.Pre event, String texture)
+    {
+        event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
+    }
     
 	public World getWorld() {
 		return Minecraft.getMinecraft().world;
@@ -129,7 +135,7 @@ public class ExoClientProxy extends ExoCommonProxy {
     }
     
     public void registerVarients() {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:rockets/twopersonrocket", "inventory");
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
         for (int i = 0; i < 5; ++i)
         {
             ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);

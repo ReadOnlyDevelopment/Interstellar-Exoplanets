@@ -105,7 +105,7 @@ public class ModelsHelper {
 
 	public static IBakedModel modelFromOBJ(ResourceLocation loc, List<String> visibleGroups, IModelState parentState)
 			throws IOException {
-		IModel model = ObjModelLoader.instance.loadModel(loc);
+		IModel model = ExoModelLoader.instance.loadModel(loc);
 		Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft()
 				.getTextureMapBlocks().getAtlasSprite(location.toString());
 		return model.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM,

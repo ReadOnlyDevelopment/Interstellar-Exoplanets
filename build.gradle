@@ -335,3 +335,5 @@ curseforge {
 
 
 build.finalizedBy incrementBuild // only increment on successful builds
+tasks.publish.dependsOn build
+tasks.curseforge.dependsOn publish

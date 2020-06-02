@@ -546,9 +546,9 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2 - 0.4D, y, z2), motionVec, rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2, y, z2 + 0.4D), motionVec, rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x2, y, z2 - 0.4D), motionVec, rider);
-						double a = 4.0D;
-						double bx = motionVec.x + 0.5D / a;
-						double bz = motionVec.z + 0.5D / a;
+						double a = 8.0D;
+						double bx = motionVec.x + 2.5D / a;
+						double bz = motionVec.z + 2.5D / a;
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 + 0.2D - random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
 								new Vector3(bx - random.nextDouble() / a, motionVec.y, bz - random.nextDouble() / a), rider);
 						GalacticraftCore.proxy.spawnParticle(flame, new Vector3(x3 - 0.2D + random.nextDouble() / 6.0D, y3 + 0.4D, z3 + 0.2D - random.nextDouble() / 6.0D),
@@ -711,7 +711,7 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 
 	@Override
 	public float getCameraZoom() {
-		return 15.0F;
+		return 25.0F;
 	}
 
 	@Override
@@ -731,7 +731,7 @@ public class EntityTwoPlayerRocket extends EntityTieredRocket {
 
 	@Override
 	public int getPreLaunchWait() {
-		return 1200;
+		return 400;
 	}
 
 	@Override

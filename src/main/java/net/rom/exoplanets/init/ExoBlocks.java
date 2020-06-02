@@ -45,6 +45,11 @@ import net.rom.exoplanets.content.block.generic.BlockMetal;
 import net.rom.exoplanets.content.block.machine.BlockAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.BlockMetalFurnace;
 import net.rom.exoplanets.content.block.ore.BlockOreMetal;
+import net.rom.exoplanets.content.block.stairs.BlockConcrete1Stairs;
+import net.rom.exoplanets.content.block.stairs.BlockConcreteStairs;
+import net.rom.exoplanets.content.block.stairs.BlockRoofStairs;
+import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzMetalFrame;
+import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzStair;
 import net.rom.exoplanets.content.item.ItemBlockOre;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.util.CreativeExoTabs;
@@ -80,6 +85,17 @@ public class ExoBlocks {
 	public static final BlockCustomLever lever1 = new BlockCustomLever();
 	public static final BlockCustomLever lever2 = new BlockCustomLever();
 	public static final BlockCustomLever lever3 = new BlockCustomLever();
+	
+	// STAIRS
+	public static final BlockConcreteStairs concrete_stairs = new BlockConcreteStairs();
+	public static final BlockConcrete1Stairs concrete1_stairs = new BlockConcrete1Stairs();
+	public static final BlockSpaceQuartzStair space_quartz_stair = new BlockSpaceQuartzStair();
+	public static final BlockSpaceQuartzStair block_space_quartzb = new BlockSpaceQuartzStair();
+	public static final BlockSpaceQuartzStair block_space_quartzt = new BlockSpaceQuartzStair();
+	public static final BlockSpaceQuartzStair block_space_quartzd = new BlockSpaceQuartzStair();
+	public static final BlockSpaceQuartzStair block_space_quartzc = new BlockSpaceQuartzStair();
+	public static final BlockSpaceQuartzMetalFrame space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
+	public static final BlockRoofStairs roof_stairs = new BlockRoofStairs();
 
 	// LIGHTS
 	public static final BlockAlarmLight alarm_light = new BlockAlarmLight(false);
@@ -107,7 +123,7 @@ public class ExoBlocks {
         reg.registerBlock(alloyRefinery, "alloyrefinery");
         
         reg.registerBlock(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
-		
+
 		// DECORATIONS
 		register(com_relay, "com_relay");
 		register(control, "control");
@@ -118,7 +134,6 @@ public class ExoBlocks {
 		register(satellite_antenna, "satellite_antenna");
 		register(stand_console, "stand_console");
 		register(metal_diagonal, "metal_diagonal");
-		register(metal_slanted, "metal_slanted");
 		register(hydraulic_top, "hydraulic_top");
 		register(hydraulic_bottom, "hydraulic_bottom");
 		register(hydraulic_middle, "hydraulic_middle");
@@ -127,6 +142,17 @@ public class ExoBlocks {
 		register(lever1, "lever1");
 		register(lever2, "lever2");
 		register(lever3, "lever3");
+		
+		// STAIRS
+		register(concrete_stairs, "concrete_stairs");
+		register(concrete1_stairs, "concrete1_stairs");
+		register(space_quartz_stair, "space_quartz_stair");
+		register(block_space_quartzb, "block_space_quartzb");
+		register(block_space_quartzt, "block_space_quartzt");
+		register(block_space_quartzd, "block_space_quartzd");
+		register(block_space_quartzc, "block_space_quartzc");
+		register(space_quartz_metalframe, "space_quartz_metalframe");
+		register(roof_stairs, "roof_stairs");
 
 		// LAMPS / LIGHTS
 		registerWithDecoTab(alarm_light, "alarm_light");
