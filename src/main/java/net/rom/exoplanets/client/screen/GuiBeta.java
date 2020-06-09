@@ -66,13 +66,13 @@ public class GuiBeta extends GuiScreen {
 	public void initGui() {
 		super.initGui();
 		this.buttonList.clear();
-		GuiButton toMenu = new GuiButton(0, this.width / 2 + 200, this.height / 4 + 180, I18n.format("gui.done"));
+		GuiButton toMenu = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n.format("gui.done"));
 		GuiButton discord = new GuiButton(1, this.width / 2 - 200, this.height / 4 + 180, I18n.format("exoplanets.gui.discordLink"));
-		GuiButtonExt setBoolean = new GuiButtonExt(2,this.width / 2, this.height / 4 + 180, 100, 20, getBoolean(SConfigCore.warnBetaBuild));
+		//GuiButtonExt setBoolean = new GuiButtonExt(2,this.width / 2, this.height / 4 + 180, 100, 20, getBoolean(SConfigCore.warnBetaBuild));
 		toMenu.setWidth(50);
-		discord.setWidth(75);
+		discord.setWidth(150);
 		
-		this.buttonList.addAll(Arrays.asList(toMenu, discord, setBoolean));
+		this.buttonList.addAll(Arrays.asList(toMenu, discord));
 	}
 
 	@Override
@@ -98,6 +98,7 @@ public class GuiBeta extends GuiScreen {
 			this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);
 			y += 12;
 		}
+		this.drawCenteredString(this.fontRenderer, "Running Version: " + ExoInfo.FULL_VERSION, x, y, 0xFFFFFF);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}

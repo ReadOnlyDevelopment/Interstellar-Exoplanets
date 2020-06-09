@@ -7,9 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Set;
+import java.util.Comparator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -17,16 +15,18 @@ import org.apache.commons.io.IOUtils;
 
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.launchwrapper.Launch;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.LanguageMap;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
-public class RegistryUtil {
+public final class RegistryUtil {
 
 	private RegistryUtil() {
 	};
+
 	static Object listsDir = null;
 	private static String lastLang = "";
 	public static boolean langDisable;
@@ -37,8 +37,7 @@ public class RegistryUtil {
 		}
 		if (langDisable)
 			return;
-		String langFile = "assets/" + assetPrefix + "/lang/" + langIdentifier.substring(0, 3).toLowerCase()
-				+ langIdentifier.substring(3).toUpperCase() + ".lang";
+		String langFile = "assets/" + assetPrefix + "/lang/" + langIdentifier.substring(0, 3).toLowerCase() + langIdentifier.substring(3).toUpperCase() + ".lang";
 		InputStream stream = null;
 		ZipFile zip = null;
 		try {
@@ -67,18 +66,16 @@ public class RegistryUtil {
 	}
 
 	/**
-	 * This will list all items, using their complete unlocalized names with mod
-	 * id's, and write them the file lists/items.txt. This is useful for writing
-	 * theme files.
+	 * This will list all items, using their complete unlocalized names with mod id's, and write them the file lists/items.txt. This is useful for writing theme files.
 	 */
 	public static void listItems() {
-		BufferedWriter outstream = null;
+		File itemlist = new File("items.txt");
 
-		File itemlist = new File(listsDir.toString() + File.separator + "items.txt");
 		if (itemlist.exists())
 			itemlist.delete();
 		try {
-			outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
+			itemlist.createNewFile();
+			BufferedWriter outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
 
 			for (Object item : Item.REGISTRY) {
 				String name = Item.REGISTRY.getNameForObject((Item) item).toString();
@@ -97,27 +94,32 @@ public class RegistryUtil {
 	}
 
 	/**
-	 * This will list all blocks using their correct, unlocalized names, complete
-	 * with mod id's, and write them to the file lists/blocks.txt. This is useful
-	 * for editing theme files.
+	 * This will list all blocks using their correct, unlocalized names, complete with mod id's, and write them to the file lists/blocks.txt. This is useful for editing theme files.
 	 */
 	public static void listBlocks() {
-		BufferedWriter outstream = null;
-		File itemlist = new File(listsDir.toString() + File.separator + "blocks.txt");
+		File itemlist = new File("blocks.txt");
 
 		if (itemlist.exists())
 			itemlist.delete();
 		try {
-			outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
+			itemlist.createNewFile();
+			BufferedWriter outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
+			IForgeRegistry<Block> blocks = GameRegistry.findRegistry(Block.class);
+			blocks.getValuesCollection().stream().sorted(Comparator.comparing(Block::getUnlocalizedName)).forEach(b -> {
+				if (b.getUnlocalizedName().contains(".exoplanets.")) {
+					String name = b.getUnlocalizedName() + ".name=";
+					if (true) {
+						try {
+							outstream.write(name);
+							outstream.newLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
-			for (Object block : Block.REGISTRY) {
-				String name = Block.REGISTRY.getNameForObject((Block) block).toString();
-				if (true) {
-					;
-					outstream.write(name);
-					outstream.newLine();
+					}
 				}
-			}
+			});
 
 			if (outstream != null)
 				outstream.close();

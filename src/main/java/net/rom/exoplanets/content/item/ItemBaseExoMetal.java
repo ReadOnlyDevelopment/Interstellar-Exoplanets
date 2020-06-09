@@ -34,7 +34,8 @@ public abstract class ItemBaseExoMetal extends Item implements IExoMetal, ICusto
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
         if (!this.isInCreativeTab(tab)) return;
-        for (ItemStack stack : getSubItems(this))
-                list.add(stack);
+        for (ItemStack stack : getSubItems(this)) {
+            list.add(stack);
+        }
     }
 }

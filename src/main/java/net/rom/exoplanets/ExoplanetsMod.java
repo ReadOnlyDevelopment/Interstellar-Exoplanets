@@ -42,6 +42,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.exoplanets.api.research.Researches;
@@ -49,6 +50,7 @@ import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.client.gui.GuiHandlerExo;
 import net.rom.exoplanets.client.gui.HabitableZoneClientHandler;
+import net.rom.exoplanets.command.CommandData;
 import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
@@ -64,7 +66,7 @@ import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.ExoVillagerHandler;
 import net.rom.exoplanets.world.OverworldOreGen;
 
-@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory")
+@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.FULL_VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
@@ -136,6 +138,11 @@ public class ExoplanetsMod implements IMod {
         ExoRecipes.alloySmelterRecipes();
 
         proxy.postInit(REGISTRY, event);
+    }
+    
+    @EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandData());
     }
 
     @Override

@@ -38,8 +38,10 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.block.BlockExoOre;
+import net.rom.exoplanets.content.block.decoration.BlockMetalDecoration;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.ICustomModel;
+import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
 
 public class BlockOreMetal extends BlockExoOre implements ICustomModel {
     public static final PropertyEnum<EnumMetal> METAL = PropertyEnum.create("metal", EnumMetal.class);
@@ -118,4 +120,12 @@ public class BlockOreMetal extends BlockExoOre implements ICustomModel {
             ModelLoader.setCustomModelResourceLocation(item, metal.getMeta(), model);
         }
     }
+    
+    public static class ItemBlock extends ItemBlockMetaSubtypes {
+        public ItemBlock(BlockOreMetal block) {
+            super(block);
+        }
+    }
+    
+    
 }

@@ -30,6 +30,7 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -44,13 +45,13 @@ public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
 
     private final BiomeDecoratorYzCetiD cetiDBiomeDecorator = new BiomeDecoratorYzCetiD();
     private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
-    private final MapGenExoCave caveGenerator = new MapGenExoCave(YzCetiBlocks.CetiD.D_SEDIMENTARYROCK.getDefaultState(), ExoFluids.fluidBlockMantle.getDefaultState(),
+    private final MapGenExoCave caveGenerator = new MapGenExoCave(YzCetiBlocks.CetiD.D_SEDIMENTARYROCK.getDefaultState(), Blocks.LAVA.getDefaultState(),
             Sets.newHashSet(YzCetiBlocks.CetiD.D_SEDIMENTARYROCK, YzCetiBlocks.CetiD.D_IGNEOUS));
 
     public ChunkProviderYzCetiD(World par1World, long seed, boolean mapFeaturesEnabled) {
         super(par1World, seed, mapFeaturesEnabled);
         this.stoneBlock = YzCetiBlocks.CetiD.D_SEDIMENTARYROCK.getDefaultState();
-        this.waterBlock = ExoFluids.fluidBlockMantle.getDefaultState();
+        this.waterBlock = Blocks.WATER.getDefaultState();
     }
 
     @Override

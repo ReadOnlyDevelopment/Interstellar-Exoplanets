@@ -38,6 +38,8 @@ System.out.println(versionInfo)
 version = "${versionInfo['version']}"
 def build_num = getBuildNumber()
 
+def short_version = "${versionInfo['version_short']}"
+
 group = "${group}"
 archivesBaseName = "${name}"
 
@@ -51,9 +53,9 @@ minecraft {
     runDir = 'run'
     mappings = project.mcp_mappings_version
 
-	replace "@BUILD@", build_num
-    replace "@VERSION@", "${versionInfo['version']}"
-    replaceIn "Exoinfo.java"
+	replace "%BUILD%", build_num
+    replace "%VERSION%", "${versionInfo['version_short']}"
+    replaceIn "ExoInfo.java"
 
     if (project.hasProperty('coreplugin')) {
         clientJvmArgs += '-Dfml.coreMods.load=' + project.coreplugin
@@ -197,6 +199,7 @@ String getModFile() {
                 s = s.trim()
                 if (s.startsWith('@Mod(')) {
                     path = "src/$element.relativePath"
+					println path
                 }
             }
         }

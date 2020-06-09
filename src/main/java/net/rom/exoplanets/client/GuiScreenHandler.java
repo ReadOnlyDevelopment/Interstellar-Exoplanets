@@ -29,6 +29,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -42,8 +43,8 @@ public class GuiScreenHandler {
     @SubscribeEvent
     public static void onGuiOpen(GuiOpenEvent event) {
         GuiScreen gui = event.getGui();
-
         if (SConfigCore.warnBetaBuild && gui instanceof GuiMainMenu) {
+//        	if (Loader.isModLoaded("extraplanets") && )
             event.setGui(new GuiBeta((GuiMainMenu) gui));
             SConfigCore.warnBetaBuild = false;
             MinecraftForge.EVENT_BUS.post(new ConfigChangedEvent.OnConfigChangedEvent(ExoInfo.MODID, ExoInfo.NAME, false, false));

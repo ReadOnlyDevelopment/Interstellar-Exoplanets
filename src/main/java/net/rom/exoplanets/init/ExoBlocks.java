@@ -28,8 +28,10 @@ import java.util.LinkedList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
+import net.rom.exoplanets.content.block.BlockExoOre;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.content.block.decoration.BlockCellarLamp;
 import net.rom.exoplanets.content.block.decoration.BlockCustomHydraulic;
@@ -75,7 +77,7 @@ public class ExoBlocks {
 	public static final Block hydraulic_middle = new BlockCustomHydraulic();
 	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
 	
-    public static final BlockOreMetal metalOre = new BlockOreMetal();
+    public static final Block metalOre = new BlockOreMetal();
     public static final Block metalBlock = new BlockMetal();
     public static final Block alloyBlock = new BlockAlloy();
 
@@ -115,7 +117,7 @@ public class ExoBlocks {
 		TrappistBlocks.registerAll(reg);
 
 		// ORES
-		register(metalOre, "metalore", new ItemBlockOre(metalOre));
+		register(metalOre, "metalore");		
         register(metalBlock, "metalblock");
         register(alloyBlock, "alloyblock");
         register(metalFurnace, "metalfurnace");
@@ -164,7 +166,7 @@ public class ExoBlocks {
 
 	public static void register(Block block, String blockName) {
 		blocksList.add(block);
-		reg.registerBlock(block, blockName, new ItemBlock(block));
+		reg.registerBlock(block, blockName);
 	}
 	
 	public static void register(Block block, String blockName, ItemBlock itemBlock) {
@@ -174,5 +176,22 @@ public class ExoBlocks {
 	
 	public static void setReg(StellarRegistry reg) {
 		ExoBlocks.reg = reg;
+	}
+	
+	public class CustomRegister extends StellarRegistry {
+		
+	    @Override
+	    public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock) {
+	        super.registerBlock(block, key, itemBlock);
+	        
+	        if (block instanceof BlockOreMetal) {
+	        	BlockOreMetal exoOre = (BlockOreMetal) block;
+	        	for (int i = 0; i < exoOre.maxMeta; ++i) {
+	        		ItemStack stack = new ItemStack(itemBlock, 1, i);
+	        	}
+	        }
+			return block;
+	        
+	    }
 	}
 }

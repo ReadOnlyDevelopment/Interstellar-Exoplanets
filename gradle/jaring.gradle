@@ -32,10 +32,10 @@ task apiJar(type: Jar) {
 		getBooleanProperty('create_api_jar')
 	}
 	from(sourceSets.main.output) {
-		include "net/rom/api/**"
+		include "net/rom/exoplanets/api/**"
 	}
 	from(sourceSets.main.java) {
-		include "net/rom/api/**"
+		include "net/rom/exoplanets/api/**"
 	}
 
 	classifier = 'api'

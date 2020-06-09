@@ -30,8 +30,9 @@ public class ExoInfo {
 
 	public static final String MODID = "exoplanets";
 	public static final String NAME = "Interstellar: Exoplanets";
-	public static final String BUILD = "@BUILD@";
-	public static final String VERSION = "0.0.9";
+	public static final String BUILD = "%BUILD%";
+	public static final String VERSION = "%VERSION%";
+	public static final String FULL_VERSION = VERSION + "." + BUILD;
 	public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
 	public static final String ACCEPTED_MC_VERSION = ForgeVersion.mcVersion;
 	public static final String DEPENDENCIES_MODS = "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.15,)";

@@ -99,6 +99,29 @@ tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Igneous Rock
 tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Metamorphic Rock
 tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Sedimentary Rock
 
+tile.exoplanets.t1c_top.name=(§9Trappist1 1c§r) Surface Rock
+tile.exoplanets.trap1e_cobblestone.name=(§aTrappist1 1e§r)
+tile.exoplanets.trap1e_dirt.name=(§aTrappist1 1e§r) Dirt
+tile.exoplanets.trap1e_grass.name=(§aTrappist1 1e§r) Strange Grass
+tile.exoplanets.trap1e_stone.name=(§aTrappist1 1e§r) Planetary Stone
+tile.exoplanets.trappist_1_c_dirt.name=(§9Trappist1 1c§r) Dirt
+tile.exoplanets.trappist_1_c_dirt_1.name=(§9Trappist1 1c§r) Dirt
+
+tile.exoplanets.dark_hot.name=§cVolcanic Cooled Chunk
+tile.exoplanets.bright_solid_hot.name=§cVolcanic Molten Chunk
+tile.exoplanets.solid_hot.name=§cVolcanic Ash Surface
+
+tile.exoplanets.hydraulic_bottom.name=Hydralic Bottom Support
+tile.exoplanets.hydraulic_middle.name=Hydralic Middle Beam
+tile.exoplanets.hydraulic_top.name=Hydralic Top Support
+
+tile.exoplanets.metal_diagonal.name=Slanted Horizontal Block
+tile.exoplanets.roof_stairs.name=Slanted Roof
+
+tile.exoplanets.lever1.name=Lever Door Controller
+tile.exoplanets.lever2.name=Button Door Controller
+tile.exoplanets.lever3.name=Gui Door Controller
+
 tile.exoplanets.overworldore0.name=Limonite Ore
 tile.exoplanets.overworldore1.name=Ruthenium Ore
 tile.exoplanets.overworldore2.name=Rutile Ore
@@ -208,6 +231,9 @@ item.exoplanets.platesteel.name=Steel Alloy Plate
 item.exoplanets.gearbronze.name=Bronze Alloy Gear
 item.exoplanets.gearbrass.name=Brass Alloy Gear
 item.exoplanets.gearsteel.name=Steel Alloy Gear
+
+entity.exoplanets.twopersonrocket.name=EXO1 Planetary Rocket
+
 
 ## FLUIDS ##
 fluid.exoplanets.mantle.name=Molten Mantle

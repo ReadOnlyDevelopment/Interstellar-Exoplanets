@@ -110,11 +110,8 @@ public enum EnumMetal implements IMetal {
 
     @Override
     public ItemStack getDust() {
-        if (this == TUNGSTEN) {
-        	return new ItemStack(ExoItems.dustByproduct, 1, meta);
-        } else {
-            return new ItemStack(ExoItems.metalDust, 1, meta);
-        }
+        return new ItemStack(ExoItems.metalDust, 1, meta);
+
     }
 
     @Override

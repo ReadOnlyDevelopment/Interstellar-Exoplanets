@@ -79,14 +79,16 @@ public class BlockMetal extends BlockMetaSubtypes implements IAddRecipe, ICustom
 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-        for (ItemStack stack : getSubItems(Item.getItemFromBlock(this)))
-                list.add(stack);
+        for (ItemStack stack : getSubItems(Item.getItemFromBlock(this))) {
+        	list.add(stack);
+        }
     }
 
     public List<ItemStack> getSubItems(Item item) {
         List<ItemStack> ret = Lists.newArrayList();
-        for (IMetal metal : EnumMetal.values())
-            ret.add(new ItemStack(item, 1, metal.getMeta()));
+        for (IMetal metal : EnumMetal.values()) {
+        	ret.add(new ItemStack(item, 1, metal.getMeta()));
+        }
         return ret;
     }
 
