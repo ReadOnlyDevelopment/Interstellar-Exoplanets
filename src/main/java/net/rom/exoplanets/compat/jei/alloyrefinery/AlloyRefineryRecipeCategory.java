@@ -34,9 +34,9 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 
 @SuppressWarnings("rawtypes")

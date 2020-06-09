@@ -15,7 +15,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.api.research.ResearchStack;
+import net.rom.exoplanets.api.research.ResearchStack;
 
 public class ItemResearchPaper extends ItemBase {
 	

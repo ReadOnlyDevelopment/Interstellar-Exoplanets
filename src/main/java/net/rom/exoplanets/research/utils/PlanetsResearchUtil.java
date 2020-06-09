@@ -26,7 +26,7 @@ package net.rom.exoplanets.research.utils;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
-import net.rom.api.research.ResearchStack;
+import net.rom.exoplanets.api.research.ResearchStack;
 
 public class PlanetsResearchUtil {
     public static BlockPos getPosition(ResearchStack researchStack) {

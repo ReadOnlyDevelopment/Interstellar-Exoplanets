@@ -31,6 +31,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -43,12 +44,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.rom.api.research.Researches;
+import net.rom.exoplanets.api.research.Researches;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.client.gui.GuiHandlerExo;
+import net.rom.exoplanets.client.gui.HabitableZoneClientHandler;
 import net.rom.exoplanets.conf.InitConfigFiles;
-import net.rom.exoplanets.event.client.gui.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.IniSystems;
@@ -63,7 +64,7 @@ import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.ExoVillagerHandler;
 import net.rom.exoplanets.world.OverworldOreGen;
 
-@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.event.ExoplanetsConfigGuiFactory")
+@Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
@@ -73,6 +74,7 @@ public class ExoplanetsMod implements IMod {
     public static StellarRegistry REGISTRY = new StellarRegistry();
     public static TranslateUtil translate = new TranslateUtil(ExoInfo.MODID);
     public static LogHelper logger = new LogHelper();
+    public static ResourceLocation location = new ResourceLocation(ExoInfo.MODID);
     @SidedProxy(clientSide = "net.rom.exoplanets.proxy.ExoClientProxy", serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
     public static ExoCommonProxy proxy;
     public static Random random = new Random();

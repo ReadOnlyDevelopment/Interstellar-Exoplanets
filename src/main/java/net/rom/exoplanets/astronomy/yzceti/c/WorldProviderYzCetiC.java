@@ -237,4 +237,9 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 		return 0.030F;
 	}
 
+	@Override
+	public ExoPlanet getExoPlanet() {
+		return (ExoPlanet) getCelestialBody();
+	}
+
 }

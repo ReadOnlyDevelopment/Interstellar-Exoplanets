@@ -29,6 +29,7 @@ repositories {
 	}
 	jcenter()
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -44,6 +45,7 @@ dependencies {
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
 	
+	compile 'com.github.ROMVoid95.japng:api:0.5.2'
 	
 	compile 'org.apache.commons:commons-math3:3.6.1'
 	

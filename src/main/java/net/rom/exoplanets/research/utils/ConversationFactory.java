@@ -25,9 +25,9 @@
 package net.rom.exoplanets.research.utils;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.rom.api.research.conversation.IConversationNpc;
-import net.rom.api.research.conversation.IConversationRegistry;
 import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.api.research.conversation.IConversationNpc;
+import net.rom.exoplanets.api.research.conversation.IConversationRegistry;
 import net.rom.exoplanets.research.conversation.ConversationMessage;
 
 public class ConversationFactory {

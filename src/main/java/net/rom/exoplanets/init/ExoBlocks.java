@@ -24,6 +24,8 @@
 
 package net.rom.exoplanets.init;
 
+import java.util.LinkedList;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
@@ -52,62 +54,60 @@ import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzMetalFrame;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzStair;
 import net.rom.exoplanets.content.item.ItemBlockOre;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class ExoBlocks {
 	
 	private static StellarRegistry reg;
 
 	// ELECTRONIC
-	public static final BlockElectronic raidcontroller = new BlockElectronic();
-	public static final BlockElectronic lower_raidcontroller = new BlockElectronic();
-	public static final BlockElectronic raidcluster = new BlockElectronic();
-	public static final BlockElectronic datamonitor = new BlockElectronic();
-	public static final BlockElectronic com_relay = new BlockElectronic();
-	public static final BlockElectronic control = new BlockElectronic();
-	public static final BlockSatelliteAntenna satellite_antenna = new BlockSatelliteAntenna();
-	public static final BlockStandConsole stand_console = new BlockStandConsole();
-	public static final BlockMetalDiagonal metal_diagonal = new BlockMetalDiagonal();
-	public static final BlockMetalDiagonal metal_slanted = new BlockMetalDiagonal();
-	public static final BlockCustomHydraulic hydraulic_top = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic hydraulic_bottom = new BlockCustomHydraulic();
-	public static final BlockCustomHydraulic hydraulic_middle = new BlockCustomHydraulic();
+	public static final Block raidcontroller = new BlockElectronic();
+	public static final Block lower_raidcontroller = new BlockElectronic();
+	public static final Block raidcluster = new BlockElectronic();
+	public static final Block datamonitor = new BlockElectronic();
+	public static final Block com_relay = new BlockElectronic();
+	public static final Block control = new BlockElectronic();
+	public static final Block satellite_antenna = new BlockSatelliteAntenna();
+	public static final Block stand_console = new BlockStandConsole();
+	public static final Block metal_diagonal = new BlockMetalDiagonal();
+	public static final Block metal_slanted = new BlockMetalDiagonal();
+	public static final Block hydraulic_top = new BlockCustomHydraulic();
+	public static final Block hydraulic_bottom = new BlockCustomHydraulic();
+	public static final Block hydraulic_middle = new BlockCustomHydraulic();
 	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
 	
     public static final BlockOreMetal metalOre = new BlockOreMetal();
-    public static final BlockMetal metalBlock = new BlockMetal();
-    public static final BlockAlloy alloyBlock = new BlockAlloy();
+    public static final Block metalBlock = new BlockMetal();
+    public static final Block alloyBlock = new BlockAlloy();
 
-    public static final BlockMetalFurnace metalFurnace = new BlockMetalFurnace();
-    public static final BlockAlloyRefinery alloyRefinery = new BlockAlloyRefinery();
+    public static final Block metalFurnace = new BlockMetalFurnace();
+    public static final Block alloyRefinery = new BlockAlloyRefinery();
     
 	// LEVERS
-	public static final BlockCustomLever lever1 = new BlockCustomLever();
-	public static final BlockCustomLever lever2 = new BlockCustomLever();
-	public static final BlockCustomLever lever3 = new BlockCustomLever();
+	public static final Block lever1 = new BlockCustomLever();
+	public static final Block lever2 = new BlockCustomLever();
+	public static final Block lever3 = new BlockCustomLever();
 	
 	// STAIRS
-	public static final BlockConcreteStairs concrete_stairs = new BlockConcreteStairs();
-	public static final BlockConcrete1Stairs concrete1_stairs = new BlockConcrete1Stairs();
-	public static final BlockSpaceQuartzStair space_quartz_stair = new BlockSpaceQuartzStair();
-	public static final BlockSpaceQuartzStair block_space_quartzb = new BlockSpaceQuartzStair();
-	public static final BlockSpaceQuartzStair block_space_quartzt = new BlockSpaceQuartzStair();
-	public static final BlockSpaceQuartzStair block_space_quartzd = new BlockSpaceQuartzStair();
-	public static final BlockSpaceQuartzStair block_space_quartzc = new BlockSpaceQuartzStair();
-	public static final BlockSpaceQuartzMetalFrame space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
-	public static final BlockRoofStairs roof_stairs = new BlockRoofStairs();
+	public static final Block concrete_stairs = new BlockConcreteStairs();
+	public static final Block concrete1_stairs = new BlockConcrete1Stairs();
+	public static final Block space_quartz_stair = new BlockSpaceQuartzStair();
+	public static final Block space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
+	public static final Block roof_stairs = new BlockRoofStairs();
 
 	// LIGHTS
-	public static final BlockAlarmLight alarm_light = new BlockAlarmLight(false);
-	public static final BlockAlarmLight alarm_light_lit = new BlockAlarmLight(true);
-	public static final BlockWallLamp wall_lamp = new BlockWallLamp(false);
-	public static final BlockWallLamp wall_lamp_lit = new BlockWallLamp(true);
-	public static final BlockMetalLamp metal_lamp = new BlockMetalLamp(false);
-	public static final BlockMetalLamp metal_lamp_lit = new BlockMetalLamp(true);
-	public static final BlockCellarLamp cellar_lamp = new BlockCellarLamp(false);
-	public static final BlockCellarLamp cellar_lamp_lit = new BlockCellarLamp(true);
-	public static final BlockInsetLamp inset_lamp = new BlockInsetLamp(false);
-	public static final BlockInsetLamp inset_lamp_lit = new BlockInsetLamp(true);
+	public static final Block alarm_light = new BlockAlarmLight(false);
+	public static final Block alarm_light_lit = new BlockAlarmLight(true);
+	public static final Block wall_lamp = new BlockWallLamp(false);
+	public static final Block wall_lamp_lit = new BlockWallLamp(true);
+	public static final Block metal_lamp = new BlockMetalLamp(false);
+	public static final Block metal_lamp_lit = new BlockMetalLamp(true);
+	public static final Block cellar_lamp = new BlockCellarLamp(false);
+	public static final Block cellar_lamp_lit = new BlockCellarLamp(true);
+	public static final Block inset_lamp = new BlockInsetLamp(false);
+	public static final Block inset_lamp_lit = new BlockInsetLamp(true);
+	
+    public static LinkedList<Block> blocksList = new LinkedList<>();
+    
 
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
@@ -115,14 +115,12 @@ public class ExoBlocks {
 		TrappistBlocks.registerAll(reg);
 
 		// ORES
-        reg.registerBlock(metalOre, "metalore", new ItemBlockOre(metalOre));
-        reg.registerBlock(metalBlock, "metalblock");
-        reg.registerBlock(alloyBlock, "alloyblock");
-        
-        reg.registerBlock(metalFurnace, "metalfurnace");
-        reg.registerBlock(alloyRefinery, "alloyrefinery");
-        
-        reg.registerBlock(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
+		register(metalOre, "metalore", new ItemBlockOre(metalOre));
+        register(metalBlock, "metalblock");
+        register(alloyBlock, "alloyblock");
+        register(metalFurnace, "metalfurnace");
+        register(alloyRefinery, "alloyrefinery");
+        register(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
 
 		// DECORATIONS
 		register(com_relay, "com_relay");
@@ -147,33 +145,31 @@ public class ExoBlocks {
 		register(concrete_stairs, "concrete_stairs");
 		register(concrete1_stairs, "concrete1_stairs");
 		register(space_quartz_stair, "space_quartz_stair");
-		register(block_space_quartzb, "block_space_quartzb");
-		register(block_space_quartzt, "block_space_quartzt");
-		register(block_space_quartzd, "block_space_quartzd");
-		register(block_space_quartzc, "block_space_quartzc");
 		register(space_quartz_metalframe, "space_quartz_metalframe");
 		register(roof_stairs, "roof_stairs");
 
 		// LAMPS / LIGHTS
-		registerWithDecoTab(alarm_light, "alarm_light");
+		register(alarm_light, "alarm_light");
 		register(alarm_light_lit, "alarm_light_lit");
-		registerWithDecoTab(wall_lamp, "wall_lamp");
+		register(wall_lamp, "wall_lamp");
 		register(wall_lamp_lit, "wall_lamp_lit");
-		registerWithDecoTab(metal_lamp, "metal_lamp");
+		register(metal_lamp, "metal_lamp");
 		register(metal_lamp_lit, "metal_lamp_lit");
-		registerWithDecoTab(cellar_lamp, "cellar_lamp");
+		register(cellar_lamp, "cellar_lamp");
 		register(cellar_lamp_lit, "cellar_lamp_lit");
-		registerWithDecoTab(inset_lamp, "inset_lamp");
+		register(inset_lamp, "inset_lamp");
 		register(inset_lamp_lit, "inset_lamp_lit");
 
 	}
 
 	public static void register(Block block, String blockName) {
+		blocksList.add(block);
 		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
-
-	private static void registerWithDecoTab(Block block, String blockName) {
-		reg.registerBlock(block, blockName, new ItemBlock(block)).setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+	
+	public static void register(Block block, String blockName, ItemBlock itemBlock) {
+		blocksList.add(block);
+		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
 	
 	public static void setReg(StellarRegistry reg) {

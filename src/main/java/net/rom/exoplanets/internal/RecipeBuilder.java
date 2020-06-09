@@ -51,24 +51,59 @@ import net.rom.exoplanets.internal.inerf.IRSerializer;
 import net.rom.exoplanets.internal.inerf.item.IEnumItems;
 import net.rom.exoplanets.internal.recipe.JsonReceipe;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RecipeBuilder.
+ */
 public final class RecipeBuilder {
+    
+    /** The mod id. */
     private final String modId;
+    
+    /** The resource prefix. */
     private final String resourcePrefix;
+    
+    /** The last recipe index. */
     private int lastRecipeIndex = -1;
+    
+    /** The json hell mode. */
     private boolean jsonHellMode = false;
+    
+    /** The old recipe register count. */
     private int oldRecipeRegisterCount;
+    
+    /** The custom serializers. */
     private final Map<ResourceLocation, IRSerializer> customSerializers = new HashMap<>();
 
+    /**
+     * Instantiates a new recipe builder.
+     *
+     * @param modId the mod id
+     */
     public RecipeBuilder(String modId) {
         this.modId = modId;
         resourcePrefix = modId + ":";
     }
 
+    /**
+     * Gets the recipe key.
+     *
+     * @param key the key
+     * @return the recipe key
+     */
     private String getRecipeKey(String key) {
         if (key.isEmpty()) key = "recipe" + (++lastRecipeIndex);
         return resourcePrefix + key.toLowerCase(Locale.ROOT);
     }
 	
+    /**
+     * Attempt json.
+     *
+     * @param name the name
+     * @param shaped the shaped
+     * @param result the result
+     * @param inputs the inputs
+     */
     private void attemptJson(String name, boolean shaped, ItemStack result, Object... inputs) {
         if (!jsonHellMode) return;
         name = name.replaceFirst(resourcePrefix, "");
@@ -84,6 +119,12 @@ public final class RecipeBuilder {
         }
     }
 
+    /**
+     * Sets the recipe serializer.
+     *
+     * @param item the item
+     * @param serializer the serializer
+     */
     public void setRecipeSerializer(Item item, IRSerializer serializer) {
         customSerializers.put(item.getRegistryName(), serializer);
     }
@@ -96,19 +137,53 @@ public final class RecipeBuilder {
      * Group will default to the mod ID if not specified.
      */
 
+    /**
+     * Adds the shapeless.
+     *
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     // -------------------------------------------------- Shapeless --------------------------------------------------
     public IRecipe addShapeless(String key, ItemStack result, Object... inputs) {
         return addShapeless(modId, key, result, makeStackArray(inputs));
     }
 
+    /**
+     * Adds the shapeless.
+     *
+     * @param group the group
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapeless(String group, String key, ItemStack result, Object... inputs) {
         return addShapeless(group, key, result, makeStackArray(inputs));
     }
 
+    /**
+     * Adds the shapeless.
+     *
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapeless(String key, ItemStack result, ItemStack... inputs) {
         return addShapeless(modId, key, result, inputs);
     }
 
+    /**
+     * Adds the shapeless.
+     *
+     * @param group the group
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapeless(String group, String key, ItemStack result, ItemStack... inputs) {
         key = getRecipeKey(key);
         IRecipe recipe = makeShapeless(result, inputs);
@@ -117,18 +192,48 @@ public final class RecipeBuilder {
         return recipe;
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(ItemStack result, Object... inputs) {
         return makeShapeless(result, makeStackArray(inputs));
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(String group, ItemStack result, Object... inputs) {
         return makeShapeless(result, makeStackArray(inputs));
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(ItemStack result, ItemStack... inputs) {
         return makeShapeless(modId, result, inputs);
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(String group, ItemStack result, ItemStack... inputs) {
         NonNullList<Ingredient> list = NonNullList.create();
         for (ItemStack stack : inputs)
@@ -136,10 +241,25 @@ public final class RecipeBuilder {
         return new ShapelessRecipes(group, result, list);
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(ItemStack result, Ingredient... inputs) {
         return makeShapeless(modId, result, inputs);
     }
 
+    /**
+     * Make shapeless.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapeless(String group, ItemStack result, Ingredient... inputs) {
         NonNullList<Ingredient> list = NonNullList.create();
         Collections.addAll(list, inputs);
@@ -148,10 +268,27 @@ public final class RecipeBuilder {
 
     // -------------------------------------------------- Shaped --------------------------------------------------
 
+    /**
+     * Adds the shaped.
+     *
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShaped(String key, ItemStack result, Object... inputs) {
         return addShaped(modId, key, result, inputs);
     }
 
+    /**
+     * Adds the shaped.
+     *
+     * @param group the group
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShaped(String group, String key, ItemStack result, Object... inputs) {
         key = getRecipeKey(key);
         IRecipe recipe = makeShaped(group, result, inputs);
@@ -160,10 +297,25 @@ public final class RecipeBuilder {
         return recipe;
     }
 
+    /**
+     * Make shaped.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShaped(ItemStack result, Object... inputs) {
         return makeShaped(modId, result, inputs);
     }
 
+    /**
+     * Make shaped.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShaped(String group, ItemStack result, Object... inputs) {
         ShapedPrimer primer = CraftingHelper.parseShaped(inputs);
         return new ShapedRecipes(group, primer.width, primer.height, primer.input, result);
@@ -171,10 +323,27 @@ public final class RecipeBuilder {
 
     // -------------------------------------------------- Shapeless Ore --------------------------------------------------
 
+    /**
+     * Adds the shapeless ore.
+     *
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapelessOre(String key, ItemStack result, Object... inputs) {
         return addShapelessOre(modId, key, result, inputs);
     }
 
+    /**
+     * Adds the shapeless ore.
+     *
+     * @param group the group
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapelessOre(String group, String key, ItemStack result, Object... inputs) {
         key = getRecipeKey(key);
         IRecipe recipe = makeShapelessOre(group, result, inputs);
@@ -183,20 +352,52 @@ public final class RecipeBuilder {
         return recipe;
     }
 
+    /**
+     * Make shapeless ore.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapelessOre(ItemStack result, Object... inputs) {
         return makeShapelessOre(modId, result, inputs);
     }
 
+    /**
+     * Make shapeless ore.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapelessOre(String group, ItemStack result, Object... inputs) {
         return new ShapelessOreRecipe(new ResourceLocation(group), result, inputs);
     }
 
     // -------------------------------------------------- Shaped Ore --------------------------------------------------
 
+    /**
+     * Adds the shaped ore.
+     *
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapedOre(String key, ItemStack result, Object... inputs) {
         return addShapedOre(modId, key, result, inputs);
     }
 
+    /**
+     * Adds the shaped ore.
+     *
+     * @param group the group
+     * @param key the key
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe addShapedOre(String group, String key, ItemStack result, Object... inputs) {
         key = getRecipeKey(key);
         IRecipe recipe = makeShapedOre(group, result, inputs);
@@ -205,24 +406,60 @@ public final class RecipeBuilder {
         return recipe;
     }
 
+    /**
+     * Make shaped ore.
+     *
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapedOre(ItemStack result, Object... inputs) {
         return makeShapedOre(modId, result, inputs);
     }
 
+    /**
+     * Make shaped ore.
+     *
+     * @param group the group
+     * @param result the result
+     * @param inputs the inputs
+     * @return the i recipe
+     */
     public IRecipe makeShapedOre(String group, ItemStack result, Object... inputs) {
         return new ShapedOreRecipe(new ResourceLocation(group), result, inputs);
     }
 
     // -------------------------------------------------- Smelting --------------------------------------------------
 
+    /**
+     * Adds the smelting.
+     *
+     * @param input the input
+     * @param output the output
+     * @param xp the xp
+     */
     public void addSmelting(Block input, ItemStack output, float xp) {
         GameRegistry.addSmelting(input, output, xp);
     }
 
+    /**
+     * Adds the smelting.
+     *
+     * @param input the input
+     * @param output the output
+     * @param xp the xp
+     */
     public void addSmelting(Item input, ItemStack output, float xp) {
         GameRegistry.addSmelting(input, output, xp);
     }
 
+    /**
+     * Adds the smelting.
+     *
+     * @param input the input
+     * @param output the output
+     * @param xp the xp
+     */
     public void addSmelting(ItemStack input, ItemStack output, float xp) {
         GameRegistry.addSmelting(input, output, xp);
     }
@@ -309,6 +546,17 @@ public final class RecipeBuilder {
         return ret;
     }
 
+    /**
+     * Adds the compression ore.
+     *
+     * @param key the key
+     * @param small the small
+     * @param big the big
+     * @param smallOreName the small ore name
+     * @param bigOreName the big ore name
+     * @param count the count
+     * @return the i recipe[]
+     */
     public IRecipe[] addCompressionOre(String key, ItemStack small, ItemStack big, @Nullable String smallOreName, @Nullable String bigOreName, int count) {
         // Clamp to sane values.
         count = MathHelper.clamp(count, 1, 9);
@@ -338,6 +586,7 @@ public final class RecipeBuilder {
      * @param output      The item being crafted.
      * @param middleStack The item in the middle of the crafting grid.
      * @param surrounding The item(s) surrounding the middle item. Order affects the recipe.
+     * @return the i recipe
      */
     public IRecipe addSurround(String key, ItemStack output, ItemStack middleStack, Object... surrounding) {
         return addSurround(modId, key, output, middleStack, surrounding);
@@ -352,6 +601,7 @@ public final class RecipeBuilder {
      * @param output      The item being crafted.
      * @param middleStack The item in the middle of the crafting grid.
      * @param surrounding The item(s) surrounding the middle item. Order affects the recipe.
+     * @return the i recipe
      */
     public IRecipe addSurround(String group, String key, ItemStack output, ItemStack middleStack, Object... surrounding) {
         ItemStack[] stacks = new ItemStack[surrounding.length];
@@ -395,6 +645,7 @@ public final class RecipeBuilder {
      * @param middle      The item in the middle of the crafting grid.
      * @param surrounding The item(s) or oredict key(s) surrounding the middle item. Order affects
      *                    the recipe.
+     * @return the i recipe
      */
     public IRecipe addSurroundOre(String key, ItemStack output, Object middle, Object... surrounding) {
         return addSurroundOre(modId, key, output, middle, surrounding);
@@ -410,6 +661,7 @@ public final class RecipeBuilder {
      * @param middle      The item in the middle of the crafting grid.
      * @param surrounding The item(s) or oredict key(s) surrounding the middle item. Order affects
      *                    the recipe.
+     * @return the i recipe
      */
     public IRecipe addSurroundOre(String group, String key, ItemStack output, Object middle, Object... surrounding) {
         switch (surrounding.length) {
@@ -443,6 +695,12 @@ public final class RecipeBuilder {
         setOldRecipeRegisterCount(getOldRecipeRegisterCount() + 1);
     }
 
+    /**
+     * Make stack array.
+     *
+     * @param params the params
+     * @return the item stack[]
+     */
     private ItemStack[] makeStackArray(Object... params) {
         ItemStack[] result = new ItemStack[params.length];
         for (int i = 0; i < params.length; ++i) {
@@ -461,10 +719,20 @@ public final class RecipeBuilder {
         return result;
     }
 
+	/**
+	 * Gets the old recipe register count.
+	 *
+	 * @return the old recipe register count
+	 */
 	public int getOldRecipeRegisterCount() {
 		return oldRecipeRegisterCount;
 	}
 
+	/**
+	 * Sets the old recipe register count.
+	 *
+	 * @param oldRecipeRegisterCount the new old recipe register count
+	 */
 	public void setOldRecipeRegisterCount(int oldRecipeRegisterCount) {
 		this.oldRecipeRegisterCount = oldRecipeRegisterCount;
 	}

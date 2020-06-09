@@ -81,7 +81,6 @@ public class SConfigCore {
 			enableRealism = config.getBoolean("enableRealism", CATEGORY_GENERAL_MAIN, false, "Enabling Realism loads the round & realistic Celestial Body Textures on the Celestial Map", "exoplanets.configgui.enableRealism");
 
 			warnBetaBuild = config.getBoolean("warnOnBetaBuild", CATEGORY_INTERNAL, true, "DO NOT CHANGE");
-			configVersion = config.getInt("configVersion", CATEGORY_INTERNAL, 1, 1, 1, "DO NOT CHANGE");
 			
 			if (config.hasChanged()) {
 				config.save();

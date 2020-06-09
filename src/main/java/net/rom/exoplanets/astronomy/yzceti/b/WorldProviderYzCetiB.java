@@ -233,4 +233,9 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 		return 5.0f;
 	}
 
+	@Override
+	public ExoPlanet getExoPlanet() {
+		return (ExoPlanet) getCelestialBody();
+	}
+
 }

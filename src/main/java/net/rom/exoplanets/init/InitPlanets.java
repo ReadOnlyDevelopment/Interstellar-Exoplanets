@@ -33,8 +33,6 @@ import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
-import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
@@ -89,8 +87,6 @@ public class InitPlanets {
 	public static float[] kepler1649Au = { 0.4f, 0.7f };
 	public static ExoPlanet kepler1649b;
 	public static ExoPlanet kepler1649c;
-	
-	public static Satellite earth_highorbit;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -104,41 +100,37 @@ public class InitPlanets {
 
 	public static void initPlanets() {
 
-		SolarSystem yzCet = IniSystems.yzCeti;
-		SolarSystem trap1 = IniSystems.trappist1;
-
-		yzcetib = builder.buildExoPlanet(yzCet, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 0.5F);
+		yzcetib = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 0.5F);
 		builder.setData(yzcetib, ClassBody.SELENA, yzCetiAu[0], 0.015f, 0.4f, 0, 0L);
 		builder.setNormalOrbit(yzcetib);
 		builder.setExoData(yzcetib, 50.0f, 0.75f, 0.93f);
 		builder.setAtmos(yzcetib, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetib, ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
 
-		yzcetic = builder.buildExoPlanet(yzCet, "yz_ceti_c", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 0.1F);
+		yzcetic = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 0.1F);
 		builder.setData(yzcetic, ClassBody.SELENA, yzCetiAu[1], 0.010f, 0.5f, 0, 19500L);
 		builder.setNormalOrbit(yzcetic);
 		builder.setExoData(yzcetic, 26.5f, 0.9f, 1.0f);
 		builder.setAtmos(yzcetic, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetic, ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
 
-		yzcetid = builder.buildExoPlanet(yzCet, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 0.9F);
+		yzcetid = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 0.9F);
 		builder.setData(yzcetid, ClassBody.SELENA, yzCetiAu[2], 0.005f, 0.6f, 0, 26500L);
 		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.3f, 4.3f);
 		builder.setExoData(yzcetid, 5.0f, 1.14f, 1.05f);
 		builder.setAtmos(yzcetid, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
 		
-		trappistc = builder.buildExoPlanet(trap1, "trappist_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
+		trappistc = builder.buildExoPlanet(IniSystems.trappist1, "trappist_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappistc, ClassBody.SELENA, trappistAu[1], 0.005f, 0.6f, 0, 26500L);
 		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		
-		trappiste = builder.buildExoPlanet(trap1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
+		trappiste = builder.buildExoPlanet(IniSystems.trappist1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappiste, ClassBody.SELENA, trappistAu[3], 0.005f, 0.6f, 0, 26500L);
 		builder.setExoData(trappiste, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.OXYGEN);
-		
-		
+
 	}
 
 	public static void unreachables() {
@@ -197,10 +189,10 @@ public class InitPlanets {
 			
 			//kepler 1649
 			kepler1649b = builder.buildUnreachablePlanet("kepler1649_b", IniSystems.kepler1649, 0.6451158F);
-			builder.setData(trappistg, ClassBody.SELENA, kepler1649Au[0],  0.55F, kepler1649Au[0], 0, 24000L);
+			builder.setData(kepler1649b, ClassBody.SELENA, kepler1649Au[0],  0.55F, kepler1649Au[0], 0, 24000L);
 			
 			kepler1649c = builder.buildUnreachablePlanet("kepler1649_c", IniSystems.kepler1649, 1.932375F);
-			builder.setData(trappisth, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
+			builder.setData(kepler1649c, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
 		}
 	}
 
@@ -212,30 +204,33 @@ public class InitPlanets {
 		GalaxyRegistry.registerPlanet(yzcetib);
 		GalaxyRegistry.registerPlanet(yzcetic);
 		GalaxyRegistry.registerPlanet(yzcetid);
-		
-		GalaxyRegistry.registerPlanet(trappiste);
+
 		GalaxyRegistry.registerPlanet(trappistc);
-
-
+		GalaxyRegistry.registerPlanet(trappiste);
+		
 	}
 
 	public static void registerTeleportTypes() {
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
-		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiB.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetib.png"));
-		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiC.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetic.png"));
-		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiB.class, getWorldGui("yzcetib"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiC.class, getWorldGui("yzcetic"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, getWorldGui("yzcetid"));
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1E.class, new TeleportTypeMoon());
-		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1E.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1E.class, getWorldGui("trappist1e"));
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeMoon());
-		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, new ResourceLocation(ExoInfo.RESOURCE_PREFIX, "textures/gui/rocketgui/yzcetid.png"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, getWorldGui("trappist1c"));
 	}
 
 	public static float getGravity(ExPlanet planet) {
 		return planet.getGravity();
+	}
+	
+	private static ResourceLocation getWorldGui(String planetString) {
+		return new ResourceLocation(ExoInfo.MODID, "textures/gui/rocketgui/" + planetString + ".png");
 	}
 
 	public static long getDayLength(ExPlanet planet) {

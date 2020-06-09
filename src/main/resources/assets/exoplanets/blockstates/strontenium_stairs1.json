@@ -1,0 +1,172 @@
+{
+    "variants": {
+        "facing=east,half=bottom,shape=straight": {
+            "model": "exoplanets:strontenium_stairs1"
+        },
+        "facing=west,half=bottom,shape=straight": {
+            "model": "exoplanets:strontenium_stairs1",
+            "y": 180
+        },
+        "facing=south,half=bottom,shape=straight": {
+            "model": "exoplanets:strontenium_stairs1",
+            "y": 90
+        },
+        "facing=north,half=bottom,shape=straight": {
+            "model": "exoplanets:strontenium_stairs1",
+            "y": 270
+        },
+        "facing=east,half=bottom,shape=outer_right": {
+            "model": "exoplanets:strontenium_stairs"
+        },
+        "facing=west,half=bottom,shape=outer_right": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 180
+        },
+        "facing=south,half=bottom,shape=outer_right": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 90
+        },
+        "facing=north,half=bottom,shape=outer_right": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 270
+        },
+        "facing=east,half=bottom,shape=outer_left": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 270
+        },
+        "facing=west,half=bottom,shape=outer_left": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 90
+        },
+        "facing=south,half=bottom,shape=outer_left": {
+            "model": "exoplanets:strontenium_outer_stairs"
+        },
+        "facing=north,half=bottom,shape=outer_left": {
+            "model": "exoplanets:strontenium_outer_stairs",
+            "y": 180
+        },
+        "facing=east,half=bottom,shape=inner_right": {
+            "model": "exoplanets:strontenium_inner_stairs"
+        },
+        "facing=west,half=bottom,shape=inner_right": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 180
+        },
+        "facing=south,half=bottom,shape=inner_right": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 90
+        },
+        "facing=north,half=bottom,shape=inner_right": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 270
+        },
+        "facing=east,half=bottom,shape=inner_left": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 270
+        },
+        "facing=west,half=bottom,shape=inner_left": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 90
+        },
+        "facing=south,half=bottom,shape=inner_left": {
+            "model": "exoplanets:strontenium_inner_stairs"
+        },
+        "facing=north,half=bottom,shape=inner_left": {
+            "model": "exoplanets:strontenium_inner_stairs",
+            "y": 180
+        },
+        "facing=east,half=top,shape=straight": {
+            "model": "exoplanets:strontenium_stairs2",
+            "x": 180
+        },
+        "facing=west,half=top,shape=straight": {
+            "model": "exoplanets:strontenium_stairs2",
+            "x": 180,
+            "y": 180
+        },
+        "facing=south,half=top,shape=straight": {
+            "model": "exoplanets:strontenium_stairs2",
+            "x": 180,
+            "y": 90
+        },
+        "facing=north,half=top,shape=straight": {
+            "model": "exoplanets:strontenium_stairs2",
+            "x": 180,
+            "y": 270
+        },
+        "facing=east,half=top,shape=outer_right": {
+            "model": "exoplanets:strontenium_stairs",
+            "x": 180,
+            "y": 90
+        },
+        "facing=west,half=top,shape=outer_right": {
+            "model": "exoplanets:strontenium_stairs",
+            "x": 180,
+            "y": 270
+        },
+        "facing=south,half=top,shape=outer_right": {
+            "model": "exoplanets:strontenium_stairs",
+            "x": 180,
+            "y": 180
+        },
+        "facing=north,half=top,shape=outer_right": {
+            "model": "exoplanets:strontenium_stairs",
+            "x": 180
+        },
+        "facing=east,half=top,shape=outer_left": {
+            "model": "exoplanets:strontenium1_outer_stairs",
+            "x": 180
+        },
+        "facing=west,half=top,shape=outer_left": {
+            "model": "exoplanets:strontenium1_outer_stairs",
+            "x": 180,
+            "y": 180
+        },
+        "facing=south,half=top,shape=outer_left": {
+            "model": "exoplanets:strontenium1_outer_stairs",
+            "x": 180,
+            "y": 90
+        },
+        "facing=north,half=top,shape=outer_left": {
+            "model": "exoplanets:strontenium1_outer_stairs",
+            "x": 180,
+            "y": 270
+        },
+        "facing=east,half=top,shape=inner_right": {
+            "model": "exoplanets:strontenium2_outer_stairs",
+            "x": 180,
+            "y": 90
+        },
+        "facing=west,half=top,shape=inner_right": {
+            "model": "exoplanets:strontenium2_outer_stairs",
+            "x": 180,
+            "y": 270
+        },
+        "facing=south,half=top,shape=inner_right": {
+            "model": "exoplanets:strontenium2_outer_stairs",
+            "x": 180,
+            "y": 180
+        },
+        "facing=north,half=top,shape=inner_right": {
+            "model": "exoplanets:strontenium2_outer_stairs",
+            "x": 180
+        },
+        "facing=east,half=top,shape=inner_left": {
+            "model": "exoplanets:strontenium3_outer_stairs",
+            "x": 180
+        },
+        "facing=west,half=top,shape=inner_left": {
+            "model": "exoplanets:strontenium1_outer_stairs",
+            "x": 180
+        },
+        "facing=south,half=top,shape=inner_left": {
+            "model": "exoplanets:strontenium4_outer_stairs",
+            "x": 180
+        },
+        "facing=north,half=top,shape=inner_left": {
+            "model": "exoplanets:strontenium5_outer_stairs",
+            "x": 180,
+            "y": 270
+        }
+    }
+}

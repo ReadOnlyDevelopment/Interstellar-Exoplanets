@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "exoplanets:blocks/concrete_stairs",
+        "top": "exoplanets:blocks/concrete_stairs",
+        "side": "exoplanets:blocks/concrete_stairs"
+    }
+}

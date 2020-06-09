@@ -33,7 +33,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipe;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.container.slot.SlotAlloyRefineryOutput;
 

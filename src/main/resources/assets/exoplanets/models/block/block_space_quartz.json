@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "exoplanets:blocks/block_space_quartz",
+        "end": "exoplanets:blocks/block_space_quartz_top"
+    }
+}

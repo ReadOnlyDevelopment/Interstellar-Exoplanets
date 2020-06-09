@@ -35,7 +35,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.internal.MCUtil;
-import net.rom.exoplanets.internal.client.SkyProviderHelper;
 import net.rom.exoplanets.internal.enums.EnumStarColor;
 import net.rom.exoplanets.util.Textures;
 

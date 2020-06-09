@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "exoplanets:blocks/block_space_quartz",
+        "top": "exoplanets:blocks/block_space_quartz",
+        "side": "exoplanets:blocks/block_space_quartz"
+    }
+}

@@ -55,9 +55,9 @@ public class ExoFluids {
     private static final Map<BlockFluidBase, String> fluidBlockNames = new HashMap<>();
 
     public static void init() {
-        fluidmantle = newFluid("mantle", 100, 500, 2500, 5);
+        //fluidmantle = newFluid("mantle", 100, 500, 2500, 5);
 
-        fluidBlockMantle = registerFluidBlock(fluidmantle, new BlockMoltenFluid(fluidmantle), "mantle");
+        //fluidBlockMantle = registerFluidBlock(fluidmantle, new BlockMoltenFluid(fluidmantle), "mantle");
     }
 
     private static Fluid newFluid(String name, int density, int viscosity, int temperature, int luminosity) {

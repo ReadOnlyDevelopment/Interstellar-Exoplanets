@@ -42,7 +42,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
-public abstract class WorldProviderExoPlanet extends WorldProviderSpace implements ISolarLevel, IExitHeight {
+public abstract class WorldProviderExoPlanet extends WorldProviderSpace implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 
 	private static WorldProviderExoPlanet instance;
 
@@ -69,9 +69,9 @@ public abstract class WorldProviderExoPlanet extends WorldProviderSpace implemen
 	}
 
 	protected ExoPlanet getPlanet() {
-		CelestialBody planet = this.getCelestialBody();
-		ExoPlanet exo = (ExoPlanet) planet;
-		return exo;
+		return (ExoPlanet) this.getCelestialBody();
+//		ExoPlanet exo = (ExoPlanet) planet;
+//		return exo;
 	}
 
 	@Override

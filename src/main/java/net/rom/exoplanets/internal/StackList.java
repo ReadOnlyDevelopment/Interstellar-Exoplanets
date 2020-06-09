@@ -108,10 +108,6 @@ public final class StackList extends ArrayList<ItemStack> {
         return stack -> itemClass.isInstance(stack.getItem());
     }
 
-    //endregion
-
-    //region ArrayList overrides
-
     @Override
     public boolean add(ItemStack itemStack) {
         return !itemStack.isEmpty() && super.add(itemStack);
@@ -146,6 +142,4 @@ public final class StackList extends ArrayList<ItemStack> {
             super.add(index, element);
         }
     }
-
-    //endregion
 }

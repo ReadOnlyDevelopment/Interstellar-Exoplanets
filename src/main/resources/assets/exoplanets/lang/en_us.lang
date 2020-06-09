@@ -47,6 +47,9 @@ information.exoplanets:beta.4=If there are any bugs that are found with compatib
 information.exoplanets:beta.5=and report the issue.
 information.exoplanets:beta.6=§e(To disable this from appearing, set §6B:warnOnBetaBuild§r§e to false in §bcore.cfg§r§e file in configs)§r
 
+exoplanets.gui.discordLink=Discord Invite
+exoplanets.gui.failed=There was a problem while trying to open Discord Invite Link
+
 ## CONFIG GUI ##
 exoplanets.configgui.title=Exoplanets Settings
 exoplanets.configgui.category.generalmain=Core Settings

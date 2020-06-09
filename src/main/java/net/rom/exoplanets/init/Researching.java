@@ -24,7 +24,7 @@
 
 package net.rom.exoplanets.init;
 
-import net.rom.api.research.Researches;
+import net.rom.exoplanets.api.research.Researches;
 
 public class Researching {
 

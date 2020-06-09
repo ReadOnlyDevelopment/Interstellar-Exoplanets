@@ -29,7 +29,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -51,12 +50,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.client.ClientHandler;
+import net.rom.exoplanets.client.GuiScreenHandler;
+import net.rom.exoplanets.client.SkyProviders;
 import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.ItemModelRocket;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
-import net.rom.exoplanets.event.client.handlers.GuiScreenHandler;
-import net.rom.exoplanets.event.client.handlers.SkyProviders;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.MCUtil;
@@ -76,6 +76,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		ExoFluids.bakeModels();
 		registerEventHandler(new GuiScreenHandler());
+		registerEventHandler(new ClientHandler());
 		registerEventHandler(new BlockHandler());
 		registry.clientPreInit(event);
 

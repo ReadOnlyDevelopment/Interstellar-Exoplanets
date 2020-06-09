@@ -24,6 +24,9 @@
 
 package net.rom.exoplanets.init;
 
+import java.util.LinkedList;
+
+import net.minecraft.item.Item;
 import net.rom.exoplanets.content.item.ItemCraftingItem;
 import net.rom.exoplanets.content.item.ItemDustAlloy;
 import net.rom.exoplanets.content.item.ItemDustByproduct;
@@ -37,35 +40,49 @@ import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoItems {
 	
-	public static final ItemTwoPlayerRocket passengerRocket = new ItemTwoPlayerRocket();
-    public static final ItemIngotMetal metalIngot = new ItemIngotMetal();
-    public static final ItemNuggetMetal metalNugget = new ItemNuggetMetal();
-    public static final ItemDustMetal metalDust = new ItemDustMetal();
-    public static final ItemIngotAlloy alloyIngot = new ItemIngotAlloy();
-    public static final ItemNuggetAlloy alloyNugget = new ItemNuggetAlloy();
-    public static final ItemDustAlloy alloyDust = new ItemDustAlloy();
-    public static final ItemDustByproduct dustByproduct = new ItemDustByproduct();
-    public static final ItemCraftingItem plateBasic = new ItemCraftingItem("plate", false);
-    public static final ItemCraftingItem plateAlloy = new ItemCraftingItem("plate", true);
-    public static final ItemCraftingItem gearBasic = new ItemCraftingItem("gear", false);
-    public static final ItemCraftingItem gearAlloy = new ItemCraftingItem("gear", true);
+	public static final Item passengerRocket = new ItemTwoPlayerRocket();
+    public static final Item metalIngot = new ItemIngotMetal();
+    public static final Item metalNugget = new ItemNuggetMetal();
+    public static final Item metalDust = new ItemDustMetal();
+    public static final Item alloyIngot = new ItemIngotAlloy();
+    public static final Item alloyNugget = new ItemNuggetAlloy();
+    public static final Item alloyDust = new ItemDustAlloy();
+    public static final Item dustByproduct = new ItemDustByproduct();
+    public static final Item plateBasic = new ItemCraftingItem("plate", false);
+    public static final Item plateAlloy = new ItemCraftingItem("plate", true);
+    public static final Item gearBasic = new ItemCraftingItem("gear", false);
+    public static final Item gearAlloy = new ItemCraftingItem("gear", true);
+    
+    public static LinkedList<Item> itemList = new LinkedList<>();
+	private static StellarRegistry reg;
 
-	public static void registerAll(StellarRegistry registry) {
+
+	public static void registerAll(StellarRegistry reg) {
+		setReg(reg);
 		
-		registry.registerItem(passengerRocket, "twopersonrocket");
+		register(passengerRocket, "twopersonrocket");
 
-		registry.registerItem(metalIngot, "metalingot");
-		registry.registerItem(metalNugget, "metalnugget");
-		registry.registerItem(metalDust, "metaldust");
-		registry.registerItem(alloyIngot, "alloyingot");
-		registry.registerItem(alloyNugget, "alloynugget");
-		registry.registerItem(alloyDust, "alloydust");
-		registry.registerItem(dustByproduct, "byproductdust");
-		registry.registerItem(plateBasic, "metalplate");
-		registry.registerItem(plateAlloy, "alloyplate");
-		registry.registerItem(gearBasic, "metalgear");
-		registry.registerItem(gearAlloy, "alloygear");
+		register(metalIngot, "metalingot");
+		register(metalNugget, "metalnugget");
+		register(metalDust, "metaldust");
+		register(alloyIngot, "alloyingot");
+		register(alloyNugget, "alloynugget");
+		register(alloyDust, "alloydust");
+		register(dustByproduct, "byproductdust");
+		register(plateBasic, "metalplate");
+		register(plateAlloy, "alloyplate");
+		register(gearBasic, "metalgear");
+		register(gearAlloy, "alloygear");
 
+	}
+	
+	public static void register(Item item, String itemName) {
+		itemList.add(item);
+		reg.registerItem(item, itemName);
+	}
+    
+	public static void setReg(StellarRegistry reg) {
+		ExoItems.reg = reg;
 	}
 
 }

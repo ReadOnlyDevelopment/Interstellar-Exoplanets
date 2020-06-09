@@ -42,6 +42,7 @@ import net.rom.exoplanets.astronomy.yzceti.d.worldgen.ChunkProviderYzCetiD;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
+import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
@@ -165,4 +166,10 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
     public double getYCoordinateToTeleport() {
         return 2000.0D;
     }
+
+	@Override
+	public ExoPlanet getExoPlanet() {
+		return (ExoPlanet) getCelestialBody();
+	}
+
 }
