@@ -232,7 +232,7 @@ item.exoplanets.gearbronze.name=Bronze Alloy Gear
 item.exoplanets.gearbrass.name=Brass Alloy Gear
 item.exoplanets.gearsteel.name=Steel Alloy Gear
 
-entity.exoplanets.twopersonrocket.name=EXO1 Planetary Rocket
+item.exoplanets.twopersonrocket.name=EXO1 Planetary Rocket
 
 
 ## FLUIDS ##

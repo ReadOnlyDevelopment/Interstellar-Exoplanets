@@ -234,6 +234,6 @@ public class InitPlanets {
 	}
 
 	public static long getDayLength(ExPlanet planet) {
-		return planet.getDayLenght();
+		return planet.getDayLength();
 	}
 }

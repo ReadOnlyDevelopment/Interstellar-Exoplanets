@@ -43,19 +43,19 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.config.GuiButtonExt;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.client.screen.button.GuiAdvanceButton;
 import net.rom.exoplanets.util.RGB;
 
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {
 
-    private static final Logger log = LogManager.getLogger();
+	private static final Logger log = LogManager.getLogger();
 	private static final ResourceLocation[] background = new ResourceLocation[] { new ResourceLocation(ExoInfo.MODID, "textures/gui/teleport.png") };
+	private static final ResourceLocation DISCORD_LOCATION = new ResourceLocation(ExoInfo.MODID, "textures/gui/discord.png");
 	private final GuiMainMenu guiMainMenu;
 
 	public GuiBeta(GuiMainMenu guiMainMenu) {
@@ -67,12 +67,12 @@ public class GuiBeta extends GuiScreen {
 		super.initGui();
 		this.buttonList.clear();
 		GuiButton toMenu = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n.format("gui.done"));
-		GuiButton discord = new GuiButton(1, this.width / 2 - 200, this.height / 4 + 180, I18n.format("exoplanets.gui.discordLink"));
+		//GuiButton discord = new GuiButton(1, this.width / 2 - 200, this.height / 4 + 180, I18n.format("exoplanets.gui.discordLink"));
+		GuiAdvanceButton disGuiTexturedButton = new GuiAdvanceButton(1, this.width / 2 - 200, this.height / 4 + 180, 150, 30, "", DISCORD_LOCATION);
 		//GuiButtonExt setBoolean = new GuiButtonExt(2,this.width / 2, this.height / 4 + 180, 100, 20, getBoolean(SConfigCore.warnBetaBuild));
 		toMenu.setWidth(50);
-		discord.setWidth(150);
 		
-		this.buttonList.addAll(Arrays.asList(toMenu, discord));
+		this.buttonList.addAll(Arrays.asList(toMenu, disGuiTexturedButton));
 	}
 
 	@Override
@@ -105,28 +105,28 @@ public class GuiBeta extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		
+
 		switch (button.id) {
 			case 0:
 				Minecraft.getMinecraft().displayGuiScreen(this.guiMainMenu);
 				break;
 			case 1:
-	            try {
-	            	String discordUrl = "https://discord.gg/fscJ2gG";
+				try {
+					String discordUrl = "https://discord.gg/fscJ2gG";
 					ReflectionHelper.findField(GuiScreen.class, "clickedLinkURI", "field_175286_t").set(this, new URI(discordUrl));
-	                mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
+					mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
 				} catch (IllegalArgumentException | IllegalAccessException | URISyntaxException e) {
 					log.error("Exception when discord link menu button clicked:", e);
-	                button.displayString = I18n.format("exoplanets.gui.failed");
-	                button.enabled = false;				
-	                e.printStackTrace();
+					button.displayString = I18n.format("exoplanets.gui.failed");
+					button.enabled = false;
+					e.printStackTrace();
 				}
 			default:
 				break;
 
 		}
 	}
-	
+
 	private static String getBoolean(boolean configOption) {
 		return (!configOption) ? "ShowGUI: True" : "ShowGUI: False";
 	}
