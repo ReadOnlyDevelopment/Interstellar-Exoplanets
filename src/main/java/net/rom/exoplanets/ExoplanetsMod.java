@@ -70,7 +70,7 @@ import net.rom.exoplanets.world.OverworldOreGen;
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
 
-	// SUP DEVIL 
+	// SUP DEVIL HELLO`
 	
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
