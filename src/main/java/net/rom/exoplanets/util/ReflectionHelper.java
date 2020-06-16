@@ -1,9 +1,12 @@
 package net.rom.exoplanets.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public class ReflectionHelper {
+	
+	
 	/**
 	 * Searches for a field and makes it accessible.
 	 * 
@@ -14,6 +17,17 @@ public class ReflectionHelper {
 			Field f = c.getDeclaredField(fieldname);
 			f.setAccessible(true);
 			return f;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Method getPrivateMethod(Class<?> c, String methodName) {
+		try {
+			Method m = c.getDeclaredMethod(methodName, c);
+			m.setAccessible(true);
+			return m;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

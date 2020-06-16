@@ -56,14 +56,6 @@ public class SConfigDimensionID {
 	public static int id_wolf_c;
 	public static int id_wolf_d;
 	
-	//hd19134
-	public static int id_hd_b;
-	public static int id_hd_c;
-	public static int id_hd_d;
-	public static int id_hd_f;
-	public static int id_hd_g;
-	public static int id_hd_h;
-	
 	//trappist1
 	public static int id_trap_b;
 	public static int id_trap_c;
@@ -93,14 +85,6 @@ public class SConfigDimensionID {
 			id_wolf_b = config.getInt("Wolf 1061 B", CATEGORY_DIMENSION_IDS, -4201, -2147483647, 2147483647, "Wolf 1061 B Dimension ID", "interstellar.configgui.id_wolf_b");
 			id_wolf_c = config.getInt("Wolf 1061 C", CATEGORY_DIMENSION_IDS, -4202, -2147483647, 2147483647, "Wolf 1061 C Dimension ID", "interstellar.configgui.id_wolf_c");
 			id_wolf_d = config.getInt("Wolf 1061 D", CATEGORY_DIMENSION_IDS, -4203, -2147483647, 2147483647, "Wolf 1061 D Dimension ID", "interstellar.configgui.id_wolf_d");
-			
-			//hd19134
-			id_hd_b = config.getInt("HD 219134 B", CATEGORY_DIMENSION_IDS, -4401, -2147483647, 2147483647, "HD 219134 B Dimension ID", "interstellar.configgui.id_hd_b");
-			id_hd_c = config.getInt("HD 219134 C", CATEGORY_DIMENSION_IDS, -4402, -2147483647, 2147483647, "HD 219134 C Dimension ID", "interstellar.configgui.id_hd_c");
-			id_hd_d = config.getInt("HD 219134 D", CATEGORY_DIMENSION_IDS, -4403, -2147483647, 2147483647, "HD 219134 D Dimension ID", "interstellar.configgui.id_hd_d");
-			id_hd_f = config.getInt("HD 219134 F", CATEGORY_DIMENSION_IDS, -4404, -2147483647, 2147483647, "HD 219134 F Dimension ID", "interstellar.configgui.id_hd_f");
-			id_hd_g = config.getInt("HD 219134 G", CATEGORY_DIMENSION_IDS, -4405, -2147483647, 2147483647, "HD 219134 G Dimension ID", "interstellar.configgui.id_hd_g");
-			id_hd_h = config.getInt("HD 219134 H", CATEGORY_DIMENSION_IDS, -4406, -2147483647, 2147483647, "HD 219134 H Dimension ID", "interstellar.configgui.id_hd_h");
 			
 			//trappist1
 			id_trap_b = config.getInt("Trappist 1 B", CATEGORY_DIMENSION_IDS, -4501, -2147483647, 2147483647, "Trappist 1 B Dimension ID", "interstellar.configgui.id_trap_b");

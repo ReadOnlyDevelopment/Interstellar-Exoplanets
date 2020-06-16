@@ -15,7 +15,6 @@ plugins {
     id "com.wynprice.cursemaven" version "2.1.5"
 	id 'net.minecrell.licenser' version '0.4.1'
 	id "io.freefair.lombok" version "2.9.5"
-	id "net.kyori.blossom" version "1.1.0"
 	id "maven-publish"
 }
 
@@ -335,7 +334,6 @@ curseforge {
 		}
 	}
 }
-
 
 build.finalizedBy incrementBuild // only increment on successful builds
 tasks.publish.dependsOn build

@@ -57,21 +57,16 @@ public class ExoCommonProxy implements IProxy {
 		return null;
 	}
 
-	public void registerRender() {
-	}
+	public void registerRender() {}
 
-	public void registerTexture(Pre event, String texture) {
-	}
+	public void registerTexture(Pre event, String texture) {}
 
-	public void registerItemRenderer(Item item, int meta, String id) {
-	}
+	public void registerItemRenderer(Item item, int meta, String id) {}
 
-	public void registerVariants() {
+	public void registerVariants() {}
 
-	}
-
-	public void registerModels() {
-		
-	}
+	public void registerModels() {}
+	
+	public void registerTextureAssets() {}
 
 }

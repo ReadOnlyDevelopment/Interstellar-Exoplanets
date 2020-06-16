@@ -65,15 +65,6 @@ public class InitPlanets {
 	public static ExoPlanet wolf1061c;
 	public static ExoPlanet wolf1061d;
 
-	// HD 219134
-	private static Float[] hdAu = { 0.2F, 0.3f, 0.4f, 0.6f, 0.8f, 2.7f };
-	public static ExoPlanet hd219134b;
-	public static ExoPlanet hd219134c;
-	public static ExoPlanet hd219134d;
-	public static ExoPlanet hd219134f;
-	public static ExoPlanet hd219134g;
-	public static ExoPlanet hd219134h;
-
 	// Trappist 1
 	private static Float[] trappistAu = { 0.3F, 0.4f, 0.6f, 0.8f, 1.0f, 1.2f, 1.6f };
 	public static ExoPlanet trappistb;
@@ -145,25 +136,6 @@ public class InitPlanets {
 
 			wolf1061d = builder.buildUnreachablePlanet("wolf_1061_d", IniSystems.wolf1061, 7.132725F);
 			builder.setData(wolf1061d, ClassBody.SELENA,wolfAu[2],  0.45F, wolfAu[2], 0, 24000L);
-
-			// HD 219134
-			hd219134b = builder.buildUnreachablePlanet("hd_219134_b", IniSystems.hd219134, 0.292421F);
-			builder.setData(hd219134b, ClassBody.SELENA,hdAu[0],  0.45F, hdAu[0], 0, 24000L);
-
-			hd219134c = builder.buildUnreachablePlanet("hd_219134_c", IniSystems.hd219134, 2.9495497F);
-			builder.setData(hd219134c, ClassBody.SELENA,hdAu[1],  0.45F, hdAu[1], 0, 24000L);
-
-			hd219134d = builder.buildUnreachablePlanet("hd_219134_d", IniSystems.hd219134, 0.896365F);
-			builder.setData(hd219134d, ClassBody.SELENA,hdAu[2],  0.45F, hdAu[2], 0, 24000L);
-
-			hd219134f = builder.buildUnreachablePlanet("hd_219134_f", IniSystems.hd219134, 4.305977F);
-			builder.setData(hd219134f, ClassBody.SELENA,hdAu[3],  0.45F, hdAu[3], 0, 24000L);
-
-			hd219134g = builder.buildUnreachablePlanet("hd_219134_g", IniSystems.hd219134, 1.932375F);
-			builder.setData(hd219134g, ClassBody.SELENA,hdAu[4],  0.45F, hdAu[4], 0, 24000L);
-
-			hd219134h = builder.buildUnreachablePlanet("hd_219134_h", IniSystems.hd219134, 7.906747F);
-			builder.setData(hd219134h, ClassBody.SELENA,hdAu[5],  0.45F, hdAu[5], 0, 24000L);
 
 			// Trappist 1
 			trappistb = builder.buildUnreachablePlanet("trappist_b", IniSystems.trappist1, 3.254752F);

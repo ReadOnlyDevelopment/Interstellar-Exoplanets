@@ -48,10 +48,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.exoplanets.api.research.Researches;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
-import net.rom.exoplanets.client.gui.GuiHandlerExo;
-import net.rom.exoplanets.client.gui.HabitableZoneClientHandler;
 import net.rom.exoplanets.command.CommandData;
 import net.rom.exoplanets.conf.InitConfigFiles;
+import net.rom.exoplanets.events.GuiHandlerExo;
+import net.rom.exoplanets.events.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.IniSystems;
@@ -63,7 +63,6 @@ import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.inerf.IMod;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.TranslateUtil;
-import net.rom.exoplanets.world.ExoVillagerHandler;
 import net.rom.exoplanets.world.OverworldOreGen;
 
 @Mod(modid = ExoInfo.MODID, name = ExoInfo.NAME, version = ExoInfo.FULL_VERSION, dependencies = ExoInfo.DEPENDENCIES_MODS, acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION, guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory")
@@ -71,6 +70,8 @@ import net.rom.exoplanets.world.OverworldOreGen;
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
 
+	// SUP DEVIL 
+	
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
     public static StellarRegistry REGISTRY = new StellarRegistry();
@@ -136,7 +137,7 @@ public class ExoplanetsMod implements IMod {
     public static void postInit(FMLPostInitializationEvent event) {
         ExoDimensions.init();
         ExoRecipes.alloySmelterRecipes();
-
+        //proxy.registerTextureAssets();
         proxy.postInit(REGISTRY, event);
     }
     

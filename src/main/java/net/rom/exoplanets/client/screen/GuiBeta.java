@@ -47,7 +47,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.client.screen.button.GuiAdvanceButton;
+import net.rom.exoplanets.client.screen.button.GuiDiscordButton;
 import net.rom.exoplanets.util.RGB;
 
 @SideOnly(Side.CLIENT)
@@ -55,7 +55,6 @@ public class GuiBeta extends GuiScreen {
 
 	private static final Logger log = LogManager.getLogger();
 	private static final ResourceLocation[] background = new ResourceLocation[] { new ResourceLocation(ExoInfo.MODID, "textures/gui/teleport.png") };
-	private static final ResourceLocation DISCORD_LOCATION = new ResourceLocation(ExoInfo.MODID, "textures/gui/discord.png");
 	private final GuiMainMenu guiMainMenu;
 
 	public GuiBeta(GuiMainMenu guiMainMenu) {
@@ -67,12 +66,10 @@ public class GuiBeta extends GuiScreen {
 		super.initGui();
 		this.buttonList.clear();
 		GuiButton toMenu = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n.format("gui.done"));
-		//GuiButton discord = new GuiButton(1, this.width / 2 - 200, this.height / 4 + 180, I18n.format("exoplanets.gui.discordLink"));
-		GuiAdvanceButton disGuiTexturedButton = new GuiAdvanceButton(1, this.width / 2 - 200, this.height / 4 + 180, 150, 30, "", DISCORD_LOCATION);
-		//GuiButtonExt setBoolean = new GuiButtonExt(2,this.width / 2, this.height / 4 + 180, 100, 20, getBoolean(SConfigCore.warnBetaBuild));
+		GuiDiscordButton discord = new GuiDiscordButton(1, this.width / 2 - 200, this.height / 4 + 160, 150, 35, 268, 55 , "");
 		toMenu.setWidth(50);
-		
-		this.buttonList.addAll(Arrays.asList(toMenu, disGuiTexturedButton));
+
+		this.buttonList.addAll(Arrays.asList(toMenu, discord));
 	}
 
 	@Override
@@ -125,9 +122,5 @@ public class GuiBeta extends GuiScreen {
 				break;
 
 		}
-	}
-
-	private static String getBoolean(boolean configOption) {
-		return (!configOption) ? "ShowGUI: True" : "ShowGUI: False";
 	}
 }

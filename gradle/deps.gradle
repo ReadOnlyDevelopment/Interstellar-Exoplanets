@@ -4,6 +4,7 @@ String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 def jei = "4.15.0.293"
 def planet_progression = "${mc_version}-0.4.4"
 def lombok = "1.18.12"
+def apachemaths = "3.6.1"
 
 repositories {
 	ivy {
@@ -27,9 +28,7 @@ repositories {
 		name 'DVS1 Maven FS'
 		url 'http://dvs1.progwml6.com/files/maven'
 	}
-	jcenter()
 	mavenCentral()
-	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -41,11 +40,8 @@ dependencies {
 
 	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}:api"
 	compile "curse.maven:AsmodeusCore-Dev-0.0.16:2953213"
-	//compile "curse.maven:AsmodeusCore-Dev-0.0.15:2950370"
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
-	
-	compile 'com.github.ROMVoid95.japng:api:0.5.2'
 	
 	compile 'org.apache.commons:commons-math3:3.6.1'
 	

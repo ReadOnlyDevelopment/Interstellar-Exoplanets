@@ -24,42 +24,28 @@
 
 package net.rom.exoplanets.proxy;
 
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-
-import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.client.ClientHandler;
-import net.rom.exoplanets.client.GuiScreenHandler;
-import net.rom.exoplanets.client.SkyProviders;
 import net.rom.exoplanets.client.render.BlockHandler;
-import net.rom.exoplanets.client.render.ItemModelRocket;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
+import net.rom.exoplanets.events.ClientHandler;
+import net.rom.exoplanets.events.GuiScreenHandler;
+import net.rom.exoplanets.events.SkyProviders;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
-import net.rom.exoplanets.internal.MCUtil;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
 
@@ -92,35 +78,16 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void postInit(StellarRegistry registry, FMLPostInitializationEvent event) {
 		super.postInit(registry, event);
-
+		registerTextureAssets();
 		registry.clientPostInit(event);
 	}
 	
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onModelBakeEvent(ModelBakeEvent event)
-    {
-        replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
-    }
-
-    private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants)
-    {
-        MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
-    }
-    
-    @SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void loadTextures(TextureStitchEvent.Pre event) {
-
-		registerTexture(event, "rocket");
-
+	@Override
+	public void registerTextureAssets() {
+		String domain = ExoInfo.MODID;
+		Assets.addTexture("GuiDiscordButton", domain, "textures/gui/discord.png");
 	}
 
-
-    public void registerTexture(TextureStitchEvent.Pre event, String texture)
-    {
-        event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
-    }
     
 	public World getWorld() {
 		return Minecraft.getMinecraft().world;
