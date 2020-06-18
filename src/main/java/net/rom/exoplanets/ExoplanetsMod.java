@@ -29,6 +29,7 @@ import java.util.Random;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import asmodeuscore.core.astronomy.BodiesHelper;
 import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.util.ResourceLocation;
@@ -46,6 +47,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.rom.exoplanets.api.research.Researches;
+import net.rom.exoplanets.astronomy.CelestialAssets;
 import net.rom.exoplanets.astronomy.ExoDimensions;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.command.CommandData;
@@ -70,7 +72,7 @@ import net.rom.exoplanets.world.OverworldOreGen;
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {
 
-	// SUP DEVIL HELLO`
+	// 
 	
     @Instance(ExoInfo.MODID)
     public static ExoplanetsMod instance;
@@ -94,12 +96,16 @@ public class ExoplanetsMod implements IMod {
         REGISTRY.setMod(this);
         REGISTRY.getRecipeMaker();
         initModInfo(event.getModMetadata());
-        
+        BodiesHelper.max_tier = 3;
+
         // CONFIGS
         InitConfigFiles.init(event);
         
         // BLOCKS, ITEMS, ENTITIES, ETC
         RegistrationHandler.init(REGISTRY);
+        
+        // TEXTURES
+        CelestialAssets.init();
         
         // OVERWORLD ORE GEN
         GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);

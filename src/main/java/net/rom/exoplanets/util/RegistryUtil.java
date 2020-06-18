@@ -18,7 +18,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.text.translation.LanguageMap;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -27,9 +26,9 @@ public final class RegistryUtil {
 	private RegistryUtil() {
 	};
 
-	static Object listsDir = null;
-	private static String lastLang = "";
-	public static boolean langDisable;
+	static Object			listsDir	= null;
+	private static String	lastLang	= "";
+	public static boolean	langDisable;
 
 	public static void loadLanguage(String langIdentifier, String assetPrefix, File source) {
 		if (!lastLang.equals(langIdentifier)) {
@@ -128,5 +127,4 @@ public final class RegistryUtil {
 			e.printStackTrace();
 		}
 	}
-
 }

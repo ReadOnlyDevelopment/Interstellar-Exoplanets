@@ -57,9 +57,6 @@ public class HabitableZoneClientHandler {
 			if (renderEvent.celestialBody.equals(IniSystems.wolf1061.getMainStar())) {
 				this.RingRender(renderEvent, 45F, 85F);
 			}
-			if (renderEvent.celestialBody.equals(IniSystems.hd219134.getMainStar())) {
-				this.RingRender(renderEvent, 75F, 135F);
-			}
 			if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
 				this.RingRender(renderEvent, 55F, 100F);
 

@@ -40,13 +40,11 @@ public class IniSystems {
 
 	public static ExoStar yzCetiStar;
 	public static ExoStar wolf1061Star;
-	public static ExoStar hd219134Star;
 	public static ExoStar trappist1Star;
 	public static ExoStar kepler1649star;
 
 	public static SolarSystem yzCeti;
 	public static SolarSystem wolf1061;
-	public static SolarSystem hd219134;
 	public static SolarSystem trappist1;
 	public static SolarSystem kepler1649;
 	
@@ -61,33 +59,28 @@ public class IniSystems {
 	}
 
 	private static void registerExoStars() {
-		yzCetiStar = b.buildExoStar("yz_ceti_star", 3058, 0.130D, 0.168D);
-		wolf1061Star = b.buildExoStar("wolf_1061_star", 3342, 0.294D, 0.307D);
-		hd219134Star = b.buildExoStar("hd_219134_star", 4699, 0.81D, 0.778D);
-		trappist1Star = b.buildExoStar("trappist_star", 2511, 0.089D, 0.121D);
-		kepler1649star = b.buildExoStar("kepler1649_star", 2150, 0.02D, 0.230D);
+		yzCetiStar = b.buildExoStar("yzcetistar", 3058, 0.130D, 0.168D);
+		wolf1061Star = b.buildExoStar("wolf1061star", 3342, 0.294D, 0.307D);
+		trappist1Star = b.buildExoStar("trappist1star", 2511, 0.089D, 0.121D);
+		kepler1649star = b.buildExoStar("kepler1649star", 2150, 0.02D, 0.230D);
 	}
 
 	private static void registerSolarSystems() {
 		//TESTGALAXY = BodiesHelper.registerGalaxy("wormhole", new ResourceLocation(ExoInfo.MODID, "textures/gui/galaxy/wormhole.png"));
 		
-		yzCeti = b.buildSolarSystem("yz_ceti", "milky_way", yzPos(), yzCetiStar);
+		yzCeti = b.buildSolarSystem("yzceti", yzPos(), yzCetiStar);
 		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(yzCeti.getMainStar(), data);
 
-		wolf1061 = b.buildSolarSystem("wolf_1061", "milky_way", wolfPos(), wolf1061Star);
+		wolf1061 = b.buildSolarSystem("wolf1061", wolfPos(), wolf1061Star);
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(wolf1061.getMainStar(), data);
 
-		hd219134 = b.buildSolarSystem("hd_219134", "milky_way", hdPos(), hd219134Star);
-		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesHelper.registerBodyData(hd219134.getMainStar(), data);
-
-		trappist1 = b.buildSolarSystem("trappist_1", "milky_way", trapPos(), trappist1Star);
+		trappist1 = b.buildSolarSystem("trappist1", trapPos(), trappist1Star);
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(trappist1.getMainStar(), data);
 
-		kepler1649 = b.buildSolarSystem("kepler1649", "milky_way", k1649Pos(), kepler1649star);
+		kepler1649 = b.buildSolarSystem("kepler1649", k1649Pos(), kepler1649star);
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 		BodiesHelper.registerBodyData(kepler1649.getMainStar(), data);
 	}
@@ -95,7 +88,6 @@ public class IniSystems {
 	private static void initializeSolarSystems() {
 		b.registerSolarSystem(yzCeti);
 		b.registerSolarSystem(wolf1061);
-		b.registerSolarSystem(hd219134);
 		b.registerSolarSystem(trappist1);
 		b.registerSolarSystem(kepler1649);
 
@@ -156,10 +148,6 @@ public class IniSystems {
 
 	public static Vector3 wolfPos() {
 		return new Vector3(SConfigSystems.wolf_x, SConfigSystems.wolf_y, 0.0F);
-	}
-
-	public static Vector3 hdPos() {
-		return new Vector3(SConfigSystems.hd_x, SConfigSystems.hd_y, 0.0F);
 	}
 
 	public static Vector3 trapPos() {

@@ -1,41 +1,32 @@
 ## ASTRONOMY ##
-solarsystem.yz_ceti=Yz Ceti
-solarsystem.wolf_1061=Wolf 1061
-solarsystem.hd_219134=HD 219134
-solarsystem.trappist_1=Trappist 1
+solarsystem.yzceti=Yz Ceti
+solarsystem.wolf1061=Wolf 1061
+solarsystem.trappist1=Trappist 1
 solarsystem.kepler1649=Kepler 1649
 
-star.yz_ceti_star=Yz Ceti A
-star.trappist_star=Trappist 1 A
-star.hd_219134_star=HD 219134 A
-star.wolf_1061_star=Wolf 1061 A
-star.kepler1649_star=Kepler 1649 A
+star.yzcetistar=Yz Ceti A
+star.trappist1star=Trappist 1 A
+star.wolf1061star=Wolf 1061 A
+star.kepler1649star=Kepler 1649 A
 
-planet.yz_ceti_b=Yz Ceti B
-planet.yz_ceti_c=Yz Ceti C
-planet.yz_ceti_d=Yz Ceti D
+planet.yzcetib=Yz Ceti B
+planet.yzcetic=Yz Ceti C
+planet.yzcetid=Yz Ceti D
 
-planet.wolf_1061_b=Wolf 1061 B
-planet.wolf_1061_c=Wolf 1061 C
-planet.wolf_1061_d=Wolf 1061 D
+planet.wolf1061b=Wolf 1061 B
+planet.wolf1061c=Wolf 1061 C
+planet.wolf1061d=Wolf 1061 D
 
-planet.hd_219134_b=HD 219134 B
-planet.hd_219134_c=HD 219134 C
-planet.hd_219134_d=HD 219134 D
-planet.hd_219134_f=HD 219134 F
-planet.hd_219134_g=HD 219134 G
-planet.hd_219134_h=HD 219134 H
+planet.trappist1b=Trappist 1 B
+planet.trappist1c=Trappist 1 C
+planet.trappist1d=Trappist 1 D
+planet.trappist1e=Trappist 1 E
+planet.trappist1f=Trappist 1 F
+planet.trappist1g=Trappist 1 G
+planet.trappist1h=Trappist 1 H
 
-planet.trappist_b=Trappist 1 B
-planet.trappist_c=Trappist 1 C
-planet.trappist_d=Trappist 1 D
-planet.trappist_e=Trappist 1 E
-planet.trappist_f=Trappist 1 F
-planet.trappist_g=Trappist 1 G
-planet.trappist_h=Trappist 1 H
-
-planet.kepler1649_b=Kepler 1649b
-planet.kepler1649_c=Kepler 1649c
+planet.kepler1649b=Kepler 1649b
+planet.kepler1649c=Kepler 1649c
 
 galaxy.wormhole=§eWormhole
 

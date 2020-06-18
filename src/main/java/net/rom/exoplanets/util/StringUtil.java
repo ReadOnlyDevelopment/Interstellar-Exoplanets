@@ -60,7 +60,7 @@ public class StringUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
- 
+
 		return text.toString();
 	}
 
@@ -95,41 +95,37 @@ public class StringUtil {
 	public static boolean isAltKeyDown() {
 		return Keyboard.isKeyDown(Keyboard.KEY_LMENU) || Keyboard.isKeyDown(Keyboard.KEY_RMENU);
 	}
-	
-	  @SideOnly(Side.CLIENT)
-	  public static void drawSplitString(FontRenderer renderer, String strg, int x, int y, int width,
-	      int color, boolean shadow) {
 
-	    List list = renderer.listFormattedStringToWidth(strg, width);
-	    for (int i = 0; i < list.size(); i++) {
-	      String s1 = (String) list.get(i);
-	      renderer.drawString(s1, x, y + (i * renderer.FONT_HEIGHT), color, shadow);
-	    }
-	  }
+	@SideOnly(Side.CLIENT)
+	public static void drawSplitString(FontRenderer renderer, String strg, int x, int y, int width, int color, boolean shadow) {
 
-	  @SideOnly(Side.CLIENT)
-	  public static void renderScaledAsciiString(FontRenderer font, String text, int x, int y,
-	      int color, boolean shadow, float scale) {
+		List<String> list = renderer.listFormattedStringToWidth(strg, width);
+		for (int i = 0; i < list.size(); i++) {
+			String s1 = (String) list.get(i);
+			renderer.drawString(s1, x, y + (i * renderer.FONT_HEIGHT), color, shadow);
+		}
+	}
 
-	    GlStateManager.pushMatrix();
-	    GlStateManager.scale(scale, scale, scale);
-	    boolean oldUnicode = font.getUnicodeFlag();
-	    font.setUnicodeFlag(false);
+	@SideOnly(Side.CLIENT)
+	public static void renderScaledAsciiString(FontRenderer font, String text, int x, int y, int color, boolean shadow, float scale) {
 
-	    font.drawString(text, x / scale, y / scale, color, shadow);
+		GlStateManager.pushMatrix();
+		GlStateManager.scale(scale, scale, scale);
+		boolean oldUnicode = font.getUnicodeFlag();
+		font.setUnicodeFlag(false);
 
-	    font.setUnicodeFlag(oldUnicode);
-	    GlStateManager.popMatrix();
-	  }
+		font.drawString(text, x / scale, y / scale, color, shadow);
 
-	  @SideOnly(Side.CLIENT)
-	  public static void renderSplitScaledAsciiString(FontRenderer font, String text, int x, int y,
-	      int color, boolean shadow, float scale, int length) {
+		font.setUnicodeFlag(oldUnicode);
+		GlStateManager.popMatrix();
+	}
 
-	    List<String> lines = font.listFormattedStringToWidth(text, (int) (length / scale));
-	    for (int i = 0; i < lines.size(); i++) {
-	      renderScaledAsciiString(font, lines.get(i), x, y + (i * (int) (font.FONT_HEIGHT * scale + 3)),
-	          color, shadow, scale);
-	    }
-	  }
+	@SideOnly(Side.CLIENT)
+	public static void renderSplitScaledAsciiString(FontRenderer font, String text, int x, int y, int color, boolean shadow, float scale, int length) {
+
+		List<String> lines = font.listFormattedStringToWidth(text, (int) (length / scale));
+		for (int i = 0; i < lines.size(); i++) {
+			renderScaledAsciiString(font, lines.get(i), x, y + (i * (int) (font.FONT_HEIGHT * scale + 3)), color, shadow, scale);
+		}
+	}
 }

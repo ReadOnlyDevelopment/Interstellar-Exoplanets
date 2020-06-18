@@ -91,33 +91,33 @@ public class InitPlanets {
 
 	public static void initPlanets() {
 
-		yzcetib = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_b", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 0.5F);
+		yzcetib = builder.buildExoPlanet(IniSystems.yzCeti, "yzcetib", WorldProviderYzCetiB.class, id_yz_b, yzceti_tier, 0.5F);
 		builder.setData(yzcetib, ClassBody.SELENA, yzCetiAu[0], 0.015f, 0.4f, 0, 0L);
 		builder.setNormalOrbit(yzcetib);
 		builder.setExoData(yzcetib, 50.0f, 0.75f, 0.93f);
 		builder.setAtmos(yzcetib, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetib, ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
 
-		yzcetic = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_c", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 0.1F);
+		yzcetic = builder.buildExoPlanet(IniSystems.yzCeti, "yzcetic", WorldProviderYzCetiC.class, id_yz_c, yzceti_tier, 0.1F);
 		builder.setData(yzcetic, ClassBody.SELENA, yzCetiAu[1], 0.010f, 0.5f, 0, 19500L);
 		builder.setNormalOrbit(yzcetic);
 		builder.setExoData(yzcetic, 26.5f, 0.9f, 1.0f);
 		builder.setAtmos(yzcetic, EnumAtmosphericGas.WATER, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetic, ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
 
-		yzcetid = builder.buildExoPlanet(IniSystems.yzCeti, "yz_ceti_d", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 0.9F);
+		yzcetid = builder.buildExoPlanet(IniSystems.yzCeti, "yzcetid", WorldProviderYzCetiD.class, id_yz_d, yzceti_tier, 0.9F);
 		builder.setData(yzcetid, ClassBody.SELENA, yzCetiAu[2], 0.005f, 0.6f, 0, 26500L);
 		builder.setOrbit(yzcetid, 1.0f, 1.0f, 4.3f, 4.3f);
 		builder.setExoData(yzcetid, 5.0f, 1.14f, 1.05f);
 		builder.setAtmos(yzcetid, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
 		
-		trappistc = builder.buildExoPlanet(IniSystems.trappist1, "trappist_c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
+		trappistc = builder.buildExoPlanet(IniSystems.trappist1, "trappist1c", WorldProviderTrappist1C.class, SConfigDimensionID.id_trap_c, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappistc, ClassBody.SELENA, trappistAu[1], 0.005f, 0.6f, 0, 26500L);
 		builder.setExoData(trappistc, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappistc, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
 		
-		trappiste = builder.buildExoPlanet(IniSystems.trappist1, "trappist_e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
+		trappiste = builder.buildExoPlanet(IniSystems.trappist1, "trappist1e", WorldProviderTrappist1E.class, SConfigDimensionID.id_trap_e, SConfigSystems.trap_tier, (float) Math.PI);
 		builder.setData(trappiste, ClassBody.SELENA, trappistAu[3], 0.005f, 0.6f, 0, 26500L);
 		builder.setExoData(trappiste, 8.0f, 1.38f, 1.056f);
 		builder.setAtmos(trappiste, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.OXYGEN);
@@ -128,42 +128,36 @@ public class InitPlanets {
 
 		if (!SConfigSystems.hideUnfinishedSystems) {
 			// Wolf 1061
-			wolf1061b = builder.buildUnreachablePlanet("wolf_1061_b", IniSystems.wolf1061, 2.9495497F);
+			wolf1061b = builder.buildUnreachablePlanet("wolf1061b", IniSystems.wolf1061, 2.9495497F);
 			builder.setData(wolf1061b, ClassBody.SELENA,wolfAu[0],  0.45F, wolfAu[0], 0, 24000L);
 
-			wolf1061c = builder.buildUnreachablePlanet("wolf_1061_c", IniSystems.wolf1061, 1.7264397F);
+			wolf1061c = builder.buildUnreachablePlanet("wolf1061c", IniSystems.wolf1061, 1.7264397F);
 			builder.setData(wolf1061c, ClassBody.SELENA,wolfAu[1],  0.45F, wolfAu[1], 0, 24000L);
 
-			wolf1061d = builder.buildUnreachablePlanet("wolf_1061_d", IniSystems.wolf1061, 7.132725F);
+			wolf1061d = builder.buildUnreachablePlanet("wolf1061d", IniSystems.wolf1061, 7.132725F);
 			builder.setData(wolf1061d, ClassBody.SELENA,wolfAu[2],  0.45F, wolfAu[2], 0, 24000L);
 
 			// Trappist 1
-			trappistb = builder.buildUnreachablePlanet("trappist_b", IniSystems.trappist1, 3.254752F);
+			trappistb = builder.buildUnreachablePlanet("trappist1b", IniSystems.trappist1, 3.254752F);
 			builder.setData(trappistb, ClassBody.SELENA,trappistAu[0],  0.45F, trappistAu[0], 0, 24000L);
-			
-//			trappistc = builder.buildUnreachablePlanet("trappist_c", IniSystems.trappist1, 0.6451158F, trappistAu[1]);
-//			builder.setData(trappistc, ClassBody.SELENA,trappistAu[1],  0.45F, trappistAu[1], 0, 24000L);
-			
-			trappistd = builder.buildUnreachablePlanet("trappist_d", IniSystems.trappist1, 1.932375F);
+
+			trappistd = builder.buildUnreachablePlanet("trappist1d", IniSystems.trappist1, 1.932375F);
 			builder.setData(trappistd, ClassBody.SELENA,trappistAu[2],  0.45F, trappistAu[2], 0, 24000L);
 			
-//			trappiste = builder.buildUnreachablePlanet("trappist_e", IniSystems.trappist1, 4.305977F, trappistAu[3]);
-//			builder.setData(trappiste, ClassBody.SELENA,trappistAu[3],  0.45F, trappistAu[3], 0, 24000L);
-			
-			trappistf = builder.buildUnreachablePlanet("trappist_f", IniSystems.trappist1, 0.6451158F);
+			trappistf = builder.buildUnreachablePlanet("trappist1f", IniSystems.trappist1, 0.6451158F);
 			builder.setData(trappistf, ClassBody.SELENA,trappistAu[4],  0.45F, trappistAu[4], 0, 24000L);
 			
-			trappistg = builder.buildUnreachablePlanet("trappist_g", IniSystems.trappist1, 0.6451158F);
+			trappistg = builder.buildUnreachablePlanet("trappist1g", IniSystems.trappist1, 0.6451158F);
 			builder.setData(trappistg, ClassBody.SELENA,trappistAu[5],  0.45F, trappistAu[5], 0, 24000L);
 			
-			trappisth = builder.buildUnreachablePlanet("trappist_h", IniSystems.trappist1, 0.896365F);
+			trappisth = builder.buildUnreachablePlanet("trappist1h", IniSystems.trappist1, 0.896365F);
 			builder.setData(trappisth, ClassBody.SELENA,trappistAu[6],  0.45F, trappistAu[6], 0, 24000L);
 			
 			//kepler 1649
-			kepler1649b = builder.buildUnreachablePlanet("kepler1649_b", IniSystems.kepler1649, 0.6451158F);
+			kepler1649b = builder.buildUnreachablePlanet("kepler1649b", IniSystems.kepler1649, 0.6451158F);
 			builder.setData(kepler1649b, ClassBody.SELENA, kepler1649Au[0],  0.55F, kepler1649Au[0], 0, 24000L);
 			
-			kepler1649c = builder.buildUnreachablePlanet("kepler1649_c", IniSystems.kepler1649, 1.932375F);
+			kepler1649c = builder.buildUnreachablePlanet("kepler1649c", IniSystems.kepler1649, 1.932375F);
 			builder.setData(kepler1649c, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
 		}
 	}

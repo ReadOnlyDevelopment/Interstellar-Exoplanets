@@ -38,6 +38,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.astronomy.CelestialAssets;
 import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
@@ -84,8 +85,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	
 	@Override
 	public void registerTextureAssets() {
-		String domain = ExoInfo.MODID;
-		Assets.addTexture("GuiDiscordButton", domain, "textures/gui/discord.png");
+		Assets.addTexture("GuiDiscordButton", "textures/gui/discord.png");
 	}
 
     

@@ -43,6 +43,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -110,7 +111,7 @@ public class GuiBeta extends GuiScreen {
 			case 1:
 				try {
 					String discordUrl = "https://discord.gg/fscJ2gG";
-					ReflectionHelper.findField(GuiScreen.class, "clickedLinkURI", "field_175286_t").set(this, new URI(discordUrl));
+					ObfuscationReflectionHelper.findField(GuiScreen.class, "clickedLinkURI").set(this, new URI(discordUrl));
 					mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
 				} catch (IllegalArgumentException | IllegalAccessException | URISyntaxException e) {
 					log.error("Exception when discord link menu button clicked:", e);
