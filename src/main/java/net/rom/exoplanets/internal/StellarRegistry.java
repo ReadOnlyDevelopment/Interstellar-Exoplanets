@@ -94,6 +94,7 @@ import net.rom.exoplanets.internal.inerf.ICustomModel;
 import net.rom.exoplanets.internal.inerf.ITEBlock;
 import net.rom.exoplanets.internal.inerf.item.IColorItem;
 import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
+import net.rom.exoplanets.util.JsonUtil;
 
 public class StellarRegistry {
 	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
@@ -102,11 +103,11 @@ public class StellarRegistry {
 	public final List<Item> items = NonNullList.create();
 
 	public List<Block> getBlocks() {
-		return this.blocks;
+		return blocks;
 	}
 
 	public List<Item> getItems() {
-		return this.items;
+		return items;
 	}
 
 	private final List<IAddRecipe> recipeAdders = NonNullList.create();
@@ -125,6 +126,12 @@ public class StellarRegistry {
 
 	@Nullable
 	private CreativeTabs defaultCreativeTab = null;
+	
+	@Nullable
+	private boolean registerJsonFiles;
+	
+	@Nullable
+	private JsonUtil json = null;
 
 	@Nullable
 	private CreativeTabs creativeTab = null;
@@ -153,6 +160,10 @@ public class StellarRegistry {
 	public void setMod(Object mod) {
 		this.mod = mod;
 	}
+	
+	public void generateJsonFiles(boolean makeJson) {
+		this.registerJsonFiles = makeJson;
+	}
 
 	/**
 	 * Adds a function that will be called when it is time to register objects for a
@@ -173,13 +184,18 @@ public class StellarRegistry {
 		}
 		this.registrationHandlers.put(registryClass, registerFunction);
 	}
+	
+	public <T extends Block> T registerBlock(T block, String key, String path) {
+		return registerBlock(block, key, defaultItemBlock(block), path);
+	}
 
 	/**
 	 * Register a Block. Its name (registry key/name) must be provided. Uses a new
-	 * ItemBlockSL.
+	 * ItemBlock.
 	 */
 	public <T extends Block> T registerBlock(T block, String key) {
 		return registerBlock(block, key, defaultItemBlock(block));
+
 	}
 
 	@Nonnull
@@ -198,6 +214,50 @@ public class StellarRegistry {
 		this.blocks.add(block);
 		block.setUnlocalizedName(this.modId + "." + key);
 
+		if(this.registerJsonFiles) {
+			this.json = new JsonUtil(this.modId, block);
+		}
+		
+		validateRegistryName(key);
+		ResourceLocation name = new ResourceLocation(this.modId, key);
+		safeSetRegistryName(block, name);
+		ForgeRegistries.BLOCKS.register(block);
+
+		safeSetRegistryName(itemBlock, name);
+		ForgeRegistries.ITEMS.register(itemBlock);
+
+		// Register TileEntity
+		if (block instanceof ITEBlock) {
+			Class<? extends TileEntity> clazz = ((ITEBlock) block).getTileEntityClass();
+			registerTileEntity(clazz, key);
+		}
+
+		if (block instanceof IAddRecipe) {
+			this.recipeAdders.add((IAddRecipe) block);
+		}
+
+		if (MCUtil.isClient() && block instanceof IColorBlock) {
+			this.coloredBlocks.add(block);
+		}
+
+		if (this.creativeTab != null) {
+			block.setCreativeTab(this.creativeTab);
+		}
+		
+		return block;
+	}
+	
+	/**
+	 * Register a Block. Its name registry name and ItemBlock must be provided.
+	 */
+	public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock, String path) {
+		this.blocks.add(block);
+		block.setUnlocalizedName(this.modId + "." + key);
+
+		if(this.registerJsonFiles) {
+			this.json = new JsonUtil(this.modId, block, path);
+		}
+		
 		validateRegistryName(key);
 		ResourceLocation name = new ResourceLocation(this.modId, key);
 		safeSetRegistryName(block, name);

@@ -40,11 +40,13 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.rom.exoplanets.Assets;
+import net.rom.exoplanets.astronomy.orbitalplatform.OrbitalPlatform;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 import net.rom.exoplanets.internal.world.star.ExoStar;
@@ -311,6 +313,18 @@ public class AstroBuilder {
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
 		GalaxyRegistry.registerPlanet(unreachable);
+		return unreachable;
+	}
+	
+	public OrbitalPlatform buildOrbitalPlatform() {
+		OrbitalPlatform unreachable = (OrbitalPlatform) new OrbitalPlatform("orbitalplatform").setParentBody(GalacticraftCore.planetOverworld);
+		unreachable.setBodyIcon(Assets.getCelestialTexture("orbitalplatform"));
+		unreachable.setPhaseShift(AstronomicalConstants.TWO_PI_F);
+		unreachable.setRelativeOrbitTime(GalacticraftCore.moonMoon.getRelativeOrbitTime() / 2);
+		unreachable.setRelativeSize(1.0F);
+		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
+		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(8.0F, 8.0F));
+		GalaxyRegistry.registerMoon(unreachable);
 		return unreachable;
 	}
 

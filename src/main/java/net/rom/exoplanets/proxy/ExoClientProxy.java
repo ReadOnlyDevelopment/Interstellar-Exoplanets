@@ -38,14 +38,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.astronomy.CelestialAssets;
 import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
+import net.rom.exoplanets.events.BetaGuiHandler;
 import net.rom.exoplanets.events.ClientHandler;
-import net.rom.exoplanets.events.GuiScreenHandler;
 import net.rom.exoplanets.events.SkyProviders;
-import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
@@ -61,8 +59,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 
 		registerVarients();
 		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
-		ExoFluids.bakeModels();
-		registerEventHandler(new GuiScreenHandler());
+		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
 		registerEventHandler(new BlockHandler());
 		registry.clientPreInit(event);
@@ -86,6 +83,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void registerTextureAssets() {
 		Assets.addTexture("GuiDiscordButton", "textures/gui/discord.png");
+		Assets.addTexture("GuiBetaBackground", "textures/gui/teleport.png");
 	}
 
     

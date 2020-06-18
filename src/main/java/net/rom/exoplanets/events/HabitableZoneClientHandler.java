@@ -59,7 +59,9 @@ public class HabitableZoneClientHandler {
 			}
 			if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
 				this.RingRender(renderEvent, 55F, 100F);
-
+			}
+			if (renderEvent.celestialBody.equals(IniSystems.kepler1649.getMainStar())) {
+				this.RingRender(renderEvent, 55F, 100F);
 			}
 		}
 	}

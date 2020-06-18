@@ -39,6 +39,7 @@ import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.orbitalplatform.OrbitalPlatform;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
@@ -78,6 +79,8 @@ public class InitPlanets {
 	public static float[] kepler1649Au = { 0.4f, 0.7f };
 	public static ExoPlanet kepler1649b;
 	public static ExoPlanet kepler1649c;
+	
+	public static OrbitalPlatform platform;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -159,6 +162,8 @@ public class InitPlanets {
 			
 			kepler1649c = builder.buildUnreachablePlanet("kepler1649c", IniSystems.kepler1649, 1.932375F);
 			builder.setData(kepler1649c, ClassBody.SELENA, kepler1649Au[1],  0.55F, kepler1649Au[1], 0, 24000L);
+			
+			platform = builder.buildOrbitalPlatform();
 		}
 	}
 

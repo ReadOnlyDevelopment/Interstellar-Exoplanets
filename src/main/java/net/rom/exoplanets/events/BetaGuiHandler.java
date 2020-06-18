@@ -37,7 +37,7 @@ import net.rom.exoplanets.client.screen.GuiBeta;
 import net.rom.exoplanets.conf.SConfigCore;;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
-public class GuiScreenHandler {
+public class BetaGuiHandler {
 
 	@SubscribeEvent
 	public static void onGuiOpen(GuiOpenEvent event) {

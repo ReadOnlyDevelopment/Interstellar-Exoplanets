@@ -35,7 +35,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
-import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.internal.world.chunk.ExoChunkProviderMultiSpace;
 import net.rom.exoplanets.internal.world.gen.MapGenBaseMeta;
 import net.rom.exoplanets.internal.world.gen.MapGenExoCave;

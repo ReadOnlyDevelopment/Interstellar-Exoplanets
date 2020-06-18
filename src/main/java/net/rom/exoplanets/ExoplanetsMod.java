@@ -54,7 +54,6 @@ import net.rom.exoplanets.command.CommandData;
 import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.events.GuiHandlerExo;
 import net.rom.exoplanets.events.HabitableZoneClientHandler;
-import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.IniSystems;
 import net.rom.exoplanets.init.InitPlanets;
@@ -111,7 +110,7 @@ public class ExoplanetsMod implements IMod {
         GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
         
         // FLUIDS , NEED TO REDO THIS
-        ExoFluids.init();
+        //ExoFluids.init();
         
         // PLANETS
         ExoplanetBiomes.init();

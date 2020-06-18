@@ -34,9 +34,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.internal.enums.EnumStarColor;
-import net.rom.exoplanets.util.Textures;
 
 public class SkyProviderB extends SkyProviderBase {
 	
@@ -55,7 +54,7 @@ public class SkyProviderB extends SkyProviderBase {
 		GL11.glRotatef(this.getCelestialAngle(daylength / 2), 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiC);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Assets.getCelestialTexture("yzcetic"));
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
 		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
@@ -72,7 +71,7 @@ public class SkyProviderB extends SkyProviderBase {
 		GL11.glRotatef(this.getCelestialAngle(daylength), 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-180.0F, 1.0F, 1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.cetiD);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Assets.getCelestialTexture("yzcetid"));
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
 		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
@@ -101,7 +100,7 @@ public class SkyProviderB extends SkyProviderBase {
 
 	@Override
 	protected ResourceLocation sunImage() {
-		 return SConfigCore.enableRealism ? Textures.redDwarfReal : Textures.redDwarf;
+		 return Assets.getCelestialTexture("yzcetistar");
 	}
 
 	@Override

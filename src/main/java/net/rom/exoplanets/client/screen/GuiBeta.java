@@ -42,11 +42,10 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.client.screen.button.GuiDiscordButton;
 import net.rom.exoplanets.util.RGB;
@@ -54,9 +53,8 @@ import net.rom.exoplanets.util.RGB;
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {
 
-	private static final Logger log = LogManager.getLogger();
-	private static final ResourceLocation[] background = new ResourceLocation[] { new ResourceLocation(ExoInfo.MODID, "textures/gui/teleport.png") };
-	private final GuiMainMenu guiMainMenu;
+	private static final Logger				log			= LogManager.getLogger();
+	private final GuiMainMenu				guiMainMenu;
 
 	public GuiBeta(GuiMainMenu guiMainMenu) {
 		this.guiMainMenu = guiMainMenu;
@@ -67,7 +65,7 @@ public class GuiBeta extends GuiScreen {
 		super.initGui();
 		this.buttonList.clear();
 		GuiButton toMenu = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n.format("gui.done"));
-		GuiDiscordButton discord = new GuiDiscordButton(1, this.width / 2 - 200, this.height / 4 + 160, 150, 35, 268, 55 , "");
+		GuiDiscordButton discord = new GuiDiscordButton(1, this.width / 2 - 200, this.height / 4 + 160, 150, 35, 268, 55, "");
 		toMenu.setWidth(50);
 
 		this.buttonList.addAll(Arrays.asList(toMenu, discord));
@@ -76,7 +74,7 @@ public class GuiBeta extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
-		mc.renderEngine.bindTexture(background[0]);
+		mc.renderEngine.bindTexture(Assets.getTexture("GuiBetaBackground"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder vertexbuffer = tessellator.getBuffer();

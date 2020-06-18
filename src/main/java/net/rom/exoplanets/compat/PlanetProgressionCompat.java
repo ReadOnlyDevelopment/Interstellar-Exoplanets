@@ -32,7 +32,9 @@ import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class PlanetProgressionCompat {
+	
 	@SideOnly(Side.CLIENT)
 	@Optional.Method(modid = "planetprogression")
 	public static boolean isReasearched(EntityPlayerSP player, CelestialBody body) {

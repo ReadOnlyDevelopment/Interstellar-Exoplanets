@@ -29,7 +29,7 @@ import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoEntities {
 	public static void registerAll(StellarRegistry registry) {
-		registry.registerEntity(EntityTwoPlayerRocket.class, "twopersonrocket", 150, 1, false);		
+		//registry.registerEntity(EntityTwoPlayerRocket.class, "twopersonrocket", 150, 1, false);		
 
 	}
 }

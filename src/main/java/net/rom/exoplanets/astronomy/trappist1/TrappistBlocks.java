@@ -35,31 +35,20 @@ public class TrappistBlocks {
 	
 	public static void registerAll(StellarRegistry registry) {
 		
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "dark_hot");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "solid_hot");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "bright_solid_hot");
+		registry.generateJsonFiles(false);
 		
-		ExoBlocks.register(TrappistC.T1C_TOP, "t1c_top");
-		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trappist_1_c_dirt");
-		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trappist_1_c_dirt_1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "dark_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "solid_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "bright_solid_hot", "trappist1");
 		
-		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass");
-		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
-		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
-		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
+		ExoBlocks.register(TrappistC.T1C_TOP, "t1c_top", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trappist_1_c_dirt", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trappist_1_c_dirt_1", "trappist1");
 		
-//		registry.registerBlock(SharedTerrain.HOT_GROUND_1, "dark_hot", new ItemBlock(SharedTerrain.HOT_GROUND_1));
-//		registry.registerBlock(SharedTerrain.HOT_GROUND_2, "solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_2));
-//		registry.registerBlock(SharedTerrain.HOT_GROUND_3, "bright_solid_hot", new ItemBlock(SharedTerrain.HOT_GROUND_3));
-//		
-//		registry.registerBlock(TrappistC.T1C_TOP, "t1c_top", new ItemBlock(TrappistC.T1C_TOP));
-//		registry.registerBlock(TrappistC.T1C_Dirt_1, "trappist_1_c_dirt", new ItemBlock(TrappistC.T1C_Dirt_1));
-//		registry.registerBlock(TrappistC.T1C_Dirt_2, "trappist_1_c_dirt_1", new ItemBlock(TrappistC.T1C_Dirt_2));
-//		
-//		registry.registerBlock(TrappistE.trap1e_grass, "trap1e_grass", new ItemBlock(TrappistE.trap1e_grass));
-//		registry.registerBlock(TrappistE.trap1e_dirt, "trap1e_dirt", new ItemBlock(TrappistE.trap1e_dirt));
-//		registry.registerBlock(TrappistE.trap1e_cobblestone, "trap1e_cobblestone", new ItemBlock(TrappistE.trap1e_cobblestone));
-//		registry.registerBlock(TrappistE.trap1e_stone, "trap1e_stone", new ItemBlock(TrappistE.trap1e_stone));
+		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass", "trappist1");
+		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt", "trappist1");
+		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone", "trappist1");
+		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone", "trappist1");
 		
 	}
 	

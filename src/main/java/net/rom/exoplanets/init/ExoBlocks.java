@@ -31,7 +31,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
-import net.rom.exoplanets.content.block.BlockExoOre;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
 import net.rom.exoplanets.content.block.decoration.BlockCellarLamp;
 import net.rom.exoplanets.content.block.decoration.BlockCustomHydraulic;
@@ -54,7 +53,6 @@ import net.rom.exoplanets.content.block.stairs.BlockConcreteStairs;
 import net.rom.exoplanets.content.block.stairs.BlockRoofStairs;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzMetalFrame;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzStair;
-import net.rom.exoplanets.content.item.ItemBlockOre;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoBlocks {
@@ -113,6 +111,7 @@ public class ExoBlocks {
 
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
+		
 		YzCetiBlocks.registerAll(reg);
 		TrappistBlocks.registerAll(reg);
 
@@ -167,6 +166,11 @@ public class ExoBlocks {
 	public static void register(Block block, String blockName) {
 		blocksList.add(block);
 		reg.registerBlock(block, blockName);
+	}
+	
+	public static void register(Block block, String blockName, String path) {
+		blocksList.add(block);
+		reg.registerBlock(block, blockName, path);
 	}
 	
 	public static void register(Block block, String blockName, ItemBlock itemBlock) {

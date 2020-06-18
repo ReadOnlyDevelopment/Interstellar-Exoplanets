@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.mjr.planetprogression.client.handlers.capabilities.CapabilityStatsClientHandler;
-import com.mjr.planetprogression.client.handlers.capabilities.IStatsClientCapability;
 
 import asmodeuscore.core.astronomy.SpaceData;
 import asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection;
@@ -17,15 +15,16 @@ import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
-import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.rom.exoplanets.compat.PlanetProgressionCompat;
 
 public class GuiFixedCelestialScreen extends NewGuiCelestialSelection {
 
-	private String galaxy = GalacticraftCore.planetOverworld.getParentSolarSystem().getUnlocalizedParentGalaxyName();
-	private boolean small_mode = Minecraft.getMinecraft().gameSettings.guiScale == 0;
+	private String	galaxy		= GalacticraftCore.planetOverworld.getParentSolarSystem().getUnlocalizedParentGalaxyName();
+	private boolean	small_mode	= Minecraft.getMinecraft().gameSettings.guiScale == 0;
 
 	public GuiFixedCelestialScreen(boolean mapMode, List<CelestialBody> possibleBodies, boolean canCreateStations, SpaceData data) {
 		super(mapMode, possibleBodies, canCreateStations, data);
@@ -44,12 +43,6 @@ public class GuiFixedCelestialScreen extends NewGuiCelestialSelection {
 
 		final Minecraft minecraft = FMLClientHandler.instance().getClient();
 		final EntityPlayerSP player = minecraft.player;
-		final EntityPlayerSP playerBaseClient = PlayerUtil.getPlayerBaseClientFromPlayer(player, false);
-		IStatsClientCapability stats = null;
-
-		if (player != null) {
-			stats = playerBaseClient.getCapability(CapabilityStatsClientHandler.PP_STATS_CLIENT_CAPABILITY, null);
-		}
 
 		bodiesToRender.clear();
 
@@ -61,8 +54,12 @@ public class GuiFixedCelestialScreen extends NewGuiCelestialSelection {
 
 		for (Planet planet : GalaxyRegistry.getRegisteredPlanets().values()) {
 			if (planet.getParentSolarSystem().getUnlocalizedParentGalaxyName().equals(this.galaxy)) {
-				if (stats.getUnlockedPlanets().contains(planet)) {
-					bodiesToRender.add(planet);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (PlanetProgressionCompat.isReasearched(player, planet)) {
+						this.bodiesToRender.add(planet);
+					}
+				} else {
+					this.bodiesToRender.add(planet);
 				}
 			}
 
@@ -70,16 +67,24 @@ public class GuiFixedCelestialScreen extends NewGuiCelestialSelection {
 
 		for (Moon moon : GalaxyRegistry.getRegisteredMoons().values()) {
 			if (moon.getParentPlanet().getParentSolarSystem().getUnlocalizedParentGalaxyName().equals(this.galaxy)) {
-				if (stats.getUnlockedPlanets().contains(moon.getParentPlanet()) && stats.getUnlockedPlanets().contains(moon)) {
-					bodiesToRender.add(moon);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (PlanetProgressionCompat.isReasearched(player, moon.getParentPlanet()) && PlanetProgressionCompat.isReasearched(player, moon)) {
+						this.bodiesToRender.add(moon);
+					}
+				} else {
+					this.bodiesToRender.add(moon);
 				}
 			}
 		}
 
 		for (Satellite satellite : GalaxyRegistry.getRegisteredSatellites().values()) {
 			if (satellite.getParentPlanet().getParentSolarSystem().getUnlocalizedParentGalaxyName().equals(this.galaxy)) {
-				if (stats.getUnlockedPlanets().contains(satellite.getParentPlanet())) {
-					bodiesToRender.add(satellite);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (PlanetProgressionCompat.isReasearched(player, satellite.getParentPlanet())) {
+						this.bodiesToRender.add(satellite);
+					}
+				} else {
+					this.bodiesToRender.add(satellite);
 				}
 			}
 		}
@@ -90,24 +95,28 @@ public class GuiFixedCelestialScreen extends NewGuiCelestialSelection {
 		List<CelestialBody> bodyList = Lists.newArrayList();
 		final Minecraft minecraft = FMLClientHandler.instance().getClient();
 		final EntityPlayerSP player = minecraft.player;
-		final EntityPlayerSP playerBaseClient = PlayerUtil.getPlayerBaseClientFromPlayer(player, false);
-
-		IStatsClientCapability stats = null;
-
-		if (player != null) {
-			stats = playerBaseClient.getCapability(CapabilityStatsClientHandler.PP_STATS_CLIENT_CAPABILITY, null);
-		}
 
 		if (object instanceof Planet) {
 			List<Moon> moons = GalaxyRegistry.getMoonsForPlanet((Planet) object);
-			for (Moon moon : moons)
-				if (stats.getUnlockedPlanets().contains(moon))
-					bodyList.add(moon);
+			if (Loader.isModLoaded("planetprogression")) {
+				for (Moon moon : moons)
+					if (PlanetProgressionCompat.isReasearched(player, moon)) {
+						bodyList.add(moon);
+					}
+			} else {
+				bodyList.addAll(moons);
+			}
 		} else if (object instanceof SolarSystem) {
 			List<Planet> planets = GalaxyRegistry.getPlanetsForSolarSystem((SolarSystem) object);
-			for (Planet planet : planets)
-				if (stats.getUnlockedPlanets().contains(planet))
-					bodyList.add(planet);
+			if (Loader.isModLoaded("planetprogression")) {
+				for (Planet planet : planets) {
+					if (PlanetProgressionCompat.isReasearched(player, planet)) {
+						bodyList.add(planet);
+					}
+				}
+			} else {
+				bodyList.addAll(planets);
+			}
 		}
 
 		Collections.sort(bodyList);
