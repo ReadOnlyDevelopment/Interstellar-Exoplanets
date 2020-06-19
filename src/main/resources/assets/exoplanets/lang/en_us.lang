@@ -68,6 +68,7 @@ tile.exoplanets.deco0.name=Grating
 tile.exoplanets.deco1.name=Stipe Brating
 tile.exoplanets.satellite_antenna.name=Satellite Antenna
 tile.exoplanets.stand_console.name=Console Stand
+tile.exoplanets.metaldecoration.name=Floor Grating
 
 tile.exoplanets.yzb_loose_sediment.name=(§eYz Ceti B§r) Loose Sediment
 tile.exoplanets.yzb_dark_loose_sediment.name=(§eYz Ceti B§r) Loose Sediment 2
@@ -90,17 +91,17 @@ tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Igneous Rock
 tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Metamorphic Rock
 tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Sedimentary Rock
 
-tile.exoplanets.t1c_top.name=(§9Trappist1 1c§r) Surface Rock
+tile.exoplanets.trap1c_top.name=(§9Trappist1 1c§r) Surface Rock
 tile.exoplanets.trap1e_cobblestone.name=(§aTrappist1 1e§r)
 tile.exoplanets.trap1e_dirt.name=(§aTrappist1 1e§r) Dirt
 tile.exoplanets.trap1e_grass.name=(§aTrappist1 1e§r) Strange Grass
 tile.exoplanets.trap1e_stone.name=(§aTrappist1 1e§r) Planetary Stone
-tile.exoplanets.trappist_1_c_dirt.name=(§9Trappist1 1c§r) Dirt
-tile.exoplanets.trappist_1_c_dirt_1.name=(§9Trappist1 1c§r) Dirt
+tile.exoplanets.trap1c_dirt.name=(§9Trappist1 1c§r) Dirt
+tile.exoplanets.trap1c_dirt_1.name=(§9Trappist1 1c§r) Dirt
 
-tile.exoplanets.dark_hot.name=§cVolcanic Cooled Chunk
-tile.exoplanets.bright_solid_hot.name=§cVolcanic Molten Chunk
-tile.exoplanets.solid_hot.name=§cVolcanic Ash Surface
+tile.exoplanets.trap1_dark_hot.name=§cVolcanic Cooled Chunk
+tile.exoplanets.trap1_bright_solid_hot.name=§cVolcanic Molten Chunk
+tile.exoplanets.trap1_solid_hot.name=§cVolcanic Ash Surface
 
 tile.exoplanets.hydraulic_bottom.name=Hydralic Bottom Support
 tile.exoplanets.hydraulic_middle.name=Hydralic Middle Beam
@@ -122,7 +123,7 @@ tile.exoplanets.alarm_light_lit.name=Alarm Lamp
 tile.exoplanets.wall_lamp.name=Wall Light
 tile.exoplanets.wall_lamp_lit.name=Wall Light
 tile.exoplanets.metal_lamp.name=MetalBlock Lamp
-tile.exoplanets.metal_lamp_lit.name=MetalBlock Lamp
+tile.exoplanets.metal_lamp_lit.name=Meta Lamp Block
 tile.exoplanets.cellar_lamp.name=Cellar Lamp
 tile.exoplanets.cellar_lamp_lit.name=Cellar Lamp
 tile.exoplanets.inset_lamp.name=Inset Lamp
@@ -213,7 +214,7 @@ item.exoplanets.gearnickel.name=Nickel Gear
 item.exoplanets.gearplatinum.name=Platinum Gear
 item.exoplanets.gearaluminium.name=Aluminium Gear
 item.exoplanets.geartitanium.name=Titanium Gear
-item.exoplanets.gearTungsten.name=Tungsten Gear
+item.exoplanets.geartungsten.name=Tungsten Gear
 
 item.exoplanets.platebronze.name=Bronze Alloy Plate
 item.exoplanets.platebrass.name=Brass Alloy Plate

@@ -1,10 +1,10 @@
 {
     "variants": {
         "normal": [ 
-		{ "model": "exoplanets:yzb_metamorphic", "weight": 25 },
-		{ "model": "exoplanets:yzb_metamorphic_90", "weight": 25 },
-		{ "model": "exoplanets:yzb_metamorphic_180", "weight": 25 },
-		{ "model": "exoplanets:yzb_metamorphic_270", "weight": 25 }
+		{ "model": "exoplanets:yzceti/yzb_metamorphic", "weight": 25 },
+		{ "model": "exoplanets:yzceti/yzb_metamorphic_90", "weight": 25 },
+		{ "model": "exoplanets:yzceti/yzb_metamorphic_180", "weight": 25 },
+		{ "model": "exoplanets:yzceti/yzb_metamorphic_270", "weight": 25 }
 		]
     }
 }

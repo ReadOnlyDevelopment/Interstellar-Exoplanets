@@ -37,13 +37,13 @@ public class TrappistBlocks {
 		
 		registry.generateJsonFiles(false);
 		
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "dark_hot", "trappist1");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "solid_hot", "trappist1");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "bright_solid_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "trap1_dark_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "trap1_solid_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "trap1_bright_solid_hot", "trappist1");
 		
-		ExoBlocks.register(TrappistC.T1C_TOP, "t1c_top", "trappist1");
-		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trappist_1_c_dirt", "trappist1");
-		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trappist_1_c_dirt_1", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_TOP, "trap1c_top", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trap1c_dirt", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trap1c_dirt_1", "trappist1");
 		
 		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass", "trappist1");
 		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt", "trappist1");

@@ -1,6 +1,6 @@
 {
-  "parent": "exoplanets:block/yzb_gravel",
+  "parent": "exoplanets:block/yzceti/yzb_gravel",
   "textures": {
-    "layer0": "exoplanets:blocks/terrain/yzb_gravel"
+    "layer0": "exoplanets:blocks/terrain/yzceti/yzb_gravel"
   }
 }

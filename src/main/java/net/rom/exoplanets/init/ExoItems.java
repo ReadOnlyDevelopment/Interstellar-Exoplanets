@@ -60,7 +60,7 @@ public class ExoItems {
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
 		
-		register(passengerRocket, "twopersonrocket");
+		//register(passengerRocket, "twopersonrocket");
 
 		register(metalIngot, "metalingot");
 		register(metalNugget, "metalnugget");

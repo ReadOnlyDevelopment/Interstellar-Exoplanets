@@ -1,6 +1,6 @@
 {
-  "parent": "exoplanets:block/yzd_metamorphic",
+  "parent": "exoplanets:block/yzceti/yzd_metamorphic",
   "textures": {
-    "layer0": "exoplanets:blocks/terrain/yzd_metamorphic_270"
+    "layer0": "exoplanets:blocks/terrain/yzceti/yzd_metamorphic_270"
   }
 }

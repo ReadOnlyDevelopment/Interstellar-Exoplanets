@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "exoplanets:yzb_loose_sediment" }
+    "normal": { "model": "exoplanets:yzceti/yzb_loose_sediment" }
   }
 }

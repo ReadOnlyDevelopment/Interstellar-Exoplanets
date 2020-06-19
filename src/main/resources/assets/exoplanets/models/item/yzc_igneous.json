@@ -1,6 +1,6 @@
 {
-  "parent": "exoplanets:block/yzc_igneous",
+  "parent": "exoplanets:block/yzceti/yzc_igneous",
   "textures": {
-    "layer0": "exoplanets:blocks/terrain/yzc_igneous"
+    "layer0": "exoplanets:blocks/terrain/yzceti/yzc_igneous"
   }
 }

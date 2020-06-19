@@ -1,5 +1,5 @@
 {
    "variants": {
-      "normal": {"model":"exoplanets:trap1e_cobblestone"}
+      "normal": {"model":"exoplanets:trappist1/trap1e_cobblestone"}
    }
 }

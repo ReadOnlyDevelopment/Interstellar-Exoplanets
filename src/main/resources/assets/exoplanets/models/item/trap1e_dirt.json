@@ -1,5 +1,5 @@
 {
-   "parent": "exoplanets:block/trap1e_dirt",
+   "parent": "exoplanets:block/trappist1/trap1e_dirt",
    "display": {
       "thirdperson": {
          "rotation": [10,-45,170],

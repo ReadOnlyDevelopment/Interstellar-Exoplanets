@@ -1,5 +1,5 @@
 {
-   "parent": "exoplanets:block/trap1e_stone",
+   "parent": "exoplanets:block/trappist1/trap1e_stone",
    "display": {
       "thirdperson": {
          "rotation": [10,-45,170],

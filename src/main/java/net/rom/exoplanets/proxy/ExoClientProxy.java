@@ -57,7 +57,7 @@ public class ExoClientProxy extends ExoCommonProxy {
         ExoModelLoader.instance.addDomain(ExoInfo.MODID);
 		registerEventHandler(this);
 
-		registerVarients();
+		//registerVarients();
 		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
@@ -100,11 +100,11 @@ public class ExoClientProxy extends ExoCommonProxy {
         MinecraftForge.EVENT_BUS.register(handler);
     }
     
-    public void registerVarients() {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
-        for (int i = 0; i < 5; ++i)
-        {
-            ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
-        }
-    }
+//    public void registerVarients() {
+//        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
+//        for (int i = 0; i < 5; ++i)
+//        {
+//            ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
+//        }
+//    }
 }

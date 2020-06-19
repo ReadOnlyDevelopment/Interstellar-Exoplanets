@@ -1,6 +1,6 @@
 {
-  "parent": "exoplanets:block/yzd_sedimentary_rock",
+  "parent": "exoplanets:block/yzceti/yzd_sedimentary_rock",
   "textures": {
-    "layer0": "exoplanets:blocks/terrain/yzd_sedimentary_rock"
+    "layer0": "exoplanets:blocks/terrain/yzceti/yzd_sedimentary_rock"
   }
 }
