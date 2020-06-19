@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "exoplanets:blocks/terrain/yzb_sedimentary_rock"
-  }
-}

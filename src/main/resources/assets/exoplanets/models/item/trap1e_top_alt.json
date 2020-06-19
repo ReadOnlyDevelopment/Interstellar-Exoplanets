@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/trappist1/trap1e_top_alt",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/trappist1/trap1e_top_alt"
+  }
+}

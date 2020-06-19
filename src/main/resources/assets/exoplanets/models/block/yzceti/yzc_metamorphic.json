@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "exoplanets:blocks/terrain/yzceti/yzc_metamorphic"
+  }
+}

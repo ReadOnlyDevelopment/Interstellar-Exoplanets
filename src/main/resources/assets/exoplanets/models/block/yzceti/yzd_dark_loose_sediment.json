@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "exoplanets:blocks/terrain/yzceti/yzd_dark_loose_sediment"
+  }
+}

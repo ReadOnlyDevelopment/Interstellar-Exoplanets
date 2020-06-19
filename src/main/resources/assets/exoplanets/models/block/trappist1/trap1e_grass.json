@@ -1,0 +1,10 @@
+{ 
+	"parent": "block/grass",
+    "textures": {
+		"particle": "exoplanets:blocks/terrain/trappist1/trap1e_dirt",
+        "bottom": "exoplanets:blocks/terrain/trappist1/trap1e_dirt",
+        "top": "exoplanets:blocks/terrain/trappist1/trap1e_grass_top",
+        "side": "exoplanets:blocks/terrain/trappist1/trap1e_grass_side",
+        "overlay": "exoplanets:blocks/terrain/trappist1/trap1e_grass_side_overlay"
+    }
+}
