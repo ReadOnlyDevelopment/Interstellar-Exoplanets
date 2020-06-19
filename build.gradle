@@ -122,10 +122,11 @@ boolean getBooleanProperty(final String property) {
 
 def getModVersion() {
     try {
-        return getGitVersion()
+		return getVersion()
+        //return getGitVersion()
     } catch (Exception ex) {
         System.out.println("Git version failed, falling back to old method")
-        return getVersion('VERSION', getModFile())
+//        return getVersion('VERSION', getModFile())
     }
 }
 
@@ -162,27 +163,11 @@ static def makeVersionMap(maj, min, rev, bn, githash) {
 }
 
 // Modified old version getter
-def getVersion(String type, String mod_file) {
-    String maj = '0'
-    String min = '0'
-    String rev = '0'
+def getVersion() {
+    String maj = project.maj.toString()
+    String min = project.min.toString()
+    String rev = project.rev.toString()
     String bn = getBuildNumber()
-
-    File file = file(mod_file)
-    def prefix = ~/^(?:public|protected|private) static final String $type = ".*$/
-    file.eachLine { String s ->
-        s = s.trim()
-        if (s ==~ prefix || prefix.matcher(s).matches()) {
-            String[] bits = s.split("=")
-            String interesting = bits[1].trim()
-            interesting = interesting.substring(1, interesting.length() - 2)
-            String[] pts = interesting.trim().split("\\.")
-
-            maj = pts[0] ?: '0'
-            min = pts[1] ?: '0'
-            rev = pts[2] ?: '0'
-        }
-    }
 
     return makeVersionMap(maj, min, rev, bn, 'unknown')
 }
