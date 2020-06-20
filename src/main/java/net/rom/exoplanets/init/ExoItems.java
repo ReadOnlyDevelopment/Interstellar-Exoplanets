@@ -39,7 +39,7 @@ import net.rom.exoplanets.content.item.ItemTwoPlayerRocket;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoItems {
-	
+
 	public static final Item passengerRocket = new ItemTwoPlayerRocket();
     public static final Item metalIngot = new ItemIngotMetal();
     public static final Item metalNugget = new ItemNuggetMetal();
@@ -52,15 +52,15 @@ public class ExoItems {
     public static final Item plateAlloy = new ItemCraftingItem("plate", true);
     public static final Item gearBasic = new ItemCraftingItem("gear", false);
     public static final Item gearAlloy = new ItemCraftingItem("gear", true);
-    
+
     public static LinkedList<Item> itemList = new LinkedList<>();
 	private static StellarRegistry reg;
 
 
 	public static void registerAll(StellarRegistry reg) {
 		setReg(reg);
-		
-		//register(passengerRocket, "twopersonrocket");
+
+		register(passengerRocket, "twopersonrocket");
 
 		register(metalIngot, "metalingot");
 		register(metalNugget, "metalnugget");
@@ -75,12 +75,12 @@ public class ExoItems {
 		register(gearAlloy, "alloygear");
 
 	}
-	
+
 	public static void register(Item item, String itemName) {
 		itemList.add(item);
 		reg.registerItem(item, itemName);
 	}
-    
+
 	public static void setReg(StellarRegistry reg) {
 		ExoItems.reg = reg;
 	}

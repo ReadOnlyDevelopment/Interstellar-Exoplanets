@@ -57,7 +57,7 @@ public class ExoClientProxy extends ExoCommonProxy {
         ExoModelLoader.instance.addDomain(ExoInfo.MODID);
 		registerEventHandler(this);
 
-		//registerVarients();
+		registerVarients();
 		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
@@ -79,14 +79,14 @@ public class ExoClientProxy extends ExoCommonProxy {
 		registerTextureAssets();
 		registry.clientPostInit(event);
 	}
-	
+
 	@Override
 	public void registerTextureAssets() {
 		Assets.addTexture("GuiDiscordButton", "textures/gui/discord.png");
 		Assets.addTexture("GuiBetaBackground", "textures/gui/teleport.png");
 	}
 
-    
+
 	public World getWorld() {
 		return Minecraft.getMinecraft().world;
 	}
@@ -99,12 +99,12 @@ public class ExoClientProxy extends ExoCommonProxy {
     public static void registerEventHandler(Object handler) {
         MinecraftForge.EVENT_BUS.register(handler);
     }
-    
-//    public void registerVarients() {
-//        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
-//        for (int i = 0; i < 5; ++i)
-//        {
-//            ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
-//        }
-//    }
+
+    public void registerVarients() {
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
+        for (int i = 0; i < 5; ++i)
+        {
+            ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
+        }
+    }
 }
