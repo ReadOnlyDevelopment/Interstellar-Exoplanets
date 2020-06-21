@@ -33,19 +33,19 @@ public class ClientHandler {
 
 	public Minecraft mc = FMLClientHandler.instance().getClient();
 
-//	@SubscribeEvent
-//	@SideOnly(Side.CLIENT)
-//	public void onModelBakeEvent(ModelBakeEvent event) {
-//		replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
-//	}
-//
-//	@SubscribeEvent
-//	@SideOnly(Side.CLIENT)
-//	public void loadTextures(TextureStitchEvent.Pre event) {
-//
-//		registerTexture(event, "rocket");
-//
-//	}
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onModelBakeEvent(ModelBakeEvent event) {
+		replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void loadTextures(TextureStitchEvent.Pre event) {
+
+		registerTexture(event, "rocket");
+
+	}
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	@SideOnly(Side.CLIENT)
@@ -71,12 +71,12 @@ public class ClientHandler {
 		}
 	}
 
-//	public void registerTexture(TextureStitchEvent.Pre event, String texture) {
-//		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
-//	}
-//
-//	private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants) {
-//		MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
-//	}
+	public void registerTexture(TextureStitchEvent.Pre event, String texture) {
+		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
+	}
+
+	private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants) {
+		MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
+	}
 
 }

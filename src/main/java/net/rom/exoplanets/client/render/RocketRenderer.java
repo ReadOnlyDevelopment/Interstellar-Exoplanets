@@ -58,7 +58,7 @@ import net.rom.exoplanets.internal.client.ExoModelLoader;
 public class RocketRenderer extends Render<EntityTwoPlayerRocket> {
 
     private OBJModel.OBJBakedModel rocketModel;
-	
+
 	public RocketRenderer(RenderManager manager) {
 		super(manager);
 		this.shadowSize = 1F;
@@ -85,14 +85,14 @@ public class RocketRenderer extends Render<EntityTwoPlayerRocket> {
 	protected ResourceLocation getEntityTexture(EntityTwoPlayerRocket entity) {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
 	}
-	
+
     @Override
     public void doRender(EntityTwoPlayerRocket entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks + 180;
         GlStateManager.disableRescaleNormal();
         GlStateManager.pushMatrix();
-        
+
         GlStateManager.translate((float) x, (float) y, (float) z);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
@@ -108,8 +108,8 @@ public class RocketRenderer extends Render<EntityTwoPlayerRocket> {
         }
 
         this.updateModel();
-        this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);       
-        
+        this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+
         if (Minecraft.isAmbientOcclusionEnabled())
         {
             GlStateManager.shadeModel(GL11.GL_SMOOTH);
@@ -124,7 +124,7 @@ public class RocketRenderer extends Render<EntityTwoPlayerRocket> {
 
         GlStateManager.enableTexture2D();
         GlStateManager.enableLighting();
-        
+
         GlStateManager.color(1F, 1F, 1F);
         GlStateManager.popMatrix();
     }
