@@ -43,7 +43,7 @@ public class ClientHandler {
 	@SideOnly(Side.CLIENT)
 	public void loadTextures(TextureStitchEvent.Pre event) {
 
-		registerTexture(event, "rocket");
+		registerTexture(event, "twopersonrocket");
 
 	}
 
