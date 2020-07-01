@@ -17,10 +17,10 @@ public class GuiCelestial {
 	public void onGuiOpenEvent(GuiOpenEvent event) {
 		if (((event.getGui() instanceof NewGuiCelestialSelection))) {
 			if (GameSettings.isKeyDown(KeyHandlerClient.galaxyMap)) {
-				event.setGui(new GuiFixedCelestialScreen(true, null, false, null));
+				event.setGui(new GuiFixedCelestialScreen(true, null, false));
 				ExoplanetsMod.logger.formatted_Info("Registered Fixed Celestial Selection Screen");
 			} else {
-				event.setGui(new GuiFixedCelestialScreen(false, null, false, null));
+				event.setGui(new GuiFixedCelestialScreen(false, null, false));
 				ExoplanetsMod.logger.formatted_Info("Registered Fixed Celestial Selection Screen");
 			}
 		}

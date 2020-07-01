@@ -26,7 +26,7 @@ package net.rom.exoplanets.capability;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.rom.exoplanets.api.research.ResearchStack;
+import net.rom.api.research.ResearchStack;
 
 public interface IResearchCapability {
 	void saveNBTData(NBTTagCompound nbt);

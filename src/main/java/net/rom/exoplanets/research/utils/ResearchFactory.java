@@ -32,8 +32,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.exoplanets.api.research.IResearch;
-import net.rom.exoplanets.api.research.ResearchStack;
+import net.rom.api.research.IResearch;
+import net.rom.api.research.ResearchStack;
 
 public class ResearchFactory {
 	

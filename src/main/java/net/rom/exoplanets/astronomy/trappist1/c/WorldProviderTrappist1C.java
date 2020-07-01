@@ -28,7 +28,6 @@ import java.util.List;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
@@ -54,8 +53,9 @@ import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_River;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
+import net.rom.exoplanets.internal.world.planet.WorldEngineProvider;
 
-public class WorldProviderTrappist1C extends WE_WorldProvider {
+public class WorldProviderTrappist1C extends WorldEngineProvider {
 	
 	public static WE_ChunkProvider chunk;
 

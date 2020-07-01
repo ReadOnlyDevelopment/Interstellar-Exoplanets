@@ -27,7 +27,7 @@ package net.rom.exoplanets.capability;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import net.rom.exoplanets.api.research.ResearchStack;
+import net.rom.api.research.ResearchStack;
 import net.rom.exoplanets.research.PlayerResearchData;
 
 public class ResearchCapability implements IResearchCapability {

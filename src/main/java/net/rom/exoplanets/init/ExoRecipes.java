@@ -26,7 +26,7 @@ package net.rom.exoplanets.init;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
 import net.rom.exoplanets.content.EnumAlloy;
 import net.rom.exoplanets.content.EnumByproduct;
 

@@ -31,14 +31,14 @@ import com.google.gson.JsonObject;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.rom.api.research.IResearch;
+import net.rom.api.research.IResearchLogic;
+import net.rom.api.research.IResearchReward;
+import net.rom.api.research.Research;
+import net.rom.api.research.ResearchLogicState;
+import net.rom.api.research.ResearchStack;
+import net.rom.api.research.ResearchState;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.IResearch;
-import net.rom.exoplanets.api.research.IResearchLogic;
-import net.rom.exoplanets.api.research.IResearchReward;
-import net.rom.exoplanets.api.research.Research;
-import net.rom.exoplanets.api.research.ResearchLogicState;
-import net.rom.exoplanets.api.research.ResearchStack;
-import net.rom.exoplanets.api.research.ResearchState;
 
 public class GenericResearch extends Research {
 	protected IResearchLogic researchLogic;

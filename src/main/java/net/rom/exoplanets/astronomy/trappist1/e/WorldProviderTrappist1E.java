@@ -60,8 +60,9 @@ import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeDecoratorTrappist1
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeProviderTrappist1E;
 import net.rom.exoplanets.init.InitPlanets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
+import net.rom.exoplanets.internal.world.planet.WorldEngineProvider;
 
-public class WorldProviderTrappist1E extends WE_WorldProvider {
+public class WorldProviderTrappist1E extends WorldEngineProvider {
 	
 	public static WE_ChunkProvider chunk;
 	

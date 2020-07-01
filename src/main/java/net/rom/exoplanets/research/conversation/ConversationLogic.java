@@ -24,8 +24,8 @@
 
 package net.rom.exoplanets.research.conversation;
 
-import net.rom.exoplanets.api.research.conversation.IConversationMessage;
-import net.rom.exoplanets.api.research.conversation.IConversationNpc;
+import net.rom.api.research.conversation.IConversationMessage;
+import net.rom.api.research.conversation.IConversationNpc;
 
 public abstract class ConversationLogic {
     public abstract boolean trigger(IConversationMessage ConversationMessage, IConversationNpc ConversationNpc);

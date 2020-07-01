@@ -33,9 +33,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.rom.api.research.ResearchStack;
+import net.rom.api.research.ResearchState;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.ResearchStack;
-import net.rom.exoplanets.api.research.ResearchState;
 import net.rom.exoplanets.capability.ResearchCapability;
 
 public class PlayerResearchData {

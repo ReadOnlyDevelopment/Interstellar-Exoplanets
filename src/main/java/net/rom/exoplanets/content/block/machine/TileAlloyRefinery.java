@@ -44,8 +44,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipe;
-import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
+import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.internal.tile.TileSidedInventoryExo;
 

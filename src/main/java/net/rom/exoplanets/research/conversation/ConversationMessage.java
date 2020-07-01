@@ -34,12 +34,12 @@ import com.google.gson.JsonObject;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.api.research.conversation.IConversationMessage;
+import net.rom.api.research.conversation.IConversationMessageSeedable;
+import net.rom.api.research.conversation.IConversationNpc;
+import net.rom.api.research.conversation.IConversationOption;
+import net.rom.api.research.exception.ExoRuntimeException;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.conversation.IConversationMessage;
-import net.rom.exoplanets.api.research.conversation.IConversationMessageSeedable;
-import net.rom.exoplanets.api.research.conversation.IConversationNpc;
-import net.rom.exoplanets.api.research.conversation.IConversationOption;
-import net.rom.exoplanets.api.research.exception.ExoRuntimeException;
 import net.rom.exoplanets.research.utils.JsonUtil;
 
 public class ConversationMessage implements IConversationMessage, IConversationMessageSeedable {

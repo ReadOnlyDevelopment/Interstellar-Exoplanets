@@ -28,9 +28,9 @@ import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.rom.api.research.IResearchLogic;
+import net.rom.api.research.ResearchStack;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.IResearchLogic;
-import net.rom.exoplanets.api.research.ResearchStack;
 
 public class RandomResearchText extends GenericResearch {
 	int variationsCount;

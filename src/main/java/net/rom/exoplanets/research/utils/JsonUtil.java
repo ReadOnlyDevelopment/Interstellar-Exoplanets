@@ -40,8 +40,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.rom.api.research.exception.ExoRuntimeException;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.exception.ExoRuntimeException;
 
 public class JsonUtil {
     private static String currentParentObject;
