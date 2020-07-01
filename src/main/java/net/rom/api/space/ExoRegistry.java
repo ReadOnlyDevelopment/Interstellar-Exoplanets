@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -12,6 +13,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -22,7 +25,7 @@ public class ExoRegistry {
 	}
 
 	static int									maxRelayID	= 0;
-	static BiMap<String, RelayStation>			relays		= HashBiMap.create();
+	static TreeMap<String, RelayStation>		relays		= Maps.newTreeMap();
 	static BiMap<String, Integer>				relayIDs	= HashBiMap.create();
 	static HashMap<Planet, List<RelayStation>>	relayList	= Maps.newHashMap();
 
@@ -72,9 +75,11 @@ public class ExoRegistry {
 	/**
 	 * Returns a read-only map containing Moon Names and their associated Moons.
 	 */
-	public static Map<String, RelayStation> getRegisteredRelayStations() {
-		return ImmutableMap.copyOf(ExoRegistry.relays);
-	}
+    public static Map<String, RelayStation> getRegisteredRelayStations()
+    {
+        return (Map<String, RelayStation>) ExoRegistry.relays.clone();
+    }
+
 
 	/**
 	 * Returns a read-only map containing Moon Names and their associated IDs.

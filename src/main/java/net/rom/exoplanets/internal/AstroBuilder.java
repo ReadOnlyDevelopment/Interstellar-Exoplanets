@@ -39,10 +39,12 @@ import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.dimension.WorldProviderOverworldOrbit;
 import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
@@ -320,14 +322,14 @@ public class AstroBuilder {
 	}
 	
 	public RelayStation buildRelayStation() {
-		RelayStation unreachable = new RelayStation("orbitalplatform").setParentPlanet(GalacticraftCore.planetOverworld);
+		RelayStation unreachable = new RelayStation("station01").setParentPlanet(GalacticraftCore.planetOverworld);
 		unreachable.setBodyIcon(Assets.getCelestialTexture("orbitalplatform"));
 		unreachable.setPhaseShift(AstronomicalConstants.TWO_PI_F);
 		unreachable.setRelativeOrbitTime(GalacticraftCore.moonMoon.getRelativeOrbitTime() / 2);
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
-		float distance = GalacticraftCore.moonMoon.getRelativeDistanceFromCenter().scaledDistance * 2;
-		float distance1 = GalacticraftCore.moonMoon.getRelativeDistanceFromCenter().unScaledDistance * 2;
+		float distance = GalacticraftCore.moonMoon.getRelativeDistanceFromCenter().scaledDistance / 2;
+		float distance1 = GalacticraftCore.moonMoon.getRelativeDistanceFromCenter().unScaledDistance / 2;
 		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(distance1, distance));
 		ExoRegistry.registerRelayStation(unreachable);
 		return unreachable;
