@@ -23,7 +23,7 @@ buildscript {
 plugins {
 	id 'com.matthewprenger.cursegradle' version '1.4.0'
 	id "com.wynprice.cursemaven" version "2.1.5"
-	id 'com.github.spotbugs' version '1.6.9'
+	id 'com.github.spotbugs' version '4.4.4'
 	id "io.freefair.lombok" version "2.9.5"
 	id "maven-publish"
 	id 'jacoco'
