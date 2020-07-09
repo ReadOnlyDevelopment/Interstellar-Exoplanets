@@ -1,25 +1,18 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package net.rom.exoplanets.init;
@@ -28,7 +21,6 @@ import java.util.LinkedList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
@@ -58,53 +50,58 @@ import net.rom.exoplanets.internal.StellarRegistry;
 public class ExoBlocks {
 	
 	private static StellarRegistry reg;
+	
+	public static Block launch_facility;
+	public static Block launch_facility_full;
+	
+	public static Block fake;
 
 	// ELECTRONIC
-	public static final Block raidcontroller = new BlockElectronic();
-	public static final Block lower_raidcontroller = new BlockElectronic();
-	public static final Block raidcluster = new BlockElectronic();
-	public static final Block datamonitor = new BlockElectronic();
-	public static final Block com_relay = new BlockElectronic();
-	public static final Block control = new BlockElectronic();
-	public static final Block satellite_antenna = new BlockSatelliteAntenna();
-	public static final Block stand_console = new BlockStandConsole();
-	public static final Block metal_diagonal = new BlockMetalDiagonal();
-	public static final Block metal_slanted = new BlockMetalDiagonal();
-	public static final Block hydraulic_top = new BlockCustomHydraulic();
-	public static final Block hydraulic_bottom = new BlockCustomHydraulic();
-	public static final Block hydraulic_middle = new BlockCustomHydraulic();
-	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
+	public static Block raidcontroller = new BlockElectronic();
+	public static Block lower_raidcontroller = new BlockElectronic();
+	public static Block raidcluster = new BlockElectronic();
+	public static Block datamonitor = new BlockElectronic();
+	public static Block com_relay = new BlockElectronic();
+	public static Block control = new BlockElectronic();
+	public static Block satellite_antenna = new BlockSatelliteAntenna();
+	public static Block stand_console = new BlockStandConsole();
+	public static Block metal_diagonal = new BlockMetalDiagonal();
+	public static Block metal_slanted = new BlockMetalDiagonal();
+	public static Block hydraulic_top = new BlockCustomHydraulic();
+	public static Block hydraulic_bottom = new BlockCustomHydraulic();
+	public static Block hydraulic_middle = new BlockCustomHydraulic();
+	public static BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
 	
-    public static final Block metalOre = new BlockOreMetal();
-    public static final Block metalBlock = new BlockMetal();
-    public static final Block alloyBlock = new BlockAlloy();
+    public static Block metalOre = new BlockOreMetal();
+    public static Block metalBlock = new BlockMetal();
+    public static Block alloyBlock = new BlockAlloy();
 
-    public static final Block metalFurnace = new BlockMetalFurnace();
-    public static final Block alloyRefinery = new BlockAlloyRefinery();
+    public static Block metalFurnace = new BlockMetalFurnace();
+    public static Block alloyRefinery = new BlockAlloyRefinery();
     
 	// LEVERS
-	public static final Block lever1 = new BlockCustomLever();
-	public static final Block lever2 = new BlockCustomLever();
-	public static final Block lever3 = new BlockCustomLever();
+	public static Block lever1 = new BlockCustomLever();
+	public static Block lever2 = new BlockCustomLever();
+	public static Block lever3 = new BlockCustomLever();
 	
 	// STAIRS
-	public static final Block concrete_stairs = new BlockConcreteStairs();
-	public static final Block concrete1_stairs = new BlockConcrete1Stairs();
-	public static final Block space_quartz_stair = new BlockSpaceQuartzStair();
-	public static final Block space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
-	public static final Block roof_stairs = new BlockRoofStairs();
+	public static Block concrete_stairs = new BlockConcreteStairs();
+	public static Block concrete1_stairs = new BlockConcrete1Stairs();
+	public static Block space_quartz_stair = new BlockSpaceQuartzStair();
+	public static Block space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
+	public static Block roof_stairs = new BlockRoofStairs();
 
 	// LIGHTS
-	public static final Block alarm_light = new BlockAlarmLight(false);
-	public static final Block alarm_light_lit = new BlockAlarmLight(true);
-	public static final Block wall_lamp = new BlockWallLamp(false);
-	public static final Block wall_lamp_lit = new BlockWallLamp(true);
-	public static final Block metal_lamp = new BlockMetalLamp(false);
-	public static final Block metal_lamp_lit = new BlockMetalLamp(true);
-	public static final Block cellar_lamp = new BlockCellarLamp(false);
-	public static final Block cellar_lamp_lit = new BlockCellarLamp(true);
-	public static final Block inset_lamp = new BlockInsetLamp(false);
-	public static final Block inset_lamp_lit = new BlockInsetLamp(true);
+	public static Block alarm_light = new BlockAlarmLight(false);
+	public static Block alarm_light_lit = new BlockAlarmLight(true);
+	public static Block wall_lamp = new BlockWallLamp(false);
+	public static Block wall_lamp_lit = new BlockWallLamp(true);
+	public static Block metal_lamp = new BlockMetalLamp(false);
+	public static Block metal_lamp_lit = new BlockMetalLamp(true);
+	public static Block cellar_lamp = new BlockCellarLamp(false);
+	public static Block cellar_lamp_lit = new BlockCellarLamp(true);
+	public static Block inset_lamp = new BlockInsetLamp(false);
+	public static Block inset_lamp_lit = new BlockInsetLamp(true);
 	
     public static LinkedList<Block> blocksList = new LinkedList<>();
     
@@ -114,6 +111,7 @@ public class ExoBlocks {
 		
 		YzCetiBlocks.registerAll(reg);
 		TrappistBlocks.registerAll(reg);
+		//DeepSpaceBlocks.registerAll(reg);
 
 		// ORES
 		register(metalOre, "metalore");		
@@ -180,22 +178,5 @@ public class ExoBlocks {
 	
 	public static void setReg(StellarRegistry reg) {
 		ExoBlocks.reg = reg;
-	}
-	
-	public class CustomRegister extends StellarRegistry {
-		
-	    @Override
-	    public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock) {
-	        super.registerBlock(block, key, itemBlock);
-	        
-	        if (block instanceof BlockOreMetal) {
-	        	BlockOreMetal exoOre = (BlockOreMetal) block;
-	        	for (int i = 0; i < exoOre.maxMeta; ++i) {
-	        		ItemStack stack = new ItemStack(itemBlock, 1, i);
-	        	}
-	        }
-			return block;
-	        
-	    }
 	}
 }

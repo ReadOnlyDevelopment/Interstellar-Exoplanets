@@ -22,24 +22,21 @@
  * THE SOFTWARE.
  */
 
-package net.rom.exoplanets.util;
+package net.rom.exoplanets.content.block;
 
-import net.minecraft.launchwrapper.Launch;
+import net.minecraft.block.material.Material;
+import net.rom.exoplanets.internal.block.BlockMetaSubtypes;
+import net.rom.exoplanets.internal.inerf.IAddRecipe;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
-public class Deobf {
+public abstract class BlockSpace extends BlockMetaSubtypes implements IAddRecipe {
 
-	private static boolean deobfuscated;
+    public final int maxMeta;
 
-	static {
-		try {
-			deobfuscated = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static boolean isDeobfuscated() {
-		return deobfuscated;
-	}
+    public BlockSpace(int subBlockCount) {
+        super(Material.ROCK, subBlockCount);
+        this.maxMeta = subBlockCount;
+        setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+    }
 
 }

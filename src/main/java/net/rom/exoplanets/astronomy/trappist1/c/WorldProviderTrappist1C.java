@@ -52,7 +52,7 @@ import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_River;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.ExoUniverse;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 
 public class WorldProviderTrappist1C extends WE_WorldProvider {
@@ -71,7 +71,7 @@ public class WorldProviderTrappist1C extends WE_WorldProvider {
 
 	@Override
 	public CelestialBody getCelestialBody() {
-		return InitPlanets.trappistc;
+		return ExoUniverse.trappistc;
 	}
 
 	@Override

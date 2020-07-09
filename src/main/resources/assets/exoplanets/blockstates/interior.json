@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": { "model": "exoplanets:interior" },
+    "variants": { "type": {
+        "interior":   { "textures": { "all": "exoplanets:blocks/interior_0" }},
+        "interior_1": { "textures": { "all": "exoplanets:blocks/interior_1" }},
+        "interior_2": { "textures": { "all": "exoplanets:blocks/interior_2" }},
+        "interior_3": { "textures": { "all": "exoplanets:blocks/interior_3" }},
+        "interior_4": { "textures": { "all": "exoplanets:blocks/interior_4" }},
+        "interior_5": { "textures": { "all": "exoplanets:blocks/interior_5" }},
+        "interior_6": { "textures": { "all": "exoplanets:blocks/grey" }}
+        }
+    }
+}

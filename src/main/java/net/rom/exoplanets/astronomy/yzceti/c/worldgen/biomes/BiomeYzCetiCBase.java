@@ -34,7 +34,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzceti.c.worldgen.BiomeDecoratorYzCetiC;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.ExoUniverse;
 import net.rom.exoplanets.internal.enums.EnumBiomeType;
 import net.rom.exoplanets.internal.world.biome.BiomeSpace;
 
@@ -56,7 +56,7 @@ public class BiomeYzCetiCBase extends BiomeSpace {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.MEDIUM);
 		this.setStoneBlock(YzCetiBlocks.CetiC.C_METAMORPHIC);
-		this.setPlanetForBiome(InitPlanets.yzcetic);
+		this.setPlanetForBiome(ExoUniverse.yzcetic);
 	}
 
 	public final void generateYzCetiCTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,

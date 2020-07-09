@@ -33,7 +33,7 @@ import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 public class Trappist1_E_Plains extends WE_Biome {
 	
 	public Trappist1_E_Plains(double min, double max) {
-		super(new BiomeProperties("trappist1_e_plains"), new int[] {0x88BB44, 0x11FF66, 0x00FF00});
+		super(new BiomeProperties("trappist1e_plains"), new int[] {0xd14715, 0x11FF66, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

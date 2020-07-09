@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "exoplanets:blocks/grey",
+        "down": "exoplanets:blocks/grey",
+        "up": "exoplanets:blocks/grey",
+        "north": "exoplanets:blocks/grey",
+        "east": "exoplanets:blocks/grey",
+        "south": "exoplanets:blocks/grey",
+        "west": "exoplanets:blocks/grey"
+    }
+}

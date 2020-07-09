@@ -26,8 +26,8 @@ getGitChangelog << {
 		if(st.contains("Change:")) {
 			change << st.replace("Change:", "")
 		}
-		if(st.contains("Refractor:")) {
-			refractor << st.replace("Refractor:", "")
+		if(st.contains("Refactor:")) {
+			refractor << st.replace("Refactor:", "")
 		}
 	}
 }

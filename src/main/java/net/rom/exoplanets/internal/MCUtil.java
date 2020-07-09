@@ -1,36 +1,30 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package net.rom.exoplanets.internal;
 
 import java.util.List;
+import java.util.Random;
 
 import com.google.common.base.Function;
 
-import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
-import micdoodle8.mods.galacticraft.core.util.GCLog;
-import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+//import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
+//import micdoodle8.mods.galacticraft.core.util.GCLog;
+//import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -39,12 +33,16 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.internal.client.ExoModelLoader;
+import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
 
 public final class MCUtil {
 
@@ -53,6 +51,12 @@ public final class MCUtil {
 	private MCUtil() {
 		throw new IllegalAccessError("Util Class");
 	}
+	
+    public static Random getRandom(BlockPos pos)
+    {
+        long blockSeed = ((pos.getY() << 28) + pos.getX() + 30000000 << 28) + pos.getZ() + 30000000;  
+        return new Random(blockSeed);
+    }
 
 	/**
 	 * Check if this is the client side.
@@ -94,11 +98,11 @@ public final class MCUtil {
 	}
 
 	public static void replaceModel(String modid, ModelBakeEvent event, String resLoc, String objLoc,
-			List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState,
+			List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState,
 			String... variants) {
 		OBJModel model;
 		try {
-			model = (OBJModel) OBJLoaderGC.instance.loadModel(new ResourceLocation(modid, objLoc));
+			model = (OBJModel) ExoModelLoader.instance.loadModel(new ResourceLocation(modid, objLoc));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -124,7 +128,7 @@ public final class MCUtil {
 					try {
 						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
 					} catch (Exception e) {
-						GCLog.severe("ItemModel constructor problem for " + modelResourceLocation);
+						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
 						e.printStackTrace();
 					}
 				}

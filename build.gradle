@@ -23,12 +23,60 @@ buildscript {
 plugins {
 	id 'com.matthewprenger.cursegradle' version '1.4.0'
 	id "com.wynprice.cursemaven" version "2.1.5"
+	id 'com.github.spotbugs' version '1.6.9'
 	id "io.freefair.lombok" version "2.9.5"
 	id "maven-publish"
+	id 'jacoco'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+import org.gradle.util.GradleVersion
+project.afterEvaluate {
+	jacoco {
+		toolVersion = '0.8.3'
+		reportsDir = file("$buildDir/reports")
+	}
+
+	project.task(type: JacocoReport, 'junitPlatformJacocoReport', {
+		if (GradleVersion.current() >= GradleVersion.version('5.0')) {
+			getSourceDirectories().from(files('./src/main'))
+			getClassDirectories().from(files("${project.buildDir}/classes/main"))
+		} else {
+			sourceDirectories = files('./src/main')
+			classDirectories = files("${project.buildDir}/classes/main")
+		}
+	})
+}
+
+
+spotbugs {
+	ignoreFailures = true
+	toolVersion = '3.1.6'
+	effort = 'max'
+	reportLevel = 'low'
+}
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+	reports {
+		xml.enabled = false
+		html.enabled = true
+	}
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+	options.compilerArgs = ['-Xlint:unchecked', // deprecation, rawtypes, cast, unchecked, all
+	]
+	compileJava.options.compilerArgs += '-proc:none'
+}
+
+tasks.withType(Test) {
+	compileTestJava.options.compilerArgs += '-proc:none'
+}
 
 class Secrets {
 	Map m_data = null
@@ -65,9 +113,21 @@ apply from: 'gradle/deps.gradle'
 apply from: 'gradle/restcall.gradle'
 apply from: 'gradle/changelog.gradle'
 
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+eclipse.project {
+	buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+	natures 'org.eclipse.buildship.core.gradleprojectnature'
+}
+
+idea.module {
+	downloadJavadoc = true
+	iml {
+		whenMerged { module ->
+			module.dependencies*.exported = true
+		}
+	}
+}
 
 minecraft {
 
@@ -114,7 +174,8 @@ if (JavaVersion.current().isJava8Compatible()) {
 publishing {
 	publications {
 		Exoplanets(MavenPublication) {
-			groupId project.group
+			artifactId mod_archivesBaseName
+			groupId project.mod_group
 			version project.version
 			from components.java
 			if (getBooleanProperty('create_source_jar')) {
@@ -136,8 +197,8 @@ publishing {
 			pom {
 				name = project.POM_NAME
 				description = project.POM_DESCRIPTION
-				url = project.POM_PACKAGING
-				packaging = project.POM_URL
+				url = project.POM_URL
+				packaging = project.POM_PACKAGING
 				inceptionYear = project.POM_INCEPTION_YEAR
 				licenses {
 					license {
@@ -175,13 +236,12 @@ publishing {
 					}
 				}
 			}
-
 		}
 	}
 	repositories {
 		maven {
 			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/ROMVoid95/ForgeModdingSkeleton")
+			url = uri("https://maven.pkg.github.com/ROMVoid95/Interstellar-Exoplanets")
 			credentials {
 				username = secret.NAME
 				password = secret.GHTOKEN
@@ -189,7 +249,7 @@ publishing {
 		}
 		maven {
 			name = "LocalMaven"
-			url = "file://$buildDir/repo"
+			url = "file://Z:/"
 		}
 	}
 }

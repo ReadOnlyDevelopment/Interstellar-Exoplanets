@@ -34,8 +34,9 @@ import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
 
-public class ItemModelRocket extends ModelTransformWrapper {
+public class ItemModelRocket extends ModelTransWrapper {
 
 	public ItemModelRocket(IBakedModel parent) {
 		super(parent);

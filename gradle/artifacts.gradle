@@ -42,6 +42,9 @@ task apiJar(type: Jar) {
 	from (sourceSets.main.output) {
 		includes.addAll(project.ext.apiFiles)
 	}
+	from(sourceSets.main.java) {
+		includes.addAll(project.ext.apiFiles)
+	}
 	classifier = 'api'
 	manifest {
 		mainAttributes(
@@ -67,7 +70,14 @@ task deobfJar(type: Jar) {
 	outputs.upToDateWhen {false}
 	description = 'Creates a JAR containing the non-obfuscated compiled code.'
 	classifier = 'dev'
-	from sourceSets.main.output
+	from (sourceSets.main.output) {
+		includes.addAll(project.ext.apiFiles)
+		includes.addAll(project.ext.coreFiles)
+	}
+	from(sourceSets.main.java) {
+		includes.addAll(project.ext.apiFiles)
+		includes.addAll(project.ext.coreFiles)
+	}
 	manifest {
 		mainAttributes(
 				'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}:dev",

@@ -28,11 +28,11 @@ import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.miccore.IntCache;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.ExoUniverse;
 
 public class GenLayerYzCetiDBiomes extends GenLayer {
 
-    private static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(InitPlanets.yzcetid).toArray(new Biome[0]);
+    private static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(ExoUniverse.yzcetid).toArray(new Biome[0]);
 
     public GenLayerYzCetiDBiomes(long l, GenLayer parent) {
         super(l);

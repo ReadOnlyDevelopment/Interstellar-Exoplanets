@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.rom.exoplanets.events;
 
 import java.util.List;
@@ -6,11 +22,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.ImmutableList;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -24,9 +38,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.client.model.ModelDeepStructural;
 import net.rom.exoplanets.client.render.ItemModelRocket;
 import net.rom.exoplanets.client.screen.EnumScreenAnchor;
 import net.rom.exoplanets.internal.MCUtil;
+import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
 import net.rom.exoplanets.util.RGB;
 
 public class ClientHandler {
@@ -37,6 +53,10 @@ public class ClientHandler {
 	@SideOnly(Side.CLIENT)
 	public void onModelBakeEvent(ModelBakeEvent event) {
 		replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
+        ModelResourceLocation defaultLoc = new ModelResourceLocation(ExoInfo.MODID + ":deep", "normal");
+        event.getModelRegistry().putObject(defaultLoc, new ModelDeepStructural(false));
+        defaultLoc = new ModelResourceLocation(ExoInfo.MODID + ":deep_wall", "normal");
+        event.getModelRegistry().putObject(defaultLoc, new ModelDeepStructural(true));
 	}
 
 	@SubscribeEvent
@@ -75,7 +95,7 @@ public class ClientHandler {
 		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
 	}
 
-	private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants) {
+	private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState, String... variants) {
 		MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
 	}
 
