@@ -38,7 +38,7 @@ public abstract class BlockGeneral extends BlockBase implements ISortableBlock, 
 
 	public BlockGeneral(Material materialIn) {
 		super(materialIn);
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 	
 	public ItemStack getStack(int count) {

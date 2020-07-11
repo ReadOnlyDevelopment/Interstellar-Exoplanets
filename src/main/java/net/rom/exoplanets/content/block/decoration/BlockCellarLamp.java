@@ -29,6 +29,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -57,10 +58,11 @@ public class BlockCellarLamp extends BlockDecoration {
 
 	public BlockCellarLamp(boolean isOn) {
 		super(Material.REDSTONE_LIGHT);
-		setHardness(2F);
-		setResistance(5F);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setSoundType(SoundType.GLASS);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		this.isOn = isOn;
 
 		if (isOn) {

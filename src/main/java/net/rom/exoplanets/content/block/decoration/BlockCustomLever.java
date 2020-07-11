@@ -27,11 +27,13 @@ package net.rom.exoplanets.content.block.decoration;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.BlockLever;
+import net.minecraft.block.SoundType;
 
 public class BlockCustomLever extends BlockLever implements ISortableBlock {
 	public BlockCustomLever() {
-		setHardness(2F);
-		setResistance(5F);
+		this.setHardness(2F);
+		this.setResistance(5F);
+		this.setSoundType(SoundType.STONE);
 		this.setHarvestLevel("axe", 2);
 	}
 

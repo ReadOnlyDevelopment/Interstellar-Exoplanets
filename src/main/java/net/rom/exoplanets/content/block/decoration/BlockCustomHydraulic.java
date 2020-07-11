@@ -45,12 +45,12 @@ public class BlockCustomHydraulic extends BlockDecoration {
 	public BlockCustomHydraulic() {
 
 		super(Material.ROCK);
-		blockSoundType = SoundType.STONE;
-		setHardness(2F);
-		setResistance(5F);
+		this.setSoundType(SoundType.STONE);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("pickaxe", 2);
-		setLightOpacity(1);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setLightOpacity(1);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

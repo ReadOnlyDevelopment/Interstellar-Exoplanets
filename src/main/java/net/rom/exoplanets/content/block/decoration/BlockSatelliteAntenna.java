@@ -45,12 +45,12 @@ public class BlockSatelliteAntenna extends BlockDecoration {
 	public BlockSatelliteAntenna() {
 
 		super(Material.IRON);
-		blockSoundType = SoundType.METAL;
-		setHardness(2F);
-		setResistance(5F);
+		this.setSoundType(SoundType.METAL);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setLightOpacity(1);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setLightOpacity(1);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

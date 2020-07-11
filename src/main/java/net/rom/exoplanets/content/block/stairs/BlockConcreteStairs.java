@@ -8,10 +8,10 @@ public class BlockConcreteStairs extends BlockStairs {
 	
 	public BlockConcreteStairs() {
 		super(Blocks.IRON_BLOCK.getDefaultState());
-		setHardness(2F);
-		setResistance(5F);
-		setHarvestLevel("pickaxe", 2);
-		setSoundType(SoundType.STONE);
+		this.setHardness(2F);
+		this.setResistance(5F);
+		this.setHarvestLevel("pickaxe", 2);
+		this.setSoundType(SoundType.STONE);
 	}
 
 }

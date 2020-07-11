@@ -14,11 +14,11 @@ public class BlockSpaceQuartzStair extends BlockStairs {
 	
 	public BlockSpaceQuartzStair() {
 		super(Blocks.STONE_STAIRS.getDefaultState());
-		setHardness(2F);
-		setResistance(2F);
-		setHarvestLevel("axe", 1);
-		setLightOpacity(1);
-		setSoundType(SoundType.STONE);
+		this.setHardness(2F);
+		this.setResistance(2F);
+		this.setHarvestLevel("axe", 1);
+		this.setLightOpacity(1);
+		this.setSoundType(SoundType.STONE);
 	}
 
 	@Override

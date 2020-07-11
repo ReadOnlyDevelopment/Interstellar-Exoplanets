@@ -39,12 +39,12 @@ public class BlockSpotLamp extends BlockDecoration {
 
 	public BlockSpotLamp() {
 		super(Material.GLASS);
-		setHardness(2F);
-		setResistance(1F);
-		setLightLevel(1F);
-		setLightOpacity(50);
-		setHarvestLevel("axe", 1);
-		setSoundType(SoundType.GLASS);
+		this.setHardness(2F);
+		this.setResistance(1F);
+		this.setLightLevel(1F);
+		this.setLightOpacity(50);
+		this.setHarvestLevel("axe", 1);
+		this.setSoundType(SoundType.GLASS);
 	}
 
 	@Override

@@ -36,8 +36,8 @@ public class BlockSedimentaryRock extends BlockTerrain {
 	
 	public BlockSedimentaryRock() {
 		super();
-		setResistance(1.0F);
-		setHardness(2.0F);
-		setHarvestLevel("pickaxe", 1);
+		this.setResistance(1.0F);
+		this.setHardness(2.0F);
+		this.setHarvestLevel("pickaxe", 1);
 	}
 }

@@ -24,6 +24,7 @@
 
 package net.rom.exoplanets.content.block.decoration;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -44,10 +45,11 @@ public class BlockMetalDiagonal extends BlockGeneral {
 	public BlockMetalDiagonal() {
 
 		super(Material.ANVIL);
-		setHardness(2F);
-		setResistance(5F);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setSoundType(SoundType.METAL);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

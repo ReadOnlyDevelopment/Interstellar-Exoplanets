@@ -14,11 +14,11 @@ public class BlockKlingoniumPipesStairs extends BlockStairs {
 	
 	public BlockKlingoniumPipesStairs() {
 		super(Blocks.IRON_BLOCK.getDefaultState());
-		setHardness(2F);
-		setResistance(5F);
-		setHarvestLevel("axe", 2);
-		setLightOpacity(1);
-		setSoundType(SoundType.METAL);
+		this.setHardness(2F);
+		this.setResistance(5F);
+		this.setHarvestLevel("axe", 2);
+		this.setLightOpacity(1);
+		this.setSoundType(SoundType.METAL);
 	}
 
 	@Override

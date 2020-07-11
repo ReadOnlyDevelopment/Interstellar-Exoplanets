@@ -26,6 +26,7 @@ package net.rom.exoplanets.content.block.decoration;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -47,11 +48,12 @@ public class BlockAnalyser extends BlockDecoration {
 	public BlockAnalyser() {
 
 		super(Material.ANVIL);
-		setHardness(2F);
-		setResistance(5F);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setLightOpacity(1);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setLightOpacity(1);
+		this.setSoundType(SoundType.METAL);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

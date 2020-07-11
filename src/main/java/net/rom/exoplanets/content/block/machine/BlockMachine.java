@@ -55,12 +55,12 @@ public class BlockMachine extends BlockContainer implements IExoMetal {
 
     BlockMachine(Material materialIn) {
         super(materialIn);
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumMachineState.NORTH_OFF));
+        this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumMachineState.NORTH_OFF));
 
-        setHardness(4.0f);
-        setResistance(6000.0f);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 1);
+        this.setHardness(4.0f);
+        this.setResistance(6000.0f);
+        this.setSoundType(SoundType.METAL);
+        this.setHarvestLevel("pickaxe", 1);
     }
 
     @Override

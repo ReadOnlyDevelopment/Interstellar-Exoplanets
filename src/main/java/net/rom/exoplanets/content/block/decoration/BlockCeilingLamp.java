@@ -26,6 +26,7 @@ package net.rom.exoplanets.content.block.decoration;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -46,12 +47,13 @@ public class BlockCeilingLamp extends BlockDecoration {
 
 	public BlockCeilingLamp() {
 		super(Material.GLASS);
-		setHardness(2F);
-		setResistance(5F);
+		this.setHardness(2F);
+		this.setResistance(5F);
 		this.setHarvestLevel("axe", 2);
-		setLightLevel(1F);
-		setLightOpacity(130);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setLightLevel(1F);
+		this.setLightOpacity(130);
+		this.setSoundType(SoundType.GLASS);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

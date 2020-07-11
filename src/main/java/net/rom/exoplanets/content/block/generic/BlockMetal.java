@@ -55,11 +55,11 @@ public class BlockMetal extends BlockMetaSubtypes implements IAddRecipe, ICustom
 
     public BlockMetal() {
         super(Material.IRON, EnumMetal.values().length);
-        setHardness(3.0f);
-        setResistance(30.0f);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 1);
-        setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
+        this.setHardness(3.0f);
+        this.setResistance(30.0f);
+        this.setSoundType(SoundType.METAL);
+        this.setHarvestLevel("pickaxe", 1);
+        this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
     }
 
     @Override

@@ -26,6 +26,7 @@ package net.rom.exoplanets.content.block.decoration;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -44,9 +45,10 @@ public class BlockElectronic extends BlockGeneral {
 
 	public BlockElectronic() {
 		super(Material.ROCK);
-		setHardness(2F);
-		setResistance(5F);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setSoundType(SoundType.STONE);
+		this.setHardness(2F);
+		this.setResistance(5F);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	public IBlockState getStateForEntityRender(IBlockState state) {

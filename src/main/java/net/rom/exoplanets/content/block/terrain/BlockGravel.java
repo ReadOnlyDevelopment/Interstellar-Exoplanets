@@ -29,6 +29,7 @@ import java.util.Random;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -38,6 +39,7 @@ public class BlockGravel extends BlockFalling implements ISortableBlock {
 	public BlockGravel() {
 		super();
 		this.setHardness(0.6F);
+		this.setSoundType(SoundType.SAND);
 		this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
 
 	}

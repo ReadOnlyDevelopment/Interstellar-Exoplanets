@@ -28,6 +28,7 @@ import java.util.Locale;
 
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -78,11 +79,12 @@ public class BlockMetalDecoration extends BlockMetaSubtypes implements ICustomMo
 	
 	public BlockMetalDecoration() {
 		super(Material.ROCK, Type.values().length);
-        setHardness(3.0f);
-        setResistance(30.0f);
-        setHarvestLevel("pickaxe", 2);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT, Type.GRATING));
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+        this.setHardness(3.0f);
+        this.setResistance(30.0f);
+        this.setHarvestLevel("pickaxe", 2);
+        this.setSoundType(SoundType.METAL);
+        this.setDefaultState(blockState.getBaseState().withProperty(VARIANT, Type.GRATING));
+		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 	
     public ItemStack getStack(Type type, int count) {

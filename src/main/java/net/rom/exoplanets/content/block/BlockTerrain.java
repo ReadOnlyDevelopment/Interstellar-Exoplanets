@@ -27,6 +27,7 @@ package net.rom.exoplanets.content.block;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -37,9 +38,10 @@ public class BlockTerrain extends BlockBase implements ISortableBlock, ITerrafor
 
 	public BlockTerrain() {
 		super(Material.GROUND);
+		this.setSoundType(SoundType.GROUND);
 		this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
-		setHardness(5.0f);
-		setHarvestLevel("pickaxe", 2);
+		this.setHardness(5.0f);
+		this.setHarvestLevel("pickaxe", 2);
 
 	}
 

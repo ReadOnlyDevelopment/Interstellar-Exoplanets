@@ -24,6 +24,7 @@
 
 package net.rom.exoplanets.content.block.terrain;
 
+import net.minecraft.block.SoundType;
 import net.rom.exoplanets.content.block.BlockTerrain;
 
 /**
@@ -40,8 +41,9 @@ public class BlockIgneousRock extends BlockTerrain {
 
 	public BlockIgneousRock() {
 		super();
-		setResistance(20.0F);
-		setHardness(30.0F);
-		setHarvestLevel("pickaxe", 3);
+		this.setResistance(20.0F);
+		this.setHardness(30.0F);
+		this.setSoundType(SoundType.STONE);
+		this.setHarvestLevel("pickaxe", 3);
 	}
 }

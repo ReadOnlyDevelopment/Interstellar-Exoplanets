@@ -27,6 +27,7 @@ package net.rom.exoplanets.content.block.decoration;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -41,10 +42,11 @@ public class BlockMetalLamp extends BlockDecoration {
 
 	public BlockMetalLamp(boolean isOn) {
 		super(Material.REDSTONE_LIGHT);
+		this.setSoundType(SoundType.METAL);
 		this.isOn = isOn;
 
 		if (isOn) {
-			setLightLevel(1.0F);
+			this.setLightLevel(1.0F);
 		}
 	}
 

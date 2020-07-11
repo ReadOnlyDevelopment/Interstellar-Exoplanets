@@ -24,15 +24,17 @@
 
 package net.rom.exoplanets.content.block.terrain;
 
+import net.minecraft.block.SoundType;
 import net.rom.exoplanets.content.block.BlockTerrain;
 
 public class BlockMetamorphicRock extends BlockTerrain {
 	
 	public BlockMetamorphicRock() {
 		super();
-		setHardness(25.0F);
-		setResistance(15.0F);
-		setHarvestLevel("pickaxe", 2);
+		this.setHardness(25.0F);
+		this.setResistance(15.0F);
+		this.setSoundType(SoundType.STONE);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 }

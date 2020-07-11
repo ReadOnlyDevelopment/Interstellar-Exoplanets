@@ -36,7 +36,7 @@ public class BlockDecoration extends BlockBase implements ISortableBlock {
 
 	public BlockDecoration(Material materialIn) {
 		super(materialIn);
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 	
 	public ItemStack getStack(int count) {

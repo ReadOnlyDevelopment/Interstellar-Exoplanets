@@ -48,15 +48,15 @@ public class BlockOreMetal extends BlockExoOre implements ICustomModel {
 
     public BlockOreMetal() {
         super(EnumMetal.values().length);
-        setHardness(3.0f);
-        setResistance(15.0f);
-        setSoundType(SoundType.STONE);
+        this.setHardness(3.0f);
+        this.setResistance(15.0f);
+        this.setSoundType(SoundType.STONE);
 
         for (EnumMetal metal : EnumMetal.values()) {
             if (metal == EnumMetal.COPPER || metal == EnumMetal.TIN || metal == EnumMetal.ALUMINIUM) {
-                setHarvestLevel("pickaxe", 1, getDefaultState().withProperty(METAL, metal));
+                this.setHarvestLevel("pickaxe", 1, this.getDefaultState().withProperty(METAL, metal));
             } else {
-                setHarvestLevel("pickaxe", 2, getDefaultState().withProperty(METAL, metal));
+                this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(METAL, metal));
             }
         }
     }
@@ -65,10 +65,10 @@ public class BlockOreMetal extends BlockExoOre implements ICustomModel {
     public void addRecipes(RecipeBuilder recipes) {
         for (EnumMetal metal : EnumMetal.values()) {
             ItemStack ore = new ItemStack(this, 1, metal.meta);
-                ItemStack ingot = metal.getIngot();
-
-                // Vanilla smelting
-                    recipes.addSmelting(ore, ingot, 0.5f);
+            ItemStack ingot = metal.getIngot();
+            
+            // Vanilla smelting
+            recipes.addSmelting(ore, ingot, 0.5f);
         }
     }
 

@@ -14,12 +14,12 @@ public class BlockMetalStairs extends BlockStairs {
 	
 	public BlockMetalStairs() {
 		super(Blocks.IRON_BLOCK.getDefaultState());
-		setHardness(2F);
-		setResistance(5F);
-		setHarvestLevel("axe", 2);
-		setLightLevel(1.0F);
-		setLightOpacity(1);
-		setSoundType(SoundType.METAL);
+		this.setHardness(2F);
+		this.setResistance(5F);
+		this.setHarvestLevel("axe", 2);
+		this.setLightLevel(1.0F);
+		this.setLightOpacity(1);
+		this.setSoundType(SoundType.METAL);
 	}
 
 	@Override

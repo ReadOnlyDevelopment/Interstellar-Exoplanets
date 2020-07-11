@@ -36,7 +36,7 @@ public class BlockFloor extends BlockBaseHorizontal implements ISortableBlock {
 	
 	public BlockFloor(Material materialIn) {
 		super(materialIn);
-		setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
+		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 	
 	public ItemStack getStack(int count) {
