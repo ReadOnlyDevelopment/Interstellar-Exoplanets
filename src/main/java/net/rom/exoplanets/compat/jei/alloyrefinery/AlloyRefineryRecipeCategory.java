@@ -1,25 +1,18 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package net.rom.exoplanets.compat.jei.alloyrefinery;
@@ -39,15 +32,33 @@ import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AlloyRefineryRecipeCategory.
+ */
 @SuppressWarnings("rawtypes")
 public class AlloyRefineryRecipeCategory implements IRecipeCategory {
+    
+    /** The Constant UID. */
     public static final String UID = ExoInfo.RESOURCE_PREFIX + "alloy_refinery";
 
+    /** The background. */
     private final IDrawable background;
+    
+    /** The flame. */
     private final IDrawableAnimated flame;
+    
+    /** The arrow. */
     private final IDrawableAnimated arrow;
+    
+    /** The localized name. */
     private final String localizedName = ExoplanetsMod.translate.translate("jei.exoplanets.recipe.alloy_refinery");
 
+    /**
+     * Instantiates a new alloy refinery recipe category.
+     *
+     * @param guiHelper the gui helper
+     */
     public AlloyRefineryRecipeCategory(IGuiHelper guiHelper) {
         ResourceLocation backgroundLocation = new ResourceLocation(ExoInfo.RESOURCE_PREFIX + "textures/gui/jei/alloyrefinery.png");
 
@@ -61,27 +72,54 @@ public class AlloyRefineryRecipeCategory implements IRecipeCategory {
         this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
+    /**
+     * Draw extras.
+     *
+     * @param minecraft the minecraft
+     */
     @Override
     public void drawExtras(Minecraft minecraft) {
         flame.draw(minecraft, 2, 4);
         arrow.draw(minecraft, 62, 10);
     }
 
+    /**
+     * Gets the background.
+     *
+     * @return the background
+     */
     @Override
     public IDrawable getBackground() {
         return background;
     }
 
+    /**
+     * Gets the title.
+     *
+     * @return the title
+     */
     @Override
     public String getTitle() {
         return localizedName;
     }
 
+    /**
+     * Gets the uid.
+     *
+     * @return the uid
+     */
     @Override
     public String getUid() {
         return UID;
     }
 
+    /**
+     * Sets the recipe.
+     *
+     * @param recipeLayout the recipe layout
+     * @param recipeWrapper the recipe wrapper
+     * @param ingredients the ingredients
+     */
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
         recipeLayout.getItemStacks().init(0, true, 25, 0);
@@ -104,6 +142,11 @@ public class AlloyRefineryRecipeCategory implements IRecipeCategory {
         }
     }
 
+    /**
+     * Gets the mod name.
+     *
+     * @return the mod name
+     */
     @Override
     public String getModName() {
         return ExoInfo.NAME;

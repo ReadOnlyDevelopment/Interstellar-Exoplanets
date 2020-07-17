@@ -1,25 +1,18 @@
-/*
- * The MIT License (MIT)
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
  *
- * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package net.rom.exoplanets.internal;
@@ -40,18 +33,15 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.astronomy.orbitalplatform.OrbitalPlatform;
 import net.rom.exoplanets.conf.SConfigCore;
 import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 import net.rom.exoplanets.internal.world.star.ExoStar;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AstroBuilder.
  */
@@ -100,11 +90,11 @@ public class AstroBuilder {
 	/**
 	 * Builds the exo star.
 	 *
-	 * @param starName the star name
-	 * @param temp     the temp
-	 * @param mass     the mass
-	 * @param radius   the radius
-	 * @return the exo star
+	 * @param  starName the star name
+	 * @param  temp     the temp
+	 * @param  mass     the mass
+	 * @param  radius   the radius
+	 * @return          the exo star
 	 */
 	public ExoStar buildExoStar(String starName, int temp, double mass, double radius) {
 		ExoStar star = new ExoStar(starName);
@@ -119,11 +109,11 @@ public class AstroBuilder {
 	/**
 	 * Builds the solar system.
 	 *
-	 * @param name    the name
-	 * @param galaxy  the galaxy
-	 * @param pos     the pos
-	 * @param exoStar the exo star
-	 * @return the solar system
+	 * @param  name    the name
+	 * @param  galaxy  the galaxy
+	 * @param  pos     the pos
+	 * @param  exoStar the exo star
+	 * @return         the solar system
 	 */
 	public SolarSystem buildSolarSystem(String name, Vector3 pos, ExoStar exoStar) {
 		SolarSystem body = new SolarSystem(name, "milky_way");
@@ -138,13 +128,13 @@ public class AstroBuilder {
 	/**
 	 * Builds the exo planet.
 	 *
-	 * @param system   the system
-	 * @param name     the name
-	 * @param provider the provider
-	 * @param dimID    the dim ID
-	 * @param tier     the tier
-	 * @param phase    the phase
-	 * @return the exo planet
+	 * @param  system   the system
+	 * @param  name     the name
+	 * @param  provider the provider
+	 * @param  dimID    the dim ID
+	 * @param  tier     the tier
+	 * @param  phase    the phase
+	 * @return          the exo planet
 	 */
 	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase) {
 		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
@@ -246,21 +236,20 @@ public class AstroBuilder {
 	/**
 	 * builds SpaceStation.
 	 *
-	 * @param parent             the parent
-	 * @param color              the color
-	 * @param provider           the provider
-	 * @param dimID              the dim ID
-	 * @param dimIDStatic        the dim ID static
-	 * @param phase              the phase
-	 * @param size               the size
-	 * @param distancefromcenter the distancefromcenter
-	 * @param relativetime       the relativetime
-	 * @param customStationIcon  the custom station icon
-	 * @param bodyIcon           the body icon
-	 * @return the satellite
+	 * @param  parent             the parent
+	 * @param  color              the color
+	 * @param  provider           the provider
+	 * @param  dimID              the dim ID
+	 * @param  dimIDStatic        the dim ID static
+	 * @param  phase              the phase
+	 * @param  size               the size
+	 * @param  distancefromcenter the distancefromcenter
+	 * @param  relativetime       the relativetime
+	 * @param  customStationIcon  the custom station icon
+	 * @param  bodyIcon           the body icon
+	 * @return                    the satellite
 	 */
-	public Satellite buildSpaceStation(Planet parent, String color, Class<? extends WorldProvider> provider, int dimID, int dimIDStatic, float phase, float size,
-			float distancefromcenter, float relativetime, boolean customStationIcon, @Nullable String bodyIcon) {
+	public Satellite buildSpaceStation(Planet parent, String color, Class<? extends WorldProvider> provider, int dimID, int dimIDStatic, float phase, float size, float distancefromcenter, float relativetime, boolean customStationIcon, @Nullable String bodyIcon) {
 		Satellite body = new Satellite("spacestation." + parent.getUnlocalizedName().replace("planet.", ""));
 		body.setParentBody(parent);
 		body.setRelativeOrbitTime(relativetime);
@@ -282,11 +271,11 @@ public class AstroBuilder {
 	/**
 	 * Builds unreachable planet.
 	 *
-	 * @param planetName  the planet name
-	 * @param solarSystem the solar system
-	 * @param randomPhase the random phase
-	 * @param au          the au
-	 * @return the planet
+	 * @param  planetName  the planet name
+	 * @param  solarSystem the solar system
+	 * @param  randomPhase the random phase
+	 * @param  au          the au
+	 * @return             the planet
 	 */
 	public ExoPlanet buildSpecialUnreachable(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
@@ -300,11 +289,11 @@ public class AstroBuilder {
 	/**
 	 * Builds unreachable planet.
 	 *
-	 * @param planetName  the planet name
-	 * @param solarSystem the solar system
-	 * @param randomPhase the random phase
-	 * @param au          the au
-	 * @return the planet
+	 * @param  planetName  the planet name
+	 * @param  solarSystem the solar system
+	 * @param  randomPhase the random phase
+	 * @param  au          the au
+	 * @return             the planet
 	 */
 	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
@@ -313,18 +302,6 @@ public class AstroBuilder {
 		unreachable.setRelativeSize(1.0F);
 		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
 		GalaxyRegistry.registerPlanet(unreachable);
-		return unreachable;
-	}
-	
-	public OrbitalPlatform buildOrbitalPlatform() {
-		OrbitalPlatform unreachable = (OrbitalPlatform) new OrbitalPlatform("orbitalplatform").setParentBody(GalacticraftCore.planetOverworld);
-		unreachable.setBodyIcon(Assets.getCelestialTexture("orbitalplatform"));
-		unreachable.setPhaseShift(AstronomicalConstants.TWO_PI_F);
-		unreachable.setRelativeOrbitTime(GalacticraftCore.moonMoon.getRelativeOrbitTime() / 2);
-		unreachable.setRelativeSize(1.0F);
-		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
-		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(8.0F, 8.0F));
-		GalaxyRegistry.registerMoon(unreachable);
 		return unreachable;
 	}
 

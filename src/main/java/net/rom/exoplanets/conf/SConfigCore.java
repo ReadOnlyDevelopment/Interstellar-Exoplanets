@@ -26,11 +26,17 @@ package net.rom.exoplanets.conf;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import static net.rom.exoplanets.ExoInfo.Constants.*;
 
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -50,38 +56,54 @@ public class SConfigCore {
 	public static boolean enableOverworldOres;
 	public static boolean enableDebug;
 	public static boolean enableRealism;
-	
+
 	public static boolean warnBetaBuild;
-	public static int configVersion;
-	
-	private static String CATEGORY_GENERAL_MAIN = "Core Interstellar: Exoplanets Settings";
-	private static String CATEGORY_INTERNAL = "Core Internals !DO NOT CHANGE!";
+	public static int     configVersion;
 
-
+	private static Map<String, List<String>> propOrder = new TreeMap<>();
+	private static String                    currentCat;
 
 	public static void syncConfig(boolean load) {
 		try {
+			propOrder.clear();
+			Property prop;
 			if (!config.isChild) {
 				if (load) {
 					config.load();
 				}
 			}
-			
-			config.addCustomCategoryComment(CATEGORY_GENERAL_MAIN, "The Core Settings for Exoplanets");
-			config.setCategoryLanguageKey(CATEGORY_GENERAL_MAIN, "exoplanets.configgui.category.generalmain");
-			config.setCategoryRequiresMcRestart(CATEGORY_GENERAL_MAIN, true);
-			
-			config.addCustomCategoryComment(CATEGORY_INTERNAL, "Core Internals !DO NOT CHANGE!");
-			config.setCategoryLanguageKey(CATEGORY_INTERNAL, "exoplanets.configgui.category.interals");
-			
 
-			enableCheckVersion = config.getBoolean("enableCheckVersion", CATEGORY_GENERAL_MAIN, true, "Enable/Disable Check Version", "exoplanets.configgui.enableCheckVersion");
-			enableOverworldOres = config.getBoolean("enableDebug", CATEGORY_GENERAL_MAIN, false, "Enable/Disable Generation Ores on Overworld", "exoplanets.configgui.enableOverworldOres");
-			enableDebug = config.getBoolean("enableOverworldOres", CATEGORY_GENERAL_MAIN, false, "Enable/Disable Debug mode", "exoplanets.configgui.enableDebug");
-			enableRealism = config.getBoolean("enableRealism", CATEGORY_GENERAL_MAIN, false, "Enabling Realism loads the round & realistic Celestial Body Textures on the Celestial Map", "exoplanets.configgui.enableRealism");
+			config.addCustomCategoryComment(CATEGORY_CORE, CATEGORY_CORE);
+			config.setCategoryLanguageKey(CATEGORY_CORE, CATEGORY_CORE_LANGKEY);
+			config.setCategoryRequiresMcRestart(CATEGORY_CORE, true);
 
-			warnBetaBuild = config.getBoolean("warnOnBetaBuild", CATEGORY_INTERNAL, true, "DO NOT CHANGE");
-			
+			prop = getConfig(CATEGORY_CORE, "enableCheckVersion", true);
+			prop.setComment("Enable/Disable Check Version");
+			prop.setLanguageKey("exoplanets.configgui.enableCheckVersion");
+			enableCheckVersion = prop.getBoolean(true);
+			finishProp(prop);
+
+			prop = getConfig(CATEGORY_CORE, "enableOverworldOres", true);
+			prop.setComment("Enable/Disable Generation Ores on Overworld");
+			prop.setLanguageKey("exoplanets.configgui.enableDebug");
+			enableOverworldOres = prop.getBoolean(true);
+			finishProp(prop);
+
+			prop = getConfig(CATEGORY_CORE, "enableRealism", false);
+			prop.setComment("Enabling loads the round & realistic Celestial Body Textures on the Celestial Map");
+			prop.setLanguageKey("exoplanets.configgui.enableRealism");
+			enableRealism = prop.getBoolean(false);
+			finishProp(prop);
+
+			prop = getConfig(CATEGORY_CORE, "warnBetaBuild", true);
+			prop.setComment("Set to false to stop the Beta GUI from appearing at startup");
+			prop.setLanguageKey("exoplanets.configgui.guiBeta");
+			warnBetaBuild = prop.getBoolean(true);
+			finishProp(prop);
+
+			// Cleanup older GC config files
+			// cleanConfig(config, propOrder);
+
 			if (config.hasChanged()) {
 				config.save();
 			}
@@ -90,18 +112,52 @@ public class SConfigCore {
 		}
 	}
 
+	public static void cleanConfig(Configuration config, Map<String, List<String>> propOrder) {
+		List<String> categoriesToRemove = new LinkedList<>();
+		for (String catName : config.getCategoryNames()) {
+			List<String> newProps = propOrder.get(catName);
+			if (newProps == null) {
+				categoriesToRemove.add(catName);
+			} else {
+				ConfigCategory cat      = config.getCategory(catName);
+				List<String>   toRemove = new LinkedList<>();
+				for (String oldprop : cat.keySet()) {
+					if (!newProps.contains(oldprop)) {
+						toRemove.add(oldprop);
+					}
+				}
+				for (String removeMe : toRemove) {
+					cat.remove(removeMe);
+				}
+				config.setCategoryPropertyOrder(catName, propOrder.get(catName));
+			}
+		}
+		for (String catName : categoriesToRemove) {
+			config.removeCategory(config.getCategory(catName));
+		}
+	}
+
+	private static Property getConfig(String cat, String key, boolean defaultValue) {
+		config.moveProperty(CATEGORY_CORE, key, cat);
+		currentCat = cat;
+		return config.get(cat, key, defaultValue);
+	}
+
+	private static void finishProp(Property prop) {
+		if (propOrder.get(currentCat) == null) {
+			propOrder.put(currentCat, new ArrayList<String>());
+		}
+		propOrder.get(currentCat).add(prop.getName());
+	}
+
 	public static List<IConfigElement> getConfigElements() {
-		List<IConfigElement> list = new ArrayList<IConfigElement>();
-		
-		ConfigCategory configGeneral = config.getCategory(CATEGORY_GENERAL_MAIN);
+		List<IConfigElement> list          = new ArrayList<IConfigElement>();
+		ConfigCategory       configGeneral = config.getCategory(CATEGORY_CORE);
 		configGeneral.setComment("Core Settings");
 		list.add(new ConfigElement(configGeneral));
-		
-
-
 		return list;
 	}
-	
+
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
 		if (eventArgs.getModID().equals(ExoInfo.MODID)) {

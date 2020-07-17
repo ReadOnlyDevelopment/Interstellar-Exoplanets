@@ -43,12 +43,43 @@ exoplanets.gui.failed=There was a problem while trying to open Discord Invite Li
 
 ## CONFIG GUI ##
 exoplanets.configgui.title=Exoplanets Settings
-exoplanets.configgui.category.generalmain=Core Settings
+exoplanets.configgui.category.core=Core Settings
 exoplanets.configgui.category.dimensionids=Exoplanets Dimension ID's
-exoplanets.configgui.category.generalsystemsconf=General Solar Systems Settings
-exoplanets.configgui.category.systemstier=Solar System Tier Requirements
-exoplanets.configgui.category.systemsmappos=Solar System Map Positions
+exoplanets.configgui.category.sysgeneral=Solar Systems Settings
+exoplanets.configgui.category.systier=Solar System Tier Requirements
+exoplanets.configgui.category.sysmap=Solar System Map Positions
 
+exoplanets.configgui.yzceti_tier=Yz Ceti Tier
+exoplanets.configgui.wolf_tier=Wolf 1061 Tier
+exoplanets.configgui.trap_tier=Trappist 1 System Tier
+exoplanets.configgui.toggleyzceti=Disable Yz Ceti System
+exoplanets.configgui.togglewolf1061=Disable Wolf 1061 System
+exoplanets.configgui.toggletrappist1=Disable Trappist 1 System
+exoplanets.configgui.togglekepler1649=Disable Kepler 1649 System
+exoplanets.configgui.toggleunfinished=Hide / Disable Unfinished Systems
+exoplanets.configgui.yzceticoord=Yz Ceti System Coords
+exoplanets.configgui.wolfcoord=Wolf 1061 System Coords
+exoplanets.configgui.trappistcoord=Trappist 1 System Coords
+exoplanets.configgui.k1649coord=Kepler 1649 System Coords
+exoplanets.configgui.id_yz_b=Yz Ceti B
+exoplanets.configgui.id_yz_c=Yz Ceti C
+exoplanets.configgui.id_yz_d=Yz Ceti D
+exoplanets.configgui.id_wolf_b=Wolf 1061 B
+exoplanets.configgui.id_wolf_c=Wolf 1061 C
+exoplanets.configgui.id_wolf_d=Wolf 1061 D
+exoplanets.configgui.id_trap_b=Trappist 1 B
+exoplanets.configgui.id_trap_c=Trappist 1 C
+exoplanets.configgui.id_trap_d=Trappist 1 D
+exoplanets.configgui.id_trap_e=Trappist 1 E
+exoplanets.configgui.id_trap_f=Trappist 1 F
+exoplanets.configgui.id_trap_g=Trappist 1 G
+exoplanets.configgui.id_trap_h=Trappist 1 H
+exoplanets.configgui.id_kepler_b=Kepler 1649 B
+exoplanets.configgui.id_kepler_c=Kepler 1649 C
+exoplanets.configgui.enableCheckVersion=Check Version
+exoplanets.configgui.enableDebug=Overworld Ores
+exoplanets.configgui.enableRealism=Realism Mode
+exoplanets.configgui.guiBeta=Warn on Beta Build
 
 ## tile.exoplanets..name=
 
