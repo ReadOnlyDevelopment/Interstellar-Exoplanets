@@ -33,7 +33,10 @@ public enum EnumMetal implements IMetal {
     PLATINUM(4, "Platinum"),
     ALUMINIUM(5, "Aluminium"),
     TITANIUM(6, "Titanium"),
-	TUNGSTEN(7, "Tungsten");
+	TUNGSTEN(7, "Tungsten"),
+	SILVER(8, "Silver"),
+	IRON(9, "Iron"),
+	ZINC(10, "Zinc");
 
     public final int meta;
     public final int dimension;
@@ -85,6 +88,16 @@ public enum EnumMetal implements IMetal {
     public int getDimension() {
         return dimension;
     }
+    
+    @Override
+    public boolean isAlloy() {
+        return false;
+    }
+    
+	@Override
+	public boolean isClad() {
+		return false;
+	}
 
     @Override
     public ItemStack getBlock() {
@@ -104,17 +117,11 @@ public enum EnumMetal implements IMetal {
     @Override
     public ItemStack getDust() {
         return new ItemStack(ExoItems.metalDust, 1, meta);
-
     }
 
     @Override
-    public boolean isAlloy() {
-        return false;
-    }
-
-    @Override
-    public ItemStack getPlate() {
-        return new ItemStack(ExoItems.plateBasic, 1, meta);
+    public ItemStack getSheet() {
+        return new ItemStack(ExoItems.sheetBasic, 1, meta);
     }
 
     @Override
@@ -122,18 +129,13 @@ public enum EnumMetal implements IMetal {
         return new ItemStack(ExoItems.gearBasic, 1, meta);
     }
 
-    public ItemStack getBonus() {
-        switch (this) {
-            case ALUMINIUM:
-                return ALUMINIUM.getDust();
-            case NICKEL:
-                return PLATINUM.getDust();
-            case PLATINUM:
-                return TITANIUM.getDust();
-            case TUNGSTEN:
-            	return EnumByproduct.MOLYBDENUM.getDust();
-            default:
-                return null;
-        }
-    }
+	@Override
+	public ItemStack getPlate() {
+		return null;
+	}
+
+	@Override
+	public ItemStack getPile() {
+		return null;
+	}
 }

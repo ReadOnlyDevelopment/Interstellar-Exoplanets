@@ -1,25 +1,18 @@
-/*
- * The MIT License (MIT)
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
  *
- * Copyright (c) 2020, ROMVoid95 <rom.readonlydev@gmail.com>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package net.rom.exoplanets.content.block.machine;
@@ -49,126 +42,126 @@ import net.minecraft.world.World;
 import net.rom.exoplanets.content.EnumMachineState;
 import net.rom.exoplanets.content.item.IExoMetal;
 
-
 public class BlockMachine extends BlockContainer implements IExoMetal {
-    public static final PropertyEnum<EnumMachineState> FACING = PropertyEnum.create("facing", EnumMachineState.class);
+	public static final PropertyEnum<EnumMachineState> FACING = PropertyEnum.create("facing", EnumMachineState.class);
 
-    BlockMachine(Material materialIn) {
-        super(materialIn);
-        this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumMachineState.NORTH_OFF));
+	BlockMachine(Material materialIn) {
+		super(materialIn);
+		this.setDefaultState(blockState.getBaseState().withProperty(FACING, EnumMachineState.NORTH_OFF));
 
-        this.setHardness(4.0f);
-        this.setResistance(6000.0f);
-        this.setSoundType(SoundType.METAL);
-        this.setHarvestLevel("pickaxe", 1);
-    }
+		this.setHardness(4.0f);
+		this.setResistance(6000.0f);
+		this.setSoundType(SoundType.METAL);
+		this.setHarvestLevel("pickaxe", 1);
+	}
 
-    @Override
-    public List<ItemStack> getSubItems(Item item) {
-        return ImmutableList.of(new ItemStack(item));
-    }
+	@Override
+	public List<ItemStack> getSubItems(Item item) {
+		return ImmutableList.of(new ItemStack(item));
+	}
 
-    public EnumMachineState getMachineState(World world, BlockPos pos) {
-        return getMachineState(world.getBlockState(pos));
-    }
+	public EnumMachineState getMachineState(World world, BlockPos pos) {
+		return getMachineState(world.getBlockState(pos));
+	}
 
-    public EnumMachineState getMachineState(IBlockState state) {
-        return state.getValue(FACING);
-    }
+	public EnumMachineState getMachineState(IBlockState state) {
+		return state.getValue(FACING);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return null;
-    }
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return null;
+	}
 
-    @Override
-    public int getLightValue(IBlockState state) {
-        return getMachineState(state).isOn ? 15 : 0;
-    }
+	@Override
+	public int getLightValue(IBlockState state) {
+		return getMachineState(state).isOn ? 15 : 0;
+	}
 
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        this.setDefaultFacing(worldIn, pos, state);
-    }
+	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		this.setDefaultFacing(worldIn, pos, state);
+	}
 
-    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
-        if (!worldIn.isRemote) {
-            Block block = worldIn.getBlockState(pos.north()).getBlock();
-            Block block1 = worldIn.getBlockState(pos.south()).getBlock();
-            Block block2 = worldIn.getBlockState(pos.west()).getBlock();
-            Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
+		if (!worldIn.isRemote) {
+			Block block  = worldIn.getBlockState(pos.north()).getBlock();
+			Block block1 = worldIn.getBlockState(pos.south()).getBlock();
+			Block block2 = worldIn.getBlockState(pos.west()).getBlock();
+			Block block3 = worldIn.getBlockState(pos.east()).getBlock();
 
-            EnumMachineState machineState = state.getValue(FACING);
+			EnumMachineState machineState = state.getValue(FACING);
 
-            if (machineState == EnumMachineState.NORTH_OFF && block.isFullBlock(state) && !block1.isFullBlock(state)) {
-                machineState = EnumMachineState.SOUTH_OFF;
-            } else if (machineState == EnumMachineState.SOUTH_OFF && block1.isFullBlock(state) && !block.isFullBlock(state)) {
-                machineState = EnumMachineState.NORTH_OFF;
-            } else if (machineState == EnumMachineState.WEST_OFF && block2.isFullBlock(state) && !block3.isFullBlock(state)) {
-                machineState = EnumMachineState.EAST_OFF;
-            } else if (machineState == EnumMachineState.EAST_OFF && block3.isFullBlock(state) && !block2.isFullBlock(state)) {
-                machineState = EnumMachineState.WEST_OFF;
-            }
+			if (machineState == EnumMachineState.NORTH_OFF && block.isFullBlock(state) && !block1.isFullBlock(state)) {
+				machineState = EnumMachineState.SOUTH_OFF;
+			} else if (machineState == EnumMachineState.SOUTH_OFF && block1.isFullBlock(state) && !block.isFullBlock(state)) {
+				machineState = EnumMachineState.NORTH_OFF;
+			} else if (machineState == EnumMachineState.WEST_OFF && block2.isFullBlock(state) && !block3.isFullBlock(state)) {
+				machineState = EnumMachineState.EAST_OFF;
+			} else if (machineState == EnumMachineState.EAST_OFF && block3.isFullBlock(state) && !block2.isFullBlock(state)) {
+				machineState = EnumMachineState.WEST_OFF;
+			}
 
-            worldIn.setBlockState(pos, state.withProperty(FACING, machineState), 2);
-        }
-    }
+			worldIn.setBlockState(pos, state.withProperty(FACING, machineState), 2);
+		}
+	}
 
-    @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        EnumMachineState machineState = EnumMachineState.fromEnumFacing(placer.getHorizontalFacing().getOpposite());
-        return this.getDefaultState().withProperty(FACING, machineState);
-    }
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		EnumMachineState machineState = EnumMachineState.fromEnumFacing(placer.getHorizontalFacing().getOpposite());
+		return this.getDefaultState().withProperty(FACING, machineState);
+	}
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
-        EnumMachineState machineState = EnumMachineState.fromEnumFacing(placer.getHorizontalFacing().getOpposite());
-        world.setBlockState(pos, state.withProperty(FACING, machineState), 2);
-    }
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
+		EnumMachineState machineState = EnumMachineState.fromEnumFacing(placer.getHorizontalFacing().getOpposite());
+		world.setBlockState(pos, state.withProperty(FACING, machineState), 2);
+	}
 
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof IInventory) {
-            InventoryHelper.dropInventoryItems(world, pos, (IInventory) tile);
-            world.updateComparatorOutputLevel(pos, this);
-        }
-        super.breakBlock(world, pos, state);
-    }
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof IInventory) {
+			InventoryHelper.dropInventoryItems(world, pos, (IInventory) tile);
+			world.updateComparatorOutputLevel(pos, this);
+		}
+		super.breakBlock(world, pos, state);
+	}
 
-    @Override
-    public boolean hasComparatorInputOverride(IBlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state) {
+		return true;
+	}
 
-    @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
-        return Container.calcRedstone(world.getTileEntity(pos));
-    }
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
+		return Container.calcRedstone(world.getTileEntity(pos));
+	}
 
-    @Override
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-        return new ItemStack(Item.getItemFromBlock(this));
-    }
+	@Override
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+		return new ItemStack(Item.getItemFromBlock(this));
+	}
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
 
-    public IBlockState getStateFromMeta(int meta) {
-        EnumMachineState machineState = EnumMachineState.fromMeta(meta);
-        return getDefaultState().withProperty(FACING, machineState);
-    }
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		EnumMachineState machineState = EnumMachineState.fromMeta(meta);
+		return getDefaultState().withProperty(FACING, machineState);
+	}
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).meta;
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FACING).meta;
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
-    }
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FACING);
+	}
 }

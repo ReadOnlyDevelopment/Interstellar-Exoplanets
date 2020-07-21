@@ -16,31 +16,47 @@
  */
 package net.rom.exoplanets.content.block.ore;
 
+import java.util.Random;
+
+import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.rom.exoplanets.content.block.BlockGeneral;
 import net.rom.exoplanets.internal.RecipeBuilder;
-import net.rom.exoplanets.internal.inerf.ICustomModel;
 
-public class DenseMeteoricIron extends BlockGeneral implements ICustomModel {
+public class DenseMeteoricIron extends BlockGeneral {
 
 
 	public DenseMeteoricIron(Material materialIn) {
-		super(materialIn);
+		super(Material.IRON);
+		this.setHardness(3.0f);
+		this.setResistance(15.0f);
 		this.setSoundType(SoundType.ANVIL);
-		// TODO: Auto-generated constructor stub
-	}
 
-	@Override
-	public void registerModels() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void addRecipes(RecipeBuilder recipes) {
-		// TODO Auto-generated method stub
-		
+		ItemStack ore   = new ItemStack(this, 1);
+		ItemStack ingot = null;  //metal.getIngot();
+
+		// Vanilla smelting
+		recipes.addSmelting(ore, ingot, 0.5f);
 	}
 
+	@Override
+	public void addOreDict() {
+		ItemStack stack = new ItemStack(this, 1);
+		OreDictionary.registerOre("oreMeteoricIron", stack);
+
+	}
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return GCItems.meteorChunk;
+	}
 }

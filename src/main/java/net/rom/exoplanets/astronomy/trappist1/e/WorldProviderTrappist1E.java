@@ -43,12 +43,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Beach;
-import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_DeepOcean;
-import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_River;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_HighPlains;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeDecoratorTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.worldgen.BiomeProviderTrappist1E;
 import net.rom.exoplanets.init.InitPlanets;
@@ -113,11 +112,11 @@ public class WorldProviderTrappist1E extends WE_WorldProvider {
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.4D, 6, 1000.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.5D, 6, 1200.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(); 
-		terrainGenerator.worldSeaGen = true;
+		terrainGenerator.worldSeaGen = false;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
@@ -139,13 +138,10 @@ public class WorldProviderTrappist1E extends WE_WorldProvider {
 		
 		cp.worldGenerators.clear();
 		cp.biomesList.clear();
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Ocean(-3.8D, 3.8D, false));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Beach(-3.5D, 3.2D, 1));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains(-3.0D, 3.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_River(-1.5D, 1.5D));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Dunes(-1.2D, 1.2D));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Ocean(-0.0D, 0.0D, true));		
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains(-0.0D, 0.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_HighPlains(-0.8D, 1.8D));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains(-0.5D, 1.0D, 150, 2.8D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_River(-0.8D, 0.8D));
 	}
 
 	@Override

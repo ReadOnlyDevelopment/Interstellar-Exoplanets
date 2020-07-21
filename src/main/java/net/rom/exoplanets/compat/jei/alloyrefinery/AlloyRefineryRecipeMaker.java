@@ -22,7 +22,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -19,8 +19,8 @@ package net.rom.exoplanets.init;
 
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_b;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_c;
-import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_d;
-import static net.rom.exoplanets.conf.SConfigSystems.yzceti_tier;
+import static net.rom.exoplanets.conf.SConfigDimensionID.*;
+import static net.rom.exoplanets.conf.SConfigSystems.*;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
@@ -28,10 +28,12 @@ import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
+import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
@@ -156,14 +158,17 @@ public class InitPlanets {
 		}
 
 		if (IniSystems.buildkepler1649) {
+			
+			kepler1649c = builder.buildExoPlanet(IniSystems.kepler1649, "kepler1649c", WorldProviderKepler1649c.class, id_kepler_c, k1649_tier, 0.9F);
+			builder.setData(kepler1649c, ClassBody.SELENA, kepler1649Au[1], 0.005f, 0.5f, 0, 26500L);
+			builder.setExoData(kepler1649c, 5.0f, 1.2f, 1.06f);
+			builder.setAtmos(kepler1649c, EnumAtmosphericGas.NITROGEN, EnumAtmosphericGas.ARGON);
+			GalaxyRegistry.registerPlanet(kepler1649c);
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
-
-				kepler1649b = builder.buildUnreachablePlanet("kepler1649b", IniSystems.kepler1649, 0.6451158F);
-				builder.setData(kepler1649b, ClassBody.SELENA, kepler1649Au[0], 0.55F, kepler1649Au[0], 0, 24000L);
-
-				kepler1649c = builder.buildUnreachablePlanet("kepler1649c", IniSystems.kepler1649, 1.932375F);
-				builder.setData(kepler1649c, ClassBody.SELENA, kepler1649Au[1], 0.55F, kepler1649Au[1], 0, 24000L);
+				
+				kepler1649b = builder.buildUnreachablePlanet("kepler1649b", IniSystems.kepler1649, 1.932375F);
+				builder.setData(kepler1649b, ClassBody.SELENA, kepler1649Au[0], 0.55F, kepler1649Au[1], 0, 24000L);
 			}
 
 		}
@@ -174,6 +179,7 @@ public class InitPlanets {
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerTeleportType(WorldProviderKepler1649c.class, new TeleportTypeMoon());
 		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiB.class, getWorldGui("yzcetib"));
 		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiC.class, getWorldGui("yzcetic"));
 		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, getWorldGui("yzcetid"));

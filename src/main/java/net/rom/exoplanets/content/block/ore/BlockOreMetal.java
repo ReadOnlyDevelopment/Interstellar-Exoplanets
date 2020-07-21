@@ -31,7 +31,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.block.BlockExoOre;
-import net.rom.exoplanets.content.block.decoration.BlockMetalDecoration;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.ICustomModel;
 import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;

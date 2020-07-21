@@ -17,9 +17,10 @@
 
 package net.rom.exoplanets.astronomy.trappist1;
 
-import net.rom.exoplanets.astronomy.trappist1.e.blocks.Trappist1E_Dirt;
-import net.rom.exoplanets.astronomy.trappist1.e.blocks.Trappist1E_Grass;
 import net.rom.exoplanets.content.block.BlockTerrain;
+import net.rom.exoplanets.content.block.ore.BlockOrePlanet;
+import net.rom.exoplanets.content.block.terrain.BlockExoDirt;
+import net.rom.exoplanets.content.block.terrain.BlockExoGrass;
 import net.rom.exoplanets.content.block.terrain.BlockMetamorphicRock;
 import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.internal.StellarRegistry;
@@ -30,18 +31,18 @@ public class TrappistBlocks {
 		
 		registry.generateJsonFiles(false);
 		
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "trap1_dark_hot", "trappist1");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "trap1_solid_hot", "trappist1");
-		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "trap1_bright_solid_hot", "trappist1");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "trap1_dark_hot");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "trap1_solid_hot");
+		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "trap1_bright_solid_hot");
 		
-		ExoBlocks.register(TrappistC.T1C_TOP, "trap1c_top", "trappist1");
-		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trap1c_dirt", "trappist1");
-		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trap1c_dirt_1", "trappist1");
+		ExoBlocks.register(TrappistC.T1C_TOP, "trap1c_top");
+		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trap1c_dirt");
+		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trap1c_dirt_1");
 		
-		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass", "trappist1");
-		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt", "trappist1");
-		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone", "trappist1");
-		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone", "trappist1");
+		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass");
+		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
+		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
+		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
 		
 	}
 	
@@ -50,7 +51,6 @@ public class TrappistBlocks {
 		public static final BlockTerrain HOT_GROUND_1 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_2 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_3 = new BlockTerrain();
-		
 	}
 	
 	public static class TrappistC {
@@ -62,8 +62,8 @@ public class TrappistBlocks {
 	
 	public static class TrappistE {
 		
-		public static final Trappist1E_Grass trap1e_grass = new Trappist1E_Grass();
-		public static final Trappist1E_Dirt trap1e_dirt = new Trappist1E_Dirt();
+		public static final BlockExoGrass trap1e_grass = new BlockExoGrass();
+		public static final BlockExoDirt trap1e_dirt = new BlockExoDirt();
 		public static final BlockMetamorphicRock trap1e_cobblestone = new BlockMetamorphicRock();
 		public static final BlockMetamorphicRock trap1e_stone = new BlockMetamorphicRock();
 	}

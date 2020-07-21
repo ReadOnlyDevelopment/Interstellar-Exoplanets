@@ -33,8 +33,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.rom.api.research.exception.ExoRuntimeException;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.exception.ExoRuntimeException;
 
 public class JsonUtil {
     private static String currentParentObject;
@@ -112,7 +112,7 @@ public class JsonUtil {
                         NBTTagCompound tagCompound = JsonToNBT.getTagFromJson(obj.get("nbt").toString());
                         itemStack.setTagCompound(tagCompound);
                     } catch (NBTException e) {
-                    	ExoplanetsMod.logger.formatted_Error("Could not parse NBT tag from Json in '%s'", e);
+                    	ExoplanetsMod.logger.error("Could not parse NBT tag from Json in '%s'", e);
                     }
                 }
                 return itemStack;
@@ -133,7 +133,7 @@ public class JsonUtil {
                         double z = array.get(2).getAsDouble();
                         return new Vec3d(x, y, z);
                     } catch (Exception e) {
-                    	ExoplanetsMod.logger.formatted_Error("All elements in Vec3 array must be decimals", e);
+                    	ExoplanetsMod.logger.error("All elements in Vec3 array must be decimals", e);
                     }
                 }
             }
@@ -149,7 +149,7 @@ public class JsonUtil {
                 removeDoubleQuotes(tagCompound);
                 return tagCompound;
             } catch (NBTException e) {
-            	ExoplanetsMod.logger.formatted_Error("Could not parse NBT tag from Json", e);
+            	ExoplanetsMod.logger.error("Could not parse NBT tag from Json", e);
             }
         }
         return def;

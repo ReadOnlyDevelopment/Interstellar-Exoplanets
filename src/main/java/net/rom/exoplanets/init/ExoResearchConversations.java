@@ -17,7 +17,7 @@
 
 package net.rom.exoplanets.init;
 
-import net.rom.exoplanets.api.research.conversation.IConversationRegistry;
+import net.rom.api.research.conversation.IConversationRegistry;
 import net.rom.exoplanets.internal.MCUtil;
 
 public class ExoResearchConversations {

@@ -27,9 +27,9 @@ import net.rom.exoplanets.init.ExoItems;
 public enum EnumAlloy implements IStringSerializable, IMetal {
     BRONZE(0, "Bronze"),
     BRASS(1, "Brass"),
-    STEEL(2, "Steel");
+    STEEL(2, "Steel"),
+    A2219(3, "A2219");
 	
-
     private final int meta;
     private final String name;
 
@@ -58,6 +58,16 @@ public enum EnumAlloy implements IStringSerializable, IMetal {
         }
         return values()[meta];
     }
+    
+    @Override
+    public boolean isAlloy() {
+        return true;
+    }
+    
+	@Override
+	public boolean isClad() {
+		return false;
+	}
 
     public ItemStack getBlock() {
         return new ItemStack(ExoBlocks.alloyBlock, 1, meta);
@@ -76,17 +86,22 @@ public enum EnumAlloy implements IStringSerializable, IMetal {
     }
 
     @Override
-    public boolean isAlloy() {
-        return true;
-    }
-
-    @Override
-    public ItemStack getPlate() {
-        return new ItemStack(ExoItems.plateAlloy, 1, meta);
+    public ItemStack getSheet() {
+        return new ItemStack(ExoItems.sheetAlloy, 1, meta);
     }
 
     @Override
     public ItemStack getGear() {
         return new ItemStack(ExoItems.gearAlloy, 1, meta);
     }
+
+	@Override
+	public ItemStack getPlate() {
+		return null;
+	}
+
+	@Override
+	public ItemStack getPile() {
+		return null;
+	}
 }

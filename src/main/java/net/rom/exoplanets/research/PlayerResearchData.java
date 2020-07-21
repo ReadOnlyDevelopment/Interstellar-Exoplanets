@@ -26,9 +26,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.rom.api.research.ResearchStack;
+import net.rom.api.research.ResearchState;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.api.research.ResearchStack;
-import net.rom.exoplanets.api.research.ResearchState;
 import net.rom.exoplanets.capability.ResearchCapability;
 
 public class PlayerResearchData {
@@ -78,7 +78,7 @@ public class PlayerResearchData {
                     }
                 }
             } catch (Exception e) {
-            	ExoplanetsMod.logger.formatted_Error("There was a problem while loading Completed Research", e);
+            	ExoplanetsMod.logger.error("There was a problem while loading Completed Research", e);
             }
         }
         if (dataTypes.contains(DataType.ACTIVE_RESEARCH)) {
@@ -91,7 +91,7 @@ public class PlayerResearchData {
                     }
                 }
             } catch (Exception e) {
-            	ExoplanetsMod.logger.formatted_Error("There was a problem while loading Active Research", e);
+            	ExoplanetsMod.logger.error("There was a problem while loading Active Research", e);
             }
         }
     }

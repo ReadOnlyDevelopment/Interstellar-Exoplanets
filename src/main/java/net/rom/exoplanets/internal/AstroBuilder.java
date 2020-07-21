@@ -1,16 +1,28 @@
 /**
  * Copyright (C) 2020 Interstellar:  Exoplanets
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> parent of c40ce9e... uhg
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> parent of c40ce9e... uhg
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> parent of c40ce9e... uhg
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -226,10 +238,12 @@ public class AstroBuilder {
 	 * @param orbitOffsetX  the orbit offset X
 	 * @param orbitOffsetY  the orbit offset Y
 	 */
-	public void setOrbit(CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
+	public void setOrbit(CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX,
+			float orbitOffsetY) {
 		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
 		((ExPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
-		BodiesHelper.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime(), eccentricityX, eccentricityY, orbitOffsetX, orbitOffsetY);
+		BodiesHelper.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime(), eccentricityX,
+				eccentricityY, orbitOffsetX, orbitOffsetY);
 
 	}
 
@@ -265,6 +279,18 @@ public class AstroBuilder {
 			body.setDimensionInfo(dimID, dimIDStatic, provider);
 			body.setBiomeInfo(new Biome[] { BiomeOrbit.space });
 		}
+		return body;
+	}
+
+	public Moon buildMoon(Planet parent, String name, int dimID, float size, float distancefromcenter,
+			float relativetime) {
+		Moon body = (new Moon(name)).setParentPlanet(parent);
+		body.setRingColorRGB(0.8F, 0.0F, 0.0F);
+		body.setRelativeSize(size);
+		body.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(distancefromcenter, distancefromcenter));
+		body.setRelativeOrbitTime(relativetime);
+		body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/moons/space_station.png"));
+		GalaxyRegistry.registerMoon(body);
 		return body;
 	}
 
@@ -331,6 +357,18 @@ public class AstroBuilder {
 	public void registerMoon(Moon moon) {
 		GalaxyRegistry.registerMoon(moon);
 	}
+	
+	public void register(Object val) {
+		if (val instanceof SolarSystem) {
+			GalaxyRegistry.registerSolarSystem((SolarSystem) val);
+		}
+		if (val instanceof Planet) {
+			GalaxyRegistry.registerPlanet((Planet) val);
+		}
+		if (val instanceof Moon) {
+			GalaxyRegistry.registerMoon((Moon) val);
+		}
+	}
 
 	/**
 	 * Register teleport type.
@@ -349,6 +387,7 @@ public class AstroBuilder {
 	 * @param resource the resource
 	 */
 	public void registerRocketGui(Class<? extends WorldProvider> clazz, String resource) {
-		GalacticraftRegistry.registerRocketGui(clazz, new ResourceLocation(getModid() + ":textures/gui/rocket/" + resource + ".png"));
+		GalacticraftRegistry.registerRocketGui(clazz,
+				new ResourceLocation(getModid() + ":textures/gui/rocket/" + resource + ".png"));
 	}
 }

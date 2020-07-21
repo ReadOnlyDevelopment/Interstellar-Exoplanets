@@ -31,6 +31,8 @@ public interface IMetal extends IStringSerializable {
     }
 
     boolean isAlloy();
+    
+    boolean isClad();
 
     ItemStack getBlock();
 
@@ -40,7 +42,11 @@ public interface IMetal extends IStringSerializable {
 
     ItemStack getDust();
 
+    ItemStack getSheet();
+    
     ItemStack getPlate();
 
     ItemStack getGear();
+    
+    ItemStack getPile();
 }

@@ -22,7 +22,6 @@ import java.util.LinkedList;
 import net.minecraft.item.Item;
 import net.rom.exoplanets.content.item.ItemCraftingItem;
 import net.rom.exoplanets.content.item.ItemDustAlloy;
-import net.rom.exoplanets.content.item.ItemDustByproduct;
 import net.rom.exoplanets.content.item.ItemDustMetal;
 import net.rom.exoplanets.content.item.ItemIngotAlloy;
 import net.rom.exoplanets.content.item.ItemIngotMetal;
@@ -40,9 +39,8 @@ public class ExoItems {
     public static final Item alloyIngot = new ItemIngotAlloy();
     public static final Item alloyNugget = new ItemNuggetAlloy();
     public static final Item alloyDust = new ItemDustAlloy();
-    public static final Item dustByproduct = new ItemDustByproduct();
-    public static final Item plateBasic = new ItemCraftingItem("plate", false);
-    public static final Item plateAlloy = new ItemCraftingItem("plate", true);
+    public static final Item sheetBasic = new ItemCraftingItem("sheet", false);
+    public static final Item sheetAlloy = new ItemCraftingItem("sheet", true);
     public static final Item gearBasic = new ItemCraftingItem("gear", false);
     public static final Item gearAlloy = new ItemCraftingItem("gear", true);
 
@@ -61,9 +59,8 @@ public class ExoItems {
 		register(alloyIngot, "alloyingot");
 		register(alloyNugget, "alloynugget");
 		register(alloyDust, "alloydust");
-		register(dustByproduct, "byproductdust");
-		register(plateBasic, "metalplate");
-		register(plateAlloy, "alloyplate");
+		register(sheetBasic, "metalsheet");
+		register(sheetAlloy, "alloysheet");
 		register(gearBasic, "metalgear");
 		register(gearAlloy, "alloygear");
 

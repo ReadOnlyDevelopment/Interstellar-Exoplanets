@@ -21,7 +21,7 @@ import java.util.LinkedList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.rom.exoplanets.astronomy.kepler1649.KeplerBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.content.block.decoration.BlockAlarmLight;
@@ -46,11 +46,17 @@ import net.rom.exoplanets.content.block.stairs.BlockConcreteStairs;
 import net.rom.exoplanets.content.block.stairs.BlockRoofStairs;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzMetalFrame;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzStair;
+import net.rom.exoplanets.content.block.terrain.ExoLog;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoBlocks {
 	
 	private static StellarRegistry reg;
+	
+	public static Block launch_facility;
+	public static Block launch_facility_full;
+	
+	public static Block fake;
 
 	// ELECTRONIC
 	public static final Block raidcontroller = new BlockElectronic();
@@ -99,6 +105,15 @@ public class ExoBlocks {
 	public static final Block inset_lamp = new BlockInsetLamp(false);
 	public static final Block inset_lamp_lit = new BlockInsetLamp(true);
 	
+	// LOGS
+	public static final Block log_a_dark1 = new ExoLog();
+	public static final Block log_a = new ExoLog();
+	public static final Block log_a_rough = new ExoLog();
+	public static final Block log_a_dark2 = new ExoLog();
+	public static final Block log_b = new ExoLog();
+	public static final Block log_b_other = new ExoLog();
+	public static final Block log_b_rough = new ExoLog();
+	
     public static LinkedList<Block> blocksList = new LinkedList<>();
     
 
@@ -107,16 +122,14 @@ public class ExoBlocks {
 		
 		YzCetiBlocks.registerAll(reg);
 		TrappistBlocks.registerAll(reg);
-
-		// ORES
+		KeplerBlocks.registerAll(reg);
+		
 		register(metalOre, "metalore");		
         register(metalBlock, "metalblock");
         register(alloyBlock, "alloyblock");
         register(metalFurnace, "metalfurnace");
         register(alloyRefinery, "alloyrefinery");
         register(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
-
-		// DECORATIONS
 		register(com_relay, "com_relay");
 		register(control, "control");
 		register(raidcontroller, "raidcontroller");
@@ -129,20 +142,14 @@ public class ExoBlocks {
 		register(hydraulic_top, "hydraulic_top");
 		register(hydraulic_bottom, "hydraulic_bottom");
 		register(hydraulic_middle, "hydraulic_middle");
-
-		// LEVERS
 		register(lever1, "lever1");
 		register(lever2, "lever2");
 		register(lever3, "lever3");
-		
-		// STAIRS
 		register(concrete_stairs, "concrete_stairs");
 		register(concrete1_stairs, "concrete1_stairs");
 		register(space_quartz_stair, "space_quartz_stair");
 		register(space_quartz_metalframe, "space_quartz_metalframe");
 		register(roof_stairs, "roof_stairs");
-
-		// LAMPS / LIGHTS
 		register(alarm_light, "alarm_light");
 		register(alarm_light_lit, "alarm_light_lit");
 		register(wall_lamp, "wall_lamp");
@@ -153,6 +160,13 @@ public class ExoBlocks {
 		register(cellar_lamp_lit, "cellar_lamp_lit");
 		register(inset_lamp, "inset_lamp");
 		register(inset_lamp_lit, "inset_lamp_lit");
+		register(log_a_dark1, "log_a_dark1");
+		register(log_a, "log_a");
+		register(log_a_rough, "log_a_rough");
+		register(log_a_dark2, "log_a_dark2");
+		register(log_b, "log_b");
+		register(log_b_other, "log_b_other");
+		register(log_b_rough, "log_b_rough");
 
 	}
 
@@ -173,22 +187,5 @@ public class ExoBlocks {
 	
 	public static void setReg(StellarRegistry reg) {
 		ExoBlocks.reg = reg;
-	}
-	
-	public class CustomRegister extends StellarRegistry {
-		
-	    @Override
-	    public <T extends Block> T registerBlock(T block, String key, ItemBlock itemBlock) {
-	        super.registerBlock(block, key, itemBlock);
-	        
-	        if (block instanceof BlockOreMetal) {
-	        	BlockOreMetal exoOre = (BlockOreMetal) block;
-	        	for (int i = 0; i < exoOre.maxMeta; ++i) {
-	        		ItemStack stack = new ItemStack(itemBlock, 1, i);
-	        	}
-	        }
-			return block;
-	        
-	    }
 	}
 }

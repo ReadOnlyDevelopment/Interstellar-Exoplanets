@@ -36,14 +36,14 @@ public class ItemCraftingItem extends ItemBaseMetal {
 	private final String craftingItemName;
 	private final boolean isAlloy;
 	private final boolean isGear;
-	private final boolean isPlate;
+	private final boolean isSheet;
 
 	public ItemCraftingItem(String type, boolean isAlloy) {
 		super(type, type);
 		this.craftingItemName = type;
 		this.isAlloy = isAlloy;
 		this.isGear = "gear".equals(type);
-		this.isPlate = "plate".equals(type);
+		this.isSheet = "sheet".equals(type);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class ItemCraftingItem extends ItemBaseMetal {
 	public void addRecipes(RecipeBuilder recipes) {
 		if (isGear) {
 			for (IMetal metal : getMetals(this)) {
-				ItemStack gear = metal.getPlate();
+				ItemStack gear = metal.getSheet();
 
 				for (String metalName : metal.getMetalNames()) {
 					String mat = "ingot" + metalName;
@@ -74,12 +74,12 @@ public class ItemCraftingItem extends ItemBaseMetal {
 				}
 			}
 		}
-		if (isPlate) {
+		if (isSheet) {
 			for (IMetal metal : getMetals(this)) {
-				ItemStack plate = metal.getPlate();
+				ItemStack sheet = metal.getSheet();
 				for (String metalName : metal.getMetalNames()) {
 					String mat = "ingot" + metalName;
-					recipes.addShapedOre("plate_" + metalName, plate, " m ", "mim", " m ", 'm', mat, 'i', "ingotIron");
+					recipes.addShapedOre("sheet_" + metalName, sheet, " m ", "mim", " m ", 'm', mat, 'i', "ingotIron");
 				}
 			}
 		}

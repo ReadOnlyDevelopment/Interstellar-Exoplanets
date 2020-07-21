@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "exoplanets:blocks/wood/log_a_dark2"
+    }
+}

@@ -26,6 +26,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.astronomy.kepler1649.c.SkyProviderKepler1649c;
+import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.SkyProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.e.SkyProviderTrappist1E;
@@ -87,6 +89,15 @@ public class SkyProviders {
             if (world.provider instanceof WorldProviderTrappist1C) {
                 if (world.provider.getSkyRenderer() == null) {
                     world.provider.setSkyRenderer(new SkyProviderTrappist1C());
+                }
+
+                if (world.provider.getCloudRenderer() == null) {
+                    world.provider.setCloudRenderer(new CloudRenderer());
+                }
+            }
+            if (world.provider instanceof WorldProviderKepler1649c) {
+                if (world.provider.getSkyRenderer() == null) {
+                    world.provider.setSkyRenderer(new SkyProviderKepler1649c());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {

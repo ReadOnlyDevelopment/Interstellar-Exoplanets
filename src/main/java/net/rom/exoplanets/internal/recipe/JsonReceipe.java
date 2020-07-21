@@ -124,7 +124,7 @@ public final class JsonReceipe {
 
             // Warn about items with NBT, but go ahead and serialize what we can
             if (stack.hasTagCompound()) {
-                ExoplanetsMod.logger.formatted_Warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
+                ExoplanetsMod.logger.warn("Recipe component contains NBT and cannot be serialized properly: {}", component);
             }
 
             return ret;

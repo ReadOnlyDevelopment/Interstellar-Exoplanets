@@ -41,16 +41,18 @@ public class SConfigSystems {
 	static Configuration config;
 
 	public SConfigSystems(File file) {
-		SConfigSystems.config = new Configuration((file), "1.0");
+		SConfigSystems.config = new Configuration((file), "1.1");
 		SConfigSystems.syncConfig(true);
 
 	}
 
 	// SYSTEMS
+
 	public static boolean disable_yzceti_system;
 	public static boolean disable_wolf_system;
 	public static boolean disable_trap_system;
 	public static boolean disable_k1649_system;
+
 
 	// NOT FINISHED
 	public static boolean hideUnfinishedSystems;
@@ -58,14 +60,29 @@ public class SConfigSystems {
 	// SYSTEM-WIDE-TIER
 	public static int yzceti_tier;
 	public static int wolf_tier;
+	public static int hd_tier;
 	public static int trap_tier;
 	public static int k1649_tier;
 
 	// SYSTEMS MAP OFFSETS
+
 	public static double[] yzceti_map = { -1.0D, -1.1D };
 	public static double[] wolf_map   = { -2.0D, -1.5D };
 	public static double[] trap_map   = { 2.0D, -1.5D };
 	public static double[] k1649_map  = { 1.3D, -2.6D };
+
+	public static double yzceti_x;
+	public static double yzceti_y;
+
+	public static double wolf_x;
+	public static double wolf_y;
+
+	public static double hd_x;
+	public static double hd_y;
+
+	public static double trap_x;
+	public static double trap_y;
+
 
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
@@ -89,6 +106,7 @@ public class SConfigSystems {
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_GENERAL, true);
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_WIDE_TIERS, true);
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_MAP_POSITION, true);
+
 
 			prop = getConfig(CATEGORY_SYSTEMS_GENERAL, "Disable Yz Ceti System", false);
 			prop.setComment("Setting this option to false will disable the Yz Ceti System & Planets");
@@ -175,9 +193,6 @@ public class SConfigSystems {
 			prop.setLanguageKey("exoplanets.configgui.k1649coord");
 			k1649_map = prop.getDoubleList();
 			finishProp(prop);
-
-			// Cleanup older GC config files
-			// cleanConfig(config, propOrder);
 
 			if (config.hasChanged()) {
 				config.save();

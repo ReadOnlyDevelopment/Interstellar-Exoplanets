@@ -31,20 +31,20 @@ import net.rom.exoplanets.internal.world.star.ExoStar;
 
 public class IniSystems {
 
-	public static ExoStar	yzCetiStar;
-	public static ExoStar	wolf1061Star;
-	public static ExoStar	trappist1Star;
-	public static ExoStar	kepler1649star;
+	public static ExoStar yzCetiStar;
+	public static ExoStar wolf1061Star;
+	public static ExoStar trappist1Star;
+	public static ExoStar kepler1649star;
 
-	public static SolarSystem	yzCeti;
-	public static SolarSystem	wolf1061;
-	public static SolarSystem	trappist1;
-	public static SolarSystem	kepler1649;
+	public static SolarSystem yzCeti;
+	public static SolarSystem wolf1061;
+	public static SolarSystem trappist1;
+	public static SolarSystem kepler1649;
 
-	public static boolean	buildyzCeti		= false;
-	public static boolean	buildwolf1061	= false;
-	public static boolean	buildtrappist1	= false;
-	public static boolean	buildkepler1649	= false;
+	public static boolean buildyzCeti = false;
+	public static boolean buildwolf1061 = false;
+	public static boolean buildtrappist1 = false;
+	public static boolean buildkepler1649 = false;
 
 	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
@@ -95,9 +95,13 @@ public class IniSystems {
 	/*
 	 * Coords
 	 *
-	 * ZOLERN GALAXY (Psios) "X", -2.5 "Y", 1.2 (Praedyth) "X", -1.2 "Y", 1.4 (Sol-2) unused "X", 1.2 "Y", -1.2 (Pantheon) unused "X", 1.2 "Y", -1.2 (Olympus) unused "X", 1.2 "Y", -1.2 (Asgard) unused "X", 1.2 "Y", -1.2 (Vega) unused "X", 1.2 "Y", -1.2 (Nova) unused "X", 1.2 "Y", -1.2
+	 * ZOLERN GALAXY (Psios) "X", -2.5 "Y", 1.2 (Praedyth) "X", -1.2 "Y", 1.4
+	 * (Sol-2) unused "X", 1.2 "Y", -1.2 (Pantheon) unused "X", 1.2 "Y", -1.2
+	 * (Olympus) unused "X", 1.2 "Y", -1.2 (Asgard) unused "X", 1.2 "Y", -1.2 (Vega)
+	 * unused "X", 1.2 "Y", -1.2 (Nova) unused "X", 1.2 "Y", -1.2
 	 *
-	 * EXTRA PLANETS (kepler22) "X", 0.8 "Y", -0.6 (kepler47) "X", -0.40 "Y", -0.8 (kepler62) "X", -0.65 "Y", 0.9 (kepler69) "X", -0.90 "Y", 0.0
+	 * EXTRA PLANETS (kepler22) "X", 0.8 "Y", -0.6 (kepler47) "X", -0.40 "Y", -0.8
+	 * (kepler62) "X", -0.65 "Y", 0.9 (kepler69) "X", -0.90 "Y", 0.0
 	 *
 	 * MORE PLANETS (LAZENDUS) "X", 0.75 "Y", 1.25
 	 */

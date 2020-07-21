@@ -52,8 +52,8 @@ public class BlockMetalFurnace extends BlockMachine implements IAddRecipe, ITEBl
 	public void addRecipes(RecipeBuilder recipes) {
 		ItemStack result = new ItemStack(this);
 
-		recipes.addShaped("metal_furnace_bronze", result, "aaa", "afa", "bab", 'a', "plateBronze", 'b', Blocks.BRICK_BLOCK, 'f', Blocks.FURNACE);
-		recipes.addShaped("metal_furnace_brass", result, "aaa", "afa", "bab", 'a', "plateBrass", 'b', Blocks.BRICK_BLOCK, 'f', Blocks.FURNACE);
+		recipes.addShaped("metal_furnace_bronze", result, "aaa", "afa", "bab", 'a', "sheetBronze", 'b', Blocks.BRICK_BLOCK, 'f', Blocks.FURNACE);
+		recipes.addShaped("metal_furnace_brass", result, "aaa", "afa", "bab", 'a', "sheetBrass", 'b', Blocks.BRICK_BLOCK, 'f', Blocks.FURNACE);
 
 	}
 

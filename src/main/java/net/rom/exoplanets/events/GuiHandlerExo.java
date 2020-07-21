@@ -53,7 +53,7 @@ public class GuiHandlerExo implements IGuiHandler {
 				}
 				return null;
 			default:
-				ExoplanetsMod.logger.formatted_Warn("No GUI with ID {}!", ID);
+				ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
 				return null;
 		}
 	}
@@ -77,7 +77,7 @@ public class GuiHandlerExo implements IGuiHandler {
 				}
 				return null;
 			default:
-				ExoplanetsMod.logger.formatted_Warn("No GUI with ID {}!", ID);
+				ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
 				return null;
 		}
 	}

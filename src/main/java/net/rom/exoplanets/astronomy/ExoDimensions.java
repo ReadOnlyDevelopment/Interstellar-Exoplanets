@@ -18,6 +18,7 @@
 package net.rom.exoplanets.astronomy;
 
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import net.rom.exoplanets.astronomy.kepler1649.Kepler1649Dimensions;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.conf.SConfigDimensionID;
@@ -32,6 +33,8 @@ public class ExoDimensions {
 
 		TrappistDimensions.TRAPPIST_1C = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_c);
 		TrappistDimensions.TRAPPIST_1E = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_e);
+		
+		Kepler1649Dimensions.KEPLER1649_C = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_kepler_c);
 
 	}
 }

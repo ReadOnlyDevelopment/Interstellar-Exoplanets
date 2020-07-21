@@ -144,7 +144,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_All(String format, Object... object) {
+	public void all(String format, Object... object) {
 		log(Level.ALL, String.format(format, object));
 	}
 
@@ -154,7 +154,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Debug(String format, Object... object) {
+	public void debug(String format, Object... object) {
 		log(Level.DEBUG, String.format(format, object));
 	}
 
@@ -164,7 +164,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Error(String format, Object... object) {
+	public void error(String format, Object... object) {
 		log(Level.ERROR, String.format(format, object));
 	}
 
@@ -174,7 +174,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Fatal(String format, Object... object) {
+	public void fatal(String format, Object... object) {
 		log(Level.FATAL, String.format(format, object));
 	}
 
@@ -184,7 +184,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Info(String format, Object... object) {
+	public void info(String format, Object... object) {
 		log(Level.INFO, String.format(format, object));
 	}
 
@@ -194,7 +194,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Trace(String format, Object... object) {
+	public void trace(String format, Object... object) {
 		log(Level.TRACE, String.format(format, object));
 	}
 
@@ -204,7 +204,7 @@ public class LogHelper {
 	 * @param format the format
 	 * @param object the object
 	 */
-	public void formatted_Warn(String format, Object... object) {
+	public void warn(String format, Object... object) {
 		log(Level.WARN, String.format(format, object));
 	}
 
@@ -287,9 +287,9 @@ public class LogHelper {
 	public void bigAll(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		all("****************************************");
-		formatted_All("* " + format, data);
+		all("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_All("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			all("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		all("****************************************");
 	}
@@ -303,9 +303,9 @@ public class LogHelper {
 	public void bigDebug(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		debug("****************************************");
-		formatted_Debug("* " + format, data);
+		debug("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Debug("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			debug("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		debug("****************************************");
 	}
@@ -319,9 +319,9 @@ public class LogHelper {
 	public void bigError(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		error("****************************************");
-		formatted_Error("* " + format, data);
+		error("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Error("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			error("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		error("****************************************");
 	}
@@ -335,9 +335,9 @@ public class LogHelper {
 	public void bigFatal(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		fatal("****************************************");
-		formatted_Fatal("* " + format, data);
+		fatal("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Fatal("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			fatal("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		fatal("****************************************");
 	}
@@ -351,9 +351,9 @@ public class LogHelper {
 	public void bigInfo(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		info("****************************************");
-		formatted_Info("* " + format, data);
+		info("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Info("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			info("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		info("****************************************");
 	}
@@ -367,9 +367,9 @@ public class LogHelper {
 	public void bigTrace(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		trace("****************************************");
-		formatted_Trace("* " + format, data);
+		trace("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Trace("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			trace("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		trace("****************************************");
 	}
@@ -383,9 +383,9 @@ public class LogHelper {
 	public void bigWarn(String format, Object... data) {
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		warn("****************************************");
-		formatted_Warn("* " + format, data);
+		warn("* " + format, data);
 		for (int i = 2; i < 8 && i < trace.length; i++) {
-			formatted_Warn("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
+			warn("*  at %s%s", new Object[] { trace[i].toString(), (i == 7) ? "..." : "" });
 		}
 		warn("****************************************");
 	}

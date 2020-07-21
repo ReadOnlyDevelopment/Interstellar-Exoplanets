@@ -18,12 +18,13 @@
 package net.rom.exoplanets.internal;
 
 import java.util.List;
+import java.util.Random;
 
 import com.google.common.base.Function;
 
-import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
-import micdoodle8.mods.galacticraft.core.util.GCLog;
-import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+//import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
+//import micdoodle8.mods.galacticraft.core.util.GCLog;
+//import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -32,12 +33,16 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.internal.client.ExoModelLoader;
+import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
 
 public final class MCUtil {
 
@@ -46,6 +51,12 @@ public final class MCUtil {
 	private MCUtil() {
 		throw new IllegalAccessError("Util Class");
 	}
+	
+    public static Random getRandom(BlockPos pos)
+    {
+        long blockSeed = ((pos.getY() << 28) + pos.getX() + 30000000 << 28) + pos.getZ() + 30000000;  
+        return new Random(blockSeed);
+    }
 
 	/**
 	 * Check if this is the client side.
@@ -87,11 +98,11 @@ public final class MCUtil {
 	}
 
 	public static void replaceModel(String modid, ModelBakeEvent event, String resLoc, String objLoc,
-			List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState,
+			List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState,
 			String... variants) {
 		OBJModel model;
 		try {
-			model = (OBJModel) OBJLoaderGC.instance.loadModel(new ResourceLocation(modid, objLoc));
+			model = (OBJModel) ExoModelLoader.instance.loadModel(new ResourceLocation(modid, objLoc));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -117,7 +128,7 @@ public final class MCUtil {
 					try {
 						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
 					} catch (Exception e) {
-						GCLog.severe("ItemModel constructor problem for " + modelResourceLocation);
+						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
 						e.printStackTrace();
 					}
 				}

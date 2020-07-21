@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y": { "model": "exoplanets:log/log_b_model" },
+        "axis=z": { "model": "exoplanets:log/log_b_model", "x": 90 },
+        "axis=x": { "model": "exoplanets:log/log_b_model", "x": 90, "y": 90 },
+        "axis=none": { "model": "exoplanets:log/log_b_bark_model" }
+    }
+}

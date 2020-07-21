@@ -114,31 +114,31 @@ public class BlockMetalDecoration extends BlockMetaSubtypes implements ICustomMo
     @Override
     public void addRecipes(RecipeBuilder recipes) {
     	for(IMetal metals : EnumMetal.values()) {
-    		ItemStack plates = metals.getPlate();
+    		ItemStack sheets = metals.getSheet();
     		ItemStack ingots = metals.getIngot();
     	
     	ItemStack grating = new ItemStack(this, 4, 0);
-		recipes.addShaped("grating", grating, "a a", "bbb", "   ", 'a', Items.IRON_INGOT, 'b', plates);
+		recipes.addShaped("grating", grating, "a a", "bbb", "   ", 'a', Items.IRON_INGOT, 'b', sheets);
 
     	ItemStack grating_stripe = new ItemStack(this, 4, 1);
-		recipes.addShaped("grating_stripe", grating_stripe, "aca", "bbb", "   ", 'a', Items.IRON_INGOT, 'b', plates, 'c', Blocks.WOOL);
+		recipes.addShaped("grating_stripe", grating_stripe, "aca", "bbb", "   ", 'a', Items.IRON_INGOT, 'b', sheets, 'c', Blocks.WOOL);
 
     	ItemStack heavy_border = new ItemStack(this, 2, 2);
-    	recipes.addSurround("heavy_border", heavy_border, EnumAlloy.STEEL.getPlate(), Items.IRON_INGOT);
+    	recipes.addSurround("heavy_border", heavy_border, EnumAlloy.STEEL.getSheet(), Items.IRON_INGOT);
 
     	ItemStack light_border = new ItemStack(this, 2, 3);
-    	recipes.addSurround("light_border", light_border, EnumMetal.ALUMINIUM.getPlate(), Items.IRON_INGOT);
+    	recipes.addSurround("light_border", light_border, EnumMetal.ALUMINIUM.getSheet(), Items.IRON_INGOT);
 
     	ItemStack pattern_m1 = new ItemStack(this, 4, 4);
-    	recipes.addShaped("pattern_m1", pattern_m1, "aa ", "bc ", "   ", 'a', plates, 'b', ingots, 'c', Items.IRON_INGOT);
+    	recipes.addShaped("pattern_m1", pattern_m1, "aa ", "bc ", "   ", 'a', sheets, 'b', ingots, 'c', Items.IRON_INGOT);
     	ItemStack pattern_m2 = new ItemStack(this, 4, 5);
-    	recipes.addShaped("pattern_m2", pattern_m2, "aa ", "bb ", "   ", 'a', plates, 'b', ingots);
+    	recipes.addShaped("pattern_m2", pattern_m2, "aa ", "bb ", "   ", 'a', sheets, 'b', ingots);
 
     	ItemStack rivet = new ItemStack(this, 4, 6);
-		recipes.addShaped("rivet", rivet, "a a", "   ", "a a", 'a', plates);
+		recipes.addShaped("rivet", rivet, "a a", "   ", "a a", 'a', sheets);
 
     	ItemStack fan = new ItemStack(this, 4, 7);
-		recipes.addShaped("fan", fan, " a ", "aba", " a ", 'a', EnumAlloy.STEEL.getPlate(), 'b', EnumAlloy.STEEL.getGear());
+		recipes.addShaped("fan", fan, " a ", "aba", " a ", 'a', EnumAlloy.STEEL.getSheet(), 'b', EnumAlloy.STEEL.getGear());
     	}
     }
 

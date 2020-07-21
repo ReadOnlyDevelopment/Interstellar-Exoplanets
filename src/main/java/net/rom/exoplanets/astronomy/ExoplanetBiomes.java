@@ -56,16 +56,7 @@ public class ExoplanetBiomes {
 	}
 
 	private static void addBiome(Biome biome, BiomeDictionary.Type... biomeType) {
-		ExoplanetBiomes.registerBiome(biome);
-		ExoplanetBiomes.registerBiomeType(biome, biomeType);
-	}
-
-	public static void registerBiome(Biome biome) {
 		ForgeRegistries.BIOMES.register(biome);
-	}
-
-	public static void registerBiomeType(Biome biome, @Nonnull BiomeDictionary.Type... biomeType) {
 		BiomeDictionary.addTypes(biome, biomeType);
 	}
-
 }

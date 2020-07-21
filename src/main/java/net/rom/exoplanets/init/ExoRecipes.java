@@ -19,9 +19,8 @@ package net.rom.exoplanets.init;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.rom.exoplanets.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
 import net.rom.exoplanets.content.EnumAlloy;
-import net.rom.exoplanets.content.EnumByproduct;
 
 public class ExoRecipes {
 
@@ -35,9 +34,6 @@ public class ExoRecipes {
 
 		ItemStack coal = new ItemStack(Items.COAL, 2);
 		AlloyRefineryRecipe.addRecipe(EnumAlloy.STEEL.getIngot(), 800, 2.5f, "ingotIron*1", coal);
-		
-		ItemStack molybdenumDust = EnumByproduct.MOLYBDENUM.getDust(2);
-		AlloyRefineryRecipe.addRecipe(molybdenumDust, 200, 0.5f, "dustTungsten*3", coal);
 
 	}
 

@@ -46,12 +46,13 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
 		super.preInit(registry, event);
-        ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
-        ExoModelLoader.instance.addDomain(ExoInfo.MODID);
+		ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
+		ExoModelLoader.instance.addDomain(ExoInfo.MODID);
 		registerEventHandler(this);
 
 		registerVarients();
-		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class,
+				(RenderManager manager) -> new RocketRenderer(manager));
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
 		registerEventHandler(new BlockHandler());
@@ -77,27 +78,29 @@ public class ExoClientProxy extends ExoCommonProxy {
 	public void registerTextureAssets() {
 		Assets.addTexture("GuiDiscordButton", "textures/gui/discord.png");
 		Assets.addTexture("GuiBetaBackground", "textures/gui/teleport.png");
+		Assets.addTexture("tdeco", "textures/gui/container/tab_decoration.png");
+		Assets.addTexture("tterrain", "textures/gui/container/tab_terrain.png");
+		Assets.addTexture("titems", "textures/gui/container/tab_decoration.png");
 	}
-
 
 	public World getWorld() {
 		return Minecraft.getMinecraft().world;
 	}
 
-    @Override
-    public EntityPlayer getClientPlayer() {
-        return Minecraft.getMinecraft().player;
-    }
+	@Override
+	public EntityPlayer getClientPlayer() {
+		return Minecraft.getMinecraft().player;
+	}
 
-    public static void registerEventHandler(Object handler) {
-        MinecraftForge.EVENT_BUS.register(handler);
-    }
+	public static void registerEventHandler(Object handler) {
+		MinecraftForge.EVENT_BUS.register(handler);
+	}
 
-    public void registerVarients() {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
-        for (int i = 0; i < 5; ++i)
-        {
-            ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
-        }
-    }
+	public void registerVarients() {
+		ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket",
+				"inventory");
+		for (int i = 0; i < 5; ++i) {
+			ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
+		}
+	}
 }

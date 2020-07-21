@@ -31,6 +31,10 @@ planet.kepler1649c=Kepler 1649c
 galaxy.wormhole=§eWormhole
 
 # Messages
+information.dev.exoplanets:beta.1=§cBy Continuing you agree on the terms that you will
+information.dev.exoplanets:beta.2=§cnot distribute this development build unless prior
+information.dev.exoplanets:beta.3=§cpermissions are granted by the mod developer§r
+
 information.exoplanets:beta.1=§bThe Current ExoPlanets version Is in Early Beta!§r
 information.exoplanets:beta.2=This means that there may be things in the mod that do not work as intended.
 information.exoplanets:beta.3=This is either by deisgn as it may not be finished and/or optimized.
@@ -186,10 +190,6 @@ tile.exoplanets.alloyrefinery.name=Alloy Refinery
 tile.exoplanets.metalfurnace.name=Metal Furnace
 
 ## ITEMS ##
-item.exoplanets.rutile.name=Rutile Ingot
-item.exoplanets.ruthenium.name=Ruthenium Ingot
-item.exoplanets.limonite.name=Limonite Ingot
-
 item.exoplanets.alloydust0.name=Bronze Alloy Dust
 item.exoplanets.alloydust1.name=Brass Alloy Dust
 item.exoplanets.alloydust2.name=Steel Alloy Dust
@@ -229,14 +229,14 @@ item.exoplanets.metalnugget5.name=Aluminium Nugget
 item.exoplanets.metalnugget6.name=Titanium Nugget
 item.exoplanets.metalnugget7.name=Tungsten Nugget
 
-item.exoplanets.platecopper.name=Copper Plate
-item.exoplanets.platetin.name=Tin Plate
-item.exoplanets.platelead.name=Lead Plate
-item.exoplanets.platenickel.name=Nickel Plate
-item.exoplanets.plateplatinum.name=Platinum Plate
-item.exoplanets.platealuminium.name=Aluminium Plate
-item.exoplanets.platetitanium.name=Titanium Plate
-item.exoplanets.platetungsten.name=Tungsten Plate
+item.exoplanets.sheetcopper.name=Copper Sheet
+item.exoplanets.sheettin.name=Tin Sheet
+item.exoplanets.sheetlead.name=Lead Sheet
+item.exoplanets.sheetnickel.name=Nickel Sheet
+item.exoplanets.sheetplatinum.name=Platinum Sheet
+item.exoplanets.sheetaluminium.name=Aluminium Sheet
+item.exoplanets.sheettitanium.name=Titanium Sheet
+item.exoplanets.sheettungsten.name=Tungsten Sheet
 
 item.exoplanets.gearcopper.name=Copper Gear
 item.exoplanets.geartin.name=Tin Gear
@@ -247,9 +247,9 @@ item.exoplanets.gearaluminium.name=Aluminium Gear
 item.exoplanets.geartitanium.name=Titanium Gear
 item.exoplanets.geartungsten.name=Tungsten Gear
 
-item.exoplanets.platebronze.name=Bronze Alloy Plate
-item.exoplanets.platebrass.name=Brass Alloy Plate
-item.exoplanets.platesteel.name=Steel Alloy Plate
+item.exoplanets.sheetbronze.name=Bronze Alloy Sheet
+item.exoplanets.sheetbrass.name=Brass Alloy Sheet
+item.exoplanets.sheetsteel.name=Steel Alloy Sheet
 
 item.exoplanets.gearbronze.name=Bronze Alloy Gear
 item.exoplanets.gearbrass.name=Brass Alloy Gear

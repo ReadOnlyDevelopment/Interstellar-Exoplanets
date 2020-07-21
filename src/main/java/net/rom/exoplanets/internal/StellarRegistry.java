@@ -402,7 +402,7 @@ public class StellarRegistry {
 		if (entry.getRegistryName() == null) {
 			entry.setRegistryName(name);
 		} else {
-			this.logger.formatted_Warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
+			this.logger.warn("Registry name for {} has already been set. Was trying to set it to {}.", entry.getRegistryName(), name);
 		}
 	}
 
@@ -412,7 +412,7 @@ public class StellarRegistry {
 	 */
 	private void validateRegistryName(String name) {
 		if (PATTERN_REGISTRY_NAME.matcher(name).matches()) {
-			this.logger.formatted_Warn("Invalid name for object: {}", name);
+			this.logger.warn("Invalid name for object: {}", name);
 		}
 	}
 
@@ -489,13 +489,13 @@ public class StellarRegistry {
 
 	private void verifyOrFindModObject() {
 		if (this.mod == null) {
-			this.logger.formatted_Warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
+			this.logger.warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
 			ModContainer container = Loader.instance().getIndexedModList().get(this.modId);
 			if (container != null) {
 				this.mod = container.getMod();
-				this.logger.formatted_Warn("Automatically acquired mod object for {}", this.modId);
+				this.logger.warn("Automatically acquired mod object for {}", this.modId);
 			} else {
-				this.logger.formatted_Warn("Could not find mod object. The mod ID is likely incorrect.");
+				this.logger.warn("Could not find mod object. The mod ID is likely incorrect.");
 			}
 		}
 	}

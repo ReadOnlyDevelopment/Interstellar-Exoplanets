@@ -46,6 +46,8 @@ public class Trappist1_E_Mountains extends WE_Biome {
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), -256, 0,   -5, -1,  true);
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), -256, 0,   -1, -1,  true);
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), -256, 0, -256,  0, false);
+		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), 90, 0, 110,  0, false);
+		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), 95, 0, 120,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(),                      0, 2,  0,  0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 		
