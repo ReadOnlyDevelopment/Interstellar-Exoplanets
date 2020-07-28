@@ -17,39 +17,48 @@
  */
 package net.rom.exoplanets.astronomy.trappist1.e.biomes;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
+import net.minecraft.world.World;
 
 public class Trappist1_HighPlains extends WE_Biome {
-	
+
 	public Trappist1_HighPlains(double min, double max) {
-		super(new BiomeProperties("trappist1e_high_plains"), new int[] {0x00CC00, 0xFFFFFF,  0x00CC00});
-				
-		biomeMinValueOnMap      =  	min;
-		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.5D;
-		biomeNumberOfOctaves    =      4;
+		super(new BiomeProperties("trappist1e_high_plains"), new int[] {
+				0x00CC00, 0xFFFFFF, 0x00CC00 });
+
+		biomeMinValueOnMap      = min;
+		biomeMaxValueOnMap      = max;
+		biomePersistence        = 1.5D;
+		biomeNumberOfOctaves    = 4;
 		biomeScaleX             = 280.0D;
-		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     100;
-		biomeInterpolateQuality =     15;
-		
+		biomeScaleY             = 1.7D;
+		biomeSurfaceHeight      = 100;
+		biomeInterpolateQuality = 15;
+
 		//-//
-		decorateChunkGen_List.clear();		
+		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();
-		
+
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(MarsBlocks.marsBlock.getStateFromMeta(6), MarsBlocks.marsBlock.getStateFromMeta(9), -256, 0,   -4, -2,  true);
-		standardBiomeLayers.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
-		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
+		standardBiomeLayers.add(MarsBlocks.marsBlock
+				.getStateFromMeta(6), MarsBlocks.marsBlock
+						.getStateFromMeta(9), -256, 0, -4, -2, true);
+		standardBiomeLayers.add(MarsBlocks.marsBlock
+				.getStateFromMeta(5), MarsBlocks.marsBlock
+						.getStateFromMeta(6), -256, 0, -2, -1, true);
+		standardBiomeLayers
+				.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
+
+	@Override
+	public void decorateBiome (World world, Random rand, int x, int z) {
+
+	}
+
 }

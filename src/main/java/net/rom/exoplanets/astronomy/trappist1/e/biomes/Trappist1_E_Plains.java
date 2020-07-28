@@ -19,41 +19,65 @@ package net.rom.exoplanets.astronomy.trappist1.e.biomes;
 
 import java.util.Random;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_LakeGen;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_LakeGen;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
+import net.rom.exoplanets.init.ExoBlocks;
+import net.rom.exoplanets.internal.world.gen.feature.ExoTreeFlatTop;
+import net.rom.exoplanets.internal.world.gen.feature.ExoTreeWillow;
 
 public class Trappist1_E_Plains extends WE_Biome {
-	
+
 	public Trappist1_E_Plains(double min, double max) {
-		super(new BiomeProperties("trappist1e_plains"), new int[] {0xd14715, 0x11FF66, 0x00FF00});
-				
-		biomeMinValueOnMap      =  	min;
-		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.4D;
-		biomeNumberOfOctaves    =      4;
+		super(new BiomeProperties("trappist1e_plains"), new int[] { 0xd14715,
+				0x11FF66, 0x00FF00 });
+
+		biomeMinValueOnMap      = min;
+		biomeMaxValueOnMap      = max;
+		biomePersistence        = 1.4D;
+		biomeNumberOfOctaves    = 4;
 		biomeScaleX             = 280.0D;
-		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     75;
-		biomeInterpolateQuality =     25;
-		
+		biomeScaleY             = 1.7D;
+		biomeSurfaceHeight      =     64;
+		biomeInterpolateQuality =     5;
+
 		//-//
-		decorateChunkGen_List.clear();		
+		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();
-						
+
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), -256, 0,   -5, -1,  true);
-		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), TrappistBlocks.TrappistE.trap1e_cobblestone.getDefaultState(), -256, 0,   -1, -1,  true);
-		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
+		//		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_cobblestone
+		//				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone
+		//						.getDefaultState(), -256, 0, -5, -1, true);
+		standardBiomeLayers
+				.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
-				
+
 		WE_LakeGen lakes = new WE_LakeGen();
-		lakes.lakeBlock = Blocks.WATER.getDefaultState();
-		lakes.lakeBlock_f  = Blocks.ICE.getDefaultState();
+		lakes.lakeBlock     = Blocks.WATER.getDefaultState();
+		lakes.lakeBlock_f   = Blocks.ICE.getDefaultState();
 		lakes.chunksForLake = 8;
 		decorateChunkGen_List.add(lakes);
+	}
+
+	@Override
+	public void decorateBiome (World world, Random rand, int x, int z) {
+//		int      randPosX = x + rand.nextInt(16) + 8;
+//		int      randPosZ = z + rand.nextInt(16) + 8;
+//		BlockPos pos      = world
+//				.getHeight(new BlockPos(randPosX, 0, randPosZ));
+//
+//
+//			if (world.getBlockState(pos
+//					.down()) == TrappistBlocks.TrappistE.trap1e_grass
+//							.getDefaultState())
+//			new ExoTreeWillow().generate(world, rand, pos);
+
 	}
 }

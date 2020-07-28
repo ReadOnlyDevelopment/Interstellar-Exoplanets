@@ -19,6 +19,7 @@ package net.rom.exoplanets.astronomy.trappist1.e;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -28,55 +29,24 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.internal.enums.EnumStarColor;
 
 public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-		if (!this.mc.world.isRaining()) {
-			renderIImage(Assets.getCelestialTexture("trappist1b"), 10.0F, 0.F, this.getCelestialAngle(daylength), 1.1F);
-			renderIImage(Assets.getCelestialTexture("trappist1c"), 25.0F, 0.F, this.getCelestialAngle(daylength), 1.4F);
-			renderIImage(Assets.getCelestialTexture("trappist1d"), 35.0F, 0.F, this.getCelestialAngle(daylength), 1.8F);
-			renderIImage(Assets.getCelestialTexture("trappist1f"), -20.0F, 0.F, this.getCelestialAngle(daylength),
-					1.4F);
-			renderIImage(Assets.getCelestialTexture("trappist1g"), -35.0F, 0.F, this.getCelestialAngle(daylength),
-					1.1F);
-			renderIImage(Assets.getCelestialTexture("trappist1h"), -44.0F, 0.F, this.getCelestialAngle(daylength),
-					0.9F);
-		}
-		GL11.glDisable(GL11.GL_BLEND);
-
-	}
-
-	private void renderIImage(ResourceLocation image, float x, float y, float z, float f10) {
-
-
-		Tessellator tessellator1 = Tessellator.getInstance();
-		BufferBuilder worldRenderer = tessellator1.getBuffer();
-
-		GL11.glRotatef(x, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(y, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(z, 0.0F, 0.0F, 1.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(image);
-
-		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).tex(1, 1).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).tex(1, 0).endVertex();
-		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator1.draw();
+        GL11.glEnable(GL11.GL_BLEND);
+        
+        if(!this.mc.world.isRaining()) {
+        	this.renderImage(Assets.getCelestialTexture("trappist1b"), 0, 0, this.getCelestialAngle(getDayLenght()), 5.5F);
+        	this.renderImage(Assets.getCelestialTexture("trappist1d"), 40, 0, this.getCelestialAngle((long) (getDayLenght() * 1.2)) + 80F, 1.5F);
+        }
+        GL11.glDisable(GL11.GL_BLEND);
 
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -100,8 +70,8 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return EnumStarColor.RED.getColor();
+	protected StarColor colorSunAura() {
+		return StarColor.RED;
 	}
 
 	@Override
@@ -110,7 +80,7 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 	}
 
 	@Override
-	public int addSizeAura() {
+	public int expandSizeAura() {
 		return 10;
 	}
 

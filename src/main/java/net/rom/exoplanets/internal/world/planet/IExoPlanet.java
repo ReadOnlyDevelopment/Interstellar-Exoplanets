@@ -19,6 +19,7 @@ package net.rom.exoplanets.internal.world.planet;
 
 import java.util.ArrayList;
 
+import asmodeuscore.api.space.IExBody;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
@@ -31,7 +32,7 @@ import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
 /**
  * The Interface IExoPlanet.
  */
-public interface IExoPlanet {
+public interface IExoPlanet extends IExBody {
 		
 	/**
 	 * Gets the planet name.

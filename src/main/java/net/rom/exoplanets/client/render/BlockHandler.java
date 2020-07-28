@@ -17,9 +17,10 @@
 
 package net.rom.exoplanets.client.render;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
+
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -50,8 +51,8 @@ public class BlockHandler {
 			if (blockAccess != null && pos != null) {
 				World world = FMLClientHandler.instance().getWorldClient();
 
-				if (world != null && world.provider instanceof WE_WorldProvider) {
-					WE_ChunkProvider chunk = ((WE_WorldProvider) world.provider).chunk_provider;
+				if (world != null && world.provider instanceof WE_WorldProviderSpace) {
+					WE_ChunkProvider chunk = ((WE_WorldProviderSpace) world.provider).chunk_provider;
 					if (chunk != null)
 						return WE_Biome.getBiomeAt(chunk, (long) pos.getX(), (long) pos.getZ()).biomeBlockGrassColor;
 				}
@@ -67,8 +68,8 @@ public class BlockHandler {
 			if (blockAccess != null && pos != null) {
 				World world = FMLClientHandler.instance().getWorldClient();
 
-				if (world != null && world.provider instanceof WE_WorldProvider) {
-					WE_ChunkProvider chunk = ((WE_WorldProvider) world.provider).chunk_provider;
+				if (world != null && world.provider instanceof WE_WorldProviderSpace) {
+					WE_ChunkProvider chunk = ((WE_WorldProviderSpace) world.provider).chunk_provider;
 
 					if (chunk != null)
 						return WE_Biome.getBiomeAt(chunk, (long) pos.getX(), (long) pos.getZ()).biomeBlockWaterColor;

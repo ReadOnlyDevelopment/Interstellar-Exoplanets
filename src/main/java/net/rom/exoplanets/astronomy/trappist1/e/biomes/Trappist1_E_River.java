@@ -17,9 +17,12 @@
 
 package net.rom.exoplanets.astronomy.trappist1.e.biomes;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 
 public class Trappist1_E_River extends WE_Biome {
@@ -46,5 +49,10 @@ public class Trappist1_E_River extends WE_Biome {
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), -256, 0, -256,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
+	}
+	
+	@Override
+	public void decorateBiome (World world, Random rand, int x, int z) {
+
 	}
 }

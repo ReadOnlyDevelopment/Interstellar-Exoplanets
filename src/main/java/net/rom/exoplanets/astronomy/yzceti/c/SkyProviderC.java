@@ -19,6 +19,7 @@ package net.rom.exoplanets.astronomy.yzceti.c;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -27,7 +28,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.internal.enums.EnumStarColor;
 
 public class SkyProviderC extends SkyProviderBase {
 	
@@ -72,8 +72,8 @@ public class SkyProviderC extends SkyProviderBase {
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class SkyProviderC extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return EnumStarColor.RED.getColor();
+	protected StarColor colorSunAura() {
+		return StarColor.RED;
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class SkyProviderC extends SkyProviderBase {
 	}
 	
 	@Override
-	public int addSizeAura() {
+	public int expandSizeAura() {
 		return 15;
 	}
 

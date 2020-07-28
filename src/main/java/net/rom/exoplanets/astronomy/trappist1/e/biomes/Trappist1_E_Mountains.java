@@ -17,11 +17,14 @@
 
 package net.rom.exoplanets.astronomy.trappist1.e.biomes;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_SnowGen;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_SnowGen;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 
 public class Trappist1_E_Mountains extends WE_Biome {
@@ -58,5 +61,10 @@ public class Trappist1_E_Mountains extends WE_Biome {
 		snowGen.iceBlock        = Blocks.ICE.getDefaultState();
 		snowGen.freezeMaterial  = Material.WATER;
 		createChunkGen_InXZ_List.add(snowGen);
+	}
+	
+	@Override
+	public void decorateBiome (World world, Random rand, int x, int z) {
+
 	}
 }

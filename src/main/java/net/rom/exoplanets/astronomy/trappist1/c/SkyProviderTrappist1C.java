@@ -19,8 +19,8 @@ package net.rom.exoplanets.astronomy.trappist1.c;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -28,94 +28,28 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.internal.MCUtil;
-import net.rom.exoplanets.internal.enums.EnumStarColor;
 
 public class SkyProviderTrappist1C extends SkyProviderBase {
+	
+	
 
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		
-		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-		
-		f10 = 2.5F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);			
-		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
-		GL11.glRotatef(this.getCelestialAngle(daylength / 2), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-100F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		MCUtil.getClient().renderEngine.bindTexture(Assets.getCelestialTexture("trappist1b"));
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-			
-		f10 = 2.0F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);			
-		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);		
-		GL11.glRotatef(this.getCelestialAngle(daylength), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-95F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		MCUtil.getClient().renderEngine.bindTexture(Assets.getCelestialTexture("trappist1d"));
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		
-		f10 = 1.8F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);	
-		GL11.glRotatef(-44.0F, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(this.getCelestialAngle(daylength * 2), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-105F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		MCUtil.getClient().renderEngine.bindTexture(Assets.getCelestialTexture("trappist1e"));
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-				
-        GL11.glPopMatrix();
-        GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_BLEND);
         
-		f10 = 1.3F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);	
-		GL11.glRotatef(-44.0F, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(this.getCelestialAngle(daylength * 2), 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-105F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		MCUtil.getClient().renderEngine.bindTexture(Assets.getCelestialTexture("trappist1f"));
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-				
-        GL11.glPopMatrix();
-        GL11.glPushMatrix();
-
+        if(!this.mc.world.isRaining()) {
+        	this.renderImage(Assets.getCelestialTexture("trappist1b"), 0, 0, this.getCelestialAngle(getDayLenght()), 5.5F);
+        	this.renderImage(Assets.getCelestialTexture("trappist1d"), 40, 0, this.getCelestialAngle((long) (getDayLenght() * 1.2)) + 80F, 1.5F);
+        }
+        GL11.glDisable(GL11.GL_BLEND);
 	}
+	
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
-
+	
 	@Override
 	protected boolean enableBaseImages() {
 		return true;
@@ -137,8 +71,8 @@ public class SkyProviderTrappist1C extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return EnumStarColor.RED.getColor();
+	protected StarColor colorSunAura() {
+		return StarColor.RED;
 	}
 
 	@Override
@@ -147,11 +81,8 @@ public class SkyProviderTrappist1C extends SkyProviderBase {
 	}
 	
 	@Override
-	public int addSizeAura() {
+	public int expandSizeAura() {
 		return 10;
 	}
-	
-	@Override
-	public boolean enableSmoothRender() {return true;}
 
 }

@@ -19,25 +19,26 @@ package net.rom.exoplanets.astronomy.trappist1.c;
 
 import java.util.List;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
@@ -45,10 +46,10 @@ import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.rom.exoplanets.astronomy.trappist1.c.worldegnine.Trappist1C_River;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 
-public class WorldProviderTrappist1C extends WE_WorldProvider {
+public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 	
 	public static WE_ChunkProvider chunk;
 
@@ -64,7 +65,7 @@ public class WorldProviderTrappist1C extends WE_WorldProvider {
 
 	@Override
 	public CelestialBody getCelestialBody() {
-		return InitPlanets.trappistc;
+		return Planets.trappistc;
 	}
 
 	@Override
@@ -81,11 +82,6 @@ public class WorldProviderTrappist1C extends WE_WorldProvider {
 	public List<Block> getSurfaceBlocks() {
 		return null;
 	}
-	
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderTrappist1C.class; 
-    }
 
 	@Override
 	public void genSettings(WE_ChunkProvider cp) {
@@ -120,7 +116,7 @@ public class WorldProviderTrappist1C extends WE_WorldProvider {
 		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();		
 
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1C_Mountains(-1.5D, 1.5D, 90, 2.8D, 4));
@@ -128,10 +124,34 @@ public class WorldProviderTrappist1C extends WE_WorldProvider {
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1C_Mountains(-1.0D, 1.0D, 180, 2.8D, 4));
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1C_Plains(0.0D, 0.5D));
 	}
-
+	
 	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorTrappist1C();
+    public float getSolarSize()
+    {
+        return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+    }
+	
+	@Override
+	public int getMoonPhase(long worldTime)
+    {
+        return (int)(worldTime / this.getDayLength() % 8L + 8L) % 8;
+    }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getLightmapColors(float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors) 
+	{
+		EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
+		
+		if (player != null)
+		{
+			int phase = this.getMoonPhase(this.getWorldTime());
+			if(skyLight > 0 && sunBrightness > 0.07f && phase != 0 && phase != 6) {
+								
+				colors[0] = colors[0] + skyLight + 0.3F;				
+				colors[1] = colors[1] + skyLight / 6;	
+			}				
+		}
 	}
 
 	@Override

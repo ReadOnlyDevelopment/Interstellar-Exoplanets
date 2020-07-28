@@ -19,6 +19,7 @@ package net.rom.exoplanets.internal.world.biome;
 
 import java.util.Random;
 
+import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import net.minecraft.block.Block;
 import net.rom.exoplanets.internal.enums.EnumTPHClass;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
@@ -26,7 +27,7 @@ import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 
-	protected ExoPlanet planetForBiome = null;
+	protected Planet planetForBiome = null;
 	protected WorldProviderExoPlanet spaceProvider = null;
 	public static int grassFoliageColor = 0x00ff00;
 
@@ -50,7 +51,7 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 	 * @param planet The Planet to associate with this biome.
 	 * @return The biome for the set Planet.
 	 */
-	public BiomeSpace setPlanetForBiome(ExoPlanet planet) {
+	public BiomeSpace setPlanetForBiome(Planet planet) {
 		this.planetForBiome = planet;
 		return this;
 	}
@@ -60,7 +61,7 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 	 * 
 	 * @return The Planet associated with this biome.
 	 */
-	public ExoPlanet getPlanetForBiome() {
+	public Planet getPlanetForBiome() {
 		return this.planetForBiome;
 	}
 
@@ -124,7 +125,7 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 	 * @return The current temperature of the Planet.
 	 */
 	public float getPlanetTemp() {
-		ExoPlanet planet = this.getPlanetForBiome();
+		ExoPlanet planet = (ExoPlanet) this.getPlanetForBiome();
 
 		float biomeTemp = this.getBiomeTemp();
 		@SuppressWarnings("unused")

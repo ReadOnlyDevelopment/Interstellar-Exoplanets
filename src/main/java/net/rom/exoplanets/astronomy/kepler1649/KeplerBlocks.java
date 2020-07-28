@@ -12,6 +12,7 @@ public class KeplerBlocks {
 		
 		ExoBlocks.register(Kepler1649C.kepler_stone, "kepler_stone");
 		ExoBlocks.register(Kepler1649C.kepler_surface, "kepler_surface");
+		ExoBlocks.register(Kepler1649C.kepler_surface2, "kepler_surface2");
 		ExoBlocks.register(Kepler1649C.kepler_sand, "kepler_sand");
 		
 	}
@@ -20,6 +21,7 @@ public class KeplerBlocks {
 		
 		public static final BlockMetamorphicRock kepler_stone = new BlockMetamorphicRock();
 		public static final BlockSedimentaryRock kepler_surface = new BlockSedimentaryRock();
+		public static final BlockSedimentaryRock kepler_surface2 = new BlockSedimentaryRock();
 		public static final BlockExoSand kepler_sand = new BlockExoSand();
 		
 	}

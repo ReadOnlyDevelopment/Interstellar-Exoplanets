@@ -100,7 +100,7 @@ secretFile.withReader {
 }
 
 def short_version = "${mod_version}"
-version = "${mod_version}." + getBuildNumber()
+version = "${mod_version}." + getBuildNumber() + ".dev"
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 

@@ -29,10 +29,12 @@
 
 package net.rom.exoplanets.internal;
 
+import java.util.Iterator;
+
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -43,6 +45,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
@@ -136,6 +139,16 @@ public class AstroBuilder {
 
 		return body;
 	}
+	
+	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase, float distance) {
+		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
+		body.setPhaseShift(phase);
+		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
+		body.setRelativeSize(1.0F);
+
+		body.addChecklistKeys("equipOxygenSuit");
+		return body;
+	}
 
 	/**
 	 * Builds the exo planet.
@@ -148,20 +161,22 @@ public class AstroBuilder {
 	 * @param  phase    the phase
 	 * @return          the exo planet
 	 */
-	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase) {
+	public ExoPlanet buildExoPlanet(SolarSystem system, String name, float distance) {
 		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
-		body.setPhaseShift(phase);
-		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
-		body.setBodyIcon(Assets.getCelestialTexture(name));
-
-		if (provider != null) {
-			body.setTierRequired(tier);
-			body.setDimensionInfo(dimID, provider);
-		}
+		registerExPlanet(system, name, distance);
 		body.addChecklistKeys("equipOxygenSuit");
 		return body;
 	}
+	
+	public static ExPlanet registerExPlanet(SolarSystem system, String name, float distancefromcenter) {
+        ExPlanet body = new ExPlanet(name).setParentSolarSystem(system);
+        body.setRingColorRGB(0.0F, 0.4F, 0.9F);
+        body.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(distancefromcenter, distancefromcenter));
+        body.setBodyIcon(Assets.getCelestialTexture(name));
+        
+        return body;
+    }
 
 	/**
 	 * Sets the biomes.
@@ -182,6 +197,24 @@ public class AstroBuilder {
 	public void setAtmos(CelestialBody body, EnumAtmosphericGas... gasses) {
 		((ExoPlanet) body).setAtmosGasses(gasses);
 	}
+	
+	public static  void setAtmosphere(CelestialBody body, EnumAtmosphericGas... gasses) {
+		boolean canBreathe = false;
+		boolean canRain = false;
+		boolean isCorr = false;
+		float d = 0.0f;
+		for (EnumAtmosphericGas enumAtmosphericGas : gasses) {
+			d++;
+			body.atmosphereComponent(enumAtmosphericGas);
+			if(enumAtmosphericGas == EnumAtmosphericGas.OXYGEN)
+				canBreathe = true;
+			if(enumAtmosphericGas == EnumAtmosphericGas.CO2)
+				canRain = true;
+			if(enumAtmosphericGas == EnumAtmosphericGas.METHANE)
+				isCorr = true;
+		}
+		body.setAtmosphere(new AtmosphereInfo(canBreathe, canRain, isCorr, 0.0F, 0.0F, d));
+	}
 
 	/**
 	 * Sets the data.
@@ -201,7 +234,7 @@ public class AstroBuilder {
 		body.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		((ExoPlanet) body).setPlanetGravity(gravity);
 		((ExPlanet) body).setAtmosphericPressure(pressure);
-		BodiesHelper.setPlanetData(body, 0, day, BodiesHelper.calculateGravity(gravity), false);
+		BodiesRegistry.setPlanetData(body, 0, day, BodiesRegistry.calculateGravity(gravity), false);
 
 	}
 
@@ -225,7 +258,7 @@ public class AstroBuilder {
 	 * @param body the new normal orbit
 	 */
 	public void setNormalOrbit(CelestialBody body) {
-		BodiesHelper.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime());
+		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime());
 
 	}
 
@@ -242,7 +275,7 @@ public class AstroBuilder {
 			float orbitOffsetY) {
 		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
 		((ExPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
-		BodiesHelper.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime(), eccentricityX,
+		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime(), eccentricityX,
 				eccentricityY, orbitOffsetX, orbitOffsetY);
 
 	}

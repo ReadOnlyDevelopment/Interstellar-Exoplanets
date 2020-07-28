@@ -19,56 +19,69 @@ package net.rom.exoplanets.astronomy.kepler1649.c;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.internal.enums.EnumStarColor;
 
 public class SkyProviderKepler1649c extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
+		GL11.glPushMatrix();		
+		World world = mc.world;
+		int phase = world.provider.getMoonPhase(world.getWorldTime());
+		
+		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);         
+		this.renderImage(Assets.getCelestialTexture("kepler1649b"), -90F, 182F, 35F, 2.0F);
+		
 		GL11.glPushMatrix();
-		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-		if (!this.mc.world.isRaining()) {
-			renderIImage(Assets.getCelestialTexture("kepler1649b"), 10.0F, 0.F, this.getCelestialAngle(daylength), 1.1F);
-		}
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        GL11.glEnable(GL11.GL_BLEND);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        
+        GL11.glRotatef(35F, 1.0F, 0.0F, 0.0F);
+        GL11.glRotatef(2F, 0.0F, 0.0F, 1.0F);
+		this.renderSunAura(tessellator, 0.0F, 0.8F);
+		GL11.glRotatef(5F, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(-2F, 0.0F, 0.0F, 1.0F);
+		this.renderSunAura(tessellator, 0.0F, 0.5F);
 		GL11.glDisable(GL11.GL_BLEND);
-
+		GL11.glPopMatrix();
+    GL11.glPopMatrix();
 	}
 
-	private void renderIImage(ResourceLocation image, float x, float y, float z, float f10) {
-
-
-		Tessellator tessellator1 = Tessellator.getInstance();
-		BufferBuilder worldRenderer = tessellator1.getBuffer();
-
-		GL11.glRotatef(x, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(y, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(z, 0.0F, 0.0F, 1.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(image);
-
-		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).tex(1, 1).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).tex(1, 0).endVertex();
-		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator1.draw();
-
-	}
+//	private void renderIImage(ResourceLocation image, float x, float y, float z, float f10) {
+//
+//
+//		Tessellator tessellator1 = Tessellator.getInstance();
+//		BufferBuilder worldRenderer = tessellator1.getBuffer();
+//
+//		GL11.glRotatef(x, 0.0F, 1.0F, 0.0F);
+//		GL11.glRotatef(y, 1.0F, 0.0F, 0.0F);
+//		GL11.glRotatef(z, 0.0F, 0.0F, 1.0F);
+//		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+//		FMLClientHandler.instance().getClient().renderEngine.bindTexture(image);
+//
+//		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+//		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1).endVertex();
+//		worldRenderer.pos(f10, -100.0D, f10).tex(1, 1).endVertex();
+//		worldRenderer.pos(f10, -100.0D, -f10).tex(1, 0).endVertex();
+//		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+//		tessellator1.draw();
+//
+//	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -92,8 +105,8 @@ public class SkyProviderKepler1649c extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return EnumStarColor.RED.getColor();
+	protected StarColor colorSunAura() {
+		return StarColor.RED;
 	}
 
 	@Override
@@ -102,7 +115,7 @@ public class SkyProviderKepler1649c extends SkyProviderBase {
 	}
 
 	@Override
-	public int addSizeAura() {
+	public int expandSizeAura() {
 		return 7;
 	}
 

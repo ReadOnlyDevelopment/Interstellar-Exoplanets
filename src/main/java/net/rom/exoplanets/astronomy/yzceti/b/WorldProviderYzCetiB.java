@@ -35,7 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzceti.b.worldgen.BiomeProviderYzCetiB;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
 import net.rom.exoplanets.internal.world.planet.ExoPlanet;
@@ -84,7 +84,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 
     @Override
     public CelestialBody getCelestialBody() {
-        return InitPlanets.yzcetib;
+        return Planets.yzcetib;
     }
 
     @Override
@@ -162,7 +162,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 
     @Override
     public Class<? extends BiomeProvider> getBiomeProviderClass() {
-        BiomeAdaptive.setBodyMultiBiome(InitPlanets.yzcetib);
+        BiomeAdaptive.setBodyMultiBiome(Planets.yzcetib);
         return BiomeProviderYzCetiB.class;
     }
 

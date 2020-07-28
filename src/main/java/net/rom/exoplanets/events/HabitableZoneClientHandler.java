@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.conf.SConfigSystems;
-import net.rom.exoplanets.init.IniSystems;
+import net.rom.exoplanets.init.SolarSystems;
 
 /**
  * This was borrowed from
@@ -43,17 +43,17 @@ public class HabitableZoneClientHandler {
 	@SubscribeEvent
 	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
-		if (renderEvent.celestialBody.equals(IniSystems.yzCeti.getMainStar())) {
+		if (renderEvent.celestialBody.equals(SolarSystems.yzCeti.getMainStar())) {
 			this.RingRender(renderEvent, 75F, 115F);
 		}
 		if (!SConfigSystems.hideUnfinishedSystems) {
-			if (renderEvent.celestialBody.equals(IniSystems.wolf1061.getMainStar())) {
+			if (renderEvent.celestialBody.equals(SolarSystems.wolf1061.getMainStar())) {
 				this.RingRender(renderEvent, 45F, 85F);
 			}
-			if (renderEvent.celestialBody.equals(IniSystems.trappist1.getMainStar())) {
+			if (renderEvent.celestialBody.equals(SolarSystems.trappist1.getMainStar())) {
 				this.RingRender(renderEvent, 55F, 100F);
 			}
-			if (renderEvent.celestialBody.equals(IniSystems.kepler1649.getMainStar())) {
+			if (renderEvent.celestialBody.equals(SolarSystems.kepler1649.getMainStar())) {
 				this.RingRender(renderEvent, 55F, 100F);
 			}
 		}

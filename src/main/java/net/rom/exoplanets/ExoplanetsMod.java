@@ -21,7 +21,7 @@ import java.util.Random;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.util.ResourceLocation;
@@ -47,8 +47,8 @@ import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.events.GuiHandlerExo;
 import net.rom.exoplanets.events.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoRecipes;
-import net.rom.exoplanets.init.IniSystems;
-import net.rom.exoplanets.init.InitPlanets;
+import net.rom.exoplanets.init.SolarSystems;
+import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.init.RegistrationHandler;
 import net.rom.exoplanets.init.Researching;
 import net.rom.exoplanets.internal.LogHelper;
@@ -73,7 +73,7 @@ public class ExoplanetsMod implements IMod {
     public static ExoCommonProxy proxy;
     public static Random random = new Random();
     
-    public static final boolean isDevBuild = false;
+    public static final boolean isDevBuild = true;
     
 	public static final Researches RESEARCH;
 
@@ -86,7 +86,7 @@ public class ExoplanetsMod implements IMod {
     public void preInit(FMLPreInitializationEvent event) {
         REGISTRY.setMod(this);
         REGISTRY.getRecipeMaker();
-        BodiesHelper.max_tier = 3;
+        BodiesRegistry.setMaxTier(3);
 
         // CONFIGS
         InitConfigFiles.init(event);
@@ -104,8 +104,8 @@ public class ExoplanetsMod implements IMod {
         //ExoFluids.init();
         
         ExoplanetBiomes.init();
-        IniSystems.init();
-        InitPlanets.init();	
+        SolarSystems.init();
+        Planets.init();	
         
         // PLANETS
         ExoplanetBiomes.init();
