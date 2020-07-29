@@ -1,44 +1,102 @@
-/**
- * Copyright (C) 2020 Interstellar:  Exoplanets
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package net.rom.exoplanets.content.fluids;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialLiquid;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 
-public class ExoFluid {
+public class ExoFluid extends BlockFluidClassic implements IExoFluid {
 
-	public static ExoFluidBase mantle;
-	public static final Material MANTLE = (new MaterialLiquid(MapColor.RED_STAINED_HARDENED_CLAY));
+	protected String nameString;
 
-
-	public static void init() {
-		register(mantle = (ExoFluidBase) new ExoFluidBase("mantle", new ResourceLocation(ExoInfo.MODID, "blocks/liquid/mantle_still"), new ResourceLocation(ExoInfo.MODID, "blocks/liquid/mantle_flow")).setHasBucket(true).setDensity(40).setGaseous(false).setLuminosity(12).setViscosity(1000).setTemperature(500));
+	public ExoFluid(String fluidName, Fluid fluid, Material material) {
+		super(fluid, material);
+		this.make(fluidName);
 	}
 
-	public static void register(ExoFluidBase fluid) {
-		FluidRegistry.registerFluid(fluid);
+	public ExoFluid(String fluidName, Fluid fluid, Material material, MapColor mapColor) {
+		super(fluid, material);
+		this.make(fluidName);
+	}
 
-		if (fluid.isBucketEnabled())
-			FluidRegistry.addBucketForFluid(fluid);
+	protected void make(String fluidName) {
+		this.nameString = fluidName;
+		this.setUnlocalizedName("fluid_" + fluidName);
+		this.setRegistryName("fluid_" + fluidName);
+	}
+
+	@Override
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos,
+			EntityLiving.SpawnPlacementType type) {
+		return false;
+	}
+
+	@Override
+	public boolean canDrain(World worldIn, BlockPos pos) {
+		return true;
+	}
+
+	@Override
+	public boolean canDisplace(IBlockAccess world, BlockPos pos) {
+		if (world.getBlockState(pos).getMaterial().isLiquid()) {
+			return false;
+		} else {
+			return super.canDisplace(world, pos);
+		}
+	}
+
+	@Override
+	public boolean displaceIfPossible(World world, BlockPos pos) {
+		if (world.getBlockState(pos).getMaterial().isLiquid()) {
+			return false;
+		}
+		return super.displaceIfPossible(world, pos);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerModels() {
+		Item item = Item.getItemFromBlock(this);
+		MapUtil mapper = new MapUtil(ExoInfo.MODID, "fluid", nameString);
+
+		ModelBakery.registerItemVariants(item);
+		ModelLoader.setCustomMeshDefinition(item, mapper);
+
+		ModelLoader.setCustomStateMapper(this, mapper);
+	}
+	
+	public class MapUtil extends StateMapperBase implements ItemMeshDefinition {
+		
+		public final ModelResourceLocation location;
+		
+		public MapUtil(String modName, String fileName, String modelName) {
+			this.location = new ModelResourceLocation(modName + ":" + fileName, modelName);
+		}
+		
+		@Override
+		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+			return location;
+		}
+		
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return location;
+		}
 	}
 
 }
