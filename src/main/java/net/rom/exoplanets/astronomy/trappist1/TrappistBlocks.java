@@ -19,7 +19,6 @@ package net.rom.exoplanets.astronomy.trappist1;
 
 import net.rom.exoplanets.content.block.BlockTerrain;
 import net.rom.exoplanets.content.block.ore.BlockOreMetal;
-import net.rom.exoplanets.content.block.ore.BlockOrePlanet;
 import net.rom.exoplanets.content.block.terrain.BlockExoDirt;
 import net.rom.exoplanets.content.block.terrain.BlockExoGrass;
 import net.rom.exoplanets.content.block.terrain.BlockMetamorphicRock;
@@ -46,6 +45,8 @@ public class TrappistBlocks {
 		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
 		ExoBlocks.register(TrappistE.trap1eore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1eore));
 		
+		
+		
 	}
 	
 	public static class SharedTerrain {
@@ -56,6 +57,7 @@ public class TrappistBlocks {
 	}
 	
 	public static class TrappistB {
+
 		
 	}
 	

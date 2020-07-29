@@ -32,6 +32,7 @@ public class ExoDimensions {
 		YzCetiDimensions.YZCETID = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_d);
 
 		TrappistDimensions.TRAPPIST_1C = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_c);
+		TrappistDimensions.TRAPPIST_1D = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_d);
 		TrappistDimensions.TRAPPIST_1E = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_e);
 		
 		Kepler1649Dimensions.KEPLER1649_C = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_kepler_c);

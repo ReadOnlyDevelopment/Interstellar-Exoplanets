@@ -30,6 +30,8 @@ import net.rom.exoplanets.astronomy.kepler1649.c.SkyProviderKepler1649c;
 import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.SkyProviderTrappist1C;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
+import net.rom.exoplanets.astronomy.trappist1.d.SkyProviderTrappist1D;
+import net.rom.exoplanets.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.e.SkyProviderTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.SkyProviderB;
@@ -80,6 +82,15 @@ public class SkyProviders {
             if (world.provider instanceof WorldProviderTrappist1E) {
                 if (world.provider.getSkyRenderer() == null) {
                     world.provider.setSkyRenderer(new SkyProviderTrappist1E());
+                }
+
+                if (world.provider.getCloudRenderer() == null) {
+                    world.provider.setCloudRenderer(new CloudRenderer());
+                }
+            }
+            if (world.provider instanceof WorldProviderTrappist1D) {
+                if (world.provider.getSkyRenderer() == null) {
+                    world.provider.setSkyRenderer(new SkyProviderTrappist1D());
                 }
 
                 if (world.provider.getCloudRenderer() == null) {

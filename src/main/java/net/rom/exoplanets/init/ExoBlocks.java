@@ -123,7 +123,7 @@ public class ExoBlocks {
 		YzCetiBlocks.registerAll(reg);
 		TrappistBlocks.registerAll(reg);
 		KeplerBlocks.registerAll(reg);
-		
+
 		register(metalOre, "metalore");		
         register(metalBlock, "metalblock");
         register(alloyBlock, "alloyblock");

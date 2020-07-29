@@ -35,12 +35,14 @@ import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import static micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas.*;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
+import net.rom.exoplanets.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
@@ -53,29 +55,28 @@ import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class Planets {
 
-	public static Float[]   yzCetiAu = { 0.3F, 0.4f, 0.590f };
-	public static Planet yzcetib;
-	public static Planet yzcetic;
-	public static Planet yzcetid;
+	public static Float[] yzCetiAu = { 0.3F, 0.4f, 0.590f };
+	public static Planet  yzcetib;
+	public static Planet  yzcetic;
+	public static Planet  yzcetid;
 
-	private static Float[]  wolfAu = { 0.2F, 0.4f, 2.5f };
-	public static Planet wolf1061b;
-	public static Planet wolf1061c;
-	public static Planet wolf1061d;
+	private static Float[] wolfAu = { 0.2F, 0.4f, 2.5f };
+	public static Planet   wolf1061b;
+	public static Planet   wolf1061c;
+	public static Planet   wolf1061d;
 
-	private static Float[]  trappistAu = { 0.3F, 0.4f, 0.6f, 0.8f, 1.0f, 1.2f,
-			1.6f };
-	public static Planet trappistb;
-	public static Planet trappistc;
-	public static Planet trappistd;
-	public static Planet trappiste;
-	public static Planet trappistf;
-	public static Planet trappistg;
-	public static Planet trappisth;
+	private static Float[] trappistAu = { 0.3F, 0.4f, 0.6f, 0.8f, 1.0f, 1.2f, 1.6f };
+	public static Planet   trappistb;
+	public static Planet   trappistc;
+	public static Planet   trappistd;
+	public static Planet   trappiste;
+	public static Planet   trappistf;
+	public static Planet   trappistg;
+	public static Planet   trappisth;
 
-	public static float[]   kepler1649Au = { 0.4f, 0.7f };
-	public static Planet kepler1649b;
-	public static Planet kepler1649c;
+	public static float[] kepler1649Au = { 0.4f, 0.7f };
+	public static Planet  kepler1649b;
+	public static Planet  kepler1649c;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -119,40 +120,42 @@ public class Planets {
 		}
 
 		if (SolarSystems.buildtrappist1) {
-			
+
 			trappistc = AstroBuilder.registerExPlanet(SolarSystems.trappist1, "trappist1c", trappistAu[1]);
-			BodiesRegistry.setOrbitData(trappistc, (float) Math.PI / 4, 1.25F, 6.0F);
+			BodiesRegistry.setOrbitData(trappistc, (float) Math.PI / 4, 1.25F, 1.0F);
 			BodiesRegistry.setPlanetData(trappistc, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
-			BodiesRegistry.setProviderData(trappistc, WorldProviderTrappist1C.class, id_trap_c, trap_tier, ACBiome.ACSpace);
+			BodiesRegistry
+					.setProviderData(trappistc, WorldProviderTrappist1C.class, id_trap_c, trap_tier, ACBiome.ACSpace);
 			GalaxyRegistry.registerPlanet(trappistc);
-			
+
+			trappistd = AstroBuilder.registerExPlanet(SolarSystems.trappist1, "trappist1d", trappistAu[2]);
+			BodiesRegistry.setOrbitData(trappistd, (float) Math.PI * 2, 1.25F, 3.0F);
+			BodiesRegistry.setPlanetData(trappistd, 5, 31000L, BodiesRegistry.calculateGravity(5.8F), true);
+			BodiesRegistry
+					.setProviderData(trappistd, WorldProviderTrappist1D.class, id_trap_d, trap_tier, ACBiome.ACSpace);
+			AstroBuilder.setAtmosphere(trappistd, OXYGEN, CO2);
+			GalaxyRegistry.registerPlanet(trappistd);
+
 			trappiste = AstroBuilder.registerExPlanet(SolarSystems.trappist1, "trappist1e", trappistAu[3]);
 			BodiesRegistry.setOrbitData(trappiste, (float) Math.PI / 2, 1.25F, 6.0F);
 			BodiesRegistry.setPlanetData(trappiste, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
-			BodiesRegistry.setProviderData(trappiste, WorldProviderTrappist1E.class, id_trap_e, trap_tier, ACBiome.ACSpace);
+			BodiesRegistry
+					.setProviderData(trappiste, WorldProviderTrappist1E.class, id_trap_e, trap_tier, ACBiome.ACSpace);
 			AstroBuilder.setAtmosphere(trappiste, OXYGEN, CO2);
 			GalaxyRegistry.registerPlanet(trappiste);
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				trappistb = builder
-						.buildUnreachablePlanet("trappist1b", SolarSystems.trappist1, 3.254752F);
+				trappistb = builder.buildUnreachablePlanet("trappist1b", SolarSystems.trappist1, 3.254752F);
 				builder.setData(trappistb, ClassBody.SELENA, trappistAu[0], 0.45F, trappistAu[0], 0, 24000L);
 
-				trappistd = builder
-						.buildUnreachablePlanet("trappist1d", SolarSystems.trappist1, 1.932375F);
-				builder.setData(trappistd, ClassBody.SELENA, trappistAu[2], 0.45F, trappistAu[2], 0, 24000L);
-
-				trappistf = builder
-						.buildUnreachablePlanet("trappist1f", SolarSystems.trappist1, 0.6451158F);
+				trappistf = builder.buildUnreachablePlanet("trappist1f", SolarSystems.trappist1, 0.6451158F);
 				builder.setData(trappistf, ClassBody.SELENA, trappistAu[4], 0.45F, trappistAu[4], 0, 24000L);
 
-				trappistg = builder
-						.buildUnreachablePlanet("trappist1g", SolarSystems.trappist1, 0.6451158F);
+				trappistg = builder.buildUnreachablePlanet("trappist1g", SolarSystems.trappist1, 0.6451158F);
 				builder.setData(trappistg, ClassBody.SELENA, trappistAu[5], 0.45F, trappistAu[5], 0, 24000L);
 
-				trappisth = builder
-						.buildUnreachablePlanet("trappist1h", SolarSystems.trappist1, 0.896365F);
+				trappisth = builder.buildUnreachablePlanet("trappist1h", SolarSystems.trappist1, 0.896365F);
 				builder.setData(trappisth, ClassBody.SELENA, trappistAu[6], 0.45F, trappistAu[6], 0, 24000L);
 			}
 		}
@@ -161,16 +164,13 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				wolf1061b = builder
-						.buildUnreachablePlanet("wolf1061b", SolarSystems.wolf1061, 2.9495497F);
+				wolf1061b = builder.buildUnreachablePlanet("wolf1061b", SolarSystems.wolf1061, 2.9495497F);
 				builder.setData(wolf1061b, ClassBody.SELENA, wolfAu[0], 0.45F, wolfAu[0], 0, 24000L);
 
-				wolf1061c = builder
-						.buildUnreachablePlanet("wolf1061c", SolarSystems.wolf1061, 1.7264397F);
+				wolf1061c = builder.buildUnreachablePlanet("wolf1061c", SolarSystems.wolf1061, 1.7264397F);
 				builder.setData(wolf1061c, ClassBody.SELENA, wolfAu[1], 0.45F, wolfAu[1], 0, 24000L);
 
-				wolf1061d = builder
-						.buildUnreachablePlanet("wolf1061d", SolarSystems.wolf1061, 7.132725F);
+				wolf1061d = builder.buildUnreachablePlanet("wolf1061d", SolarSystems.wolf1061, 7.132725F);
 				builder.setData(wolf1061d, ClassBody.SELENA, wolfAu[2], 0.45F, wolfAu[2], 0, 24000L);
 			}
 
@@ -188,8 +188,7 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				kepler1649b = builder
-						.buildUnreachablePlanet("kepler1649b", SolarSystems.kepler1649, 1.932375F);
+				kepler1649b = builder.buildUnreachablePlanet("kepler1649b", SolarSystems.kepler1649, 1.932375F);
 				builder.setData(kepler1649b, ClassBody.SELENA, kepler1649Au[0], 0.55F, kepler1649Au[1], 0, 24000L);
 			}
 
@@ -198,28 +197,19 @@ public class Planets {
 
 	public static void registerTeleportTypes () {
 
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderKepler1649c.class, new TeleportTypeMoon());
-		GalacticraftRegistry
-				.registerRocketGui(WorldProviderYzCetiB.class, getWorldGui("yzcetib"));
-		GalacticraftRegistry
-				.registerRocketGui(WorldProviderYzCetiC.class, getWorldGui("yzcetic"));
-		GalacticraftRegistry
-				.registerRocketGui(WorldProviderYzCetiD.class, getWorldGui("yzcetid"));
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderTrappist1E.class, new TeleportTypeMoon());
-		GalacticraftRegistry
-				.registerRocketGui(WorldProviderTrappist1E.class, getWorldGui("trappist1e"));
-		GalacticraftRegistry
-				.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeMoon());
-		GalacticraftRegistry
-				.registerRocketGui(WorldProviderTrappist1C.class, getWorldGui("trappist1c"));
+		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
+		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
+		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerTeleportType(WorldProviderKepler1649c.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiB.class, getWorldGui("yzcetib"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiC.class, getWorldGui("yzcetic"));
+		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, getWorldGui("yzcetid"));
+		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1E.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1E.class, getWorldGui("trappist1e"));
+		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1D.class, new TeleportTypeOverworld());
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1D.class, getWorldGui("trappist1d"));
+		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeMoon());
+		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, getWorldGui("trappist1c"));
 	}
 
 	public static float getGravity (ExPlanet planet) {
@@ -227,8 +217,7 @@ public class Planets {
 	}
 
 	private static ResourceLocation getWorldGui (String planetString) {
-		return new ResourceLocation(ExoInfo.MODID, "textures/gui/rocketgui/"
-				+ planetString + ".png");
+		return new ResourceLocation(ExoInfo.MODID, "textures/gui/rocketgui/" + planetString + ".png");
 	}
 
 	public static long getDayLength (ExPlanet planet) {

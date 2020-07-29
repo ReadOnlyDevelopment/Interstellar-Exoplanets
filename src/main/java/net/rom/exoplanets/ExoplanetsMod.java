@@ -46,11 +46,12 @@ import net.rom.exoplanets.command.CommandData;
 import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.events.GuiHandlerExo;
 import net.rom.exoplanets.events.HabitableZoneClientHandler;
+import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
-import net.rom.exoplanets.init.SolarSystems;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.init.RegistrationHandler;
 import net.rom.exoplanets.init.Researching;
+import net.rom.exoplanets.init.SolarSystems;
 import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.inerf.IMod;
@@ -87,10 +88,10 @@ public class ExoplanetsMod implements IMod {
         REGISTRY.setMod(this);
         REGISTRY.getRecipeMaker();
         BodiesRegistry.setMaxTier(3);
-
+        
         // CONFIGS
         InitConfigFiles.init(event);
-        
+        ExoFluids.init();
         // BLOCKS, ITEMS, ENTITIES, ETC
         RegistrationHandler.init(REGISTRY);
         
