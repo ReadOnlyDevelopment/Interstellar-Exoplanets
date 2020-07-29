@@ -43,6 +43,7 @@ import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.screen.button.GuiDiscordButton;
 import net.rom.exoplanets.util.RGB;
+import net.rom.exoplanets.util.ReflectionHelper;
 
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {
@@ -112,7 +113,8 @@ public class GuiBeta extends GuiScreen {
 			case 1:
 				try {
 					String discordUrl = "https://discord.gg/fscJ2gG";
-					ObfuscationReflectionHelper.findField(GuiScreen.class, "clickedLinkURI").set(this, new URI(discordUrl));
+					ReflectionHelper.findField(GuiScreen.class, "clickedLinkURI", "field_175286_t").set(this, new URI(discordUrl));
+					//ObfuscationReflectionHelper.findField(GuiScreen.class, "clickedLinkURI").set(this, new URI(discordUrl));
 					mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
 				} catch (IllegalArgumentException | IllegalAccessException | URISyntaxException e) {
 					log.error("Exception when discord link menu button clicked:", e);

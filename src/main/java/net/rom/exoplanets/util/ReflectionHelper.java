@@ -20,6 +20,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Preconditions;
+
+import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
+import net.minecraftforge.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
+
 public class ReflectionHelper {
 	
 	
@@ -80,4 +91,24 @@ public class ReflectionHelper {
 		}
 		return o;
 	}
+	
+    @Nonnull
+    public static Field findField(@Nonnull Class<?> clazz, @Nonnull String fieldName, @Nullable String fieldObfName)
+    {
+        Preconditions.checkNotNull(clazz);
+        Preconditions.checkArgument(StringUtils.isNotEmpty(fieldName), "Field name cannot be empty");
+
+        String nameToFind = FMLLaunchHandler.isDeobfuscatedEnvironment() ? fieldName : MoreObjects.firstNonNull(fieldObfName, fieldName);
+
+        try
+        {
+            Field f = clazz.getDeclaredField(nameToFind);
+            f.setAccessible(true);
+            return f;
+        }
+        catch (Exception e)
+        {
+            throw new UnableToFindFieldException(e);
+        }
+    }
 }

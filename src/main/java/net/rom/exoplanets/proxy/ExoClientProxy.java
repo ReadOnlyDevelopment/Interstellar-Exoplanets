@@ -37,6 +37,7 @@ import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.events.BetaGuiHandler;
 import net.rom.exoplanets.events.ClientHandler;
 import net.rom.exoplanets.events.SkyProviders;
+import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
@@ -56,7 +57,9 @@ public class ExoClientProxy extends ExoCommonProxy {
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
 		registerEventHandler(new BlockHandler());
+		
 		registry.clientPreInit(event);
+		ExoFluids.bakeModels();
 
 	}
 
