@@ -43,10 +43,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
+import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
-import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_River;
-import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_HighPlains;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 
@@ -114,11 +114,11 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.5D, 6, 1200.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(); 
-		terrainGenerator.worldSeaGen = false;
+		terrainGenerator.worldStoneBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(); 
+		terrainGenerator.worldSeaGen = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
@@ -126,22 +126,21 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
 		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
-		cg.lavaMaxY = 15;
 		cp.createChunkGen_List.add(cg); 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
 		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
-		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
 		
 		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains(-0.0D, 0.0D));
-		//WE_Biome.addBiomeToGeneration(cp, new Trappist1_HighPlains(-0.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains(-0.5D, 1.0D, 150, 2.8D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_River(-0.8D, 0.8D));
+		
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains());
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Dunes());
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains());
+		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Ocean(false));
 	}
 
 	@Override

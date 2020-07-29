@@ -66,7 +66,7 @@ public class BiomeDecoratorKepler1649c extends BiomeDecoratorSpace {
 		this.generateOre(20, iceGen, 150, 200);
 
 		pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
-			GenUtility.generateDome(Blocks.GLASS.getDefaultState(), 10, pos);
+			//GenUtility.generateDome(Blocks.GLASS.getDefaultState(), 10, pos);
     }
     
 	static class TrappistStonePredicate implements Predicate<IBlockState> {

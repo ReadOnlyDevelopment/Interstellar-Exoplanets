@@ -24,6 +24,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderS
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -115,6 +116,11 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
+		
+		WE_OreGen standardOres = new WE_OreGen();
+		standardOres.add(TrappistBlocks.SharedTerrain.HOT_GROUND_2.getDefaultState(), TrappistBlocks.TrappistC.T1C_TOP.getDefaultState(), 32, 64, 250, 25);
+		standardOres.add(TrappistBlocks.SharedTerrain.HOT_GROUND_1.getDefaultState(), TrappistBlocks.TrappistC.T1C_TOP.getDefaultState(), 16, 64, 250, 20);
+		cp.decorateChunkGen_List.add(standardOres);
 		
 		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();		
@@ -225,6 +231,11 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
         return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
        
     }
+    
+//    @Override 
+//    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
+//    	return BiomeProviderTrappist1C.class; 
+//    }
      
 	@Override
 	public boolean isSkyColored() { return false; }

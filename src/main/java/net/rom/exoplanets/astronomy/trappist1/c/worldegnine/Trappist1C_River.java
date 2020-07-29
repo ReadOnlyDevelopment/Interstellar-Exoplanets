@@ -42,8 +42,6 @@ public class Trappist1C_River extends WE_Biome {
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
-
-		//this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(TrappistBlocks.SharedTerrain.HOT_GROUND_2.getDefaultState(), TrappistBlocks.TrappistC.T1C_TOP.getDefaultState(), -256, 35, -256,  0, false);
