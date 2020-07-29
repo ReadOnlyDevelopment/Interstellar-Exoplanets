@@ -18,6 +18,8 @@ public class ExoTreeFlatTop extends ExoTree {
 		this.setLogBlock(log.getDefaultState());
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
+		this.setMaxCrownSize(6);
+		this.setMinCrownSize(3);
 		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())));
 	}
 

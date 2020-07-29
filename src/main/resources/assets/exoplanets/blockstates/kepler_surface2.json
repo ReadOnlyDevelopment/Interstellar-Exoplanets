@@ -1,22 +1,5 @@
 {
-    "variants": {
-        "normal": [
-            { "model": "exoplanets:kepler_surface2" },
-            { "model": "exoplanets:kepler_surface2", "x": 90 },
-            { "model": "exoplanets:kepler_surface2", "x": 180 },
-            { "model": "exoplanets:kepler_surface2", "x": 270 },
-            { "model": "exoplanets:kepler_surface2", "y": 90 },
-            { "model": "exoplanets:kepler_surface2", "y": 90, "x": 90 },
-            { "model": "exoplanets:kepler_surface2", "y": 90, "x": 180 },
-            { "model": "exoplanets:kepler_surface2", "y": 90, "x": 270 },
-            { "model": "exoplanets:kepler_surface2", "y": 180 },
-            { "model": "exoplanets:kepler_surface2", "y": 180, "x": 90 },
-            { "model": "exoplanets:kepler_surface2", "y": 180, "x": 180 },
-            { "model": "exoplanets:kepler_surface2", "y": 180, "x": 270 },
-            { "model": "exoplanets:kepler_surface2", "y": 270 },
-            { "model": "exoplanets:kepler_surface2", "y": 270, "x": 90 },
-            { "model": "exoplanets:kepler_surface2", "y": 270, "x": 180 },
-            { "model": "exoplanets:kepler_surface2", "y": 270, "x": 270 }
-        ]
-    }
+   "variants": {
+      "normal": {"model":"exoplanets:kepler_surface2"}
+   }
 }

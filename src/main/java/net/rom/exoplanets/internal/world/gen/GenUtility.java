@@ -159,7 +159,7 @@ public class GenUtility {
         return blocks;
     }
 
-    public static HashMap<BlockPos, IBlockState> generateDome(IBlockState state, int size, BlockPos pos) {
+    public HashMap<BlockPos, IBlockState> generateDome(IBlockState state, int size, BlockPos pos) {
         HashMap<BlockPos, IBlockState> blocks = new HashMap<>();
         int halfSize = (size / 2);
         for (int i = 0; i <= halfSize; i++) {
