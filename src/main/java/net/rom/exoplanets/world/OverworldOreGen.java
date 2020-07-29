@@ -41,6 +41,8 @@ public class OverworldOreGen implements IWorldGenerator {
 		oreAluminium = new WorldGenMinable(EnumMetal.ALUMINIUM.getOre(), 4);
 		oreTitanium = new WorldGenMinable(EnumMetal.TITANIUM.getOre(), 2);
 		oreTungsten = new WorldGenMinable(EnumMetal.TUNGSTEN.getOre(), 3);
+		oreTungsten = new WorldGenMinable(EnumMetal.SILVER.getOre(), 2);
+		oreTungsten = new WorldGenMinable(EnumMetal.ZINC.getOre(), 4);
 	}
 	
 	private void runGenerator(WorldGenerator generator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight) {

@@ -44,7 +44,7 @@ public class TrappistBlocks {
 		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
 		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
 		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
-		ExoBlocks.register(TrappistE.trap1e_ore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1e_ore));
+		ExoBlocks.register(TrappistE.trap1eore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1eore));
 		
 	}
 	
@@ -76,7 +76,7 @@ public class TrappistBlocks {
 		public static final BlockExoDirt trap1e_dirt = new BlockExoDirt();
 		public static final BlockMetamorphicRock trap1e_cobblestone = new BlockMetamorphicRock();
 		public static final BlockMetamorphicRock trap1e_stone = new BlockMetamorphicRock();
-		public static final BlockOreMetal trap1e_ore = new BlockOreMetal(false);
+		public static final BlockOreMetal trap1eore = new BlockOreMetal("trap1eore", false);
 	}
 	
 	public static class TrappistF {

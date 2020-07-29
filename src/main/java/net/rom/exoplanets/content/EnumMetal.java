@@ -19,6 +19,7 @@ package net.rom.exoplanets.content;
 
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.rom.exoplanets.content.block.ore.BlockOreMetal;
@@ -82,6 +83,10 @@ public enum EnumMetal implements IMetal {
 
     public IBlockState getOre() {
         return ExoBlocks.metalOre.getDefaultState().withProperty(BlockOreMetal.METAL, this);
+    }
+    
+    public IBlockState getOre(Block ore) {
+        return ore.getDefaultState().withProperty(BlockOreMetal.METAL, this);
     }
 
     public int getDimension() {

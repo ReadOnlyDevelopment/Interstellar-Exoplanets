@@ -74,7 +74,7 @@ public class ExoBlocks {
 	public static final Block hydraulic_middle = new BlockCustomHydraulic();
 	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
 	
-    public static final Block metalOre = new BlockOreMetal(true);
+    public static final Block metalOre = new BlockOreMetal("metalore", true);
     public static final Block metalBlock = new BlockMetal();
     public static final Block alloyBlock = new BlockAlloy();
 

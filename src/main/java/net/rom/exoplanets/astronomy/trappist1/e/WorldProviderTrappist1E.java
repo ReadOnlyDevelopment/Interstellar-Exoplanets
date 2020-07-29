@@ -24,6 +24,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderS
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -47,6 +48,7 @@ import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
 import net.rom.exoplanets.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
+import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 
@@ -136,6 +138,20 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 		
 		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
+		
+		WE_OreGen standardOres = new WE_OreGen();
+		standardOres.add(EnumMetal.COPPER.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 9, 30, 100, 30);
+		standardOres.add(EnumMetal.TIN.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 13, 10, 80, 8);
+		standardOres.add(EnumMetal.LEAD.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 20, 90, 10);
+		standardOres.add(EnumMetal.NICKEL.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 45, 90, 15);
+		standardOres.add(EnumMetal.PLATINUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 15, 20, 55, 25);
+		standardOres.add(EnumMetal.ALUMINIUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 12, 5, 20, 35);
+		standardOres.add(EnumMetal.TITANIUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		standardOres.add(EnumMetal.TUNGSTEN.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 5, 20, 5);
+		standardOres.add(EnumMetal.SILVER.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		standardOres.add(EnumMetal.ZINC.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		
+		cp.decorateChunkGen_List.add(standardOres);
 		
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Dunes());

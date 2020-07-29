@@ -38,12 +38,15 @@ import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockOreMetal extends BlockExoOre implements ICustomModel {
 	public static final PropertyEnum<EnumMetal> METAL = PropertyEnum.create("metal", EnumMetal.class);
+	
+	private String name;
 
-	public BlockOreMetal(boolean showInTab) {
+	public BlockOreMetal(String name, boolean showInTab) {
 		super(EnumMetal.values().length);
 		this.setHardness(3.0f);
 		this.setResistance(15.0f);
 		this.setSoundType(SoundType.STONE);
+		this.name = name;
 		if (showInTab)
 			this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
 
@@ -112,7 +115,7 @@ public class BlockOreMetal extends BlockExoOre implements ICustomModel {
 	public void registerModels () {
 		Item item = Item.getItemFromBlock(this);
 		for (EnumMetal metal : EnumMetal.values()) {
-			ModelResourceLocation model = new ModelResourceLocation(ExoInfo.RESOURCE_PREFIX + "metalore", "metal="
+			ModelResourceLocation model = new ModelResourceLocation(ExoInfo.RESOURCE_PREFIX + this.name, "metal="
 					+ metal.getName());
 			ModelLoader.setCustomModelResourceLocation(item, metal.getMeta(), model);
 		}
