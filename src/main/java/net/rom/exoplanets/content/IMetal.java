@@ -38,8 +38,6 @@ public interface IMetal extends IStringSerializable {
 
     ItemStack getIngot();
 
-    ItemStack getNugget();
-
     ItemStack getDust();
 
     ItemStack getSheet();

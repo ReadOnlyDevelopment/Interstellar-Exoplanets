@@ -49,8 +49,6 @@ public class ItemIngotMetal extends ItemBaseMetal {
 
 			// Ingots <--> Blocks
 			recipes.addCompression("block_" + metal.getMetalName(), metal.getIngot(), metal.getBlock(), 9);
-			// Nuggets <--> Ingots
-			recipes.addCompression("ingot_" + metal.getMetalName(), metal.getNugget(), metal.getIngot(), 9);
 
 		}
 	}

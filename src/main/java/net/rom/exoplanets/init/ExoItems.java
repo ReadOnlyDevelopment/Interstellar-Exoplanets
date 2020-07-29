@@ -25,8 +25,6 @@ import net.rom.exoplanets.content.item.ItemDustAlloy;
 import net.rom.exoplanets.content.item.ItemDustMetal;
 import net.rom.exoplanets.content.item.ItemIngotAlloy;
 import net.rom.exoplanets.content.item.ItemIngotMetal;
-import net.rom.exoplanets.content.item.ItemNuggetAlloy;
-import net.rom.exoplanets.content.item.ItemNuggetMetal;
 import net.rom.exoplanets.content.item.ItemTwoPlayerRocket;
 import net.rom.exoplanets.internal.StellarRegistry;
 
@@ -34,10 +32,8 @@ public class ExoItems {
 
 	public static final Item passengerRocket = new ItemTwoPlayerRocket();
     public static final Item metalIngot = new ItemIngotMetal();
-    public static final Item metalNugget = new ItemNuggetMetal();
     public static final Item metalDust = new ItemDustMetal();
     public static final Item alloyIngot = new ItemIngotAlloy();
-    public static final Item alloyNugget = new ItemNuggetAlloy();
     public static final Item alloyDust = new ItemDustAlloy();
     public static final Item sheetBasic = new ItemCraftingItem("sheet", false);
     public static final Item sheetAlloy = new ItemCraftingItem("sheet", true);
@@ -54,10 +50,8 @@ public class ExoItems {
 		register(passengerRocket, "twopersonrocket");
 
 		register(metalIngot, "metalingot");
-		register(metalNugget, "metalnugget");
 		register(metalDust, "metaldust");
 		register(alloyIngot, "alloyingot");
-		register(alloyNugget, "alloynugget");
 		register(alloyDust, "alloydust");
 		register(sheetBasic, "metalsheet");
 		register(sheetAlloy, "alloysheet");

@@ -35,8 +35,7 @@ public enum EnumMetal implements IMetal {
     TITANIUM(6, "Titanium"),
 	TUNGSTEN(7, "Tungsten"),
 	SILVER(8, "Silver"),
-	IRON(9, "Iron"),
-	ZINC(10, "Zinc");
+	ZINC(9, "Zinc");
 
     public final int meta;
     public final int dimension;
@@ -107,11 +106,6 @@ public enum EnumMetal implements IMetal {
     @Override
     public ItemStack getIngot() {
         return new ItemStack(ExoItems.metalIngot, 1, meta);
-    }
-
-    @Override
-    public ItemStack getNugget() {
-        return new ItemStack(ExoItems.metalNugget, 1, meta);
     }
 
     @Override

@@ -55,12 +55,7 @@ public enum EnumClad implements IMetal {
 	public ItemStack getIngot() {
 		return null;
 	}
-
-	@Override
-	public ItemStack getNugget() {
-		return null;
-	}
-
+	
 	@Override
 	public ItemStack getDust() {
 		return null;
