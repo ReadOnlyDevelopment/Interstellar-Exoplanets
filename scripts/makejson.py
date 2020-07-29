@@ -1,4 +1,5 @@
 """Somewhat simple Minecraft model JSON generator written in Python.
+Customized slightly for Silent's Gems, where texture names contain the index instead of a name.
 Usage: python makejson.py [block|item] filename [subtypeCount] [otherOptions]
 Other options (type "option=value"):
 layer -- The layer the texture will be on (lower layers will get a texture called "blank")
@@ -15,7 +16,7 @@ import re
 import os
 
 # Your mod ID. Should be all lowercase letters and underscores, nothing else. This absolutely must match your mod ID!
-MOD_ID = 'SilentGems'
+MOD_ID = 'exoplanets'
 # The directories to write the files to. I let the script write to an output directory, then copy
 # the files to my resources folder when I'm happy with the results. You could change this to output
 # directly to your resources folder, but I would not recommend it.
@@ -57,7 +58,7 @@ def writeBlockJSON(name, texture, variantKey, variantValues):
     # We could include this is blocks with subtypes, but would likely get missing texture errors.
     if not variantKey or len(variantValues) == 0:
         list.append('      "textures": {')
-        list.append('        "all": "%s:blocks/%s"' % (MOD_ID, texture))
+        list.append('        "all": "%s:blocks/ores/trappist1e/%s"' % (MOD_ID, texture))
         list.append('      }')
     list.append('    }]' + (',' if len(variantValues) > 0 else ''))
 
@@ -67,7 +68,7 @@ def writeBlockJSON(name, texture, variantKey, variantValues):
         for value in variantValues:
             list.append('      "%s": {' % value)
             list.append('        "textures": {')
-            list.append('          "all": "%s:blocks/%s%d"' % (MOD_ID, texture, index))
+            list.append('          "all": "%s:blocks/ores/trappist1e/%s%d"' % (MOD_ID, texture, index))
             list.append('        }')
             list.append('      }' + (',' if value != variantValues[-1] else ''))
             index += 1
@@ -80,33 +81,6 @@ def writeBlockJSON(name, texture, variantKey, variantValues):
     for line in list:
         f.write(line + '\n')
     f.close()
-
-def writeItemJSON(name, texture, layer=0, item_type='generated'):
-    """Creates the JSON file needed for an item. Multi-layer models can be
-    created, but the textures for all but the highest layer cannot be named. In
-    those cases, you will need to either modify the files yourself, or modify
-    this script to fit your needs.
-    Arguments:
-    name -- The name to give the file (.json is automatically appended)
-    texture -- The name of the texture to use. Only the highest layer can be named.
-    layer -- The index of the highest layer (layers start at 0)
-    item_type -- The 'parent' model for the item.
-    """
-    print('Writing item %s (texture %s)' % (name, texture))
-
-    f = open(DIR_OUTPUT_ITEMS + name + '.json', 'w')
-    f.write('{\n')
-    f.write('  "parent": "item/%s",\n' % item_type)
-    f.write('  "textures": {\n')
-    for i in range(0, layer):
-        f.write('    "layer%d": "%s:items/Blank",\n' % (i, MOD_ID))
-    f.write('    "layer%d": "%s:items/%s"\n' % (layer, MOD_ID, texture))
-    f.write('  }\n')
-    f.write('}\n')
-    f.write('\n')
-    f.close()
-
-
 
 def writeItemJSON(name, texture, layer=0, item_type='generated'):
     """Creates the JSON file needed for an item. Multi-layer models can be
