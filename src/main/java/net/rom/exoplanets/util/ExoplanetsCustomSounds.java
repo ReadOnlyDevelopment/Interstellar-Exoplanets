@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rom.exoplanets.content;
+package net.rom.exoplanets.util;
 
 import java.util.ArrayList;
 import java.util.List;

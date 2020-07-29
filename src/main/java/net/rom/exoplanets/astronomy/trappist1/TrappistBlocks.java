@@ -18,6 +18,7 @@
 package net.rom.exoplanets.astronomy.trappist1;
 
 import net.rom.exoplanets.content.block.BlockTerrain;
+import net.rom.exoplanets.content.block.ore.BlockOreMetal;
 import net.rom.exoplanets.content.block.ore.BlockOrePlanet;
 import net.rom.exoplanets.content.block.terrain.BlockExoDirt;
 import net.rom.exoplanets.content.block.terrain.BlockExoGrass;
@@ -43,6 +44,7 @@ public class TrappistBlocks {
 		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
 		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
 		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
+		ExoBlocks.register(TrappistE.trap1e_ore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1e_ore));
 		
 	}
 	
@@ -53,11 +55,19 @@ public class TrappistBlocks {
 		public static final BlockTerrain HOT_GROUND_3 = new BlockTerrain();
 	}
 	
+	public static class TrappistB {
+		
+	}
+	
 	public static class TrappistC {
 		
 		public static final BlockTerrain T1C_TOP = new BlockTerrain();
 		public static final BlockTerrain T1C_Dirt_1 = new BlockTerrain();
 		public static final BlockTerrain T1C_Dirt_2 = new BlockTerrain();
+	}
+	
+	public static class TrappistD {
+		
 	}
 	
 	public static class TrappistE {
@@ -66,6 +76,19 @@ public class TrappistBlocks {
 		public static final BlockExoDirt trap1e_dirt = new BlockExoDirt();
 		public static final BlockMetamorphicRock trap1e_cobblestone = new BlockMetamorphicRock();
 		public static final BlockMetamorphicRock trap1e_stone = new BlockMetamorphicRock();
+		public static final BlockOreMetal trap1e_ore = new BlockOreMetal(false);
+	}
+	
+	public static class TrappistF {
+		
+	}
+	
+	public static class TrappistG {
+		
+	}
+	
+	public static class TrappistH {
+		
 	}
 
 }
