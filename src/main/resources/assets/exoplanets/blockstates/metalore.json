@@ -7,6 +7,8 @@
     "metal=platinum": { "model": "exoplanets:oreplatinum" },
     "metal=aluminium": { "model": "exoplanets:orealuminium" },
     "metal=titanium": { "model": "exoplanets:oretitanium" },
-	"metal=tungsten": { "model": "exoplanets:oretungsten" }
+    "metal=tungsten": { "model": "exoplanets:oretungsten" },
+    "metal=silver": { "model": "exoplanets:oresilver" },
+	"metal=zinc": { "model": "exoplanets:orezinc" }
   }
 }

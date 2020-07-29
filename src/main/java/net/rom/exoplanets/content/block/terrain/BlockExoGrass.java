@@ -11,13 +11,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.internal.block.BlockBase;
 
 public class BlockExoGrass extends BlockBase implements IGrowable, ITerraformableBlock {
@@ -55,6 +55,11 @@ public class BlockExoGrass extends BlockBase implements IGrowable, ITerraformabl
 			}
 		}
 	}
+	
+	@Override
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) {
+		return true;
+    }
 
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {

@@ -31,7 +31,6 @@ public class BlockOrePlanet extends BlockGeneral {
         this.setResistance(30.0f);
         this.setHarvestLevel("pickaxe", level);
         this.setSoundType(SoundType.STONE);
-		this.setCreativeTab(CreativeExoTabs.DECO_CREATIVE_TABS);
 	}
 	
     public ItemStack getStack(int count) {
@@ -40,7 +39,6 @@ public class BlockOrePlanet extends BlockGeneral {
 
 	@Override
 	public void addRecipes(RecipeBuilder recipes) {
-		// TODO Auto-generated method stub
 		
 	}
 

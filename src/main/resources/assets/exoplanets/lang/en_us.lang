@@ -149,10 +149,6 @@ tile.exoplanets.lever1.name=Lever Door Controller
 tile.exoplanets.lever2.name=Button Door Controller
 tile.exoplanets.lever3.name=Gui Door Controller
 
-tile.exoplanets.overworldore0.name=Limonite Ore
-tile.exoplanets.overworldore1.name=Ruthenium Ore
-tile.exoplanets.overworldore2.name=Rutile Ore
-
 tile.exoplanets.alarm_light.name=Alarm Lamp
 tile.exoplanets.alarm_light_lit.name=Alarm Lamp
 tile.exoplanets.wall_lamp.name=Wall Light
@@ -176,6 +172,8 @@ tile.exoplanets.metalore4.name=Platinum Ore
 tile.exoplanets.metalore5.name=Aluminium Ore
 tile.exoplanets.metalore6.name=Titanium Ore
 tile.exoplanets.metalore7.name=Tungsten Ore
+tile.exoplanets.metalore8.name=Silver Ore
+tile.exoplanets.metalore9.name=Zinc Ore
 
 tile.exoplanets.metalblock0.name=Copper Block
 tile.exoplanets.metalblock1.name=Tin Block
@@ -185,6 +183,8 @@ tile.exoplanets.metalblock4.name=Platinum Block
 tile.exoplanets.metalblock5.name=Aluminium Block
 tile.exoplanets.metalblock6.name=Titanium Block
 tile.exoplanets.metalblock7.name=Tungsten Block
+tile.exoplanets.metalblock8.name=Silver Block
+tile.exoplanets.metalblock9.name=Zinc Block
 
 tile.exoplanets.alloyrefinery.name=Alloy Refinery
 tile.exoplanets.metalfurnace.name=Metal Furnace
@@ -210,6 +210,8 @@ item.exoplanets.metaldust4.name=Platinum Dust
 item.exoplanets.metaldust5.name=Aluminium Dust
 item.exoplanets.metaldust6.name=Titanium Dust
 item.exoplanets.metaldust7.name=Tungsten Dust
+item.exoplanets.metaldust8.name=Silver Dust
+item.exoplanets.metaldust9.name=Zinc Dust
 
 item.exoplanets.metalingot0.name=Copper Ingot
 item.exoplanets.metalingot1.name=Tin Ingot
@@ -219,6 +221,8 @@ item.exoplanets.metalingot4.name=Platinum Ingot
 item.exoplanets.metalingot5.name=Aluminium Ingot
 item.exoplanets.metalingot6.name=Titanium Ingot
 item.exoplanets.metalingot7.name=Tungsten Ingot
+item.exoplanets.metalingot8.name=Silver Ingot
+item.exoplanets.metalingot9.name=Zinc Ingot
 
 item.exoplanets.metalnugget0.name=Copper Nugget
 item.exoplanets.metalnugget1.name=Tin Nugget
@@ -236,6 +240,8 @@ item.exoplanets.sheetnickel.name=Nickel Sheet
 item.exoplanets.sheetplatinum.name=Platinum Sheet
 item.exoplanets.sheetaluminium.name=Aluminium Sheet
 item.exoplanets.sheettitanium.name=Titanium Sheet
+item.exoplanets.sheettungsten.name=Tungsten Sheet
+item.exoplanets.sheetsilver.name=Tungsten Sheet
 item.exoplanets.sheettungsten.name=Tungsten Sheet
 
 item.exoplanets.gearcopper.name=Copper Gear

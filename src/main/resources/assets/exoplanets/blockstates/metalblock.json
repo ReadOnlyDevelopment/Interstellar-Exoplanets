@@ -7,6 +7,8 @@
     "metal=platinum": { "model": "exoplanets:blockplatinum" },
     "metal=aluminium": { "model": "exoplanets:blockaluminium" },
     "metal=titanium": { "model": "exoplanets:blocktitanium" },
-	"metal=tungsten": { "model": "exoplanets:blocktungsten" }
+	"metal=tungsten": { "model": "exoplanets:blocktungsten" },
+	"metal=silver": { "model": "exoplanets:blocksilver" },
+	"metal=zinc": { "model": "exoplanets:blockzinc" }
   }
 }

@@ -1,6 +1,10 @@
 {
    "parent": "block/cube_all",
    "textures": {
-      "all": "exoplanets:blocks/kepler_surface2"
+		"particle": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
+        "bottom": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
+        "top": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
+        "side": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
+        "overlay": "exoplanets:blocks/overlay/overlay_titanium"
    }
 }

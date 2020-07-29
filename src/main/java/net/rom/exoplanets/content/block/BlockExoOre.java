@@ -31,7 +31,6 @@ public abstract class BlockExoOre extends BlockMetaSubtypes implements IAddRecip
         super(Material.ROCK, subBlockCount);
         this.maxMeta = subBlockCount;
         this.setSoundType(SoundType.STONE);
-        this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
     }
 
 }

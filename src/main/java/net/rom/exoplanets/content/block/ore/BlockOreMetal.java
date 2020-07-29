@@ -34,90 +34,94 @@ import net.rom.exoplanets.content.block.BlockExoOre;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.ICustomModel;
 import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
+import net.rom.exoplanets.util.CreativeExoTabs;
 
 public class BlockOreMetal extends BlockExoOre implements ICustomModel {
-    public static final PropertyEnum<EnumMetal> METAL = PropertyEnum.create("metal", EnumMetal.class);
+	public static final PropertyEnum<EnumMetal> METAL = PropertyEnum.create("metal", EnumMetal.class);
 
-    public BlockOreMetal() {
-        super(EnumMetal.values().length);
-        this.setHardness(3.0f);
-        this.setResistance(15.0f);
-        this.setSoundType(SoundType.STONE);
+	public BlockOreMetal(boolean showInTab) {
+		super(EnumMetal.values().length);
+		this.setHardness(3.0f);
+		this.setResistance(15.0f);
+		this.setSoundType(SoundType.STONE);
+		if (showInTab)
+			this.setCreativeTab(CreativeExoTabs.TERRAIN_CREATIVE_TABS);
 
-        for (EnumMetal metal : EnumMetal.values()) {
-            if (metal == EnumMetal.COPPER || metal == EnumMetal.TIN || metal == EnumMetal.ALUMINIUM) {
-                this.setHarvestLevel("pickaxe", 1, this.getDefaultState().withProperty(METAL, metal));
-            } else {
-                this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(METAL, metal));
-            }
-        }
-    }
+		for (EnumMetal metal : EnumMetal.values()) {
+			if (metal == EnumMetal.COPPER || metal == EnumMetal.TIN || metal == EnumMetal.ALUMINIUM) {
+				this.setHarvestLevel("pickaxe", 1, this.getDefaultState().withProperty(METAL, metal));
+			}
+			else {
+				this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(METAL, metal));
+			}
+		}
+	}
 
-    @Override
-    public void addRecipes(RecipeBuilder recipes) {
-        for (EnumMetal metal : EnumMetal.values()) {
-            ItemStack ore = new ItemStack(this, 1, metal.meta);
-            ItemStack ingot = metal.getIngot();
-            
-            // Vanilla smelting
-            recipes.addSmelting(ore, ingot, 0.5f);
-        }
-    }
+	@Override
+	public void addRecipes (RecipeBuilder recipes) {
+		for (EnumMetal metal : EnumMetal.values()) {
+			ItemStack ore   = new ItemStack(this, 1, metal.meta);
+			ItemStack ingot = metal.getIngot();
 
-    @Override
-    public void addOreDict() {
-        for (EnumMetal metal : EnumMetal.values()) {
-            ItemStack stack = new ItemStack(this, 1, metal.getMeta());
-                OreDictionary.registerOre("ore" + metal.getMetalName(), stack);
-                // Alternative spelling of aluminium
-                if (metal == EnumMetal.ALUMINIUM)
-                    OreDictionary.registerOre("oreAluminum", stack);
-        }
-    }
+			// Vanilla smelting
+			recipes.addSmelting(ore, ingot, 0.5f);
+		}
+	}
 
-    @Override
-    public int damageDropped(IBlockState state) {
-        return state.getValue(METAL).getMeta();
-    }
+	@Override
+	public void addOreDict () {
+		for (EnumMetal metal : EnumMetal.values()) {
+			ItemStack stack = new ItemStack(this, 1, metal.getMeta());
+			OreDictionary.registerOre("ore" + metal.getMetalName(), stack);
+			// Alternative spelling of aluminium
+			if (metal == EnumMetal.ALUMINIUM)
+				OreDictionary.registerOre("oreAluminum", stack);
+		}
+	}
 
-    @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-        Item item = Item.getItemFromBlock(this);
-        for (EnumMetal metal : EnumMetal.values()) {
-            ItemStack stack = new ItemStack(item, 1, metal.meta);
-                list.add(stack);
-        }
-    }
+	@Override
+	public int damageDropped (IBlockState state) {
+		return state.getValue(METAL).getMeta();
+	}
 
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(METAL, EnumMetal.byMetadata(meta));
-    }
+	@Override
+	public void getSubBlocks (CreativeTabs tab, NonNullList<ItemStack> list) {
+		Item item = Item.getItemFromBlock(this);
+		for (EnumMetal metal : EnumMetal.values()) {
+			ItemStack stack = new ItemStack(item, 1, metal.meta);
+			list.add(stack);
+		}
+	}
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(METAL).getMeta();
-    }
+	@Override
+	public IBlockState getStateFromMeta (int meta) {
+		return this.getDefaultState().withProperty(METAL, EnumMetal.byMetadata(meta));
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, METAL);
-    }
+	@Override
+	public int getMetaFromState (IBlockState state) {
+		return state.getValue(METAL).getMeta();
+	}
 
-    @Override
-    public void registerModels() {
-        Item item = Item.getItemFromBlock(this);
-        for (EnumMetal metal : EnumMetal.values()) {
-            ModelResourceLocation model = new ModelResourceLocation(ExoInfo.RESOURCE_PREFIX + "metalore", "metal=" + metal.getName());
-            ModelLoader.setCustomModelResourceLocation(item, metal.getMeta(), model);
-        }
-    }
-    
-    public static class ItemBlock extends ItemBlockMetaSubtypes {
-        public ItemBlock(BlockOreMetal block) {
-            super(block);
-        }
-    }
-    
-    
+	@Override
+	protected BlockStateContainer createBlockState () {
+		return new BlockStateContainer(this, METAL);
+	}
+
+	@Override
+	public void registerModels () {
+		Item item = Item.getItemFromBlock(this);
+		for (EnumMetal metal : EnumMetal.values()) {
+			ModelResourceLocation model = new ModelResourceLocation(ExoInfo.RESOURCE_PREFIX + "metalore", "metal="
+					+ metal.getName());
+			ModelLoader.setCustomModelResourceLocation(item, metal.getMeta(), model);
+		}
+	}
+
+	public static class ItemBlock extends ItemBlockMetaSubtypes {
+		public ItemBlock(BlockOreMetal block) {
+			super(block);
+		}
+	}
+
 }
