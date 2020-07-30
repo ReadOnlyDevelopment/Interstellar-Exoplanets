@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/blocka2219",
+  "textures": {
+    "layer0": "exoplanets:blocks/blocka2219"
+  }
+}

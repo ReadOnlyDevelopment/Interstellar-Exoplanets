@@ -40,27 +40,22 @@
       },
       "titanium": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/trap1eore6"
+          "all": "exoplanets:blocks/ores/trappist1e/titanium"
         }
       },
       "tungsten": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/trap1eore7"
+          "all": "exoplanets:blocks/ores/trappist1e/tungsten"
         }
       },
       "silver": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/trap1eore8"
-        }
-      },
-      "iron": {
-        "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/trap1eore9"
+          "all": "exoplanets:blocks/ores/trappist1e/silver"
         }
       },
       "zinc": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/trap1eore10"
+          "all": "exoplanets:blocks/ores/trappist1e/zinc"
         }
       }
     }
