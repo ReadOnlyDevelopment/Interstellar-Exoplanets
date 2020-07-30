@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.d.biomes.BiomeOceananic;
+import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 import net.rom.exoplanets.util.RGB;
@@ -86,7 +87,7 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
 		terrainGenerator.worldSeaGen      = true;
-		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
+		terrainGenerator.worldSeaGenBlock = ExoFluids.fluidBlockMantle.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY  = 125;
 		cp.createChunkGen_List.add(terrainGenerator);
 

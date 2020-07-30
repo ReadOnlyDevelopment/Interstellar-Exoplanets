@@ -1,5 +1,6 @@
 package net.rom.exoplanets.init;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.content.block.fluid.BlockFluid;
 import net.rom.exoplanets.util.CreativeExoTabs;
+import net.rom.exoplanets.util.RGB;
 
 public class ExoFluids {
 
@@ -32,17 +34,14 @@ public class ExoFluids {
     private static final Map<BlockFluidBase, String> fluidBlockNames = new HashMap<>();
 
 	public static void init () {
-		fluidpressurized = newFluid("pressurizedfluid", 100, 500, 80, 0, 0xadff2f96);
+		fluidpressurized = newFluid("pressurizedfluid", 1, 500, 80, 0);
 
         fluidBlockMantle = registerFluidBlock(fluidpressurized, new BlockFluid(fluidpressurized, Material.WATER), "pressurizedfluid");
 	}
 	
-    private static Fluid newFluid(String name, int density, int viscosity, int temperature, int luminosity, int tintColor) {
+    private static Fluid newFluid(String name, int density, int viscosity, int temperature, int luminosity) {
         Fluid fluid = new Fluid(name, new ResourceLocation(ExoInfo.MODID + ":blocks/" + name + "_still"), new ResourceLocation(ExoInfo.MODID + ":blocks/" + name + "_flow")) {
-            @Override
-            public int getColor() {
-                return tintColor;
-            }
+
             @Override
             public String getLocalizedName(FluidStack stack) {
                 return ExoplanetsMod.translate.translate(this.unlocalizedName);

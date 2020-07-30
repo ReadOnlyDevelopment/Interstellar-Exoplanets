@@ -39,8 +39,12 @@ public class BlockFluid extends BlockFluidClassic {
         return fluid != null ? fluid.getUnlocalizedName() : super.getUnlocalizedName();
     }
 
-	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {		
-	}
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+        entity.motionX *= 0.1D;
+        entity.motionY = -0.1D;
+        entity.motionZ *= 0.1D;
 
+    }
 }
