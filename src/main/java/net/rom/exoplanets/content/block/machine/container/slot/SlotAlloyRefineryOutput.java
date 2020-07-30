@@ -23,7 +23,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipe;
 
 public class SlotAlloyRefineryOutput extends SlotFurnaceOutput {
     private EntityPlayer thePlayer;

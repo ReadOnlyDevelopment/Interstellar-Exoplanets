@@ -24,7 +24,7 @@
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package net.rom.api.recipe.alloyrefinery;
+package net.rom.api.crafting.recipe.alloyrefinery;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

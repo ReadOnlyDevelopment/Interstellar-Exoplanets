@@ -30,8 +30,8 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipeObject;
+import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 
 // TODO: Auto-generated Javadoc
 /**

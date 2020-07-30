@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package net.rom.api.recipe.alloyrefinery;
+package net.rom.api.crafting.recipe.alloyrefinery;
 
 import java.util.ArrayList;
 import java.util.Collections;
