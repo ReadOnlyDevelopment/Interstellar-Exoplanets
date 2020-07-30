@@ -19,7 +19,7 @@ package net.rom.exoplanets.init;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.rom.api.recipe.alloyrefinery.AlloyRefineryRecipe;
+import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipe;
 import net.rom.exoplanets.content.EnumAlloy;
 
 public class ExoRecipes {

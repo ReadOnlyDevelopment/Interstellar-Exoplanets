@@ -108,10 +108,10 @@ ext {
 	v = "${mod_version}." + getBuildNumber()
 }
 
-apply from: 'gradle/artifacts.gradle'
-apply from: 'gradle/deps.gradle'
-apply from: 'gradle/restcall.gradle'
-apply from: 'gradle/changelog.gradle'
+apply from: 'scripts/artifacts.gradle'
+apply from: 'scripts/deps.gradle'
+apply from: 'scripts/restcall.gradle'
+apply from: 'scripts/changelog.gradle'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 

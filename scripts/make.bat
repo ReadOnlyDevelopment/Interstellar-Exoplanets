@@ -1,1 +1,0 @@
-py makejson.py block trap1eore variantkey=metal variantvalues=copper,tin,lead,nickel,platinum,aluminium,titanium,tungsten,silver,iron,zinc

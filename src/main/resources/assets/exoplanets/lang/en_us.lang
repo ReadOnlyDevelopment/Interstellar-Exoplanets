@@ -163,6 +163,7 @@ tile.exoplanets.inset_lamp_lit.name=Inset Lamp
 tile.exoplanets.alloyblock0.name=Bronze Block
 tile.exoplanets.alloyblock1.name=Brass Block
 tile.exoplanets.alloyblock2.name=Steel Block
+tile.exoplanets.alloyblock3.name=2219-Aluminum Block
 
 tile.exoplanets.metalore0.name=Copper Ore
 tile.exoplanets.metalore1.name=Tin Ore
@@ -189,18 +190,16 @@ tile.exoplanets.metalblock9.name=Zinc Block
 tile.exoplanets.alloyrefinery.name=Alloy Refinery
 tile.exoplanets.metalfurnace.name=Metal Furnace
 
-## ITEMS ##
+## ITEMS ## 2219-Aluminum Block
 item.exoplanets.alloydust0.name=Bronze Alloy Dust
 item.exoplanets.alloydust1.name=Brass Alloy Dust
 item.exoplanets.alloydust2.name=Steel Alloy Dust
+item.exoplanets.alloydust3.name=2219-Aluminum Alloy Dust
 
 item.exoplanets.alloyingot0.name=Bronze Alloy Ingot
 item.exoplanets.alloyingot1.name=Brass Alloy Ingot
 item.exoplanets.alloyingot2.name=Steel Alloy Ingot
-
-item.exoplanets.alloynugget0.name=Bronze Alloy Nugget
-item.exoplanets.alloynugget1.name=Brass Alloy Nugget
-item.exoplanets.alloynugget2.name=Steel Alloy Nugget
+item.exoplanets.alloyingot3.name=2219-Aluminum Alloy Ingot
 
 item.exoplanets.metaldust0.name=Copper Dust
 item.exoplanets.metaldust1.name=Tin Dust
@@ -224,15 +223,6 @@ item.exoplanets.metalingot7.name=Tungsten Ingot
 item.exoplanets.metalingot8.name=Silver Ingot
 item.exoplanets.metalingot9.name=Zinc Ingot
 
-item.exoplanets.metalnugget0.name=Copper Nugget
-item.exoplanets.metalnugget1.name=Tin Nugget
-item.exoplanets.metalnugget2.name=Lead Nugget
-item.exoplanets.metalnugget3.name=Nickel Nugget
-item.exoplanets.metalnugget4.name=Platinum Nugget
-item.exoplanets.metalnugget5.name=Aluminium Nugget
-item.exoplanets.metalnugget6.name=Titanium Nugget
-item.exoplanets.metalnugget7.name=Tungsten Nugget
-
 item.exoplanets.sheetcopper.name=Copper Sheet
 item.exoplanets.sheettin.name=Tin Sheet
 item.exoplanets.sheetlead.name=Lead Sheet
@@ -241,8 +231,8 @@ item.exoplanets.sheetplatinum.name=Platinum Sheet
 item.exoplanets.sheetaluminium.name=Aluminium Sheet
 item.exoplanets.sheettitanium.name=Titanium Sheet
 item.exoplanets.sheettungsten.name=Tungsten Sheet
-item.exoplanets.sheetsilver.name=Tungsten Sheet
-item.exoplanets.sheettungsten.name=Tungsten Sheet
+item.exoplanets.sheetsilver.name=Silver Sheet
+item.exoplanets.sheetzinc.name=Zinc Sheet
 
 item.exoplanets.gearcopper.name=Copper Gear
 item.exoplanets.geartin.name=Tin Gear
@@ -252,14 +242,18 @@ item.exoplanets.gearplatinum.name=Platinum Gear
 item.exoplanets.gearaluminium.name=Aluminium Gear
 item.exoplanets.geartitanium.name=Titanium Gear
 item.exoplanets.geartungsten.name=Tungsten Gear
+item.exoplanets.gearsilver.name=Silver Gear
+item.exoplanets.gearzinc.name=Zinc Gear
 
 item.exoplanets.sheetbronze.name=Bronze Alloy Sheet
 item.exoplanets.sheetbrass.name=Brass Alloy Sheet
 item.exoplanets.sheetsteel.name=Steel Alloy Sheet
+item.exoplanets.sheeta2219.name=2219-Aluminum Alloy Sheet
 
 item.exoplanets.gearbronze.name=Bronze Alloy Gear
 item.exoplanets.gearbrass.name=Brass Alloy Gear
 item.exoplanets.gearsteel.name=Steel Alloy Gear
+item.exoplanets.geara2219.name=2219-Aluminum Alloy Sheet
 
 item.exoplanets.twopersonrocket.name=EXO1 Planetary Rocket
 
