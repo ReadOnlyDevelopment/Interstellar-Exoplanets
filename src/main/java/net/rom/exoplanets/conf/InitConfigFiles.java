@@ -24,15 +24,17 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class InitConfigFiles {
 
-	public static void init(FMLPreInitializationEvent event) {
+	public static void init (FMLPreInitializationEvent event) {
 
-		registerEventHandler(new SConfigSystems(new File(event.getModConfigurationDirectory(), "Exoplanets/systems.cfg")));
-		registerEventHandler(new SConfigDimensionID(new File(event.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg")));
+		registerEventHandler(new SConfigSystems(new File(event
+				.getModConfigurationDirectory(), "Exoplanets/systems.cfg")));
+		registerEventHandler(new SConfigDimensionID(new File(event
+				.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg")));
 		registerEventHandler(new SConfigCore(new File(event.getModConfigurationDirectory(), "Exoplanets/core.cfg")));
 
 	}
 
-	public static void registerEventHandler(Object handler) {
+	public static void registerEventHandler (Object handler) {
 		MinecraftForge.EVENT_BUS.register(handler);
 	}
 }

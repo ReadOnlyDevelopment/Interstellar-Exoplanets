@@ -17,14 +17,22 @@
 
 package net.rom.exoplanets.conf;
 
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_GENERAL;
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_MAP_POSITION;
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_WIDE_TIERS;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_GENERAL_COMMENT;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_GENERAL_LANGKEY;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_MAP_LANGKEY;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_MAP_POSITION_COMMENT;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_TIER_LANGKEY;
+import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_WIDE_TIERS_COMMENT;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static net.rom.exoplanets.ExoInfo.Constants.*;
 
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
@@ -53,7 +61,6 @@ public class SConfigSystems {
 	public static boolean disable_trap_system;
 	public static boolean disable_k1649_system;
 
-
 	// NOT FINISHED
 	public static boolean hideUnfinishedSystems;
 
@@ -66,7 +73,7 @@ public class SConfigSystems {
 
 	// SYSTEMS MAP OFFSETS
 
-	public static double[] yzceti_map = { -1.0D, -1.1D };
+	public static double[] yzceti_map = { 1.9D, 2.4D };
 	public static double[] wolf_map   = { -2.0D, -1.5D };
 	public static double[] trap_map   = { 2.0D, -1.5D };
 	public static double[] k1649_map  = { 1.3D, -2.6D };
@@ -83,11 +90,10 @@ public class SConfigSystems {
 	public static double trap_x;
 	public static double trap_y;
 
-
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
 
-	public static void syncConfig(boolean load) {
+	public static void syncConfig (boolean load) {
 		try {
 			propOrder.clear();
 			Property prop;
@@ -106,7 +112,6 @@ public class SConfigSystems {
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_GENERAL, true);
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_WIDE_TIERS, true);
 			config.setCategoryRequiresMcRestart(CATEGORY_SYSTEMS_MAP_POSITION, true);
-
 
 			prop = getConfig(CATEGORY_SYSTEMS_GENERAL, "Disable Yz Ceti System", false);
 			prop.setComment("Setting this option to false will disable the Yz Ceti System & Planets");
@@ -197,18 +202,20 @@ public class SConfigSystems {
 			if (config.hasChanged()) {
 				config.save();
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			ExoplanetsMod.logger.fatal("exoplanets Systems Configuration File had an issue loding correctly");
 		}
 	}
 
-	public static void cleanConfig(Configuration config, Map<String, List<String>> propOrder) {
+	public static void cleanConfig (Configuration config, Map<String, List<String>> propOrder) {
 		List<String> categoriesToRemove = new LinkedList<>();
 		for (String catName : config.getCategoryNames()) {
 			List<String> newProps = propOrder.get(catName);
 			if (newProps == null) {
 				categoriesToRemove.add(catName);
-			} else {
+			}
+			else {
 				ConfigCategory cat      = config.getCategory(catName);
 				List<String>   toRemove = new LinkedList<>();
 				for (String oldprop : cat.keySet()) {
@@ -227,32 +234,32 @@ public class SConfigSystems {
 		}
 	}
 
-	private static Property getConfig(String cat, String key, int defaultValue) {
+	private static Property getConfig (String cat, String key, int defaultValue) {
 		config.moveProperty(CATEGORY_SYSTEMS_WIDE_TIERS, key, cat);
 		currentCat = cat;
 		return config.get(cat, key, defaultValue);
 	}
 
-	private static Property getConfig(String cat, String key, double[] defaultValue) {
+	private static Property getConfig (String cat, String key, double[] defaultValue) {
 		config.moveProperty(CATEGORY_SYSTEMS_MAP_POSITION, key, cat);
 		currentCat = cat;
 		return config.get(cat, key, defaultValue);
 	}
 
-	private static Property getConfig(String cat, String key, boolean defaultValue) {
+	private static Property getConfig (String cat, String key, boolean defaultValue) {
 		config.moveProperty(CATEGORY_SYSTEMS_GENERAL, key, cat);
 		currentCat = cat;
 		return config.get(cat, key, defaultValue);
 	}
 
-	private static void finishProp(Property prop) {
+	private static void finishProp (Property prop) {
 		if (propOrder.get(currentCat) == null) {
 			propOrder.put(currentCat, new ArrayList<String>());
 		}
 		propOrder.get(currentCat).add(prop.getName());
 	}
 
-	public static List<IConfigElement> getConfigElements() {
+	public static List<IConfigElement> getConfigElements () {
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 
 		ConfigCategory configSystemsMain = config.getCategory(CATEGORY_SYSTEMS_GENERAL);
@@ -271,7 +278,7 @@ public class SConfigSystems {
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
+	public void onConfigChanged (ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
 		if (eventArgs.getModID().equals(ExoInfo.MODID)) {
 			config.save();
 		}

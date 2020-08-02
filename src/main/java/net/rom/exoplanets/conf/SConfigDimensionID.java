@@ -17,14 +17,16 @@
 
 package net.rom.exoplanets.conf;
 
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_PLANETS_DIMENSION_ID;
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_PLANETS_DIMENSION_ID_COMMENT;
+import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_PLANETS_DIMENSION_ID_LANGKEY;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static net.rom.exoplanets.ExoInfo.Constants.*;
 
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
@@ -71,7 +73,7 @@ public class SConfigDimensionID {
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
 
-	public static void syncConfig(boolean load) {
+	public static void syncConfig (boolean load) {
 		try {
 
 			propOrder.clear();
@@ -212,18 +214,20 @@ public class SConfigDimensionID {
 			if (config.hasChanged()) {
 				config.save();
 			}
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			ExoplanetsMod.logger.bigError("Intersteller Core Config had an issue loading the config file!");
 		}
 	}
 
-	public static void cleanConfig(Configuration config, Map<String, List<String>> propOrder) {
+	public static void cleanConfig (Configuration config, Map<String, List<String>> propOrder) {
 		List<String> categoriesToRemove = new LinkedList<>();
 		for (String catName : config.getCategoryNames()) {
 			List<String> newProps = propOrder.get(catName);
 			if (newProps == null) {
 				categoriesToRemove.add(catName);
-			} else {
+			}
+			else {
 				ConfigCategory cat      = config.getCategory(catName);
 				List<String>   toRemove = new LinkedList<>();
 				for (String oldprop : cat.keySet()) {
@@ -242,20 +246,20 @@ public class SConfigDimensionID {
 		}
 	}
 
-	private static Property getConfig(String cat, String key, int defaultValue) {
+	private static Property getConfig (String cat, String key, int defaultValue) {
 		config.moveProperty(CATEGORY_PLANETS_DIMENSION_ID, key, cat);
 		currentCat = cat;
 		return config.get(cat, key, defaultValue);
 	}
 
-	private static void finishProp(Property prop) {
+	private static void finishProp (Property prop) {
 		if (propOrder.get(currentCat) == null) {
 			propOrder.put(currentCat, new ArrayList<String>());
 		}
 		propOrder.get(currentCat).add(prop.getName());
 	}
 
-	public static List<IConfigElement> getConfigElements() {
+	public static List<IConfigElement> getConfigElements () {
 		List<IConfigElement> list          = new ArrayList<IConfigElement>();
 		ConfigCategory       configGeneral = config.getCategory(CATEGORY_PLANETS_DIMENSION_ID);
 		configGeneral.setComment("Dimension ID's");
@@ -264,7 +268,7 @@ public class SConfigDimensionID {
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
+	public void onConfigChanged (ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
 		if (eventArgs.getModID().equals(ExoInfo.MODID)) {
 			config.save();
 		}
