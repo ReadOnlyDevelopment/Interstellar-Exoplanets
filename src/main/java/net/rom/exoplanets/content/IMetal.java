@@ -21,30 +21,30 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
 public interface IMetal extends IStringSerializable {
-    int getMeta();
+	int getMeta ();
 
-    String getMetalName();
+	String getMetalName ();
 
-    default String[] getMetalNames() {
+	default String[] getMetalNames () {
 
-        return new String[]{getMetalName()};
-    }
+		return new String[] { getMetalName() };
+	}
 
-    boolean isAlloy();
-    
-    boolean isClad();
+	boolean isAlloy ();
 
-    ItemStack getBlock();
+	boolean isClad ();
 
-    ItemStack getIngot();
+	ItemStack getBlock ();
 
-    ItemStack getDust();
+	ItemStack getIngot ();
 
-    ItemStack getSheet();
-    
-    ItemStack getPlate();
+	ItemStack getDust ();
 
-    ItemStack getGear();
-    
-    ItemStack getPile();
+	ItemStack getSheet ();
+
+	ItemStack getPlate ();
+
+	ItemStack getGear ();
+
+	ItemStack getPile ();
 }

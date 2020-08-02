@@ -32,6 +32,7 @@ public final class ExoInfo {
 	public static final String NAME                 = "Interstellar: Exoplanets";
 	public static final String BUILD                = "@BUILD@";
 	public static final String VERSION              = "@VERSION@";
+	public static final String FINGERPRINT          = "@FINGERPRINT@";
 	public static final String FULL_VERSION         = VERSION + "." + BUILD;
 	public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
 	public static final String ACCEPTED_MC_VERSION  = ForgeVersion.mcVersion;

@@ -19,19 +19,19 @@ package net.rom.exoplanets.astronomy;
 import net.rom.exoplanets.Assets;
 
 public class CelestialAssets {
-	
-	private static final String YZCETI = "yzceti";
+
+	private static final String YZCETI     = "yzceti";
 	private static final String KELPER1649 = "kepler1649";
-	private static final String TRAPPIST = "trappist1";
-	private static final String WOLF1061 = "wolf1061";
-	
-	public static void init() {
+	private static final String TRAPPIST   = "trappist1";
+	private static final String WOLF1061   = "wolf1061";
+
+	public static void init () {
 		registerNormal();
 		registerRealistic();
 	}
-	
-	private static void registerNormal() {
-		
+
+	private static void registerNormal () {
+
 		put("yzcetistar", YZCETI, "star");
 		put("kepler1649star", KELPER1649, "star");
 		put("trappist1star", TRAPPIST, "star");
@@ -51,10 +51,10 @@ public class CelestialAssets {
 		put("wolf1061b", WOLF1061, "b");
 		put("wolf1061c", WOLF1061, "c");
 		put("wolf1061d", WOLF1061, "d");
-		
+
 	}
-	
-	private static void registerRealistic() {
+
+	private static void registerRealistic () {
 		putRealistic("realyzcetistar", YZCETI, "star");
 		putRealistic("realkepler1649star", KELPER1649, "star");
 		putRealistic("realtrappist1star", TRAPPIST, "star");
@@ -76,12 +76,12 @@ public class CelestialAssets {
 		putRealistic("realwolf1061d", WOLF1061, "d");
 
 	}
-	
-	private static void put(String name, String systemName, String planetName) {
+
+	private static void put (String name, String systemName, String planetName) {
 		Assets.addCelestialTexture(name, systemName, planetName);
 	}
-	
-	private static void putRealistic(String name, String systemName, String planetName) {
+
+	private static void putRealistic (String name, String systemName, String planetName) {
 		Assets.addRealisticCelestialTexture(name, systemName, planetName);
 	}
 }

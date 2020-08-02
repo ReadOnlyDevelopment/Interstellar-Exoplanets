@@ -50,86 +50,87 @@ import net.rom.exoplanets.content.block.terrain.ExoLog;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoBlocks {
-	
+
 	private static StellarRegistry reg;
-	
+
 	public static Block launch_facility;
 	public static Block launch_facility_full;
-	
+
 	public static Block fake;
 
 	// ELECTRONIC
-	public static final Block raidcontroller = new BlockElectronic();
-	public static final Block lower_raidcontroller = new BlockElectronic();
-	public static final Block raidcluster = new BlockElectronic();
-	public static final Block datamonitor = new BlockElectronic();
-	public static final Block com_relay = new BlockElectronic();
-	public static final Block control = new BlockElectronic();
-	public static final Block satellite_antenna = new BlockSatelliteAntenna();
-	public static final Block stand_console = new BlockStandConsole();
-	public static final Block metal_diagonal = new BlockMetalDiagonal();
-	public static final Block metal_slanted = new BlockMetalDiagonal();
-	public static final Block hydraulic_top = new BlockCustomHydraulic();
-	public static final Block hydraulic_bottom = new BlockCustomHydraulic();
-	public static final Block hydraulic_middle = new BlockCustomHydraulic();
-	public static final BlockMetalDecoration metaldecoration = new BlockMetalDecoration();
-	
-    public static final Block metalOre = new BlockOreMetal("metalore", true);
-    public static final Block metalBlock = new BlockMetal();
-    public static final Block alloyBlock = new BlockAlloy();
+	public static final Block                raidcontroller       = new BlockElectronic();
+	public static final Block                lower_raidcontroller = new BlockElectronic();
+	public static final Block                raidcluster          = new BlockElectronic();
+	public static final Block                datamonitor          = new BlockElectronic();
+	public static final Block                com_relay            = new BlockElectronic();
+	public static final Block                control              = new BlockElectronic();
+	public static final Block                satellite_antenna    = new BlockSatelliteAntenna();
+	public static final Block                stand_console        = new BlockStandConsole();
+	public static final Block                metal_diagonal       = new BlockMetalDiagonal();
+	public static final Block                metal_slanted        = new BlockMetalDiagonal();
+	public static final Block                hydraulic_top        = new BlockCustomHydraulic();
+	public static final Block                hydraulic_bottom     = new BlockCustomHydraulic();
+	public static final Block                hydraulic_middle     = new BlockCustomHydraulic();
+	public static final BlockMetalDecoration metaldecoration      = new BlockMetalDecoration();
 
-    public static final Block metalFurnace = new BlockMetalFurnace();
-    public static final Block alloyRefinery = new BlockAlloyRefinery();
-    
+	public static final Block metalOre   = new BlockOreMetal("metalore", true);
+	public static final Block metalBlock = new BlockMetal();
+	public static final Block alloyBlock = new BlockAlloy();
+
+	public static final Block metalFurnace  = new BlockMetalFurnace();
+	public static final Block alloyRefinery = new BlockAlloyRefinery();
+	//public static final Block advAirlockControl = new BlockAdvAirLockController();
+
 	// LEVERS
 	public static final Block lever1 = new BlockCustomLever();
 	public static final Block lever2 = new BlockCustomLever();
 	public static final Block lever3 = new BlockCustomLever();
-	
+
 	// STAIRS
-	public static final Block concrete_stairs = new BlockConcreteStairs();
-	public static final Block concrete1_stairs = new BlockConcrete1Stairs();
-	public static final Block space_quartz_stair = new BlockSpaceQuartzStair();
+	public static final Block concrete_stairs         = new BlockConcreteStairs();
+	public static final Block concrete1_stairs        = new BlockConcrete1Stairs();
+	public static final Block space_quartz_stair      = new BlockSpaceQuartzStair();
 	public static final Block space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
-	public static final Block roof_stairs = new BlockRoofStairs();
+	public static final Block roof_stairs             = new BlockRoofStairs();
 
 	// LIGHTS
-	public static final Block alarm_light = new BlockAlarmLight(false);
+	public static final Block alarm_light     = new BlockAlarmLight(false);
 	public static final Block alarm_light_lit = new BlockAlarmLight(true);
-	public static final Block wall_lamp = new BlockWallLamp(false);
-	public static final Block wall_lamp_lit = new BlockWallLamp(true);
-	public static final Block metal_lamp = new BlockMetalLamp(false);
-	public static final Block metal_lamp_lit = new BlockMetalLamp(true);
-	public static final Block cellar_lamp = new BlockCellarLamp(false);
+	public static final Block wall_lamp       = new BlockWallLamp(false);
+	public static final Block wall_lamp_lit   = new BlockWallLamp(true);
+	public static final Block metal_lamp      = new BlockMetalLamp(false);
+	public static final Block metal_lamp_lit  = new BlockMetalLamp(true);
+	public static final Block cellar_lamp     = new BlockCellarLamp(false);
 	public static final Block cellar_lamp_lit = new BlockCellarLamp(true);
-	public static final Block inset_lamp = new BlockInsetLamp(false);
-	public static final Block inset_lamp_lit = new BlockInsetLamp(true);
-	
+	public static final Block inset_lamp      = new BlockInsetLamp(false);
+	public static final Block inset_lamp_lit  = new BlockInsetLamp(true);
+
 	// LOGS
 	public static final Block log_a_dark1 = new ExoLog();
-	public static final Block log_a = new ExoLog();
+	public static final Block log_a       = new ExoLog();
 	public static final Block log_a_rough = new ExoLog();
 	public static final Block log_a_dark2 = new ExoLog();
-	public static final Block log_b = new ExoLog();
+	public static final Block log_b       = new ExoLog();
 	public static final Block log_b_other = new ExoLog();
 	public static final Block log_b_rough = new ExoLog();
-	
-    public static LinkedList<Block> blocksList = new LinkedList<>();
-    
 
-	public static void registerAll(StellarRegistry reg) {
+	public static LinkedList<Block> blocksList = new LinkedList<>();
+
+	public static void registerAll (StellarRegistry reg) {
 		setReg(reg);
-		
+
 		YzCetiBlocks.registerAll(reg);
 		TrappistBlocks.registerAll(reg);
 		KeplerBlocks.registerAll(reg);
 
-		register(metalOre, "metalore");		
-        register(metalBlock, "metalblock");
-        register(alloyBlock, "alloyblock");
-        register(metalFurnace, "metalfurnace");
-        register(alloyRefinery, "alloyrefinery");
-        register(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
+		register(metalOre, "metalore");
+		register(metalBlock, "metalblock");
+		register(alloyBlock, "alloyblock");
+		register(metalFurnace, "metalfurnace");
+		register(alloyRefinery, "alloyrefinery");
+		//register(advAirlockControl, "advancedairlockcontrol");
+		register(metaldecoration, "metaldecoration", new BlockMetalDecoration.ItemBlock(metaldecoration));
 		register(com_relay, "com_relay");
 		register(control, "control");
 		register(raidcontroller, "raidcontroller");
@@ -170,22 +171,22 @@ public class ExoBlocks {
 
 	}
 
-	public static void register(Block block, String blockName) {
+	public static void register (Block block, String blockName) {
 		blocksList.add(block);
 		reg.registerBlock(block, blockName);
 	}
-	
-	public static void register(Block block, String blockName, String path) {
+
+	public static void register (Block block, String blockName, String path) {
 		blocksList.add(block);
 		reg.registerBlock(block, blockName, path);
 	}
-	
-	public static void register(Block block, String blockName, ItemBlock itemBlock) {
+
+	public static void register (Block block, String blockName, ItemBlock itemBlock) {
 		blocksList.add(block);
 		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
-	
-	public static void setReg(StellarRegistry reg) {
+
+	public static void setReg (StellarRegistry reg) {
 		ExoBlocks.reg = reg;
 	}
 }

@@ -41,24 +41,24 @@ public class SolarSystems {
 	public static SolarSystem trappist1;
 	public static SolarSystem kepler1649;
 
-	public static boolean buildyzCeti = false;
-	public static boolean buildwolf1061 = false;
-	public static boolean buildtrappist1 = false;
+	public static boolean buildyzCeti     = false;
+	public static boolean buildwolf1061   = false;
+	public static boolean buildtrappist1  = false;
 	public static boolean buildkepler1649 = false;
 
 	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
-	public static void init() {
+	public static void init () {
 		registerSolarSystems();
 	}
 
-	private static void registerSolarSystems() {
+	private static void registerSolarSystems () {
 		BodiesData data;
 
 		if (!SConfigSystems.disable_yzceti_system) {
 			yzCetiStar = b.buildExoStar("yzcetistar", 3058, 0.130D, 0.168D);
-			yzCeti = b.buildSolarSystem("yzceti", yzPos(), yzCetiStar);
-			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			yzCeti     = b.buildSolarSystem("yzceti", yzPos(), yzCetiStar);
+			data       = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(yzCeti.getMainStar(), data);
 			b.registerSolarSystem(yzCeti);
 			buildyzCeti = true;
@@ -66,8 +66,8 @@ public class SolarSystems {
 
 		if (!SConfigSystems.disable_wolf_system) {
 			wolf1061Star = b.buildExoStar("wolf1061star", 3342, 0.294D, 0.307D);
-			wolf1061 = b.buildSolarSystem("wolf1061", wolfPos(), wolf1061Star);
-			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			wolf1061     = b.buildSolarSystem("wolf1061", wolfPos(), wolf1061Star);
+			data         = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(wolf1061.getMainStar(), data);
 			b.registerSolarSystem(wolf1061);
 			buildwolf1061 = true;
@@ -75,8 +75,8 @@ public class SolarSystems {
 
 		if (!SConfigSystems.disable_trap_system) {
 			trappist1Star = b.buildExoStar("trappist1star", 2511, 0.089D, 0.121D);
-			trappist1 = b.buildSolarSystem("trappist1", trapPos(), trappist1Star);
-			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			trappist1     = b.buildSolarSystem("trappist1", trapPos(), trappist1Star);
+			data          = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(trappist1.getMainStar(), data);
 			b.registerSolarSystem(trappist1);
 			buildtrappist1 = true;
@@ -84,8 +84,8 @@ public class SolarSystems {
 
 		if (!SConfigSystems.disable_k1649_system) {
 			kepler1649star = b.buildExoStar("kepler1649star", 2150, 0.02D, 0.230D);
-			kepler1649 = b.buildSolarSystem("kepler1649", k1649Pos(), kepler1649star);
-			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			kepler1649     = b.buildSolarSystem("kepler1649", k1649Pos(), kepler1649star);
+			data           = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(kepler1649.getMainStar(), data);
 			b.registerSolarSystem(kepler1649);
 			buildkepler1649 = true;
@@ -93,32 +93,28 @@ public class SolarSystems {
 	}
 
 	/*
-	 * Coords
-	 *
-	 * ZOLERN GALAXY (Psios) "X", -2.5 "Y", 1.2 (Praedyth) "X", -1.2 "Y", 1.4
-	 * (Sol-2) unused "X", 1.2 "Y", -1.2 (Pantheon) unused "X", 1.2 "Y", -1.2
-	 * (Olympus) unused "X", 1.2 "Y", -1.2 (Asgard) unused "X", 1.2 "Y", -1.2 (Vega)
-	 * unused "X", 1.2 "Y", -1.2 (Nova) unused "X", 1.2 "Y", -1.2
-	 *
-	 * EXTRA PLANETS (kepler22) "X", 0.8 "Y", -0.6 (kepler47) "X", -0.40 "Y", -0.8
-	 * (kepler62) "X", -0.65 "Y", 0.9 (kepler69) "X", -0.90 "Y", 0.0
-	 *
-	 * MORE PLANETS (LAZENDUS) "X", 0.75 "Y", 1.25
+	 * Coords ZOLERN GALAXY (Psios) "X", -2.5 "Y", 1.2 (Praedyth) "X", -1.2 "Y",
+	 * 1.4 (Sol-2) unused "X", 1.2 "Y", -1.2 (Pantheon) unused "X", 1.2 "Y",
+	 * -1.2 (Olympus) unused "X", 1.2 "Y", -1.2 (Asgard) unused "X", 1.2 "Y",
+	 * -1.2 (Vega) unused "X", 1.2 "Y", -1.2 (Nova) unused "X", 1.2 "Y", -1.2
+	 * EXTRA PLANETS (kepler22) "X", 0.8 "Y", -0.6 (kepler47) "X", -0.40 "Y",
+	 * -0.8 (kepler62) "X", -0.65 "Y", 0.9 (kepler69) "X", -0.90 "Y", 0.0 MORE
+	 * PLANETS (LAZENDUS) "X", 0.75 "Y", 1.25
 	 */
 
-	public static Vector3 yzPos() {
+	public static Vector3 yzPos () {
 		return new Vector3(SConfigSystems.yzceti_map[0], SConfigSystems.yzceti_map[1], 0.0F);
 	}
 
-	public static Vector3 wolfPos() {
+	public static Vector3 wolfPos () {
 		return new Vector3(SConfigSystems.wolf_map[0], SConfigSystems.wolf_map[1], 0.0F);
 	}
 
-	public static Vector3 trapPos() {
+	public static Vector3 trapPos () {
 		return new Vector3(SConfigSystems.trap_map[0], SConfigSystems.trap_map[1], 0.0F);
 	}
 
-	public static Vector3 k1649Pos() {
+	public static Vector3 k1649Pos () {
 		return new Vector3(SConfigSystems.k1649_map[0], SConfigSystems.k1649_map[1], 0.0F);
 	}
 

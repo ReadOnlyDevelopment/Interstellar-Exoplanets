@@ -50,14 +50,14 @@ public class ClientHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void onModelBakeEvent(ModelBakeEvent event) {
-		replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList.of("Base"),
-				ItemModelRocket.class, TRSRTransformation.identity());
+	public void onModelBakeEvent (ModelBakeEvent event) {
+		replaceModelDefault(event, "twopersonrocket", "twopersonrocket.obj", ImmutableList
+				.of("Base"), ItemModelRocket.class, TRSRTransformation.identity());
 	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void loadTextures(TextureStitchEvent.Pre event) {
+	public void loadTextures (TextureStitchEvent.Pre event) {
 
 		registerTexture(event, "twopersonrocket");
 
@@ -65,16 +65,16 @@ public class ClientHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	@SideOnly(Side.CLIENT)
-	public void onRenderTick(RenderTickEvent event) {
-		final Minecraft minecraft = FMLClientHandler.instance().getClient();
-		final EntityPlayerSP player = minecraft.player;
+	public void onRenderTick (RenderTickEvent event) {
+		final Minecraft      minecraft = FMLClientHandler.instance().getClient();
+		final EntityPlayerSP player    = minecraft.player;
 
 		if (event.phase == Phase.END) {
 			if (player != null) {
 
 				if (minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && MCUtil.isDeobfuscated()) {
-					String dev = "ReadOnlyDev | Developer Environment";
-					String dis = "[ Non-Distributable Dev Build ]";
+					String dev     = "ReadOnlyDev | Developer Environment";
+					String dis     = "[ Non-Distributable Dev Build ]";
 					String version = ExoInfo.NAME + " " + ExoInfo.FULL_VERSION;
 
 					int center = EnumScreenAnchor.TOP_CENTER.getX(mc.displayWidth / 2);
@@ -91,12 +91,11 @@ public class ClientHandler {
 		}
 	}
 
-	public void registerTexture(TextureStitchEvent.Pre event, String texture) {
+	public void registerTexture (TextureStitchEvent.Pre event, String texture) {
 		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
 	}
 
-	private void replaceModelDefault(ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups,
-			Class<? extends ModelTransWrapper> clazz, IModelState parentState, String... variants) {
+	private void replaceModelDefault (ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState, String... variants) {
 		MCUtil.replaceModel(ExoInfo.MODID, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
 	}
 

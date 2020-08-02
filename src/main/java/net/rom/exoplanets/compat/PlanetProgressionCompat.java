@@ -27,11 +27,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PlanetProgressionCompat {
-	
+
 	@SideOnly(Side.CLIENT)
 	@Optional.Method(modid = "planetprogression")
-	public static boolean isReasearched(EntityPlayerSP player, CelestialBody body) {
+	public static boolean isReasearched (EntityPlayerSP player, CelestialBody body) {
 		return ResearchHooksSP.hasUnlockedCelestialBody(player, body);
 	}
 }
-

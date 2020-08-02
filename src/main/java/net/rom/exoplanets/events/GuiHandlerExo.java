@@ -17,6 +17,7 @@
 
 package net.rom.exoplanets.events;
 
+import micdoodle8.mods.galacticraft.core.tile.TileEntityAirLockController;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -25,60 +26,71 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.gui.GuiAlloyRefinery;
 import net.rom.exoplanets.client.gui.GuiMetalFurnace;
-import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
-import net.rom.exoplanets.content.block.machine.TileMetalFurnace;
 import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
+import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
+import net.rom.exoplanets.content.tile.TileEntityMetalFurnace;
 
 public class GuiHandlerExo implements IGuiHandler {
 	public static final int ID_METAL_FURNACE = 0;
 	public static final int ID_ALLOY_SMELTER = 1;
+	public static final int ID_AVD_AIR_LOCK  = 2;
 
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		BlockPos pos = new BlockPos(x, y, z);
+	public Object getServerGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos   pos  = new BlockPos(x, y, z);
 		TileEntity tile = world.getTileEntity(pos);
 
 		switch (ID) {
-			case ID_METAL_FURNACE:
-				if (tile instanceof TileMetalFurnace) {
-					TileMetalFurnace tileFurnace = (TileMetalFurnace) tile;
-					return new ContainerMetalFurnace(player.inventory, tileFurnace);
-				}
-				return null;
-			case ID_ALLOY_SMELTER:
-				if (tile instanceof TileAlloyRefinery) {
-					TileAlloyRefinery tileSmelter = (TileAlloyRefinery) tile;
-					return new ContainerAlloyRefinery(player.inventory, tileSmelter);
-				}
-				return null;
-			default:
-				ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
-				return null;
+		case ID_METAL_FURNACE:
+			if (tile instanceof TileEntityMetalFurnace) {
+				TileEntityMetalFurnace tileFurnace = (TileEntityMetalFurnace) tile;
+				return new ContainerMetalFurnace(player.inventory, tileFurnace);
+			}
+			return null;
+		case ID_ALLOY_SMELTER:
+			if (tile instanceof TileEntityAlloyRefinery) {
+				TileEntityAlloyRefinery tileSmelter = (TileEntityAlloyRefinery) tile;
+				return new ContainerAlloyRefinery(player.inventory, tileSmelter);
+			}
+			return null;
+		case ID_AVD_AIR_LOCK:
+			if (tile instanceof TileEntityAirLockController) {
+				return new TileEntityAirLockController();
+			}
+			return null;
+		default:
+			ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
+			return null;
 		}
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		BlockPos pos = new BlockPos(x, y, z);
+	public Object getClientGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos   pos  = new BlockPos(x, y, z);
 		TileEntity tile = world.getTileEntity(pos);
 
 		switch (ID) {
-			case ID_METAL_FURNACE:
-				if (tile instanceof TileMetalFurnace) {
-					TileMetalFurnace tileFurnace = (TileMetalFurnace) tile;
-					return new GuiMetalFurnace(player.inventory, tileFurnace);
-				}
-				return null;
-			case ID_ALLOY_SMELTER:
-				if (tile instanceof TileAlloyRefinery) {
-					TileAlloyRefinery tileSmelter = (TileAlloyRefinery) tile;
-					return new GuiAlloyRefinery(player.inventory, tileSmelter);
-				}
-				return null;
-			default:
-				ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
-				return null;
+		case ID_METAL_FURNACE:
+			if (tile instanceof TileEntityMetalFurnace) {
+				TileEntityMetalFurnace tileFurnace = (TileEntityMetalFurnace) tile;
+				return new GuiMetalFurnace(player.inventory, tileFurnace);
+			}
+			return null;
+		case ID_ALLOY_SMELTER:
+			if (tile instanceof TileEntityAlloyRefinery) {
+				TileEntityAlloyRefinery tileSmelter = (TileEntityAlloyRefinery) tile;
+				return new GuiAlloyRefinery(player.inventory, tileSmelter);
+			}
+			return null;
+		case ID_AVD_AIR_LOCK:
+			if (tile instanceof TileEntityAirLockController) {
+				return new TileEntityAirLockController();
+			}
+			return null;
+		default:
+			ExoplanetsMod.logger.warn("No GUI with ID {}!", ID);
+			return null;
 		}
 	}
 

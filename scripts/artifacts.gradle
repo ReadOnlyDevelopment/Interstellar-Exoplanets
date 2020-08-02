@@ -137,8 +137,7 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 
 task signApiJar(type: SignJar) {
 	onlyIf {
-		getBooleanProperty('create_api_jar') &&
-				getBooleanProperty('do_sign_jar') &&
+		getBooleanProperty('do_sign_jar') &&
 				project.hasProperty('keyStore')
 	}
 
@@ -154,8 +153,7 @@ task signApiJar(type: SignJar) {
 
 task signDeobfJar(type: SignJar) {
 	onlyIf {
-		getBooleanProperty('create_deobf_jar') &&
-				getBooleanProperty('do_sign_jar') &&
+		getBooleanProperty('do_sign_jar') &&
 				project.hasProperty('keyStore')
 	}
 

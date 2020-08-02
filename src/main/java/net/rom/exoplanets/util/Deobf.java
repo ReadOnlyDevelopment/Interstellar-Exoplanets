@@ -26,12 +26,13 @@ public class Deobf {
 	static {
 		try {
 			deobfuscated = Launch.classLoader.getClassBytes("net.minecraft.world.World") != null;
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static boolean isDeobfuscated() {
+	public static boolean isDeobfuscated () {
 		return deobfuscated;
 	}
 

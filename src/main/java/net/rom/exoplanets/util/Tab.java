@@ -33,24 +33,24 @@ public class Tab extends CreativeTabs {
 	}
 
 	@Override
-	public Tab setBackgroundImageName(String assetName) {
+	public Tab setBackgroundImageName (String assetName) {
 		this.assetName = assetName;
 		return this;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ResourceLocation getBackgroundImage() {
+	public ResourceLocation getBackgroundImage () {
 		return Assets.getTexture(assetName);
 	}
 
 	@Override
-	public boolean hasSearchBar() {
+	public boolean hasSearchBar () {
 		return true;
 	}
 
 	@Override
-	public ItemStack getTabIconItem() {
+	public ItemStack getTabIconItem () {
 		return null;
 	}
 }

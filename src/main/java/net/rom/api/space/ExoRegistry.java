@@ -19,15 +19,14 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class ExoRegistry {
 
-	private ExoRegistry() {
-	}
+	private ExoRegistry() {}
 
-	static int									maxRelayID	= 0;
-	static TreeMap<String, RelayStation>		relays		= Maps.newTreeMap();
-	static BiMap<String, Integer>				relayIDs	= HashBiMap.create();
-	static HashMap<Planet, List<RelayStation>>	relayList	= Maps.newHashMap();
+	static int                                 maxRelayID = 0;
+	static TreeMap<String, RelayStation>       relays     = Maps.newTreeMap();
+	static BiMap<String, Integer>              relayIDs   = HashBiMap.create();
+	static HashMap<Planet, List<RelayStation>> relayList  = Maps.newHashMap();
 
-	public static RelayStation getRelayStationFromDimensionID(int dimensionID) {
+	public static RelayStation getRelayStationFromDimensionID (int dimensionID) {
 		for (RelayStation relay : ExoRegistry.relays.values()) {
 			if (relay.getDimensionID() == dimensionID) {
 				return relay;
@@ -36,11 +35,11 @@ public class ExoRegistry {
 		return null;
 	}
 
-	public static void refreshGalaxies() {
+	public static void refreshGalaxies () {
 		ExoRegistry.relayList.clear();
 
 		for (RelayStation relay : ExoRegistry.getRegisteredRelayStations().values()) {
-			Planet planet = relay.getParentPlanet();
+			Planet             planet              = relay.getParentPlanet();
 			List<RelayStation> listOfRelayStations = ExoRegistry.relayList.get(planet);
 			if (listOfRelayStations == null) {
 				listOfRelayStations = new ArrayList<RelayStation>();
@@ -50,7 +49,7 @@ public class ExoRegistry {
 		}
 	}
 
-	public static List<RelayStation> getRelayStationsForCelestialBody(CelestialBody celestialBody) {
+	public static List<RelayStation> getRelayStationsForCelestialBody (CelestialBody celestialBody) {
 		List<RelayStation> relayStationList1 = ExoRegistry.relayList.get(celestialBody);
 
 		if (relayStationList1 == null) {
@@ -60,7 +59,7 @@ public class ExoRegistry {
 		return ImmutableList.copyOf(relayStationList1);
 	}
 
-	public static CelestialBody getCelestialBodyFromUnlocalizedName(String unlocalizedName) {
+	public static CelestialBody getCelestialBodyFromUnlocalizedName (String unlocalizedName) {
 		for (RelayStation relay : ExoRegistry.relays.values()) {
 			if (relay.getUnlocalizedName().equals(unlocalizedName)) {
 				return relay;
@@ -73,24 +72,23 @@ public class ExoRegistry {
 	/**
 	 * Returns a read-only map containing Moon Names and their associated Moons.
 	 */
-    public static Map<String, RelayStation> getRegisteredRelayStations()
-    {
-        return (Map<String, RelayStation>) ExoRegistry.relays.clone();
-    }
-
+	@SuppressWarnings("unchecked")
+	public static Map<String, RelayStation> getRegisteredRelayStations () {
+		return (Map<String, RelayStation>) ExoRegistry.relays.clone();
+	}
 
 	/**
 	 * Returns a read-only map containing Moon Names and their associated IDs.
 	 */
-	public static Map<String, Integer> getRegisteredRelayStationIDs() {
+	public static Map<String, Integer> getRegisteredRelayStationIDs () {
 		return ImmutableMap.copyOf(ExoRegistry.relayIDs);
 	}
 
-	public static int getRelayStationID(String relayStationName) {
+	public static int getRelayStationID (String relayStationName) {
 		return ExoRegistry.relayIDs.get(relayStationName);
 	}
 
-	public static boolean registerRelayStation(RelayStation relayStation) {
+	public static boolean registerRelayStation (RelayStation relayStation) {
 		if (ExoRegistry.relayIDs.containsKey(relayStation.getName())) {
 			return false;
 		}
@@ -103,12 +101,12 @@ public class ExoRegistry {
 	}
 
 	public static class RelayStationRegisterEvent extends Event {
-		public final String	relayStationName;
-		public final int	relayStationID;
+		public final String relayStationName;
+		public final int    relayStationID;
 
 		public RelayStationRegisterEvent(String relayStationName, int relayStationID) {
 			this.relayStationName = relayStationName;
-			this.relayStationID = relayStationID;
+			this.relayStationID   = relayStationID;
 		}
 	}
 

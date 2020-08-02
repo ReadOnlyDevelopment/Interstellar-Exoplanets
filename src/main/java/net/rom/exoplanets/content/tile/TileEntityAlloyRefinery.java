@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rom.exoplanets.content.block.machine;
+package net.rom.exoplanets.content.tile;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.internal.tile.TileSidedInventoryExo;
 
-public class TileAlloyRefinery extends TileSidedInventoryExo implements ITickable {
+public class TileEntityAlloyRefinery extends TileSidedInventoryExo implements ITickable {
     public static final float BURN_TIME_MULTI = 0.5f;
 
     // Slot ids

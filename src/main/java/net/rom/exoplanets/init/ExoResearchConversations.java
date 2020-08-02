@@ -22,11 +22,10 @@ import net.rom.exoplanets.internal.MCUtil;
 
 public class ExoResearchConversations {
 
+	public static void init (IConversationRegistry registry) {
 
-    public static void init(IConversationRegistry registry) {
-
-        if (MCUtil.isClient()) {
-        	//TODO
-        }
-    }
+		if (MCUtil.isClient()) {
+			//TODO
+		}
+	}
 }

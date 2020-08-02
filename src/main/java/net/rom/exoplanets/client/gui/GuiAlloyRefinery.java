@@ -28,8 +28,8 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
+import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
 
 public class GuiAlloyRefinery extends GuiContainer {
     private static final ResourceLocation guiTextures = new ResourceLocation(ExoInfo.MODID, "textures/gui/alloyrefinery.png");
@@ -81,9 +81,9 @@ public class GuiAlloyRefinery extends GuiContainer {
     }
 
     private void drawDebugInfo() {
-        if (!(tileAlloyRefinery instanceof TileAlloyRefinery)) return;
+        if (!(tileAlloyRefinery instanceof TileEntityAlloyRefinery)) return;
 
-        TileAlloyRefinery tile = (TileAlloyRefinery) tileAlloyRefinery;
+        TileEntityAlloyRefinery tile = (TileEntityAlloyRefinery) tileAlloyRefinery;
         FontRenderer fontRender = mc.fontRenderer;
         int x = 5;
         int y = 5;

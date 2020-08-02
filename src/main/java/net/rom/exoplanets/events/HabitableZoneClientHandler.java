@@ -41,7 +41,7 @@ public class HabitableZoneClientHandler {
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
-	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
+	public void onRingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
 		if (renderEvent.celestialBody.equals(SolarSystems.yzCeti.getMainStar())) {
 			this.RingRender(renderEvent, 75F, 115F);
@@ -59,7 +59,7 @@ public class HabitableZoneClientHandler {
 		}
 	}
 
-	public void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, float start, float end) {
+	public void RingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, float start, float end) {
 		Vector3f mapPos = renderEvent.parentOffset;
 
 		float sum = renderEvent.celestialBody.getRelativeDistanceFromCenter().unScaledDistance
@@ -70,15 +70,16 @@ public class HabitableZoneClientHandler {
 
 		if (FMLClientHandler.instance().getClient().currentScreen instanceof GuiCelestialSelection) {
 			GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.5F);
-		} else {
+		}
+		else {
 			GL11.glColor4f(0.3F, 0.1F, 0.1F, 0.0F);
 		}
 
 		renderEvent.setCanceled(true);
 
 		final float theta = (float) (2 * Math.PI / 90);
-		final float cos = (float) Math.cos(theta);
-		final float sin = (float) Math.sin(theta);
+		final float cos   = (float) Math.cos(theta);
+		final float sin   = (float) Math.sin(theta);
 
 		float min = start;
 		float max = end;
@@ -94,8 +95,8 @@ public class HabitableZoneClientHandler {
 			GL11.glVertex2f(x + xOffset, y + yOffset);
 
 			temp = x;
-			x = cos * x - sin * y;
-			y = sin * temp + cos * y;
+			x    = cos * x - sin * y;
+			y    = sin * temp + cos * y;
 
 		}
 
@@ -109,8 +110,8 @@ public class HabitableZoneClientHandler {
 			GL11.glVertex2f(x + xOffset, y + yOffset);
 
 			temp = x;
-			x = cos * x - sin * y;
-			y = sin * temp + cos * y;
+			x    = cos * x - sin * y;
+			y    = sin * temp + cos * y;
 		}
 		GL11.glEnd();
 		GL11.glColor4f(0.0F, 0.9F, 0.1F, 0.1F);
@@ -127,11 +128,11 @@ public class HabitableZoneClientHandler {
 			GL11.glVertex2f(x + xOffset, y + yOffset);
 
 			temp = x;
-			x = cos * x - sin * y;
-			y = sin * temp + cos * y;
+			x    = cos * x - sin * y;
+			y    = sin * temp + cos * y;
 			temp = x2;
-			x2 = cos * x2 - sin * y2;
-			y2 = sin * temp + cos * y2;
+			x2   = cos * x2 - sin * y2;
+			y2   = sin * temp + cos * y2;
 
 			GL11.glVertex2f(x + xOffset, y + yOffset);
 			GL11.glVertex2f(x2 + xOffset, y2 + yOffset);

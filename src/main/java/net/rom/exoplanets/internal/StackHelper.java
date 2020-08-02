@@ -37,85 +37,87 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public final class StackHelper {
-    private StackHelper() {
-        throw new IllegalAccessError("Utility class");
-    }
+	private StackHelper() {
+		throw new IllegalAccessError("Utility class");
+	}
 
-    public static ItemStack fromBlockOrItem(IForgeRegistryEntry<?> blockOrItem) {
-        //noinspection ChainOfInstanceofChecks
-        if (blockOrItem instanceof Block)
-            return new ItemStack((Block) blockOrItem);
-        else if (blockOrItem instanceof Item)
-            return new ItemStack((Item) blockOrItem);
-        return ItemStack.EMPTY;
-    }
+	public static ItemStack fromBlockOrItem (IForgeRegistryEntry<?> blockOrItem) {
+		//noinspection ChainOfInstanceofChecks
+		if (blockOrItem instanceof Block)
+			return new ItemStack((Block) blockOrItem);
+		else if (blockOrItem instanceof Item)
+			return new ItemStack((Item) blockOrItem);
+		return ItemStack.EMPTY;
+	}
 
-    @Nonnull
-    public static ItemStack loadFromNBT(@Nullable NBTTagCompound tags) {
-        return tags != null ? new ItemStack(tags) : ItemStack.EMPTY;
-    }
+	@Nonnull
+	public static ItemStack loadFromNBT (@Nullable NBTTagCompound tags) {
+		return tags != null ? new ItemStack(tags) : ItemStack.EMPTY;
+	}
 
-    @Nullable
-    public static NBTTagCompound getTagCompound(ItemStack stack, boolean createIfNull) {
-        if (stack.isEmpty())
-            return null;
-        if (!stack.hasTagCompound() && createIfNull)
-            stack.setTagCompound(new NBTTagCompound());
-        return stack.getTagCompound();
-    }
+	@Nullable
+	public static NBTTagCompound getTagCompound (ItemStack stack, boolean createIfNull) {
+		if (stack.isEmpty())
+			return null;
+		if (!stack.hasTagCompound() && createIfNull)
+			stack.setTagCompound(new NBTTagCompound());
+		return stack.getTagCompound();
+	}
 
-    public static NBTTagCompound getOrCreateTagCompound(ItemStack stack) {
-        if (stack.isEmpty()) return new NBTTagCompound();
-        if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-        //noinspection ConstantConditions - guaranteed not null
-        return stack.getTagCompound();
-    }
+	public static NBTTagCompound getOrCreateTagCompound (ItemStack stack) {
+		if (stack.isEmpty())
+			return new NBTTagCompound();
+		if (!stack.hasTagCompound())
+			stack.setTagCompound(new NBTTagCompound());
+		//noinspection ConstantConditions - guaranteed not null
+		return stack.getTagCompound();
+	}
 
-    public static List<ItemStack> getOres(String oreDictKey) {
-        return OreDictionary.getOres(oreDictKey);
-    }
+	public static List<ItemStack> getOres (String oreDictKey) {
+		return OreDictionary.getOres(oreDictKey);
+	}
 
-    public static List<ItemStack> getOres(String oreDictKey, boolean alwaysCreateEntry) {
-        return OreDictionary.getOres(oreDictKey, alwaysCreateEntry);
-    }
+	public static List<ItemStack> getOres (String oreDictKey, boolean alwaysCreateEntry) {
+		return OreDictionary.getOres(oreDictKey, alwaysCreateEntry);
+	}
 
-    public static List<String> getOreNames(ItemStack stack) {
-        List<String> list = new ArrayList<>();
-        if (stack.isEmpty())
-            return list;
+	public static List<String> getOreNames (ItemStack stack) {
+		List<String> list = new ArrayList<>();
+		if (stack.isEmpty())
+			return list;
 
-        for (int id : OreDictionary.getOreIDs(stack))
-            list.add(OreDictionary.getOreName(id));
-        return list;
-    }
+		for (int id : OreDictionary.getOreIDs(stack))
+			list.add(OreDictionary.getOreName(id));
+		return list;
+	}
 
-    public static boolean matchesOreDict(ItemStack stack, String oreDictKey) {
-        if (stack.isEmpty())
-            return false;
+	public static boolean matchesOreDict (ItemStack stack, String oreDictKey) {
+		if (stack.isEmpty())
+			return false;
 
-        for (int id : OreDictionary.getOreIDs(stack))
-            if (OreDictionary.getOreName(id).equals(oreDictKey))
-                return true;
+		for (int id : OreDictionary.getOreIDs(stack))
+			if (OreDictionary.getOreName(id).equals(oreDictKey))
+				return true;
 
-        return false;
-    }
+		return false;
+	}
 
-    @Deprecated
-    public static StackList getNonEmptyStacks(IInventory inv) {
-        StackList list = StackList.of();
-        for (int i = 0; i < inv.getSizeInventory(); ++i) {
-            // StackList automatically filters empty stacks
-            list.add(inv.getStackInSlot(i));
-        }
-        return list;
-    }
+	@Deprecated
+	public static StackList getNonEmptyStacks (IInventory inv) {
+		StackList list = StackList.of();
+		for (int i = 0; i < inv.getSizeInventory(); ++i) {
+			// StackList automatically filters empty stacks
+			list.add(inv.getStackInSlot(i));
+		}
+		return list;
+	}
 
-    public static ItemStack firstMatch(IInventory inv, Predicate<ItemStack> predicate) {
-        for (int i = 0; i < inv.getSizeInventory(); ++i) {
-            ItemStack stack = inv.getStackInSlot(i);
-            if (!stack.isEmpty() && predicate.test(stack))
-                return stack;
-        }
-        return ItemStack.EMPTY;
-    }
+	public static ItemStack firstMatch (IInventory inv, Predicate<ItemStack> predicate) {
+		for (int i = 0; i < inv.getSizeInventory(); ++i) {
+			ItemStack stack = inv.getStackInSlot(i);
+			if (!stack.isEmpty() && predicate.test(stack))
+				return stack;
+		}
+		return ItemStack.EMPTY;
+	}
 }

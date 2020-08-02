@@ -45,40 +45,40 @@ import net.rom.exoplanets.internal.client.ExoModelLoader;
 public class ExoClientProxy extends ExoCommonProxy {
 
 	@Override
-	public void preInit(StellarRegistry registry, FMLPreInitializationEvent event) {
+	public void preInit (StellarRegistry registry, FMLPreInitializationEvent event) {
 		super.preInit(registry, event);
 		ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
 		ExoModelLoader.instance.addDomain(ExoInfo.MODID);
 		registerEventHandler(this);
 
 		registerVarients();
-		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class,
-				(RenderManager manager) -> new RocketRenderer(manager));
+		RenderingRegistry
+				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
 		registerEventHandler(new BlockHandler());
-		
+
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
 
 	}
 
 	@Override
-	public void init(StellarRegistry registry, FMLInitializationEvent event) {
+	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
 		registerEventHandler(new SkyProviders());
 		registry.clientInit(event);
 	}
 
 	@Override
-	public void postInit(StellarRegistry registry, FMLPostInitializationEvent event) {
+	public void postInit (StellarRegistry registry, FMLPostInitializationEvent event) {
 		super.postInit(registry, event);
 		registerTextureAssets();
 		registry.clientPostInit(event);
 	}
 
 	@Override
-	public void registerTextureAssets() {
+	public void registerTextureAssets () {
 		Assets.addTexture("GuiDiscordButton", "textures/gui/discord.png");
 		Assets.addTexture("GuiBetaBackground", "textures/gui/teleport.png");
 		Assets.addTexture("tdeco", "textures/gui/container/tab_decoration.png");
@@ -86,22 +86,21 @@ public class ExoClientProxy extends ExoCommonProxy {
 		Assets.addTexture("titems", "textures/gui/container/tab_decoration.png");
 	}
 
-	public World getWorld() {
+	public World getWorld () {
 		return Minecraft.getMinecraft().world;
 	}
 
 	@Override
-	public EntityPlayer getClientPlayer() {
+	public EntityPlayer getClientPlayer () {
 		return Minecraft.getMinecraft().player;
 	}
 
-	public static void registerEventHandler(Object handler) {
+	public static void registerEventHandler (Object handler) {
 		MinecraftForge.EVENT_BUS.register(handler);
 	}
 
-	public void registerVarients() {
-		ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket",
-				"inventory");
+	public void registerVarients () {
+		ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
 		for (int i = 0; i < 5; ++i) {
 			ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
 		}

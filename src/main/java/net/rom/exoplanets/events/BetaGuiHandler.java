@@ -34,13 +34,14 @@ import net.rom.exoplanets.conf.SConfigCore;;
 public class BetaGuiHandler {
 
 	@SubscribeEvent
-	public static void onGuiOpen(GuiOpenEvent event) {
+	public static void onGuiOpen (GuiOpenEvent event) {
 		GuiScreen gui = event.getGui();
 		if (SConfigCore.warnBetaBuild && gui instanceof GuiMainMenu) {
 
 			event.setGui(new GuiBeta((GuiMainMenu) gui));
 			SConfigCore.warnBetaBuild = false;
-			MinecraftForge.EVENT_BUS.post(new ConfigChangedEvent.OnConfigChangedEvent(ExoInfo.MODID, ExoInfo.NAME, false, false));
+			MinecraftForge.EVENT_BUS
+					.post(new ConfigChangedEvent.OnConfigChangedEvent(ExoInfo.MODID, ExoInfo.NAME, false, false));
 
 		}
 	}

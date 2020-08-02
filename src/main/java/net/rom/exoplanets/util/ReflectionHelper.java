@@ -32,52 +32,54 @@ import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
 
 public class ReflectionHelper {
-	
-	
+
 	/**
 	 * Searches for a field and makes it accessible.
 	 * 
 	 * @return The field or null if the field couldn't be found.
 	 */
-	public static Field getDeclaredField(Class<?> c, String fieldname) {
+	public static Field getDeclaredField (Class<?> c, String fieldname) {
 		try {
 			Field f = c.getDeclaredField(fieldname);
 			f.setAccessible(true);
 			return f;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	public static Method getPrivateMethod(Class<?> c, String methodName) {
+
+	public static Method getPrivateMethod (Class<?> c, String methodName) {
 		try {
 			Method m = c.getDeclaredMethod(methodName, c);
 			m.setAccessible(true);
 			return m;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @return True if the field value was set correctly.
 	 */
-	public static boolean setField(Field f, Object instance, Object value) {
+	public static boolean setField (Field f, Object instance, Object value) {
 		try {
 			f.set(instance, value);
 			return true;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @return The old value.
 	 */
-	public static Object setStaticFinalField(Field f, Class<?> c, Object value) {
+	public static Object setStaticFinalField (Field f, Class<?> c, Object value) {
 		Object o = null;
 		try {
 			f.setAccessible(true);
@@ -86,29 +88,28 @@ public class ReflectionHelper {
 			modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 			o = f.get(c);
 			f.set(null, value);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return o;
 	}
-	
-    @Nonnull
-    public static Field findField(@Nonnull Class<?> clazz, @Nonnull String fieldName, @Nullable String fieldObfName)
-    {
-        Preconditions.checkNotNull(clazz);
-        Preconditions.checkArgument(StringUtils.isNotEmpty(fieldName), "Field name cannot be empty");
 
-        String nameToFind = FMLLaunchHandler.isDeobfuscatedEnvironment() ? fieldName : MoreObjects.firstNonNull(fieldObfName, fieldName);
+	@Nonnull
+	public static Field findField (@Nonnull Class<?> clazz, @Nonnull String fieldName, @Nullable String fieldObfName) {
+		Preconditions.checkNotNull(clazz);
+		Preconditions.checkArgument(StringUtils.isNotEmpty(fieldName), "Field name cannot be empty");
 
-        try
-        {
-            Field f = clazz.getDeclaredField(nameToFind);
-            f.setAccessible(true);
-            return f;
-        }
-        catch (Exception e)
-        {
-            throw new UnableToFindFieldException(e);
-        }
-    }
+		String nameToFind = FMLLaunchHandler.isDeobfuscatedEnvironment() ? fieldName
+				: MoreObjects.firstNonNull(fieldObfName, fieldName);
+
+		try {
+			Field f = clazz.getDeclaredField(nameToFind);
+			f.setAccessible(true);
+			return f;
+		}
+		catch (Exception e) {
+			throw new UnableToFindFieldException(e);
+		}
+	}
 }

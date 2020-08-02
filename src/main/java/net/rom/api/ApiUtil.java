@@ -27,7 +27,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ApiUtil {
 
-	public static boolean compareToOreName(ItemStack stack, String oreName) {
+	public static boolean compareToOreName (ItemStack stack, String oreName) {
 		if (!isExistingOreName(oreName))
 			return false;
 		List<ItemStack> s = OreDictionary.getOres(oreName);
@@ -37,19 +37,19 @@ public class ApiUtil {
 		return false;
 	}
 
-	public static boolean isExistingOreName(String name) {
+	public static boolean isExistingOreName (String name) {
 		if (!OreDictionary.doesOreNameExist(name))
 			return false;
 		else
 			return !OreDictionary.getOres(name).isEmpty();
 	}
 
-	public static boolean isMetalComponent(ItemStack stack, String componentType) {
+	public static boolean isMetalComponent (ItemStack stack, String componentType) {
 		return getMetalComponentType(stack, componentType) != null;
 	}
 
-	public static String getMetalComponentType(ItemStack stack, String... componentTypes) {
-		int[] ids = OreDictionary.getOreIDs(stack);
+	public static String getMetalComponentType (ItemStack stack, String... componentTypes) {
+		int[]    ids      = OreDictionary.getOreIDs(stack);
 		String[] oreNames = OreDictionary.getOreNames();
 		for (int id : ids) {
 			String oreName = oreNames[id];
@@ -60,8 +60,8 @@ public class ApiUtil {
 		return null;
 	}
 
-	public static String[] getMetalComponentTypeAndMetal(ItemStack stack, String... componentTypes) {
-		int[] ids = OreDictionary.getOreIDs(stack);
+	public static String[] getMetalComponentTypeAndMetal (ItemStack stack, String... componentTypes) {
+		int[]    ids      = OreDictionary.getOreIDs(stack);
 		String[] oreNames = OreDictionary.getOreNames();
 		for (int id : ids) {
 			String oreName = oreNames[id];
@@ -73,15 +73,15 @@ public class ApiUtil {
 		return null;
 	}
 
-	public static boolean isIngot(ItemStack stack) {
+	public static boolean isIngot (ItemStack stack) {
 		return isMetalComponent(stack, "ingot");
 	}
 
-	public static boolean isSheet(ItemStack stack) {
+	public static boolean isSheet (ItemStack stack) {
 		return isMetalComponent(stack, "sheet");
 	}
 
-	public static BlockPos toBlockPos(Object object) {
+	public static BlockPos toBlockPos (Object object) {
 		if (object instanceof BlockPos)
 			return (BlockPos) object;
 		if (object instanceof TileEntity)
@@ -89,11 +89,11 @@ public class ApiUtil {
 		return null;
 	}
 
-	public static Ingredient createIngredientFromList(List<ItemStack> list) {
+	public static Ingredient createIngredientFromList (List<ItemStack> list) {
 		return Ingredient.fromStacks(list.toArray(new ItemStack[list.size()]));
 	}
 
-	public static ItemStack copyStackWithAmount(ItemStack stack, int amount) {
+	public static ItemStack copyStackWithAmount (ItemStack stack, int amount) {
 		if (stack.isEmpty())
 			return ItemStack.EMPTY;
 		ItemStack s2 = stack.copy();

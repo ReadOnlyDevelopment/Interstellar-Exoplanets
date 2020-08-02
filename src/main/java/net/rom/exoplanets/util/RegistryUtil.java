@@ -39,26 +39,27 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public final class RegistryUtil {
 
-	private RegistryUtil() {
-	};
+	private RegistryUtil() {};
 
-	static Object			listsDir	= null;
-	private static String	lastLang	= "";
-	public static boolean	langDisable;
+	static Object         listsDir = null;
+	private static String lastLang = "";
+	public static boolean langDisable;
 
-	public static void loadLanguage(String langIdentifier, String assetPrefix, File source) {
+	public static void loadLanguage (String langIdentifier, String assetPrefix, File source) {
 		if (!lastLang.equals(langIdentifier)) {
 			langDisable = false;
 		}
 		if (langDisable)
 			return;
-		String langFile = "assets/" + assetPrefix + "/lang/" + langIdentifier.substring(0, 3).toLowerCase() + langIdentifier.substring(3).toUpperCase() + ".lang";
-		InputStream stream = null;
-		ZipFile zip = null;
+		String      langFile = "assets/" + assetPrefix + "/lang/" + langIdentifier.substring(0, 3).toLowerCase()
+				+ langIdentifier.substring(3).toUpperCase() + ".lang";
+		InputStream stream   = null;
+		ZipFile     zip      = null;
 		try {
 			if (source.isDirectory() && (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
 				stream = new FileInputStream(new File(source.toURI().resolve(langFile).getPath()));
-			} else {
+			}
+			else {
 				zip = new ZipFile(source);
 				ZipEntry entry = zip.getEntry(langFile);
 				if (entry == null)
@@ -66,24 +67,26 @@ public final class RegistryUtil {
 				stream = zip.getInputStream(entry);
 			}
 			LanguageMap.inject(GCCoreUtil.supplementEntityKeys(stream, assetPrefix));
-		} catch (FileNotFoundException fnf) {
+		}
+		catch (FileNotFoundException fnf) {
 			langDisable = true;
-		} catch (Exception ignore) {
-		} finally {
+		}
+		catch (Exception ignore) {}
+		finally {
 			if (stream != null)
 				IOUtils.closeQuietly(stream);
 			try {
 				if (zip != null)
 					zip.close();
-			} catch (IOException ignore) {
 			}
+			catch (IOException ignore) {}
 		}
 	}
 
 	/**
 	 * This will list all items, using their complete unlocalized names with mod id's, and write them the file lists/items.txt. This is useful for writing theme files.
 	 */
-	public static void listItems() {
+	public static void listItems () {
 		File itemlist = new File("items.txt");
 
 		if (itemlist.exists())
@@ -102,7 +105,8 @@ public final class RegistryUtil {
 
 			if (outstream != null)
 				outstream.close();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			System.err.println("[DLDUNGEONS] Error: Could not write file items.txt");
 			e.printStackTrace();
 		}
@@ -111,15 +115,15 @@ public final class RegistryUtil {
 	/**
 	 * This will list all blocks using their correct, unlocalized names, complete with mod id's, and write them to the file lists/blocks.txt. This is useful for editing theme files.
 	 */
-	public static void listBlocks() {
+	public static void listBlocks () {
 		File itemlist = new File("blocks.txt");
 
 		if (itemlist.exists())
 			itemlist.delete();
 		try {
 			itemlist.createNewFile();
-			BufferedWriter outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
-			IForgeRegistry<Block> blocks = GameRegistry.findRegistry(Block.class);
+			BufferedWriter        outstream = new BufferedWriter(new FileWriter(itemlist.toString()));
+			IForgeRegistry<Block> blocks    = GameRegistry.findRegistry(Block.class);
 			blocks.getValuesCollection().stream().sorted(Comparator.comparing(Block::getUnlocalizedName)).forEach(b -> {
 				if (b.getUnlocalizedName().contains(".exoplanets.")) {
 					String name = b.getUnlocalizedName() + ".name=";
@@ -127,7 +131,8 @@ public final class RegistryUtil {
 						try {
 							outstream.write(name);
 							outstream.newLine();
-						} catch (IOException e) {
+						}
+						catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -138,7 +143,8 @@ public final class RegistryUtil {
 
 			if (outstream != null)
 				outstream.close();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			System.err.println("[DLDUNGEONS] Error: Could not write file blocks.txt");
 			e.printStackTrace();
 		}

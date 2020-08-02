@@ -35,14 +35,14 @@ public class IngredientFluidStack extends Ingredient {
 		this(new FluidStack(fluid, amount));
 	}
 
-	public FluidStack getFluid() {
+	public FluidStack getFluid () {
 		return fluid;
 	}
 
 	ItemStack[] cachedStacks;
 
 	@Override
-	public ItemStack[] getMatchingStacks() {
+	public ItemStack[] getMatchingStacks () {
 		if (cachedStacks == null) {
 			cachedStacks = new ItemStack[] { FluidUtil.getFilledBucket(fluid) };
 		}
@@ -50,10 +50,11 @@ public class IngredientFluidStack extends Ingredient {
 	}
 
 	@Override
-	public boolean apply(@Nullable ItemStack stack) {
+	public boolean apply (@Nullable ItemStack stack) {
 		if (stack == null) {
 			return false;
-		} else {
+		}
+		else {
 			FluidStack fs = FluidUtil.getFluidContained(stack);
 			return fs == null && this.fluid == null || fs != null && fs.containsFluid(fluid);
 		}

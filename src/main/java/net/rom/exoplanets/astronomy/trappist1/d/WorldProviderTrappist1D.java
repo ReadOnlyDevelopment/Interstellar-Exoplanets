@@ -2,7 +2,6 @@ package net.rom.exoplanets.astronomy.trappist1.d;
 
 import java.util.List;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -15,8 +14,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -25,7 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.trappist1.d.biomes.BiomeOceananic;
-import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 import net.rom.exoplanets.util.RGB;
@@ -43,7 +43,7 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 	public float getFallDamageModifier () {
 		return 0;
 	}
-	
+
 	@Override
 	public double getHorizon () {
 		return 5;
@@ -68,9 +68,9 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 	public List<Block> getSurfaceBlocks () {
 		return null;
 	}
-	
+
 	@Override
-	public ClassBody getClassBody() {
+	public ClassBody getClassBody () {
 		return ClassBody.OCEANIDE;
 	}
 
@@ -87,8 +87,8 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
 		terrainGenerator.worldSeaGen      = true;
-		terrainGenerator.worldSeaGenBlock = ExoFluids.fluidBlockMantle.getDefaultState();
-		terrainGenerator.worldSeaGenMaxY  = 125;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();//ExoFluids.fluidBlockMantle.getDefaultState();
+		terrainGenerator.worldSeaGenMaxY  = 95;
 		cp.createChunkGen_List.add(terrainGenerator);
 
 		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
@@ -124,10 +124,14 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 	}
 
 	@Override
-	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {}
+	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {
+		//		BlockPos pos = new ChunkPos(cX, cZ).getBlock(0, 126, 0);
+		//		new GenSpaceStation(ExoBlocks.metaldecoration.getStateFromMeta(4).getBlock())
+		//				.generate(world, new Random(getSeed()), pos);
+	}
 
 	@Override
-	public void onPopulate (int cX, int cZ) {}
+	public void onPopulate (int x, int z) {}
 
 	@Override
 	public void recreateStructures (Chunk chunkIn, int x, int z) {}
@@ -156,8 +160,6 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 	protected float getThermalValueMod () {
 		return 2.1F;
 	}
-	
-	
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -203,4 +205,17 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 		return false;
 	}
 
+	public static int getGroundFromAbove (World world, int x, int z) {
+		int     y           = 255;
+		boolean foundGround = false;
+		while (!foundGround && y-- > 0) {
+			Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
+			if (block == Blocks.AIR) {
+				y = -1;
+				break;
+			}
+			foundGround = block != Blocks.AIR;
+		}
+		return y;
+	}
 }

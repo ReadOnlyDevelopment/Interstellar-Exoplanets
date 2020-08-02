@@ -31,20 +31,19 @@ import net.rom.exoplanets.internal.StellarRegistry;
 public class ExoItems {
 
 	public static final Item passengerRocket = new ItemTwoPlayerRocket();
-    public static final Item metalIngot = new ItemIngotMetal();
-    public static final Item metalDust = new ItemDustMetal();
-    public static final Item alloyIngot = new ItemIngotAlloy();
-    public static final Item alloyDust = new ItemDustAlloy();
-    public static final Item sheetBasic = new ItemCraftingItem("sheet", false);
-    public static final Item sheetAlloy = new ItemCraftingItem("sheet", true);
-    public static final Item gearBasic = new ItemCraftingItem("gear", false);
-    public static final Item gearAlloy = new ItemCraftingItem("gear", true);
+	public static final Item metalIngot      = new ItemIngotMetal();
+	public static final Item metalDust       = new ItemDustMetal();
+	public static final Item alloyIngot      = new ItemIngotAlloy();
+	public static final Item alloyDust       = new ItemDustAlloy();
+	public static final Item sheetBasic      = new ItemCraftingItem("sheet", false);
+	public static final Item sheetAlloy      = new ItemCraftingItem("sheet", true);
+	public static final Item gearBasic       = new ItemCraftingItem("gear", false);
+	public static final Item gearAlloy       = new ItemCraftingItem("gear", true);
 
-    public static LinkedList<Item> itemList = new LinkedList<>();
+	public static LinkedList<Item> itemList = new LinkedList<>();
 	private static StellarRegistry reg;
 
-
-	public static void registerAll(StellarRegistry reg) {
+	public static void registerAll (StellarRegistry reg) {
 		setReg(reg);
 
 		register(passengerRocket, "twopersonrocket");
@@ -60,12 +59,12 @@ public class ExoItems {
 
 	}
 
-	public static void register(Item item, String itemName) {
+	public static void register (Item item, String itemName) {
 		itemList.add(item);
 		reg.registerItem(item, itemName);
 	}
 
-	public static void setReg(StellarRegistry reg) {
+	public static void setReg (StellarRegistry reg) {
 		ExoItems.reg = reg;
 	}
 

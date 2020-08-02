@@ -30,8 +30,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.content.block.machine.TileMetalFurnace;
 import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
+import net.rom.exoplanets.content.tile.TileEntityMetalFurnace;
 
 @SideOnly(Side.CLIENT)
 public class GuiMetalFurnace extends GuiContainer {
@@ -84,9 +84,9 @@ public class GuiMetalFurnace extends GuiContainer {
     }
 
     private void drawDebugInfo() {
-        if (!(tileFurnace instanceof TileMetalFurnace)) return;
+        if (!(tileFurnace instanceof TileEntityMetalFurnace)) return;
 
-        TileMetalFurnace tile = (TileMetalFurnace) tileFurnace;
+        TileEntityMetalFurnace tile = (TileEntityMetalFurnace) tileFurnace;
         FontRenderer fontRender = mc.fontRenderer;
         int x = 5;
         int y = 5;

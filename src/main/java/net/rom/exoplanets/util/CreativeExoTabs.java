@@ -27,21 +27,21 @@ public class CreativeExoTabs {
 
 	public static final CreativeTabs DECO_CREATIVE_TABS = new Tab("tab_decoration", "tdeco") {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack getTabIconItem () {
 			return new ItemStack(ExoBlocks.stand_console);
 		}
 	};
 
 	public static final CreativeTabs TERRAIN_CREATIVE_TABS = new Tab("tab_terrain", "tterrain") {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack getTabIconItem () {
 			return new ItemStack(TrappistBlocks.TrappistE.trap1e_grass);
 		}
 	};
 
 	public static final CreativeTabs ITEMS_CREATIVE_TABS = new Tab("tab_items", "titems") {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack getTabIconItem () {
 			return new ItemStack(EnumMetal.PLATINUM.getSheet().getItem());
 		}
 	};

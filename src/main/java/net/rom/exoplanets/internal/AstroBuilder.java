@@ -29,8 +29,6 @@
 
 package net.rom.exoplanets.internal;
 
-import java.util.Iterator;
-
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
@@ -89,7 +87,7 @@ public class AstroBuilder {
 	 *
 	 * @return the modid
 	 */
-	public String getModid() {
+	public String getModid () {
 		return modid;
 	}
 
@@ -98,7 +96,7 @@ public class AstroBuilder {
 	 *
 	 * @param modid set modid
 	 */
-	public void setModid(String modid) {
+	public void setModid (String modid) {
 		this.modid = modid;
 	}
 
@@ -111,7 +109,7 @@ public class AstroBuilder {
 	 * @param  radius   the radius
 	 * @return          the exo star
 	 */
-	public ExoStar buildExoStar(String starName, int temp, double mass, double radius) {
+	public ExoStar buildExoStar (String starName, int temp, double mass, double radius) {
 		ExoStar star = new ExoStar(starName);
 		star.setStarName(starName);
 		star.setSurfaceTemp(temp);
@@ -130,7 +128,7 @@ public class AstroBuilder {
 	 * @param  exoStar the exo star
 	 * @return         the solar system
 	 */
-	public SolarSystem buildSolarSystem(String name, Vector3 pos, ExoStar exoStar) {
+	public SolarSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
 		SolarSystem body = new SolarSystem(name, "milky_way");
 		body.setMapPosition(new Vector3(pos));
 		exoStar.setParentSolarSystem(body);
@@ -139,8 +137,8 @@ public class AstroBuilder {
 
 		return body;
 	}
-	
-	public ExoPlanet buildExoPlanet(SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase, float distance) {
+
+	public ExoPlanet buildExoPlanet (SolarSystem system, String name, Class<? extends WorldProvider> provider, int dimID, int tier, float phase, float distance) {
 		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
 		body.setPhaseShift(phase);
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
@@ -161,22 +159,23 @@ public class AstroBuilder {
 	 * @param  phase    the phase
 	 * @return          the exo planet
 	 */
-	public ExoPlanet buildExoPlanet(SolarSystem system, String name, float distance) {
-		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
-		body.setRelativeSize(1.0F);
-		registerExPlanet(system, name, distance);
-		body.addChecklistKeys("equipOxygenSuit");
+	//	public ExoPlanet buildExoPlanet (SolarSystem system, String name, float distance) {
+	//		ExoPlanet body = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(system);
+	//		body.setRelativeSize(1.0F);
+	//		registerExPlanet(system, name, distance);
+	//		body.addChecklistKeys("equipOxygenSuit");
+	//		return body;
+	//	}
+
+	public static ExPlanet registerExPlanet (SolarSystem system, String name, float distancefromcenter, ClassBody clazz) {
+		ExPlanet body = new ExPlanet(name).setParentSolarSystem(system);
+		body.setClassPlanet(clazz);
+		body.setRingColorRGB(0.0F, 0.4F, 0.9F);
+		body.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(distancefromcenter, distancefromcenter));
+		body.setBodyIcon(Assets.getCelestialTexture(name));
+
 		return body;
 	}
-	
-	public static ExPlanet registerExPlanet(SolarSystem system, String name, float distancefromcenter) {
-        ExPlanet body = new ExPlanet(name).setParentSolarSystem(system);
-        body.setRingColorRGB(0.0F, 0.4F, 0.9F);
-        body.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(distancefromcenter, distancefromcenter));
-        body.setBodyIcon(Assets.getCelestialTexture(name));
-        
-        return body;
-    }
 
 	/**
 	 * Sets the biomes.
@@ -184,7 +183,7 @@ public class AstroBuilder {
 	 * @param body   the body
 	 * @param biomes the biomes
 	 */
-	public void setBiomes(CelestialBody body, Biome... biomes) {
+	public void setBiomes (CelestialBody body, Biome... biomes) {
 		body.setBiomeInfo(biomes);
 	}
 
@@ -194,23 +193,23 @@ public class AstroBuilder {
 	 * @param body   the body
 	 * @param gasses the gasses
 	 */
-	public void setAtmos(CelestialBody body, EnumAtmosphericGas... gasses) {
+	public void setAtmos (CelestialBody body, EnumAtmosphericGas... gasses) {
 		((ExoPlanet) body).setAtmosGasses(gasses);
 	}
-	
-	public static  void setAtmosphere(CelestialBody body, EnumAtmosphericGas... gasses) {
+
+	public static void setAtmosphere (CelestialBody body, EnumAtmosphericGas... gasses) {
 		boolean canBreathe = false;
-		boolean canRain = false;
-		boolean isCorr = false;
-		float d = 0.0f;
+		boolean canRain    = false;
+		boolean isCorr     = false;
+		float   d          = 0.0f;
 		for (EnumAtmosphericGas enumAtmosphericGas : gasses) {
 			d++;
 			body.atmosphereComponent(enumAtmosphericGas);
-			if(enumAtmosphericGas == EnumAtmosphericGas.OXYGEN)
+			if (enumAtmosphericGas == EnumAtmosphericGas.OXYGEN)
 				canBreathe = true;
-			if(enumAtmosphericGas == EnumAtmosphericGas.CO2)
+			if (enumAtmosphericGas == EnumAtmosphericGas.CO2)
 				canRain = true;
-			if(enumAtmosphericGas == EnumAtmosphericGas.METHANE)
+			if (enumAtmosphericGas == EnumAtmosphericGas.METHANE)
 				isCorr = true;
 		}
 		body.setAtmosphere(new AtmosphereInfo(canBreathe, canRain, isCorr, 0.0F, 0.0F, d));
@@ -227,7 +226,7 @@ public class AstroBuilder {
 	 * @param pressure the pressure
 	 * @param day      the day
 	 */
-	public void setData(CelestialBody body, ClassBody clazz, float distance, float gravity, float orbit, int pressure, long day) {
+	public void setData (CelestialBody body, ClassBody clazz, float distance, float gravity, float orbit, int pressure, long day) {
 		((ExPlanet) body).setClassPlanet(clazz);
 		body.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
 		body.setRelativeOrbitTime(orbit);
@@ -246,7 +245,7 @@ public class AstroBuilder {
 	 * @param mass   the mass
 	 * @param radius the radius
 	 */
-	public void setExoData(CelestialBody body, float temp, float mass, float radius) {
+	public void setExoData (CelestialBody body, float temp, float mass, float radius) {
 		((ExoPlanet) body).setPlanetTemp(temp);
 		((ExoPlanet) body).setPlanetMass(mass);
 		((ExoPlanet) body).setPlanetRadius(radius);
@@ -257,7 +256,7 @@ public class AstroBuilder {
 	 *
 	 * @param body the new normal orbit
 	 */
-	public void setNormalOrbit(CelestialBody body) {
+	public void setNormalOrbit (CelestialBody body) {
 		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime());
 
 	}
@@ -271,12 +270,11 @@ public class AstroBuilder {
 	 * @param orbitOffsetX  the orbit offset X
 	 * @param orbitOffsetY  the orbit offset Y
 	 */
-	public void setOrbit(CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX,
-			float orbitOffsetY) {
+	public void setOrbit (CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
 		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
 		((ExPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
-		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime(), eccentricityX,
-				eccentricityY, orbitOffsetX, orbitOffsetY);
+		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body
+				.getRelativeOrbitTime(), eccentricityX, eccentricityY, orbitOffsetX, orbitOffsetY);
 
 	}
 
@@ -296,15 +294,17 @@ public class AstroBuilder {
 	 * @param  bodyIcon           the body icon
 	 * @return                    the satellite
 	 */
-	public Satellite buildSpaceStation(Planet parent, String color, Class<? extends WorldProvider> provider, int dimID, int dimIDStatic, float phase, float size, float distancefromcenter, float relativetime, boolean customStationIcon, @Nullable String bodyIcon) {
+	public Satellite buildSpaceStation (Planet parent, String color, Class<? extends WorldProvider> provider, int dimID, int dimIDStatic, float phase, float size, float distancefromcenter, float relativetime, boolean customStationIcon, @Nullable String bodyIcon) {
 		Satellite body = new Satellite("spacestation." + parent.getUnlocalizedName().replace("planet.", ""));
 		body.setParentBody(parent);
 		body.setRelativeOrbitTime(relativetime);
 		body.setPhaseShift(phase);
 		body.setRelativeSize(size);
 		if (customStationIcon) {
-			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/spacestations/" + bodyIcon + ".png"));
-		} else {
+			body.setBodyIcon(new ResourceLocation(getModid(), "textures/celestialbodies/spacestations/" + bodyIcon
+					+ ".png"));
+		}
+		else {
 			body.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
 		}
 		if (provider != null) {
@@ -315,8 +315,7 @@ public class AstroBuilder {
 		return body;
 	}
 
-	public Moon buildMoon(Planet parent, String name, int dimID, float size, float distancefromcenter,
-			float relativetime) {
+	public Moon buildMoon (Planet parent, String name, int dimID, float size, float distancefromcenter, float relativetime) {
 		Moon body = (new Moon(name)).setParentPlanet(parent);
 		body.setRingColorRGB(0.8F, 0.0F, 0.0F);
 		body.setRelativeSize(size);
@@ -336,7 +335,7 @@ public class AstroBuilder {
 	 * @param  au          the au
 	 * @return             the planet
 	 */
-	public ExoPlanet buildSpecialUnreachable(String planetName, SolarSystem solarSystem, float randomPhase, float au) {
+	public ExoPlanet buildSpecialUnreachable (String planetName, SolarSystem solarSystem, float randomPhase, float au) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
 		unreachable.setDistanceFromCenter(au);
 		unreachable.setPhaseShift(randomPhase);
@@ -354,7 +353,7 @@ public class AstroBuilder {
 	 * @param  au          the au
 	 * @return             the planet
 	 */
-	public ExoPlanet buildUnreachablePlanet(String planetName, SolarSystem solarSystem, float randomPhase) {
+	public ExoPlanet buildUnreachablePlanet (String planetName, SolarSystem solarSystem, float randomPhase) {
 		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
 		unreachable.setBodyIcon(Assets.getCelestialTexture(planetName));
 		unreachable.setPhaseShift(randomPhase);
@@ -369,7 +368,7 @@ public class AstroBuilder {
 	 *
 	 * @param solarSystem the solar system
 	 */
-	public void registerSolarSystem(SolarSystem solarSystem) {
+	public void registerSolarSystem (SolarSystem solarSystem) {
 		GalaxyRegistry.registerSolarSystem(solarSystem);
 	}
 
@@ -378,7 +377,7 @@ public class AstroBuilder {
 	 *
 	 * @param planet the planet
 	 */
-	public void registerPlanet(Planet planet) {
+	public void registerPlanet (Planet planet) {
 		GalaxyRegistry.registerPlanet(planet);
 	}
 
@@ -387,11 +386,11 @@ public class AstroBuilder {
 	 *
 	 * @param moon the moon
 	 */
-	public void registerMoon(Moon moon) {
+	public void registerMoon (Moon moon) {
 		GalaxyRegistry.registerMoon(moon);
 	}
-	
-	public void register(Object val) {
+
+	public void register (Object val) {
 		if (val instanceof SolarSystem) {
 			GalaxyRegistry.registerSolarSystem((SolarSystem) val);
 		}
@@ -409,7 +408,7 @@ public class AstroBuilder {
 	 * @param clazz the clazz
 	 * @param type  the type
 	 */
-	public void registerTeleportType(Class<? extends WorldProvider> clazz, ITeleportType type) {
+	public void registerTeleportType (Class<? extends WorldProvider> clazz, ITeleportType type) {
 		GalacticraftRegistry.registerTeleportType(clazz, type);
 	}
 
@@ -419,8 +418,8 @@ public class AstroBuilder {
 	 * @param clazz    the clazz
 	 * @param resource the resource
 	 */
-	public void registerRocketGui(Class<? extends WorldProvider> clazz, String resource) {
-		GalacticraftRegistry.registerRocketGui(clazz,
-				new ResourceLocation(getModid() + ":textures/gui/rocket/" + resource + ".png"));
+	public void registerRocketGui (Class<? extends WorldProvider> clazz, String resource) {
+		GalacticraftRegistry.registerRocketGui(clazz, new ResourceLocation(getModid() + ":textures/gui/rocket/"
+				+ resource + ".png"));
 	}
 }

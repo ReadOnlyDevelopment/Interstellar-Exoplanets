@@ -47,7 +47,7 @@ public class GenericResearch extends Research {
 	}
 
 	@Override
-	public boolean canBeAccepted(ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public boolean canBeAccepted (ResearchStack researchStack, EntityPlayer entityPlayer) {
 		// TODO Insert completed Capability caller here
 
 		// if (Capability != null) {
@@ -59,58 +59,64 @@ public class GenericResearch extends Research {
 	}
 
 	@Override
-	public String getTitle(ResearchStack researchStack) {
-		return researchLogic.modifyTitle(researchStack, ExoplanetsMod.translate.translate("research." + title + ".title"));
+	public String getTitle (ResearchStack researchStack) {
+		return researchLogic
+				.modifyTitle(researchStack, ExoplanetsMod.translate.translate("research." + title + ".title"));
 	}
 
 	@Override
-	public String getTitle(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + ".title"), entityPlayer));
+	public String getTitle (ResearchStack researchStack, EntityPlayer entityPlayer) {
+		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + ".title"), entityPlayer));
 	}
 
 	@Override
-	public String getInfo(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + ".info"), entityPlayer));
+	public String getInfo (ResearchStack researchStack, EntityPlayer entityPlayer) {
+		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + ".info"), entityPlayer));
 	}
 
 	@Override
-	public String getObjective(ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
-		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.translate.translate("research." + title + ".objective." + objectiveIndex),
-				entityPlayer), objectiveIndex);
+	public String getObjective (ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
+		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + ".objective." + objectiveIndex), entityPlayer), objectiveIndex);
 	}
 
 	@Override
-	public int getObjectivesCount(ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public int getObjectivesCount (ResearchStack researchStack, EntityPlayer entityPlayer) {
 		return researchLogic.modifyObjectiveCount(researchStack, entityPlayer, 1);
 	}
 
 	@Override
-	public boolean isObjectiveCompleted(ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
+	public boolean isObjectiveCompleted (ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
 		return researchLogic.isObjectiveCompleted(researchStack, entityPlayer, objectiveIndex);
 	}
 
 	@Override
-	public boolean areResearchStacksEqual(ResearchStack researchStackOne, ResearchStack researchStackTwo) {
-		if (researchStackOne.getResearch() instanceof GenericResearch && researchStackTwo.getResearch() instanceof GenericResearch) {
-			if (((GenericResearch) researchStackOne.getResearch()).getResearchLogic() == ((GenericResearch) researchStackTwo.getResearch()).getResearchLogic()) {
-				return ((GenericResearch) researchStackTwo.getResearch()).getResearchLogic().areResearchStacksEqual(researchStackOne, researchStackTwo);
+	public boolean areResearchStacksEqual (ResearchStack researchStackOne, ResearchStack researchStackTwo) {
+		if (researchStackOne.getResearch() instanceof GenericResearch
+				&& researchStackTwo.getResearch() instanceof GenericResearch) {
+			if (((GenericResearch) researchStackOne.getResearch())
+					.getResearchLogic() == ((GenericResearch) researchStackTwo.getResearch()).getResearchLogic()) {
+				return ((GenericResearch) researchStackTwo.getResearch()).getResearchLogic()
+						.areResearchStacksEqual(researchStackOne, researchStackTwo);
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public void initResearchStack(Random random, ResearchStack researchStack) {
+	public void initResearchStack (Random random, ResearchStack researchStack) {
 		researchLogic.initResearchStack(random, researchStack);
 	}
 
 	@Override
-	public void initResearchStack(Random random, ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public void initResearchStack (Random random, ResearchStack researchStack, EntityPlayer entityPlayer) {
 
 	}
 
 	@Override
-	public ResearchState onEvent(ResearchStack researchStack, Event event, EntityPlayer entityPlayer) {
+	public ResearchState onEvent (ResearchStack researchStack, Event event, EntityPlayer entityPlayer) {
 		ResearchLogicState state = researchLogic.onEvent(researchStack, event, entityPlayer);
 		if (state == null) {
 			return null;
@@ -119,38 +125,38 @@ public class GenericResearch extends Research {
 	}
 
 	@Override
-	public void onCompleted(ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public void onCompleted (ResearchStack researchStack, EntityPlayer entityPlayer) {
 		researchLogic.onResearchCompleted(researchStack, entityPlayer);
 	}
 
 	@Override
-	public int getXpReward(ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public int getXpReward (ResearchStack researchStack, EntityPlayer entityPlayer) {
 		return researchLogic.modifyXP(researchStack, entityPlayer, xpReward);
 	}
 
 	@Override
-	public void addToRewards(ResearchStack researchStack, EntityPlayer entityPlayer, List<IResearchReward> rewards) {
+	public void addToRewards (ResearchStack researchStack, EntityPlayer entityPlayer, List<IResearchReward> rewards) {
 		rewards.addAll(researchRewards);
 		researchLogic.modifyRewards(researchStack, entityPlayer, rewards);
 	}
 
-	public String replaceVariables(String text, EntityPlayer entityPlayer) {
+	public String replaceVariables (String text, EntityPlayer entityPlayer) {
 		if (entityPlayer != null) {
 			return text.replace("$player", entityPlayer.getDisplayName().getFormattedText());
 		}
 		return text;
 	}
 
-	public IResearchLogic getResearchLogic() {
+	public IResearchLogic getResearchLogic () {
 		return researchLogic;
 	}
 
-	public void setResearchLogic(IResearchLogic researchLogic) {
+	public void setResearchLogic (IResearchLogic researchLogic) {
 		this.researchLogic = researchLogic;
 	}
 
 	@Override
-	public IResearch getResearchByName(String researchName) {
+	public IResearch getResearchByName (String researchName) {
 		//TODO
 		return null;
 	}

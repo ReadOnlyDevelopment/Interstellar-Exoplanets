@@ -47,20 +47,19 @@ import net.rom.exoplanets.ExoplanetsMod;
 
 public class CoreUtil {
 
-	public static void registerObjectDomain(String id) {
+	public static void registerObjectDomain (String id) {
 		OBJLoader.INSTANCE.addDomain(id);
 	}
-	
-	public static <T extends TileEntity> void registerTileEntityRenderer(Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer) {
+
+	public static <T extends TileEntity> void registerTileEntityRenderer (Class<T> tileEntityClass, TileEntitySpecialRenderer<? super T> specialRenderer) {
 		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
 	}
 
-	public static <T extends Entity> void registerEntityRenderer(Class<T> entityClass,
-			IRenderFactory<? super T> renderFactory) {
+	public static <T extends Entity> void registerEntityRenderer (Class<T> entityClass, IRenderFactory<? super T> renderFactory) {
 		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
 	}
 
-	public static void registerMultiModelItems(String id, Item item, String name, int max) {
+	public static void registerMultiModelItems (String id, Item item, String name, int max) {
 		ModelResourceLocation modelResourceLocation;
 		for (int i = 0; i < max; ++i) {
 			modelResourceLocation = new ModelResourceLocation(id + name, "inventory");
@@ -68,19 +67,16 @@ public class CoreUtil {
 		}
 	}
 
-	public static void registerModel(Item item, int meta, ModelResourceLocation location) {
+	public static void registerModel (Item item, int meta, ModelResourceLocation location) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, location);
 	}
 
-	public static void replaceModelDefault(String modID, ModelBakeEvent event, String loc, List<String> visibleGroups,
-			Class<? extends ModelTransformWrapper> clazz, String... variants) {
-		replaceModelDefault(modID, event, loc, loc + ".obj", visibleGroups, clazz, TRSRTransformation.identity(),
-				variants);
+	public static void replaceModelDefault (String modID, ModelBakeEvent event, String loc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, String... variants) {
+		replaceModelDefault(modID, event, loc, loc + ".obj", visibleGroups, clazz, TRSRTransformation
+				.identity(), variants);
 	}
 
-	public static void replaceModelDefault(String modID, ModelBakeEvent event, String resLoc, String objLoc,
-			List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState,
-			String... variants) {
+	public static void replaceModelDefault (String modID, ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransformWrapper> clazz, IModelState parentState, String... variants) {
 		if (variants.length == 0) {
 			variants = new String[] { "inventory" };
 		}
@@ -90,7 +86,8 @@ public class CoreUtil {
 		try {
 			model = (OBJModel) ModelLoaderRegistry.getModel(new ResourceLocation(modID, objLoc));
 			model = (OBJModel) model.process(ImmutableMap.of("flip-v", "true"));
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
@@ -98,17 +95,18 @@ public class CoreUtil {
 				.getTextureMapBlocks().getAtlasSprite(location.toString());
 		for (String variant : variants) {
 			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(modID + ":" + resLoc, variant);
-			IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+			IBakedModel           object                = event.getModelRegistry().getObject(modelResourceLocation);
 			if (object != null) {
 				if (!variant.equals("inventory"))
 					parentState = TRSRTransformation.identity();
 
-				IBakedModel newModel = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState),
-						DefaultVertexFormats.ITEM, spriteFunction);
+				IBakedModel newModel = model
+						.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
 				if (clazz != null) {
 					try {
 						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
 						e.printStackTrace();
 					}

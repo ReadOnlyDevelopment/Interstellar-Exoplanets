@@ -24,22 +24,19 @@ public class ExoTab extends CreativeTabs {
 
 	public String backgroundName = "";
 
-	public ExoTab(String label, String backgroundName)
-	{
+	public ExoTab(String label, String backgroundName) {
 		super(label);
 		setBackgroundImageName(backgroundName);
 	}
 
 	@Override
-	public boolean hasSearchBar()
-	{
+	public boolean hasSearchBar () {
 		return true;
 	}
 
 	@Override
-	public ItemStack getTabIconItem() {
+	public ItemStack getTabIconItem () {
 		return null;
 	}
-
 
 }

@@ -27,20 +27,23 @@ public class FileUtil {
 
 	private static final String CONFIG_DIRECTORY = Minecraft.getMinecraft().mcDataDir.toString();
 
-	public static boolean find(File fileName, String entry) {
+	public static boolean find (File fileName, String entry) {
 		boolean result = false;
-		Scanner in = null;
+		Scanner in     = null;
 		try {
 			in = new Scanner(new FileReader(CONFIG_DIRECTORY + "/config/" + fileName));
 			while (in.hasNextLine() && !result) {
 				result = in.nextLine().indexOf(entry) >= 0;
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			try {
 				in.close();
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				/* ignore */ }
 		}
 		return result;

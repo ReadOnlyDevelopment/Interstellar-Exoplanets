@@ -27,8 +27,8 @@ import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipe;
-import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
 import net.rom.exoplanets.content.block.machine.container.slot.SlotAlloyRefineryOutput;
+import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
 
 public class ContainerAlloyRefinery extends Container {
     private final IInventory tileAlloyRefinery;
@@ -47,11 +47,11 @@ public class ContainerAlloyRefinery extends Container {
         addSlotToContainer(new Slot(smelterInventory, 3, 61, 44));
 
         // Fuel slot
-        addSlotToContainer(new SlotFurnaceFuel(smelterInventory, TileAlloyRefinery.SLOT_FUEL, 19, 44));
+        addSlotToContainer(new SlotFurnaceFuel(smelterInventory, TileEntityAlloyRefinery.SLOT_FUEL, 19, 44));
 
         // Output slot
         addSlotToContainer(new SlotAlloyRefineryOutput(playerInventory.player, smelterInventory,
-                TileAlloyRefinery.SLOT_OUTPUT, 116, 35));
+                TileEntityAlloyRefinery.SLOT_OUTPUT, 116, 35));
 
         // Player inventory
         int i;
@@ -112,14 +112,14 @@ public class ContainerAlloyRefinery extends Container {
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
-            final int slotFuel = TileAlloyRefinery.SLOT_FUEL;                // 4
-            final int inputSlotCount = TileAlloyRefinery.SLOTS_INPUT.length; // 4
-            final int slotCount = TileAlloyRefinery.NUMBER_OF_SLOTS;         // 6
+            final int slotFuel = TileEntityAlloyRefinery.SLOT_FUEL;                // 4
+            final int inputSlotCount = TileEntityAlloyRefinery.SLOTS_INPUT.length; // 4
+            final int slotCount = TileEntityAlloyRefinery.NUMBER_OF_SLOTS;         // 6
 
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index == TileAlloyRefinery.SLOT_OUTPUT) {
+            if (index == TileEntityAlloyRefinery.SLOT_OUTPUT) {
                 if (!this.mergeItemStack(itemstack1, slotCount, slotCount + 36, true)) {
                     return ItemStack.EMPTY;
                 }

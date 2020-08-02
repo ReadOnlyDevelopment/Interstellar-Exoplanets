@@ -28,6 +28,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.content.tile.TileEntityMetalFurnace;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.IAddRecipe;
 import net.rom.exoplanets.internal.inerf.ITEBlock;
@@ -40,12 +41,12 @@ public class BlockMetalFurnace extends BlockMachine implements IAddRecipe, ITEBl
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileMetalFurnace();
+		return new TileEntityMetalFurnace();
 	}
 
 	@Override
 	public Class<? extends TileEntity> getTileEntityClass() {
-		return TileMetalFurnace.class;
+		return TileEntityMetalFurnace.class;
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class BlockMetalFurnace extends BlockMachine implements IAddRecipe, ITEBl
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float side, float hitX, float hitY) {
 		if (!world.isRemote) {
 			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof TileMetalFurnace) {
+			if (tile instanceof TileEntityMetalFurnace) {
 				player.openGui(ExoplanetsMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
 			}
 		}

@@ -26,71 +26,68 @@ import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class TrappistBlocks {
-	
-	public static void registerAll(StellarRegistry registry) {
-		
+
+	public static void registerAll (StellarRegistry registry) {
+
 		registry.generateJsonFiles(false);
-		
+
 		ExoBlocks.register(SharedTerrain.HOT_GROUND_1, "trap1_dark_hot");
 		ExoBlocks.register(SharedTerrain.HOT_GROUND_2, "trap1_solid_hot");
 		ExoBlocks.register(SharedTerrain.HOT_GROUND_3, "trap1_bright_solid_hot");
-		
+
 		ExoBlocks.register(TrappistC.T1C_TOP, "trap1c_top");
 		ExoBlocks.register(TrappistC.T1C_Dirt_1, "trap1c_dirt");
 		ExoBlocks.register(TrappistC.T1C_Dirt_2, "trap1c_dirt_1");
-		
+
 		ExoBlocks.register(TrappistE.trap1e_grass, "trap1e_grass");
 		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
 		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
 		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
 		ExoBlocks.register(TrappistE.trap1eore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1eore));
-		
-		
-		
+
 	}
-	
+
 	public static class SharedTerrain {
 
 		public static final BlockTerrain HOT_GROUND_1 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_2 = new BlockTerrain();
 		public static final BlockTerrain HOT_GROUND_3 = new BlockTerrain();
 	}
-	
+
 	public static class TrappistB {
 
-		
 	}
-	
+
 	public static class TrappistC {
-		
-		public static final BlockTerrain T1C_TOP = new BlockTerrain();
+
+		public static final BlockTerrain T1C_TOP    = new BlockTerrain();
 		public static final BlockTerrain T1C_Dirt_1 = new BlockTerrain();
 		public static final BlockTerrain T1C_Dirt_2 = new BlockTerrain();
 	}
-	
+
 	public static class TrappistD {
-		
+
 	}
-	
+
 	public static class TrappistE {
-		
-		public static final BlockExoGrass trap1e_grass = new BlockExoGrass();
-		public static final BlockExoDirt trap1e_dirt = new BlockExoDirt();
+
+		public static final BlockExoGrass        trap1e_grass       = new BlockExoGrass();
+		public static final BlockExoDirt         trap1e_dirt        = new BlockExoDirt();
 		public static final BlockMetamorphicRock trap1e_cobblestone = new BlockMetamorphicRock();
-		public static final BlockMetamorphicRock trap1e_stone = new BlockMetamorphicRock();
-		public static final BlockOreMetal trap1eore = new BlockOreMetal("trap1eore", false);
+		public static final BlockMetamorphicRock trap1e_stone       = new BlockMetamorphicRock();
+		public static final BlockOreMetal        trap1eore          = new BlockOreMetal("trap1eore", false);
 	}
-	
+
 	public static class TrappistF {
-		
+
 	}
-	
+
 	public static class TrappistG {
-		
+
 	}
-	
+
 	public static class TrappistH {
-		
+
 	}
 
 }

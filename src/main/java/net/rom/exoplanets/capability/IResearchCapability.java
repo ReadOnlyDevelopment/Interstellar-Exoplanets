@@ -22,24 +22,22 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.rom.api.research.ResearchStack;
 
 public interface IResearchCapability {
-	void saveNBTData(NBTTagCompound nbt);
+	void saveNBTData (NBTTagCompound nbt);
 
-	void loadNBTData(NBTTagCompound nbt);
+	void loadNBTData (NBTTagCompound nbt);
 
-	void copyFrom(IResearchCapability oldData, boolean keepInv);
+	void copyFrom (IResearchCapability oldData, boolean keepInv);
 
-	EntityPlayerMP getPlayer();
+	EntityPlayerMP getPlayer ();
 
-	void setPlayer(EntityPlayerMP player);
-	
-	void addResearch(ResearchStack researchStack);
-	
-	void removeResearch(ResearchStack researchStack, int index);
-	
-	boolean hasCompletedResearch(ResearchStack researchStack);
-	
-	boolean hasResearch(ResearchStack researchStack);
-	
-	
+	void setPlayer (EntityPlayerMP player);
+
+	void addResearch (ResearchStack researchStack);
+
+	void removeResearch (ResearchStack researchStack, int index);
+
+	boolean hasCompletedResearch (ResearchStack researchStack);
+
+	boolean hasResearch (ResearchStack researchStack);
 
 }

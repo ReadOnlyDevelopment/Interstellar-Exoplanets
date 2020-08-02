@@ -31,16 +31,15 @@ public class CapResearchHandler {
 
 	public static final ResourceLocation EXO_PLAYER = new ResourceLocation(ExoInfo.MODID, "player_stats");
 
-	public static void register() {
+	public static void register () {
 		CapabilityManager.INSTANCE.register(IResearchCapability.class, new Capability.IStorage<IResearchCapability>() {
 			@Override
-			public NBTBase writeNBT(Capability<IResearchCapability> capability, IResearchCapability instance, EnumFacing side) {
+			public NBTBase writeNBT (Capability<IResearchCapability> capability, IResearchCapability instance, EnumFacing side) {
 				return null;
 			}
 
 			@Override
-			public void readNBT(Capability<IResearchCapability> capability, IResearchCapability instance, EnumFacing side, NBTBase nbt) {
-			}
+			public void readNBT (Capability<IResearchCapability> capability, IResearchCapability instance, EnumFacing side, NBTBase nbt) {}
 		}, ResearchCapability::new);
 	}
 }

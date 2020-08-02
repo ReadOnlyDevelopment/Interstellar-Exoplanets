@@ -25,79 +25,79 @@ import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.init.ExoItems;
 
 public enum EnumAlloy implements IStringSerializable, IMetal {
-    BRONZE(0, "Bronze"),
-    BRASS(1, "Brass"),
-    STEEL(2, "Steel"),
-    A2219(3, "A2219");
-	
-    private final int meta;
-    private final String name;
+	BRONZE(0, "Bronze"),
+	BRASS(1, "Brass"),
+	STEEL(2, "Steel"),
+	A2219(3, "A2219");
 
-    EnumAlloy(int meta, String name) {
-        this.meta = meta;
-        this.name = name;
-    }
+	private final int    meta;
+	private final String name;
 
-    public int getMeta() {
-        return meta;
-    }
+	EnumAlloy(int meta, String name) {
+		this.meta = meta;
+		this.name = name;
+	}
 
-    @Override
-    public String getMetalName() {
-        return name;
-    }
+	public int getMeta () {
+		return meta;
+	}
 
-    @Override
-    public String getName() {
-        return name.toLowerCase(Locale.ROOT);
-    }
-
-    public static EnumAlloy byMetadata(int meta) {
-        if (meta < 0 || meta >= values().length) {
-            meta = 0;
-        }
-        return values()[meta];
-    }
-    
-    @Override
-    public boolean isAlloy() {
-        return true;
-    }
-    
 	@Override
-	public boolean isClad() {
+	public String getMetalName () {
+		return name;
+	}
+
+	@Override
+	public String getName () {
+		return name.toLowerCase(Locale.ROOT);
+	}
+
+	public static EnumAlloy byMetadata (int meta) {
+		if (meta < 0 || meta >= values().length) {
+			meta = 0;
+		}
+		return values()[meta];
+	}
+
+	@Override
+	public boolean isAlloy () {
+		return true;
+	}
+
+	@Override
+	public boolean isClad () {
 		return false;
 	}
 
-    public ItemStack getBlock() {
-        return new ItemStack(ExoBlocks.alloyBlock, 1, meta);
-    }
+	public ItemStack getBlock () {
+		return new ItemStack(ExoBlocks.alloyBlock, 1, meta);
+	}
 
-    public ItemStack getIngot() {
-        return new ItemStack(ExoItems.alloyIngot, 1, meta);
-    }
+	public ItemStack getIngot () {
+		return new ItemStack(ExoItems.alloyIngot, 1, meta);
+	}
 
-    public ItemStack getDust() {
-        return new ItemStack(ExoItems.alloyDust, 1, meta);
-    }
-
-    @Override
-    public ItemStack getSheet() {
-        return new ItemStack(ExoItems.sheetAlloy, 1, meta);
-    }
-
-    @Override
-    public ItemStack getGear() {
-        return new ItemStack(ExoItems.gearAlloy, 1, meta);
-    }
+	public ItemStack getDust () {
+		return new ItemStack(ExoItems.alloyDust, 1, meta);
+	}
 
 	@Override
-	public ItemStack getPlate() {
+	public ItemStack getSheet () {
+		return new ItemStack(ExoItems.sheetAlloy, 1, meta);
+	}
+
+	@Override
+	public ItemStack getGear () {
+		return new ItemStack(ExoItems.gearAlloy, 1, meta);
+	}
+
+	@Override
+	public ItemStack getPlate () {
 		return null;
 	}
 
 	@Override
-	public ItemStack getPile() {
+	public ItemStack getPile () {
 		return null;
 	}
 }

@@ -51,19 +51,18 @@ public final class MCUtil {
 	private MCUtil() {
 		throw new IllegalAccessError("Util Class");
 	}
-	
-    public static Random getRandom(BlockPos pos)
-    {
-        long blockSeed = ((pos.getY() << 28) + pos.getX() + 30000000 << 28) + pos.getZ() + 30000000;  
-        return new Random(blockSeed);
-    }
+
+	public static Random getRandom (BlockPos pos) {
+		long blockSeed = ((pos.getY() << 28) + pos.getX() + 30000000 << 28) + pos.getZ() + 30000000;
+		return new Random(blockSeed);
+	}
 
 	/**
 	 * Check if this is the client side.
 	 *
 	 * @return True if and only if we are on the client side
 	 */
-	public static boolean isClient() {
+	public static boolean isClient () {
 		return FMLCommonHandler.instance().getSide().isClient();
 	}
 
@@ -72,7 +71,7 @@ public final class MCUtil {
 	 *
 	 * @return True if and only if we are on the server side
 	 */
-	public static boolean isServer() {
+	public static boolean isServer () {
 		return FMLCommonHandler.instance().getSide().isServer();
 	}
 
@@ -81,11 +80,11 @@ public final class MCUtil {
 	 *
 	 * @return True if and only if we are running in a deobfuscated environment
 	 */
-	public static boolean isDeobfuscated() {
+	public static boolean isDeobfuscated () {
 		return (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 	}
 
-	public static MinecraftServer getServer() {
+	public static MinecraftServer getServer () {
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 		if (server == null) {
 			return serverCached;
@@ -93,41 +92,42 @@ public final class MCUtil {
 		return server;
 	}
 
-	public static Minecraft getClient() {
+	public static Minecraft getClient () {
 		return FMLClientHandler.instance().getClient();
 	}
 
-	public static void replaceModel(String modid, ModelBakeEvent event, String resLoc, String objLoc,
-			List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState,
-			String... variants) {
+	public static void replaceModel (String modid, ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState, String... variants) {
 		OBJModel model;
 		try {
 			model = (OBJModel) ExoModelLoader.instance.loadModel(new ResourceLocation(modid, objLoc));
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
 		Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft()
 				.getTextureMapBlocks().getAtlasSprite(location.toString());
-		IBakedModel newModelBase = model.bake(new OBJModel.OBJState(visibleGroups, false, parentState),
-				DefaultVertexFormats.ITEM, spriteFunction);
-		IBakedModel newModelAlt = null;
+		IBakedModel                                    newModelBase   = model
+				.bake(new OBJModel.OBJState(visibleGroups, false, parentState), DefaultVertexFormats.ITEM, spriteFunction);
+		IBakedModel                                    newModelAlt    = null;
 		if (variants.length == 0) {
 			variants = new String[] { "inventory" };
-		} else if (variants.length > 1 || !variants[0].equals("inventory")) {
-			newModelAlt = model.bake(new OBJModel.OBJState(visibleGroups, false, TRSRTransformation.identity()),
-					DefaultVertexFormats.ITEM, spriteFunction);
+		}
+		else if (variants.length > 1 || !variants[0].equals("inventory")) {
+			newModelAlt = model.bake(new OBJModel.OBJState(visibleGroups, false, TRSRTransformation
+					.identity()), DefaultVertexFormats.ITEM, spriteFunction);
 		}
 
 		for (String variant : variants) {
 			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(modid + ":" + resLoc, variant);
-			IBakedModel object = event.getModelRegistry().getObject(modelResourceLocation);
+			IBakedModel           object                = event.getModelRegistry().getObject(modelResourceLocation);
 			if (object != null) {
 				IBakedModel newModel = variant.equals("inventory") ? newModelBase : newModelAlt;
 				if (clazz != null) {
 					try {
 						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
 						e.printStackTrace();
 					}

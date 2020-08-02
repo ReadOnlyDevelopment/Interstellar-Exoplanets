@@ -26,8 +26,8 @@ import net.rom.exoplanets.internal.enums.EnumTPHClass;
 
 public class Calculations {
 
-	public static final long yearFactor = 8640000L;
-	public static final long monthFactor = 192000L;
+	public static final long   yearFactor    = 8640000L;
+	public static final long   monthFactor   = 192000L;
 	public static final String nameSeparator = "\\";
 	// try doing this in AUs
 	public static final double moonDistanceFactor = 0.00015;
@@ -38,7 +38,7 @@ public class Calculations {
 	public static final double systemDistanceFactor = 12.3 / 1069.17;
 
 	public static final float maxTemperature = 5.0F;
-	public static final float maxSolarLevel = 10.0F;
+	public static final float maxSolarLevel  = 10.0F;
 
 	public static final double AUlength = 149597870700.0;
 
@@ -53,23 +53,24 @@ public class Calculations {
 	 * @param body
 	 * @return
 	 */
-	public static float getThermalLevel(CelestialBody body) {
+	public static float getThermalLevel (CelestialBody body) {
 		if (body instanceof Star) {
 			return maxTemperature;
 		}
 		body = getParentPlanet(body);
-		float dist = body.getRelativeDistanceFromCenter().unScaledDistance;
+		float dist        = body.getRelativeDistanceFromCenter().unScaledDistance;
 		float temperature = -4 * dist + 4;
 		if (temperature < -maxTemperature) {
 			temperature = -maxTemperature;
-		} else if (temperature > maxTemperature) {
+		}
+		else if (temperature > maxTemperature) {
 			temperature = maxTemperature;
 		}
 
 		return temperature;
 	}
 
-	public static CelestialBody getParentPlanet(CelestialBody body) {
+	public static CelestialBody getParentPlanet (CelestialBody body) {
 		if (body == null) {
 			return null;
 		}
@@ -90,7 +91,7 @@ public class Calculations {
 	 * @param M Mass in solar masses.
 	 * @return Radius in solar radii.
 	 */
-	public static double schwartzchildRadius(double M) {
+	public static double schwartzchildRadius (double M) {
 		double r = 2.0 * AstronomicalConstants.GRAVITATIONAL_CONSTANT * M * AstronomicalConstants.SUN_MASS
 				/ (AstronomicalConstants.SPEED_OF_LIGHT * AstronomicalConstants.SPEED_OF_LIGHT);
 
@@ -107,7 +108,7 @@ public class Calculations {
 	 * @param mass Mass in solar units.
 	 * @return Luminosity in solar units.
 	 */
-	public static double getLuminosityFromMassLuminosityRelation(double mass) {
+	public static double getLuminosityFromMassLuminosityRelation (double mass) {
 		if (mass < 0.43)
 			return 0.23 * Math.pow(mass, 2.3);
 		if (mass < 2)
@@ -117,8 +118,6 @@ public class Calculations {
 																		// excesive
 		return 1.5 * Math.pow(mass, 3.5);
 	}
-	
-	
 
 	/**
 	 * Obtains star radius.
@@ -127,7 +126,7 @@ public class Calculations {
 	 * @param temperature Temperature in K.
 	 * @return Radius in solar radii.
 	 */
-	public static double getStarRadius(double luminosity, double temperature) {
+	public static double getStarRadius (double luminosity, double temperature) {
 		return Math.sqrt(luminosity * AstronomicalConstants.SUN_LUMINOSITY
 				/ (4.0 * Math.PI * AstronomicalConstants.STEFAN_BOLTZMANN_CONSTANT * Math.pow(temperature, 4.0)))
 				/ (AstronomicalConstants.SUN_RADIUS * 1000.0);
@@ -140,7 +139,7 @@ public class Calculations {
 	 * @param temperature Temperature in K.
 	 * @return Luminosity in solar units.
 	 */
-	public static double getStarLuminosity(double radius, double temperature) {
+	public static double getStarLuminosity (double radius, double temperature) {
 		double luminosity = Math.pow(radius * AstronomicalConstants.SUN_RADIUS * 1000.0, 2.0)
 				* (4.0 * Math.PI * AstronomicalConstants.STEFAN_BOLTZMANN_CONSTANT * Math.pow(temperature, 4.0));
 
@@ -154,12 +153,12 @@ public class Calculations {
 	 * @param radius Radius in solar radii.
 	 * @return Gravity in m/s^2.
 	 */
-	public static double getStarSurfaceGravity(double mass, double radius) {
+	public static double getStarSurfaceGravity (double mass, double radius) {
 		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.SUN_MASS
 				/ (Math.pow(radius * AstronomicalConstants.SUN_RADIUS * 1000.0, 2.0));
 		return g;
 	}
-	
+
 	/**
 	 * Obtains the surface gravity of a star.
 	 * 
@@ -167,7 +166,7 @@ public class Calculations {
 	 * @param radius Radius in solar radii.
 	 * @return Gravity in m/s^2.
 	 */
-	public static double getPlanetSurfaceGravity(double mass, double radius) {
+	public static double getPlanetSurfaceGravity (double mass, double radius) {
 		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS)
 				/ (Math.pow(radius * AstronomicalConstants.EARTH_RADIUS, 2.0));
 		return g;
@@ -181,7 +180,7 @@ public class Calculations {
 	 * @param maxValueInclusive the max value inclusive
 	 * @return true, if successful
 	 */
-	public static boolean between(double i, double minValueInclusive, double maxValueInclusive) {
+	public static boolean between (double i, double minValueInclusive, double maxValueInclusive) {
 		return (i >= minValueInclusive && i <= maxValueInclusive);
 	}
 
@@ -192,7 +191,7 @@ public class Calculations {
 	 * @param max the max
 	 * @return true, if is more than
 	 */
-	public static boolean isMoreThan(double i, double max) {
+	public static boolean isMoreThan (double i, double max) {
 		return i >= max;
 	}
 
@@ -203,7 +202,7 @@ public class Calculations {
 	 * @param min the min
 	 * @return true, if is less than
 	 */
-	public static boolean isLessThan(double i, double min) {
+	public static boolean isLessThan (double i, double min) {
 		return i <= min;
 	}
 
@@ -213,7 +212,7 @@ public class Calculations {
 	 * @param temp the temp
 	 * @return the TPH from temp
 	 */
-	public static EnumTPHClass getTPHFromTemp(double temp) {
+	public static EnumTPHClass getTPHFromTemp (double temp) {
 		if (between(temp, -100.0, -50.0)) {
 			return EnumTPHClass.HP;
 		}
@@ -231,12 +230,13 @@ public class Calculations {
 		}
 		if (isLessThan(temp, -100.0)) {
 			return EnumTPHClass.HP;
-		} else {
+		}
+		else {
 			return EnumTPHClass.HT;
 		}
 	}
 
-	public static EnumPlanetType getPlanetType(double mass, double radius) {
+	public static EnumPlanetType getPlanetType (double mass, double radius) {
 		if (datasetAsteroidan(mass, radius)) {
 			return EnumPlanetType.ASTEROIDAN;
 		}
@@ -257,42 +257,43 @@ public class Calculations {
 		}
 		if (datasetJovian(mass, radius)) {
 			return EnumPlanetType.JOVIAN;
-		} else {
+		}
+		else {
 			return null;
 		}
 
 	}
 
-	private static boolean datasetAsteroidan(double mass, double radius) {
+	private static boolean datasetAsteroidan (double mass, double radius) {
 		return between(mass, 0, 0.00001) && between(radius, 0, 0.03) ? true : false;
 
 	}
 
-	private static boolean datasetMercurian(double mass, double radius) {
+	private static boolean datasetMercurian (double mass, double radius) {
 		return between(mass, 0.00001, 0.1) && between(radius, 0.03, 0.7) ? true : false;
 
 	}
 
-	private static boolean datasetSubterran(double mass, double radius) {
+	private static boolean datasetSubterran (double mass, double radius) {
 		return between(mass, 0.1, 0.5) && between(radius, 0.5, 1.2) ? true : false;
 
 	}
 
-	private static boolean datasetTerran(double mass, double radius) {
+	private static boolean datasetTerran (double mass, double radius) {
 		return between(mass, 0.5, 2) && between(radius, 0.8, 1.9) ? true : false;
 
 	}
 
-	private static boolean datasetSuperterran(double mass, double radius) {
+	private static boolean datasetSuperterran (double mass, double radius) {
 		return between(mass, 2, 10) && between(radius, 1.3, 3.3) ? true : false;
 	}
 
-	private static boolean datasetNeptunian(double mass, double radius) {
+	private static boolean datasetNeptunian (double mass, double radius) {
 		return between(mass, 10, 50) && between(radius, 2.1, 5.7) ? true : false;
 
 	}
 
-	private static boolean datasetJovian(double mass, double radius) {
+	private static boolean datasetJovian (double mass, double radius) {
 		return between(mass, 50, 5000) && between(radius, 3.5, 27) ? true : false;
 	}
 

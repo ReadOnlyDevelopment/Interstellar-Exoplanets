@@ -30,7 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import net.rom.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
-import net.rom.exoplanets.content.block.machine.TileAlloyRefinery;
+import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -126,8 +126,8 @@ public class AlloyRefineryRecipeCategory implements IRecipeCategory {
         recipeLayout.getItemStacks().init(1, true, 43, 0);
         recipeLayout.getItemStacks().init(2, true, 25, 18);
         recipeLayout.getItemStacks().init(3, true, 43, 18);
-        recipeLayout.getItemStacks().init(TileAlloyRefinery.SLOT_FUEL, true, 0, 15);
-        recipeLayout.getItemStacks().init(TileAlloyRefinery.SLOT_OUTPUT, false, 98, 10);
+        recipeLayout.getItemStacks().init(TileEntityAlloyRefinery.SLOT_FUEL, true, 0, 15);
+        recipeLayout.getItemStacks().init(TileEntityAlloyRefinery.SLOT_OUTPUT, false, 98, 10);
 
         if (recipeWrapper instanceof AlloyRefineryRecipeWrapper) {
             AlloyRefineryRecipeWrapper wrapper = (AlloyRefineryRecipeWrapper) recipeWrapper;
@@ -138,7 +138,7 @@ public class AlloyRefineryRecipeCategory implements IRecipeCategory {
                 recipeLayout.getItemStacks().set(i, recipeObject.getPossibleItemStacks());
             }
             // Set output
-            recipeLayout.getItemStacks().set(TileAlloyRefinery.SLOT_OUTPUT, wrapper.getOutputs());
+            recipeLayout.getItemStacks().set(TileEntityAlloyRefinery.SLOT_OUTPUT, wrapper.getOutputs());
         }
     }
 

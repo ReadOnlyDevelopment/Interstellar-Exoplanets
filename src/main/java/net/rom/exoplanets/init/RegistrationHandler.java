@@ -26,7 +26,7 @@ import net.rom.exoplanets.util.ExoplanetsCustomSounds;
 
 public class RegistrationHandler {
 
-	public static void init(StellarRegistry r) {
+	public static void init (StellarRegistry r) {
 		r.addRegistrationHandler(ExoEntities::registerAll, EntityEntry.class);
 		r.addRegistrationHandler(ExoBlocks::registerAll, Block.class);
 		r.addRegistrationHandler(ExoItems::registerAll, Item.class);

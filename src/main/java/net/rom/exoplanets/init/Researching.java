@@ -21,27 +21,25 @@ import net.rom.api.research.Researches;
 
 public class Researching {
 
-    public static void init() {
-        initExoplanetsModResearch();
-        initModdedResearch();
-    }
+	public static void init () {
+		initExoplanetsModResearch();
+		initModdedResearch();
+	}
 
-    private static void initExoplanetsModResearch() {
-    }
+	private static void initExoplanetsModResearch () {}
 
-    private static void initModdedResearch() {
-    }
+	private static void initModdedResearch () {}
 
-    public static void register(Researches research) {
-        registerExoplanetsModResearch(research);
-        registerModdedResearch(research);
-    }
+	public static void register (Researches research) {
+		registerExoplanetsModResearch(research);
+		registerModdedResearch(research);
+	}
 
-    private static void registerExoplanetsModResearch(Researches research) {
+	private static void registerExoplanetsModResearch (Researches research) {
 
-    }
+	}
 
-    private static void registerModdedResearch(Researches research) {
-    	
-    }
+	private static void registerModdedResearch (Researches research) {
+
+	}
 }

@@ -27,13 +27,13 @@ public class AstronomicalConstants {
 
 	/** PI number as a big decimal with 100 decimal places */
 	public static final BigDecimal BIG_PI = new BigDecimal("3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679");
-	
+
 	/** 2 PI number as a big decimal with 100 decimal places */
 	public static final BigDecimal BIG_TWO_PI = new BigDecimal(returnStrig(BIG_PI));
 
 	/** Two times Pi. */
 	public static final double TWO_PI = 2.0 * Math.PI;
-	
+
 	/** Two times Pi. */
 	public static final float TWO_PI_F = (float) (2.0F * Math.PI);
 
@@ -133,10 +133,12 @@ public class AstronomicalConstants {
 	public static final double B1900 = B1950 - 50.0 * AstronomicalConstants.TROPICAL_YEAR;
 
 	/** J1950 epoch. 1950-1-1.0 */
-	public static final double J1950 = AstronomicalConstants.J1900 + 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
+	public static final double J1950 = AstronomicalConstants.J1900
+			+ 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
 
 	/** J2050 epoch. 2050-1-1.0 */
-	public static final double J2050 = AstronomicalConstants.J2000 + 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
+	public static final double J2050 = AstronomicalConstants.J2000
+			+ 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
 
 	/** J1900 epoch. Noon on 1900-1-0. */
 	public static final double J1900 = 2415020.0;
@@ -201,7 +203,7 @@ public class AstronomicalConstants {
 
 	/** Mass of the sun in Kg. */
 	public static final double SUN_MASS = 1.9891E30;
-	
+
 	/** Mass of the Earth in Kg. */
 	public static final double EARTH_MASS = 5.972E24;
 
@@ -215,7 +217,7 @@ public class AstronomicalConstants {
 	public static final double STEFAN_BOLTZMANN_CONSTANT = .00000005670367;
 
 	/** Electron charge in C (J/eV). Value from CODATA 2014. */
-	public static final double ELECTRON_CHARGE = 1.6021766208-19;
+	public static final double ELECTRON_CHARGE = 1.6021766208 - 19;
 
 	/** Avogadro number in mol^-1. CODATA 2014. */
 	public static final double AVOGADRO_CONSTANT = 6.022140857E+23;
@@ -276,13 +278,13 @@ public class AstronomicalConstants {
 
 	/** A factor to transform microns to cm. */
 	public static final double MICRON_TO_CM = 1.0E-4;
-	
+
 	// private constructor so that this class cannot be instantiated.
 	private AstronomicalConstants() {}
-	
-	private static String returnStrig(BigDecimal decimal) {
-		
+
+	private static String returnStrig (BigDecimal decimal) {
+
 		return decimal.multiply(new BigDecimal(2.0)).toEngineeringString();
-		
+
 	}
 }

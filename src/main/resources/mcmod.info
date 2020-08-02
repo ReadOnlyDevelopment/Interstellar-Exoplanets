@@ -1,15 +1,15 @@
 [
  {
    "modid": "exoplanets",
-   "name": "Exoplanets",
+   "name": "Interstellar: Exoplanets",
    "description": "Yet another Galacticraft Addon",
    "version":"${version}",
    "mcversion":"${mcversion}",
    "url": "https://www.curseforge.com/minecraft/mc-mods/interstellar-exoplanets",
    "updateUrl": "",
-   "authorList": ["ROMVoid95"],
+   "authorList": ["ROMVoid95", "craftablescience"],
    "credits": "",
-   "logoFile": "",
+   "logoFile": "assets/exoplanets/logo.png",
    "screenshots": [],
    "dependencies": ["asmodeuscore"]
  }

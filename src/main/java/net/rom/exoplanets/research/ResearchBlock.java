@@ -25,70 +25,72 @@ import net.minecraftforge.fml.common.Loader;
 import net.rom.exoplanets.research.utils.JsonUtil;
 
 public class ResearchBlock {
-    IBlockState block;
-    String blockName;
-    int blockMeta;
-    boolean hasMeta;
-    String mod;
+	IBlockState block;
+	String      blockName;
+	int         blockMeta;
+	boolean     hasMeta;
+	String      mod;
 
-    public ResearchBlock(JsonObject object) {
-        if (object.has("meta")) {
-            setBlockMeta(JsonUtil.getInt(object, "meta"));
-        }
-        blockName = JsonUtil.getString(object, "id");
-        mod = JsonUtil.getString(object, "mod", null);
-    }
+	public ResearchBlock(JsonObject object) {
+		if (object.has("meta")) {
+			setBlockMeta(JsonUtil.getInt(object, "meta"));
+		}
+		blockName = JsonUtil.getString(object, "id");
+		mod       = JsonUtil.getString(object, "mod", null);
+	}
 
-    public ResearchBlock(IBlockState block) {
-        this.block = block;
-    }
+	public ResearchBlock(IBlockState block) {
+		this.block = block;
+	}
 
-    public ResearchBlock(String blockName, String mod) {
-        this.blockName = blockName;
-        this.mod = mod;
-    }
+	public ResearchBlock(String blockName, String mod) {
+		this.blockName = blockName;
+		this.mod       = mod;
+	}
 
-    public static ResearchBlock fromBlock(IBlockState block) {
-        return new ResearchBlock(block);
-    }
+	public static ResearchBlock fromBlock (IBlockState block) {
+		return new ResearchBlock(block);
+	}
 
-    public boolean isModded() {
-        return mod != null && !mod.isEmpty();
-    }
+	public boolean isModded () {
+		return mod != null && !mod.isEmpty();
+	}
 
-    public boolean isModPresent() {
-        return Loader.isModLoaded(mod);
-    }
+	public boolean isModPresent () {
+		return Loader.isModLoaded(mod);
+	}
 
-    public boolean canBlockExist() {
-        if (isModded()) {
-            return isModPresent();
-        }
-        return true;
-    }
+	public boolean canBlockExist () {
+		if (isModded()) {
+			return isModPresent();
+		}
+		return true;
+	}
 
-    public IBlockState getBlockState() {
-        if (isModded() || block == null) {
-            if (hasMeta) {
-                return Block.getBlockFromName(blockName).getStateFromMeta(blockMeta);
-            }
-            return Block.getBlockFromName(blockName).getDefaultState();
+	public IBlockState getBlockState () {
+		if (isModded() || block == null) {
+			if (hasMeta) {
+				return Block.getBlockFromName(blockName).getStateFromMeta(blockMeta);
+			}
+			return Block.getBlockFromName(blockName).getDefaultState();
 
-        } else {
-            return block;
-        }
-    }
+		}
+		else {
+			return block;
+		}
+	}
 
-    public boolean isTheSame(IBlockState blockState) {
-        if (hasMeta) {
-            return getBlockState().equals(blockState);
-        } else {
-            return getBlockState().getBlock().equals(blockState.getBlock());
-        }
-    }
+	public boolean isTheSame (IBlockState blockState) {
+		if (hasMeta) {
+			return getBlockState().equals(blockState);
+		}
+		else {
+			return getBlockState().getBlock().equals(blockState.getBlock());
+		}
+	}
 
-    public void setBlockMeta(int meta) {
-        this.blockMeta = meta;
-        this.hasMeta = true;
-    }
+	public void setBlockMeta (int meta) {
+		this.blockMeta = meta;
+		this.hasMeta   = true;
+	}
 }

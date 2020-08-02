@@ -25,35 +25,35 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 public class CapResearchProvider implements ICapabilitySerializable<NBTTagCompound> {
 
-	private EntityPlayerMP player;
+	private EntityPlayerMP      player;
 	private IResearchCapability researchCap;
 
 	public CapResearchProvider(EntityPlayerMP player) {
-		this.player = player;
+		this.player      = player;
 		this.researchCap = CapResearchHandler.RESEARCH_CAPABILITY.getDefaultInstance();
 		this.researchCap.setPlayer(this.player);
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability (Capability<?> capability, EnumFacing facing) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability (Capability<T> capability, EnumFacing facing) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public NBTTagCompound serializeNBT() {
+	public NBTTagCompound serializeNBT () {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deserializeNBT(NBTTagCompound nbt) {
+	public void deserializeNBT (NBTTagCompound nbt) {
 		// TODO Auto-generated method stub
 
 	}

@@ -30,60 +30,59 @@ import net.rom.exoplanets.internal.annotations.UtilClass;
 
 @UtilClass
 public final class BlockUtil {
-	public static final String GROUP_RESLOC = "resloc";
-	public static final String GROUP_PROPERTIES = "props";
-	public static final String BLOCKSTATE_PATTERN = "^(?<" + GROUP_RESLOC + ">[a-z0-9_]*:[a-z0-9_]+)(?:(?:\\[)(?<"
+	public static final String  GROUP_RESLOC       = "resloc";
+	public static final String  GROUP_PROPERTIES   = "props";
+	public static final String  BLOCKSTATE_PATTERN = "^(?<" + GROUP_RESLOC + ">[a-z0-9_]*:[a-z0-9_]+)(?:(?:\\[)(?<"
 			+ GROUP_PROPERTIES + ">[a-z0-9_]+=[a-z0-9_]+(?:,[a-z0-9_]+=[a-z0-9_]+)*)?(?:\\]))?.*$";
 	public static final Pattern BLOCKSTATE_MATCHER = Pattern.compile(BLOCKSTATE_PATTERN);
 
-	private BlockUtil() {
+	private BlockUtil() {}
+
+	/**
+	 * A shortcut to get a specific variant of {@code minecraft:sand}.
+	 *
+	 * @param variant An enum used for the {@link IProperty} variant.
+	 * @return The requested variant of {@link IBlockState}.
+	 */
+	public static IBlockState getStateSand (final BlockSand.EnumType variant) {
+		switch (variant) {
+		case SAND:
+			return Blocks.SAND.getDefaultState();
+		case RED_SAND:
+			return Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
+		}
+		return Blocks.SAND.getDefaultState();
 	}
-	
-    /**
-     * A shortcut to get a specific variant of {@code minecraft:sand}.
-     *
-     * @param variant An enum used for the {@link IProperty} variant.
-     * @return The requested variant of {@link IBlockState}.
-     */
-    public static IBlockState getStateSand(final BlockSand.EnumType variant) {
-        switch (variant) {
-            case SAND:
-                return Blocks.SAND.getDefaultState();
-            case RED_SAND:
-                return Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
-        }
-        return Blocks.SAND.getDefaultState();
-    }
-    
-    /**
-     * A shortcut to get a specific variant of {@code minecraft:dirt}.
-     *
-     * @param variant An enum used for the {@link IProperty} variant.
-     * @return The requested variant of {@link IBlockState}.
-     * @since 1.0.0
-     */
-    public static IBlockState getStateDirt(final BlockDirt.DirtType variant) {
-        switch (variant) {
-            case DIRT:
-                return Blocks.DIRT.getDefaultState();
-            case COARSE_DIRT:
-                return Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
-            case PODZOL:
-                return Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
-        }
-        return Blocks.DIRT.getDefaultState();
-    }
-    
-    /**
-     * A shortcut to get a specific variant of {@code minecraft:dirt}.
-     *
-     * @param variant An enum used for the {@link IProperty} variant.
-     * @return The requested variant of {@link IBlockState}.
-     * @since 1.0.0
-     */
-    public static IBlockState getStateDirt(final Block block) {
-        return block.getDefaultState();
-    }
+
+	/**
+	 * A shortcut to get a specific variant of {@code minecraft:dirt}.
+	 *
+	 * @param variant An enum used for the {@link IProperty} variant.
+	 * @return The requested variant of {@link IBlockState}.
+	 * @since 1.0.0
+	 */
+	public static IBlockState getStateDirt (final BlockDirt.DirtType variant) {
+		switch (variant) {
+		case DIRT:
+			return Blocks.DIRT.getDefaultState();
+		case COARSE_DIRT:
+			return Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
+		case PODZOL:
+			return Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
+		}
+		return Blocks.DIRT.getDefaultState();
+	}
+
+	/**
+	 * A shortcut to get a specific variant of {@code minecraft:dirt}.
+	 *
+	 * @param variant An enum used for the {@link IProperty} variant.
+	 * @return The requested variant of {@link IBlockState}.
+	 * @since 1.0.0
+	 */
+	public static IBlockState getStateDirt (final Block block) {
+		return block.getDefaultState();
+	}
 
 	/**
 	 * Gets a Block from the {@link Block#REGISTRY} from a {@link ResourceLocation}
@@ -95,7 +94,7 @@ public final class BlockUtil {
 	 *         returns <b>null</b>.
 	 */
 	@Nullable
-	public static Block getBlock(@Nullable final String resourceLocation) {
+	public static Block getBlock (@Nullable final String resourceLocation) {
 		return (!StringUtils.isEmpty(resourceLocation)) ? getBlock(new ResourceLocation(resourceLocation)) : null;
 	}
 
@@ -108,7 +107,7 @@ public final class BlockUtil {
 	 *         returns <b>null</b>.
 	 */
 	@Nullable
-	public static Block getBlock(@Nullable final ResourceLocation resourceLocation) {
+	public static Block getBlock (@Nullable final ResourceLocation resourceLocation) {
 		return (resourceLocation != null && Block.REGISTRY.containsKey(resourceLocation))
 				? Block.REGISTRY.getObject(resourceLocation)
 				: null;
@@ -124,7 +123,7 @@ public final class BlockUtil {
 	 * @return A Block instance if the Block.REGISTRY contains a match, otherwise
 	 *         returns {@code fallback}.
 	 */
-	public static Block getBlock(@Nullable final String resourceLocation, final Block fallback) {
+	public static Block getBlock (@Nullable final String resourceLocation, final Block fallback) {
 		return (!StringUtils.isEmpty(resourceLocation)) ? getBlock(new ResourceLocation(resourceLocation), fallback)
 				: fallback;
 	}
@@ -138,7 +137,7 @@ public final class BlockUtil {
 	 * @return A Block instance if the Block.REGISTRY contains a match, otherwise
 	 *         returns {@code fallback}.
 	 */
-	public static Block getBlock(@Nullable final ResourceLocation resourceLocation, final Block fallback) {
+	public static Block getBlock (@Nullable final ResourceLocation resourceLocation, final Block fallback) {
 		Block block = getBlock(resourceLocation);
 		return (block != null) ? block : fallback;
 	}
@@ -157,8 +156,7 @@ public final class BlockUtil {
 	 * @return A IBlockState, with the requested IProperty values, of {@code block},
 	 *         or null if the property, or values of property, can not be found.
 	 */
-	public static IBlockState getPossibleState(final Block block, final String propertyName, final String valueName,
-			IBlockState fallback) {
+	public static IBlockState getPossibleState (final Block block, final String propertyName, final String valueName, IBlockState fallback) {
 		if (StringUtils.isEmpty(propertyName) || StringUtils.isEmpty(valueName)) {
 			return fallback;
 		}
@@ -180,7 +178,7 @@ public final class BlockUtil {
 	 *         property, can not be found.
 	 */
 	@Nullable
-	public static IBlockState getPossibleState(final Block block, final String propertyName, final String valueName) {
+	public static IBlockState getPossibleState (final Block block, final String propertyName, final String valueName) {
 		if (StringUtils.isEmpty(propertyName) || StringUtils.isEmpty(valueName)) {
 			return null;
 		}
@@ -202,8 +200,7 @@ public final class BlockUtil {
 	 *         the propertyName, or valueName of property, can not be found.
 	 */
 	@Nullable
-	public static IBlockState getPossibleState(final IBlockState blockState, final String propertyName,
-			final String valueName) {
+	public static IBlockState getPossibleState (final IBlockState blockState, final String propertyName, final String valueName) {
 		if (StringUtils.isEmpty(propertyName) || StringUtils.isEmpty(valueName)) {
 			return null;
 		}
@@ -223,8 +220,7 @@ public final class BlockUtil {
 	 * @return A new IBlockState with the requested IProperty values, or the
 	 *         original state if the property is not found.
 	 */
-	public static <T extends Comparable<T>> IBlockState getPossibleState(final IBlockState blockstate,
-			final IProperty<T> propname, final String valueName) {
+	public static <T extends Comparable<T>> IBlockState getPossibleState (final IBlockState blockstate, final IProperty<T> propname, final String valueName) {
 		if (StringUtils.isEmpty(valueName)) {
 			return blockstate;
 		}
@@ -232,23 +228,23 @@ public final class BlockUtil {
 		return value.isPresent() ? blockstate.withProperty(propname, value.get()) : blockstate;
 	}
 
-	public static boolean isBlockAir(final IBlockState blockState) {
+	public static boolean isBlockAir (final IBlockState blockState) {
 		return blockState.getBlock() == Blocks.AIR;
 	}
 
-	public static boolean isBlockAir(final Block block) {
+	public static boolean isBlockAir (final Block block) {
 		return block == Blocks.AIR;
 	}
 
-	public static boolean isMaterialAir(final IBlockState blockState) {
+	public static boolean isMaterialAir (final IBlockState blockState) {
 		return blockState.getMaterial() == Material.AIR;
 	}
 
-	public static boolean isMaterialAir(final Block block) {
+	public static boolean isMaterialAir (final Block block) {
 		return block.getDefaultState().getMaterial() == Material.AIR;
 	}
 
-	public static boolean isMaterialAir(final Material material) {
+	public static boolean isMaterialAir (final Material material) {
 		return material == Material.AIR;
 	}
 
@@ -261,7 +257,7 @@ public final class BlockUtil {
 	 * @return <b>true</b> if the blocks match
 	 * 
 	 */
-	public static boolean isBlock(final World world, final BlockPos origin, final Block block) {
+	public static boolean isBlock (final World world, final BlockPos origin, final Block block) {
 		return world.getBlockState(origin).getBlock() == block;
 	}
 
@@ -270,7 +266,7 @@ public final class BlockUtil {
 	 *
 	 * 
 	 */
-	public static boolean isBlockOneOf(final World world, final BlockPos origin, final Block... validBlocks) {
+	public static boolean isBlockOneOf (final World world, final BlockPos origin, final Block... validBlocks) {
 		return isBlockOneOf(world, origin, Collections.unmodifiableCollection(Arrays.asList(validBlocks)));
 	}
 
@@ -284,7 +280,7 @@ public final class BlockUtil {
 	 *         Collection.
 	 * 
 	 */
-	public static boolean isBlockOneOf(final World world, final BlockPos origin, final Collection<Block> validBlocks) {
+	public static boolean isBlockOneOf (final World world, final BlockPos origin, final Collection<Block> validBlocks) {
 		final Block checkBlock = world.getBlockState(origin).getBlock();
 		return (validBlocks.isEmpty()) ? isBlockAir(checkBlock) : validBlocks.contains(checkBlock);
 	}
@@ -297,7 +293,7 @@ public final class BlockUtil {
 	 * @return <b>true</b> if the Material at the world position is replaceable.
 	 * 
 	 */
-	public static boolean isReplaceable(final World world, final BlockPos origin) {
+	public static boolean isReplaceable (final World world, final BlockPos origin) {
 		return world.getBlockState(origin).getMaterial().isReplaceable();
 	}
 
@@ -307,10 +303,9 @@ public final class BlockUtil {
 	 *
 	 * 
 	 */
-	public static boolean checkAreaBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int checkRadius, final Block... validBlocks) {
-		return checkAreaBlocks(matchType, world, origin, checkRadius,
-				Collections.unmodifiableCollection(Arrays.asList(validBlocks)));
+	public static boolean checkAreaBlocks (final MatchType matchType, final World world, final BlockPos origin, final int checkRadius, final Block... validBlocks) {
+		return checkAreaBlocks(matchType, world, origin, checkRadius, Collections
+				.unmodifiableCollection(Arrays.asList(validBlocks)));
 	}
 
 	/**
@@ -335,14 +330,13 @@ public final class BlockUtil {
 	 *         block in {@code validBlocks}, otherwise returns false.
 	 * 
 	 */
-	public static boolean checkAreaBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int checkRadius, final Collection<Block> validBlocks) {
+	public static boolean checkAreaBlocks (final MatchType matchType, final World world, final BlockPos origin, final int checkRadius, final Collection<Block> validBlocks) {
 
-		final int ox = origin.getX(), oy = origin.getY(), oz = origin.getZ();
-		final boolean ignoreReplaceable = matchType == MatchType.ALL_IGNORE_REPLACEABLE;
-		MutableBlockPos mpos = new MutableBlockPos();
-		int x, z, i = 1;
-		IBlockState bs;
+		final int       ox                = origin.getX(), oy = origin.getY(), oz = origin.getZ();
+		final boolean   ignoreReplaceable = matchType == MatchType.ALL_IGNORE_REPLACEABLE;
+		MutableBlockPos mpos              = new MutableBlockPos();
+		int             x, z, i = 1;
+		IBlockState     bs;
 
 		switch (matchType) {
 
@@ -456,10 +450,9 @@ public final class BlockUtil {
 	 *
 	 * 
 	 */
-	public static boolean checkAdjacentBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final Block... validBlocks) {
-		return checkAdjacentBlocks(matchType, world, origin,
-				Collections.unmodifiableCollection(Arrays.asList(validBlocks)));
+	public static boolean checkAdjacentBlocks (final MatchType matchType, final World world, final BlockPos origin, final Block... validBlocks) {
+		return checkAdjacentBlocks(matchType, world, origin, Collections
+				.unmodifiableCollection(Arrays.asList(validBlocks)));
 	}
 
 	/**
@@ -482,8 +475,7 @@ public final class BlockUtil {
 	 *         block in {@code validBlocks}, otherwise returns false.
 	 * 
 	 */
-	public static boolean checkAdjacentBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final Collection<Block> validBlocks) {
+	public static boolean checkAdjacentBlocks (final MatchType matchType, final World world, final BlockPos origin, final Collection<Block> validBlocks) {
 
 		final boolean ignoreReplaceable = matchType == MatchType.ALL_IGNORE_REPLACEABLE;
 
@@ -528,10 +520,9 @@ public final class BlockUtil {
 	 *
 	 * 
 	 */
-	public static boolean checkVerticalBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int distance, final Block... validBlocks) {
-		return checkVerticalBlocks(matchType, world, origin, distance,
-				Collections.unmodifiableCollection(Arrays.asList(validBlocks)));
+	public static boolean checkVerticalBlocks (final MatchType matchType, final World world, final BlockPos origin, final int distance, final Block... validBlocks) {
+		return checkVerticalBlocks(matchType, world, origin, distance, Collections
+				.unmodifiableCollection(Arrays.asList(validBlocks)));
 	}
 
 	/**
@@ -557,15 +548,14 @@ public final class BlockUtil {
 	 *         block in {@code validBlocks}, otherwise returns false.
 	 * 
 	 */
-	public static boolean checkVerticalBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int distance, final Collection<Block> validBlocks) {
+	public static boolean checkVerticalBlocks (final MatchType matchType, final World world, final BlockPos origin, final int distance, final Collection<Block> validBlocks) {
 
-		final int ox = origin.getX(), oy = origin.getY(), oz = origin.getZ();
+		final int ox  = origin.getX(), oy = origin.getY(), oz = origin.getZ();
 		final int dis = Math.abs(distance);
 		// distance is: positive = check above, negative = check below
-		final boolean invert = distance < 0;
-		final boolean ignoreReplaceable = matchType == MatchType.ALL_IGNORE_REPLACEABLE;
-		final MutableBlockPos mpos = new MutableBlockPos();
+		final boolean         invert            = distance < 0;
+		final boolean         ignoreReplaceable = matchType == MatchType.ALL_IGNORE_REPLACEABLE;
+		final MutableBlockPos mpos              = new MutableBlockPos();
 
 		switch (matchType) {
 
@@ -608,10 +598,9 @@ public final class BlockUtil {
 	 *
 	 * 
 	 */
-	public static boolean checkVolumeBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int checkRadius, final int checkHeight, final Block... validBlocks) {
-		return checkVolumeBlocks(matchType, world, origin, checkRadius, checkHeight,
-				Collections.unmodifiableCollection(Arrays.asList(validBlocks)));
+	public static boolean checkVolumeBlocks (final MatchType matchType, final World world, final BlockPos origin, final int checkRadius, final int checkHeight, final Block... validBlocks) {
+		return checkVolumeBlocks(matchType, world, origin, checkRadius, checkHeight, Collections
+				.unmodifiableCollection(Arrays.asList(validBlocks)));
 	}
 
 	/**
@@ -640,20 +629,19 @@ public final class BlockUtil {
 	 *         block in {@code validBlocks}, otherwise returns false.
 	 * 
 	 */
-	public static boolean checkVolumeBlocks(final MatchType matchType, final World world, final BlockPos origin,
-			final int checkRadius, final int checkHeight, final Collection<Block> validBlocks) {
+	public static boolean checkVolumeBlocks (final MatchType matchType, final World world, final BlockPos origin, final int checkRadius, final int checkHeight, final Collection<Block> validBlocks) {
 
-		final int ox = origin.getX(), oy = origin.getY(), oz = origin.getZ();
-		final int height = Math.abs(checkHeight);
-		final boolean invert = checkHeight < 0;
-		final MutableBlockPos mpos = new MutableBlockPos();
+		final int             ox     = origin.getX(), oy = origin.getY(), oz = origin.getZ();
+		final int             height = Math.abs(checkHeight);
+		final boolean         invert = checkHeight < 0;
+		final MutableBlockPos mpos   = new MutableBlockPos();
 
 		if (!checkVerticalBlocks(matchType, world, origin, checkHeight, validBlocks)) {
 			return false;
 		}
 		for (int i = 0; i < height; i++) {
-			if (!checkAreaBlocks(matchType, world, mpos.setPos(ox, oy + (invert ? -i : i), oz), checkRadius,
-					validBlocks)) {
+			if (!checkAreaBlocks(matchType, world, mpos
+					.setPos(ox, oy + (invert ? -i : i), oz), checkRadius, validBlocks)) {
 				return false;
 			}
 		}
@@ -713,9 +701,9 @@ public final class BlockUtil {
 		 *
 		 * @return The Collection of Materials.
 		 */
-		public static Collection<Material> getMaterials() {
-			return Collections.unmodifiableCollection(
-					Arrays.stream(values()).map(EnumMaterial::getMaterial).collect(Collectors.toSet()));
+		public static Collection<Material> getMaterials () {
+			return Collections.unmodifiableCollection(Arrays.stream(values()).map(EnumMaterial::getMaterial)
+					.collect(Collectors.toSet()));
 		}
 
 		/**
@@ -725,7 +713,7 @@ public final class BlockUtil {
 		 * @return the Material, or <b>null</b> if the name doesn't exist.
 		 */
 		@Nullable
-		public static Material getByName(final String name) {
+		public static Material getByName (final String name) {
 			return Arrays.stream(values()).filter(material -> material.name().equals(name.toUpperCase(Locale.ENGLISH)))
 					.findFirst().map(EnumMaterial::getMaterial).orElse(null);
 		}
@@ -737,7 +725,7 @@ public final class BlockUtil {
 		 * @return the enum value
 		 */
 		@Nullable
-		public static EnumMaterial getByMaterial(final Material material) {
+		public static EnumMaterial getByMaterial (final Material material) {
 			return Arrays.stream(values()).filter(value -> value.getMaterial() == material).findFirst().orElse(null);
 		}
 
@@ -747,7 +735,7 @@ public final class BlockUtil {
 		 *
 		 * @return the Collection of replaceable Materials
 		 */
-		public static Collection<Material> getReplaceable() {
+		public static Collection<Material> getReplaceable () {
 			return Collections.unmodifiableCollection(Arrays.stream(values()).filter(EnumMaterial::isReplaceable)
 					.map(EnumMaterial::getMaterial).collect(Collectors.toList()));
 		}
@@ -757,7 +745,7 @@ public final class BlockUtil {
 		 *
 		 * @return the material
 		 */
-		public Material getMaterial() {
+		public Material getMaterial () {
 			return this.material;
 		}
 
@@ -767,7 +755,7 @@ public final class BlockUtil {
 		 *
 		 * @return <b>true</b> if this Material can be replaced, <b>false</b> if not.
 		 */
-		public boolean isReplaceable() {
+		public boolean isReplaceable () {
 			return this.material.isReplaceable();
 		}
 	}

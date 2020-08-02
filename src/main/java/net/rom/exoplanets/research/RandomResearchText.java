@@ -34,7 +34,7 @@ public class RandomResearchText extends GenericResearch {
 	}
 
 	@Override
-	public void initResearchStack(Random random, ResearchStack researchStack, EntityPlayer entityPlayer) {
+	public void initResearchStack (Random random, ResearchStack researchStack, EntityPlayer entityPlayer) {
 		super.initResearchStack(random, researchStack, entityPlayer);
 		NBTTagCompound data = researchStack.getTagCompound();
 		if (data == null) {
@@ -45,22 +45,26 @@ public class RandomResearchText extends GenericResearch {
 	}
 
 	@Override
-	public boolean areResearchStacksEqual(ResearchStack researchStackOne, ResearchStack researchStackTwo) {
+	public boolean areResearchStacksEqual (ResearchStack researchStackOne, ResearchStack researchStackTwo) {
 		if (researchStackOne == null && researchStackTwo == null) {
 			return true;
-		} else {
+		}
+		else {
 			if (researchStackOne.getTagCompound() == null && researchStackTwo.getTagCompound() == null) {
 				return super.areResearchStacksEqual(researchStackOne, researchStackTwo);
-			} else if (researchStackOne.getTagCompound() != null && researchStackTwo.getTagCompound() != null) {
-				return super.areResearchStacksEqual(researchStackOne, researchStackTwo) && researchStackOne.getTagCompound().getShort("Variation") == researchStackTwo
-						.getTagCompound().getShort("Variation");
-			} else {
+			}
+			else if (researchStackOne.getTagCompound() != null && researchStackTwo.getTagCompound() != null) {
+				return super.areResearchStacksEqual(researchStackOne, researchStackTwo)
+						&& researchStackOne.getTagCompound().getShort("Variation") == researchStackTwo.getTagCompound()
+								.getShort("Variation");
+			}
+			else {
 				return false;
 			}
 		}
 	}
 
-	public int getVariation(ResearchStack researchStack) {
+	public int getVariation (ResearchStack researchStack) {
 		if (researchStack.getTagCompound() != null) {
 			return researchStack.getTagCompound().getShort("Variation");
 		}
@@ -68,25 +72,27 @@ public class RandomResearchText extends GenericResearch {
 	}
 
 	@Override
-	public String getTitle(ResearchStack researchStack) {
-		return researchLogic.modifyTitle(researchStack, ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".title"));
+	public String getTitle (ResearchStack researchStack) {
+		return researchLogic.modifyTitle(researchStack, ExoplanetsMod.translate
+				.translate("research." + title + "." + getVariation(researchStack) + ".title"));
 	}
 
 	@Override
-	public String getTitle(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".title"),
-				entityPlayer));
+	public String getTitle (ResearchStack researchStack, EntityPlayer entityPlayer) {
+		return researchLogic.modifyTitle(researchStack, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + "." + getVariation(researchStack) + ".title"), entityPlayer));
 	}
 
 	@Override
-	public String getInfo(ResearchStack researchStack, EntityPlayer entityPlayer) {
-		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack) + ".info"),
-				entityPlayer));
+	public String getInfo (ResearchStack researchStack, EntityPlayer entityPlayer) {
+		return researchLogic.modifyInfo(researchStack, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + "." + getVariation(researchStack) + ".info"), entityPlayer));
 	}
 
 	@Override
-	public String getObjective(ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
-		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.translate.translate("research." + title + "." + getVariation(researchStack)
-				+ ".objective." + objectiveIndex), entityPlayer), objectiveIndex);
+	public String getObjective (ResearchStack researchStack, EntityPlayer entityPlayer, int objectiveIndex) {
+		return researchLogic.modifyObjective(researchStack, entityPlayer, replaceVariables(ExoplanetsMod.translate
+				.translate("research." + title + "." + getVariation(researchStack) + ".objective."
+						+ objectiveIndex), entityPlayer), objectiveIndex);
 	}
 }

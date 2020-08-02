@@ -20,7 +20,7 @@ package net.rom.api;
 import java.util.HashMap;
 
 public class ExoApi {
-	
+
 	/**
 	 * This map stores a list of OreDict prefixes (ingot, sheet, gear, nugget) and their ingot relation (ingot:component) <br>
 	 * Examples:<br>"sheet"-{1,1},<br>"nugget"-{1,9},<br>"block"-{9,1},<br>"gear"-{4,1}

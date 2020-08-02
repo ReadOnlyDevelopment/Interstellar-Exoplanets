@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rom.exoplanets.content.block.machine;
+package net.rom.exoplanets.content.tile;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -45,7 +45,7 @@ import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
 import net.rom.exoplanets.internal.StackHelper;
 import net.rom.exoplanets.internal.tile.TileSidedInventoryExo;
 
-public class TileMetalFurnace extends TileSidedInventoryExo implements ITickable {
+public class TileEntityMetalFurnace extends TileSidedInventoryExo implements ITickable {
 	public static final int COOK_TIME_NO_SECONDARY = 133;
 	public static final int COOK_TIME_WITH_SECONDARY = 266;
 	public static final int BONUS_DUST_MIN = 1;

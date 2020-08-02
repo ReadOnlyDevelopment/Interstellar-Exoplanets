@@ -24,74 +24,72 @@ import net.rom.api.research.ResearchStack;
 import net.rom.exoplanets.research.PlayerResearchData;
 
 public class ResearchCapability implements IResearchCapability {
-	
-    private EntityPlayerMP player;
-    private PlayerResearchData researchData;
+
+	private EntityPlayerMP     player;
+	private PlayerResearchData researchData;
 
 	@Override
-	public void saveNBTData(NBTTagCompound nbt) {
+	public void saveNBTData (NBTTagCompound nbt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void loadNBTData(NBTTagCompound nbt) {
+	public void loadNBTData (NBTTagCompound nbt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void copyFrom(IResearchCapability oldData, boolean keepInv) {
+	public void copyFrom (IResearchCapability oldData, boolean keepInv) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public EntityPlayerMP getPlayer() {
+	public EntityPlayerMP getPlayer () {
 		return player;
 	}
 
 	@Override
-	public void setPlayer(EntityPlayerMP player) {
+	public void setPlayer (EntityPlayerMP player) {
 
-		
 	}
 
 	@Override
-	public void addResearch(ResearchStack researchStack) {
+	public void addResearch (ResearchStack researchStack) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean hasCompletedResearch(ResearchStack researchStack) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean hasResearch(ResearchStack researchStack) {
+	public boolean hasCompletedResearch (ResearchStack researchStack) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void removeResearch(ResearchStack researchStack, int index) {	
+	public boolean hasResearch (ResearchStack researchStack) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	
-    public boolean isServer() {
-        return player != null && !player.world.isRemote;
-    }
 
-    public PlayerResearchData getResearchData() {
-        return researchData;
-    }
+	@Override
+	public void removeResearch (ResearchStack researchStack, int index) {}
 
-    public void onEvent(Event event) {
-        researchData.onEvent(event);
-    }
+	public boolean isServer () {
+		return player != null && !player.world.isRemote;
+	}
 
-	public void onResearchCompleted(ResearchStack researchStack, int i) {
-		
+	public PlayerResearchData getResearchData () {
+		return researchData;
+	}
+
+	public void onEvent (Event event) {
+		researchData.onEvent(event);
+	}
+
+	public void onResearchCompleted (ResearchStack researchStack, int i) {
+
 	}
 }

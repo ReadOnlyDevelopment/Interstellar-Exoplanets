@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.content.IMetal;
+import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
 import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.internal.RecipeBuilder;
 import net.rom.exoplanets.internal.inerf.IAddRecipe;
@@ -42,12 +43,12 @@ public class BlockAlloyRefinery extends BlockMachine implements IAddRecipe, ITEB
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileAlloyRefinery();
+        return new TileEntityAlloyRefinery();
     }
 
     @Override
     public Class<? extends TileEntity> getTileEntityClass() {
-        return TileAlloyRefinery.class;
+        return TileEntityAlloyRefinery.class;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class BlockAlloyRefinery extends BlockMachine implements IAddRecipe, ITEB
         } else {
             TileEntity tile = world.getTileEntity(pos);
 
-            if (tile instanceof TileAlloyRefinery) {
+            if (tile instanceof TileEntityAlloyRefinery) {
                 player.openGui(ExoplanetsMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
             }
 

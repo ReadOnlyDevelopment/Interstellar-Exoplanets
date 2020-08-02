@@ -24,7 +24,7 @@ import net.rom.exoplanets.content.EnumAlloy;
 
 public class ExoRecipes {
 
-	public static void alloySmelterRecipes() {
+	public static void alloySmelterRecipes () {
 
 		AlloyRefineryRecipe.addRecipe(EnumAlloy.BRONZE.getIngot(), 200, 1.2f, "ingotCopper*3", "ingotTin*1");
 
