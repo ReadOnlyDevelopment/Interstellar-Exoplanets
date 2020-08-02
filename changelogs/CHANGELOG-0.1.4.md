@@ -13,5 +13,6 @@
  - Nugget items
 
 **[Changed]**
+ - Move Yz Ceti Map Position
  - Trappist 1E Worldgen
  - Update AsmodeusCore

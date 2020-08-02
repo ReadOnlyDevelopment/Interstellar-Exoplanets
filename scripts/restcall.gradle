@@ -16,7 +16,7 @@ import groovy.json.JsonSlurper
 
 
 
-def String getLastTag() {
+def String getTag(int tag) {
 	def get = new HttpGet('https://api.github.com/repos/ROMVoid95/Interstellar-Exoplanets/tags')
 	get.addHeader("content-type", "application/json")
 	def response = HttpClientBuilder.create().build().execute(get)
@@ -24,7 +24,15 @@ def String getLastTag() {
 	def json_beauty = JsonOutput.prettyPrint(bufferedReader.getText())
 	def slurper = new groovy.json.JsonSlurper()
 	def r = slurper.parseText(json_beauty)
-	return r[0].get("name")
+	return r[tag].get("name")
+}
+
+def String lastTag() {
+	return getTag(0)
+}
+
+def String previousTag() {
+    return getTag(1)
 }
 
 task createTag(type:Exec) {
@@ -50,5 +58,6 @@ task postRelease() {
 }
 
 ext {
-	getLastTag = getLastTag()
+	lastTag = lastTag()
+	previousTag = previousTag()
 }
