@@ -70,7 +70,8 @@ import net.rom.exoplanets.world.OverworldOreGen;
 		dependencies = ExoInfo.DEPENDENCIES_MODS,
 		acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION,
 		guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory",
-		certificateFingerprint = ExoInfo.FINGERPRINT)
+		certificateFingerprint = ExoInfo.FINGERPRINT,
+		useMetadata = true)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ExoplanetsMod implements IMod {

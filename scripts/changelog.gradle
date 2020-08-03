@@ -43,7 +43,7 @@ getPublishedChangelog << {
 		if(st.contains("Add:")) {
 			add << st.replace("Add:", "")
 		}
-		if(st.contains("Fix:")) {
+		if(st.contains("Fix:") || st.contains("Fixed:") || st.contains("Fixes:")) {
 			fix << st.replace("Fix:", "")
 		}
 		if(st.contains("Remove:")) {
