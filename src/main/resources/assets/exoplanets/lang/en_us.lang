@@ -45,6 +45,19 @@ information.exoplanets:beta.6=§e(To disable this from appearing, set §6B:warnO
 exoplanets.gui.discordLink=Discord Invite
 exoplanets.gui.failed=There was a problem while trying to open Discord Invite Link
 
+# VERSIONING
+exoplanets.versions.notify=Hey player! Hey player hey! Exoplanets update!
+exoplanets.versions.outdated0=§6****************************************
+exoplanets.versions.outdated1=§6* §aRunning......v§c%s
+exoplanets.versions.outdated2=§6* §aLatest.........v§9%s
+exoplanets.versions.updateMessage=["Click To... [",{"text":"Download","color":"green","hoverEvent":{"action":"show_text","value":{"text":"Click this to automatically download the latest version","color":"green"}},"clickEvent":{"action":"run_command","value":"/download-latest-exoplanets %version%"}},"]"]
+exoplanets.versions.startingDownload=[{"text":"Starting download . . . . . Please do not remove your hard disk. Enjoying ","color":"aqua"},{"text":"Exoplanets?","color":"green"}]
+exoplanets.versions.startingDownload2=[{"text":" Consider supporting ","color":"aqua"},{"text":"ROMVoid95","color":"light_purple"},{"text":" on [","color":"aqua"},{"text":"Patreon","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Click this to go to ROMVoid95's Patreon","color":"light_purple"}},"clickEvent":{"action":"open_url","value":"http://www.patreon.com/romvoid95"}},{"text":"]!","color":"aqua"}]
+exoplanets.versions.doneDownloading=Finished downloading . . . . . Delete your old Exoplanets jar and reload your game to update.
+exoplanets.versions.downloadedAlready=You already downloaded the latest version. Close your game, delete the old version from your mods folder and load it again to update!
+exoplanets.versions.downloadingAlready=The update is already downloading, give it some time, will you?
+
+
 ## CONFIG GUI ##
 exoplanets.configgui.title=Exoplanets Settings
 exoplanets.configgui.category.core=Core Settings

@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.events.BetaGuiHandler;
@@ -41,6 +40,7 @@ import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
+import net.rom.exoplanets.util.version.VersionChecker;
 
 public class ExoClientProxy extends ExoCommonProxy {
 
@@ -56,7 +56,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		registerEventHandler(new BetaGuiHandler());
 		registerEventHandler(new ClientHandler());
-		registerEventHandler(new BlockHandler());
+		//registerEventHandler(new BlockHandler());
 
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
@@ -67,6 +67,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
 		registerEventHandler(new SkyProviders());
+		VersionChecker.init();
 		registry.clientInit(event);
 	}
 

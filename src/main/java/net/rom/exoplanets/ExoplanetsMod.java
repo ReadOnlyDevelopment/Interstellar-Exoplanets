@@ -46,6 +46,7 @@ import net.rom.exoplanets.astronomy.kepler1649.Kepler1649Dimensions;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.command.CommandData;
+import net.rom.exoplanets.command.CommandDownloadUpdate;
 import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.conf.SConfigDimensionID;
 import net.rom.exoplanets.events.GuiHandlerExo;
@@ -158,6 +159,7 @@ public class ExoplanetsMod implements IMod {
 	@EventHandler
 	public void onServerStarting (FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandData());
+		event.registerServerCommand(new CommandDownloadUpdate());
 	}
 
 	@EventHandler
