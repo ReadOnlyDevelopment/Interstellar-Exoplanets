@@ -8,10 +8,12 @@ on:
     branches: [ dev-1.12.2 ]
     
 jobs:
-  curl:	
-    runs-on: ubuntu-latest	
+  trigger:	
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.JENKINS_TOKEN }}
     steps:
     - name: Build Dev
       uses: enflo/curl-action@v1.2
       with:
-        curl: -X POST https://jenkins.romvoid.dev/invoke?token=${{ secrets.JENKINS_TOKEN }}
+        curl: -X POST https://jenkins.romvoid.dev/invoke?token="$env:TOKEN"
