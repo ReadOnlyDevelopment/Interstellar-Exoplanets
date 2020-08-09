@@ -103,7 +103,7 @@ def devBuild = true
 
 def short_version = "${mod_version}"
 if(devBuild) {
-	version = "${mod_version}." + getBuildNumber() + ".dev." + System.getenv().BUILD_NUMBER
+	version = "${mod_version}." + getBuildNumber() + "-dev." + System.getenv().BUILD_NUMBER
 } else {
 	version = "${mod_version}." + getBuildNumber()
 }
