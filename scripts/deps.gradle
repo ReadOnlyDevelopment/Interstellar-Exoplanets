@@ -32,27 +32,13 @@ repositories {
 	mavenCentral()
 }
 
-import org.gradle.util.GradleVersion
 
 dependencies {
 
-	////////////////////////////////
-	// NON-MINECRAFT RELATED DEPS //
-	////////////////////////////////
-	testCompile('org.junit.platform:junit-platform-launcher:1.5.+')
-	testCompile('org.junit.jupiter:junit-jupiter-api:5.5.+') // testImplementation
-	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.5.+') //testRuntimeOnly
-	if (GradleVersion.current() >= GradleVersion.version('2.13')) {
-		testCompileOnly 'junit:junit:4.12'
-	}
-	testRuntime 'org.junit.vintage:junit-vintage-engine:5.5.+' //testRuntimeOnly
-	testCompile('org.mockito:mockito-core:2.+')
-	testCompile('org.mockito:mockito-junit-jupiter:2.+') {
-		exclude group: 'org.junit.jupiter', module: 'junit-jupiter-engine'
-	}
-	if (GradleVersion.current() >= GradleVersion.version('4.6')) {
-		annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-	}
+	compile('com.github.TheRandomLabs:CurseAPI:master-SNAPSHOT'){
+		exclude group: 'com.google.guava', module: 'guava'
+		}
+	compile 'com.vdurmont:semver4j:3.1.0'
 
 	////////////////////////////////
 	//   MINECRAFT RELATED DEPS   //
@@ -65,7 +51,6 @@ dependencies {
 	
 	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}:api"
 	compile "curse.maven:AsmodeusCore-Dev-0.0.17:3010573"
-	compile "com.github.alexradzin:enumus:ff8e4647b2"
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
 	

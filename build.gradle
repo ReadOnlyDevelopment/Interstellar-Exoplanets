@@ -99,7 +99,7 @@ secretFile.withReader {
 	project.secret.m_data = new JsonSlurper().parse it
 }
 
-def devBuild = true
+def devBuild = false
 
 def short_version = "${mod_version}"
 if(devBuild) {

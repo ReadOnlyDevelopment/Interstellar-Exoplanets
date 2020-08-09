@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-            "all": "exoplanets:blocks/trap1eore"
+            "all": "exoplanets:blocks/ores/trappist1e/trap1eore"
     }
 }
