@@ -102,14 +102,13 @@ secretFile.withReader {
 def devBuild = true
 
 def short_version = "${mod_version}"
-version = "${mod_version}." + getBuildNumber()
+if(devBuild) {
+	version = "${mod_version}." + getBuildNumber() + ".dev." + System.getenv().BUILD_NUMBER
+} else {
+	version = "${mod_version}." + getBuildNumber()
+}
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
-
-if (System.getenv().BUILD_NUMBER != null) {
-	//adds the build number to the end of the version string if on a build server
-	version += ".dev." + System.getenv().BUILD_NUMBER
-}
 
 ext {
 	v = version
