@@ -10,10 +10,8 @@ on:
 jobs:
   trigger:	
     runs-on: ubuntu-latest
-    env:
-      TOKEN: ${{ secrets.JENKINS_TOKEN }}
     steps:
     - name: Build Dev
       uses: enflo/curl-action@v1.2
       with:
-        curl: -X POST https://jenkins.romvoid.dev/generic-webhook-trigger/invoke?token="$env:TOKEN"
+        curl: -X POST https://jenkins.romvoid.dev/generic-webhook-trigger/invoke?token=${{ secrets.JENKINS_TOKEN }}
