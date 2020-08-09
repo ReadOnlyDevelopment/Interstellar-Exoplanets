@@ -99,13 +99,20 @@ secretFile.withReader {
 	project.secret.m_data = new JsonSlurper().parse it
 }
 
+def devBuild = true
+
 def short_version = "${mod_version}"
-version = "${mod_version}." + getBuildNumber()// + ".dev"
+version = "${mod_version}." + getBuildNumber()
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
+if (System.getenv().BUILD_NUMBER != null) {
+	//adds the build number to the end of the version string if on a build server
+	version += ".dev.${System.getenv().BUILD_NUMBER}"
+}
+
 ext {
-	v = "${mod_version}." + getBuildNumber()
+	v = version
 }
 
 apply from: 'scripts/artifacts.gradle'
@@ -241,14 +248,6 @@ publishing {
 	}
 	repositories {
 		maven {
-			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/ROMVoid95/Interstellar-Exoplanets")
-			credentials {
-				username = secret.NAME
-				password = secret.GHTOKEN
-			}
-		}
-		maven {
 			name = "LocalMaven"
 			url = "file://Z:/"
 		}
@@ -260,14 +259,8 @@ curseforge {
 		apiKey = secret.curseforgeAPIKey
 		project {
 			id = project.curseforge_project_id
-			if (project.hasProperty('curseforge_changelog_filename')) {
-				changelog = file(project.curseforge_changelog_filename)
-			} else {
-				changelog = ''
-			}
-			if (project.hasProperty('curseforge_changelog_type')) {
-				changelogType = project.curseforge_changelog_type
-			}
+			changelog = file("changelogs/CHANGELOG-"+project.ext.v+".md")
+			changelogType = "markdown"
 			if ((project.hasProperty('curseforge_release_type')) && ((project.curseforge_release_type == 'alpha') || (project.curseforge_release_type == 'beta') || (project.curseforge_release_type == 'release'))) {
 				releaseType = project.curseforge_release_type
 			} else {
