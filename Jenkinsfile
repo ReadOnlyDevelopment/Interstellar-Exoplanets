@@ -35,7 +35,6 @@ pipeline {
           steps {
             discordSend(webhookURL: 'env.webhookURL', successful: true, title: 'Interstellar-Exoplanets', thumbnail: 'https://i.imgur.com/cHW8JBO.png')
           }
+        }
       }
     }
-  }
-}
