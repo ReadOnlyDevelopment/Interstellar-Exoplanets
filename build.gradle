@@ -141,7 +141,9 @@ minecraft {
 	version = "${forge_mc_version}-${forge_version}"
 	mappings = "${mcp_mappings_version}"
 	runDir = 'run'
-
+	if(devBuild) {
+		makeObfSourceJar = false
+	}
 	replace '@BUILD@', getBuildNumber()
 	replace '@VERSION@', short_version
 	replace '@FINGERPRINT@', project.findProperty('signSHA1')
