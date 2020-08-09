@@ -17,3 +17,5 @@ jobs:
       uses: enflo/jenkins-action@master	
       with:	
         url: 'https://jenkins.romvoid.dev/invoke?token=${{ secrets.JENKINS_TOKEN }}'
+        token: ${{ secrets.JENKINS_TOKEN }}	
+        job: 'job/Interstellar-Exoplanets'
