@@ -25,7 +25,7 @@ pipeline {
         archiveArtifacts(onlyIfSuccessful: true, artifacts: 'build/libs/*jar')
       }
     }
-    stage('Deploy To Maven') {
+    stage('Notify') {
           when {
             allOf {
               branch 'dev-1.12.2'
