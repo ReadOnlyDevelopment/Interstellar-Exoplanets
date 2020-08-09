@@ -21,47 +21,44 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_SnowGen;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 
 public class Trappist1_E_Mountains extends WE_Biome {
-	
+
 	public Trappist1_E_Mountains() {
-		super(new BiomeProperties("trappist1_e_mountains"), new int[] {0x55BB44, 0x44FFAA, 0x00FF00});
-			
-		biomeMinValueOnMap      =   0.8D;
-		biomeMaxValueOnMap      =   1.4D;
-		biomePersistence        =   1.5D;
-		biomeNumberOfOctaves    =      5;
+		super(new BiomeProperties("trappist1_e_mountains"), new int[] { 0x55BB44, 0x44FFAA, 0x00FF00 });
+
+		biomeMinValueOnMap      = 0.8D;
+		biomeMaxValueOnMap      = 1.4D;
+		biomePersistence        = 1.5D;
+		biomeNumberOfOctaves    = 5;
 		biomeScaleX             = 280.0D;
-		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     100;
-		biomeInterpolateQuality =     15;
-		
-		//-//
-		decorateChunkGen_List.clear();		
+		biomeScaleY             = 1.7D;
+		biomeSurfaceHeight      = 100;
+		biomeInterpolateQuality = 15;
+
+		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();
-		
+
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_dirt
 				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), -256, 0, -4, -1, true);
 		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass
-				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), -256, 0, -256, 0, false);		
-		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(),                      0, 2,  0,  0, true);
+				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), -256, 0, -256, 0, false);
+		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
-		
-//		WE_SnowGen snowGen = new WE_SnowGen();
-//		snowGen.snowPoint       = 120;
-//		snowGen.randomSnowPoint = 8;
-//		snowGen.snowBlock       = Blocks.SNOW.getDefaultState();
-//		snowGen.iceBlock        = Blocks.ICE.getDefaultState();
-//		snowGen.freezeMaterial  = Material.WATER;
-//		createChunkGen_InXZ_List.add(snowGen);
+
+		//		WE_SnowGen snowGen = new WE_SnowGen();
+		//		snowGen.snowPoint       = 120;
+		//		snowGen.randomSnowPoint = 8;
+		//		snowGen.snowBlock       = Blocks.SNOW.getDefaultState();
+		//		snowGen.iceBlock        = Blocks.ICE.getDefaultState();
+		//		snowGen.freezeMaterial  = Material.WATER;
+		//		createChunkGen_InXZ_List.add(snowGen);
 	}
-	
+
 	@Override
 	public void decorateBiome (World world, Random rand, int x, int z) {
 
