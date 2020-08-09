@@ -11,14 +11,6 @@ pipeline {
         sh './gradlew clean'
       }
     }
-
-    stage('Setup') {
-      steps {
-        echo 'Setting up Workspace'
-        sh './gradlew setupCIWorkspace'
-      }
-    }
-
     stage('Build') {
       steps {
         sh './gradlew build --no-daemon'
@@ -33,14 +25,7 @@ pipeline {
 
     stage('Notify') {
       when {
-        allOf {
-          branch 'dev-1.12.2'
-          expression {
-            currentBuild.result == 'SUCCESS'
-          }
-
-        }
-
+		branch 'dev-1.12.2'
       }
       steps {
         discordSend(webhookURL: 'env.webhookURL', successful: true, title: 'Interstellar-Exoplanets', thumbnail: 'https://i.imgur.com/cHW8JBO.png')

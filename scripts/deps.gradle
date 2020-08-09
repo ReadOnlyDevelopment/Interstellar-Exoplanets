@@ -66,7 +66,6 @@ dependencies {
 	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}:api"
 	compile "curse.maven:AsmodeusCore-Dev-0.0.17:3010573"
 	compile "com.github.alexradzin:enumus:ff8e4647b2"
-	//compile "curse.maven:AsmodeusCore-Dev-0.0.16:2953213"
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
 	
