@@ -108,7 +108,7 @@ archivesBaseName = "${mod_name}-${forge_mc_version}"
 
 if (System.getenv().BUILD_NUMBER != null) {
 	//adds the build number to the end of the version string if on a build server
-	version += ".dev.${System.getenv().BUILD_NUMBER}"
+	version += ".dev." + System.getenv().BUILD_NUMBER
 }
 
 ext {
