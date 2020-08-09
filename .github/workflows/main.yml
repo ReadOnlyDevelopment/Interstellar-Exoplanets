@@ -16,4 +16,4 @@ jobs:
     - name: Build Dev
       uses: enflo/curl-action@v1.2
       with:
-        curl: -X POST https://jenkins.romvoid.dev/invoke?token="$env:TOKEN"
+        curl: -X POST https://jenkins.romvoid.dev/generic-webhook-trigger/invoke?token="$env:TOKEN"
