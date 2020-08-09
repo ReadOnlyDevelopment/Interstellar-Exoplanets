@@ -39,13 +39,13 @@ task createTag(type:Exec) {
 	commandLine 'git', 'tag', '-a', '' + "${project.ext.v}", '-m', '' + "${project.ext.v}"
 }
 
-task pushTag(type:Exec, dependsOn: createTag) {
+task pushTag(type:Exec/* , dependsOn: createTag */) {
 	commandLine 'git', 'push', 'origin', '' + "${project.ext.v}"
 }
 
 task postRelease() {
 	doLast {
-		def body = ["tag_name": "${project.ext.v}", "target_commitish": "dev-1.12.2", "name": "${project.ext.v}","body": "${project.ext.v}"]
+		def body = ["tag_name": "${project.ext.v}", "target_commitish": "dev-1.12.2", "name": "${project.ext.v}","body": "${project.ext.v}", "prerelease": "${project.ext.dev}"]
 		def req = new URL('https://api.github.com/repos/ROMVoid95/Interstellar-Exoplanets/releases').openConnection()
 		req.setRequestMethod("POST")
 		req.setRequestProperty("Authorization","token " + secret.GHTOKEN.toString())

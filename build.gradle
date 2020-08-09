@@ -99,20 +99,21 @@ secretFile.withReader {
 	project.secret.m_data = new JsonSlurper().parse it
 }
 
-def devBuild = false
-
+def devBuild = true
+def ver
 def short_version = "${mod_version}"
 if(devBuild) {
-	version = "${mod_version}." + getBuildNumber() + "-dev." + System.getenv().BUILD_NUMBER
+	ver = "${mod_version}." + getBuildNumber() + "-dev." + System.getenv().BUILD_NUMBER
 } else {
-	version = "${mod_version}." + getBuildNumber()
+	ver = "${mod_version}." + getBuildNumber()
 }
+version = "${mod_version}." + getBuildNumber()
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
 ext {
 	dev = devBuild
-	v = version
+	v = ver
 }
 
 apply from: 'scripts/artifacts.gradle'
