@@ -99,11 +99,16 @@ secretFile.withReader {
 	project.secret.m_data = new JsonSlurper().parse it
 }
 
+def versionBuild = 0
+if (System.getenv("BUILD_NUMBER") != null)
+	versionBuild = System.getenv("BUILD_NUMBER")
+	
+
 def devBuild = true
 def ver
 def short_version = "${mod_version}"
 if(devBuild) {
-	ver = "${mod_version}." + getBuildNumber() + "-dev." + System.getenv().BUILD_NUMBER
+	ver = "${mod_version}." + getBuildNumber() + "-dev." + versionBuild
 } else {
 	ver = "${mod_version}." + getBuildNumber()
 }
