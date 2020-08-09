@@ -111,6 +111,7 @@ group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
 ext {
+	dev = devBuild
 	v = version
 }
 

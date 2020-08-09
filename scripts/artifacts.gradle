@@ -36,7 +36,8 @@ jar {
 
 task apiJar(type: Jar) {
 	onlyIf {
-		getBooleanProperty('create_api_jar')
+		getBooleanProperty('create_api_jar') &&
+				(project.ext.dev == false)
 	}
 	outputs.upToDateWhen {false}
 	from (sourceSets.main.output) {
@@ -65,7 +66,8 @@ task apiJar(type: Jar) {
 
 task deobfJar(type: Jar) {
 	onlyIf {
-		getBooleanProperty('create_deobf_jar')
+		getBooleanProperty('create_deobf_jar') &&
+				(project.ext.dev == false)
 	}
 	outputs.upToDateWhen {false}
 	description = 'Creates a JAR containing the non-obfuscated compiled code.'
@@ -101,24 +103,6 @@ task deobfJar(type: Jar) {
 	}
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	onlyIf {
-		getBooleanProperty('create_javadoc_jar')
-	}
-	outputs.upToDateWhen {false}
-	description = 'Creates a JAR containing the JavaDocs.'
-	classifier = 'javadoc'
-	from javadoc.getDestinationDir()
-	manifest.mainAttributes(
-			'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}:javadoc",
-			'Timestamp': System.currentTimeMillis(),
-			'Implementation-Title': project.name + '-javadoc',
-			'Implementation-Version': project.version,
-			'Built-On-Java': "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
-			'Built-On': "${project.forge_mc_version}-${project.forge_version}"
-			)
-}
-
 task signJar(type: SignJar, dependsOn: reobfJar) {
 	onlyIf {
 		getBooleanProperty('do_sign_jar') &&
@@ -138,6 +122,7 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 task signApiJar(type: SignJar) {
 	onlyIf {
 		getBooleanProperty('do_sign_jar') &&
+				(project.ext.dev == false) &&
 				project.hasProperty('keyStore')
 	}
 
@@ -154,6 +139,7 @@ task signApiJar(type: SignJar) {
 task signDeobfJar(type: SignJar) {
 	onlyIf {
 		getBooleanProperty('do_sign_jar') &&
+				(project.ext.dev == false) &&
 				project.hasProperty('keyStore')
 	}
 
@@ -167,44 +153,26 @@ task signDeobfJar(type: SignJar) {
 	outputFile = deobfJar.archivePath
 }
 
-task signJavadocJar(type: SignJar) {
-	onlyIf {
-		getBooleanProperty('create_javadoc_jar') &&
-				getBooleanProperty('do_sign_jar') &&
-				project.hasProperty('keyStore')
-	}
-
-	keyStore = project.findProperty('keyStore')
-	alias = project.findProperty('keyStoreAlias')
-	storePass = project.findProperty('keyStorePass')
-	keyPass = project.findProperty('keyStoreKeyPass')
-
-	inputFile = javadocJar.archivePath
-	outputFile = javadocJar.archivePath
-}
-
 if (getBooleanProperty('do_sign_jar')) {
 	build.dependsOn signJar
-	if (getBooleanProperty('create_api_jar')) {
-		build.dependsOn signApiJar
-	}
-	if (getBooleanProperty('create_deobf_jar')) {
-		build.dependsOn signDeobfJar
-	}
-	if (getBooleanProperty('create_javadoc_jar')) {
-		build.dependsOn signJavadocJar
+	if (project.ext.dev == false) {
+		if (getBooleanProperty('create_api_jar')) {
+			build.dependsOn signApiJar
+		}
+		if (getBooleanProperty('create_deobf_jar')) {
+			build.dependsOn signDeobfJar
+		}
 	}
 }
 
 artifacts {
-	if (getBooleanProperty('create_api_jar')) {
-		archives apiJar
-	}
-	if (getBooleanProperty('create_deobf_jar')) {
-		archives deobfJar
-	}
-	if (getBooleanProperty('create_javadoc_jar')) {
-		archives javadocJar
+	if (project.ext.dev == false) {
+		if (getBooleanProperty('create_api_jar')) {
+			archives apiJar
+		}
+		if (getBooleanProperty('create_deobf_jar')) {
+			archives deobfJar
+		}
 	}
 }
 
