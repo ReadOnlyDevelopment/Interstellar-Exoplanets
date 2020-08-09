@@ -407,7 +407,6 @@ task incrementBuild {
 }
 
 build.dependsOn signJar
-build.finalizedBy incrementBuild // only increment on successful builds
 tasks.build.dependsOn signJar
 tasks.publish.dependsOn build
 tasks.curseforge.dependsOn build, postRelease
