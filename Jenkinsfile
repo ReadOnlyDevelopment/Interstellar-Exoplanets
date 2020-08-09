@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    SECRET_FILE = credentials('SECRET_FILE')
+  }
   stages {
     stage('Clean') {
       steps {
@@ -43,9 +46,5 @@ pipeline {
         discordSend(webhookURL: 'env.webhookURL', successful: true, title: 'Interstellar-Exoplanets', thumbnail: 'https://i.imgur.com/cHW8JBO.png')
       }
     }
-
-  }
-  environment {
-    SECRET_FILE = 'credentials(\'SECRET_FILE\')'
   }
 }
