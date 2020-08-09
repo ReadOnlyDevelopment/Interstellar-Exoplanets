@@ -1,0 +1,19 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the dev-1.12.2 branch
+on:
+  push:
+    branches: [ dev-1.12.2 ]
+  release:
+    types: [prereleased]
+
+jobs:
+  curl:	
+    runs-on: ubuntu-latest	
+    steps:	
+    - uses: actions/checkout@master	
+    - name: jenkins	
+      uses: enflo/jenkins-action@master	
+      with:	
+        url: 'https://jenkins.romvoid.dev/invoke?token=${{ secrets.JENKINS_TOKEN }}'
