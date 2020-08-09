@@ -1,25 +1,41 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
+    stage('Clean') {
       steps {
-        git(url: 'https://github.com/ReadOnly-Mods/Interstellar-Exoplanets', changelog: true)
+        echo 'Cleaning Project'
+         sh 'chmod +x gradlew'
+         sh './gradlew clean'
       }
     }
-
+    stage('Setup') {
+      steps {
+        echo 'Setting up Workspace'
+        sh './gradlew setupCIWorkspace'
+      }
+    }
     stage('Build') {
       steps {
-        sh 'chmod +x gradlew'
-        sh './gradlew clean build --no-daemon'
+        sh './gradlew build --no-daemon'
       }
     }
 
     stage('Archive') {
       steps {
         archiveArtifacts(onlyIfSuccessful: true, artifacts: 'build/libs/*jar')
-        discordSend(webhookURL: 'env.webhookURL', successful: true, title: 'Interstellar-Exoplanets', thumbnail: 'https://i.imgur.com/cHW8JBO.png')
       }
     }
-
+    stage('Deploy To Maven') {
+          when {
+            allOf {
+              branch 'dev-1.12.2'
+              expression {currentBuild.result == 'SUCCESS'}
+            }
+          }
+          steps {
+            discordSend(webhookURL: 'env.webhookURL', successful: true, title: 'Interstellar-Exoplanets', thumbnail: 'https://i.imgur.com/cHW8JBO.png')
+          }
+      }
+    }
   }
 }
