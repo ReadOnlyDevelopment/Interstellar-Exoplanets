@@ -29,7 +29,6 @@ import static net.rom.exoplanets.PlanetConstants.KEPLER_B;
 import static net.rom.exoplanets.PlanetConstants.KEPLER_C;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_B;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_C;
-import static net.rom.exoplanets.PlanetConstants.TRAPPIST_D;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_E;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_F;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_G;
@@ -39,7 +38,6 @@ import static net.rom.exoplanets.PlanetConstants.WOLF_C;
 import static net.rom.exoplanets.PlanetConstants.WOLF_D;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_kepler_c;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_c;
-import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_d;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_e;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_b;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_c;
@@ -57,14 +55,13 @@ import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOrbit;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
-import net.rom.exoplanets.astronomy.trappist1.d.TeleportTypeTrappist1D;
-import net.rom.exoplanets.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
@@ -147,15 +144,15 @@ public class Planets {
 					.setProviderData(trappistc, WorldProviderTrappist1C.class, id_trap_c, trap_tier, ACBiome.ACSpace);
 			GalaxyRegistry.registerPlanet(trappistc);
 
-			trappistd = AstroBuilder
-					.registerExPlanet(SolarSystems.trappist1, "trappist1d", TRAPPIST_D, ClassBody.OCEANIDE);
-			BodiesRegistry.setOrbitData(trappistd, (float) Math.PI * 2, 1.25F, 3.0F);
-			BodiesRegistry.setPlanetData(trappistd, 5, 31000L, BodiesRegistry.calculateGravity(5.8F), true);
-			BodiesRegistry
-					.setProviderData(trappistd, WorldProviderTrappist1D.class, id_trap_d, trap_tier, ACBiome.ACSpace);
-			AstroBuilder.setAtmosphere(trappistd, OXYGEN, CO2);
-			//trappistd.setUnreachable();
-			GalaxyRegistry.registerPlanet(trappistd);
+			//			trappistd = AstroBuilder
+			//					.registerExPlanet(SolarSystems.trappist1, "trappist1d", TRAPPIST_D, ClassBody.OCEANIDE);
+			//			BodiesRegistry.setOrbitData(trappistd, (float) Math.PI * 2, 1.25F, 3.0F);
+			//			BodiesRegistry.setPlanetData(trappistd, 5, 31000L, BodiesRegistry.calculateGravity(5.8F), true);
+			//			BodiesRegistry
+			//					.setProviderData(trappistd, WorldProviderTrappist1D.class, id_trap_d, trap_tier, ACBiome.ACSpace);
+			//			AstroBuilder.setAtmosphere(trappistd, OXYGEN, CO2);
+			//			trappistd.setUnreachable();
+			//			GalaxyRegistry.registerPlanet(trappistd);
 
 			trappiste = AstroBuilder
 					.registerExPlanet(SolarSystems.trappist1, "trappist1e", TRAPPIST_E, ClassBody.TERRA);
@@ -238,7 +235,7 @@ public class Planets {
 
 	public static void registerTeleportTypes () {
 
-		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeVenus());
+		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiB.class, new TeleportTypeOrbit());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiC.class, new TeleportTypeVenus());
 		GalacticraftRegistry.registerTeleportType(WorldProviderYzCetiD.class, new TeleportTypeMoon());
 		GalacticraftRegistry.registerTeleportType(WorldProviderKepler1649c.class, new TeleportTypeMoon());
@@ -247,8 +244,8 @@ public class Planets {
 		GalacticraftRegistry.registerRocketGui(WorldProviderYzCetiD.class, getWorldGui("yzcetid"));
 		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1E.class, new TeleportTypeMoon());
 		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1E.class, getWorldGui("trappist1e"));
-		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1D.class, new TeleportTypeTrappist1D());
-		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1D.class, getWorldGui("trappist1d"));
+		//		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1D.class, new TeleportTypeOrbit());
+		//		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1D.class, getWorldGui("trappist1d"));
 		GalacticraftRegistry.registerTeleportType(WorldProviderTrappist1C.class, new TeleportTypeMoon());
 		GalacticraftRegistry.registerRocketGui(WorldProviderTrappist1C.class, getWorldGui("trappist1c"));
 	}
