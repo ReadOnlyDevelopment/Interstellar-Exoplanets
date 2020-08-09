@@ -112,7 +112,7 @@ if(devBuild) {
 } else {
 	ver = "${mod_version}." + getBuildNumber()
 }
-version = "${mod_version}." + getBuildNumber()
+version = ver
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
