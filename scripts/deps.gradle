@@ -2,7 +2,7 @@ String GCBuild = "261"
 String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 
 def jei = "4.15.0.293"
-def planet_progression = "${mc_version}-0.4.4"
+def planet_progression = "${mc_version}-0.4.5"
 def lombok = "1.18.12"
 def apachemaths = "3.6.1"
 
@@ -49,10 +49,11 @@ dependencies {
 	compile "GC-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
 	compile "GC-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
 	
-	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}:api"
+	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}"
 	compile "curse.maven:AsmodeusCore-Dev-0.0.17:3010573"
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
 	
 	compile "org.apache.commons:commons-math3:3.6.1"
+	compile "org.apache.commons:commons-collections4:4.4"
 }

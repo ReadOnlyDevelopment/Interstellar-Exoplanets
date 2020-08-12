@@ -49,14 +49,13 @@ public class ExoClientProxy extends ExoCommonProxy {
 		super.preInit(registry, event);
 		ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
 		ExoModelLoader.instance.addDomain(ExoInfo.MODID);
-		registerEventHandler(this);
+		register_event(this);
 
 		registerVarients();
 		RenderingRegistry
 				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
-		registerEventHandler(new BetaGuiHandler());
-		registerEventHandler(new ClientHandler());
-		//registerEventHandler(new BlockHandler());
+		register_event(new BetaGuiHandler());
+		register_event(new ClientHandler());
 
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
@@ -66,7 +65,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
-		registerEventHandler(new SkyProviders());
+		register_event(new SkyProviders());
 		VersionChecker.init();
 		registry.clientInit(event);
 	}
@@ -96,8 +95,9 @@ public class ExoClientProxy extends ExoCommonProxy {
 		return Minecraft.getMinecraft().player;
 	}
 
-	public static void registerEventHandler (Object handler) {
-		MinecraftForge.EVENT_BUS.register(handler);
+	@Override
+	public void register_event (Object obj) {
+		MinecraftForge.EVENT_BUS.register(obj);
 	}
 
 	public void registerVarients () {

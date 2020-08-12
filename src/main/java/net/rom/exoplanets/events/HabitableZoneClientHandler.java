@@ -22,10 +22,14 @@ import org.lwjgl.util.vector.Vector3f;
 
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.compat.Compat;
 import net.rom.exoplanets.conf.SConfigSystems;
 import net.rom.exoplanets.init.SolarSystems;
 
@@ -43,18 +47,44 @@ public class HabitableZoneClientHandler {
 	@SubscribeEvent
 	public void onRingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
+		EntityPlayerSP p = Minecraft.getMinecraft().player;
+
 		if (renderEvent.celestialBody.equals(SolarSystems.yzCeti.getMainStar())) {
-			this.RingRender(renderEvent, 75F, 115F);
+			if (Loader.isModLoaded("planetprogression")) {
+				if (Compat.hasUnlocks(p, SolarSystems.yzCeti))
+					this.RingRender(renderEvent, 75F, 115F);
+			}
+			else {
+				this.RingRender(renderEvent, 75F, 115F);
+			}
 		}
 		if (!SConfigSystems.hideUnfinishedSystems) {
 			if (renderEvent.celestialBody.equals(SolarSystems.wolf1061.getMainStar())) {
-				this.RingRender(renderEvent, 45F, 85F);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (Compat.hasUnlocks(p, SolarSystems.wolf1061))
+						this.RingRender(renderEvent, 75F, 115F);
+				}
+				else {
+					this.RingRender(renderEvent, 75F, 115F);
+				}
 			}
 			if (renderEvent.celestialBody.equals(SolarSystems.trappist1.getMainStar())) {
-				this.RingRender(renderEvent, 55F, 100F);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (Compat.hasUnlocks(p, SolarSystems.trappist1))
+						this.RingRender(renderEvent, 75F, 115F);
+				}
+				else {
+					this.RingRender(renderEvent, 75F, 115F);
+				}
 			}
 			if (renderEvent.celestialBody.equals(SolarSystems.kepler1649.getMainStar())) {
-				this.RingRender(renderEvent, 55F, 100F);
+				if (Loader.isModLoaded("planetprogression")) {
+					if (Compat.hasUnlocks(p, SolarSystems.kepler1649))
+						this.RingRender(renderEvent, 75F, 115F);
+				}
+				else {
+					this.RingRender(renderEvent, 75F, 115F);
+				}
 			}
 		}
 	}

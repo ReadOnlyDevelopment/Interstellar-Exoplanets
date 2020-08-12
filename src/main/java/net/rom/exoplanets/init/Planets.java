@@ -29,6 +29,7 @@ import static net.rom.exoplanets.PlanetConstants.KEPLER_B;
 import static net.rom.exoplanets.PlanetConstants.KEPLER_C;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_B;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_C;
+import static net.rom.exoplanets.PlanetConstants.TRAPPIST_D;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_E;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_F;
 import static net.rom.exoplanets.PlanetConstants.TRAPPIST_G;
@@ -38,6 +39,7 @@ import static net.rom.exoplanets.PlanetConstants.WOLF_C;
 import static net.rom.exoplanets.PlanetConstants.WOLF_D;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_kepler_c;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_c;
+import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_d;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_trap_e;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_b;
 import static net.rom.exoplanets.conf.SConfigDimensionID.id_yz_c;
@@ -47,21 +49,26 @@ import static net.rom.exoplanets.conf.SConfigSystems.trap_tier;
 import static net.rom.exoplanets.conf.SConfigSystems.yzceti_tier;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
-import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOrbit;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.TeleportTypeVenus;
 import net.minecraft.util.ResourceLocation;
+import net.rom.api.space.ExoRegistry;
+import net.rom.api.space.ExoStar;
+import net.rom.api.space.RelayStation;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.WorldProviderTrappist1C;
+import net.rom.exoplanets.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
@@ -80,17 +87,19 @@ public class Planets {
 	public static Planet wolf1061c;
 	public static Planet wolf1061d;
 
-	public static Planet    trappistb;
-	public static Planet    trappistc;
-	public static Planet    trappistd;
-	public static Satellite trappistdStation;
-	public static Planet    trappiste;
-	public static Planet    trappistf;
-	public static Planet    trappistg;
-	public static Planet    trappisth;
+	public static Planet trappistb;
+	public static Planet trappistc;
+	public static Planet trappistd;
+	//public static Satellite trappistdStation;
+	public static Planet trappiste;
+	public static Planet trappistf;
+	public static Planet trappistg;
+	public static Planet trappisth;
 
 	public static Planet kepler1649b;
 	public static Planet kepler1649c;
+
+	public static RelayStation station;
 
 	static AstroBuilder builder = new AstroBuilder("exoplanets");
 
@@ -113,6 +122,7 @@ public class Planets {
 			builder.setExoData(yzcetib, 50.0f, 0.75f, 0.93f);
 			builder.setAtmos(yzcetib, NITROGEN, ARGON);
 			builder.setBiomes(yzcetib, ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
+			AstroBuilder.registerExPlanet(SolarSystems.yzCeti, "yzcetib", CETI_B, ClassBody.SELENA);
 			GalaxyRegistry.registerPlanet(yzcetib);
 
 			yzcetic = builder
@@ -122,6 +132,7 @@ public class Planets {
 			builder.setExoData(yzcetic, 26.5f, 0.9f, 1.0f);
 			builder.setAtmos(yzcetic, WATER, NITROGEN, ARGON);
 			builder.setBiomes(yzcetic, ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
+			AstroBuilder.registerExPlanet(SolarSystems.yzCeti, "yzcetic", CETI_C, ClassBody.SELENA);
 			GalaxyRegistry.registerPlanet(yzcetic);
 
 			yzcetid = builder
@@ -131,6 +142,7 @@ public class Planets {
 			builder.setExoData(yzcetid, 5.0f, 1.14f, 1.05f);
 			builder.setAtmos(yzcetid, NITROGEN, ARGON);
 			builder.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
+			AstroBuilder.registerExPlanet(SolarSystems.yzCeti, "yzcetid", CETI_D, ClassBody.SELENA);
 			GalaxyRegistry.registerPlanet(yzcetid);
 		}
 
@@ -144,15 +156,15 @@ public class Planets {
 					.setProviderData(trappistc, WorldProviderTrappist1C.class, id_trap_c, trap_tier, ACBiome.ACSpace);
 			GalaxyRegistry.registerPlanet(trappistc);
 
-			//			trappistd = AstroBuilder
-			//					.registerExPlanet(SolarSystems.trappist1, "trappist1d", TRAPPIST_D, ClassBody.OCEANIDE);
-			//			BodiesRegistry.setOrbitData(trappistd, (float) Math.PI * 2, 1.25F, 3.0F);
-			//			BodiesRegistry.setPlanetData(trappistd, 5, 31000L, BodiesRegistry.calculateGravity(5.8F), true);
-			//			BodiesRegistry
-			//					.setProviderData(trappistd, WorldProviderTrappist1D.class, id_trap_d, trap_tier, ACBiome.ACSpace);
-			//			AstroBuilder.setAtmosphere(trappistd, OXYGEN, CO2);
-			//			trappistd.setUnreachable();
-			//			GalaxyRegistry.registerPlanet(trappistd);
+			trappistd = AstroBuilder
+					.registerExPlanet(SolarSystems.trappist1, "trappist1d", TRAPPIST_D, ClassBody.OCEANIDE);
+			BodiesRegistry.setOrbitData(trappistd, (float) Math.PI * 2, 1.25F, 3.0F);
+			BodiesRegistry.setPlanetData(trappistd, 5, 31000L, BodiesRegistry.calculateGravity(5.8F), true);
+			BodiesRegistry
+					.setProviderData(trappistd, WorldProviderTrappist1D.class, id_trap_d, trap_tier, ACBiome.ACSpace);
+			AstroBuilder.setAtmosphere(trappistd, OXYGEN, CO2);
+			trappistd.setUnreachable();
+			GalaxyRegistry.registerPlanet(trappistd);
 
 			trappiste = AstroBuilder
 					.registerExPlanet(SolarSystems.trappist1, "trappist1e", TRAPPIST_E, ClassBody.TERRA);
@@ -214,7 +226,21 @@ public class Planets {
 	}
 
 	public static void initStation () {
-		//
+
+		ExoStar exStar = (ExoStar) GalacticraftCore.solarSystemSol.getMainStar();
+
+		station = new RelayStation("relaystation1");
+		station.setParent(exStar);
+		station.setRelativeDistanceFromCenter(20.0f);
+		station.setRelativeOrbitTime(11.5F);
+		station.setPhaseShift(1.65F);
+		station.setRelativeSize(1.0f);
+		station.setRingColorRGB(0.0F, 0.4F, 0.9F);
+		station.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
+		BodiesData data = new BodiesData(BodiesRegistry.registerType("orbital_station"), BodiesRegistry
+				.registerClass("orbital_station"));
+		BodiesRegistry.registerBodyData(station, data);
+		ExoRegistry.registerRelayStation(station);
 		//		final HashMap<Object, Integer> spaceStationRequirements = new HashMap<Object, Integer>(5, 1.0F);
 		//		spaceStationRequirements.put("sheetTitanium", 64);
 		//		spaceStationRequirements.put("sheetSteel", 64);

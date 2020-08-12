@@ -19,7 +19,10 @@ package net.rom.exoplanets.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.network.INetHandler;
+import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraftforge.client.event.TextureStitchEvent.Pre;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -48,6 +51,19 @@ public class ExoCommonProxy implements IProxy {
 	@Override
 	public EntityPlayer getClientPlayer () {
 		return null;
+	}
+
+	public void register_event (Object obj) {
+		MinecraftForge.EVENT_BUS.register(obj);
+	}
+
+	public EntityPlayer getPlayerFromNetHandler (INetHandler handler) {
+		if (handler instanceof NetHandlerPlayServer) {
+			return ((NetHandlerPlayServer) handler).player;
+		}
+		else {
+			return null;
+		}
 	}
 
 	public void registerRender () {}

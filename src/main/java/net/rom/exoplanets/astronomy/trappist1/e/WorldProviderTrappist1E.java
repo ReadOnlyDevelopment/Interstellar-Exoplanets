@@ -53,106 +53,115 @@ import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 
 public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
-	
+
 	public static WE_ChunkProvider chunk;
-	
-	@Override
-	public boolean enableAdvancedThermalLevel() {
-		return true;
-	}
-	
-	@Override
-	protected float getThermalValueMod()
-	{
-		return 0.2F;
-	}
-	
-	@Override
-	public long getDayLength() {
-		return 24000L;
-	}
-	
-	@Override
-    public double getHorizon() {
-        return 44.0D;
-    }
 
 	@Override
-	public double getFuelUsageMultiplier() {
+	public boolean enableAdvancedThermalLevel () {
+		return true;
+	}
+
+	@Override
+	protected float getThermalValueMod () {
+		return 0.2F;
+	}
+
+	@Override
+	public long getDayLength () {
+		return 24000L;
+	}
+
+	@Override
+	public double getHorizon () {
+		return 44.0D;
+	}
+
+	@Override
+	public double getFuelUsageMultiplier () {
 		return 1.5;
 	}
 
 	@Override
-	public float getFallDamageModifier() {
+	public float getFallDamageModifier () {
 		return 0;
 	}
 
 	@Override
-	public CelestialBody getCelestialBody() {
+	public CelestialBody getCelestialBody () {
 		return Planets.trappiste;
 	}
 
 	@Override
-	public int getDungeonSpacing() {
+	public int getDungeonSpacing () {
 		return 0;
 	}
 
 	@Override
-	public ResourceLocation getDungeonChestType() {
+	public ResourceLocation getDungeonChestType () {
 		return null;
 	}
 
 	@Override
-	public List<Block> getSurfaceBlocks() {
+	public List<Block> getSurfaceBlocks () {
 		return null;
 	}
 
 	@Override
-	public void genSettings(WE_ChunkProvider cp) {
-	chunk = cp;
-		
-		cp.createChunkGen_List .clear(); 
-		cp.createChunkGen_InXZ_List .clear(); 
-		cp.createChunkGen_InXYZ_List.clear(); 
-		cp.decorateChunkGen_List .clear(); 
-		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);	
+	public void genSettings (WE_ChunkProvider cp) {
+		chunk = cp;
 
-		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(); 
-		terrainGenerator.worldSeaGen = true;
+		cp.createChunkGen_List.clear();
+		cp.createChunkGen_InXZ_List.clear();
+		cp.createChunkGen_InXYZ_List.clear();
+		cp.decorateChunkGen_List.clear();
+
+		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);
+
+		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
+		terrainGenerator.worldStoneBlock  = TrappistBlocks.TrappistE.trap1e_stone.getDefaultState();
+		terrainGenerator.worldSeaGen      = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
-		terrainGenerator.worldSeaGenMaxY = 64;
+		terrainGenerator.worldSeaGenMaxY  = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
-		
-		WE_CaveGen cg = new WE_CaveGen(); 
-		cg.replaceBlocksList .clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
-		cp.createChunkGen_List.add(cg); 
-		 
+
+		WE_CaveGen cg = new WE_CaveGen();
+		cg.replaceBlocksList.clear();
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		cp.createChunkGen_List.add(cg);
+
 		WE_RavineGen rg = new WE_RavineGen();
-		rg.replaceBlocksList    .clear();
+		rg.replaceBlocksList.clear();
 		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
-		
-		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
+
+		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
 		cp.biomesList.clear();
-		
+
 		WE_OreGen standardOres = new WE_OreGen();
-		standardOres.add(EnumMetal.COPPER.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 9, 30, 100, 30);
-		standardOres.add(EnumMetal.TIN.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 13, 10, 80, 8);
-		standardOres.add(EnumMetal.LEAD.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 20, 90, 10);
-		standardOres.add(EnumMetal.NICKEL.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 45, 90, 15);
-		standardOres.add(EnumMetal.PLATINUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 15, 20, 55, 25);
-		standardOres.add(EnumMetal.ALUMINIUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 12, 5, 20, 35);
-		standardOres.add(EnumMetal.TITANIUM.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
-		standardOres.add(EnumMetal.TUNGSTEN.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 5, 20, 5);
-		standardOres.add(EnumMetal.SILVER.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
-		standardOres.add(EnumMetal.ZINC.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
-		
+		standardOres.add(EnumMetal.COPPER
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 9, 30, 100, 30);
+		standardOres.add(EnumMetal.TIN
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 13, 10, 80, 8);
+		standardOres.add(EnumMetal.LEAD
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 20, 90, 10);
+		standardOres.add(EnumMetal.NICKEL
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 8, 45, 90, 15);
+		standardOres.add(EnumMetal.PLATINUM
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 15, 20, 55, 25);
+		standardOres.add(EnumMetal.ALUMINIUM
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 12, 5, 20, 35);
+		standardOres.add(EnumMetal.TITANIUM
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		standardOres.add(EnumMetal.TUNGSTEN
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 5, 20, 5);
+		standardOres.add(EnumMetal.SILVER
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		standardOres.add(EnumMetal.ZINC
+				.getOre(TrappistBlocks.TrappistE.trap1eore), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+
 		cp.decorateChunkGen_List.add(standardOres);
-		
+
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Dunes());
 		WE_Biome.addBiomeToGeneration(cp, new Trappist1_E_Mountains());
@@ -160,100 +169,94 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 	}
 
 	@Override
-    public float getSolarSize()
-    {
-        return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
-    }
-	
+	public float getSolarSize () {
+		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+	}
+
 	@Override
-	public int getMoonPhase(long worldTime)
-    {
-        return (int)(worldTime / this.getDayLength() % 8L + 8L) % 8;
-    }
-	
+	public int getMoonPhase (long worldTime) {
+		return (int) (worldTime / this.getDayLength() % 8L + 8L) % 8;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getLightmapColors(float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors) 
-	{
+	public void getLightmapColors (float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors) {
 		EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
-		
-		if (player != null)
-		{
+
+		if (player != null) {
 			int phase = this.getMoonPhase(this.getWorldTime());
-			if(skyLight > 0 && sunBrightness > 0.07f && phase != 0 && phase != 6) {
-								
-				colors[0] = colors[0] + skyLight + 0.3F;				
-				colors[1] = colors[1] + skyLight / 6;	
-			}				
+			if (skyLight > 0 && sunBrightness > 0.07f && phase != 0 && phase != 6) {
+
+				colors[0] = colors[0] + skyLight + 0.3F;
+				colors[1] = colors[1] + skyLight / 6;
+			}
 		}
 	}
 
 	@Override
-	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {
-		
+	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {
+
 	}
 
 	@Override
-	public void onPopulate(int cX, int cZ) {
-		
+	public void onPopulate (int cX, int cZ) {
+
 	}
 
 	@Override
-	public void recreateStructures(Chunk chunkIn, int x, int z) {
-		
+	public void recreateStructures (Chunk chunkIn, int x, int z) {
+
 	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getStarBrightness(float partialTicks) {
-        float angle = this.world.getCelestialAngle(partialTicks);
-        float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
-        value = MathHelper.clamp(value, 0.0F, 1.0F);
-        return value * value * 0.5F + 0.3F;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getSunBrightness(float partialTicks) {
-        float f1 = this.world.getCelestialAngle(1.0F);
-        float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
-        f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
-        f2 = 1.2F - f2;
-        return f2 * 0.8F;
-    }
-
-    @Override
-    public Vector3 getFogColor()
-    {
-        float f = 0.6F - this.getStarBrightness(1.0F);
-        return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);        
-    }
-
-    @Override
-    public Vector3 getSkyColor()
-    {
-        float f = 0.3F - this.getStarBrightness(1.0F);
-        return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
-       
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getStarBrightness (float partialTicks) {
+		float angle = this.world.getCelestialAngle(partialTicks);
+		float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
+		value = MathHelper.clamp(value, 0.0F, 1.0F);
+		return value * value * 0.5F + 0.3F;
+	}
 
 	@Override
-	public boolean hasSunset() {
+	@SideOnly(Side.CLIENT)
+	public float getSunBrightness (float partialTicks) {
+		float f1 = this.world.getCelestialAngle(1.0F);
+		float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
+		f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
+		f2 = 1.2F - f2;
+		return f2 * 0.8F;
+	}
+
+	@Override
+	public Vector3 getFogColor () {
+		float f = 0.6F - this.getStarBrightness(1.0F);
+		return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);
+	}
+
+	@Override
+	public Vector3 getSkyColor () {
+		float f = 0.3F - this.getStarBrightness(1.0F);
+		return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+
+	}
+
+	@Override
+	public boolean hasSunset () {
 		return false;
 	}
-	
-    @Override
-    public boolean shouldForceRespawn() {
-        return !ConfigManagerCore.forceOverworldRespawn;
-    }   
 
 	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass() {
+	public boolean shouldForceRespawn () {
+		return !ConfigManagerCore.forceOverworldRespawn;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
 		return WE_ChunkProvider.class;
 	}
 
 	@Override
-	public DimensionType getDimensionType() {
+	public DimensionType getDimensionType () {
 		return TrappistDimensions.TRAPPIST_1E;
 	}
 }

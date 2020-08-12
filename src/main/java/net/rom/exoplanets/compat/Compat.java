@@ -20,17 +20,25 @@ package net.rom.exoplanets.compat;
 import com.mjr.planetprogression.api.research.ResearchHooksSP;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class PlanetProgressionCompat {
+public class Compat {
+
+	@SideOnly(Side.CLIENT)
+	@Optional.Method(modid = "planetprogression")
+	public static boolean hasUnlocks (EntityPlayerSP player, SolarSystem body) {
+		return ResearchHooksSP.hasUnlockedBodiesInSystem(player, body);
+	}
 
 	@SideOnly(Side.CLIENT)
 	@Optional.Method(modid = "planetprogression")
 	public static boolean isReasearched (EntityPlayerSP player, CelestialBody body) {
 		return ResearchHooksSP.hasUnlockedCelestialBody(player, body);
 	}
+
 }

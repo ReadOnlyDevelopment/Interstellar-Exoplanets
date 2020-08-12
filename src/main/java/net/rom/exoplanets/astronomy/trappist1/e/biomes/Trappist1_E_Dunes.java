@@ -28,28 +28,30 @@ import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 public class Trappist1_E_Dunes extends WE_Biome {
 
 	public Trappist1_E_Dunes() {
-		super(new BiomeProperties("trappist1_e_dunes"), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
-		
-		biomeMinValueOnMap      =   0.0D;
-		biomeMaxValueOnMap      =   0.4D;
-		biomePersistence        =   1.6D;
-		biomeNumberOfOctaves    =      4;
+		super(new BiomeProperties("trappist1_e_dunes"), new int[] { 0x89AC76, 0x11FF66, 0x00FF00 });
+
+		biomeMinValueOnMap      = 0.0D;
+		biomeMaxValueOnMap      = 0.4D;
+		biomePersistence        = 1.6D;
+		biomeNumberOfOctaves    = 4;
 		biomeScaleX             = 80.0D;
-		biomeScaleY             =   0.7D;
-		biomeSurfaceHeight      =     75;
-		biomeInterpolateQuality =     15;
-		
+		biomeScaleY             = 0.7D;
+		biomeSurfaceHeight      = 68;
+		biomeInterpolateQuality = 15;
+
 		//-//
-		decorateChunkGen_List.clear();		
+		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), -256, 0, -256,  0, false);
-		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_dirt.getDefaultState(), TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), -256, 0, -256,  0, false);
+		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_grass
+				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_stone.getDefaultState(), -256, 0, -256, 0, false);
+		standardBiomeLayers.add(TrappistBlocks.TrappistE.trap1e_dirt
+				.getDefaultState(), TrappistBlocks.TrappistE.trap1e_grass.getDefaultState(), -256, 0, -256, 0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
-	
+
 	@Override
 	public void decorateBiome (World world, Random rand, int x, int z) {
 

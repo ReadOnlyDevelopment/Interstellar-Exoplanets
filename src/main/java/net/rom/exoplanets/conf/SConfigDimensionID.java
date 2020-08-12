@@ -88,7 +88,7 @@ public class SConfigDimensionID {
 			config.setCategoryLanguageKey(CATEGORY_PLANETS_DIMENSION_ID, CATEGORY_PLANETS_DIMENSION_ID_LANGKEY);
 			config.setCategoryRequiresMcRestart(CATEGORY_PLANETS_DIMENSION_ID, true);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Yz Ceti B", -4101);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_yz_b", -4101);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Yz Ceti B");
@@ -96,7 +96,7 @@ public class SConfigDimensionID {
 			id_yz_b = prop.getInt(-4101);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Yz Ceti C", -4102);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_yz_c", -4102);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Yz Ceti C");
@@ -104,7 +104,7 @@ public class SConfigDimensionID {
 			id_yz_c = prop.getInt(-4102);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Yz Ceti D", -4103);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_yz_d", -4103);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Yz Ceti D");
@@ -112,7 +112,7 @@ public class SConfigDimensionID {
 			id_yz_d = prop.getInt(-4103);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Wolf 1061 B", -4201);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_wolf_b", -4201);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Wolf 1061 B");
@@ -120,7 +120,7 @@ public class SConfigDimensionID {
 			id_wolf_b = prop.getInt(-4201);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Wolf 1061 C", -4202);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_wolf_c", -4202);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Wolf 1061 C");
@@ -128,7 +128,7 @@ public class SConfigDimensionID {
 			id_wolf_c = prop.getInt(-4202);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Wolf 1061 D", -4203);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_wolf_d", -4203);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Wolf 1061 D");
@@ -136,7 +136,7 @@ public class SConfigDimensionID {
 			id_wolf_d = prop.getInt(-4203);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 B", -4501);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_b", -4501);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 B");
@@ -144,7 +144,7 @@ public class SConfigDimensionID {
 			id_trap_b = prop.getInt(-4501);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 C", -4502);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_c", -4502);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 C");
@@ -152,7 +152,7 @@ public class SConfigDimensionID {
 			id_trap_c = prop.getInt(-4502);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 D", -4503);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_d", -4503);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 D");
@@ -160,7 +160,7 @@ public class SConfigDimensionID {
 			id_trap_d = prop.getInt(-4503);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 E", -4504);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_e", -4504);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 E");
@@ -168,7 +168,7 @@ public class SConfigDimensionID {
 			id_trap_e = prop.getInt(-4504);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 F", -4505);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_f", -4505);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 F");
@@ -176,7 +176,7 @@ public class SConfigDimensionID {
 			id_trap_f = prop.getInt(-4505);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 G", -4506);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_g", -4506);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 G");
@@ -184,7 +184,7 @@ public class SConfigDimensionID {
 			id_trap_g = prop.getInt(-4506);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Trappist 1 H", -4507);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_trap_h", -4507);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Trappist 1 H");
@@ -192,7 +192,7 @@ public class SConfigDimensionID {
 			id_trap_h = prop.getInt(-4507);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Kepler 1649 B", -4301);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_kepler_b", -4301);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Kepler 1649 B");
@@ -200,7 +200,7 @@ public class SConfigDimensionID {
 			id_kepler_b = prop.getInt(-4301);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "Kepler 1649 C", -4302);
+			prop = getConfig(CATEGORY_PLANETS_DIMENSION_ID, "id_kepler_c", -4302);
 			prop.setMinValue(-2147483647);
 			prop.setMaxValue(2147483647);
 			prop.setComment("Kepler 1649 C");

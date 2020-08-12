@@ -1,34 +1,36 @@
 package net.rom.api.space;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 
-public class RelayStation extends CelestialBody implements IChildBody {
+public class RelayStation extends CelestialBody {
 
-	private Planet parent = null;
+	private CelestialBody parent = null;
 
 	public RelayStation(String bodyName) {
 		super(bodyName);
 	}
 
-	public RelayStation setParentPlanet(Planet parent) {
+	public RelayStation setParent (ExoStar parent) {
 		this.parent = parent;
 		return this;
 	}
 
-	@Override
-	public Planet getParentPlanet() {
-		return this.parent;
+	public ExoStar getParent () {
+		return (ExoStar) this.parent;
+	}
+
+	public CelestialBody setRelativeDistanceFromCenter (float relativeDistanceFromCenter) {
+		ScalableDistance distance = new ScalableDistance(relativeDistanceFromCenter, relativeDistanceFromCenter);
+		return super.setRelativeDistanceFromCenter(distance);
 	}
 
 	@Override
-	public int getID() {
+	public int getID () {
 		return ExoRegistry.getRelayStationID(this.bodyName);
 	}
 
 	@Override
-	public String getUnlocalizedNamePrefix() {
+	public String getUnlocalizedNamePrefix () {
 		return "relay";
 	}
 

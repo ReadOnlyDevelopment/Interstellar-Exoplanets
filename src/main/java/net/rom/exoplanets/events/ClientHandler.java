@@ -22,9 +22,12 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.ImmutableList;
 
+import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
+import micdoodle8.mods.galacticraft.core.tick.KeyHandlerClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.model.IModelState;
@@ -39,6 +42,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.render.ItemModelRocket;
+import net.rom.exoplanets.client.screen.CelestialScreen;
 import net.rom.exoplanets.client.screen.EnumScreenAnchor;
 import net.rom.exoplanets.internal.MCUtil;
 import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
@@ -61,6 +65,18 @@ public class ClientHandler {
 
 		registerTexture(event, "twopersonrocket");
 
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onGuiOpenEvent (GuiOpenEvent event) {
+
+		if (event.getGui() instanceof GuiCelestialSelection) {
+			if (mc.gameSettings.isKeyDown(KeyHandlerClient.galaxyMap))
+				event.setGui(new CelestialScreen(true, null, false, null));
+			ExoplanetsMod.logger.info("Registered Fixed Celestial Selection Screen");
+			//	}
+		}
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOW)
