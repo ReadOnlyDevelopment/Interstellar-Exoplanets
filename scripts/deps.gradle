@@ -2,7 +2,7 @@ String GCBuild = "261"
 String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 
 def jei = "4.15.0.293"
-def planet_progression = "${mc_version}-0.4.5"
+def planet_progression = "${mc_version}-0.4.5:api"
 def lombok = "1.18.12"
 def apachemaths = "3.6.1"
 
