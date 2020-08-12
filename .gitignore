@@ -10,6 +10,7 @@ lib/*
 
 # idea
 out
+.idea
 
 
 # gradle

@@ -17,8 +17,11 @@ repositories {
 		}
 	}
 	maven {
-		name = 'curseforge'
-		url = 'https://minecraft.curseforge.com/api/maven/'
+		name 'ReadOnlyMaven'
+		url = "https://maven.romvoid.dev"
+	}
+	maven {
+		url = "https://www.cursemaven.com"
 	}
 	maven {
 		name 'MJRLegends'
@@ -50,7 +53,7 @@ dependencies {
 	compile "GC-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
 	
 	compile "com.mjr.planetprogression:PlanetProgression:${planet_progression}"
-	compile "curse.maven:AsmodeusCore-Dev-0.0.17:3010573"
+	compile "asmodeuscore:AsmodeusCore-Dev:0.0.18"
 	compile "mezz.jei:jei_${mc_version}:${jei}:api"
 	runtime "mezz.jei:jei_${mc_version}:${jei}"
 	
