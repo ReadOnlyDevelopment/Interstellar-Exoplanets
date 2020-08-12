@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aad650ab-2680-4c3c-83e3-d40ff1d63265" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/scripts/deps.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deps.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/api/space/ExoRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/api/space/ExoRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/api/space/RelayStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/api/space/RelayStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/ExoplanetsMod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/ExoplanetsMod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/astronomy/trappist1/e/WorldProviderTrappist1E.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/astronomy/trappist1/e/WorldProviderTrappist1E.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/astronomy/trappist1/e/biomes/Trappist1_E_Dunes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/astronomy/trappist1/e/biomes/Trappist1_E_Dunes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/compat/PlanetProgressionCompat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/compat/Compat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/conf/SConfigDimensionID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/conf/SConfigDimensionID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/events/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/events/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/events/HabitableZoneClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/events/HabitableZoneClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/init/Planets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/init/Planets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/proxy/ExoClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/proxy/ExoClientProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/proxy/ExoCommonProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/rom/exoplanets/proxy/ExoCommonProxy.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Interstellar-Exoplanets" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Interstellar-Exoplanets" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Interstellar-Exoplanets" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="forgegradle" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1fvNTe7cbYgLZ7TlV5y6pVY7gxt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Interstellar-Exoplanets [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Interstellar-Exoplanets [runClient]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aad650ab-2680-4c3c-83e3-d40ff1d63265" name="Default Changelist" comment="" />
+      <created>1597094615098</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597094615098</updated>
+      <workItem from="1597094616570" duration="220000" />
+      <workItem from="1597094915646" duration="195000" />
+      <workItem from="1597254365910" duration="432000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="317" y="25" key="#Project_Structure" timestamp="1597094789772">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state x="317" y="25" key="#Project_Structure/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597094789772" />
+    <state width="1632" height="236" key="GridCell.Tab.0.bottom" timestamp="1597254446865">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state width="1632" height="236" key="GridCell.Tab.0.bottom/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597254446865" />
+    <state width="1632" height="236" key="GridCell.Tab.0.center" timestamp="1597254446865">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state width="1632" height="236" key="GridCell.Tab.0.center/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597254446865" />
+    <state width="1632" height="236" key="GridCell.Tab.0.left" timestamp="1597254446865">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state width="1632" height="236" key="GridCell.Tab.0.left/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597254446865" />
+    <state width="1632" height="236" key="GridCell.Tab.0.right" timestamp="1597254446865">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state width="1632" height="236" key="GridCell.Tab.0.right/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597254446865" />
+    <state x="346" y="95" key="SettingsEditor" timestamp="1597094739069">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state x="346" y="95" key="SettingsEditor/0.0.1676.902/-1280.53.1117.853@0.0.1676.902" timestamp="1597094739069" />
+  </component>
+</project>

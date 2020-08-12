@@ -10,10 +10,7 @@ lib/*
 
 # idea
 out
-*.ipr
-*.iws
-*.iml
-.idea
+
 
 # gradle
 build
