@@ -19,6 +19,10 @@ package net.rom.exoplanets.util;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.content.EnumMetal;
 import net.rom.exoplanets.init.ExoBlocks;
@@ -45,5 +49,37 @@ public class CreativeExoTabs {
 			return new ItemStack(EnumMetal.PLATINUM.getSheet().getItem());
 		}
 	};
+
+	static class Tab extends CreativeTabs {
+
+		private String assetName;
+
+		public Tab(String label, String assetName) {
+			super(label);
+			setBackgroundImageName(assetName);
+		}
+
+		@Override
+		public Tab setBackgroundImageName (String assetName) {
+			this.assetName = assetName;
+			return this;
+		}
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public ResourceLocation getBackgroundImage () {
+			return Assets.getTexture(assetName);
+		}
+
+		@Override
+		public boolean hasSearchBar () {
+			return true;
+		}
+
+		@Override
+		public ItemStack getTabIconItem () {
+			return null;
+		}
+	}
 
 }
