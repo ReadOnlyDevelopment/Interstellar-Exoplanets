@@ -25,6 +25,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import net.minecraft.world.WorldProvider;
 import net.rom.exoplanets.internal.Calculations;
 import net.rom.exoplanets.internal.enums.EnumDiscMethod;
 import net.rom.exoplanets.internal.enums.EnumPlanetType;
@@ -33,26 +34,26 @@ import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
 
 public class ExoPlanet extends Planet implements IExoPlanet {
 
-	private EnumTPHClass                  habibilityClass;
-	private EnumPlanetType                planetType;
-	private EnumDiscMethod                method;
-	private String                        planetName;
-	private Star                          planetHost;
-	private SolarSystem                   planetSystem;
-	private double                        orbitPeriod;
-	private double                        distanceFromCenter;
-	private double                        planetMass;
-	private double                        planetRadius;
-	private double                        planetTemp;
-	private double                        gravity;
-	private long                          dayLength;
-	private boolean                       breathable;
-	private boolean                       rains;
-	private AtmosphereInfo                atmos;
-	private ArrayList<EnumAtmosphericGas> atmosGasses         = new ArrayList<EnumAtmosphericGas>();
-	private WorldProviderExoPlanet        planetProvider      = null;
-	private ClassBody                     classBody;
-	private float                         orbit_eccentricityX = 1.0F, orbit_eccentricityY = 1.0F, orbit_offsetX = 0.0F,
+	private EnumTPHClass                   habibilityClass;
+	private EnumPlanetType                 planetType;
+	private EnumDiscMethod                 method;
+	private String                         planetName;
+	private Star                           planetHost;
+	private SolarSystem                    planetSystem;
+	private double                         orbitPeriod;
+	private double                         distanceFromCenter;
+	private double                         planetMass;
+	private double                         planetRadius;
+	private double                         planetTemp;
+	private double                         gravity;
+	private long                           dayLength;
+	private boolean                        breathable;
+	private boolean                        rains;
+	private AtmosphereInfo                 atmos;
+	private ArrayList<EnumAtmosphericGas>  atmosGasses         = new ArrayList<EnumAtmosphericGas>();
+	private Class<? extends WorldProvider> provider;
+	private ClassBody                      classBody;
+	private float                          orbit_eccentricityX = 1.0F, orbit_eccentricityY = 1.0F, orbit_offsetX = 0.0F,
 			orbit_offsetY = 0.0F;
 
 	public ExoPlanet(String planetName) {
@@ -213,16 +214,13 @@ public class ExoPlanet extends Planet implements IExoPlanet {
 		return this;
 	}
 
-	/**
-	 * @param planetProvider the planetProvider to set
-	 */
-	public ExoPlanet setExoPlanetProvider (WorldProviderExoPlanet planetProvider) {
-		this.planetProvider = planetProvider;
+	public ExoPlanet setProvider (Class<? extends WorldProvider> provider) {
+		this.provider = provider;
 		return this;
 	}
 
-	public WorldProviderExoPlanet getExoPlanetProvider () {
-		return this.planetProvider;
+	public Class<? extends WorldProvider> getProvider () {
+		return this.provider;
 	}
 
 	@Override
