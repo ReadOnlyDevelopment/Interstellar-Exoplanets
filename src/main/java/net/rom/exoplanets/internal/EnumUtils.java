@@ -20,6 +20,9 @@ package net.rom.exoplanets.internal;
 import java.util.Optional;
 import java.util.function.Function;
 
+import net.rom.exoplanets.internal.annotations.UtilClass;
+
+@UtilClass
 public final class EnumUtils {
 	private EnumUtils() {
 		throw new IllegalAccessError("Utility class");

@@ -33,9 +33,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.rom.exoplanets.internal.annotations.UtilClass;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
+@UtilClass
 public final class StackHelper {
 	private StackHelper() {
 		throw new IllegalAccessError("Utility class");

@@ -41,9 +41,11 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.rom.exoplanets.ExoplanetsMod;
+import net.rom.exoplanets.internal.annotations.UtilClass;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
 import net.rom.exoplanets.internal.wrapper.ModelTransWrapper;
 
+@UtilClass
 public final class MCUtil {
 
 	private static MinecraftServer serverCached;

@@ -28,7 +28,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.rom.exoplanets.internal.annotations.UtilClass;
 
+@UtilClass
 public final class StackList extends ArrayList<ItemStack> {
 	/**
 	 * 
