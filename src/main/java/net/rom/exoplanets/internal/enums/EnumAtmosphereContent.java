@@ -17,30 +17,42 @@
 
 package net.rom.exoplanets.internal.enums;
 
-public enum EnumAtmosphereContent {
-	
-    NITROGEN,
-    OXYGEN,
-    /**
-     * Carbon dioxide
-     */
-    CO2,
-    /**
-     * Carbon monoxide
-     */
-    CO,
-    WATER,
-    METHANE,
-    HYDROGEN,
-    HELIUM,
-    ARGON,
-    SODIUM,
-    CYANOGEN,
-    /**
-     * Hydrogen cyanide (prussic acid)
-     */
-    HCN,
-    SULFUR
-    
+public enum EnumAtmosphereContent implements Comparable<EnumAtmosphereContent> {
+
+	NITROGEN("N", false),
+	OXYGEN("O", false),
+	CARBON_DIOXIDE("CO2", false),
+	CARBON_MONOXIDE("CO", false),
+	WATER("H20", false),
+	METHANE("CH4", false),
+	HYDROGEN("H", false),
+	HELIUM("Ne", false),
+	ARGON("Ar", false),
+	SODIUM("N", false),
+	CYANOGEN("CN2", true),
+	CARBON_CYANIDE("HCN", true),
+	SULFUR_DIOXIDE("S02", true);
+
+	private String  symbol;
+	private boolean corrosive;
+
+	EnumAtmosphereContent(String symbol, boolean corrosive) {
+		this.symbol    = symbol;
+		this.corrosive = corrosive;
+	}
+
+	/**
+	 * @return the symbol
+	 */
+	public String getSymbol () {
+		return symbol;
+	}
+
+	/**
+	 * @return the corrosive
+	 */
+	public boolean isCorrosive () {
+		return corrosive;
+	}
 
 }

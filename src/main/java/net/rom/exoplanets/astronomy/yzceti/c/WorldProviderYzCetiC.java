@@ -42,101 +42,102 @@ import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 
 	@Override
-	public float getSolarSize() {
+	public float getSolarSize () {
 		return 1.0F;
 	}
 
 	@Override
-	public double getMeteorFrequency() {
+	public double getMeteorFrequency () {
 		return 2.0;
 	}
 
 	@Override
-	public double getFuelUsageMultiplier() {
+	public double getFuelUsageMultiplier () {
 		return 3.8D;
 	}
 
 	@Override
-	public boolean hasBreathableAtmosphere() {
-		return this.getPlanet().isBreathable();
+	public boolean hasBreathableAtmosphere () {
+		return this.getExoPlanet().isBreathable();
 	}
 
 	@Override
-	public float getFallDamageModifier() {
+	public float getFallDamageModifier () {
 		return 0.56F;
 	}
 
 	@Override
-	public float getSoundVolReductionAmount() {
+	public float getSoundVolReductionAmount () {
 		return 0.0F;
 	}
 
 	@Override
-	public float getThermalLevelModifier() {
+	public float getThermalLevelModifier () {
 		return 2.5F;
 	}
 
 	@Override
-	public float getPlanetTemp() {
-		ExoPlanet planet = this.getPlanet();
-		float planetTemp = (float) planet.getPlanetTemp();
+	public float getPlanetTemp () {
+		ExoPlanet planet     = this.getExoPlanet();
+		float     planetTemp = (float) planet.getPlanetTemp();
 
 		if (this.isDaytime()) {
 			planetTemp *= 4.5F;
-		} else {
+		}
+		else {
 			planetTemp = (float) planet.getPlanetTemp();
 		}
 		return planetTemp;
 	}
 
 	@Override
-	public double getSolarEnergyMultiplier() {
+	public double getSolarEnergyMultiplier () {
 		return 8.65;
 	}
 
 	@Override
-	public double getYCoordinateToTeleport() {
-		return 2000.0D;
+	public double getYCoordinateToTeleport () {
+		return 1500.0D;
 	}
 
 	@Override
-	public float getCloudHeight() {
+	public float getCloudHeight () {
 		return 128F;
 	}
 
-    @Override
-    public Vector3 getSkyColor() {
-        return new Vector3(0, 0, 0);
-    }
-
 	@Override
-	public boolean canRainOrSnow() {
-		return this.getPlanet().isDoesRain();
+	public Vector3 getSkyColor () {
+		return new Vector3(0, 0, 0);
 	}
 
 	@Override
-	public boolean hasSunset() {
+	public boolean canRainOrSnow () {
+		return this.getExoPlanet().isDoesRain();
+	}
+
+	@Override
+	public boolean hasSunset () {
 		return true;
 	}
 
 	@Override
-	public boolean shouldDisablePrecipitation() {
+	public boolean shouldDisablePrecipitation () {
 		return !this.canRainOrSnow();
 	}
 
 	@Override
-	public boolean canDoRainSnowIce(Chunk chunk) {
+	public boolean canDoRainSnowIce (Chunk chunk) {
 		return this.canRainOrSnow();
 	}
 
 	@Override
-	public boolean canRespawnHere() {
+	public boolean canRespawnHere () {
 		return this.shouldForceRespawn();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public float getStarBrightness(float par1) {
+	public float getStarBrightness (float par1) {
 		float f1 = this.world.getCelestialAngle(par1);
 		float f2 = 1.0F - (MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.30F);
 
@@ -151,7 +152,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public float getSunBrightness(float par1) {
+	public float getSunBrightness (float par1) {
 		float f1 = this.world.getCelestialAngle(1.0F);
 		float f2 = 0.9F - (MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
@@ -166,32 +167,32 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public CelestialBody getCelestialBody() {
+	public CelestialBody getCelestialBody () {
 		return Planets.yzcetic;
 	}
 
 	@Override
-	public double getHorizon() {
+	public double getHorizon () {
 		return 44.0D;
 	}
 
 	@Override
-	public int getAverageGroundLevel() {
+	public int getAverageGroundLevel () {
 		return 65;
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn(int var1, int var2) {
+	public boolean canCoordinateBeSpawn (int var1, int var2) {
 		return true;
 	}
 
 	@Override
-	public ResourceLocation getDungeonChestType() {
+	public ResourceLocation getDungeonChestType () {
 		return null;
 	}
 
 	@Override
-	public List<Block> getSurfaceBlocks() {
+	public List<Block> getSurfaceBlocks () {
 		ArrayList<Block> blockList = new ArrayList<>();
 		blockList.add(YzCetiBlocks.CetiC.C_SEDIMENTARYROCK);
 		blockList.add(YzCetiBlocks.CetiC.C_IGNEOUS);
@@ -200,38 +201,38 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public DimensionType getDimensionType() {
+	public DimensionType getDimensionType () {
 		return YzCetiDimensions.YZCETIC;
 	}
 
 	@Override
-	public boolean isSkyColored() {
+	public boolean isSkyColored () {
 		return true;
 	}
 
 	@Override
-	public Class<? extends BiomeProvider> getBiomeProviderClass() {
+	public Class<? extends BiomeProvider> getBiomeProviderClass () {
 		BiomeAdaptive.setBodyMultiBiome(Planets.yzcetic);
 		return BiomeProviderYzCetiC.class;
 	}
 
 	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass() {
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
 		return ChunkProviderYzCetiC.class;
 	}
 
 	@Override
-	public long getDayLength() {
+	public long getDayLength () {
 		return 28000L;
 	}
 
 	@Override
-	public float getGravity() {
+	public float getGravity () {
 		return 0.030F;
 	}
 
 	@Override
-	public ExoPlanet getExoPlanet() {
+	public ExoPlanet getExoPlanet () {
 		return (ExoPlanet) getCelestialBody();
 	}
 

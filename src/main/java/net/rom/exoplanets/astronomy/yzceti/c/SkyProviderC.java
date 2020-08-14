@@ -24,90 +24,55 @@ import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.rom.exoplanets.Assets;
 
 public class SkyProviderC extends SkyProviderBase {
-	
-	
-	
-
 
 	@Override
-	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glPopMatrix();
-        GL11.glPushMatrix();
-        
-        GL11.glEnable(GL11.GL_BLEND);
-        
-        f10 = 0.1F;
-        GL11.glScalef(0.6F, 0.6F, 0.6F);
-        GL11.glRotatef(-180.0F, 50.0F, 1.0F, 0.0F);
-        GL11.glRotatef(90F, 190.0F, 50.0F, 0.0F);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Assets.getCelestialTexture("yzcetib"));
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();		
-        
-        f10 = 0.5F;
-        GL11.glScalef(0.8F, 0.8F, 0.8F);
-        GL11.glRotatef(-80.0F, 1.0F, 0.0F, 0.0F);  
-        GL11.glRotatef(140.0F, 0.0F, 0.0F, 1.0F);	
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Assets.getCelestialTexture("yzcetid"));
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();
-    
-        GL11.glDisable(GL11.GL_BLEND);
+	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
+		GL11.glEnable(GL11.GL_BLEND);
+
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 
 	@Override
-	protected ModeLight modeLight() {
+	protected ModeLight modeLight () {
 		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected boolean enableBaseImages() {
+	protected boolean enableBaseImages () {
 		return true;
 	}
 
 	@Override
-	protected float sunSize() {
+	protected float sunSize () {
 		return 10.0F;
 	}
 
 	@Override
-	protected ResourceLocation sunImage() {
+	protected ResourceLocation sunImage () {
 		return Assets.getCelestialTexture("yzcetistar");
 	}
 
 	@Override
-	protected boolean enableStar() {
+	protected boolean enableStar () {
 		return true;
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
+	protected StarColor colorSunAura () {
 		return StarColor.RED;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
-		return new Vector3(0, 0, 0);
+	protected Vector3 getAtmosphereColor () {
+		return null;
 	}
-	
+
 	@Override
-	public int expandSizeAura() {
+	public int expandSizeAura () {
 		return 15;
 	}
 

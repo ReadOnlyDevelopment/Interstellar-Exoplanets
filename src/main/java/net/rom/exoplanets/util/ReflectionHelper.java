@@ -29,7 +29,6 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
-import net.minecraftforge.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
 
 public class ReflectionHelper {
 
@@ -109,7 +108,8 @@ public class ReflectionHelper {
 			return f;
 		}
 		catch (Exception e) {
-			throw new UnableToFindFieldException(e);
+			e.getStackTrace();
 		}
+		return null;
 	}
 }

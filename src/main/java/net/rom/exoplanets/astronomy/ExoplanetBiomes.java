@@ -24,6 +24,8 @@ import static net.minecraftforge.common.BiomeDictionary.Type.SPOOKY;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
@@ -54,7 +56,15 @@ public class ExoplanetBiomes {
 	}
 
 	private static void addBiome (Biome biome, BiomeDictionary.Type... biomeType) {
+		ExoplanetBiomes.registerBiome(biome);
+		ExoplanetBiomes.registerBiomeType(biome, biomeType);
+	}
+
+	public static void registerBiome (Biome biome) {
 		ForgeRegistries.BIOMES.register(biome);
+	}
+
+	public static void registerBiomeType (Biome biome, @Nonnull BiomeDictionary.Type... biomeType) {
 		BiomeDictionary.addTypes(biome, biomeType);
 	}
 }

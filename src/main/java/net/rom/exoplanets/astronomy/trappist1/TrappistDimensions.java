@@ -21,14 +21,12 @@ import net.minecraft.world.DimensionType;
 
 public class TrappistDimensions {
 
-	// public static DimensionType TRAPPIST_1B;
+	public static DimensionType TRAPPIST_1B;
 	public static DimensionType TRAPPIST_1C;
 	public static DimensionType TRAPPIST_1D;
-	public static DimensionType TRAPPIST_1D_STATION;
-	public static DimensionType TRAPPIST_1D_STATION_STATIC;
 	public static DimensionType TRAPPIST_1E;
-	// public static DimensionType TRAPPIST_1F;
-	// public static DimensionType TRAPPIST_1G;
-	// public static DimensionType TRAPPIST_1H;
+	public static DimensionType TRAPPIST_1F;
+	public static DimensionType TRAPPIST_1G;
+	public static DimensionType TRAPPIST_1H;
 
 }

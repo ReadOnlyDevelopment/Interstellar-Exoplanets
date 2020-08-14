@@ -41,10 +41,10 @@ public class SolarSystems {
 	public static SolarSystem trappist1;
 	public static SolarSystem kepler1649;
 
-	public static boolean buildyzCeti     = false;
-	public static boolean buildwolf1061   = false;
-	public static boolean buildtrappist1  = false;
-	public static boolean buildkepler1649 = false;
+	public static boolean buildyzCeti;
+	public static boolean buildwolf1061;
+	public static boolean buildtrappist1;
+	public static boolean buildkepler1649;
 
 	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
@@ -63,6 +63,9 @@ public class SolarSystems {
 			b.registerSolarSystem(yzCeti);
 			buildyzCeti = true;
 		}
+		else {
+			buildyzCeti = false;
+		}
 
 		if (!SConfigSystems.disable_wolf_system) {
 			wolf1061Star = b.buildExoStar("wolf1061star", 3342, 0.294D, 0.307D);
@@ -71,6 +74,9 @@ public class SolarSystems {
 			BodiesRegistry.registerBodyData(wolf1061.getMainStar(), data);
 			b.registerSolarSystem(wolf1061);
 			buildwolf1061 = true;
+		}
+		else {
+			buildwolf1061 = false;
 		}
 
 		if (!SConfigSystems.disable_trap_system) {
@@ -81,6 +87,9 @@ public class SolarSystems {
 			b.registerSolarSystem(trappist1);
 			buildtrappist1 = true;
 		}
+		else {
+			buildtrappist1 = false;
+		}
 
 		if (!SConfigSystems.disable_k1649_system) {
 			kepler1649star = b.buildExoStar("kepler1649star", 2150, 0.02D, 0.230D);
@@ -89,6 +98,9 @@ public class SolarSystems {
 			BodiesRegistry.registerBodyData(kepler1649.getMainStar(), data);
 			b.registerSolarSystem(kepler1649);
 			buildkepler1649 = true;
+		}
+		else {
+			buildkepler1649 = false;
 		}
 	}
 

@@ -45,11 +45,9 @@ import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.kepler1649.Kepler1649Dimensions;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
-import net.rom.exoplanets.command.CommandData;
 import net.rom.exoplanets.command.CommandDownloadUpdate;
 import net.rom.exoplanets.conf.InitConfigFiles;
 import net.rom.exoplanets.conf.SConfigDimensionID;
-import net.rom.exoplanets.events.ExoPlanetEvent;
 import net.rom.exoplanets.events.GuiHandlerExo;
 import net.rom.exoplanets.events.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
@@ -60,8 +58,6 @@ import net.rom.exoplanets.init.Researching;
 import net.rom.exoplanets.init.SolarSystems;
 import net.rom.exoplanets.internal.LogHelper;
 import net.rom.exoplanets.internal.StellarRegistry;
-import net.rom.exoplanets.internal.inerf.IMod;
-import net.rom.exoplanets.netlib.ExoplanetsChannelHandler;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.TranslateUtil;
 import net.rom.exoplanets.world.OverworldOreGen;
@@ -77,20 +73,19 @@ import net.rom.exoplanets.world.OverworldOreGen;
 		useMetadata = true)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ExoplanetsMod implements IMod {
+public class ExoplanetsMod {
 
 	@Instance(ExoInfo.MODID)
-	public static ExoplanetsMod            instance;
-	public static StellarRegistry          REGISTRY  = new StellarRegistry();
-	public static TranslateUtil            translate = new TranslateUtil(ExoInfo.MODID);
-	public static LogHelper                logger    = new LogHelper();
-	public static ResourceLocation         location  = new ResourceLocation(ExoInfo.MODID);
+	public static ExoplanetsMod    instance;
+	public static StellarRegistry  REGISTRY  = new StellarRegistry();
+	public static TranslateUtil    translate = new TranslateUtil(ExoInfo.MODID);
+	public static LogHelper        logger    = new LogHelper();
+	public static ResourceLocation location  = new ResourceLocation(ExoInfo.MODID);
 	@SidedProxy(
 			clientSide = "net.rom.exoplanets.proxy.ExoClientProxy",
 			serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
-	public static ExoCommonProxy           proxy;
-	public static Random                   random    = new Random();
-	public static ExoplanetsChannelHandler pipeline;
+	public static ExoCommonProxy   proxy;
+	public static Random           random    = new Random();
 
 	public static final boolean isDevBuild = false;
 
@@ -127,12 +122,10 @@ public class ExoplanetsMod implements IMod {
 		// RESEARCH SYSTEM
 		Researching.register(RESEARCH);
 
-		pipeline = ExoplanetsChannelHandler.init();
-
 		// GUI STUFF
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerExo());
 		MinecraftForge.EVENT_BUS.register(new HabitableZoneClientHandler());
-		proxy.register_event(new ExoPlanetEvent());
+
 		proxy.preInit(REGISTRY, event);
 	}
 
@@ -164,7 +157,6 @@ public class ExoplanetsMod implements IMod {
 
 	@EventHandler
 	public void onServerStarting (FMLServerStartingEvent event) {
-		event.registerServerCommand(new CommandData());
 		event.registerServerCommand(new CommandDownloadUpdate());
 	}
 
@@ -173,26 +165,6 @@ public class ExoplanetsMod implements IMod {
 
 		logger.warn("Invalid fingerprint detected! The file " + event.getSource().getName()
 				+ " may have been tampered with. This version will NOT be supported by the author!");
-	}
-
-	@Override
-	public String getModId () {
-		return ExoInfo.MODID;
-	}
-
-	@Override
-	public String getModName () {
-		return ExoInfo.NAME;
-	}
-
-	@Override
-	public String getVersion () {
-		return ExoInfo.VERSION;
-	}
-
-	@Override
-	public String getBuildNum () {
-		return ExoInfo.BUILD;
 	}
 
 }

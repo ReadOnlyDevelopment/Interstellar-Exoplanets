@@ -143,7 +143,7 @@ public class AstroBuilder {
 		body.setPhaseShift(phase);
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
-
+		body.setBodyIcon(Assets.getCelestialTexture(name));
 		body.addChecklistKeys("equipOxygenSuit");
 		return body;
 	}
@@ -227,12 +227,12 @@ public class AstroBuilder {
 	 * @param day      the day
 	 */
 	public void setData (CelestialBody body, ClassBody clazz, float distance, float gravity, float orbit, int pressure, long day) {
-		((ExPlanet) body).setClassPlanet(clazz);
+		((ExoPlanet) body).setClassBody(clazz);
 		body.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
 		body.setRelativeOrbitTime(orbit);
 		body.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		((ExoPlanet) body).setPlanetGravity(gravity);
-		((ExPlanet) body).setAtmosphericPressure(pressure);
+		((ExoPlanet) body).setAtmosphericPressure(pressure);
 		BodiesRegistry.setPlanetData(body, 0, day, BodiesRegistry.calculateGravity(gravity), false);
 
 	}
@@ -271,8 +271,8 @@ public class AstroBuilder {
 	 * @param orbitOffsetY  the orbit offset Y
 	 */
 	public void setOrbit (CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
-		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
-		((ExPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
+		((ExoPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
+		((ExoPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
 		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body
 				.getRelativeOrbitTime(), eccentricityX, eccentricityY, orbitOffsetX, orbitOffsetY);
 
