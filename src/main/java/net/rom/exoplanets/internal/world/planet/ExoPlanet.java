@@ -20,7 +20,6 @@ package net.rom.exoplanets.internal.world.planet;
 import java.util.ArrayList;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
@@ -32,28 +31,29 @@ import net.rom.exoplanets.internal.enums.EnumPlanetType;
 import net.rom.exoplanets.internal.enums.EnumTPHClass;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
 
-	
-public class ExoPlanet extends ExPlanet implements IExoPlanet {
+public class ExoPlanet extends Planet implements IExoPlanet {
 
-	private EnumTPHClass habibilityClass;
-	private EnumPlanetType planetType;
-	private EnumDiscMethod method;
-	private String planetName;
-	private Star planetHost;
-	private SolarSystem planetSystem;
-	private double orbitPeriod;
-	private double distanceFromCenter;
-	private double planetMass;
-	private double planetRadius;
-	private double planetTemp;
-	private double gravity;
-	private long dayLength;
-	private boolean breathable;
-	private boolean rains;
-	private AtmosphereInfo atmos;
-	private ArrayList<EnumAtmosphericGas> atmosGasses = new ArrayList<EnumAtmosphericGas>();
-	private WorldProviderExoPlanet planetProvider = null;
-	private ClassBody classBody;
+	private EnumTPHClass                  habibilityClass;
+	private EnumPlanetType                planetType;
+	private EnumDiscMethod                method;
+	private String                        planetName;
+	private Star                          planetHost;
+	private SolarSystem                   planetSystem;
+	private double                        orbitPeriod;
+	private double                        distanceFromCenter;
+	private double                        planetMass;
+	private double                        planetRadius;
+	private double                        planetTemp;
+	private double                        gravity;
+	private long                          dayLength;
+	private boolean                       breathable;
+	private boolean                       rains;
+	private AtmosphereInfo                atmos;
+	private ArrayList<EnumAtmosphericGas> atmosGasses         = new ArrayList<EnumAtmosphericGas>();
+	private WorldProviderExoPlanet        planetProvider      = null;
+	private ClassBody                     classBody;
+	private float                         orbit_eccentricityX = 1.0F, orbit_eccentricityY = 1.0F, orbit_offsetX = 0.0F,
+			orbit_offsetY = 0.0F;
 
 	public ExoPlanet(String planetName) {
 		super(planetName);
@@ -61,23 +61,23 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		this.setPlanetType();
 		this.setTHPClass();
-		
+
 	}
 
 	/**
 	 * @param method the method to set
 	 */
-	public ExoPlanet setMethod(EnumDiscMethod method) {
+	public ExoPlanet setMethod (EnumDiscMethod method) {
 		this.method = method;
 		return this;
 	}
 
-	public ExoPlanet setTHPClass() {
+	public ExoPlanet setTHPClass () {
 		this.habibilityClass = Calculations.getTPHFromTemp(getPlanetTemp());
 		return this;
 	}
-	
-	public ExoPlanet setPlanetType() {
+
+	public ExoPlanet setPlanetType () {
 		this.planetType = Calculations.getPlanetType(getPlanetMass(), getPlanetRadius());
 		return this;
 	}
@@ -85,7 +85,7 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param planetName the planetName to set
 	 */
-	public ExoPlanet setPlanetName(String planetName) {
+	public ExoPlanet setPlanetName (String planetName) {
 		this.planetName = planetName;
 		return this;
 	}
@@ -93,29 +93,29 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param planetHost the planetHost to set
 	 */
-	public ExoPlanet setPlanetHost(Star planetHost) {
-		this.planetHost = planetHost; 
+	public ExoPlanet setPlanetHost (Star planetHost) {
+		this.planetHost = planetHost;
 		return this;
 	}
 
 	/**
 	 * @param planetSystem the planetSystem to set
 	 */
-	public ExoPlanet setPlanetSystem(SolarSystem planetSystem) {
+	public ExoPlanet setPlanetSystem (SolarSystem planetSystem) {
 		this.planetSystem = planetSystem;
 		setParentSolarSystem(planetSystem);
 		return this;
 	}
-	
-	public ExoPlanet setDayLength(float dayLength) {
+
+	public ExoPlanet setDayLength (float dayLength) {
 		this.dayLength = (long) (24000L * dayLength);
 		return this;
 	}
-	
+
 	/**
 	 * @param gravity the gravity to set
 	 */
-	public ExoPlanet setPlanetGravity(float gravity) {
+	public ExoPlanet setPlanetGravity (float gravity) {
 		this.gravity = gravity;
 		return this;
 	}
@@ -123,17 +123,17 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param orbitPeriod the orbitPeriod to set
 	 */
-	public ExoPlanet setOrbitPeriod(float orbitPeriod) {
+	public ExoPlanet setOrbitPeriod (float orbitPeriod) {
 		this.orbitPeriod = orbitPeriod;
 		return this;
 	}
-	
-	public ExoPlanet setDistanceFromCenter(float par1, float par2) {
+
+	public ExoPlanet setDistanceFromCenter (float par1, float par2) {
 		this.setRelativeDistanceFromCenter(new ScalableDistance(par1, par2));
 		return this;
 	}
-	
-	public ExoPlanet setDistanceFromCenter(float par1) {
+
+	public ExoPlanet setDistanceFromCenter (float par1) {
 		this.setDistanceFromCenter(par1, par1);
 		return this;
 	}
@@ -141,15 +141,15 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param planetMass the planetMass to set
 	 */
-	public ExoPlanet setPlanetMass(double planetMass) {
+	public ExoPlanet setPlanetMass (double planetMass) {
 		this.planetMass = planetMass;
 		return this;
 	}
-	
+
 	/**
 	 * @param planetMass the planetMass to set
 	 */
-	public ExoPlanet setPlanetRadius(double planetRadius) {
+	public ExoPlanet setPlanetRadius (double planetRadius) {
 		this.planetRadius = planetRadius;
 		return this;
 	}
@@ -157,7 +157,7 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param planetTemp the planetTemp to set
 	 */
-	public Planet setPlanetTemp(double planetTemp) {
+	public Planet setPlanetTemp (double planetTemp) {
 		this.planetTemp = planetTemp;
 		return this;
 	}
@@ -165,7 +165,7 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param breathable the breathable to set
 	 */
-	public ExoPlanet setBreathable(boolean breathable) {
+	public ExoPlanet setBreathable (boolean breathable) {
 		this.breathable = breathable;
 		return this;
 	}
@@ -173,7 +173,7 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param rains the rains to set
 	 */
-	public Planet setRains(boolean rains) {
+	public Planet setRains (boolean rains) {
 		this.rains = rains;
 		return this;
 	}
@@ -181,17 +181,19 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param atmos the atmos to set
 	 */
-	public Planet setAtmos() {
-		this.atmos = setAtmos(new AtmosphereInfo(this.isBreathable(), this.isDoesRain(), isCorrosive(this.habibilityClass), 0.0F, 0.0F, 0.0F));
+	public Planet setAtmos () {
+		this.atmos = setAtmos(new AtmosphereInfo(this.isBreathable(), this
+				.isDoesRain(), isCorrosive(this.habibilityClass), 0.0F, 0.0F, 0.0F));
 		return this;
 	}
 
-	public boolean isCorrosive(EnumTPHClass tphClass) {
+	public boolean isCorrosive (EnumTPHClass tphClass) {
 		boolean cor = false;
 		if (tphClass == EnumTPHClass.T) {
 			cor = true;
 			return cor;
-		} else {
+		}
+		else {
 			return cor;
 		}
 
@@ -200,9 +202,9 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param atmosGasses the atmosGasses to set
 	 */
-	public Planet setAtmosGasses(EnumAtmosphericGas... gasses) {
-		for(EnumAtmosphericGas gas : atmosGasses) {
-			if(gas != null) {
+	public Planet setAtmosGasses (EnumAtmosphericGas... gasses) {
+		for (EnumAtmosphericGas gas : atmosGasses) {
+			if (gas != null) {
 				this.atmosphereComponent(gas);
 				this.atmosGasses.add(gas);
 			}
@@ -214,129 +216,145 @@ public class ExoPlanet extends ExPlanet implements IExoPlanet {
 	/**
 	 * @param planetProvider the planetProvider to set
 	 */
-	public ExoPlanet setExoPlanetProvider(WorldProviderExoPlanet planetProvider) {
+	public ExoPlanet setExoPlanetProvider (WorldProviderExoPlanet planetProvider) {
 		this.planetProvider = planetProvider;
 		return this;
 	}
-	
-	public WorldProviderExoPlanet getExoPlanetProvider() {
+
+	public WorldProviderExoPlanet getExoPlanetProvider () {
 		return this.planetProvider;
 	}
 
 	@Override
-	public String getPlanetName() {
+	public String getPlanetName () {
 		return this.planetName;
 	}
 
 	@Override
-	public SolarSystem getPlanetSystem() {
+	public SolarSystem getPlanetSystem () {
 		return this.planetSystem;
 	}
 
 	@Override
-	public Star getPlanetHost() {
+	public Star getPlanetHost () {
 		return this.planetHost;
 	}
 
 	@Override
-	public EnumDiscMethod getDiscoveryMethod() {
+	public EnumDiscMethod getDiscoveryMethod () {
 		return this.method;
 	}
 
-	public EnumTPHClass getTphClass() {
+	public EnumTPHClass getTphClass () {
 		return this.habibilityClass;
 	}
 
 	@Override
-	public EnumPlanetType getPlanetType() {
+	public EnumPlanetType getPlanetType () {
 		return this.planetType;
 	}
 
 	@Override
-	public double getOrbitPeriod() {
+	public double getOrbitPeriod () {
 		return this.orbitPeriod;
-	}
-	
-	@Override
-	public float getGravity() {
-		return (float)this.gravity;
 	}
 
 	@Override
-	public double getPlanetMass() {
+	public float getGravity () {
+		return (float) this.gravity;
+	}
+
+	@Override
+	public double getPlanetMass () {
 		return this.planetMass;
 	}
-	
-	@Override 
-	public double getPlanetRadius() {
+
+	@Override
+	public double getPlanetRadius () {
 		return this.planetRadius;
 	}
 
 	@Override
-	public double getPlanetTemp() {
+	public double getPlanetTemp () {
 		return this.planetTemp;
 	}
 
 	@Override
-	public boolean isBreathable() {
+	public boolean isBreathable () {
 		return this.breathable;
 	}
 
 	@Override
-	public boolean isDoesRain() {
+	public boolean isDoesRain () {
 		return this.rains;
 	}
 
 	@Override
-	public AtmosphereInfo getAtmos() {
+	public AtmosphereInfo getAtmos () {
 		return null;
 	}
-	
+
 	@Override
-	public long getDayLength() {
+	public long getDayLength () {
 		return this.dayLength;
 	}
 
 	@Override
-	public ArrayList<EnumAtmosphericGas> getAtmosGasses() {
+	public ArrayList<EnumAtmosphericGas> getAtmosGasses () {
 		return null;
 	}
 
 	@Override
-	public WorldProviderExoPlanet getPlanetProvider() {
+	public WorldProviderExoPlanet getPlanetProvider () {
 		return null;
 	}
 
 	@Override
-	public int getAtmosphericPressure() {
+	public int getAtmosphericPressure () {
 		return 0;
 	}
 
 	@Override
-	public float getSolarRadiationMod() {
+	public float getSolarRadiationMod () {
 		return 0;
 	}
 
-	public ExoPlanet setClassBody(ClassBody classBody) {
+	public ExoPlanet setClassBody (ClassBody classBody) {
 		this.classBody = classBody;
 		return this;
 	}
 
 	@Override
-	public ClassBody getClassPlanet() {
+	public ClassBody getClassPlanet () {
 		return this.classBody;
 	}
 
-	public double getDistanceFromCenter() {
+	public double getDistanceFromCenter () {
 		return this.distanceFromCenter;
 	}
-	
-	public AtmosphereInfo getAtmosphereInfo() {
+
+	public AtmosphereInfo getAtmosphereInfo () {
 		return this.atmos;
 	}
 
-	public AtmosphereInfo setAtmos(AtmosphereInfo atmos) {
+	public AtmosphereInfo setAtmos (AtmosphereInfo atmos) {
 		return this.atmos = atmos;
+	}
+
+	public void setAtmosphericPressure (int pressure) {
+
+	}
+
+	public ExoPlanet setOrbitEccentricity (float eccentricityX, float eccentricityY) {
+		this.orbit_eccentricityX = eccentricityX;
+		this.orbit_eccentricityY = eccentricityY;
+		return this;
+	}
+
+	public ExoPlanet setOrbitOffset (float x, float y) {
+		this.orbit_offsetX = x;
+		this.orbit_offsetY = y;
+		return this;
 	}
 
 }

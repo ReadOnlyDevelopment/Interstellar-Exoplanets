@@ -49,17 +49,16 @@ public class Assets {
 		textures.put(name, new ResourceLocation(DOMAIN, path));
 	}
 
-	public static void addCelestialTexture (String name, String systemName, String planetName) {
+	public static void addCelestialTexture (String name, String systemName) {
 		systemName = systemName.toLowerCase();
-		planetName = systemName + planetName.toLowerCase();
-		String path = "textures/celestialbodies/" + systemName + "/" + planetName + ".png";
+		String path = "textures/celestialbodies/" + systemName + "/" + name + ".png";
 		spaceTextures.put(name, new ResourceLocation(DOMAIN, path));
 	}
 
-	public static void addRealisticCelestialTexture (String name, String systemName, String planetName) {
+	public static void addRealisticCelestialTexture (String name, String systemName) {
 		systemName = systemName.toLowerCase();
-		planetName = systemName + planetName.toLowerCase();
-		String path = "textures/celestialbodies/" + systemName + "/realism/" + planetName + ".png";
+		String planetName = name.replace("real", "");
+		String path       = "textures/celestialbodies/" + systemName + "/realism/" + planetName + ".png";
 		spaceTextures.put(name, new ResourceLocation(DOMAIN, path));
 	}
 
