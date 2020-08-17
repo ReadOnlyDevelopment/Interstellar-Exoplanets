@@ -31,14 +31,12 @@ The addon will also feature material aimed at education into Astronomy. And othe
 
 #### **Solar Systems & Planets**
 
-**Please Note: Right now the planets are barren, no Ores or Materials have been added yet. When this Note is removed, that is when any ores or features will appear on planets**
-
--   **Yz Ceti** (2/3 Planets Implemented)
+-   **Yz Ceti** (3/3 Planets Implemented)
 -   Upsilon Andromedae (Removed)
 -   **Wolf 1061** (Not Yet Implemented)
 -   **HD 219134** (Not Yet Implemented)
 -   **Gliese 676 A** (Removed)
--   **Trappist 1** (Not Yet Implemented)
+-   **Trappist 1** (3/7 Planets Implemented)
 
 * This will not be an addon where planets or solar systems will remain non-implemented. The point is to create unique planets which will take take (that and terrain generation isn't my strong point yet)
 
@@ -57,7 +55,7 @@ The orbits, solar systems sizes will be the best representation of their true si
 
 However, because of the actual size of some solar systems in comparison to Sol, their actual size cannot be accurate in comparison to the size
 
-Galcticraft shows Sol,
+Galacticraft shows Sol,
 
 Example: The Trappist 1 system, even though this system has 7 planets in total, the entire system radius wouldn't even reach the orbit of mercury
 
