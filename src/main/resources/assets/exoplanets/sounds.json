@@ -27,5 +27,9 @@
     "hydoor_close": {
         "category": "block",
         "sounds": [ "exoplanets:hydoor_close" ]
+    },
+    "thunder": {
+        "category": "weather",
+        "sounds": [ "exoplanets:thunder1", "exoplanets:thunder2", "exoplanets:thunder3" ]
     }
 }
