@@ -27,7 +27,7 @@ import net.minecraft.util.SoundEvent;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.internal.StellarRegistry;
 
-public class ExoplanetsCustomSounds {
+public class ExoplanetsSounds {
 
 	private static final List<SoundEvent> ALL = new ArrayList<>();
 
@@ -37,6 +37,7 @@ public class ExoplanetsCustomSounds {
 	public static final SoundEvent HYDOOR_CLOSE     = create("hydoor_close");
 	public static final SoundEvent CUSTOMDOOR_OPEN  = create("customdoor_open");
 	public static final SoundEvent CUSTOMDOOR_CLOSE = create("customdoor_close");
+	public static final SoundEvent CUSTOM_THUNDER   = create("thunder");
 
 	public static void registerAll (StellarRegistry registry) {
 		registry.registerSoundEvent(SPACEDOOR_CLOSE, "space_door_open");
@@ -45,6 +46,7 @@ public class ExoplanetsCustomSounds {
 		registry.registerSoundEvent(HYDOOR_CLOSE, "hydoor_close");
 		registry.registerSoundEvent(CUSTOMDOOR_OPEN, "customdoor_open");
 		registry.registerSoundEvent(CUSTOMDOOR_CLOSE, "customdoor_close");
+		registry.registerSoundEvent(CUSTOM_THUNDER, "thunder");
 	}
 
 	private static SoundEvent create (String soundId) {
