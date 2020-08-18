@@ -28,25 +28,25 @@ planet.trappist1h=Trappist 1 H
 planet.kepler1649b=Kepler 1649b
 planet.kepler1649c=Kepler 1649c
 
-galaxy.wormhole=Â§Червоточина 
+galaxy.wormhole=Червоточина
 
 # Messages
-information.dev.exoplanets:beta.1=Â§cС Продолжением Вы принимаете наши сроки  что  вы не будете 
-information.dev.exoplanets:beta.2=Â§cнарушать правила,  до тех  пор 
-information.dev.exoplanets:beta.3=Â§cпока выщое право не получено. Â§r
+information.dev.exoplanets:beta.1=Â§c С Продолжением Вы принимаете наши сроки  что  вы не будете
+information.dev.exoplanets:beta.2=Â§c нарушать правила,  до тех  пор
+information.dev.exoplanets:beta.3=Â§c пока выщое право не получено. Â§r
 
-information.exoplanets:beta.1=Â§b Текущая версия ExoPlanets досихпор  в Раннем доступе Â§r
+information.exoplanets:beta.1=§b Текущая версия ExoPlanets досихпор  в Раннем доступе §r
 information.exoplanets:beta.2=Это означает что в моде есть вещи которые не работают как преднозначено.
-information.exoplanets:beta.3=Это сделано намеренно, поскольку оно может быть незавершенным  / или оптимизированным.
+information.exoplanets:beta.3=Это сделано намеренно, поскольку оно может быть незавершенным  / или неоптимизированным.
 information.exoplanets:beta.4=Если вы нашли баг или какую то проблему. Пожалуйста свяжитесь с нами через Дискорд.
 information.exoplanets:beta.5=И опишите проблему .
-information.exoplanets:beta.6=Â§e(Чтобы Отключить  это окно от появление Установите , Â§6B:warnOnBetaBuildÂ§rÂ§e на  false в  Â§bcore.cfgÂ§rÂ§e  в  configs)Â§r
+information.exoplanets:beta.6=§e(Чтобы Отключить  это окно от появление Установите , §6B:warnOnBetaBuildÂ§r§e на  false в  §bcore.cfg§r§e  в  configs)§r
 
 exoplanets.gui.discordLink=Discord Invite
 exoplanets.gui.failed=Произошла ошибка из за которой не получилась открыть Ссылку  для инвайта 
 
 # VERSIONING
-exoplanets.versions.notify=Ей Игрок ! Новое Обновление  ! Exoplanets Обновление!
+exoplanets.versions.notify=Ей Игрок ! Новое Обновление  ! Exoplanets Обновился!
 exoplanets.versions.outdated0=Â§6****************************************
 exoplanets.versions.outdated1=Â§6* Â§aRunning......vÂ§c%s
 exoplanets.versions.outdated2=Â§6* Â§aLatest.........vÂ§9%s
@@ -64,7 +64,7 @@ exoplanets.configgui.category.core=Настройки Ядра
 exoplanets.configgui.category.dimensionids=ID Измерений ExoPlanets
 exoplanets.configgui.category.sysgeneral=Настройки Солнечных Систем 
 exoplanets.configgui.category.systier=Требования к уровню солнечной системы
-exoplanets.configgui.category.sysmap=Местоположение  солнечный систем на карте 
+exoplanets.configgui.category.sysmap=Местоположение  солнечных  систем на карте
 
 exoplanets.configgui.yzceti_tier=Yz Ceti Требования
 exoplanets.configgui.wolf_tier=Wolf 1061 Требования
@@ -101,9 +101,9 @@ exoplanets.configgui.guiBeta=Предупреждения на Тестовой 
 ## tile.exoplanets..name=
 
 ## CREATIVE TAB ##
-itemGroup.decoration=Â§6Exo Украшения Â§r
-itemGroup.terrain=Â§aExo местностьÂ§r
-itemGroup.items=Â§eExo Предметы Â§r
+itemGroup.decoration=Â§6 Exo Украшения Â§r
+itemGroup.terrain=Â§ aExo местность Â§r
+itemGroup.items=Â§e Exo Предметы Â§r
 
 ## BLOCKS ##
 tile.exoplanets.com_relay.name=Коммуникационное реле
@@ -113,7 +113,7 @@ tile.exoplanets.lower_raidcontroller.name=Нижний  RAID Контролле�
 tile.exoplanets.control.name=Панель Электроники 
 tile.exoplanets.datamonitor.name=Монитор информации 
 tile.exoplanets.deco0.name=Решетки
-tile.exoplanets.deco1.name=Stipe Brating??????
+tile.exoplanets.deco1.name=Полоса решетки
 tile.exoplanets.satellite_antenna.name=Спутниковая антенна
 tile.exoplanets.stand_console.name=Консольная подставка
 tile.exoplanets.metaldecoration.name=Решетка для пола
@@ -158,9 +158,9 @@ tile.exoplanets.hydraulic_top.name=Гидравлическая верхняя �
 tile.exoplanets.metal_diagonal.name=Наклонный горизонтальный блок
 tile.exoplanets.roof_stairs.name=Наклонная крыша
 
-tile.exoplanets.lever1.name=Управлатель дверей Рычаг 
-tile.exoplanets.lever2.name=Управлатель дверей Кнопка 
-tile.exoplanets.lever3.name=Управлатель дверей с Интерфейсом 
+tile.exoplanets.lever1.name=Управлатель дверей. Рычаг
+tile.exoplanets.lever2.name=Управлатель дверей. Кнопка
+tile.exoplanets.lever3.name=Управлатель дверей с Интерфейсом
 
 tile.exoplanets.alarm_light.name=Лампа Тревоги 
 tile.exoplanets.alarm_light_lit.name=Лампа Тревоги 
