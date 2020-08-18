@@ -29,8 +29,11 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
+import net.rom.exoplanets.astronomy.trappist1.d.client.TickHandlerClientTrappistD;
+import net.rom.exoplanets.astronomy.trappist1.e.StormProviderTrappist1E;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.events.BetaGuiHandler;
@@ -66,6 +69,8 @@ public class ExoClientProxy extends ExoCommonProxy {
 	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
 		register_event(new SkyProviders());
+		register_event(new StormProviderTrappist1E());
+		register_event(new TickHandlerClientTrappistD());
 		VersionChecker.init();
 		registry.clientInit(event);
 	}
@@ -84,6 +89,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 		Assets.addTexture("tdeco", "textures/gui/container/tab_decoration.png");
 		Assets.addTexture("tterrain", "textures/gui/container/tab_terrain.png");
 		Assets.addTexture("titems", "textures/gui/container/tab_decoration.png");
+		Assets.addTexture("heavyrain", "textures/enviroment/heavyrain.png");
 	}
 
 	public World getWorld () {
@@ -102,8 +108,15 @@ public class ExoClientProxy extends ExoCommonProxy {
 
 	public void registerVarients () {
 		ModelResourceLocation modelResourceLocation = new ModelResourceLocation("exoplanets:twopersonrocket", "inventory");
-		for (int i = 0; i < 5; ++i) {
-			ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, i, modelResourceLocation);
+		ModelLoader.setCustomModelResourceLocation(ExoItems.passengerRocket, 0, modelResourceLocation);
+
+	}
+
+	public static class EventSpecialRender extends Event {
+		public final float partialTicks;
+
+		public EventSpecialRender(float partialTicks) {
+			this.partialTicks = partialTicks;
 		}
 	}
 }
