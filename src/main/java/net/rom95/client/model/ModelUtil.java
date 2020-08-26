@@ -67,8 +67,45 @@ public final class ModelUtil {
 		}
 	}
 
-	public static void replace (ModelBakeEvent event, String modelName, String objFile, List<String> groups, Class<?> modelClass, TRSRTransformation identity) {
-		// TODO Auto-generated method stub
+	public static void replace (ModelBakeEvent event, String modelName, String objFile, List<String> groups, Class<? extends ModelTransWrapper> modelClass, TRSRTransformation identity) {
+		OBJModel model;
+		String[] variants = {};
+		try {
+			model = (OBJModel) RocketModelLoader.instance.loadModel(new ResourceLocation(defaultId, objFile));
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft()
+				.getTextureMapBlocks().getAtlasSprite(location.toString());
+		IBakedModel                                    newModelBase   = model
+				.bake(new OBJModel.OBJState(groups, false, identity), DefaultVertexFormats.ITEM, spriteFunction);
+		IBakedModel                                    newModelAlt    = null;
+		if (variants.length == 0) {
+			variants = new String[] { "inventory" };
+		}
+		else if (variants.length > 1 || !variants[0].equals("inventory")) {
+			newModelAlt = model.bake(new OBJModel.OBJState(groups, false, TRSRTransformation
+					.identity()), DefaultVertexFormats.ITEM, spriteFunction);
+		}
+		for (String variant : variants) {
+			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(defaultId + ":"
+					+ modelName, variant);
+			IBakedModel           object                = event.getModelRegistry().getObject(modelResourceLocation);
+			if (object != null) {
+				IBakedModel newModel = variant.equals("inventory") ? newModelBase : newModelAlt;
+				if (modelClass != null) {
+					try {
+						newModel = modelClass.getConstructor(IBakedModel.class).newInstance(newModel);
+					}
+					catch (Exception e) {
+						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
+						e.printStackTrace();
+					}
+				}
+				event.getModelRegistry().putObject(modelResourceLocation, newModel);
+			}
+		}
 
 	}
 }

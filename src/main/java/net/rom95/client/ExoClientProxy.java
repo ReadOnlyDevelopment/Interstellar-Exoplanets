@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.rom95.api.registry.ExoRegistry;
 import net.rom95.client.event.BetaGuiHandler;
+import net.rom95.client.event.ModelEventHandler;
 import net.rom95.client.event.SkyProviders;
 import net.rom95.client.model.RocketModelLoader;
 import net.rom95.client.render.RocketRenderer;
@@ -57,6 +58,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 		RenderingRegistry
 				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		register_event(new BetaGuiHandler());
+		register_event(new ModelEventHandler());
 
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
