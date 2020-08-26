@@ -37,7 +37,7 @@ if (System.getenv("BUILD_NUMBER") != null)
 	versionBuild = System.getenv("BUILD_NUMBER")
 	
 
-def devBuild = true
+def devBuild = false
 def ver
 def short_version = "${mod_version}"
 if(devBuild) {
