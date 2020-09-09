@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+  	"particle": "exoplanets:blocks/terrain/trappist1/trap1d_wetdirt",
+    "up": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_top_4",
+	"down": "exoplanets:blocks/terrain/trappist1/trap1d_wetdirt",
+	"north": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_east",
+	"south": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_west",
+	"east": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_north",
+	"west": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_south"
+  }
+}

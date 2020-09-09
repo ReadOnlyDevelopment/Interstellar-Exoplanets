@@ -1,0 +1,6 @@
+{
+  "parent": "exoplanets:block/trappist1/trap1c_dirt_2",
+  "textures": {
+    "layer0": "exoplanets:blocks/terrain/trappist1/trap1c_dirt_2"
+  }
+}

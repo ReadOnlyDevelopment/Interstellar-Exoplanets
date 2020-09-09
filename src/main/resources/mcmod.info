@@ -12,7 +12,7 @@
    "logoFile": "assets/exoplanets/logo.png",
    "screenshots": [],
    "useDependencyInformation": true,
-   "requiredMods": ["galacticraftcore@[4.0.2.261,]", "asmodeuscore@[0.0.17,]"],
+   "requiredMods": ["galacticraftcore@[4.0.2.241,]", "asmodeuscore@[0.0.17,]"],
    "dependencies": ["mod_MinecraftForge","galacticraftcore", "asmodeuscore"]
  }
 ]
