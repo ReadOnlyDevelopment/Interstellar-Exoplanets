@@ -1,6 +1,0 @@
-{
-  "parent": "exoplanets:block/trappist1/meteor_ore",
-  "textures": {
-    "layer0": "exoplanets:blocks/terrain/trappist1/ore/meteor_ore"
-  }
-}

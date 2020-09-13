@@ -20,6 +20,7 @@ import net.romvoid95.core.ExoInfo;
 import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
+@SuppressWarnings("deprecation")
 public final class ModelUtil {
 
 	static String defaultId = ExoInfo.MODID;
@@ -107,6 +108,5 @@ public final class ModelUtil {
 				event.getModelRegistry().putObject(modelResourceLocation, newModel);
 			}
 		}
-
 	}
 }

@@ -32,20 +32,11 @@ import net.romvoid95.common.integration.jei.alloyrefinery.AlloyRefineryRecipeMak
 import net.romvoid95.common.integration.jei.alloyrefinery.AlloyRefineryRecipeWrapper;
 import net.romvoid95.core.initialization.ExoBlocks;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ExoplanetsPlugin.
- */
 @JEIPlugin
 public class ExoplanetsPlugin implements IModPlugin {
 
-	/**
-	 * Register.
-	 *
-	 * @param reg the reg
-	 */
 	@Override
-	public void register(IModRegistry reg) {
+	public void register (IModRegistry reg) {
 
 		doItemBlacklist(reg.getJeiHelpers().getIngredientBlacklist());
 
@@ -67,23 +58,13 @@ public class ExoplanetsPlugin implements IModPlugin {
 
 	}
 
-	/**
-	 * Register categories.
-	 *
-	 * @param registry the registry
-	 */
 	@Override
-	public void registerCategories(IRecipeCategoryRegistration registry) {
+	public void registerCategories (IRecipeCategoryRegistration registry) {
 		IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 		registry.addRecipeCategories(new AlloyRefineryRecipeCategory(guiHelper));
 	}
 
-	/**
-	 * Do item blacklist.
-	 *
-	 * @param list the list
-	 */
-	private void doItemBlacklist(IIngredientBlacklist list) {
+	private void doItemBlacklist (IIngredientBlacklist list) {
 
 		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.alarm_light));
 		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.cellar_lamp));

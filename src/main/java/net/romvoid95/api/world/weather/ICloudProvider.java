@@ -1,4 +1,4 @@
-package net.romvoid95.api.world;
+package net.romvoid95.api.world.weather;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;

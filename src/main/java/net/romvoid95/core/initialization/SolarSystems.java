@@ -22,33 +22,28 @@ import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
-import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import net.romvoid95.api.space.AstroBuilder;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.prefab.ExoStar;
+import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.common.config.SConfigSystems;
-import net.romvoid95.core.ExoInfo;
 
 public class SolarSystems {
 
-	public static Star    yzCetiStar;
+	public static ExoStar yzCetiStar;
 	public static ExoStar wolf1061Star;
 	public static ExoStar trappist1Star;
 	public static ExoStar kepler1649star;
 
-	public static SolarSystem yzCeti;
-	public static SolarSystem wolf1061;
-	public static SolarSystem trappist1;
-	public static SolarSystem kepler1649;
+	public static ExoSystem yzCeti;
+	public static ExoSystem wolf1061;
+	public static ExoSystem trappist1;
+	public static ExoSystem kepler1649;
 
 	public static boolean buildyzCeti;
 	public static boolean buildwolf1061;
 	public static boolean buildtrappist1;
 	public static boolean buildkepler1649;
-
-	static AstroBuilder b = new AstroBuilder(ExoInfo.MODID);
 
 	public static void init () {
 		registerSolarSystems();
@@ -58,11 +53,13 @@ public class SolarSystems {
 		BodiesData data;
 
 		if (!SConfigSystems.disable_yzceti_system) {
-			yzCetiStar = b.buildExoStar("yzcetistar", 3058, 0.130D, 0.168D);
-			yzCeti     = Universe.buildSolarSystem("yzceti", "milky_way", yzPos(), "yzcetistar");
-			data       = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			yzCetiStar = Universe.buildExoStar("yzcetistar", 3058, 0.130D, 0.168D);
+			yzCeti     = Universe.buildSolarSystem("yzceti", yzPos(), yzCetiStar);
+			yzCeti.setHabitableZoneStart(80.0F);
+			yzCeti.setHabitableZoneEnd(120.0F);
+			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(yzCeti.getMainStar(), data);
-			b.registerSolarSystem(yzCeti);
+			Universe.registerSolarSystem(yzCeti);
 			buildyzCeti = true;
 		}
 		else {
@@ -70,11 +67,13 @@ public class SolarSystems {
 		}
 
 		if (!SConfigSystems.disable_wolf_system) {
-			wolf1061Star = b.buildExoStar("wolf1061star", 3342, 0.294D, 0.307D);
-			wolf1061     = b.buildSolarSystem("wolf1061", wolfPos(), wolf1061Star);
-			data         = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			wolf1061Star = Universe.buildExoStar("wolf1061star", 3342, 0.294D, 0.307D);
+			wolf1061     = Universe.buildSolarSystem("wolf1061", wolfPos(), wolf1061Star);
+			wolf1061.setHabitableZoneStart(50.0F);
+			wolf1061.setHabitableZoneEnd(100.0F);
+			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(wolf1061.getMainStar(), data);
-			b.registerSolarSystem(wolf1061);
+			Universe.registerSolarSystem(wolf1061);
 			buildwolf1061 = true;
 		}
 		else {
@@ -82,11 +81,13 @@ public class SolarSystems {
 		}
 
 		if (!SConfigSystems.disable_trap_system) {
-			trappist1Star = b.buildExoStar("trappist1star", 2511, 0.089D, 0.121D);
-			trappist1     = b.buildSolarSystem("trappist1", trapPos(), trappist1Star);
-			data          = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			trappist1Star = Universe.buildExoStar("trappist1star", 2511, 0.089D, 0.121D);
+			trappist1     = Universe.buildSolarSystem("trappist1", trapPos(), trappist1Star);
+			trappist1.setHabitableZoneStart(75.0F);
+			trappist1.setHabitableZoneEnd(115.0F);
+			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(trappist1.getMainStar(), data);
-			b.registerSolarSystem(trappist1);
+			Universe.registerSolarSystem(trappist1);
 			buildtrappist1 = true;
 		}
 		else {
@@ -94,11 +95,13 @@ public class SolarSystems {
 		}
 
 		if (!SConfigSystems.disable_k1649_system) {
-			kepler1649star = b.buildExoStar("kepler1649star", 2150, 0.02D, 0.230D);
-			kepler1649     = b.buildSolarSystem("kepler1649", k1649Pos(), kepler1649star);
-			data           = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
+			kepler1649star = Universe.buildExoStar("kepler1649star", 2150, 0.02D, 0.230D);
+			kepler1649     = Universe.buildSolarSystem("kepler1649", k1649Pos(), kepler1649star);
+			kepler1649.setHabitableZoneStart(75.0F);
+			kepler1649.setHabitableZoneEnd(115.0F);
+			data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.RED);
 			BodiesRegistry.registerBodyData(kepler1649.getMainStar(), data);
-			b.registerSolarSystem(kepler1649);
+			Universe.registerSolarSystem(kepler1649);
 			buildkepler1649 = true;
 		}
 		else {

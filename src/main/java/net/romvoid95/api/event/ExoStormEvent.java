@@ -3,7 +3,7 @@ package net.romvoid95.api.event;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import net.romvoid95.api.world.StormProvider;
+import net.romvoid95.api.world.weather.StormProvider;
 
 /**
  * Event is thrown when a StormProvider is set to execute

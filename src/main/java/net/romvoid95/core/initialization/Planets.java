@@ -18,7 +18,8 @@
 package net.romvoid95.core.initialization;
 
 import static micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas.*;
-import static net.romvoid95.api.space.PlanetConstants.*;
+import static net.romvoid95.api.space.PlanetConstants.AU.*;
+import static net.romvoid95.api.space.PlanetConstants.Orbit.*;
 import static net.romvoid95.common.config.SConfigDimensionID.*;
 import static net.romvoid95.common.config.SConfigSystems.*;
 import static net.romvoid95.core.initialization.SolarSystems.*;
@@ -29,7 +30,6 @@ import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
-import net.romvoid95.api.space.AstroBuilder;
 import net.romvoid95.api.space.ExoPlanet;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.objects.RelayStation;
@@ -67,8 +67,6 @@ public class Planets {
 
 	public static RelayStation station;
 
-	static AstroBuilder builder = new AstroBuilder("exoplanets");
-
 	public static void init () {
 
 		Planets.initPlanets();
@@ -81,7 +79,7 @@ public class Planets {
 
 		if (SolarSystems.buildyzCeti) {
 
-			yzcetib = Universe.createPlanet("yzcetib", yzCeti, 0.5F, CETI_B, CETI_B, yzceti_tier);
+			yzcetib = Universe.planet("yzcetib", yzCeti, 0.5F, CETI_B_AU, CETI_B_ORBIT, yzceti_tier);
 			Universe.setBiomes(yzcetib, ExoplanetBiomes.CETIB_BASE, ExoplanetBiomes.CETIB_DIRTY);
 			Universe.setExoPlanetData(yzcetib, 50.0f, 0.75f, 0.93f);
 			Universe.setNormalOrbit(yzcetib);
@@ -89,7 +87,7 @@ public class Planets {
 			Universe.setSurfaceData(yzcetib, 0.50, 21500L, ClassBody.SELENA);
 			Universe.setProvider(yzcetib, WorldProviderYzCetiB.class, id_yz_b);
 
-			yzcetic = Universe.createPlanet("yzcetic", yzCeti, 0.5F, CETI_C, CETI_C + 1, yzceti_tier);
+			yzcetic = Universe.planet("yzcetic", yzCeti, 0.5F, CETI_C_AU, CETI_C_ORBIT, yzceti_tier);
 			Universe.setBiomes(yzcetic, ExoplanetBiomes.CETIC_BASE, ExoplanetBiomes.CETIC_UNKNWON);
 			Universe.setExoPlanetData(yzcetic, 26.5f, 0.9f, 1.0f);
 			Universe.setNormalOrbit(yzcetic);
@@ -97,7 +95,7 @@ public class Planets {
 			Universe.setSurfaceData(yzcetic, 0.65, 26500L, ClassBody.SELENA);
 			Universe.setProvider(yzcetic, WorldProviderYzCetiC.class, id_yz_c);
 
-			yzcetid = Universe.createPlanet("yzcetid", yzCeti, 0.5F, CETI_D, CETI_D + 2, yzceti_tier);
+			yzcetid = Universe.planet("yzcetid", yzCeti, 0.5F, CETI_D_AU, CETI_D_ORBIT, yzceti_tier);
 			Universe.setBiomes(yzcetid, YzCetiDBiomes.yz_ceti_d);
 			Universe.setExoPlanetData(yzcetid, 5.0f, 1.14f, 1.05f);
 			Universe.setNormalOrbit(yzcetib);
@@ -109,7 +107,7 @@ public class Planets {
 
 		if (SolarSystems.buildtrappist1) {
 
-			trappistc = Universe.createPlanet("trappist1c", trappist1, 0.5F, TRAPPIST_C, TRAPPIST_C + 1, trap_tier);
+			trappistc = Universe.planet("trappist1c", trappist1, 0.5F, TRAPPIST_C_AU, TRAPPIST_C_ORBIT, trap_tier);
 			Universe.setBiomes(trappistc, ACBiome.ACSpace);
 			Universe.setExoPlanetData(trappistc, 5.0f, 1.14f, 1.05f);
 			Universe.setNormalOrbit(trappistc);
@@ -117,8 +115,7 @@ public class Planets {
 			Universe.setSurfaceData(trappistc, 0.75, 32500L, ClassBody.SELENA);
 			Universe.setProvider(trappistc, WorldProviderTrappist1C.class, id_trap_c);
 
-			trappistd = Universe
-					.createPlanet("trappist1d", trappist1, 0.5F, TRAPPIST_D, (float) (TRAPPIST_D + 1.5), trap_tier);
+			trappistd = Universe.planet("trappist1d", trappist1, 0.5F, TRAPPIST_D_AU, TRAPPIST_D_ORBIT, trap_tier);
 			Universe.setBiomes(trappistd, ACBiome.ACSpace);
 			Universe.setExoPlanetData(trappistd, 5.0f, 1.14f, 1.05f);
 			Universe.setNormalOrbit(trappistd);
@@ -126,7 +123,7 @@ public class Planets {
 			Universe.setSurfaceData(trappistd, 0.75, 32500L, ClassBody.OCEANIDE);
 			Universe.setProvider(trappistd, WorldProviderTrappist1D.class, id_trap_d);
 
-			trappiste = Universe.createPlanet("trappist1e", trappist1, 0.5F, TRAPPIST_E, TRAPPIST_E + 2, trap_tier);
+			trappiste = Universe.planet("trappist1e", trappist1, 0.5F, TRAPPIST_E_AU, TRAPPIST_E_ORBIT, trap_tier);
 			Universe.setBiomes(trappiste, ACBiome.ACSpace);
 			Universe.setExoPlanetData(trappiste, 5.0f, 1.14f, 1.05f);
 			Universe.setNormalOrbit(trappiste);
@@ -136,17 +133,13 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				trappistb = builder.buildUnreachablePlanet("trappist1b", trappist1, 3.254752F);
-				builder.setData(trappistb, ClassBody.SELENA, TRAPPIST_B, 0.45F, TRAPPIST_B, 0, 24000L);
+				trappistb = Universe.unreachable("trappist1b", trappist1, 3.254752F, TRAPPIST_B_AU, TRAPPIST_B_ORBIT);
 
-				trappistf = builder.buildUnreachablePlanet("trappist1f", SolarSystems.trappist1, 0.6451158F);
-				builder.setData(trappistf, ClassBody.SELENA, TRAPPIST_F, 0.45F, TRAPPIST_F, 0, 24000L);
+				trappistf = Universe.unreachable("trappist1f", trappist1, 0.6451158F, TRAPPIST_F_AU, TRAPPIST_F_ORBIT);
 
-				trappistg = builder.buildUnreachablePlanet("trappist1g", SolarSystems.trappist1, 0.6451158F);
-				builder.setData(trappistg, ClassBody.SELENA, TRAPPIST_G, 0.45F, TRAPPIST_G, 0, 24000L);
+				trappistg = Universe.unreachable("trappist1g", trappist1, 0.6451158F, TRAPPIST_G_AU, TRAPPIST_G_ORBIT);
 
-				trappisth = builder.buildUnreachablePlanet("trappist1h", SolarSystems.trappist1, 0.896365F);
-				builder.setData(trappisth, ClassBody.SELENA, TRAPPIST_H, 0.45F, TRAPPIST_H, 0, 24000L);
+				trappisth = Universe.unreachable("trappist1h", trappist1, 0.896365F, TRAPPIST_H_AU, TRAPPIST_H_ORBIT);
 			}
 		}
 
@@ -154,14 +147,11 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				wolf1061b = builder.buildUnreachablePlanet("wolf1061b", wolf1061, 2.9495497F);
-				builder.setData(wolf1061b, ClassBody.SELENA, WOLF_B, 0.45F, WOLF_B, 0, 24000L);
+				wolf1061b = Universe.unreachable("wolf1061b", wolf1061, 2.9495497F, WOLF_B_AU, WOLF_B_ORBIT);
 
-				wolf1061c = builder.buildUnreachablePlanet("wolf1061c", SolarSystems.wolf1061, 1.7264397F);
-				builder.setData(wolf1061c, ClassBody.SELENA, WOLF_C, 0.45F, WOLF_C, 0, 24000L);
+				wolf1061c = Universe.unreachable("wolf1061c", wolf1061, 1.7264397F, WOLF_C_AU, WOLF_C_ORBIT);
 
-				wolf1061d = builder.buildUnreachablePlanet("wolf1061d", SolarSystems.wolf1061, 7.132725F);
-				builder.setData(wolf1061d, ClassBody.SELENA, WOLF_D, 0.45F, WOLF_D, 0, 24000L);
+				wolf1061d = Universe.unreachable("wolf1061d", wolf1061, 7.132725F, WOLF_D_AU, WOLF_D_ORBIT);
 			}
 
 		}
@@ -170,11 +160,9 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				kepler1649c = builder.buildUnreachablePlanet("kepler1649c", kepler1649, 1.932375F);
-				builder.setData(kepler1649c, ClassBody.SELENA, KEPLER_C, 0.55F, KEPLER_C, 0, 24000L);
+				kepler1649c = Universe.unreachable("kepler1649c", kepler1649, 1.932375F, KEPLER_C_AU, KEPLER_C_ORBIT);
 
-				kepler1649b = builder.buildUnreachablePlanet("kepler1649b", kepler1649, 1.932375F);
-				builder.setData(kepler1649b, ClassBody.SELENA, KEPLER_B, 0.55F, KEPLER_B, 0, 24000L);
+				kepler1649b = Universe.unreachable("kepler1649b", kepler1649, 1.932375F, KEPLER_B_AU, KEPLER_B_ORBIT);
 			}
 
 		}

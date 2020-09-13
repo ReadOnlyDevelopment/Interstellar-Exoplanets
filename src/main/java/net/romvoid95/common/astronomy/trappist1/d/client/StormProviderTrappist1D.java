@@ -8,7 +8,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.romvoid95.api.world.ExoWorldProvider;
-import net.romvoid95.api.world.StormProvider;
+import net.romvoid95.api.world.weather.StormProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.common.utility.WorldUtils;
@@ -89,6 +89,6 @@ public class StormProviderTrappist1D extends StormProvider {
 
 	@Override
 	public boolean useGroundParticle () {
-		return true;
+		return false;
 	}
 }

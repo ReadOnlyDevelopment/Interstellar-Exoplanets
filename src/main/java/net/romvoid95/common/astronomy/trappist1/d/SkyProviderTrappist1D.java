@@ -67,4 +67,12 @@ public class SkyProviderTrappist1D extends SkyProviderBase {
 		return 0;
 	}
 
+	public boolean enableLargeSunAura () {
+		return false;
+	}
+
+	public boolean enableRenderPlanet () {
+		return false;
+	}
+
 }

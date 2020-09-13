@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.romvoid95.api.world.StormProvider;
+import net.romvoid95.api.world.weather.StormProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.common.utility.WorldUtils;
 import net.romvoid95.core.ExoInfo;

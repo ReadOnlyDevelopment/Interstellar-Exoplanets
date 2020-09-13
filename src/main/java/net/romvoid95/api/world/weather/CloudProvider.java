@@ -1,4 +1,4 @@
-package net.romvoid95.api.world;
+package net.romvoid95.api.world.weather;
 
 import org.lwjgl.opengl.GL11;
 
@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.api.world.ExoWorldProvider;
 import net.romvoid95.common.CommonUtil;
 
 @EventBusSubscriber

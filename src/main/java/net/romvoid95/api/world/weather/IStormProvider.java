@@ -1,8 +1,9 @@
-package net.romvoid95.api.world;
+package net.romvoid95.api.world.weather;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -40,8 +41,7 @@ public interface IStormProvider {
 	public Texture getStormTexture (World world, Biome biome);
 
 	public default void spawnParticleOnGround (World world, double pX, double pY, double pZ) {
-		//if (useGroundParticle())
-		//world.spawnParticle(EnumParticleTypes.WATER_SPLASH, pX, pY, pZ, 0.0D, 0.0D, 0.0D, new int[0]);
+		world.spawnParticle(EnumParticleTypes.DRIP_LAVA, pX, pY, pZ, 0.0D, 0.0D, 0.0D, new int[0]);
 	}
 
 	public default void playStormSound (World world, double x, double y, double z) {

@@ -5,8 +5,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.romvoid95.api.world.CloudProvider;
-import net.romvoid95.api.world.IStormProvider;
+import net.romvoid95.api.world.weather.CloudProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.core.ExoInfo;
@@ -15,8 +14,6 @@ import net.romvoid95.core.ExoInfo;
 public class CloudProviderTrappist1D extends CloudProvider {
 
 	private static final Texture CLOUDS = new Texture(ExoInfo.MODID, "textures/world/varda-clouds.png");
-
-	private IStormProvider stormProvider;
 
 	@Override
 	public float getMaxCloudSpeedDuringStorm () {

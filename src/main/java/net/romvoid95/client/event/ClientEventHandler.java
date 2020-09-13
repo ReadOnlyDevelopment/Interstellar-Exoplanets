@@ -8,7 +8,6 @@ import org.lwjgl.util.vector.Vector3f;
 import com.google.common.collect.ImmutableList;
 
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -25,14 +24,13 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.client.RGB;
+import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.client.gui.screen.GuiBeta;
 import net.romvoid95.client.model.ModelUtil;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.common.config.SConfigCore;
 import net.romvoid95.common.constants.ModelNames;
 import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.initialization.ExoFluids;
 import net.romvoid95.core.initialization.SolarSystems;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
@@ -62,20 +60,27 @@ public class ClientEventHandler {
 	@SubscribeEvent
 	public void onRingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
+		ExoSystem system;
+
 		if (renderEvent.celestialBody.equals(SolarSystems.yzCeti.getMainStar())) {
-			this.RingRender(renderEvent, SolarSystems.yzCeti, 80F, 120F);
+			system = SolarSystems.yzCeti;
+			this.RingRender(renderEvent, system);
 		}
 		if (renderEvent.celestialBody.equals(SolarSystems.wolf1061.getMainStar())) {
-			this.RingRender(renderEvent, SolarSystems.wolf1061, 50F, 100F);
+			system = SolarSystems.wolf1061;
+			this.RingRender(renderEvent, system);
 		}
 		if (renderEvent.celestialBody.equals(SolarSystems.kepler1649.getMainStar())) {
-			this.RingRender(renderEvent, SolarSystems.kepler1649, 75F, 115F);
+			system = SolarSystems.kepler1649;
+			this.RingRender(renderEvent, system);
 		}
 		if (renderEvent.celestialBody.equals(SolarSystems.trappist1.getMainStar())) {
-			this.RingRender(renderEvent, SolarSystems.trappist1, 75F, 115F);
+			system = SolarSystems.trappist1;
+			this.RingRender(renderEvent, system);
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onGuiOpen (GuiOpenEvent event) {
 		GuiScreen gui = event.getGui();
@@ -98,21 +103,8 @@ public class ClientEventHandler {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent()
-	public static void onRenderFogColor (EntityViewRenderEvent.FogColors event) {
-		RGB   color = new RGB(ExoFluids.pressurizedMaterial.getMaterialMapColor().colorValue);
-		float blue  = color.getBlue();
-		float red   = color.getRed();
-		float green = color.getGreen();
-		if (event.getEntity().isInsideOfMaterial(ExoFluids.pressurizedMaterial)) {
-			event.setRed(red);
-			event.setGreen(green);
-			event.setBlue(blue);
-		}
-	}
+	public void RingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, ExoSystem solarSystem) {
 
-	public void RingRender (CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, SolarSystem solarSystem, float start, float end) {
 		Vector3f mapPos = solarSystem.getMapPosition().toVector3f();
 
 		float xX = mapPos.x;
@@ -129,8 +121,8 @@ public class ClientEventHandler {
 		final float cos   = (float) Math.cos(theta);
 		final float sin   = (float) Math.sin(theta);
 
-		float min = start;
-		float max = end;
+		float min = solarSystem.getHabitableZoneStart();
+		float max = solarSystem.getHabitableZoneEnd();
 
 		float x = max;
 		float y = 0;

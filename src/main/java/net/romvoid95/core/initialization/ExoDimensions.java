@@ -1,15 +1,26 @@
 package net.romvoid95.core.initialization;
 
+import static net.romvoid95.common.config.SConfigDimensionID.*;
+
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.world.DimensionType;
+import net.romvoid95.common.astronomy.trappist1.c.WorldProviderTrappist1C;
+import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
+import net.romvoid95.common.astronomy.trappist1.e.WorldProviderTrappist1E;
+import net.romvoid95.common.astronomy.yzceti.b.WorldProviderYzCetiB;
+import net.romvoid95.common.astronomy.yzceti.c.WorldProviderYzCetiC;
+import net.romvoid95.common.astronomy.yzceti.d.WorldProviderYzCetiD;
 import net.romvoid95.common.config.SConfigDimensionID;
 
 public class ExoDimensions {
 
 	public static DimensionType TRAPPIST_1B;
-	public static DimensionType TRAPPIST_1C;
-	public static DimensionType TRAPPIST_1D;
-	public static DimensionType TRAPPIST_1E;
+	public static DimensionType TRAPPIST_1C = DimensionType
+			.register("Trappist 1 C", "_exo", id_trap_c, WorldProviderTrappist1C.class, false);
+	public static DimensionType TRAPPIST_1D = DimensionType
+			.register("Trappist 1 D", "_exo", id_trap_d, WorldProviderTrappist1D.class, false);
+	public static DimensionType TRAPPIST_1E = DimensionType
+			.register("Trappist 1 E", "_exo", id_trap_e, WorldProviderTrappist1E.class, false);
 	public static DimensionType TRAPPIST_1F;
 	public static DimensionType TRAPPIST_1G;
 	public static DimensionType TRAPPIST_1H;
@@ -18,9 +29,12 @@ public class ExoDimensions {
 	public static DimensionType WOLF1061_1C;
 	public static DimensionType WOLF1061_1D;
 
-	public static DimensionType YZCETIB;
-	public static DimensionType YZCETIC;
-	public static DimensionType YZCETID;
+	public static DimensionType YZCETIB = DimensionType
+			.register("YzCeti B", "_exo", id_yz_b, WorldProviderYzCetiB.class, false);
+	public static DimensionType YZCETIC = DimensionType
+			.register("YzCeti C", "_exo", id_yz_c, WorldProviderYzCetiC.class, false);
+	public static DimensionType YZCETID = DimensionType
+			.register("YzCeti D", "_exo", id_yz_d, WorldProviderYzCetiD.class, false);
 
 	public static DimensionType KEPLER1649_B;
 	public static DimensionType KEPLER1649_C;

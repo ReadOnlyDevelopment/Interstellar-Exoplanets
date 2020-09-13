@@ -10,7 +10,6 @@ import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
-import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
@@ -19,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.romvoid95.api.space.prefab.ExoStar;
+import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.client.Assets;
 import net.romvoid95.core.ExoInfo;
 
@@ -52,8 +52,8 @@ public class Universe {
 	 * @param exoStar the exo star
 	 * @return the solar system
 	 */
-	public static SolarSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
-		SolarSystem body = new SolarSystem(name, "milky_way");
+	public static ExoSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
+		ExoSystem body = new ExoSystem(name, "milky_way");
 		body.setMapPosition(new Vector3(pos));
 		exoStar.setParentSolarSystem(body);
 		body.setMainStar(exoStar);
@@ -61,28 +61,7 @@ public class Universe {
 		return body;
 	}
 
-	/**
-	 * builds solar system.
-	 *
-	 * @param name     the name
-	 * @param galaxy   the galaxy
-	 * @param pos      the pos
-	 * @param starname the starname
-	 * @param size     the size
-	 * @return the solar system
-	 */
-	public static SolarSystem buildSolarSystem (String name, String galaxy, Vector3 pos, String starname) {
-		SolarSystem body = new SolarSystem(name, galaxy);
-		body.setMapPosition(new Vector3(pos));
-		Star main = new Star(starname);
-		main.setParentSolarSystem(body);
-		main.setBodyIcon(Assets.getCelestialTexture(starname));
-
-		body.setMainStar(main);
-		return body;
-	}
-
-	public static ExoPlanet createPlanet (String name, SolarSystem solar, float phaseShift, float distance, float orbitTime, int tier) {
+	public static ExoPlanet planet (String name, SolarSystem solar, float phaseShift, float distance, float orbitTime, int tier) {
 		ExoPlanet planet = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(solar);
 		planet.setPhaseShift(phaseShift);
 		planet.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
@@ -93,6 +72,27 @@ public class Universe {
 		planet.setTierRequired(tier);
 
 		return planet;
+	}
+
+	/**
+	 * Builds unreachable planet.
+	 *
+	 * @param  planetName  the planet name
+	 * @param  solarSystem the solar system
+	 * @param  randomPhase the random phase
+	 * @param  au          the au
+	 * @return             the planet
+	 */
+	public static ExoPlanet unreachable (String planetName, SolarSystem solarSystem, float randomPhase, float distance, float orbitTime) {
+		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
+		unreachable.setBodyIcon(Assets.getCelestialTexture(planetName));
+		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
+		unreachable.setRelativeOrbitTime(orbitTime);
+		unreachable.setPhaseShift(randomPhase);
+		unreachable.setRelativeSize(1.0F);
+		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
+		GalaxyRegistry.registerPlanet(unreachable);
+		return unreachable;
 	}
 
 	public static Moon createMoon (String name, Planet planet, float phaseShift, float distance, float orbitTime, float size, int tier, int id, Class<? extends WorldProvider> provider) {

@@ -6,6 +6,7 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -31,9 +32,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoWorldProvider;
-import net.romvoid95.api.world.IClimateProvider;
-import net.romvoid95.api.world.ICloudProvider;
-import net.romvoid95.api.world.IStormProvider;
+import net.romvoid95.api.world.weather.IClimateProvider;
+import net.romvoid95.api.world.weather.ICloudProvider;
+import net.romvoid95.api.world.weather.IStormProvider;
 import net.romvoid95.common.astronomy.trappist1.d.biomes.BiomeOceananic;
 import net.romvoid95.common.astronomy.trappist1.d.biomes.Trap1D_Island;
 import net.romvoid95.common.astronomy.trappist1.d.client.CloudProviderTrappist1D;
@@ -74,7 +75,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 
 	@Override
 	public double getHorizon () {
-		return 150;
+		return 1;
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 
 	@Override
 	public float getGravity () {
-		return 0.015f;
+		return 0.00015f;
 	}
 
 	@Override
@@ -109,7 +110,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 
 	@SideOnly(Side.CLIENT)
 	public float getCloudHeight () {
-		return 168.0F;
+		return 250.0F;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -125,8 +126,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 		cp.createChunkGen_InXZ_List.clear();
 		cp.createChunkGen_InXYZ_List.clear();
 		cp.decorateChunkGen_List.clear();
-
-		WE_Biome.setBiomeMap(cp, 1.2D, 6, 1400.0D, 1.1D);
+		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
 		terrainGenerator.worldStoneBlock  = States.TRAP1D_STONE_2;
@@ -135,11 +135,17 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 		terrainGenerator.worldSeaGenMaxY  = 104;
 		cp.createChunkGen_List.add(terrainGenerator);
 
-		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
-		cp.biomesList.clear();
+		WE_CaveGen cg = new WE_CaveGen();
+		cg.replaceBlocksList.clear();
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		cg.lavaMaxY = 8;
+		cp.createChunkGen_List.add(cg);
 
-		WE_Biome.addBiomeToGeneration(cp, new Trap1D_Island());
-		WE_Biome.addBiomeToGeneration(cp, new BiomeOceananic());
+		cp.biomesList.clear();
+		WE_Biome.addBiomeToGeneration(cp, new BiomeOceananic(-4D, 4D));
+		WE_Biome.addBiomeToGeneration(cp, new Trap1D_Island(-1.0D, 1.0D));
+
+		WE_Biome.setBiomeMap(cp, 1.2D, 6, 1400.0D, 1.1D);
 	}
 
 	@Override
@@ -185,7 +191,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 
 	@Override
 	protected float getThermalValueMod () {
-		return 2.1F;
+		return 0.0F;
 	}
 
 	@Override
@@ -227,6 +233,11 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 	@Override
 	public boolean hasSunset () {
 		return false;
+	}
+
+	@Override
+	public double getYCoordinateToTeleport () {
+		return 800.0D;
 	}
 
 	@Override

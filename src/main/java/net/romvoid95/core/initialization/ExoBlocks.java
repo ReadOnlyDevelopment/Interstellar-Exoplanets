@@ -168,7 +168,6 @@ public class ExoBlocks {
 		register(log_b, "log_b");
 		register(log_b_other, "log_b_other");
 		register(log_b_rough, "log_b_rough");
-
 	}
 
 	public static void register (Block block, String blockName) {

@@ -1,4 +1,4 @@
-package net.romvoid95.api.world;
+package net.romvoid95.api.world.weather;
 
 import java.util.Random;
 
@@ -168,8 +168,13 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 							if (particleCount > 0 && storm.random.nextInt(3) < storm.rainSoundCounter++) {
 								storm.rainSoundCounter = 0;
 
-								storm.playStormSound(world, x, y, z);
-
+								if (y > (double) (blockpos.getY() + 1) && world.getPrecipitationHeight(blockpos)
+										.getY() > MathHelper.floor((float) blockpos.getY())) {
+									storm.playStormSound(world, x, y, z);
+								}
+								else {
+									storm.playStormSound(world, x, y, z);
+								}
 							}
 						}
 					}
@@ -233,15 +238,10 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		if (stormX == null || stormZ == null) {
 			return;
 		}
-		Entity entity = CommonUtil.getMinecraft().getRenderViewEntity();
-		float  height = world.provider.getCloudHeight();
-		if (entity.lastTickPosY > height) {
-			return;
-		}
 
 		OpenGL.pushMatrix();
-		//OpenGL.enableLight();
-
+		OpenGL.enableLight();
+		Entity        entity = CommonUtil.getMinecraft().getRenderViewEntity();
 		int           posX   = MathHelper.floor(entity.posX);
 		int           posY   = MathHelper.floor(entity.posY);
 		int           posZ   = MathHelper.floor(entity.posZ);
@@ -249,7 +249,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		GlStateManager.disableCull();
 		GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
 		GlStateManager.enableBlend();
-		//OpenGL.blendClear();
+		OpenGL.blendClear();
 		GlStateManager.enableColorMaterial();
 		GlStateManager
 				.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -354,7 +354,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		GlStateManager.enableCull();
 		GlStateManager.disableBlend();
 		GlStateManager.alphaFunc(516, 0.1F);
-		//OpenGL.disableLight();
+		OpenGL.disableLight();
 		OpenGL.popMatrix();
 	}
 

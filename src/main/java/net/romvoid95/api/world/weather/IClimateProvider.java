@@ -1,4 +1,4 @@
-package net.romvoid95.api.world;
+package net.romvoid95.api.world.weather;
 
 public interface IClimateProvider
 {

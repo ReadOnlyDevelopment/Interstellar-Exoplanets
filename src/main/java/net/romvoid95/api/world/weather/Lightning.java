@@ -1,4 +1,4 @@
-package net.romvoid95.common.astronomy.trappist1.d.client;
+package net.romvoid95.api.world.weather;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public class Lightning {
 		Tessellator   tessellator   = Tessellator.getInstance();
 		BufferBuilder worldrenderer = tessellator.getBuffer();
 		GlStateManager.disableTexture2D();
-		GlStateManager.disableLighting();
+		//GlStateManager.enableLighting();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 		double[] adouble  = new double[8];
@@ -111,6 +111,6 @@ public class Lightning {
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GlStateManager.disableBlend();
 		GlStateManager.enableTexture2D();
-		GlStateManager.enableLighting();
+		//GlStateManager.disableLighting();
 	}
 }
