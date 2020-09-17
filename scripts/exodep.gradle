@@ -29,8 +29,6 @@ repositories {
 
 dependencies {
 
-	compile "com.vdurmont:semver4j:${project.SemVer}"
-
 	compile "GC-1.12-dev:GalacticraftCore-Dev:${project.GCVersion}"
 	compile "GC-1.12-dev:Galacticraft-API:${project.GCVersion}"
 	compile "GC-1.12-dev:Galacticraft-Planets-Dev:${project.GCVersion}"

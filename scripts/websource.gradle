@@ -9,7 +9,6 @@ project.ext {
 	ACDev = "AsmodeusCore:3039768"
 	PlanetProgAPI = "PlanetProgressionAPI:3029929"
 	ExtraPlanetsAPI = "ExtraPlanetsAPI:3031723"
-	SemVer = "3.1.0"
 	Jei = "4.16.1.302"
 	
 }

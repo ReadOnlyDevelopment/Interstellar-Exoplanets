@@ -8,11 +8,11 @@
    "url": "https://www.curseforge.com/minecraft/mc-mods/interstellar-exoplanets",
    "updateUrl": "",
    "authorList": ["ROMVoid95", "craftablescience"],
-   "credits": "",
+   "credits": "Norzeteus150755: For creating & granting permission to use his textures",
    "logoFile": "assets/exoplanets/logo.png",
    "screenshots": [],
    "useDependencyInformation": true,
-   "requiredMods": ["galacticraftcore@[4.0.2.241,]", "asmodeuscore@[0.0.17,]"],
+   "requiredMods": ["galacticraftcore@[4.0.2.261,]", "asmodeuscore@[0.0.19,]"],
    "dependencies": ["mod_MinecraftForge","galacticraftcore", "asmodeuscore"]
  }
 ]
