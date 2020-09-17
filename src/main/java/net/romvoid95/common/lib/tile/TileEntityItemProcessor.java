@@ -29,8 +29,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.romvoid95.common.lib.interfaces.IFuelBurner;
-import net.romvoid95.common.utility.InventoryUtils;
-import net.romvoid95.common.utility.MathUtils;
+import net.romvoid95.common.utility.logic.MathUtils;
+import net.romvoid95.common.utility.mc.InventoryUtils;
 
 public abstract class TileEntityItemProcessor extends TileSidedInventoryExo implements ITickable {
     private static final int LONG_UPDATE_DELAY = 20;

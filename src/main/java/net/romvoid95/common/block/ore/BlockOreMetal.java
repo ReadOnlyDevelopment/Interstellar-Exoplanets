@@ -32,7 +32,7 @@ import net.romvoid95.api.crafting.RecipeBuilder;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.block.BlockExoOre;
 import net.romvoid95.common.lib.EnumMetal;
-import net.romvoid95.common.lib.interfaces.ICustomModel;
+import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.item.ItemBlockMetaSubtypes;
 import net.romvoid95.core.ExoInfo;
 

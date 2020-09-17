@@ -42,7 +42,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.romvoid95.common.block.machine.container.ContainerMetalFurnace;
 import net.romvoid95.common.lib.tile.TileSidedInventoryExo;
-import net.romvoid95.common.utility.StackHelper;
+import net.romvoid95.common.utility.mc.StackHelper;
 import net.romvoid95.core.ExoplanetsMod;
 
 public class TileEntityMetalFurnace extends TileSidedInventoryExo implements ITickable {

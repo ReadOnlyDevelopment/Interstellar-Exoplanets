@@ -31,7 +31,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.item.ItemStack;
-import net.romvoid95.common.utility.StackHelper;
+import net.romvoid95.common.utility.mc.StackHelper;
 
 public class AlloyRefineryRecipeObject {
 

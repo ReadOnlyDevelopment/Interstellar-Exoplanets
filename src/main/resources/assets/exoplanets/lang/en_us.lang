@@ -114,8 +114,6 @@ tile.exoplanets.control.name=Electronic Panel
 tile.exoplanets.datamonitor.name=Data Monitor
 tile.exoplanets.deco0.name=Grating
 tile.exoplanets.deco1.name=Stiped Grating
-tile.exoplanets.satellite_antenna.name=Satellite Antenna
-tile.exoplanets.stand_console.name=Console Stand
 tile.exoplanets.metaldecoration.name=Floor Grating
 
 tile.exoplanets.yzb_loose_sediment.name=(§eYz Ceti B§r) Loose Sediment
@@ -151,27 +149,8 @@ tile.exoplanets.trap1_dark_hot.name=§cVolcanic Cooled Chunk
 tile.exoplanets.trap1_bright_solid_hot.name=§cVolcanic Molten Chunk
 tile.exoplanets.trap1_solid_hot.name=§cVolcanic Ash Surface
 
-tile.exoplanets.hydraulic_bottom.name=Hydraulic Bottom Support
-tile.exoplanets.hydraulic_middle.name=Hydraulic Middle Beam
-tile.exoplanets.hydraulic_top.name=Hydraulic Top Support
-
 tile.exoplanets.metal_diagonal.name=Slanted Horizontal Block
 tile.exoplanets.roof_stairs.name=Slanted Roof
-
-tile.exoplanets.lever1.name=Lever Door Controller
-tile.exoplanets.lever2.name=Button Door Controller
-tile.exoplanets.lever3.name=Gui Door Controller
-
-tile.exoplanets.alarm_light.name=Alarm Lamp
-tile.exoplanets.alarm_light_lit.name=Alarm Lamp
-tile.exoplanets.wall_lamp.name=Wall Light
-tile.exoplanets.wall_lamp_lit.name=Wall Light
-tile.exoplanets.metal_lamp.name=MetalBlock Lamp
-tile.exoplanets.metal_lamp_lit.name=Meta Lamp Block
-tile.exoplanets.cellar_lamp.name=Cellar Lamp
-tile.exoplanets.cellar_lamp_lit.name=Cellar Lamp
-tile.exoplanets.inset_lamp.name=Inset Lamp
-tile.exoplanets.inset_lamp_lit.name=Inset Lamp
 
 tile.exoplanets.alloyblock0.name=Bronze Block
 tile.exoplanets.alloyblock1.name=Brass Block
@@ -203,7 +182,7 @@ tile.exoplanets.metalblock9.name=Zinc Block
 tile.exoplanets.alloyrefinery.name=Alloy Refinery
 tile.exoplanets.metalfurnace.name=Metal Furnace
 
-## ITEMS ## 2219-Aluminum Block
+## ITEMS ##
 item.exoplanets.alloydust0.name=Bronze Alloy Dust
 item.exoplanets.alloydust1.name=Brass Alloy Dust
 item.exoplanets.alloydust2.name=Steel Alloy Dust
@@ -270,13 +249,7 @@ item.exoplanets.geara2219.name=2219-Aluminum Alloy Sheet
 
 item.exoplanets.twopersonrocket.name=EXO1 Planetary Rocket
 
-
-## FLUIDS ##
-fluid.exoplanets.mantle.name=Molten Mantle
-exoplanets.mantle=Molten Mantle
-
 # JEI
-
 jei.exoplanets.recipe.alloy_refinery=Alloy Refinery (Exoplanets)
 jei.exoplanets.desc.metal_furnace=Ores cook more slowly and with more fuel, but will produce dust in addition to the usual ingot.
 jei.exoplanets.desc.alloy_refinery=WIP

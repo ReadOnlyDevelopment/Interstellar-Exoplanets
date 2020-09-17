@@ -30,7 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.common.utility.MCUtil;
+import net.romvoid95.common.utility.mc.MCUtil;
 
 public abstract class BlockExoTile extends Block implements ITileEntityProvider {
 

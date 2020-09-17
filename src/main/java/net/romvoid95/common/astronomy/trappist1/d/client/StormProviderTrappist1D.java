@@ -11,7 +11,7 @@ import net.romvoid95.api.world.ExoWorldProvider;
 import net.romvoid95.api.world.weather.StormProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
-import net.romvoid95.common.utility.WorldUtils;
+import net.romvoid95.common.utility.mc.WorldUtils;
 import net.romvoid95.core.ExoInfo;
 
 @EventBusSubscriber

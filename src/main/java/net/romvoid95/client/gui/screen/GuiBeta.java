@@ -40,7 +40,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.client.Assets;
 import net.romvoid95.client.RGB;
 import net.romvoid95.client.gui.screen.components.GuiDiscordButton;
-import net.romvoid95.common.utility.ReflectionHelper;
+import net.romvoid95.common.utility.java.ReflectionHelper;
 import net.romvoid95.core.ExoInfo;
 import net.romvoid95.core.ExoplanetsMod;
 

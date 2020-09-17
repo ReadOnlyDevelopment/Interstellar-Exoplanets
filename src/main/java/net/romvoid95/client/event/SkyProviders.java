@@ -43,7 +43,7 @@ import net.romvoid95.common.astronomy.yzceti.c.SkyProviderC;
 import net.romvoid95.common.astronomy.yzceti.c.WorldProviderYzCetiC;
 import net.romvoid95.common.astronomy.yzceti.d.SkyProviderD;
 import net.romvoid95.common.astronomy.yzceti.d.WorldProviderYzCetiD;
-import net.romvoid95.common.utility.MCUtil;
+import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.core.ExoInfo;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)

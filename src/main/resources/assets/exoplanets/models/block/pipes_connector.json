@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "exoplanets:blocks/pipes_connector_top",
-        "side": "exoplanets:blocks/pipes_connector"
-    }
-}

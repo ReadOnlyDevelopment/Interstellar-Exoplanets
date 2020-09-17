@@ -15,7 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.romvoid95.common.utility.BlockUtil;
+import net.romvoid95.common.utility.mc.BlockUtil;
 
 public abstract class ExoTree extends WorldGenAbstractTree {
 	

@@ -5,7 +5,7 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockStaticLiquid;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialLiquid;
-import net.romvoid95.common.utility.JavaUtility;
+import net.romvoid95.common.utility.java.JavaUtility;
 
 public class ExoMaterial extends MaterialLiquid {
 	private Class blockLiquidName        = BlockLiquid.class;

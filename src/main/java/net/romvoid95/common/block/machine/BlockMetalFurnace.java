@@ -28,8 +28,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.romvoid95.api.crafting.RecipeBuilder;
+import net.romvoid95.common.lib.block.IBlockTileEntity;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
-import net.romvoid95.common.lib.interfaces.IBlockTileEntity;
 import net.romvoid95.common.tile.TileEntityMetalFurnace;
 import net.romvoid95.core.ExoplanetsMod;
 

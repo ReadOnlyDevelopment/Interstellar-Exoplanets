@@ -29,7 +29,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.romvoid95.common.astronomy.ExoplanetBiomes;
-import net.romvoid95.common.utility.CachedEnum;
+import net.romvoid95.common.utility.mc.CachedEnum;
 
 public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
 

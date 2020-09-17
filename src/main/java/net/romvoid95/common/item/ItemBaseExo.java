@@ -21,7 +21,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.romvoid95.common.lib.interfaces.ICustomModel;
+import net.romvoid95.common.lib.block.ICustomModel;
 
 public abstract class ItemBaseExo extends Item implements IExoMetal, ICustomModel {
     @Override

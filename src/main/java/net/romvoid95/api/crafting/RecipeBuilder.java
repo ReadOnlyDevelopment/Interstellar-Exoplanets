@@ -42,7 +42,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.romvoid95.common.lib.interfaces.IRSerializer;
 import net.romvoid95.common.lib.interfaces.item.IEnumItems;
-import net.romvoid95.common.utility.JsonReceipe;
+import net.romvoid95.common.utility.system.JsonReceipe;
 
 public final class RecipeBuilder {
 

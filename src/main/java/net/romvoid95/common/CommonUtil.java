@@ -26,7 +26,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.romvoid95.client.Assets;
-import net.romvoid95.common.utility.BlockCompound;
+import net.romvoid95.common.utility.mc.BlockCompound;
 
 public class CommonUtil {
 

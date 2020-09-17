@@ -21,7 +21,6 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
@@ -37,8 +36,6 @@ public class ExoplanetsPlugin implements IModPlugin {
 
 	@Override
 	public void register (IModRegistry reg) {
-
-		doItemBlacklist(reg.getJeiHelpers().getIngredientBlacklist());
 
 		reg.handleRecipes(AlloyRefineryRecipe.class, AlloyRefineryRecipeWrapper::new, AlloyRefineryRecipeCategory.UID);
 		reg.addRecipes(AlloyRefineryRecipeMaker.getRecipes(), AlloyRefineryRecipeCategory.UID);
@@ -62,15 +59,6 @@ public class ExoplanetsPlugin implements IModPlugin {
 	public void registerCategories (IRecipeCategoryRegistration registry) {
 		IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 		registry.addRecipeCategories(new AlloyRefineryRecipeCategory(guiHelper));
-	}
-
-	private void doItemBlacklist (IIngredientBlacklist list) {
-
-		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.alarm_light));
-		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.cellar_lamp));
-		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.inset_lamp));
-		list.addIngredientToBlacklist(new ItemStack(ExoBlocks.wall_lamp));
-
 	}
 
 }

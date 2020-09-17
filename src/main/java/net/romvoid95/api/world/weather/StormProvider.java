@@ -353,6 +353,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		buffer.setTranslation(0.0D, 0.0D, 0.0D);
 		GlStateManager.enableCull();
 		GlStateManager.disableBlend();
+		GlStateManager.disableColorMaterial();
 		GlStateManager.alphaFunc(516, 0.1F);
 		OpenGL.disableLight();
 		OpenGL.popMatrix();

@@ -192,7 +192,7 @@ publishing {
 
 curseforge {
 	if (project.hasProperty('curseforge_project_id')) {
-		apiKey = findProperty('curse_auth') ?: 0
+		apiKey = secret.curse_auth
 		project {
 			id = project.curseforge_project_id
 			changelog = file("changelogs/CHANGELOG-"+project.ext.v+".md")

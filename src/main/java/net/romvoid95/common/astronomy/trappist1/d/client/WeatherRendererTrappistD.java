@@ -3,8 +3,6 @@ package net.romvoid95.common.astronomy.trappist1.d.client;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -17,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
 import net.romvoid95.client.Assets;
+import net.romvoid95.client.gui.rendering.OpenGL;
 
 public class WeatherRendererTrappistD extends IRenderHandler {
 	private final Random  random      = new Random();
@@ -50,15 +49,19 @@ public class WeatherRendererTrappistD extends IRenderHandler {
 					rendererUpdateCount = fieldRUC.getInt(mc.entityRenderer);
 				}
 				catch (Exception e) {}
-				mc.entityRenderer.enableLightmap();
 
+				OpenGL.pushMatrix();
+				OpenGL.enableLighting();
 				Tessellator   tessellator   = Tessellator.getInstance();
 				BufferBuilder worldrenderer = tessellator.getBuffer();
 				GlStateManager.disableCull();
-				GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+				GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
 				GlStateManager.enableBlend();
-				GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-				GlStateManager.alphaFunc(516, 0.1F);
+				OpenGL.blendClear();
+				GlStateManager.enableColorMaterial();
+				GlStateManager
+						.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+
 				double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) partialTicks;
 				double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) partialTicks;
 				double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks;
@@ -102,6 +105,7 @@ public class WeatherRendererTrappistD extends IRenderHandler {
 
 						if (y != ymax) {
 							this.random.setSeed((long) (x * x * 3121 + x * 45238971 ^ z * z * 418711 + z * 13761));
+							OpenGL.enableCullFace();
 
 							if (drawFlag != 0) {
 								if (drawFlag >= 0) {
@@ -149,8 +153,10 @@ public class WeatherRendererTrappistD extends IRenderHandler {
 				worldrenderer.setTranslation(0.0D, 0.0D, 0.0D);
 				GlStateManager.enableCull();
 				GlStateManager.disableBlend();
+				GlStateManager.disableColorMaterial();
 				GlStateManager.alphaFunc(516, 0.1F);
-				mc.entityRenderer.disableLightmap();
+				OpenGL.disableLight();
+				OpenGL.popMatrix();
 			}
 		}
 	}

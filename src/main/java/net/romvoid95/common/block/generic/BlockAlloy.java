@@ -35,8 +35,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.lib.EnumAlloy;
 import net.romvoid95.common.lib.block.BlockMetaSubtypes;
+import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
-import net.romvoid95.common.lib.interfaces.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IMetal;
 import net.romvoid95.core.ExoInfo;
 

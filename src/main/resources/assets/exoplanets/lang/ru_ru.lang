@@ -114,8 +114,6 @@ tile.exoplanets.control.name=Панель Электроники
 tile.exoplanets.datamonitor.name=Монитор информации 
 tile.exoplanets.deco0.name=Решетки
 tile.exoplanets.deco1.name=Полоса решетки
-tile.exoplanets.satellite_antenna.name=Спутниковая антенна
-tile.exoplanets.stand_console.name=Консольная подставка
 tile.exoplanets.metaldecoration.name=Решетка для пола
 
 tile.exoplanets.yzb_loose_sediment.name=(Â§eYz Ceti BÂ§r) Рыхлый осадок
@@ -151,27 +149,8 @@ tile.exoplanets.trap1_dark_hot.name=Â§cЗастывший вулканичес
 tile.exoplanets.trap1_bright_solid_hot.name=Â§cВулканический Расплавленный Осколок
 tile.exoplanets.trap1_solid_hot.name=Â§cПоверхность вулканического пепла
 
-tile.exoplanets.hydraulic_bottom.name=Гидравлическая нижняя опора
-tile.exoplanets.hydraulic_middle.name=Гидравлическая средняя балка
-tile.exoplanets.hydraulic_top.name=Гидравлическая верхняя опора
-
 tile.exoplanets.metal_diagonal.name=Наклонный горизонтальный блок
 tile.exoplanets.roof_stairs.name=Наклонная крыша
-
-tile.exoplanets.lever1.name=Управлатель дверей. Рычаг
-tile.exoplanets.lever2.name=Управлатель дверей. Кнопка
-tile.exoplanets.lever3.name=Управлатель дверей с Интерфейсом
-
-tile.exoplanets.alarm_light.name=Лампа Тревоги 
-tile.exoplanets.alarm_light_lit.name=Лампа Тревоги 
-tile.exoplanets.wall_lamp.name=Настенное освещение 
-tile.exoplanets.wall_lamp_lit.name=Настенное освещение 
-tile.exoplanets.metal_lamp.name=Металлическая лампа
-tile.exoplanets.metal_lamp_lit.name=Металлическая лампа
-tile.exoplanets.cellar_lamp.name=Подвальная лампа 
-tile.exoplanets.cellar_lamp_lit.name=Подвальная лампа 
-tile.exoplanets.inset_lamp.name=Вставная лампа
-tile.exoplanets.inset_lamp_lit.name=Вставная лампа
 
 tile.exoplanets.alloyblock0.name=Бронзовый Блок 
 tile.exoplanets.alloyblock1.name=латунный блок

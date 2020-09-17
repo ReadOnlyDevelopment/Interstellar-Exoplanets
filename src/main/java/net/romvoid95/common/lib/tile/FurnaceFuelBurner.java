@@ -23,7 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.romvoid95.common.lib.interfaces.IFuelBurner;
-import net.romvoid95.common.utility.EnumUtils;
+import net.romvoid95.common.utility.mc.EnumUtils;
 
 public class FurnaceFuelBurner implements IFuelBurner {
     private final BurnCondition burnCondition;

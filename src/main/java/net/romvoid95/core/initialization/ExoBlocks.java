@@ -25,28 +25,15 @@ import net.romvoid95.api.registry.ExoRegistry;
 import net.romvoid95.common.astronomy.kepler1649.KeplerBlocks;
 import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
-import net.romvoid95.common.block.decoration.BlockAlarmLight;
-import net.romvoid95.common.block.decoration.BlockCellarLamp;
-import net.romvoid95.common.block.decoration.BlockCustomHydraulic;
-import net.romvoid95.common.block.decoration.BlockCustomLever;
 import net.romvoid95.common.block.decoration.BlockElectronic;
-import net.romvoid95.common.block.decoration.BlockInsetLamp;
 import net.romvoid95.common.block.decoration.BlockMetalDecoration;
 import net.romvoid95.common.block.decoration.BlockMetalDiagonal;
-import net.romvoid95.common.block.decoration.BlockMetalLamp;
-import net.romvoid95.common.block.decoration.BlockSatelliteAntenna;
-import net.romvoid95.common.block.decoration.BlockStandConsole;
-import net.romvoid95.common.block.decoration.BlockWallLamp;
 import net.romvoid95.common.block.generic.BlockAlloy;
 import net.romvoid95.common.block.generic.BlockMetal;
 import net.romvoid95.common.block.machine.BlockAlloyRefinery;
 import net.romvoid95.common.block.machine.BlockMetalFurnace;
 import net.romvoid95.common.block.ore.BlockOreMetal;
-import net.romvoid95.common.block.stairs.BlockConcrete1Stairs;
-import net.romvoid95.common.block.stairs.BlockConcreteStairs;
 import net.romvoid95.common.block.stairs.BlockRoofStairs;
-import net.romvoid95.common.block.stairs.BlockSpaceQuartzMetalFrame;
-import net.romvoid95.common.block.stairs.BlockSpaceQuartzStair;
 import net.romvoid95.common.block.terrain.ExoLog;
 
 public class ExoBlocks {
@@ -65,13 +52,8 @@ public class ExoBlocks {
 	public static final Block                datamonitor          = new BlockElectronic();
 	public static final Block                com_relay            = new BlockElectronic();
 	public static final Block                control              = new BlockElectronic();
-	public static final Block                satellite_antenna    = new BlockSatelliteAntenna();
-	public static final Block                stand_console        = new BlockStandConsole();
 	public static final Block                metal_diagonal       = new BlockMetalDiagonal();
 	public static final Block                metal_slanted        = new BlockMetalDiagonal();
-	public static final Block                hydraulic_top        = new BlockCustomHydraulic();
-	public static final Block                hydraulic_bottom     = new BlockCustomHydraulic();
-	public static final Block                hydraulic_middle     = new BlockCustomHydraulic();
 	public static final BlockMetalDecoration metaldecoration      = new BlockMetalDecoration();
 
 	public static final Block metalOre   = new BlockOreMetal("metalore", true);
@@ -82,29 +64,7 @@ public class ExoBlocks {
 	public static final Block alloyRefinery = new BlockAlloyRefinery();
 	//public static final Block advAirlockControl = new BlockAdvAirLockController();
 
-	// LEVERS
-	public static final Block lever1 = new BlockCustomLever();
-	public static final Block lever2 = new BlockCustomLever();
-	public static final Block lever3 = new BlockCustomLever();
-
-	// STAIRS
-	public static final Block concrete_stairs         = new BlockConcreteStairs();
-	public static final Block concrete1_stairs        = new BlockConcrete1Stairs();
-	public static final Block space_quartz_stair      = new BlockSpaceQuartzStair();
-	public static final Block space_quartz_metalframe = new BlockSpaceQuartzMetalFrame();
-	public static final Block roof_stairs             = new BlockRoofStairs();
-
-	// LIGHTS
-	public static final Block alarm_light     = new BlockAlarmLight(false);
-	public static final Block alarm_light_lit = new BlockAlarmLight(true);
-	public static final Block wall_lamp       = new BlockWallLamp(false);
-	public static final Block wall_lamp_lit   = new BlockWallLamp(true);
-	public static final Block metal_lamp      = new BlockMetalLamp(false);
-	public static final Block metal_lamp_lit  = new BlockMetalLamp(true);
-	public static final Block cellar_lamp     = new BlockCellarLamp(false);
-	public static final Block cellar_lamp_lit = new BlockCellarLamp(true);
-	public static final Block inset_lamp      = new BlockInsetLamp(false);
-	public static final Block inset_lamp_lit  = new BlockInsetLamp(true);
+	public static final Block roof_stairs = new BlockRoofStairs();
 
 	// LOGS
 	public static final Block log_a_dark1 = new ExoLog();
@@ -137,30 +97,8 @@ public class ExoBlocks {
 		register(lower_raidcontroller, "lower_raidcontroller");
 		register(raidcluster, "raidcluster");
 		register(datamonitor, "datamonitor");
-		register(satellite_antenna, "satellite_antenna");
-		register(stand_console, "stand_console");
 		register(metal_diagonal, "metal_diagonal");
-		register(hydraulic_top, "hydraulic_top");
-		register(hydraulic_bottom, "hydraulic_bottom");
-		register(hydraulic_middle, "hydraulic_middle");
-		register(lever1, "lever1");
-		register(lever2, "lever2");
-		register(lever3, "lever3");
-		register(concrete_stairs, "concrete_stairs");
-		register(concrete1_stairs, "concrete1_stairs");
-		register(space_quartz_stair, "space_quartz_stair");
-		register(space_quartz_metalframe, "space_quartz_metalframe");
 		register(roof_stairs, "roof_stairs");
-		register(alarm_light, "alarm_light");
-		register(alarm_light_lit, "alarm_light_lit");
-		register(wall_lamp, "wall_lamp");
-		register(wall_lamp_lit, "wall_lamp_lit");
-		register(metal_lamp, "metal_lamp");
-		register(metal_lamp_lit, "metal_lamp_lit");
-		register(cellar_lamp, "cellar_lamp");
-		register(cellar_lamp_lit, "cellar_lamp_lit");
-		register(inset_lamp, "inset_lamp");
-		register(inset_lamp_lit, "inset_lamp_lit");
 		register(log_a_dark1, "log_a_dark1");
 		register(log_a, "log_a");
 		register(log_a_rough, "log_a_rough");

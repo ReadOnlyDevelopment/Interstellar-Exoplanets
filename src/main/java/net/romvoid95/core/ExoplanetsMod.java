@@ -25,7 +25,6 @@ import asmodeuscore.core.astronomy.BodiesRegistry;
 import mcp.MethodsReturnNonnullByDefault;
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -48,9 +47,10 @@ import net.romvoid95.common.astronomy.ExoplanetBiomes;
 import net.romvoid95.common.command.CommandDownloadUpdate;
 import net.romvoid95.common.config.InitConfigFiles;
 import net.romvoid95.common.event.GuiHandlerExo;
-import net.romvoid95.common.utility.MCUtil;
-import net.romvoid95.common.utility.TranslateUtil;
+import net.romvoid95.common.network.NetworkPipeline;
 import net.romvoid95.common.utility.logging.DebugLog;
+import net.romvoid95.common.utility.mc.MCUtil;
+import net.romvoid95.common.utility.system.TranslateUtil;
 import net.romvoid95.common.world.OverworldOreGen;
 import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.ExoFluids;
@@ -72,15 +72,15 @@ import net.romvoid95.core.initialization.SolarSystems;
 public class ExoplanetsMod implements IReadOnlyMod {
 
 	@Instance(ExoInfo.MODID)
-	public static ExoplanetsMod    instance;
-	public static ExoRegistry      REGISTRY  = new ExoRegistry();
-	public static TranslateUtil    translate = new TranslateUtil(ExoInfo.MODID);
-	public static Logging          logger    = new Logging();
-	public static DebugLog         debugger  = new DebugLog(logger.getLogger(), instance);
-	public static ResourceLocation location  = new ResourceLocation(ExoInfo.MODID);
+	public static ExoplanetsMod   instance;
+	public static ExoRegistry     REGISTRY  = new ExoRegistry();
+	public static TranslateUtil   translate = new TranslateUtil(ExoInfo.MODID);
+	public static Logging         logger    = new Logging();
+	public static DebugLog        debugger  = new DebugLog(logger.getLogger(), instance);
 	@SidedProxy(clientSide = "net.romvoid95.client.ExoClientProxy", serverSide = "net.rom.common.ExoCommonProxy")
-	public static ExoCommonProxy   proxy;
-	public static Random           random    = new Random();
+	public static ExoCommonProxy  proxy;
+	public static Random          random    = new Random();
+	public static NetworkPipeline network;
 
 	public static final boolean isDevBuild = MCUtil.isDeobfuscated();
 

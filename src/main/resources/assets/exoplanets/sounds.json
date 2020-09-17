@@ -1,33 +1,4 @@
 {
-    "space_door_open": {
-        "category": "block",
-        "sounds": [ "exoplanets:space_door_open" ]
-    },
-    
-    "space_door_close": {
-        "category": "block",
-        "sounds": [ "exoplanets:space_door_close" ]
-    },
-    
-    "customdoor_open": {
-        "category": "block",
-        "sounds": [ "exoplanets:customdoor_open" ]
-    },
-    
-    "customdoor_close": {
-        "category": "block",
-        "sounds": [ "exoplanets:customdoor_close" ]
-    },
-    
-    "hydoor_open": {
-        "category": "block",
-        "sounds": [ "exoplanets:hydoor_open" ]
-    },
-    
-    "hydoor_close": {
-        "category": "block",
-        "sounds": [ "exoplanets:hydoor_close" ]
-    },
     "thunder": {
         "category": "weather",
         "sounds": [ "exoplanets:thunder1", "exoplanets:thunder2", "exoplanets:thunder3" ]

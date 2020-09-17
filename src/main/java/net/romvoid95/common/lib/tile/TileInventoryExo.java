@@ -26,7 +26,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.romvoid95.common.lib.interfaces.IInventoryExo;
+import net.romvoid95.common.lib.block.IInventoryExo;
 
 public abstract class TileInventoryExo extends TileEntityExo implements IInventoryExo {
     protected NonNullList<ItemStack> inventory;

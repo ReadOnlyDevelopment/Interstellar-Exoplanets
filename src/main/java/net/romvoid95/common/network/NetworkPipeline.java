@@ -23,68 +23,85 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.romvoid95.common.network.packet.AbstractClientPacketHandler;
+import net.romvoid95.common.utility.mc.EntityUtil;
 
 @ChannelHandler.Sharable
 public class NetworkPipeline {
-    public final SimpleNetworkWrapper dispatcher;
-    protected int packetID;
+	public final SimpleNetworkWrapper dispatcher;
+	protected int                     packetID;
 
-    public NetworkPipeline() {
-        dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel("exoplanets");
-        packetID = 0;
-    }
-    
-    public void registerPackets() {
-    }
-    
-    public <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> reresearchMessageType) {
-        try {
-            Side side = AbstractClientPacketHandler.class.isAssignableFrom(messageHandler) ? Side.CLIENT : Side.SERVER;
-            dispatcher.registerMessage(messageHandler, reresearchMessageType, packetID++, side);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	public NetworkPipeline() {
+		dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel("exoplanets");
+		packetID   = 0;
+	}
 
-    public void sendToServer(IMessage message) {
-        dispatcher.sendToServer(message);
-    }
+	public void registerPackets () {}
 
-    public void sendToAllAround(IMessage message, NetworkRegistry.TargetPoint point) {
-        dispatcher.sendToAllAround(message, point);
-    }
+	public <REQ extends IMessage, REPLY extends IMessage> void registerPacket (Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> reresearchMessageType) {
+		try {
+			Side side = AbstractClientPacketHandler.class.isAssignableFrom(messageHandler) ? Side.CLIENT : Side.SERVER;
+			dispatcher.registerMessage(messageHandler, reresearchMessageType, packetID++, side);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public void sendToAllAround(IMessage message, int dimension, double x, double y, double z, double range) {
-        dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range));
-    }
+	public void sendToServer (IMessage message) {
+		dispatcher.sendToServer(message);
+	}
 
-    public void sendToAllAround(IMessage message, EntityPlayer player, double range) {
-        dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(player.world.provider.getDimension(), player.posX, player.posY, player.posZ, range));
-    }
+	public void sendToAllAround (IMessage message, NetworkRegistry.TargetPoint point) {
+		dispatcher.sendToAllAround(message, point);
+	}
 
-    public void sendToAllAround(IMessage message, TileEntity tileEntity, double range) {
-        dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(tileEntity.getWorld().provider.getDimension(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), range));
-    }
+	public void sendToAllAround (IMessage message, int dimension, double x, double y, double z, double range) {
+		dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range));
+	}
 
-    public void sendTo(IMessage message, EntityPlayerMP player) {
-        dispatcher.sendTo(message, player);
-    }
+	public void sendToAllAround (IMessage message, EntityPlayer player, double range) {
+		dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(player.world.provider
+				.getDimension(), player.posX, player.posY, player.posZ, range));
+	}
 
-    public void sendToDimention(IMessage message, int dimention) {
-        dispatcher.sendToDimension(message, dimention);
-    }
+	public void sendToAllAround (IMessage message, TileEntity tileEntity, double range) {
+		dispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(tileEntity.getWorld().provider
+				.getDimension(), tileEntity.getPos()
+						.getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), range));
+	}
 
-    public void sendToDimention(IMessage message, World world) {
-        sendToDimention(message, world.provider);
-    }
+	public void sendTo (IMessage message, EntityPlayerMP player) {
+		dispatcher.sendTo(message, player);
+	}
 
-    public void sendToDimention(IMessage message, WorldProvider worldProvider) {
-        dispatcher.sendToDimension(message, worldProvider.getDimension());
-    }
+	public void sendToDimention (IMessage message, int dimention) {
+		dispatcher.sendToDimension(message, dimention);
+	}
+
+	public void sendToDimention (IMessage message, World world) {
+		sendToDimention(message, world.provider);
+	}
+
+	public void sendToDimention (IMessage message, WorldProvider worldProvider) {
+		dispatcher.sendToDimension(message, worldProvider.getDimension());
+	}
+
+	/**
+	 * Send the {@link IMessage} to all the players currently watching that specific chunk.<br>
+	 * The {@link IMessageHandler} for the message type should be on the CLIENT side.
+	 *
+	 * @param message the message
+	 * @param chunk the chunk
+	 */
+	public void sendToPlayersWatchingChunk (IMessage message, Chunk chunk) {
+		EntityUtil.getPlayersWatchingChunk(chunk).forEach(p -> sendTo(message, p));
+	}
+
 }
