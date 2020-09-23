@@ -33,7 +33,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.common.BiomeDictionary;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.YzCetiDBiomes;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class BiomeGenYzCetiMoltenMantleSea extends YzCetiDBiomes {
 
@@ -41,8 +41,8 @@ public class BiomeGenYzCetiMoltenMantleSea extends YzCetiDBiomes {
 
 	public BiomeGenYzCetiMoltenMantleSea(BiomeProperties properties) {
 		super(properties);
-		this.topBlock    = States.YZD_SEDIMENTARYROCK;
-		this.fillerBlock = States.YZD_IGNEOUS;
+		this.topBlock    = ExoBlock.YZD_SEDIMENTARYROCK;
+		this.fillerBlock = ExoBlock.YZD_IGNEOUS;
 		this.spawnableMonsterList.clear();
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();

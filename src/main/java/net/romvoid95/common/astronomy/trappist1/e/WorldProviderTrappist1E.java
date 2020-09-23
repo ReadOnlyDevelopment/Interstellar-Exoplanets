@@ -43,23 +43,20 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
-import net.romvoid95.api.world.weather.IClimateProvider;
-import net.romvoid95.api.world.weather.ICloudProvider;
-import net.romvoid95.api.world.weather.IStormProvider;
 import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
 import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
 import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
 import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
 import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
 import net.romvoid95.common.lib.EnumMetal;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
-public class WorldProviderTrappist1E extends WE_WorldProviderSpace implements IClimateProvider {
+public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 
-	public static WE_ChunkProvider  chunk;
-	private StormProviderTrappist1E storm = new StormProviderTrappist1E();
+	public static WE_ChunkProvider chunk;
+	//private StormProviderTrappist1E storm = new StormProviderTrappist1E();
 
 	@Override
 	public boolean enableAdvancedThermalLevel () {
@@ -128,7 +125,7 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace implements IC
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
-		terrainGenerator.worldStoneBlock  = States.TRAP1E_STONE;
+		terrainGenerator.worldStoneBlock  = ExoBlock.get(TrappistBlocks.TrappistE.TRAP1E_STONE);
 		terrainGenerator.worldSeaGen      = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY  = 64;
@@ -268,15 +265,5 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace implements IC
 	@Override
 	public DimensionType getDimensionType () {
 		return ExoDimensions.TRAPPIST_1E;
-	}
-
-	@Override
-	public ICloudProvider getCloudProvider () {
-		return null;
-	}
-
-	@Override
-	public IStormProvider getStormProvider () {
-		return storm;
 	}
 }

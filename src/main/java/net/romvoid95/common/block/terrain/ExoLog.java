@@ -1,77 +1,49 @@
 package net.romvoid95.common.block.terrain;
 
-import net.minecraft.block.BlockRotatedPillar;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.romvoid95.client.CreativeExoTabs;
 
-public class ExoLog extends BlockRotatedPillar {
+public class ExoLog extends BlockLog {
 
 	public ExoLog() {
-		super(Material.WOOD);
-		setHarvestLevel("axe", 2);
-		setCreativeTab(CreativeExoTabs.TERRAIN_TAB);
-		setHardness(2.0F);
-		setSoundType(SoundType.WOOD);
-	}
-
-	@SuppressWarnings("unused")
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		int i = 4;
-		int j = 5;
-
-		if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
-			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
-				IBlockState iblockstate = worldIn.getBlockState(blockpos);
-
-				if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
-					iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
-				}
-			}
-		}
+		super();
+		this.setHarvestLevel("axe", 2);
+		this.setCreativeTab(CreativeExoTabs.TERRAIN_TAB);
+		this.setHardness(2.0F);
+		this.setSoundType(SoundType.WOOD);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY,
-			float hitZ, int meta, EntityLivingBase placer) {
-		return this.getStateFromMeta(meta).withProperty(AXIS, facing.getAxis());
+	public IBlockState getStateFromMeta (int meta) {
+		EnumAxis[] values = EnumAxis.values();
+		return this.getDefaultState().withProperty(LOG_AXIS, values[meta % values.length]);
 	}
 
 	@Override
-	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		switch (rot) {
-		case COUNTERCLOCKWISE_90:
-		case CLOCKWISE_90:
-
-			switch ((EnumFacing.Axis) state.getValue(AXIS)) {
-			case X:
-				return state.withProperty(AXIS, EnumFacing.Axis.Z);
-			case Z:
-				return state.withProperty(AXIS, EnumFacing.Axis.X);
-			default:
-				return state;
-			}
-
-		default:
-			return state;
-		}
+	public int getMetaFromState (IBlockState state) {
+		return state.getValue(LOG_AXIS).ordinal();
 	}
 
 	@Override
-	public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return true;
+	protected BlockStateContainer createBlockState () {
+		return new BlockStateContainer(this, LOG_AXIS);
 	}
 
 	@Override
-	public boolean isWood(IBlockAccess world, BlockPos pos) {
-		return true;
+	public int getFireSpreadSpeed (IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 5;
 	}
+
+	@Override
+	public int getFlammability (IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 5;
+	}
+
 }

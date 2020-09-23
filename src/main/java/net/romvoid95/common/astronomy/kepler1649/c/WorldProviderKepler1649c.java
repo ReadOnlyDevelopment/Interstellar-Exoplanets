@@ -20,7 +20,6 @@ package net.romvoid95.common.astronomy.kepler1649.c;
 import java.util.List;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
@@ -35,25 +34,29 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
-import net.romvoid95.common.astronomy.kepler1649.KeplerBlocks;
+import net.romvoid95.api.world.ExoWorldProvider;
+import net.romvoid95.common.astronomy.kepler1649.c.biomes.Dunes;
 import net.romvoid95.common.astronomy.kepler1649.c.biomes.TestHighMountains;
 import net.romvoid95.common.astronomy.kepler1649.c.biomes.TestPlains;
-import net.romvoid95.common.astronomy.kepler1649.c.worldgen.BiomeProviderKepler1649c;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
-public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
+public class WorldProviderKepler1649c extends ExoWorldProvider {
 
 	public static WE_ChunkProvider chunk;
+
+	@Override
+	public float getCloudHeight () {
+		return 63.0F;
+	}
 
 	@Override
 	public boolean enableAdvancedThermalLevel () {
@@ -86,6 +89,11 @@ public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
 	}
 
 	@Override
+	public float getGravity () {
+		return 0.015f;
+	}
+
+	@Override
 	public CelestialBody getCelestialBody () {
 		return Planets.kepler1649c;
 	}
@@ -105,15 +113,6 @@ public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
 		return null;
 	}
 
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer () {
-		if (super.getSkyRenderer() == null) {
-			this.setSkyRenderer(new SkyProviderKepler1649c());
-		}
-
-		return super.getSkyRenderer();
-	}
-
 	@Override
 	public void genSettings (WE_ChunkProvider cp) {
 		chunk = cp;
@@ -123,34 +122,32 @@ public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
 		cp.createChunkGen_InXYZ_List.clear();
 		cp.decorateChunkGen_List.clear();
 
-		WE_Biome.setBiomeMap(cp, 1.5D, 6, 1200.0D, 1.0D);
+		WE_Biome.setBiomeMap(cp, 5.5D, 3, 12000.0D, 0.5D);
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
-		terrainGenerator.worldStoneBlock  = KeplerBlocks.Kepler1649C.kepler_surface2.getDefaultState();
+		terrainGenerator.worldStoneBlock  = ExoBlock.TRAP1E_STONE;
 		terrainGenerator.worldSeaGen      = false;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY  = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 
-		//-// 
 		WE_CaveGen cg = new WE_CaveGen();
 		cg.replaceBlocksList.clear();
 		cg.addReplacingBlock(terrainGenerator.worldStoneBlock);
-		cg.lavaMaxY = 15;
 		cp.createChunkGen_List.add(cg);
-		//-// 
 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList.clear();
 		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
-		rg.lavaMaxY  = 15;
 		cp.createChunkGen_List.add(rg);
 
 		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
 		cp.biomesList.clear();
-		WE_Biome.addBiomeToGeneration(cp, new TestPlains(-0.0D, 0.0D));
-		WE_Biome.addBiomeToGeneration(cp, new TestHighMountains(-0.4D, 1.4D));
+
+		WE_Biome.addBiomeToGeneration(cp, new Dunes(0.0D, 0.0D));
+		WE_Biome.addBiomeToGeneration(cp, new TestPlains(-1.2D, 1.3D));
+		WE_Biome.addBiomeToGeneration(cp, new TestHighMountains(-5.4D, 5.4D));
 
 	}
 
@@ -246,10 +243,4 @@ public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
 	public DimensionType getDimensionType () {
 		return ExoDimensions.KEPLER1649_C;
 	}
-
-	@Override
-	public Class<? extends BiomeProvider> getBiomeProviderClass () {
-		return BiomeProviderKepler1649c.class;
-	}
-
 }

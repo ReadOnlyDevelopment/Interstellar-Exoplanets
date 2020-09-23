@@ -7,7 +7,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ExoTreeFlatTop extends ExoTree {
 
@@ -18,7 +18,7 @@ public class ExoTreeFlatTop extends ExoTree {
 		this.trunkSize = 10;
 		this.setMaxCrownSize(6);
 		this.setMinCrownSize(3);
-		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(States.TRAP1E_GRASS)));
+		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
 	}
 
 	@Override

@@ -27,13 +27,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.romvoid95.api.world.worldgen.feature.ExoSempervirens;
 import net.romvoid95.api.world.worldgen.feature.ExoTreeFlatTop;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class Trappist1_E_Plains extends WE_Biome {
 
 	public Trappist1_E_Plains() {
-		super(new BiomeProperties("trappist1e_plains"), new int[] { 0xd14715, 0x11FF66, 0x00FF00 });
+		super(new BiomeProperties("trappist1e_plains"), new int[] {
+			0xd14715, 0x11FF66, 0x00FF00
+		});
 
 		biomeMinValueOnMap      = -0.4D;
 		biomeMaxValueOnMap      = 0.0D;
@@ -49,8 +51,8 @@ public class Trappist1_E_Plains extends WE_Biome {
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(States.TRAP1E_DIRT, States.TRAP1E_STONE, -256, 0, -4, -1, true);
-		standardBiomeLayers.add(States.TRAP1E_GRASS, States.TRAP1E_DIRT, -256, 0, -256, 0, false);
+		standardBiomeLayers.add(ExoBlock.TRAP1E_DIRT, ExoBlock.TRAP1E_STONE, -256, 0, -4, -1, true);
+		standardBiomeLayers.add(ExoBlock.TRAP1E_GRASS, ExoBlock.TRAP1E_DIRT, -256, 0, -256, 0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 
@@ -63,7 +65,7 @@ public class Trappist1_E_Plains extends WE_Biome {
 		BlockPos pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 
 		boolean cangen = true;
-		Block   log    = ExoBlocks.log_a;
+		Block   log    = ExoBlocks.log_b;
 		Block   leaves = Blocks.LEAVES2;
 
 		for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
@@ -71,7 +73,7 @@ public class Trappist1_E_Plains extends WE_Biome {
 				cangen = false;
 
 		if (!world.isAreaLoaded(pos, 16, false))
-			if (cangen && world.getBlockState(pos.down()) == States.TRAP1E_GRASS) {
+			if (cangen && world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS) {
 				switch (rand.nextInt(2)) {
 				case 0:
 					new ExoSempervirens(log, leaves).generate(world, rand, pos);
@@ -89,11 +91,11 @@ public class Trappist1_E_Plains extends WE_Biome {
 
 			cangen = true;
 			for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-				if (world.isAirBlock(pos1) || world.getBlockState(pos1) == States.TRAP1E_GRASS)
+				if (world.isAirBlock(pos1) || world.getBlockState(pos1) == ExoBlock.TRAP1E_GRASS)
 					cangen = false;
 
 			if (!world.isAreaLoaded(pos, 16, false))
-				if (cangen && world.getBlockState(pos.down()) == States.TRAP1E_GRASS) {
+				if (cangen && world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS) {
 					switch (rand.nextInt(2)) {
 					case 0:
 						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
@@ -111,7 +113,7 @@ public class Trappist1_E_Plains extends WE_Biome {
 			randPosZ = z + rand.nextInt(16) + 8;
 			pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 
-			if (world.getBlockState(pos.down()) == States.TRAP1E_GRASS)
+			if (world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS)
 				world.setBlockState(pos, Blocks.DEADBUSH.getDefaultState());
 		}
 	}

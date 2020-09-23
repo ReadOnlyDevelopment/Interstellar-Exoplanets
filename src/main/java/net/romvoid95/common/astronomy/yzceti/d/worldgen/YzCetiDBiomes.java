@@ -31,7 +31,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.d.BiomeDecoratorOther;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.biomes.BiomeGenYzCetiD;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class YzCetiDBiomes extends BiomeGenBaseGC {
 
@@ -75,7 +75,7 @@ public class YzCetiDBiomes extends BiomeGenBaseGC {
 					if (j == -1) {
 						if (k <= 0) {
 							iblockstate  = null;
-							iblockstate1 = States.YZD_SEDIMENTARYROCK;
+							iblockstate1 = ExoBlock.YZD_SEDIMENTARYROCK;
 						}
 						else if (j1 >= 63 - 4 && j1 <= 63 + 1) {
 							iblockstate  = this.topBlock;
@@ -98,8 +98,8 @@ public class YzCetiDBiomes extends BiomeGenBaseGC {
 						}
 						else if (j1 < 63 - 7 - k) {
 							iblockstate  = null;
-							iblockstate1 = States.YZD_SEDIMENTARYROCK;
-							chunk.setBlockState(i1, j1, l, States.YZD_GRAVEL);
+							iblockstate1 = ExoBlock.YZD_SEDIMENTARYROCK;
+							chunk.setBlockState(i1, j1, l, ExoBlock.YZD_GRAVEL);
 						}
 						else {
 							chunk.setBlockState(i1, j1, l, iblockstate1);

@@ -32,19 +32,19 @@ import net.romvoid95.common.world.chunk.ExoChunkProviderMultiSpace;
 import net.romvoid95.common.world.mapgen.MapGenBaseMeta;
 import net.romvoid95.common.world.mapgen.MapGenExoCave;
 import net.romvoid95.common.world.mapgen.MapGenExoRavinGen;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
 
 	private final BiomeDecoratorYzCetiD cetiDBiomeDecorator = new BiomeDecoratorYzCetiD();
 	private final MapGenExoRavinGen     ravineGenerator     = new MapGenExoRavinGen();
-	private final MapGenExoCave         caveGenerator       = new MapGenExoCave(States.YZD_SEDIMENTARYROCK, Blocks.LAVA
+	private final MapGenExoCave         caveGenerator       = new MapGenExoCave(ExoBlock.YZD_SEDIMENTARYROCK, Blocks.LAVA
 			.getDefaultState(), Sets
 					.newHashSet(YzCetiBlocks.YzCetiD.YZD_SEDIMENTARYROCK, YzCetiBlocks.YzCetiD.YZD_IGNEOUS));
 
 	public ChunkProviderYzCetiD(World par1World, long seed, boolean mapFeaturesEnabled) {
 		super(par1World, seed, mapFeaturesEnabled);
-		this.stoneBlock = States.YZD_SEDIMENTARYROCK;
+		this.stoneBlock = ExoBlock.YZD_SEDIMENTARYROCK;
 		this.waterBlock = Blocks.WATER.getDefaultState();
 	}
 

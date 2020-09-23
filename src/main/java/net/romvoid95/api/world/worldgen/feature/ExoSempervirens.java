@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ExoSempervirens extends ExoTree {
 
@@ -17,7 +17,7 @@ public class ExoSempervirens extends ExoTree {
 		this.setLogBlock(log.withRotation(log.getDefaultState(), Rotation.CLOCKWISE_90));
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
-		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(States.TRAP1E_GRASS)));
+		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
 	}
 
 	@Override

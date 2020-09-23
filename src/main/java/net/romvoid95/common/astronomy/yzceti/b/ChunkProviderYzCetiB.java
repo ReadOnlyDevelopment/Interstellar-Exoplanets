@@ -40,11 +40,11 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.romvoid95.common.world.mapgen.MapGenExoCaveGen;
 import net.romvoid95.common.world.mapgen.MapGenExoRavinGen;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
-	public static final IBlockState BLOCK_FILL = States.YZB_METAMORPHIC;
+	public static final IBlockState BLOCK_FILL = ExoBlock.YZB_METAMORPHIC;
 
 	public static final double CHUNK_HEIGHT = 85.0D;
 	public static final int    SEA_LEVEL    = 15;
@@ -66,7 +66,7 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private final double[]          terrainCalcs;
 	private final float[]           parabolicField;
 	private double[]                stoneNoise      = new double[256];
-	private MapGenExoCaveGen        caveGenerator   = new MapGenExoCaveGen(States.YZB_LOOSE_SEDIMENT
+	private MapGenExoCaveGen        caveGenerator   = new MapGenExoCaveGen(ExoBlock.YZB_LOOSE_SEDIMENT
 			.getBlock(), 0, 1, 2);
 	private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
 	private Biome[]                 biomesForGeneration;

@@ -38,7 +38,6 @@ import net.romvoid95.client.event.SkyProviders;
 import net.romvoid95.client.model.RocketModelLoader;
 import net.romvoid95.client.render.RocketRenderer;
 import net.romvoid95.common.ExoCommonProxy;
-import net.romvoid95.common.astronomy.trappist1.d.client.TickHandlerClientTrappistD;
 import net.romvoid95.common.entity.EntityTwoPlayerRocket;
 import net.romvoid95.common.utility.mc.FluidUtility;
 import net.romvoid95.common.version.VersionChecker;
@@ -71,7 +70,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	public void init (ExoRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
 		register_event(new SkyProviders());
-		register_event(new TickHandlerClientTrappistD());
+		//register_event(new TickHandlerClientTrappistD());
 		VersionChecker.init();
 		registry.clientInit(event);
 	}

@@ -6,7 +6,7 @@ project.ext {
 	
 	GCBuild = "261"
 	GCVersion = "1.12.2-4.0.2.${GCBuild}"
-	ACDev = "AsmodeusCore:3039768"
+	ACDev = "AsmodeusCore:3063161"
 	PlanetProgAPI = "PlanetProgressionAPI:3029929"
 	ExtraPlanetsAPI = "ExtraPlanetsAPI:3031723"
 	Jei = "4.16.1.302"

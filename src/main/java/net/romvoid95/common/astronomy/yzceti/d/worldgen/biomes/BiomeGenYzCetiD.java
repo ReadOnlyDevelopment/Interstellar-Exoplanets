@@ -20,14 +20,14 @@ package net.romvoid95.common.astronomy.yzceti.d.worldgen.biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.YzCetiDBiomes;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class BiomeGenYzCetiD extends YzCetiDBiomes {
 
 	public BiomeGenYzCetiD(BiomeProperties properties) {
 		super(properties);
-		this.topBlock    = States.YZD_SEDIMENTARYROCK;
-		this.fillerBlock = States.YZD_METAMORPHIC;
+		this.topBlock    = ExoBlock.YZD_SEDIMENTARYROCK;
+		this.fillerBlock = ExoBlock.YZD_METAMORPHIC;
 		this.spawnableMonsterList.clear();
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();

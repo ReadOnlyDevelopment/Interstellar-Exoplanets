@@ -22,8 +22,9 @@ buildscript {
 
 plugins {
 	id 'com.matthewprenger.cursegradle' version '1.4.0'
-	id "io.freefair.lombok" version "2.9.5"
-	id "maven-publish"
+	id 'com.github.spotbugs' version '1.6.9'
+	id 'io.freefair.lombok' version '2.9.5'
+	id 'maven-publish'
 	id 'jacoco'
 }
 
@@ -97,28 +98,20 @@ processResources {
 
 	inputs.property "version", project.version
 	inputs.property "mcversion", project.minecraft.version
-
 	from(sourceSets.main.resources.srcDirs) {
-
 		include 'mcmod.info'
 		expand 'version':project.version, 'mcversion':project.minecraft.version
 	}
-
 	from(sourceSets.main.resources.srcDirs) {
-
 		exclude 'mcmod.info'
 	}
-
 	from 'LICENSE'
 }
 
 //Shuts up javadoc failures
 if (JavaVersion.current().isJava8Compatible()) {
-
 	allprojects {
-
 		tasks.withType(Javadoc) {
-
 			options.addStringOption('Xdoclint:none', '-quiet')
 		}
 	}

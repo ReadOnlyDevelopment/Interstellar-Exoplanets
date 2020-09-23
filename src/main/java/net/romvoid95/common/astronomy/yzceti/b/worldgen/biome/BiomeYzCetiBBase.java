@@ -28,16 +28,16 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.romvoid95.common.astronomy.yzceti.b.worldgen.BiomeDecoratorYzCetiB;
 import net.romvoid95.common.world.biome.BiomeSpace;
 import net.romvoid95.common.world.helpers.EnumBiomeType;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.Planets;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
 
-	protected static final IBlockState STONE   = States.YZB_METAMORPHIC;
+	protected static final IBlockState STONE   = ExoBlock.YZB_METAMORPHIC;
 	protected static final IBlockState AIR     = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState GRAVEL  = States.YZB_IGNEOUS;
-	protected static final IBlockState DIRT    = States.YZB_METAMORPHIC;
+	protected static final IBlockState GRAVEL  = ExoBlock.YZB_IGNEOUS;
+	protected static final IBlockState DIRT    = ExoBlock.YZB_METAMORPHIC;
 	protected static final IBlockState ICE     = Blocks.PACKED_ICE.getDefaultState();
 	protected static final IBlockState WATER   = Blocks.WATER.getDefaultState();
 
@@ -85,7 +85,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						j = -1;
 					}
-					else if (iblockstate2.getBlock() == States.YZB_METAMORPHIC) {
+					else if (iblockstate2.getBlock() == ExoBlock.YZB_METAMORPHIC) {
 						if (j == -1) {
 							if (k <= 0) {
 								topState  = AIR;

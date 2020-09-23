@@ -29,15 +29,15 @@ import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.c.worldgen.BiomeDecoratorYzCetiC;
 import net.romvoid95.common.world.biome.BiomeSpace;
 import net.romvoid95.common.world.helpers.EnumBiomeType;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.Planets;
 
 public class BiomeYzCetiCBase extends BiomeSpace {
 
-	protected static final IBlockState STONE   = States.YZC_METAMORPHIC;
+	protected static final IBlockState STONE   = ExoBlock.YZC_METAMORPHIC;
 	protected static final IBlockState AIR     = Blocks.AIR.getDefaultState();
 	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState DIRT    = States.YZC_LOOSE_SEDIMENT;
+	protected static final IBlockState DIRT    = ExoBlock.YZC_LOOSE_SEDIMENT;
 	protected static final IBlockState ICE     = Blocks.ICE.getDefaultState();
 	protected static final IBlockState WATER   = Blocks.WATER.getDefaultState();
 

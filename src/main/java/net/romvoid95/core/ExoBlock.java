@@ -1,10 +1,15 @@
 package net.romvoid95.core;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 
-public class States {
+public class ExoBlock {
+
+	public static IBlockState get (Block block) {
+		return block.getDefaultState();
+	}
 
 	public static IBlockState HOT_GROUND_1 = TrappistBlocks.SharedTerrain.HOT_GROUND_1.getDefaultState();
 	public static IBlockState HOT_GROUND_2 = TrappistBlocks.SharedTerrain.HOT_GROUND_2.getDefaultState();

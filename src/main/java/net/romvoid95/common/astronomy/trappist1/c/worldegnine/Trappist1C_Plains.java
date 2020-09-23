@@ -20,7 +20,7 @@ package net.romvoid95.common.astronomy.trappist1.c.worldegnine;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class Trappist1C_Plains extends WE_Biome {
 
@@ -41,7 +41,7 @@ public class Trappist1C_Plains extends WE_Biome {
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(States.HOT_GROUND_1, States.TRAP1C_DIRT_1, -256, 35, -256, 0, false);
+		standardBiomeLayers.add(ExoBlock.HOT_GROUND_1, ExoBlock.TRAP1C_DIRT_1, -256, 35, -256, 0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 

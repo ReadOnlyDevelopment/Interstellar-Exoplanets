@@ -8,14 +8,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ExoTreeWillow extends ExoTree {
 
 	public ExoTreeWillow() {
 		super();
 		this.setLogBlock(Blocks.LOG.getDefaultState()).setLeavesBlock(Blocks.LEAVES.getDefaultState());
-		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(States.TRAP1E_GRASS)));
+		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
 	}
 
 	@Override

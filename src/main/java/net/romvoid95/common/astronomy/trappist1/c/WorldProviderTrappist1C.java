@@ -46,7 +46,7 @@ import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_River;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
@@ -106,7 +106,7 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 		WE_Biome.setBiomeMap(cp, 2.6D, 4, 1000.0D, 1.0D);
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
-		terrainGenerator.worldStoneBlock  = States.TRAP1C_TOP;
+		terrainGenerator.worldStoneBlock  = ExoBlock.TRAP1C_TOP;
 		terrainGenerator.worldSeaGen      = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.PACKED_ICE.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY  = 64;
@@ -128,8 +128,8 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 		cp.createChunkGen_List.add(rg);
 
 		WE_OreGen standardOres = new WE_OreGen();
-		standardOres.add(States.HOT_GROUND_2, States.TRAP1C_TOP, 32, 64, 250, 25);
-		standardOres.add(States.HOT_GROUND_1, States.TRAP1C_TOP, 16, 64, 250, 20);
+		standardOres.add(ExoBlock.HOT_GROUND_2, ExoBlock.TRAP1C_TOP, 32, 64, 250, 25);
+		standardOres.add(ExoBlock.HOT_GROUND_1, ExoBlock.TRAP1C_TOP, 16, 64, 250, 20);
 		cp.decorateChunkGen_List.add(standardOres);
 
 		((WE_ChunkProviderSpace) cp).worldGenerators.clear();

@@ -18,7 +18,7 @@
 package net.romvoid95.common.astronomy.yzceti.b.worldgen.biome;
 
 import net.romvoid95.common.world.helpers.EnumBiomeType;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class BiomeYzCetiBDirty extends BiomeYzCetiBBase {
 
@@ -33,8 +33,8 @@ public class BiomeYzCetiBDirty extends BiomeYzCetiBBase {
 		this.setTemp(2F);
 		this.setBiomeHeight(66);
 		this.setBiomeType(EnumBiomeType.ABANDONED);
-		this.topBlock    = States.YZB_LOOSE_SEDIMENT;
-		this.fillerBlock = States.YZB_SEDIMENTARYROCK;
-		this.stoneBlock  = States.YZB_METAMORPHIC.getBlock();
+		this.topBlock    = ExoBlock.YZB_LOOSE_SEDIMENT;
+		this.fillerBlock = ExoBlock.YZB_SEDIMENTARYROCK;
+		this.stoneBlock  = ExoBlock.YZB_METAMORPHIC.getBlock();
 	}
 }

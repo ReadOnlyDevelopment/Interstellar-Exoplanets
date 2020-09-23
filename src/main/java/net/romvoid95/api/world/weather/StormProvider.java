@@ -198,9 +198,9 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 					Entity entity = (Entity) o;
 
 					if (this.apply(entity)) {
-						entity.motionZ      += 0.03F;
-						entity.motionY      += MathHelper.sin(world.getWorldTime() * 0.4F) * 0.1F;
-						entity.fallDistance  = 0F;
+						//entity.motionZ      += 0.03F;
+						//entity.motionY      += MathHelper.sin(world.getWorldTime() * 0.4F) * 0.1F;
+						entity.fallDistance = 0F;
 					}
 				}
 			}

@@ -39,7 +39,7 @@ import net.romvoid95.common.astronomy.trappist1.d.biomes.BiomeOceananic;
 import net.romvoid95.common.astronomy.trappist1.d.biomes.Trap1D_Island;
 import net.romvoid95.common.astronomy.trappist1.d.client.CloudProviderTrappist1D;
 import net.romvoid95.common.astronomy.trappist1.d.client.StormProviderTrappist1D;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.ExoFluids;
 import net.romvoid95.core.initialization.Planets;
@@ -129,7 +129,7 @@ public class WorldProviderTrappist1D extends ExoWorldProvider implements IWeathe
 		((WE_ChunkProviderSpace) cp).worldGenerators.clear();
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator();
-		terrainGenerator.worldStoneBlock  = States.TRAP1D_STONE_2;
+		terrainGenerator.worldStoneBlock  = ExoBlock.TRAP1D_STONE_2;
 		terrainGenerator.worldSeaGen      = true;
 		terrainGenerator.worldSeaGenBlock = ExoFluids.PRESSURED_WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY  = 104;

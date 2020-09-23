@@ -23,7 +23,7 @@ import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class Trappist1_E_Mountains extends WE_Biome {
 
@@ -43,8 +43,8 @@ public class Trappist1_E_Mountains extends WE_Biome {
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(States.TRAP1E_DIRT, States.TRAP1E_STONE, -256, 0, -4, -1, true);
-		standardBiomeLayers.add(States.TRAP1E_GRASS, States.TRAP1E_DIRT, -256, 0, -256, 0, false);
+		standardBiomeLayers.add(ExoBlock.TRAP1E_DIRT, ExoBlock.TRAP1E_STONE, -256, 0, -4, -1, true);
+		standardBiomeLayers.add(ExoBlock.TRAP1E_GRASS, ExoBlock.TRAP1E_DIRT, -256, 0, -256, 0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 

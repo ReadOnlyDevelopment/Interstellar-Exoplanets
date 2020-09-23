@@ -41,11 +41,11 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.world.mapgen.MapGenExoCaveGen;
 import net.romvoid95.common.world.mapgen.MapGenExoRavinGen;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class ChunkProviderYzCetiC extends ChunkProviderBase {
 
-	public static final IBlockState BLOCK_FILL = States.YZC_METAMORPHIC;
+	public static final IBlockState BLOCK_FILL = ExoBlock.YZC_METAMORPHIC;
 
 	public static final double CHUNK_HEIGHT = 85.0D;
 	public static final int    SEA_LEVEL    = 15;

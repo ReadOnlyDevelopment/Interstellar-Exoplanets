@@ -6,7 +6,7 @@ import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.romvoid95.core.States;
+import net.romvoid95.core.ExoBlock;
 
 public class BiomeOceananic extends WE_Biome {
 
@@ -27,8 +27,8 @@ public class BiomeOceananic extends WE_Biome {
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(States.TRAP1D_OCEANFLOOR, 50, 0, 31, 0, true);
-		standardBiomeLayers.add(States.TRAP1D_DIAMOND, 30, 0, 2, 0, true);
+		standardBiomeLayers.add(ExoBlock.TRAP1D_OCEANFLOOR, 50, 0, 31, 0, true);
+		standardBiomeLayers.add(ExoBlock.TRAP1D_DIAMOND, 30, 0, 2, 0, true);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}

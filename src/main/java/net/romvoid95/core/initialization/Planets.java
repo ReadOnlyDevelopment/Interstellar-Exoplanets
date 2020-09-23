@@ -27,13 +27,14 @@ import static net.romvoid95.core.initialization.SolarSystems.*;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
 import net.romvoid95.api.space.ExoPlanet;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.objects.RelayStation;
 import net.romvoid95.common.astronomy.ExoplanetBiomes;
+import net.romvoid95.common.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.romvoid95.common.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.common.astronomy.trappist1.e.WorldProviderTrappist1E;
@@ -49,21 +50,21 @@ public class Planets {
 	public static ExoPlanet yzcetic;
 	public static ExoPlanet yzcetid;
 
-	public static Planet wolf1061b;
-	public static Planet wolf1061c;
-	public static Planet wolf1061d;
+	public static ExoPlanet wolf1061b;
+	public static ExoPlanet wolf1061c;
+	public static ExoPlanet wolf1061d;
 
-	public static Planet    trappistb;
+	public static ExoPlanet trappistb;
 	public static ExoPlanet trappistc;
 	public static ExoPlanet trappistd;
 	//public static Satellite trappistdStation;
 	public static ExoPlanet trappiste;
-	public static Planet    trappistf;
-	public static Planet    trappistg;
-	public static Planet    trappisth;
+	public static ExoPlanet trappistf;
+	public static ExoPlanet trappistg;
+	public static ExoPlanet trappisth;
 
-	public static Planet kepler1649b;
-	public static Planet kepler1649c;
+	public static ExoPlanet kepler1649b;
+	public static ExoPlanet kepler1649c;
 
 	public static RelayStation station;
 
@@ -160,7 +161,13 @@ public class Planets {
 
 			if (!SConfigSystems.hideUnfinishedSystems) {
 
-				kepler1649c = Universe.unreachable("kepler1649c", kepler1649, 1.932375F, KEPLER_C_AU, KEPLER_C_ORBIT);
+				kepler1649c = Universe.planet("kepler1649c", kepler1649, 0.5F, KEPLER_C_AU, KEPLER_C_ORBIT, k1649_tier);
+				Universe.setBiomes(kepler1649c, ACBiome.ACSpace);
+				Universe.setExoPlanetData(kepler1649c, 5.0f, 1.14f, 1.05f);
+				Universe.setNormalOrbit(kepler1649c);
+				Universe.setAtmosphere(kepler1649c, 5.0, 0.0, NITROGEN, ARGON);
+				Universe.setSurfaceData(kepler1649c, 0.75, 32500L, ClassBody.SELENA);
+				Universe.setProvider(kepler1649c, WorldProviderKepler1649c.class, id_kepler_c);
 
 				kepler1649b = Universe.unreachable("kepler1649b", kepler1649, 1.932375F, KEPLER_B_AU, KEPLER_B_ORBIT);
 			}
@@ -191,6 +198,7 @@ public class Planets {
 		Planets.finishRegistry(trappistc, new TeleportTypeMoon());
 		Planets.finishRegistry(trappistd, new TeleportTypeMoon());
 		Planets.finishRegistry(trappiste, new TeleportTypeMoon());
+		Planets.finishRegistry(kepler1649c, new TeleportTypeOverworld());
 
 	}
 
