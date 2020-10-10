@@ -17,9 +17,7 @@
 
 package net.romvoid95.common.world.helpers;
 
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -27,6 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import net.romvoid95.common.world.mapgen.GenExoplanetLake;
 
 public class GenUtility {
@@ -93,7 +92,7 @@ public class GenUtility {
 					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
 						BlockPos loc  = new BlockPos(xx, yy, zz);
 						double   dist = Math.abs(loc.getDistance(0, 0, 0));
-						if (dist <= halfSize - i && dist > halfSize - (i + 1)) {
+						if ((dist <= (halfSize - i)) && (dist > (halfSize - (i + 1)))) {
 							if (i == 0) {
 								blocks.put(pos.add(xx, yy, zz), state);
 							}
@@ -114,7 +113,7 @@ public class GenUtility {
 					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
 						BlockPos loc  = new BlockPos(xx, yy, zz);
 						double   dist = Math.abs(loc.getDistance(0, 0, 0));
-						if (dist <= halfSize - i && dist > halfSize - (i + 1)) {
+						if ((dist <= (halfSize - i)) && (dist > (halfSize - (i + 1)))) {
 							if (i == 0) {
 								blocks.put(pos.add(xx, yy, zz), state1);
 							}
@@ -138,7 +137,7 @@ public class GenUtility {
 					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
 						BlockPos loc  = new BlockPos(xx, yy, zz);
 						double   dist = Math.abs(loc.getDistance(0, 0, 0));
-						if (dist <= halfSize - i && dist > halfSize - (i + 1)) {
+						if ((dist <= (halfSize - i)) && (dist > (halfSize - (i + 1)))) {
 							blocks.put(pos.add(xx, yy, zz), state);
 						}
 					}
@@ -163,7 +162,7 @@ public class GenUtility {
 		return blocks;
 	}
 
-	public HashMap<BlockPos, IBlockState> generateDome (IBlockState state, int size, BlockPos pos) {
+	public static HashMap<BlockPos, IBlockState> generateDome (IBlockState state, int size, BlockPos pos) {
 		HashMap<BlockPos, IBlockState> blocks   = new HashMap<>();
 		int                            halfSize = (size / 2);
 		for (int i = 0; i <= halfSize; i++) {
@@ -172,7 +171,7 @@ public class GenUtility {
 					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
 						BlockPos loc  = new BlockPos(xx, yy, zz);
 						double   dist = Math.abs(loc.getDistance(0, 0, 0));
-						if (dist <= halfSize - i && dist > halfSize - (i + 1)) {
+						if ((dist <= (halfSize - i)) && (dist > (halfSize - (i + 1)))) {
 							if (i == 0) {
 								blocks.put(pos.add(xx, yy, zz), state);
 							}
@@ -192,7 +191,7 @@ public class GenUtility {
 				for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
 					BlockPos loc  = new BlockPos(xx, 0, zz);
 					double   dist = Math.abs(loc.getDistance(0, 0, 0));
-					if (dist <= halfSize - i && dist > halfSize - (i + 1)) {
+					if ((dist <= (halfSize - i)) && (dist > (halfSize - (i + 1)))) {
 						if (i == 0) {
 							blocks.put(pos.add(xx, 0, zz), state);
 						}
@@ -221,9 +220,9 @@ public class GenUtility {
 			return false;
 		}
 
-		for (position = position.add(0, 0, 0); position.getY() > 5 && world.isAirBlock(position)
+		for (position = position.add(0, 0, 0); ((position.getY() > 5) && world.isAirBlock(position))
 				|| world.getBlockState(position).getMaterial().isLiquid(); position = position.down()) {
-			;
+
 		}
 
 		if (position.getY() <= 4) {
@@ -232,9 +231,9 @@ public class GenUtility {
 
 		for (int i = -checkSize; i <= checkSize; ++i) {
 			for (int j = -checkSize; j <= checkSize; ++j) {
-				if (world.isAirBlock(position.add(i, -1, j)) && world.isAirBlock(position.add(i, -2, j))
-						|| world.getBlockState(position.add(i, -1, j)).getMaterial().isLiquid()
-								&& world.getBlockState(position.add(i, -2, j)).getMaterial().isLiquid()) {
+				if ((world.isAirBlock(position.add(i, -1, j)) && world.isAirBlock(position.add(i, -2, j)))
+						|| (world.getBlockState(position.add(i, -1, j)).getMaterial().isLiquid()
+								&& world.getBlockState(position.add(i, -2, j)).getMaterial().isLiquid())) {
 					return true;
 				}
 			}

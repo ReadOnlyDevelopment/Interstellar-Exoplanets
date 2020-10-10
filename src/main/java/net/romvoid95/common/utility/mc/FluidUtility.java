@@ -2,8 +2,6 @@ package net.romvoid95.common.utility.mc;
 
 import javax.annotation.Nonnull;
 
-import lombok.experimental.UtilityClass;
-import micdoodle8.mods.galacticraft.api.client.IItemMeshDefinitionCustom;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -12,10 +10,13 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
+
+import micdoodle8.mods.galacticraft.api.client.IItemMeshDefinitionCustom;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public final class FluidUtility {

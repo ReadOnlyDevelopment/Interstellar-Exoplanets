@@ -23,7 +23,7 @@ import net.romvoid95.core.ExoBlock;
 public class BiomeYzCetiB extends BiomeYzCetiBBase {
 
 	public BiomeYzCetiB(BiomeProperties props) {
-		super("yzb", props);
+		super(props);
 		props.setRainDisabled();
 		props.setBaseHeight(0.6F);
 		props.setHeightVariation(1.2F);

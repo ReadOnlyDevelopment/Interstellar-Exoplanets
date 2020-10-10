@@ -19,10 +19,11 @@ package net.romvoid95.common.astronomy.trappist1.e.biomes;
 
 import java.util.Random;
 
-import asmodeuscore.core.utils.worldengine.WE_Biome;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.romvoid95.core.ExoBlock;
 
 public class Trappist1_E_Dunes extends WE_Biome {
@@ -33,19 +34,18 @@ public class Trappist1_E_Dunes extends WE_Biome {
 		biomeMinValueOnMap      = 0.0D;
 		biomeMaxValueOnMap      = 0.4D;
 		biomePersistence        = 1.6D;
-		biomeNumberOfOctaves    = 4;
+		biomeNumberOfOctaves    = 5;
 		biomeScaleX             = 80.0D;
 		biomeScaleY             = 0.7D;
 		biomeSurfaceHeight      = 68;
-		biomeInterpolateQuality = 15;
+		biomeInterpolateQuality = 10;
 
 		//-//
 		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(ExoBlock.TRAP1E_GRASS, ExoBlock.TRAP1E_STONE, -256, 0, -256, 0, false);
-		standardBiomeLayers.add(ExoBlock.TRAP1E_DIRT, ExoBlock.TRAP1E_GRASS, -256, 0, -256, 0, false);
+		standardBiomeLayers.add(ExoBlock.HOT_GROUND_2, ExoBlock.TRAP1E_STONE, -256, 0, -5, 0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}

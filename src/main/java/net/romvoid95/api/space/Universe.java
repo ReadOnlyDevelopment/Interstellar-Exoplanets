@@ -1,28 +1,28 @@
 package net.romvoid95.api.space;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.core.astronomy.BodiesRegistry;
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
-import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
-import micdoodle8.mods.galacticraft.api.galaxies.Moon;
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
-import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
-import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
-import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import micdoodle8.mods.galacticraft.api.world.ITeleportType;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
-import net.romvoid95.api.space.prefab.ExoStar;
-import net.romvoid95.api.space.prefab.ExoSystem;
+
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.*;
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.*;
+
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.core.astronomy.BodiesRegistry;
+import net.romvoid95.api.space.prefab.*;
 import net.romvoid95.client.Assets;
 import net.romvoid95.core.ExoInfo;
 
 public class Universe {
+
+	public static List<ExoSystem> enabledSystems = new ArrayList<>();
+	public static List<ExoPlanet> enabledPlanets = new ArrayList<>();
 
 	/**
 	 * Builds the exo star.
@@ -52,25 +52,30 @@ public class Universe {
 	 * @param exoStar the exo star
 	 * @return the solar system
 	 */
-	public static ExoSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
+	public static ExoSystem buildSolarSystem (String name, ExoStar exoStar, Vector3 pos) {
 		ExoSystem body = new ExoSystem(name, "milky_way");
-		body.setMapPosition(new Vector3(pos));
 		exoStar.setParentSolarSystem(body);
 		body.setMainStar(exoStar);
+		body.setMapPosition(pos);
 		exoStar.setBodyIcon(Assets.getCelestialTexture(exoStar.getName()));
+		enabledSystems.add(body);
 		return body;
 	}
 
-	public static ExoPlanet planet (String name, SolarSystem solar, float phaseShift, float distance, float orbitTime, int tier) {
-		ExoPlanet planet = (ExoPlanet) new ExoPlanet(name).setParentSolarSystem(solar);
+	public static ExoPlanet pre(String name, ExoSystem system) {
+		ExoPlanet planet = new ExoPlanet(name).setPlanetSystem(system);
+		enabledPlanets.add(planet);
+		return planet;
+	}
+
+	public static ExoPlanet planet (ExoPlanet planet, float phaseShift, float distance, float orbitTime, int tier) {
 		planet.setPhaseShift(phaseShift);
 		planet.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
 		planet.setRelativeOrbitTime(orbitTime);
 		planet.setRelativeSize(1.0F);
 		planet.setTierRequired(tier);
-		planet.setBodyIcon(Assets.getCelestialTexture(name));
+		planet.setBodyIcon(Assets.getCelestialTexture(planet.getName()));
 		planet.setTierRequired(tier);
-
 		return planet;
 	}
 
@@ -169,12 +174,15 @@ public class Universe {
 		for (EnumAtmosphericGas enumAtmosphericGas : gasses) {
 			d++;
 			body.atmosphereComponent(enumAtmosphericGas);
-			if (enumAtmosphericGas == EnumAtmosphericGas.OXYGEN)
+			if (enumAtmosphericGas == EnumAtmosphericGas.OXYGEN) {
 				canBreathe = true;
-			if (enumAtmosphericGas == EnumAtmosphericGas.CO2)
+			}
+			if (enumAtmosphericGas == EnumAtmosphericGas.CO2) {
 				canRain = true;
-			if (enumAtmosphericGas == EnumAtmosphericGas.METHANE)
+			}
+			if (enumAtmosphericGas == EnumAtmosphericGas.METHANE) {
 				isCorr = true;
+			}
 		}
 		body.setAtmosphere(new AtmosphereInfo(canBreathe, canRain, isCorr, (float) relativeTemp, (float) windLevel, d));
 	}

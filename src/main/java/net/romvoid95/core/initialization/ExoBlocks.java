@@ -21,13 +21,12 @@ import java.util.LinkedList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+
 import net.romvoid95.api.registry.ExoRegistry;
 import net.romvoid95.common.astronomy.kepler1649.KeplerBlocks;
 import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
-import net.romvoid95.common.block.decoration.BlockElectronic;
-import net.romvoid95.common.block.decoration.BlockMetalDecoration;
-import net.romvoid95.common.block.decoration.BlockMetalDiagonal;
+import net.romvoid95.common.block.decoration.*;
 import net.romvoid95.common.block.generic.BlockAlloy;
 import net.romvoid95.common.block.generic.BlockMetal;
 import net.romvoid95.common.block.machine.BlockAlloyRefinery;

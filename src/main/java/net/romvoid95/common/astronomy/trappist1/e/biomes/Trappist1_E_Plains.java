@@ -19,12 +19,13 @@ package net.romvoid95.common.astronomy.trappist1.e.biomes;
 
 import java.util.Random;
 
-import asmodeuscore.core.utils.worldengine.WE_Biome;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.romvoid95.api.world.worldgen.feature.ExoSempervirens;
 import net.romvoid95.api.world.worldgen.feature.ExoTreeFlatTop;
 import net.romvoid95.core.ExoBlock;
@@ -34,17 +35,17 @@ public class Trappist1_E_Plains extends WE_Biome {
 
 	public Trappist1_E_Plains() {
 		super(new BiomeProperties("trappist1e_plains"), new int[] {
-			0xd14715, 0x11FF66, 0x00FF00
+				0xd14715, 0x11FF66, 0x00FF00
 		});
 
 		biomeMinValueOnMap      = -0.4D;
-		biomeMaxValueOnMap      = 0.0D;
+		biomeMaxValueOnMap      = 0.8D;
 		biomePersistence        = 1.4D;
-		biomeNumberOfOctaves    = 5;
+		biomeNumberOfOctaves    = 4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             = 1.7D;
-		biomeSurfaceHeight      = 80;
-		biomeInterpolateQuality = 15;
+		biomeSurfaceHeight      = 77;
+		biomeInterpolateQuality = 5;
 
 		//-//
 		decorateChunkGen_List.clear();
@@ -68,43 +69,23 @@ public class Trappist1_E_Plains extends WE_Biome {
 		Block   log    = ExoBlocks.log_b;
 		Block   leaves = Blocks.LEAVES2;
 
-		for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-			if (world.isAirBlock(pos1))
+		for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3))) {
+			if (world.isAirBlock(pos1)) {
 				cangen = false;
-
-		if (!world.isAreaLoaded(pos, 16, false))
-			if (cangen && world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS) {
-				switch (rand.nextInt(2)) {
-				case 0:
-					new ExoSempervirens(log, leaves).generate(world, rand, pos);
-					break;
-				case 1:
-					new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
-					break;
-				}
 			}
+		}
 
-		for (int i = 0; i < 8; i++) {
-			randPosX = x + rand.nextInt(16) + 8;
-			randPosZ = z + rand.nextInt(16) + 8;
-			pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
-
-			cangen = true;
-			for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-				if (world.isAirBlock(pos1) || world.getBlockState(pos1) == ExoBlock.TRAP1E_GRASS)
-					cangen = false;
-
-			if (!world.isAreaLoaded(pos, 16, false))
-				if (cangen && world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS) {
-					switch (rand.nextInt(2)) {
+		if (!world.isAreaLoaded(pos, 16, false)) {
+			if (cangen && (world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS)) {
+				switch (rand.nextInt(2)) {
 					case 0:
-						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
+						new ExoSempervirens(log, leaves).generate(world, rand, pos);
 						break;
 					case 1:
 						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
 						break;
-					}
 				}
+			}
 		}
 
 		for (int i = 0; i < 3; i++) {
@@ -113,8 +94,9 @@ public class Trappist1_E_Plains extends WE_Biome {
 			randPosZ = z + rand.nextInt(16) + 8;
 			pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 
-			if (world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS)
+			if (world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS) {
 				world.setBlockState(pos, Blocks.DEADBUSH.getDefaultState());
+			}
 		}
 	}
 }

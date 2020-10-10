@@ -33,25 +33,25 @@ public class ExoBlock {
 	public static IBlockState TRAP1E_STONE       = TrappistBlocks.TrappistE.TRAP1E_STONE.getDefaultState();
 	public static IBlockState TRAP1E_ORE         = TrappistBlocks.TrappistE.TRAP1E_ORE.getDefaultState();
 
-	public static IBlockState YZB_LOOSE_SEDIMENT      = YzCetiBlocks.YzCetiB.YZB_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZB_DARK_LOOSE_SEDIMENT = YzCetiBlocks.YzCetiB.YZB_DARK_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZB_GRAVEL              = YzCetiBlocks.YzCetiB.YZB_GRAVEL.getDefaultState();
-	public static IBlockState YZB_IGNEOUS             = YzCetiBlocks.YzCetiB.YZB_IGNEOUS.getDefaultState();
-	public static IBlockState YZB_METAMORPHIC         = YzCetiBlocks.YzCetiB.YZB_METAMORPHIC.getDefaultState();
-	public static IBlockState YZB_SEDIMENTARYROCK     = YzCetiBlocks.YzCetiB.YZB_SEDIMENTARYROCK.getDefaultState();
+	public static IBlockState YZB_LOOSE_SEDIMENT      = YzCetiBlocks.B.YZB_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZB_DARK_LOOSE_SEDIMENT = YzCetiBlocks.B.YZB_DARK_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZB_GRAVEL              = YzCetiBlocks.B.YZB_GRAVEL.getDefaultState();
+	public static IBlockState YZB_IGNEOUS             = YzCetiBlocks.B.YZB_IGNEOUS.getDefaultState();
+	public static IBlockState YZB_METAMORPHIC         = YzCetiBlocks.B.YZB_METAMORPHIC.getDefaultState();
+	public static IBlockState YZB_SEDIMENTARYROCK     = YzCetiBlocks.B.YZB_SEDIMENTARYROCK.getDefaultState();
 
-	public static IBlockState YZC_LOOSE_SEDIMENT      = YzCetiBlocks.YzCetiC.YZC_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZC_DARK_LOOSE_SEDIMENT = YzCetiBlocks.YzCetiC.YZC_DARK_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZC_GRAVEL              = YzCetiBlocks.YzCetiC.YZC_GRAVEL.getDefaultState();
-	public static IBlockState YZC_IGNEOUS             = YzCetiBlocks.YzCetiC.YZC_IGNEOUS.getDefaultState();
-	public static IBlockState YZC_METAMORPHIC         = YzCetiBlocks.YzCetiC.YZC_METAMORPHIC.getDefaultState();
-	public static IBlockState YZC_SEDIMENTARYROCK     = YzCetiBlocks.YzCetiC.YZC_SEDIMENTARYROCK.getDefaultState();
+	public static IBlockState YZC_LOOSE_SEDIMENT      = YzCetiBlocks.C.YZC_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZC_DARK_LOOSE_SEDIMENT = YzCetiBlocks.C.YZC_DARK_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZC_GRAVEL              = YzCetiBlocks.C.YZC_GRAVEL.getDefaultState();
+	public static IBlockState YZC_IGNEOUS             = YzCetiBlocks.C.YZC_IGNEOUS.getDefaultState();
+	public static IBlockState YZC_METAMORPHIC         = YzCetiBlocks.C.YZC_METAMORPHIC.getDefaultState();
+	public static IBlockState YZC_SEDIMENTARYROCK     = YzCetiBlocks.C.YZC_SEDIMENTARYROCK.getDefaultState();
 
-	public static IBlockState YZD_LOOSE_SEDIMENT      = YzCetiBlocks.YzCetiD.YZD_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZD_DARK_LOOSE_SEDIMENT = YzCetiBlocks.YzCetiD.YZD_DARK_LOOSE_SEDIMENT.getDefaultState();
-	public static IBlockState YZD_GRAVEL              = YzCetiBlocks.YzCetiD.YZD_GRAVEL.getDefaultState();
-	public static IBlockState YZD_IGNEOUS             = YzCetiBlocks.YzCetiD.YZD_IGNEOUS.getDefaultState();
-	public static IBlockState YZD_METAMORPHIC         = YzCetiBlocks.YzCetiD.YZD_METAMORPHIC.getDefaultState();
-	public static IBlockState YZD_SEDIMENTARYROCK     = YzCetiBlocks.YzCetiD.YZD_SEDIMENTARYROCK.getDefaultState();
+	public static IBlockState YZD_LOOSE_SEDIMENT      = YzCetiBlocks.D.YZD_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZD_DARK_LOOSE_SEDIMENT = YzCetiBlocks.D.YZD_DARK_LOOSE_SEDIMENT.getDefaultState();
+	public static IBlockState YZD_GRAVEL              = YzCetiBlocks.D.YZD_GRAVEL.getDefaultState();
+	public static IBlockState YZD_IGNEOUS             = YzCetiBlocks.D.YZD_IGNEOUS.getDefaultState();
+	public static IBlockState YZD_METAMORPHIC         = YzCetiBlocks.D.YZD_METAMORPHIC.getDefaultState();
+	public static IBlockState YZD_SEDIMENTARYROCK     = YzCetiBlocks.D.YZD_SEDIMENTARYROCK.getDefaultState();
 
 }

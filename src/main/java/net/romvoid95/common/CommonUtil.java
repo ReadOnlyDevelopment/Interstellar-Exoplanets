@@ -24,9 +24,11 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.client.model.obj.OBJLoader;
+
+import net.romvoid95.api.content.block.BlockDefinition;
 import net.romvoid95.client.Assets;
-import net.romvoid95.common.utility.mc.BlockCompound;
 
 public class CommonUtil {
 
@@ -60,7 +62,7 @@ public class CommonUtil {
 	 */
 	public static void bindTexture (String domain, String path) {
 		String locationString = domain + ":" + path;
-		Assets.textures.computeIfAbsent(locationString, key -> new ResourceLocation(key));
+		Assets.textures.computeIfAbsent(locationString, ResourceLocation::new);
 		getMinecraft().getTextureManager().bindTexture(Assets.textures.get(locationString));
 	}
 
@@ -75,8 +77,8 @@ public class CommonUtil {
 	}
 
 	public static Block getBlock (String modid, String name) {
-		List<BlockCompound> blockList = new ArrayList<>();
-		for (BlockCompound compound : blockList) {
+		List<BlockDefinition> blockList = new ArrayList<>();
+		for (BlockDefinition compound : blockList) {
 			if (compound.getRegistryName().equals(new ResourceLocation(modid, name))) {
 				return compound.getBlock();
 			}

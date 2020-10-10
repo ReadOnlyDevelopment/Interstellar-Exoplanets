@@ -17,15 +17,17 @@
 
 package net.romvoid95.common.block;
 
-import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
-import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.ItemStack;
-import net.romvoid95.client.CreativeExoTabs;
-import net.romvoid95.common.lib.block.BlockBase;
 
-public class BlockDecoration extends BlockBase implements ISortableBlock {
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+
+import net.romvoid95.client.CreativeExoTabs;
+
+public class BlockDecoration extends Block implements ISortableBlock {
 
 	public BlockDecoration(Material materialIn) {
 		super(materialIn);

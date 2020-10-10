@@ -1,61 +1,23 @@
 package net.romvoid95.common.world.cave.noise;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Builder(buildMethodName = "create")
+@Data
 public class NoiseSettings {
-    private FastNoise.NoiseType   noiseType   = FastNoise.NoiseType.SimplexFractal;
-    private FastNoise.FractalType fractalType = FastNoise.FractalType.FBM;
-    private int   octaves   = 3;
-    private float gain      = 0.5f;
-    private float frequency = 0.01f;
+    private FastNoise.NoiseType   noiseType;
+    private FastNoise.FractalType fractalType;
+    private int   octaves;
+    private float gain;
+    private float frequency;
 
-    public NoiseSettings() {
-    }
-
-    /** GETTERS **/
-
-    public FastNoise.NoiseType getNoiseType() {
-        return noiseType;
-    }
-
-    public FastNoise.FractalType getFractalType() {
-        return fractalType;
-    }
-
-    public int getOctaves() {
-        return octaves;
-    }
-
-    public float getGain() {
-        return gain;
-    }
-
-    public float getFrequency() {
-        return frequency;
-    }
-
-    /** SETTERS **/
-
-    public NoiseSettings setNoiseType(FastNoise.NoiseType noiseType) {
-        this.noiseType = noiseType;
-        return this;
-    }
-
-    public NoiseSettings setFractalType(FastNoise.FractalType fractalType) {
-        this.fractalType = fractalType;
-        return this;
-    }
-
-    public NoiseSettings setOctaves(int octaves) {
-        this.octaves = octaves;
-        return this;
-    }
-
-    public NoiseSettings setGain(float gain) {
-        this.gain = gain;
-        return this;
-    }
-
-    public NoiseSettings setFrequency(float frequency) {
-        this.frequency = frequency;
-        return this;
+    public static NoiseSettings createDefault() {
+		return NoiseSettings.builder()
+				.noiseType(FastNoise.NoiseType.SimplexFractal)
+				.fractalType(FastNoise.FractalType.FBM)
+				.octaves(3)
+				.gain(0.5F)
+				.frequency(0.01F).create();
     }
 }

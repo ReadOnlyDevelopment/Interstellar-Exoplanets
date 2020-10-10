@@ -27,7 +27,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.romvoid95.common.block.machine.container.ContainerAlloyRefinery;
-import net.romvoid95.common.config.SConfigCore;
+import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.tile.TileEntityAlloyRefinery;
 import net.romvoid95.core.ExoInfo;
 
@@ -63,7 +63,7 @@ public class GuiAlloyRefinery extends GuiContainer {
         i1 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
 
-        if (SConfigCore.enableDebug)
+        if (ConfigCore.enableDebug)
             drawDebugInfo();
     }
 

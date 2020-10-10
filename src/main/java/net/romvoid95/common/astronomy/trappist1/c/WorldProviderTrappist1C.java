@@ -47,7 +47,7 @@ import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_Mountai
 import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.romvoid95.common.astronomy.trappist1.c.worldegnine.Trappist1C_River;
 import net.romvoid95.core.ExoBlock;
-import net.romvoid95.core.initialization.ExoDimensions;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
 public class WorldProviderTrappist1C extends WE_WorldProviderSpace {

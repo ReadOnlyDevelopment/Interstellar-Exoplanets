@@ -17,20 +17,16 @@
 
 package net.romvoid95.common.astronomy.yzceti.c.worldgen.biomes;
 
-import net.romvoid95.common.astronomy.yzceti.b.worldgen.biome.BiomeYzCetiBBase;
+import net.romvoid95.common.astronomy.yzceti.c.worldgen.YzCetiCBiomes;
 import net.romvoid95.common.world.helpers.EnumBiomeType;
 import net.romvoid95.core.ExoBlock;
 
-public class BiomeYzCetiC extends BiomeYzCetiBBase {
+public class BiomeYzCetiC extends YzCetiCBiomes {
 
-	public BiomeYzCetiC(BiomeProperties props) {
-		super("yzc", props);
-		props.setRainDisabled();
-		props.setBaseHeight(1.0F);
-		props.setHeightVariation(2.5F);
-		props.setTemperature(5.0F);
-		this.setTemp(5F);
-		this.setBiomeHeight(72);
+	public BiomeYzCetiC(BiomeProperties defaultBuilder) {
+		super(defaultBuilder);
+		defaultBuilder.setBaseHeight(0.0125F);
+		defaultBuilder.setHeightVariation(0.5F);
 		this.setBiomeType(EnumBiomeType.DARK);
 		this.topBlock    = ExoBlock.YZC_SEDIMENTARYROCK;
 		this.fillerBlock = ExoBlock.YZC_METAMORPHIC;

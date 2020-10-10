@@ -19,9 +19,10 @@ package net.romvoid95.common.utility.logic;
 
 import java.util.Random;
 
-import lombok.experimental.UtilityClass;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3i;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public final class MathUtils {
@@ -40,7 +41,7 @@ public final class MathUtils {
 		int dx = to.getX() - from.getX();
 		int dy = to.getY() - from.getY();
 		int dz = to.getZ() - from.getZ();
-		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
 	}
 
 	/**
@@ -51,7 +52,7 @@ public final class MathUtils {
 		int dx = to.getX() - from.getX();
 		int dy = to.getY() - from.getY();
 		int dz = to.getZ() - from.getZ();
-		return dx * dx + dy * dy + dz * dz;
+		return (dx * dx) + (dy * dy) + (dz * dz);
 	}
 
 	/**
@@ -62,7 +63,7 @@ public final class MathUtils {
 	public static double distanceHorizontal (Vec3i from, Vec3i to) {
 		int dx = to.getX() - from.getX();
 		int dz = to.getZ() - from.getZ();
-		return Math.sqrt(dx * dx + dz * dz);
+		return Math.sqrt((dx * dx) + (dz * dz));
 	}
 
 	/**
@@ -73,7 +74,7 @@ public final class MathUtils {
 	public static double distanceHorizontalSq (Vec3i from, Vec3i to) {
 		int dx = to.getX() - from.getX();
 		int dz = to.getZ() - from.getZ();
-		return dx * dx + dz * dz;
+		return (dx * dx) + (dz * dz);
 	}
 
 	/**
@@ -109,19 +110,19 @@ public final class MathUtils {
 	}
 
 	public static boolean inRangeExclusive (double value, double min, double max) {
-		return value < max && value > min;
+		return (value < max) && (value > min);
 	}
 
 	public static boolean inRangeExclusive (int value, int min, int max) {
-		return value < max && value > min;
+		return (value < max) && (value > min);
 	}
 
 	public static boolean inRangeInclusive (double value, double min, double max) {
-		return value <= max && value >= min;
+		return (value <= max) && (value >= min);
 	}
 
 	public static boolean inRangeInclusive (int value, int min, int max) {
-		return value <= max && value >= min;
+		return (value <= max) && (value >= min);
 	}
 
 	public static int min (final int a, final int b) {
@@ -129,28 +130,35 @@ public final class MathUtils {
 	}
 
 	public static int min (int a, final int b, final int c) {
-		if (b < a)
+		if (b < a) {
 			a = b;
-		if (c < a)
+		}
+		if (c < a) {
 			a = c;
+		}
 		return a;
 	}
 
 	public static int min (int a, final int b, final int c, final int d) {
-		if (b < a)
+		if (b < a) {
 			a = b;
-		if (c < a)
+		}
+		if (c < a) {
 			a = c;
-		if (d < a)
+		}
+		if (d < a) {
 			a = d;
+		}
 		return a;
 	}
 
 	public static int min (int a, final int b, final int c, final int d, int... rest) {
 		int min = min(a, b, c, d);
-		for (int i : rest)
-			if (i < min)
+		for (int i : rest) {
+			if (i < min) {
 				min = i;
+			}
+		}
 		return min;
 	}
 
@@ -159,37 +167,44 @@ public final class MathUtils {
 	}
 
 	public static int max (int a, final int b, final int c) {
-		if (b > a)
+		if (b > a) {
 			a = b;
-		if (c > a)
+		}
+		if (c > a) {
 			a = c;
+		}
 		return a;
 	}
 
 	public static int max (int a, final int b, final int c, final int d) {
-		if (b > a)
+		if (b > a) {
 			a = b;
-		if (c > a)
+		}
+		if (c > a) {
 			a = c;
-		if (d > a)
+		}
+		if (d > a) {
 			a = d;
+		}
 		return a;
 	}
 
 	public static int max (int a, final int b, final int c, final int d, int... rest) {
 		int max = max(a, b, c, d);
-		for (int i : rest)
-			if (i > max)
+		for (int i : rest) {
+			if (i > max) {
 				max = i;
+			}
+		}
 		return max;
 	}
 
 	public static double nextGaussian (double mean, double deviation) {
-		return deviation * RANDOM.nextGaussian() + mean;
+		return (deviation * RANDOM.nextGaussian()) + mean;
 	}
 
 	public static double nextGaussian (Random random, double mean, double deviation) {
-		return deviation * random.nextGaussian() + mean;
+		return (deviation * random.nextGaussian()) + mean;
 	}
 
 	public static int nextInt (int bound) {
@@ -197,11 +212,11 @@ public final class MathUtils {
 	}
 
 	public static int nextIntInclusive (int min, int max) {
-		return RANDOM.nextInt(max - min + 1) + min;
+		return RANDOM.nextInt((max - min) + 1) + min;
 	}
 
 	public static int nextIntInclusive (Random random, int min, int max) {
-		return random.nextInt(max - min + 1) + min;
+		return random.nextInt((max - min) + 1) + min;
 	}
 
 	public static boolean tryPercentage (double percent) {

@@ -8,7 +8,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
+
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+
 import net.romvoid95.common.world.biome.features.WorldGenPatch;
 
 public class BiomeRockyPlateau extends Biome implements WorldGenConstants {
@@ -17,17 +19,12 @@ public class BiomeRockyPlateau extends Biome implements WorldGenConstants {
     protected static final WorldGenPatch STONE_PATCH_FEATURE = new WorldGenPatch(Blocks.STONE.getDefaultState(), 5);
     protected static final WorldGenBlockBlob COBBLESTONE_BOULDER_FEATURE = new WorldGenBlockBlob(Blocks.COBBLESTONE, 1);
 
-    public static BiomeProperties properties = new BiomeProperties("Rocky Plateau");
-
-    static {
+    public BiomeRockyPlateau(BiomeProperties properties) {
+        super(properties);
         properties.setTemperature(0.8F);
         properties.setRainfall(0.2F);
         properties.setBaseHeight(1.6F);
         properties.setHeightVariation(0F);
-    }
-
-    public BiomeRockyPlateau() {
-        super(properties);
         decorator.treesPerChunk = 0;
         decorator.extraTreeChance = 0;
         decorator.flowersPerChunk = 0;

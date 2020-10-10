@@ -21,9 +21,10 @@ import java.util.Collection;
 
 import com.google.common.collect.ImmutableList;
 
-import lombok.experimental.UtilityClass;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import lombok.experimental.UtilityClass;
 import net.romvoid95.common.utility.logic.MathUtils;
 
 @UtilityClass

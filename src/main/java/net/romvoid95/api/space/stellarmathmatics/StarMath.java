@@ -17,11 +17,12 @@ public class StarMath {
 	 */
 	public static double getSurfaceBrightness (double m, double r) {
 		double bright = 0.0;
-		if (r <= 0.0)
+		if (r <= 0.0) {
 			return bright;
+		}
 
 		double area = Math.PI * (r / 60.0) * (r / 60.0);
-		double s1   = m + Math.log(area) / Math.log(Math.pow(100.0, 0.2));
+		double s1   = m + (Math.log(area) / Math.log(Math.pow(100.0, 0.2)));
 		bright = s1 + 8.890756;
 		return bright;
 	}
@@ -35,12 +36,16 @@ public class StarMath {
 	 * @return Luminosity in solar units.
 	 */
 	public static double getLuminosityFromMassLuminosityRelation (double mass) {
-		if (mass < 0.43)
+		if (mass < 0.43) {
 			return 0.23 * Math.pow(mass, 2.3);
-		if (mass < 2)
+		}
+		if (mass < 2) {
 			return Math.pow(mass, 4);
+		}
 		if (mass > 20)
+		{
 			return (1.5 * Math.pow(20, 3.5)) * Math.pow(mass / 20, 2); // Wikipedia says 1 as exponent here, but seems excesive
+		}
 		return 1.5 * Math.pow(mass, 3.5);
 	}
 
@@ -51,13 +56,17 @@ public class StarMath {
 	 * @return Mass in solar units.
 	 */
 	public static double getMassFromMassLuminosityRelation (double luminosity) {
-		if (luminosity < 0.033)
+		if (luminosity < 0.033) {
 			return Math.pow(luminosity / 0.23, 1.0 / 2.3);
-		if (luminosity < 16)
+		}
+		if (luminosity < 16) {
 			return Math.pow(luminosity, 0.25);
+		}
 		double ul = 1.5 * Math.pow(20, 3.5);
 		if (luminosity > ul)
+		{
 			return Math.pow((luminosity / ul), 1.0 / 2) * 20; //(luminosity * 20) / ul;
+		}
 		return Math.pow(luminosity / 1.5, 1.0 / 3.5);
 	}
 
@@ -67,7 +76,7 @@ public class StarMath {
 	 * @return Lifetime in years.
 	 */
 	public static double getStarLifeTime (double mass) {
-		double time = 1.0E10 * mass / getLuminosityFromMassLuminosityRelation(mass);
+		double time = (1.0E10 * mass) / getLuminosityFromMassLuminosityRelation(mass);
 		return time;
 	}
 
@@ -79,7 +88,7 @@ public class StarMath {
 	 * @return Radius in solar radii.
 	 */
 	public static double getStarRadius (double luminosity, double temperature) {
-		return Math.sqrt(luminosity * AstronomicalConstants.SUN_LUMINOSITY
+		return Math.sqrt((luminosity * AstronomicalConstants.SUN_LUMINOSITY)
 				/ (4.0 * Math.PI * AstronomicalConstants.STEFAN_BOLTZMANN_CONSTANT * Math.pow(temperature, 4.0)))
 				/ (AstronomicalConstants.SUN_RADIUS * 1000.0);
 	}
@@ -106,7 +115,7 @@ public class StarMath {
 	 * @return Gravity in m/s^2.
 	 */
 	public static double getStarSurfaceGravity (double mass, double radius) {
-		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.SUN_MASS
+		double g = (AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.SUN_MASS)
 				/ (Math.pow(radius * AstronomicalConstants.SUN_RADIUS * 1000.0, 2.0));
 		return g;
 	}
@@ -119,7 +128,7 @@ public class StarMath {
 	 * @return Gravity in m/s^2.
 	 */
 	public static double getPlanetSurfaceGravity (double mass, double radius) {
-		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS)
+		double g = (AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS))
 				/ (Math.pow(radius * AstronomicalConstants.EARTH_RADIUS, 2.0));
 		return g;
 	}

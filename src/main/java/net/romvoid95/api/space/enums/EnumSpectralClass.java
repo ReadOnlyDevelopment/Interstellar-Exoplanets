@@ -43,10 +43,9 @@ public enum EnumSpectralClass {
 		return lowestTemp;
 	}
 
-	//	@Override
-	//	public String getName () {
-	//		return spectralClass;
-	//	}
+	public String getName () {
+		return spectralClass;
+	}
 
 	public static EnumSpectralClass getClass (int temp) {
 		// Gets stellar classification of star based on its temperature value

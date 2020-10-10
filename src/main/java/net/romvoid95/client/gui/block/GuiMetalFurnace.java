@@ -29,7 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.common.block.machine.container.ContainerMetalFurnace;
-import net.romvoid95.common.config.SConfigCore;
+import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.tile.TileEntityMetalFurnace;
 import net.romvoid95.core.ExoInfo;
 
@@ -66,7 +66,7 @@ public class GuiMetalFurnace extends GuiContainer {
         i1 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
 
-        if (SConfigCore.enableDebug)
+        if (ConfigCore.enableDebug)
             drawDebugInfo();
     }
 

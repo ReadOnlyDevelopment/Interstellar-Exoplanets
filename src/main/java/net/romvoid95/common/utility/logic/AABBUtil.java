@@ -2,7 +2,6 @@ package net.romvoid95.common.utility.logic;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -10,16 +9,18 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import lombok.experimental.UtilityClass;
 import net.romvoid95.common.utility.mc.ExBlockState;
 
 @UtilityClass
 public class AABBUtil {
 
 	private static int[] cos = {
-		1, 0, -1, 0
+			1, 0, -1, 0
 	};
 	private static int[] sin = {
-		0, 1, 0, -1
+			0, 1, 0, -1
 	};
 
 	/**
@@ -77,7 +78,7 @@ public class AABBUtil {
 	 */
 	public static AxisAlignedBB[] identities (BlockPos pos) {
 		return new AxisAlignedBB[] {
-			identity(pos)
+				identity(pos)
 		};
 	}
 
@@ -91,8 +92,9 @@ public class AABBUtil {
 	 * @return the axis aligned bb
 	 */
 	public static AxisAlignedBB rotate (AxisAlignedBB aabb, EnumFacing dir) {
-		if (dir == EnumFacing.SOUTH)
+		if (dir == EnumFacing.SOUTH) {
 			return aabb;
+		}
 
 		int  angle = dir.getAxis() == Axis.Y ? dir.getAxisDirection().getOffset() : EnumFaceUtil.getRotationCount(dir);
 		Axis axis  = dir.getAxis() == Axis.Y ? Axis.X : Axis.Y;
@@ -109,14 +111,16 @@ public class AABBUtil {
 	 * @return the axis aligned b b[]
 	 */
 	public static AxisAlignedBB[] rotate (AxisAlignedBB[] aabbs, EnumFacing dir) {
-		if (ArrayUtils.isEmpty(aabbs) || dir == EnumFacing.SOUTH)
+		if (ArrayUtils.isEmpty(aabbs) || (dir == EnumFacing.SOUTH)) {
 			return aabbs;
+		}
 
 		int  angle = dir.getAxis() == Axis.Y ? dir.getAxisDirection().getOffset() : EnumFaceUtil.getRotationCount(dir);
 		Axis axis  = dir.getAxis() == Axis.Y ? Axis.X : Axis.Y;
 
-		for (int i = 0; i < aabbs.length; i++)
+		for (int i = 0; i < aabbs.length; i++) {
 			aabbs[i] = rotate(aabbs[i], angle, axis);
+		}
 		return aabbs;
 	}
 
@@ -140,8 +144,9 @@ public class AABBUtil {
 	 * @return the axis aligned bb
 	 */
 	public static AxisAlignedBB rotate (AxisAlignedBB aabb, int angle, Axis axis) {
-		if (aabb == null || angle == 0 || axis == null)
+		if ((aabb == null) || (angle == 0) || (axis == null)) {
 			return aabb;
+		}
 
 		int a = -angle & 3;
 		int s = sin[a];
@@ -203,7 +208,7 @@ public class AABBUtil {
 		prefix = prefix == null ? "" : prefix + ".";
 		return tag != null ? new AxisAlignedBB(tag.getDouble(prefix + "minX"), tag.getDouble(prefix + "minY"), tag
 				.getDouble(prefix + "minZ"), tag
-						.getDouble(prefix + "maxX"), tag.getDouble(prefix + "maxY"), tag.getDouble(prefix + "maxZ"))
+				.getDouble(prefix + "maxX"), tag.getDouble(prefix + "maxY"), tag.getDouble(prefix + "maxZ"))
 				: null;
 	}
 
@@ -225,8 +230,9 @@ public class AABBUtil {
 	 * @param prefix the prefix
 	 */
 	public static void writeToNBT (NBTTagCompound tag, AxisAlignedBB aabb, String prefix) {
-		if (tag == null || aabb == null)
+		if ((tag == null) || (aabb == null)) {
 			return;
+		}
 
 		prefix = prefix == null ? "" : prefix + ".";
 		tag.setDouble(prefix + "minX", aabb.minX);
@@ -244,15 +250,17 @@ public class AABBUtil {
 	 * @return the axis aligned bb
 	 */
 	public static AxisAlignedBB combine (AxisAlignedBB[] aabbs) {
-		if (ArrayUtils.isEmpty(aabbs))
+		if (ArrayUtils.isEmpty(aabbs)) {
 			return null;
+		}
 
 		AxisAlignedBB ret = null;
 		for (AxisAlignedBB aabb : aabbs) {
-			if (ret == null)
+			if (ret == null) {
 				ret = aabb;
-			else if (aabb != null)
+			} else if (aabb != null) {
 				ret = ret.union(aabb);
+			}
 		}
 
 		return ret;
@@ -278,8 +286,9 @@ public class AABBUtil {
 	 * @return the axis aligned bb
 	 */
 	public static AxisAlignedBB offset (BlockPos pos, AxisAlignedBB aabb) {
-		if (aabb == null || pos == null)
+		if ((aabb == null) || (pos == null)) {
 			return aabb;
+		}
 		return aabb.offset(pos.getX(), pos.getY(), pos.getZ());
 	}
 
@@ -291,12 +300,15 @@ public class AABBUtil {
 	 * @return the axis aligned b b[]
 	 */
 	public static AxisAlignedBB[] offset (BlockPos pos, AxisAlignedBB... aabbs) {
-		if (ArrayUtils.isEmpty(aabbs))
+		if (ArrayUtils.isEmpty(aabbs)) {
 			return aabbs;
+		}
 
-		for (int i = 0; i < aabbs.length; i++)
-			if (aabbs[i] != null)
+		for (int i = 0; i < aabbs.length; i++) {
+			if (aabbs[i] != null) {
 				aabbs[i] = aabbs[i].offset(pos.getX(), pos.getY(), pos.getZ());
+			}
+		}
 		return aabbs;
 	}
 
@@ -309,7 +321,7 @@ public class AABBUtil {
 	 */
 	public static boolean isColliding (AxisAlignedBB aabb, AxisAlignedBB[] aabbs) {
 		return isColliding(new AxisAlignedBB[] {
-			aabb
+				aabb
 		}, aabbs);
 	}
 
@@ -322,7 +334,7 @@ public class AABBUtil {
 	 */
 	public static boolean isColliding (AxisAlignedBB[] aabbs, AxisAlignedBB aabb) {
 		return isColliding(aabbs, new AxisAlignedBB[] {
-			aabb
+				aabb
 		});
 	}
 
@@ -334,14 +346,17 @@ public class AABBUtil {
 	 * @return true, if is colliding
 	 */
 	public static boolean isColliding (AxisAlignedBB[] aabbs1, AxisAlignedBB[] aabbs2) {
-		if (ArrayUtils.isEmpty(aabbs1) || ArrayUtils.isEmpty(aabbs2))
+		if (ArrayUtils.isEmpty(aabbs1) || ArrayUtils.isEmpty(aabbs2)) {
 			return false;
+		}
 
 		for (AxisAlignedBB aabb1 : aabbs1) {
 			if (aabb1 != null) {
-				for (AxisAlignedBB aabb2 : aabbs2)
-					if (aabb2 != null && aabb1.intersects(aabb2))
+				for (AxisAlignedBB aabb2 : aabbs2) {
+					if ((aabb2 != null) && aabb1.intersects(aabb2)) {
 						return true;
+					}
+				}
 			}
 		}
 
@@ -394,19 +409,20 @@ public class AABBUtil {
 	 */
 	public static AxisAlignedBB[] getCollisionBoundingBoxes (World world, ExBlockState state, boolean offset) {
 		AxisAlignedBB[] aabbs = new AxisAlignedBB[0];
-		if (world == null || state == null)
+		if ((world == null) || (state == null)) {
 			return aabbs;
-
-		else {
+		} else {
 			AxisAlignedBB aabb = state.getBlockState().getCollisionBoundingBox(world, state.getPos());
-			if (aabb != null)
+			if (aabb != null) {
 				aabbs = new AxisAlignedBB[] {
-					aabb
+						aabb
 				};
+			}
 		}
 
-		if (offset)
+		if (offset) {
 			AABBUtil.offset(state.getX(), state.getY(), state.getZ(), aabbs);
+		}
 
 		return aabbs;
 	}
@@ -435,12 +451,12 @@ public class AABBUtil {
 
 		AxisAlignedBB[] aabb = new AxisAlignedBB[slices];
 		for (int i = 0; i < slices; i++) {
-			float bx = fx[START][MIN] + (fx[END][MIN] - fx[START][MIN]) * i * delta;
-			float bX = fx[START][MAX] + (fx[END][MAX] - fx[START][MAX]) * i * delta;
-			float by = fy[START][MIN] + (fy[END][MIN] - fy[START][MIN]) * i * delta;
-			float bY = fy[START][MAX] + (fy[END][MAX] - fy[START][MAX]) * i * delta;
-			float bz = fz[START][MIN] + (fz[END][MIN] - fz[START][MIN]) * i * delta;
-			float bZ = fz[START][MAX] + (fz[END][MAX] - fz[START][MAX]) * i * delta;
+			float bx = fx[START][MIN] + ((fx[END][MIN] - fx[START][MIN]) * i * delta);
+			float bX = fx[START][MAX] + ((fx[END][MAX] - fx[START][MAX]) * i * delta);
+			float by = fy[START][MIN] + ((fy[END][MIN] - fy[START][MIN]) * i * delta);
+			float bY = fy[START][MAX] + ((fy[END][MAX] - fy[START][MAX]) * i * delta);
+			float bz = fz[START][MIN] + ((fz[END][MIN] - fz[START][MIN]) * i * delta);
+			float bZ = fz[START][MAX] + ((fz[END][MAX] - fz[START][MAX]) * i * delta);
 
 			if (vertical) {
 				by = i * delta;

@@ -17,13 +17,16 @@
 
 package net.romvoid95.common.utility.mc;
 
-import lombok.experimental.UtilityClass;
-import micdoodle8.mods.galacticraft.api.entity.IRocketType;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
+
 import net.minecraftforge.common.BiomeManager.BiomeType;
+
+import micdoodle8.mods.galacticraft.api.entity.IRocketType;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class CachedEnum {

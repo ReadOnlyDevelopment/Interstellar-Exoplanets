@@ -20,25 +20,23 @@ package net.romvoid95.common.astronomy.yzceti.b;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
-import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
-import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
-import net.minecraft.world.WorldType;
+import net.minecraft.world.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.NoiseGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.romvoid95.common.world.mapgen.MapGenExoCaveGen;
+import net.minecraft.world.gen.*;
+
+import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
+import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
+import micdoodle8.mods.galacticraft.core.world.gen.EnumCraterSize;
+
+import net.romvoid95.common.world.cave.MapGeneExCaves;
 import net.romvoid95.common.world.mapgen.MapGenExoRavinGen;
 import net.romvoid95.core.ExoBlock;
 
@@ -66,8 +64,7 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private final double[]          terrainCalcs;
 	private final float[]           parabolicField;
 	private double[]                stoneNoise      = new double[256];
-	private MapGenExoCaveGen        caveGenerator   = new MapGenExoCaveGen(ExoBlock.YZB_LOOSE_SEDIMENT
-			.getBlock(), 0, 1, 2);
+	private MapGeneExCaves		caveGenerator = new MapGeneExCaves();
 	private final MapGenExoRavinGen ravineGenerator = new MapGenExoRavinGen();
 	private Biome[]                 biomesForGeneration;
 	private double[]                octaves1;
@@ -94,8 +91,8 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 		for (int i = -2; i <= 2; ++i) {
 			for (int j = -2; j <= 2; ++j) {
-				float f = 10.0F / MathHelper.sqrt(i * i + j * j + 0.2F);
-				this.parabolicField[i + 2 + (j + 2) * 5] = f;
+				float f = 10.0F / MathHelper.sqrt((i * i) + (j * j) + 0.2F);
+				this.parabolicField[i + 2 + ((j + 2) * 5)] = f;
 			}
 		}
 
@@ -113,7 +110,7 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	private void setBlocksInChunk (int chunkX, int chunkZ, ChunkPrimer primer) {
 		this.noiseGenSmooth1.setFrequency(0.015F);
 		this.biomesForGeneration = this.world.getBiomeProvider()
-				.getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
+				.getBiomesForGeneration(this.biomesForGeneration, (chunkX * 4) - 2, (chunkZ * 4) - 2, 10, 10);
 		this.createLandPerBiome(chunkX * 4, chunkZ * 4);
 
 		for (int i = 0; i < 4; ++i) {
@@ -150,9 +147,9 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 							double lvt_45_1_ = d10 - d16;
 
 							for (int l2 = 0; l2 < 4; ++l2) {
-								if ((lvt_45_1_ += d16) > this.noiseGenSmooth1
-										.getNoise(chunkX * 16 + (i * 4 + k2), chunkZ * 16 + (l * 4 + l2)) * 20.0) {
-									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, BLOCK_FILL);
+								if ((lvt_45_1_ += d16) > (this.noiseGenSmooth1
+										.getNoise((chunkX * 16) + ((i * 4) + k2), (chunkZ * 16) + ((l * 4) + l2)) * 20.0)) {
+									primer.setBlockState((i * 4) + k2, (i2 * 8) + j2, (l * 4) + l2, BLOCK_FILL);
 								}
 							}
 
@@ -177,16 +174,16 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
-				Biome biomegenbase = p_180517_4_[j + i * 16];
-				biomegenbase.genTerrainBlocks(this.world, this.rand, p_180517_3_, p_180517_1_ * 16 + i, p_180517_2_ * 16
-						+ j, this.stoneNoise[j + i * 16]);
+				Biome biomegenbase = p_180517_4_[j + (i * 16)];
+				biomegenbase.genTerrainBlocks(this.world, this.rand, p_180517_3_, (p_180517_1_ * 16) + i, (p_180517_2_ * 16)
+						+ j, this.stoneNoise[j + (i * 16)]);
 			}
 		}
 	}
 
 	@Override
 	public Chunk generateChunk (int x, int z) {
-		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
+		this.rand.setSeed((x * 341873128712L) + (z * 132897987541L));
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkprimer);
 		this.biomesForGeneration = this.world.getBiomeProvider()
@@ -229,16 +226,16 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 				for (int j1 = -i1; j1 <= i1; ++j1) {
 					for (int k1 = -i1; k1 <= i1; ++k1) {
-						Biome biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
+						Biome biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + ((l + k1 + 2) * 10)];
 						float f5            = biomegenbase1.getBaseHeight();
 						float f6            = biomegenbase1.getHeightVariation();
 
-						if (this.worldType == WorldType.AMPLIFIED && f5 > 0.0F) {
-							f5 = 1.0F + f5 * 2.0F;
-							f6 = 1.0F + f6 * 4.0F;
+						if ((this.worldType == WorldType.AMPLIFIED) && (f5 > 0.0F)) {
+							f5 = 1.0F + (f5 * 2.0F);
+							f6 = 1.0F + (f6 * 4.0F);
 						}
 
-						float f7 = this.parabolicField[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
+						float f7 = this.parabolicField[j1 + 2 + ((k1 + 2) * 5)] / (f5 + 2.0F);
 
 						f2 += f6 * f7;
 						f3 += f5 * f7;
@@ -248,15 +245,15 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 				f2 = f2 / f4;
 				f3 = f3 / f4;
-				f2 = f2 * 0.9F + 0.1F;
-				f3 = (f3 * 4.0F - 1.0F) / 8.0F;
+				f2 = (f2 * 0.9F) + 0.1F;
+				f3 = ((f3 * 4.0F) - 1.0F) / 8.0F;
 				double d7 = this.octaves4[j] / 4000.0D;
 
 				if (d7 < 0.0D) {
 					d7 = -d7 * 0.3D;
 				}
 
-				d7 = d7 * 3.0D - 2.0D;
+				d7 = (d7 * 3.0D) - 2.0D;
 
 				if (d7 < 0.0D) {
 					d7 = d7 / 2.0D;
@@ -279,12 +276,12 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 				++j;
 				double d8 = f3;
 				double d9 = f2;
-				d8 = d8 + d7 * 0.2D;
-				d8 = d8 * 8.5 / 8.0D;
-				double d0 = 8.5 + d8 * 4.0D;
+				d8 = d8 + (d7 * 0.2D);
+				d8 = (d8 * 8.5) / 8.0D;
+				double d0 = 8.5 + (d8 * 4.0D);
 
 				for (int l1 = 0; l1 < 33; ++l1) {
-					double d1 = (l1 - d0) * 12.0 * 128.0D / 256.0D / d9;
+					double d1 = ((l1 - d0) * 12.0 * 128.0D) / 256.0D / d9;
 
 					if (d1 < 0.0D) {
 						d1 *= 4.0D;
@@ -292,12 +289,12 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 					double d2 = this.octaves2[i] / 512.0;
 					double d3 = this.octaves3[i] / 1024.0;
-					double d4 = (this.octaves1[i] / 10.0D + 1.0D) / 2.0D;
+					double d4 = ((this.octaves1[i] / 10.0D) + 1.0D) / 2.0D;
 					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 
 					if (l1 > 29) {
 						double d6 = (l1 - 29) / 3.0F;
-						d5 = d5 * (1.0D - d6) + -10.0D * d6;
+						d5 = (d5 * (1.0D - d6)) + (-10.0D * d6);
 					}
 
 					this.terrainCalcs[i] = d5;
@@ -308,20 +305,20 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 	}
 
 	public void createCraters (int chunkX, int chunkZ, ChunkPrimer primer) {
-		for (int cx = chunkX - 2; cx <= chunkX + 2; cx++) {
-			for (int cz = chunkZ - 2; cz <= chunkZ + 2; cz++) {
+		for (int cx = chunkX - 2; cx <= (chunkX + 2); cx++) {
+			for (int cz = chunkZ - 2; cz <= (chunkZ + 2); cz++) {
 				for (int x = 0; x < ChunkProviderYzCetiB.CHUNK_SIZE_X; x++) {
 					for (int z = 0; z < ChunkProviderYzCetiB.CHUNK_SIZE_Z; z++) {
-						if (Math.abs(this.randFromPoint(cx * 16 + x, (cz * 16 + z) * 1000)) < this.noiseGen4
-								.getValue(x * ChunkProviderYzCetiB.CHUNK_SIZE_X
-										+ x, cz * ChunkProviderYzCetiB.CHUNK_SIZE_Z + z)
-								/ ChunkProviderYzCetiB.CRATER_PROB) {
-							final Random         random = new Random(cx * 16 + x + (cz * 16 + z) * 5000);
+						if (Math.abs(this.randFromPoint((cx * 16) + x, ((cz * 16) + z) * 1000)) < (this.noiseGen4
+								.getValue((x * ChunkProviderYzCetiB.CHUNK_SIZE_X)
+										+ x, (cz * ChunkProviderYzCetiB.CHUNK_SIZE_Z) + z)
+								/ ChunkProviderYzCetiB.CRATER_PROB)) {
+							final Random         random = new Random((cx * 16) + x + (((cz * 16) + z) * 5000));
 							final EnumCraterSize cSize  = EnumCraterSize.sizeArray[random
-									.nextInt(EnumCraterSize.sizeArray.length)];
+							                                                       .nextInt(EnumCraterSize.sizeArray.length)];
 							final int            size   = random.nextInt(cSize.MAX_SIZE - cSize.MIN_SIZE)
 									+ cSize.MIN_SIZE;
-							this.makeCrater(cx * 16 + x, cz * 16 + z, chunkX * 16, chunkZ * 16, size, primer);
+							this.makeCrater((cx * 16) + x, (cz * 16) + z, chunkX * 16, chunkZ * 16, size, primer);
 						}
 					}
 				}
@@ -334,15 +331,15 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 			for (int z = 0; z < ChunkProviderYzCetiB.CHUNK_SIZE_Z; z++) {
 				double xDev = craterX - (chunkX + x);
 				double zDev = craterZ - (chunkZ + z);
-				if (xDev * xDev + zDev * zDev < size * size) {
+				if (((xDev * xDev) + (zDev * zDev)) < (size * size)) {
 					xDev /= size;
 					zDev /= size;
-					final double sqrtY = xDev * xDev + zDev * zDev;
+					final double sqrtY = (xDev * xDev) + (zDev * zDev);
 					double       yDev  = sqrtY * sqrtY * 6;
 					yDev = 5 - yDev;
 					int helper = 0;
 					for (int y = 127; y > 0; y--) {
-						if (Blocks.AIR != primer.getBlockState(x, y, z).getBlock() && helper <= yDev) {
+						if ((Blocks.AIR != primer.getBlockState(x, y, z).getBlock()) && (helper <= yDev)) {
 							primer.setBlockState(x, y, z, Blocks.AIR.getDefaultState());
 							helper++;
 						}
@@ -357,9 +354,9 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 
 	private double randFromPoint (int x, int z) {
 		int n;
-		n = x + z * 57;
-		n = n << 13 ^ n;
-		return 1.0 - (n * (n * n * 15731 + 789221) + 1376312589 & 0x7fffffff) / 1073741824.0;
+		n = x + (z * 57);
+		n = (n << 13) ^ n;
+		return 1.0 - ((((n * ((n * n * 15731) + 789221)) + 1376312589) & 0x7fffffff) / 1073741824.0);
 	}
 
 	@Override
@@ -370,9 +367,9 @@ public class ChunkProviderYzCetiB extends ChunkProviderBase {
 		BlockPos blockpos     = new BlockPos(i, 0, j);
 		Biome    biomegenbase = this.world.getBiome(blockpos.add(16, 0, 16));
 		this.rand.setSeed(this.world.getSeed());
-		long k = this.rand.nextLong() / 2L * 2L + 1L;
-		long l = this.rand.nextLong() / 2L * 2L + 1L;
-		this.rand.setSeed(x * k + z * l ^ this.world.getSeed());
+		long k = ((this.rand.nextLong() / 2L) * 2L) + 1L;
+		long l = ((this.rand.nextLong() / 2L) * 2L) + 1L;
+		this.rand.setSeed(((x * k) + (z * l)) ^ this.world.getSeed());
 
 		biomegenbase.decorate(this.world, this.rand, new BlockPos(i, 0, j));
 		WorldEntitySpawner.performWorldGenSpawning(this.world, biomegenbase, i + 8, j + 8, 16, 16, this.rand);

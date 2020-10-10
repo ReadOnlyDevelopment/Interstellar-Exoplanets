@@ -17,24 +17,18 @@
 
 package net.romvoid95.common.astronomy.yzceti.c.worldgen.biomes;
 
-import net.romvoid95.common.astronomy.yzceti.b.worldgen.biome.BiomeYzCetiBBase;
+import net.romvoid95.common.astronomy.yzceti.c.worldgen.YzCetiCBiomes;
 import net.romvoid95.common.world.helpers.EnumBiomeType;
 import net.romvoid95.core.ExoBlock;
 
-public class BiomeYzCetiCUnknown extends BiomeYzCetiBBase {
+public class BiomeYzCetiCUnknown extends YzCetiCBiomes {
 
-	public static int grassFoilageColorMultiplier = 0x000000;
-
-	public BiomeYzCetiCUnknown(BiomeProperties props) {
-		super("unknown", props);
-		props.setRainDisabled();
-		props.setBaseHeight(6.0F);
-		props.setHeightVariation(3.6F);
-		props.setTemperature(2.0F);
-		this.setTemp(2F);
-		this.setBiomeHeight(82);
+	public BiomeYzCetiCUnknown(BiomeProperties defaultBuilder) {
+		super(defaultBuilder);
+		defaultBuilder.setBaseHeight(2.4F);
+		defaultBuilder.setHeightVariation(0.5F);
 		this.setBiomeType(EnumBiomeType.ABANDONED);
-		this.topBlock    = ExoBlock.YZC_IGNEOUS;
+		this.topBlock    = ExoBlock.YZC_DARK_LOOSE_SEDIMENT;
 		this.fillerBlock = ExoBlock.YZC_GRAVEL;
 		this.stoneBlock  = ExoBlock.YZC_IGNEOUS.getBlock();
 	}

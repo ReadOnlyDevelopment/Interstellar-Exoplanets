@@ -17,8 +17,9 @@
 
 package net.romvoid95.common.astronomy.yzceti.d.worldgen;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import net.minecraft.world.World;
+
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 
 public class BiomeDecoratorYzCetiD extends BiomeDecoratorSpace {
 
@@ -37,5 +38,7 @@ public class BiomeDecoratorYzCetiD extends BiomeDecoratorSpace {
 	}
 
 	@Override
-	protected void decorate () {}
+	protected void decorate () {
+
+	}
 }

@@ -1,8 +1,6 @@
 package net.romvoid95.common.astronomy.kepler1649;
 
-import net.romvoid95.common.block.terrain.BlockExoSand;
-import net.romvoid95.common.block.terrain.BlockMetamorphicRock;
-import net.romvoid95.common.block.terrain.BlockSedimentaryRock;
+import net.romvoid95.common.block.terrain.*;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class KeplerBlocks {

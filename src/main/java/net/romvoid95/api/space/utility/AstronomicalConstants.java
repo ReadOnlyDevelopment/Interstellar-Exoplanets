@@ -120,7 +120,7 @@ public class AstronomicalConstants {
 	public static final double J2000 = 2451545.0;
 
 	/** The Julian Day of the Hipparcos catalog epoch. */
-	public static final double J1991_25 = J2000 - 0.0875 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
+	public static final double J1991_25 = J2000 - (0.0875 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY);
 
 	/** Length of a tropical year in days for B1950. */
 	public static final double TROPICAL_YEAR = 365.242198781;
@@ -133,15 +133,15 @@ public class AstronomicalConstants {
 	/** B1900 epoch, equal to JD 2415020.31352. Bessel year starts when the RA of
 	 * the sun is 18h 40m, and it is based on the rotation of a fictitious mean
 	 * sun. It's length is equal to a tropical year. */
-	public static final double B1900 = B1950 - 50.0 * AstronomicalConstants.TROPICAL_YEAR;
+	public static final double B1900 = B1950 - (50.0 * AstronomicalConstants.TROPICAL_YEAR);
 
 	/** J1950 epoch. 1950-1-1.0 */
 	public static final double J1950 = AstronomicalConstants.J1900
-			+ 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
+			+ (0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY);
 
 	/** J2050 epoch. 2050-1-1.0 */
 	public static final double J2050 = AstronomicalConstants.J2000
-			+ 0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY;
+			+ (0.5 * AstronomicalConstants.JULIAN_DAYS_PER_CENTURY);
 
 	/** J1900 epoch. Noon on 1900-1-0. */
 	public static final double J1900 = 2415020.0;
@@ -193,7 +193,7 @@ public class AstronomicalConstants {
 	public static final double ERG_S_CM2_HZ_TO_JY = 1.0E23;
 
 	/** Constant to transform Jy to W/(m^2 Hz). */
-	public static final double JY_TO_W_HZ_M2 = ERGIO_TO_JULE * 1E4 / ERG_S_CM2_HZ_TO_JY;
+	public static final double JY_TO_W_HZ_M2 = (ERGIO_TO_JULE * 1E4) / ERG_S_CM2_HZ_TO_JY;
 
 	/** Boltzmann constant in J/K. Value from CODATA 2014. */
 	public static final double BOLTZMANN_CONSTANT = 1.38064852E-23;
@@ -277,7 +277,7 @@ public class AstronomicalConstants {
 	public static final double AMU = 1.660539040E-27;
 
 	/** Mass of the hydrogen molecule in Kg. This value is 2 * m_p + m_e. */
-	public static final double H2_MASS = 2.0 * PROTON_MASS + ELECTRON_MASS;
+	public static final double H2_MASS = (2.0 * PROTON_MASS) + ELECTRON_MASS;
 
 	/** A factor to transform microns to cm. */
 	public static final double MICRON_TO_CM = 1.0E-4;

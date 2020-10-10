@@ -17,18 +17,30 @@
 
 package net.romvoid95.common.astronomy.yzceti.c.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.romvoid95.common.world.biome.BiomeDecoratorExoBase;
 
-public class BiomeDecoratorYzCetiC extends BiomeDecoratorExoBase {
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
+
+public class BiomeDecoratorYzCetiC extends BiomeDecoratorSpace {
+
+	private World currentWorld;
 
 	public BiomeDecoratorYzCetiC() {}
 
 	@Override
-	protected void generate (Biome biome, World world, Random rand) {
+	protected void setCurrentWorld (World world) {
+		this.currentWorld = world;
+	}
 
+	@Override
+	protected World getCurrentWorld () {
+		return this.currentWorld;
+	}
+
+
+	@Override
+	protected void decorate() {
+		// TODO Auto-generated method stub
+		
 	}
 }

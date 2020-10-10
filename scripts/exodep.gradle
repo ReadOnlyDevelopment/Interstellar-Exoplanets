@@ -2,6 +2,7 @@ def math3 = "3.6.1"
 def collections4 = "4.4"
 
 repositories {
+	mavenCentral()
 	ivy {
 		url "https://micdoodle8.com/new-builds/"
 		layout 'pattern', {
@@ -43,4 +44,10 @@ dependencies {
 	
 	compile "org.apache.commons:commons-math3:${math3}"
 	compile "org.apache.commons:commons-collections4:${collections4}"
+	
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }

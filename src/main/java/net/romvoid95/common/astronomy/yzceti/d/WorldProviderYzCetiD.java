@@ -20,21 +20,21 @@ package net.romvoid95.common.astronomy.yzceti.d;
 import java.util.LinkedList;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.romvoid95.api.space.ExoPlanet;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+
+import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
-import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.BiomeProviderYzCetiD;
-import net.romvoid95.common.astronomy.yzceti.d.worldgen.ChunkProviderYzCetiD;
-import net.romvoid95.common.config.SConfigSystems;
-import net.romvoid95.core.initialization.ExoDimensions;
+import net.romvoid95.common.config.systems.ConfigSystems;
 import net.romvoid95.core.initialization.Planets;
 
 public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
@@ -107,7 +107,7 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
 	@Override
 	public boolean canSpaceshipTierPass (int tier) {
-		return tier >= SConfigSystems.yzceti_tier;
+		return tier >= ConfigSystems.yzceti_tier;
 	}
 
 	@Override
@@ -149,9 +149,6 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks () {
 		List<Block> list = new LinkedList<>();
-		list.add(YzCetiBlocks.YzCetiD.YZD_SEDIMENTARYROCK);
-		list.add(YzCetiBlocks.YzCetiD.YZD_IGNEOUS);
-		list.add(YzCetiBlocks.YzCetiD.YZD_GRAVEL);
 		return list;
 	}
 
@@ -165,4 +162,8 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 		return (ExoPlanet) getCelestialBody();
 	}
 
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
+	}
 }

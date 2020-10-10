@@ -19,21 +19,22 @@ package net.romvoid95.common.astronomy.yzceti.d;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
-import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import net.romvoid95.client.Assets;
 
 public class SkyProviderD extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glEnable(GL11.GL_BLEND);
 
-		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 	}
 
 	@Override

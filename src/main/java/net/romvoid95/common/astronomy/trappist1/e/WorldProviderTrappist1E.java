@@ -19,17 +19,6 @@ package net.romvoid95.common.astronomy.trappist1.e;
 
 import java.util.List;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
-import asmodeuscore.core.utils.worldengine.WE_Biome;
-import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -39,21 +28,29 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.*;
+import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
-import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Dunes;
-import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Mountains;
-import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Ocean;
-import net.romvoid95.common.astronomy.trappist1.e.biomes.Trappist1_E_Plains;
+import net.romvoid95.common.astronomy.trappist1.e.biomes.*;
 import net.romvoid95.common.lib.EnumMetal;
 import net.romvoid95.core.ExoBlock;
-import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
-public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
+public class WorldProviderTrappist1E extends WorldProviderWE_ExoPlanet {
 
 	public static WE_ChunkProvider chunk;
 	//private StormProviderTrappist1E storm = new StormProviderTrappist1E();
@@ -66,16 +63,6 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 	@Override
 	protected float getThermalValueMod () {
 		return 0.2F;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 24000L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.015f;
 	}
 
 	@Override
@@ -265,5 +252,15 @@ public class WorldProviderTrappist1E extends WE_WorldProviderSpace {
 	@Override
 	public DimensionType getDimensionType () {
 		return ExoDimensions.TRAPPIST_1E;
+	}
+
+	@Override
+	public double getMeteorFrequency() {
+		return 0;
+	}
+
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
 	}
 }

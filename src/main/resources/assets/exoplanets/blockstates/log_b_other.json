@@ -1,8 +1,23 @@
 {
-    "variants": {
-        "axis=y": { "model": "exoplanets:log/log_b_other_model" },
-        "axis=z": { "model": "exoplanets:log/log_b_other_model", "x": 90 },
-        "axis=x": { "model": "exoplanets:log/log_b_other_model", "x": 90, "y": 90 },
-        "axis=none": { "model": "exoplanets:log/log_b_other_bark_model" }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column",
+    "textures": {
+      "end": "exoplanets:blocks/wood/log_b_other_top",
+      "side": "exoplanets:blocks/wood/log_b_other"
     }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "axis": {
+      "x": {"x": 90, "y": 90},
+      "y": {},
+      "z": {"x": 90},
+      "none": {
+        "model": "cube_all",
+        "textures": {"all": "exoplanets:blocks/wood/log_b_other"}
+      }
+    }
+  }
 }

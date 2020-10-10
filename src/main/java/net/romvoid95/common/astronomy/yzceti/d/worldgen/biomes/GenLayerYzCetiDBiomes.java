@@ -17,10 +17,12 @@
 
 package net.romvoid95.common.astronomy.yzceti.d.worldgen.biomes;
 
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-import micdoodle8.mods.miccore.IntCache;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
+
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+
+import micdoodle8.mods.miccore.IntCache;
 import net.romvoid95.core.initialization.Planets;
 
 public class GenLayerYzCetiDBiomes extends GenLayer {

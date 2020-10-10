@@ -17,10 +17,7 @@
 
 package net.romvoid95.api.registry;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -28,9 +25,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.advancements.ICriterionTrigger;
+import net.minecraft.advancements.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -46,9 +41,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
@@ -57,37 +50,26 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraft.world.storage.loot.properties.EntityProperty;
 import net.minecraft.world.storage.loot.properties.EntityPropertyManager;
+
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.IFluidBlock;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fluids.*;
+import net.minecraftforge.fml.client.registry.*;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.*;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import net.romvoid95.api.crafting.RecipeBuilder;
-import net.romvoid95.common.lib.block.BlockMetaSubtypes;
-import net.romvoid95.common.lib.block.IBlockTileEntity;
-import net.romvoid95.common.lib.block.IColorBlock;
-import net.romvoid95.common.lib.block.ICustomMesh;
-import net.romvoid95.common.lib.block.ICustomModel;
+import net.romvoid95.common.lib.block.*;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.item.IColorItem;
 import net.romvoid95.common.lib.interfaces.item.ItemBlockMetaSubtypes;
@@ -223,7 +205,7 @@ public class ExoRegistry {
 			this.recipeAdders.add((IAddRecipe) block);
 		}
 
-		if (MCUtil.isClient() && block instanceof IColorBlock) {
+		if (MCUtil.isClient() && (block instanceof IColorBlock)) {
 			this.coloredBlocks.add(block);
 		}
 
@@ -259,7 +241,7 @@ public class ExoRegistry {
 			this.recipeAdders.add((IAddRecipe) block);
 		}
 
-		if (MCUtil.isClient() && block instanceof IColorBlock) {
+		if (MCUtil.isClient() && (block instanceof IColorBlock)) {
 			this.coloredBlocks.add(block);
 		}
 
@@ -287,7 +269,7 @@ public class ExoRegistry {
 			this.recipeAdders.add((IAddRecipe) item);
 		}
 
-		if (MCUtil.isClient() && item instanceof IColorItem) {
+		if (MCUtil.isClient() && (item instanceof IColorItem)) {
 			this.coloredItems.add(item);
 		}
 
@@ -364,7 +346,7 @@ public class ExoRegistry {
 	public void registerEntity (Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
 		ResourceLocation resource = new ResourceLocation(this.modId, key);
 		EntityRegistry
-				.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+		.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
 
 	public void registerEntity (Class<? extends Entity> entityClass, String key, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
@@ -374,7 +356,7 @@ public class ExoRegistry {
 	public void registerEntity (Class<? extends Entity> entityClass, String key, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
 		ResourceLocation resource = new ResourceLocation(this.modId, key);
 		EntityRegistry
-				.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
+		.registerModEntity(resource, entityClass, key, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates, eggPrimary, eggSecondary);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -521,7 +503,7 @@ public class ExoRegistry {
 	private void verifyOrFindModObject () {
 		if (this.mod == null) {
 			this.logger
-					.warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
+			.warn("Mod {} did not manually set its mod object! This is bad and may cause crashes.", this.modId);
 			ModContainer container = Loader.instance().getIndexedModList().get(this.modId);
 			if (container != null) {
 				this.mod = container.getMod();
@@ -648,11 +630,6 @@ public class ExoRegistry {
 		this.creativeTab = creativeTabs;
 	}
 
-	/**
-	 * Handles the new Forge RegistryEvents. An instance will automatically be
-	 * registered when an StellarRegistry is constructed.
-	 * 
-	 */
 	public static class EventHandler {
 		private final ExoRegistry ModRegistry;
 

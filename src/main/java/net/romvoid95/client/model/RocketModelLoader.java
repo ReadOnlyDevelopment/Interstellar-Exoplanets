@@ -18,24 +18,17 @@
 package net.romvoid95.client.model;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.google.common.collect.ImmutableMap;
 
-import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.client.resources.IResource;
-import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
+
+import net.minecraftforge.client.model.*;
 import net.minecraftforge.client.model.obj.OBJModel;
+
 import net.romvoid95.core.ExoplanetsMod;
 
 public class RocketModelLoader implements ICustomModelLoader {
@@ -89,8 +82,9 @@ public class RocketModelLoader implements ICustomModelLoader {
 				throw e;
 			}
 		}
-		if (model == null)
+		if (model == null) {
 			return ModelLoaderRegistry.getMissingModel();
+		}
 		return model;
 	}
 }

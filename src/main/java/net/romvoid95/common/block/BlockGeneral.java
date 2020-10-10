@@ -17,23 +17,25 @@
 
 package net.romvoid95.common.block;
 
-import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
-import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.item.ItemStack;
+
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+
 import net.romvoid95.api.crafting.RecipeBuilder;
 import net.romvoid95.client.CreativeExoTabs;
-import net.romvoid95.common.lib.block.BlockBase;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 
-public abstract class BlockGeneral extends BlockBase implements ISortableBlock, IAddRecipe {
+public abstract class BlockGeneral extends Block implements ISortableBlock, IAddRecipe {
 
 	public BlockGeneral(Material materialIn) {
 		super(materialIn);
 		this.setCreativeTab(CreativeExoTabs.DECORATION_TAB);
 	}
-	
+
 	public ItemStack getStack(int count) {
 		return new ItemStack(this, count);
 	}
@@ -47,7 +49,8 @@ public abstract class BlockGeneral extends BlockBase implements ISortableBlock, 
 	public EnumSortCategoryBlock getCategory(int meta) {
 		return EnumSortCategoryBlock.GENERAL;
 	}
-	
-    public abstract void addRecipes(RecipeBuilder recipes);
+
+	@Override
+	public abstract void addRecipes(RecipeBuilder recipes);
 
 }

@@ -1,10 +1,11 @@
 package net.romvoid95.common.utility.mc;
 
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.experimental.UtilityClass;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.romvoid95.common.utility.logic.Point;
 
 @UtilityClass

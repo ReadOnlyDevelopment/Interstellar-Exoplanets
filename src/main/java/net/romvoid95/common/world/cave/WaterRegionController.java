@@ -7,11 +7,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.common.world.cave.config.util.ConfigHolder;
+
 import net.romvoid95.common.world.cave.enums.RegionSize;
 import net.romvoid95.common.world.cave.noise.FastNoise;
 import net.romvoid95.common.world.cave.noise.NoiseUtils;
-import net.romvoid95.common.world.cave.util.BetterCavesUtils;
+import net.romvoid95.common.world.cave.util.CaveUtils;
 import net.romvoid95.core.ExoplanetsMod;
 
 public class WaterRegionController {
@@ -82,7 +82,7 @@ public class WaterRegionController {
         try {
             lavaBlock = Block.getBlockFromName(lavaString).getDefaultState();
             ExoplanetsMod.logger.info("Using block '" + lavaString + "' as lava in cave generation for dimension " +
-                    BetterCavesUtils.dimensionAsString(dimensionID, dimensionName) + " ...");
+                    CaveUtils.dimensionAsString(dimensionID, dimensionName) + " ...");
         } catch (Exception e) {
             ExoplanetsMod.logger.warn("Unable to use block '" + lavaString + "': " + e);
             ExoplanetsMod.logger.warn("Using vanilla lava instead...");
@@ -100,7 +100,7 @@ public class WaterRegionController {
         try {
             waterBlock = Block.getBlockFromName(waterString).getDefaultState();
             ExoplanetsMod.logger.info("Using block '" + waterString + "' as water in cave generation for dimension " +
-                    BetterCavesUtils.dimensionAsString(dimensionID, dimensionName) + " ...");
+                    CaveUtils.dimensionAsString(dimensionID, dimensionName) + " ...");
         } catch (Exception e) {
             ExoplanetsMod.logger.warn("Unable to use block '" + waterString + "': " + e);
             ExoplanetsMod.logger.warn("Using vanilla water instead...");

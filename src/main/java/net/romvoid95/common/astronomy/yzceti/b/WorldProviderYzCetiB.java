@@ -20,24 +20,27 @@ package net.romvoid95.common.astronomy.yzceti.b;
 import java.util.LinkedList;
 import java.util.List;
 
-import asmodeuscore.api.dimension.IAdvancedSpace;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.api.space.ExoPlanet;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+
+import asmodeuscore.api.dimension.IAdvancedSpace;
+import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.b.worldgen.BiomeProviderYzCetiB;
-import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdvancedSpace {
@@ -96,16 +99,16 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness (float partialTicks) {
 		float angle = this.world.getCelestialAngle(partialTicks);
-		float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
+		float value = 1.0F - ((MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.25F);
 		value = MathHelper.clamp(value, 0.0F, 1.0F);
-		return value * value * 0.5F + 0.3F;
+		return (value * value * 0.5F) + 0.3F;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getSunBrightness (float partialTicks) {
 		float f1 = this.world.getCelestialAngle(1.0F);
-		float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
+		float f2 = 1.0F - ((MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.2F);
 		f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
 		f2 = 1.2F - f2;
 		return f2 * 0.8F;
@@ -124,19 +127,14 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	@Override
 	public Vector3 getFogColor () {
 		float f = 0.6F - this.getStarBrightness(1.0F);
-		return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);
+		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
 	}
 
 	@Override
 	public Vector3 getSkyColor () {
 		float f = 0.3F - this.getStarBrightness(1.0F);
-		return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
 
-	}
-
-	@Override
-	public boolean canRainOrSnow () {
-		return false;
 	}
 
 	@Override
@@ -152,9 +150,9 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	@Override
 	public List<Block> getSurfaceBlocks () {
 		List<Block> list = new LinkedList<>();
-		list.add(YzCetiBlocks.YzCetiB.YZB_METAMORPHIC);
-		list.add(YzCetiBlocks.YzCetiB.YZB_LOOSE_SEDIMENT);
-		list.add(YzCetiBlocks.YzCetiB.YZB_IGNEOUS);
+		list.add(YzCetiBlocks.B.YZB_METAMORPHIC);
+		list.add(YzCetiBlocks.B.YZB_LOOSE_SEDIMENT);
+		list.add(YzCetiBlocks.B.YZB_IGNEOUS);
 		return list;
 	}
 
@@ -191,7 +189,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 
 	@Override
 	public long getDayLength () {
-		return 23500l;
+		return 23500L;
 	}
 
 	@Override
@@ -229,4 +227,8 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 		return (ExoPlanet) getCelestialBody();
 	}
 
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
+	}
 }

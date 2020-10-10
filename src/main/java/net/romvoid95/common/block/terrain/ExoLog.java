@@ -2,11 +2,13 @@ package net.romvoid95.common.block.terrain;
 
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+
 import net.romvoid95.client.CreativeExoTabs;
 
 public class ExoLog extends BlockLog {
@@ -21,9 +23,18 @@ public class ExoLog extends BlockLog {
 	}
 
 	@Override
-	public IBlockState getStateFromMeta (int meta) {
-		EnumAxis[] values = EnumAxis.values();
-		return this.getDefaultState().withProperty(LOG_AXIS, values[meta % values.length]);
+	public IBlockState getStateFromMeta(int meta) {
+		for (EnumAxis axis : EnumAxis.values()) {
+			if (axis.ordinal() == meta) {
+				return getDefaultState().withProperty(LOG_AXIS, axis);
+			}
+		}
+		return getDefaultState();
+	}
+
+	@Override
+	public int damageDropped(IBlockState state) {
+		return 0;
 	}
 
 	@Override
@@ -32,8 +43,8 @@ public class ExoLog extends BlockLog {
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState () {
-		return new BlockStateContainer(this, LOG_AXIS);
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[]{LOG_AXIS});
 	}
 
 	@Override

@@ -18,13 +18,11 @@
 package net.romvoid95.common.astronomy.trappist1;
 
 import net.minecraft.block.Block;
+
 import net.romvoid95.common.block.BlockTerrain;
 import net.romvoid95.common.block.ore.BlockCompressedDiamond;
 import net.romvoid95.common.block.ore.BlockOreMetal;
-import net.romvoid95.common.block.terrain.BlockExoDirt;
-import net.romvoid95.common.block.terrain.BlockExoGrass;
-import net.romvoid95.common.block.terrain.BlockIgneousRock;
-import net.romvoid95.common.block.terrain.BlockMetamorphicRock;
+import net.romvoid95.common.block.terrain.*;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class TrappistBlocks {

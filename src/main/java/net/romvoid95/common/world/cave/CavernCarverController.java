@@ -10,18 +10,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+
 import net.minecraftforge.common.BiomeDictionary;
+
 import net.romvoid95.common.world.cave.carver.CarverNoiseRange;
-import net.romvoid95.common.world.cave.carver.cavern.CavernCarver;
-import net.romvoid95.common.world.cave.carver.cavern.CavernCarverBuilder;
-import net.romvoid95.common.world.cave.config.BCSettings;
-import net.romvoid95.common.world.cave.config.util.ConfigHolder;
+import net.romvoid95.common.world.cave.carver.cavern.CavernBuilder;
+import net.romvoid95.common.world.cave.carver.cavern.CavernSettings;
 import net.romvoid95.common.world.cave.enums.CavernType;
 import net.romvoid95.common.world.cave.enums.RegionSize;
-import net.romvoid95.common.world.cave.noise.FastNoise;
-import net.romvoid95.common.world.cave.noise.NoiseColumn;
-import net.romvoid95.common.world.cave.noise.NoiseUtils;
-import net.romvoid95.common.world.cave.util.BetterCavesUtils;
+import net.romvoid95.common.world.cave.noise.*;
+import net.romvoid95.common.world.cave.util.CaveUtils;
 import net.romvoid95.core.ExoplanetsMod;
 
 public class CavernCarverController {
@@ -51,20 +49,20 @@ public class CavernCarverController {
         this.cavernRegionController.SetFrequency(cavernRegionSize);
 
         // Initialize all carvers using config options
-        List<CavernCarver> carvers = new ArrayList<>();
-        carvers.add(new CavernCarverBuilder(worldIn)
+        List<CavernBuilder> carvers = new ArrayList<>();
+        carvers.add(new CavernSettings(worldIn)
             .ofTypeFromConfig(CavernType.LIQUID, config)
             .debugVisualizerBlock(Blocks.REDSTONE_BLOCK.getDefaultState())
             .build()
         );
-        carvers.add(new CavernCarverBuilder(worldIn)
+        carvers.add(new CavernSettings(worldIn)
             .ofTypeFromConfig(CavernType.FLOORED, config)
             .debugVisualizerBlock(Blocks.GOLD_BLOCK.getDefaultState())
             .build()
         );
 
         float spawnChance = config.cavernSpawnChance.get() / 100f;
-        int totalPriority = carvers.stream().map(CavernCarver::getPriority).reduce(0, Integer::sum);
+        int totalPriority = carvers.stream().map(CavernBuilder::getPriority).reduce(0, Integer::sum);
 
         ExoplanetsMod.logger.debug("CAVERN INFORMATION");
         ExoplanetsMod.logger.debug("--> SPAWN CHANCE SET TO: " + spawnChance);
@@ -80,7 +78,7 @@ public class CavernCarverController {
 
         float currNoise = -1f;
 
-        for (CavernCarver carver : carvers) {
+        for (CavernBuilder carver : carvers) {
             ExoplanetsMod.logger.debug("--> CARVER");
             float rangeCDFPercent = (float)carver.getPriority() / totalPriority * spawnChance;
             float topNoise = NoiseUtils.simplexNoiseOffsetByPercent(currNoise, rangeCDFPercent);
@@ -104,12 +102,12 @@ public class CavernCarverController {
         boolean flooded = false;
         float smoothAmpFactor = 1;
 
-        for (int subX = 0; subX < 16 / BCSettings.SUB_CHUNK_SIZE; subX++) {
-            for (int subZ = 0; subZ < 16 / BCSettings.SUB_CHUNK_SIZE; subZ++) {
-                int startX = subX * BCSettings.SUB_CHUNK_SIZE;
-                int startZ = subZ * BCSettings.SUB_CHUNK_SIZE;
-                int endX = startX + BCSettings.SUB_CHUNK_SIZE - 1;
-                int endZ = startZ + BCSettings.SUB_CHUNK_SIZE - 1;
+        for (int subX = 0; subX < 16 / CaveConstant.SUB_CHUNK_SIZE; subX++) {
+            for (int subZ = 0; subZ < 16 / CaveConstant.SUB_CHUNK_SIZE; subZ++) {
+                int startX = subX * CaveConstant.SUB_CHUNK_SIZE;
+                int startZ = subZ * CaveConstant.SUB_CHUNK_SIZE;
+                int endX = startX + CaveConstant.SUB_CHUNK_SIZE - 1;
+                int endZ = startZ + CaveConstant.SUB_CHUNK_SIZE - 1;
                 BlockPos startPos = new BlockPos(chunkX * 16 + startX, 1, chunkZ * 16 + startZ);
                 BlockPos endPos = new BlockPos(chunkX * 16 + endX, 1, chunkZ * 16 + endZ);
 
@@ -124,20 +122,20 @@ public class CavernCarverController {
                         }
                     }
                     for (CarverNoiseRange range : noiseRanges) {
-                        CavernCarver carver = (CavernCarver) range.getCarver();
+                        CavernBuilder carver = (CavernBuilder) range.getCarver();
                         maxHeight = Math.max(maxHeight, carver.getTopY());
                     }
                 }
 
-                for (int offsetX = 0; offsetX < BCSettings.SUB_CHUNK_SIZE; offsetX++) {
-                    for (int offsetZ = 0; offsetZ < BCSettings.SUB_CHUNK_SIZE; offsetZ++) {
+                for (int offsetX = 0; offsetX < CaveConstant.SUB_CHUNK_SIZE; offsetX++) {
+                    for (int offsetZ = 0; offsetZ < CaveConstant.SUB_CHUNK_SIZE; offsetZ++) {
                         int localX = startX + offsetX;
                         int localZ = startZ + offsetZ;
                         BlockPos colPos = new BlockPos(chunkX * 16 + localX, 1, chunkZ * 16 + localZ);
 
                         if (isFloodedUndergroundEnabled && !isDebugViewEnabled) {
                             flooded = BiomeDictionary.hasType(world.getBiome(colPos), BiomeDictionary.Type.OCEAN);
-                            smoothAmpFactor = BetterCavesUtils.biomeDistanceFactor(world, colPos, 2, flooded ? isNotOcean : isOcean);
+                            smoothAmpFactor = CaveUtils.biomeDistanceFactor(world, colPos, 2, flooded ? isNotOcean : isOcean);
                             if (smoothAmpFactor <= 0) { // Wall between flooded and normal caves.
                                 continue; // Continue to prevent unnecessary noise calculation
                             }
@@ -154,7 +152,7 @@ public class CavernCarverController {
                             if (!range.contains(cavernRegionNoise)) {
                                 continue;
                             }
-                            CavernCarver carver = (CavernCarver)range.getCarver();
+                            CavernBuilder carver = (CavernBuilder)range.getCarver();
                             int bottomY = carver.getBottomY();
                             int topY = isDebugViewEnabled ? carver.getTopY() : Math.min(surfaceAltitude, carver.getTopY());
                             if (isOverrideSurfaceDetectionEnabled) {

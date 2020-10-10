@@ -17,19 +17,15 @@
 
 package net.romvoid95.core;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.text.WordUtils;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class Logging {
 
-	private Logger logger          = LogManager.getFormatterLogger(ExoInfo.NAME);
+	private Logger logger          = LogManager.getLogger(ExoInfo.NAME);
 	private String lastDebugOutput = "";
 
 	public Logger getLogger () {
@@ -80,7 +76,7 @@ public class Logging {
 	}
 
 	public void noticableWarning (boolean trace, String string) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add(string);
 		noticableWarning(trace, list);
 	}
@@ -96,7 +92,7 @@ public class Logging {
 
 		if (trace) {
 			final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-			for (int i = 2; i < 8 && i < stackTrace.length; i++) {
+			for (int i = 2; (i < 8) && (i < stackTrace.length); i++) {
 				this.warn("*  at {}{}", stackTrace[i].toString(), i == 7 ? "..." : "");
 			}
 		}

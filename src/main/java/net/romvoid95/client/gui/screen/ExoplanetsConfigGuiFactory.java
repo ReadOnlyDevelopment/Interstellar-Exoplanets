@@ -19,14 +19,16 @@ package net.romvoid95.client.gui.screen;
 
 import java.util.Set;
 
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
-import net.romvoid95.common.config.SConfigCore;
-import net.romvoid95.common.config.SConfigDimensionID;
-import net.romvoid95.common.config.SConfigSystems;
+
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+
+import net.romvoid95.common.config.ConfigCore;
+import net.romvoid95.common.config.PlanetCoreConfig;
 import net.romvoid95.core.ExoInfo;
 
 public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
@@ -34,10 +36,10 @@ public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
 	public static class ExoCoreConfGui extends GuiConfig {
 
 		public ExoCoreConfGui(GuiScreen parent) {
-			super(parent, SConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
+			super(parent, ConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
 					GCCoreUtil.translate("exoplanets.configgui.coretitle"));
-			this.configElements.addAll(SConfigDimensionID.getConfigElements());
-			this.configElements.addAll(SConfigSystems.getConfigElements());
+			this.configElements.addAll(PlanetCoreConfig.getConfigElements());
+			//this.configElements.addAll(SConfigSystems.getConfigElements());
 		}
 	}
 

@@ -2,9 +2,7 @@ package net.romvoid95.common.block.terrain;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,11 +14,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.common.lib.block.BlockBase;
 
-public class BlockExoGrass extends BlockBase implements IGrowable, ITerraformableBlock {
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+
+public class BlockExoGrass extends Block implements IGrowable, ITerraformableBlock {
 
 	public BlockExoGrass() {
 		super(Material.GRASS);
@@ -38,16 +38,18 @@ public class BlockExoGrass extends BlockBase implements IGrowable, ITerraformabl
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
 			if (!worldIn.isAreaLoaded(pos, 3))
+			{
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and
-						// spreading
-			if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2) {
+			}
+			// spreading
+			if ((worldIn.getLightFromNeighbors(pos.up()) < 4) && (worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2)) {
 				worldIn.setBlockState(pos, this.getDefaultState());
 			} else {
 				if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
 					for (int i = 0; i < 4; ++i) {
 						BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-						if (blockpos.getY() >= 0 && blockpos.getY() < 256 && !worldIn.isBlockLoaded(blockpos)) {
+						if ((blockpos.getY() >= 0) && (blockpos.getY() < 256) && !worldIn.isBlockLoaded(blockpos)) {
 							return;
 						}
 					}
@@ -55,12 +57,13 @@ public class BlockExoGrass extends BlockBase implements IGrowable, ITerraformabl
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) {
 		return true;
-    }
+	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;

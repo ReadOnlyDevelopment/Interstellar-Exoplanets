@@ -17,17 +17,19 @@
 
 package net.romvoid95.common.block;
 
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
-import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.client.CreativeExoTabs;
-import net.romvoid95.common.lib.block.BlockBase;
 
-public class BlockTerrain extends BlockBase implements ISortableBlock, ITerraformableBlock {
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+
+import net.romvoid95.client.CreativeExoTabs;
+
+public class BlockTerrain extends Block implements ISortableBlock, ITerraformableBlock {
 
 	public BlockTerrain() {
 		super(Material.GROUND);

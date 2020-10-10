@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2020 Interstellar:  Exoplanets
+	 * Copyright (C) 2020 Interstellar:  Exoplanets
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,23 +20,25 @@ package net.romvoid95.common.astronomy.yzceti.c;
 import java.util.ArrayList;
 import java.util.List;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.IChunkGenerator;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.api.space.ExoPlanet;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+
+import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.c.worldgen.BiomeProviderYzCetiC;
-import net.romvoid95.core.initialization.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
 public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
@@ -111,23 +113,8 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public boolean canRainOrSnow () {
-		return this.getExoPlanet().isDoesRain();
-	}
-
-	@Override
 	public boolean hasSunset () {
 		return true;
-	}
-
-	@Override
-	public boolean shouldDisablePrecipitation () {
-		return !this.canRainOrSnow();
-	}
-
-	@Override
-	public boolean canDoRainSnowIce (Chunk chunk) {
-		return this.canRainOrSnow();
 	}
 
 	@Override
@@ -139,7 +126,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness (float par1) {
 		float f1 = this.world.getCelestialAngle(par1);
-		float f2 = 1.0F - (MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.30F);
+		float f2 = 1.0F - ((MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F) + 0.30F);
 
 		if (f2 < 0.0F) {
 			f2 = 0.0F;
@@ -154,7 +141,7 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@SideOnly(Side.CLIENT)
 	public float getSunBrightness (float par1) {
 		float f1 = this.world.getCelestialAngle(1.0F);
-		float f2 = 0.9F - (MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
+		float f2 = 0.9F - ((MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F) + 0.2F);
 
 		if (f2 < 0.0F) {
 			f2 = 0.0F;
@@ -194,9 +181,9 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	@Override
 	public List<Block> getSurfaceBlocks () {
 		ArrayList<Block> blockList = new ArrayList<>();
-		blockList.add(YzCetiBlocks.YzCetiC.YZC_SEDIMENTARYROCK);
-		blockList.add(YzCetiBlocks.YzCetiC.YZC_IGNEOUS);
-		blockList.add(YzCetiBlocks.YzCetiC.YZC_GRAVEL);
+		blockList.add(YzCetiBlocks.C.YZC_SEDIMENTARYROCK);
+		blockList.add(YzCetiBlocks.C.YZC_IGNEOUS);
+		blockList.add(YzCetiBlocks.C.YZC_GRAVEL);
 		return blockList;
 	}
 
@@ -236,4 +223,8 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 		return (ExoPlanet) getCelestialBody();
 	}
 
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
+	}
 }

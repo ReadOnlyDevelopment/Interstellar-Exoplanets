@@ -19,15 +19,6 @@ package net.romvoid95.common.astronomy.kepler1649.c;
 
 import java.util.List;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
-import asmodeuscore.core.utils.worldengine.WE_Biome;
-import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -37,19 +28,27 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.*;
+import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
-import net.romvoid95.api.world.ExoWorldProvider;
-import net.romvoid95.common.astronomy.kepler1649.c.biomes.Dunes;
-import net.romvoid95.common.astronomy.kepler1649.c.biomes.TestHighMountains;
-import net.romvoid95.common.astronomy.kepler1649.c.biomes.TestPlains;
+import net.romvoid95.common.astronomy.kepler1649.c.biomes.*;
 import net.romvoid95.core.ExoBlock;
-import net.romvoid95.core.initialization.ExoDimensions;
+import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
-public class WorldProviderKepler1649c extends ExoWorldProvider {
+public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 
 	public static WE_ChunkProvider chunk;
 
@@ -158,7 +157,7 @@ public class WorldProviderKepler1649c extends ExoWorldProvider {
 
 	@Override
 	public int getMoonPhase (long worldTime) {
-		return (int) (worldTime / this.getDayLength() % 8L + 8L) % 8;
+		return (int) (((worldTime / this.getDayLength()) % 8L) + 8L) % 8;
 	}
 
 	@Override
@@ -168,10 +167,10 @@ public class WorldProviderKepler1649c extends ExoWorldProvider {
 
 		if (player != null) {
 			int phase = this.getMoonPhase(this.getWorldTime());
-			if (skyLight > 0 && sunBrightness > 0.07f && phase != 0 && phase != 6) {
+			if ((skyLight > 0) && (sunBrightness > 0.07f) && (phase != 0) && (phase != 6)) {
 
 				colors[0] = colors[0] + skyLight + 0.3F;
-				colors[1] = colors[1] + skyLight / 6;
+				colors[1] = colors[1] + (skyLight / 6);
 			}
 		}
 	}
@@ -195,16 +194,16 @@ public class WorldProviderKepler1649c extends ExoWorldProvider {
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness (float partialTicks) {
 		float angle = this.world.getCelestialAngle(partialTicks);
-		float value = 1.0F - (MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.25F);
+		float value = 1.0F - ((MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.25F);
 		value = MathHelper.clamp(value, 0.0F, 1.0F);
-		return value * value * 0.5F + 0.3F;
+		return (value * value * 0.5F) + 0.3F;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getSunBrightness (float partialTicks) {
 		float f1 = this.world.getCelestialAngle(1.0F);
-		float f2 = 1.0F - (MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F + 0.2F);
+		float f2 = 1.0F - ((MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.2F);
 		f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
 		f2 = 1.2F - f2;
 		return f2 * 0.8F;
@@ -213,13 +212,13 @@ public class WorldProviderKepler1649c extends ExoWorldProvider {
 	@Override
 	public Vector3 getFogColor () {
 		float f = 0.6F - this.getStarBrightness(1.0F);
-		return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);
+		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
 	}
 
 	@Override
 	public Vector3 getSkyColor () {
 		float f = 0.3F - this.getStarBrightness(1.0F);
-		return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
 
 	}
 
@@ -242,5 +241,17 @@ public class WorldProviderKepler1649c extends ExoWorldProvider {
 	@Override
 	public DimensionType getDimensionType () {
 		return ExoDimensions.KEPLER1649_C;
+	}
+
+	@Override
+	public double getMeteorFrequency() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Block getPlanetGrassBlock() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

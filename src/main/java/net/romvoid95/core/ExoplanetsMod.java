@@ -17,46 +17,36 @@
 
 package net.romvoid95.core;
 
-import java.util.Random;
+import java.util.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import asmodeuscore.core.astronomy.BodiesRegistry;
-import mcp.MethodsReturnNonnullByDefault;
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
-import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.romvoid95.api.registry.ExoRegistry;
-import net.romvoid95.api.registry.IReadOnlyMod;
+
+import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+
+import asmodeuscore.core.astronomy.BodiesRegistry;
+import mcp.MethodsReturnNonnullByDefault;
+import net.romvoid95.api.registry.*;
 import net.romvoid95.api.space.enums.EnumAtmosphereContent;
 import net.romvoid95.common.ExoCommonProxy;
 import net.romvoid95.common.astronomy.CelestialAssets;
-import net.romvoid95.common.astronomy.ExoplanetBiomes;
 import net.romvoid95.common.command.CommandDownloadUpdate;
-import net.romvoid95.common.config.InitConfigFiles;
+import net.romvoid95.common.config.ExoConfigs;
 import net.romvoid95.common.event.GuiHandlerExo;
 import net.romvoid95.common.network.NetworkPipeline;
-import net.romvoid95.common.utility.logging.DebugLog;
 import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.common.utility.system.TranslateUtil;
 import net.romvoid95.common.world.OverworldOreGen;
-import net.romvoid95.core.initialization.ExoDimensions;
-import net.romvoid95.core.initialization.ExoFluids;
-import net.romvoid95.core.initialization.ExoRecipes;
-import net.romvoid95.core.initialization.Planets;
-import net.romvoid95.core.initialization.SolarSystems;
+import net.romvoid95.core.initialization.*;
 
 @Mod(
 		modid = ExoInfo.MODID,
@@ -76,39 +66,42 @@ public class ExoplanetsMod implements IReadOnlyMod {
 	public static ExoRegistry     REGISTRY  = new ExoRegistry();
 	public static TranslateUtil   translate = new TranslateUtil(ExoInfo.MODID);
 	public static Logging         logger    = new Logging();
-	public static DebugLog        debugger  = new DebugLog(logger.getLogger(), instance);
 	@SidedProxy(clientSide = "net.romvoid95.client.ExoClientProxy", serverSide = "net.rom.common.ExoCommonProxy")
 	public static ExoCommonProxy  proxy;
 	public static Random          random    = new Random();
 	public static NetworkPipeline network;
+	public static String exoPlanetsDirectory;
 
 	public static final boolean isDevBuild = MCUtil.isDeobfuscated();
+	
+	private static List<IInitialize> handlers = new ArrayList<IInitialize>() {{
+		add(ExoHandler.INSTANCE);
+		add(new RegistrationHandler());
+		add(new WorldHandler());
+	}};
 
 	static {
 		FluidRegistry.enableUniversalBucket();
+		BodiesRegistry.setMaxTier(3);
 	}
 
 	@EventHandler
 	public void preInit (FMLPreInitializationEvent event) {
+		exoPlanetsDirectory = event.getModConfigurationDirectory() + "/Exoplanets/";
 		REGISTRY.setMod(this);
 		REGISTRY.getRecipeMaker();
-		BodiesRegistry.setMaxTier(3);
-
-		// CONFIGS
-		InitConfigFiles.init(event);
-
-		// BLOCKS, ITEMS, ENTITIES, ETC
+		
+		// CONFIG
+		ExoConfigs.init();
+		handlers.forEach(handler -> handler.preInit(event));
+		
 		ExoFluids.initFluids();
-		RegistrationHandler.init(REGISTRY);
-
+		
 		// TEXTURES
 		CelestialAssets.init();
 
-		// OVERWORLD ORE GEN
-		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
-
-		ExoplanetBiomes.init();
 		SolarSystems.init();
+		Planets.pre();
 		Planets.init();
 
 		// GUI STUFF
@@ -118,13 +111,16 @@ public class ExoplanetsMod implements IReadOnlyMod {
 
 	@EventHandler
 	public static void init (FMLInitializationEvent event) {
+		
+		// OVERWORLD ORE GEN
+		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
 
 		proxy.registerRender();
+		
+		handlers.forEach(handler -> handler.init(event));
+		
 		//ExoVillagerHandler.initVillageAstronomerHouse();
 		//ExoVillagerHandler.initAstronomerVillagerTrades();
-		for (BiomeGenBaseGC biome : ExoplanetBiomes.biomeList) {
-			biome.registerTypes(biome);
-		}
 		proxy.init(REGISTRY, event);
 	}
 
@@ -132,7 +128,9 @@ public class ExoplanetsMod implements IReadOnlyMod {
 	public static void postInit (FMLPostInitializationEvent event) {
 		ExoplanetsMod.addEnums();
 		ExoRecipes.alloySmelterRecipes();
-		ExoDimensions.init();
+		
+		handlers.forEach(handler -> handler.postInit(event));
+		
 		logger.info("[DEV INFO]  %s", isDevBuild);
 		proxy.postInit(REGISTRY, event);
 	}
@@ -143,19 +141,20 @@ public class ExoplanetsMod implements IReadOnlyMod {
 	}
 
 	@EventHandler
-	public void onFingerprintViolation (FMLFingerprintViolationEvent event) {
-
+	public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
 		if (!MCUtil.isDeobfuscated()) {
-
 			logger.warn("Invalid fingerprint detected! The file " + event.getSource().getName()
 					+ " may have been tampered with. This version will NOT be supported by the author!");
+		} else {
+			logger.info("Ignoring fingerprint signing since we are in a Development Environment");
 		}
 	}
 
 	private static void addEnums () {
 		for (EnumAtmosphereContent e : EnumAtmosphereContent.values()) {
-			if (e.add())
+			if (e.add()) {
 				EnumHelper.addEnum(EnumAtmosphericGas.class, e.getName(), new Class<?>[] {});
+			}
 		}
 	}
 

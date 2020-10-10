@@ -20,19 +20,34 @@ package net.romvoid95.core;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
+
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.EntityEntry;
+
 import net.romvoid95.api.registry.ExoRegistry;
+import net.romvoid95.api.registry.IInitialize;
 import net.romvoid95.common.ExoplanetSounds;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoEntities;
-import net.romvoid95.core.initialization.ExoItems;
+import net.romvoid95.core.initialization.*;
 
-public class RegistrationHandler {
+public class RegistrationHandler implements IInitialize {
+	
+	private ExoRegistry registry = ExoplanetsMod.REGISTRY;
 
-	public static void init (ExoRegistry r) {
-		r.addRegistrationHandler(ExoEntities::registerAll, EntityEntry.class);
-		r.addRegistrationHandler(ExoBlocks::registerAll, Block.class);
-		r.addRegistrationHandler(ExoItems::registerAll, Item.class);
-		r.addRegistrationHandler(ExoplanetSounds::registerAll, SoundEvent.class);
+	@Override
+	public void preInit(FMLPreInitializationEvent event) {
+		registry.addRegistrationHandler(ExoEntities::registerAll, EntityEntry.class);
+		registry.addRegistrationHandler(ExoBlocks::registerAll, Block.class);
+		registry.addRegistrationHandler(ExoItems::registerAll, Item.class);
+		registry.addRegistrationHandler(ExoplanetSounds::registerAll, SoundEvent.class);
+	}
+
+	@Override
+	public void init(FMLInitializationEvent event) {
+
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+
 	}
 }

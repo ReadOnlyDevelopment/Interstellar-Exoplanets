@@ -19,27 +19,22 @@ package net.romvoid95.common.astronomy.yzceti.d.worldgen;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
+
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.d.BiomeDecoratorOther;
-import net.romvoid95.common.astronomy.yzceti.d.worldgen.biomes.BiomeGenYzCetiD;
-import net.romvoid95.core.ExoBlock;
+import net.romvoid95.common.world.biome.BiomeSpace;
+import net.romvoid95.core.initialization.Planets;
 
-public class YzCetiDBiomes extends BiomeGenBaseGC {
-
-	public static final Biome yz_ceti_d = new BiomeGenYzCetiD(new BiomeProperties("YzCeti D").setBaseHeight(0.125F)
-			.setHeightVariation(0.5F).setRainfall(0.0F).setRainDisabled());
+public class YzCetiDBiomes extends BiomeSpace {
 
 	protected YzCetiDBiomes(BiomeProperties properties) {
-		super(properties, true);
+		super(properties);
+		setPlanetForBiome(Planets.yzcetid);
 	}
 
 	@Override
@@ -48,69 +43,59 @@ public class YzCetiDBiomes extends BiomeGenBaseGC {
 	}
 
 	@Override
-	public void genTerrainBlocks (World world, Random rand, ChunkPrimer chunk, int x, int z, double stoneNoise) {
-		generateYzCetiBiomeTerrain(rand, chunk, x, z, stoneNoise);
+	public void genTerrainBlocks (World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+		this.generateYzCetiBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 
-	public final void generateYzCetiBiomeTerrain (Random rand, ChunkPrimer chunk, int x, int z, double stoneNoise) {
-		IBlockState              iblockstate              = this.topBlock;
-		IBlockState              iblockstate1             = this.fillerBlock;
-		int                      j                        = -1;
-		int                      k                        = (int) (stoneNoise / 3.0D + 3.0D
-				+ rand.nextDouble() * 5.25D);
-		int                      l                        = x & 15;
-		int                      i1                       = z & 15;
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+	public void generateYzCetiBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
+			double noiseVal) {
+		int i = worldIn.getSeaLevel();
+		IBlockState topState = this.topBlock;
+		IBlockState fillState = this.fillerBlock;
+		int j = -1;
+		int k = (int) ((noiseVal / 3.0D) + 3.0D + (rand.nextDouble() * 0.45D));
+		int l = x & 15;
+		int i1 = z & 15;
 
 		for (int j1 = 255; j1 >= 0; --j1) {
-			if (j1 <= rand.nextInt(5)) {
-				chunk.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
-			}
-			else {
-				IBlockState iblockstate2 = chunk.getBlockState(i1, j1, l);
+			if (j1 == 0) {
+				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+			} else {
+				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
+
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-				}
-				else if (iblockstate2.getBlock() == YzCetiBlocks.YzCetiD.YZD_SEDIMENTARYROCK) {
+				} else if (iblockstate2.getBlock() == YzCetiBlocks.D.YZD_SEDIMENTARYROCK) {
 					if (j == -1) {
 						if (k <= 0) {
-							iblockstate  = null;
-							iblockstate1 = ExoBlock.YZD_SEDIMENTARYROCK;
-						}
-						else if (j1 >= 63 - 4 && j1 <= 63 + 1) {
-							iblockstate  = this.topBlock;
-							iblockstate1 = this.fillerBlock;
+							topState = AIR;
+							fillState = STONE;
+						} else if ((j1 >= (i - 4)) && (j1 <= (i + 1))) {
+							topState = this.topBlock;
+							fillState = this.fillerBlock;
 						}
 
-						if (j1 < 63 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
-							if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
-								iblockstate = Blocks.ICE.getDefaultState();
-							}
-							else {
-								iblockstate = Blocks.WATER.getDefaultState();
-							}
+						if ((j1 < i) && ((topState == null) || (topState.getMaterial() == Material.AIR))) {
+							topState = ICE;
 						}
 
 						j = k;
 
-						if (j1 >= 63 - 1) {
-							chunk.setBlockState(i1, j1, l, iblockstate);
+						if (j1 >= (i - 1)) {
+							chunkPrimerIn.setBlockState(i1, j1, l, topState);
+						} else if (j1 < (i - 7 - k)) {
+							topState = AIR;
+							fillState = STONE;
+							chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+						} else {
+							chunkPrimerIn.setBlockState(i1, j1, l, fillState);
 						}
-						else if (j1 < 63 - 7 - k) {
-							iblockstate  = null;
-							iblockstate1 = ExoBlock.YZD_SEDIMENTARYROCK;
-							chunk.setBlockState(i1, j1, l, ExoBlock.YZD_GRAVEL);
-						}
-						else {
-							chunk.setBlockState(i1, j1, l, iblockstate1);
-						}
-					}
-					else if (j > 0) {
+					} else if (j > 0) {
 						--j;
-						chunk.setBlockState(i1, j1, l, iblockstate1);
+						chunkPrimerIn.setBlockState(i1, j1, l, fillState);
 					}
 				}
 			}
 		}
 	}
-}
+}																	

@@ -1,22 +1,16 @@
 package net.romvoid95.api.space;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.romvoid95.api.space.objects.RelayStation;
+
+import net.romvoid95.api.space.prefab.RelayStation;
 
 public class ExoSpaceRegistry extends GalaxyRegistry {
 
@@ -43,7 +37,7 @@ public class ExoSpaceRegistry extends GalaxyRegistry {
 			CelestialBody      body                = relay.getParent();
 			List<RelayStation> listOfRelayStations = ExoSpaceRegistry.relayList.get(body);
 			if (listOfRelayStations == null) {
-				listOfRelayStations = new ArrayList<RelayStation>();
+				listOfRelayStations = new ArrayList<>();
 			}
 			listOfRelayStations.add(relay);
 			ExoSpaceRegistry.relayList.put(body, listOfRelayStations);
@@ -54,7 +48,7 @@ public class ExoSpaceRegistry extends GalaxyRegistry {
 		List<RelayStation> relayStationList1 = ExoSpaceRegistry.relayList.get(celestialBody);
 
 		if (relayStationList1 == null) {
-			return new ArrayList<RelayStation>();
+			return new ArrayList<>();
 		}
 
 		return ImmutableList.copyOf(relayStationList1);

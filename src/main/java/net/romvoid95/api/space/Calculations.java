@@ -17,10 +17,10 @@
 
 package net.romvoid95.api.space;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
-import micdoodle8.mods.galacticraft.api.galaxies.Moon;
-import micdoodle8.mods.galacticraft.api.galaxies.Star;
+import java.util.Random;
+
+import micdoodle8.mods.galacticraft.api.galaxies.*;
+
 import net.romvoid95.api.space.enums.EnumPlanetType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
@@ -44,8 +44,8 @@ public class Calculations {
 	public static final double AUlength = 149597870700.0;
 
 	public static final double maxSpeed = 299792458.0D; // this used to be an arbitary value, but
-														// the actual speed of light makes for a
-														// good maxSpeed
+	// the actual speed of light makes for a
+	// good maxSpeed
 
 	/**
 	 * Should calculate a thermal level depending on that body's distance from the
@@ -60,7 +60,7 @@ public class Calculations {
 		}
 		body = getParentPlanet(body);
 		float dist        = body.getRelativeDistanceFromCenter().unScaledDistance;
-		float temperature = -4 * dist + 4;
+		float temperature = (-4 * dist) + 4;
 		if (temperature < -maxTemperature) {
 			temperature = -maxTemperature;
 		}
@@ -95,7 +95,7 @@ public class Calculations {
 	 * @return Radius in solar radii.
 	 */
 	public static double schwartzchildRadius (double M) {
-		double r = 2.0 * AstronomicalConstants.GRAVITATIONAL_CONSTANT * M * AstronomicalConstants.SUN_MASS
+		double r = (2.0 * AstronomicalConstants.GRAVITATIONAL_CONSTANT * M * AstronomicalConstants.SUN_MASS)
 				/ (AstronomicalConstants.SPEED_OF_LIGHT * AstronomicalConstants.SPEED_OF_LIGHT);
 
 		return r / (1000.0 * AstronomicalConstants.SUN_RADIUS);
@@ -112,13 +112,17 @@ public class Calculations {
 	 * @return Luminosity in solar units.
 	 */
 	public static double getLuminosityFromMassLuminosityRelation (double mass) {
-		if (mass < 0.43)
+		if (mass < 0.43) {
 			return 0.23 * Math.pow(mass, 2.3);
-		if (mass < 2)
+		}
+		if (mass < 2) {
 			return Math.pow(mass, 4);
+		}
 		if (mass > 20)
+		{
 			return (1.5 * Math.pow(20, 3.5)) * Math.pow(mass / 20, 2); // Wikipedia says 1 as exponent here, but seems
-																		// excesive
+		}
+		// excesive
 		return 1.5 * Math.pow(mass, 3.5);
 	}
 
@@ -130,7 +134,7 @@ public class Calculations {
 	 * @return Radius in solar radii.
 	 */
 	public static double getStarRadius (double luminosity, double temperature) {
-		return Math.sqrt(luminosity * AstronomicalConstants.SUN_LUMINOSITY
+		return Math.sqrt((luminosity * AstronomicalConstants.SUN_LUMINOSITY)
 				/ (4.0 * Math.PI * AstronomicalConstants.STEFAN_BOLTZMANN_CONSTANT * Math.pow(temperature, 4.0)))
 				/ (AstronomicalConstants.SUN_RADIUS * 1000.0);
 	}
@@ -157,7 +161,7 @@ public class Calculations {
 	 * @return Gravity in m/s^2.
 	 */
 	public static double getStarSurfaceGravity (double mass, double radius) {
-		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.SUN_MASS
+		double g = (AstronomicalConstants.GRAVITATIONAL_CONSTANT * mass * AstronomicalConstants.SUN_MASS)
 				/ (Math.pow(radius * AstronomicalConstants.SUN_RADIUS * 1000.0, 2.0));
 		return g;
 	}
@@ -170,7 +174,7 @@ public class Calculations {
 	 * @return Gravity in m/s^2.
 	 */
 	public static double getPlanetSurfaceGravity (double mass, double radius) {
-		double g = AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS)
+		double g = (AstronomicalConstants.GRAVITATIONAL_CONSTANT * (mass * AstronomicalConstants.EARTH_RADIUS))
 				/ (Math.pow(radius * AstronomicalConstants.EARTH_RADIUS, 2.0));
 		return g;
 	}
@@ -190,6 +194,26 @@ public class Calculations {
 		return a1 + (p * (angle = angle >= 180F ? angle -= 360F : angle));
 	}
 
+	public static int getRandomNumberInRange(Random rand, int min, int max) {
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+		int v = rand.nextInt((max - min) + 1) + min;
+		return (between(v, min, max)) ? v : 0;
+	}
+
+	/**
+	 * Between.
+	 *
+	 * @param i                 the i
+	 * @param minValueInclusive the min value inclusive
+	 * @param maxValueInclusive the max value inclusive
+	 * @return true, if successful
+	 */
+	public static boolean between (int i, int minValueInclusive, int maxValueInclusive) {
+		return ((i >= minValueInclusive) && (i <= maxValueInclusive));
+	}
+
 	/**
 	 * Between.
 	 *
@@ -199,7 +223,7 @@ public class Calculations {
 	 * @return true, if successful
 	 */
 	public static boolean between (double i, double minValueInclusive, double maxValueInclusive) {
-		return (i >= minValueInclusive && i <= maxValueInclusive);
+		return ((i >= minValueInclusive) && (i <= maxValueInclusive));
 	}
 
 	/**

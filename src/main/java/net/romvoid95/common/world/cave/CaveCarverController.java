@@ -8,15 +8,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
+
 import net.minecraftforge.common.BiomeDictionary;
+
 import net.romvoid95.common.world.cave.carver.CarverNoiseRange;
 import net.romvoid95.common.world.cave.carver.ICarver;
-import net.romvoid95.common.world.cave.carver.cave.CaveCarver;
-import net.romvoid95.common.world.cave.carver.cave.CaveCarverBuilder;
+import net.romvoid95.common.world.cave.carver.cave.CaveBuilder;
+import net.romvoid95.common.world.cave.carver.cave.CaveSettings;
 import net.romvoid95.common.world.cave.carver.vanilla.VanillaCaveCarver;
 import net.romvoid95.common.world.cave.carver.vanilla.VanillaCaveCarverBuilder;
-import net.romvoid95.common.world.cave.config.BCSettings;
-import net.romvoid95.common.world.cave.config.util.ConfigHolder;
 import net.romvoid95.common.world.cave.enums.CaveType;
 import net.romvoid95.common.world.cave.enums.RegionSize;
 import net.romvoid95.common.world.cave.noise.FastNoise;
@@ -64,13 +64,13 @@ public class CaveCarverController {
         // Initialize all carvers using config options
         List<ICarver> carvers = new ArrayList<>();
         // Type 1 caves
-        carvers.add(new CaveCarverBuilder(worldIn)
+        carvers.add(new CaveSettings(worldIn)
             .ofTypeFromConfig(CaveType.CUBIC, config)
             .debugVisualizerBlock(Blocks.PLANKS.getDefaultState())
             .build()
         );
         // Type 2 caves
-        carvers.add(new CaveCarverBuilder(worldIn)
+        carvers.add(new CaveSettings(worldIn)
             .ofTypeFromConfig(CaveType.SIMPLEX, config)
             .debugVisualizerBlock(Blocks.COBBLESTONE.getDefaultState())
             .build()
@@ -131,12 +131,12 @@ public class CaveCarverController {
         boolean[][] vanillaCarvingMask = new boolean[16][16];
 
         // Break into subchunks for noise interpolation
-        for (int subX = 0; subX < 16 / BCSettings.SUB_CHUNK_SIZE; subX++) {
-            for (int subZ = 0; subZ < 16 / BCSettings.SUB_CHUNK_SIZE; subZ++) {
-                int startX = subX * BCSettings.SUB_CHUNK_SIZE;
-                int startZ = subZ * BCSettings.SUB_CHUNK_SIZE;
-                int endX = startX + BCSettings.SUB_CHUNK_SIZE - 1;
-                int endZ = startZ + BCSettings.SUB_CHUNK_SIZE - 1;
+        for (int subX = 0; subX < 16 / CaveConstant.SUB_CHUNK_SIZE; subX++) {
+            for (int subZ = 0; subZ < 16 / CaveConstant.SUB_CHUNK_SIZE; subZ++) {
+                int startX = subX * CaveConstant.SUB_CHUNK_SIZE;
+                int startZ = subZ * CaveConstant.SUB_CHUNK_SIZE;
+                int endX = startX + CaveConstant.SUB_CHUNK_SIZE - 1;
+                int endZ = startZ + CaveConstant.SUB_CHUNK_SIZE - 1;
                 BlockPos startPos = new BlockPos(chunkX * 16 + startX, 1, chunkZ * 16 + startZ);
                 BlockPos endPos = new BlockPos(chunkX * 16 + endX, 1, chunkZ * 16 + endZ);
 
@@ -156,8 +156,8 @@ public class CaveCarverController {
                 }
 
                 // Offset within subchunk
-                for (int offsetX = 0; offsetX < BCSettings.SUB_CHUNK_SIZE; offsetX++) {
-                    for (int offsetZ = 0; offsetZ < BCSettings.SUB_CHUNK_SIZE; offsetZ++) {
+                for (int offsetX = 0; offsetX < CaveConstant.SUB_CHUNK_SIZE; offsetX++) {
+                    for (int offsetZ = 0; offsetZ < CaveConstant.SUB_CHUNK_SIZE; offsetZ++) {
                         int localX = startX + offsetX;
                         int localZ = startZ + offsetZ;
                         BlockPos colPos = new BlockPos(chunkX * 16 + localX, 1, chunkZ * 16 + localZ);
@@ -184,8 +184,8 @@ public class CaveCarverController {
                             if (!range.contains(caveRegionNoise)) {
                                 continue;
                             }
-                            if (range.getCarver() instanceof CaveCarver) {
-                                CaveCarver carver = (CaveCarver) range.getCarver();
+                            if (range.getCarver() instanceof CaveBuilder) {
+                                CaveBuilder carver = (CaveBuilder) range.getCarver();
                                 int bottomY = carver.getBottomY();
                                 int topY = Math.min(surfaceAltitude, carver.getTopY());
                                 if (isOverrideSurfaceDetectionEnabled) {

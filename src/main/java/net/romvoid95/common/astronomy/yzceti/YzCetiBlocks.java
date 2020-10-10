@@ -18,69 +18,71 @@
 package net.romvoid95.common.astronomy.yzceti;
 
 import net.minecraft.block.Block;
-import net.romvoid95.common.block.terrain.BlockGravel;
-import net.romvoid95.common.block.terrain.BlockIgneousRock;
-import net.romvoid95.common.block.terrain.BlockMetamorphicRock;
-import net.romvoid95.common.block.terrain.BlockSediment;
-import net.romvoid95.common.block.terrain.BlockSedimentaryRock;
+
+import net.romvoid95.common.block.terrain.*;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class YzCetiBlocks {
 
-	public static void registerAll () {
+	public static void registerAll() {
 
 		// CetiB
-		ExoBlocks.register(YzCetiB.YZB_LOOSE_SEDIMENT, "yzb_loose_sediment");
-		ExoBlocks.register(YzCetiB.YZB_DARK_LOOSE_SEDIMENT, "yzb_dark_loose_sediment");
-		ExoBlocks.register(YzCetiB.YZB_GRAVEL, "yzb_gravel");
-		ExoBlocks.register(YzCetiB.YZB_IGNEOUS, "yzb_igneous");
-		ExoBlocks.register(YzCetiB.YZB_METAMORPHIC, "yzb_metamorphic");
-		ExoBlocks.register(YzCetiB.YZB_SEDIMENTARYROCK, "yzb_sedimentary_rock");
+		ExoBlocks.register(B.YZB_LOOSE_SEDIMENT, "yzb_loose_sediment");
+		ExoBlocks.register(B.YZB_DARK_LOOSE_SEDIMENT, "yzb_dark_loose_sediment");
+		ExoBlocks.register(B.YZB_GRAVEL, "yzb_gravel");
+		ExoBlocks.register(B.YZB_IGNEOUS, "yzb_igneous");
+		ExoBlocks.register(B.YZB_METAMORPHIC, "yzb_metamorphic");
+		ExoBlocks.register(B.YZB_SEDIMENTARYROCK, "yzb_sedimentary_rock");
 		// CetiC
-		ExoBlocks.register(YzCetiC.YZC_LOOSE_SEDIMENT, "yzc_loose_sediment");
-		ExoBlocks.register(YzCetiC.YZC_DARK_LOOSE_SEDIMENT, "yzc_dark_loose_sediment");
-		ExoBlocks.register(YzCetiC.YZC_GRAVEL, "yzc_gravel");
-		ExoBlocks.register(YzCetiC.YZC_IGNEOUS, "yzc_igneous");
-		ExoBlocks.register(YzCetiC.YZC_METAMORPHIC, "yzc_metamorphic");
-		ExoBlocks.register(YzCetiC.YZC_SEDIMENTARYROCK, "yzc_sedimentary_rock");
+		ExoBlocks.register(C.YZC_LOOSE_SEDIMENT, "yzc_loose_sediment");
+		ExoBlocks.register(C.YZC_DARK_LOOSE_SEDIMENT, "yzc_dark_loose_sediment");
+		ExoBlocks.register(C.YZC_GRAVEL, "yzc_gravel");
+		ExoBlocks.register(C.YZC_IGNEOUS, "yzc_igneous");
+		ExoBlocks.register(C.YZC_METAMORPHIC, "yzc_metamorphic");
+		ExoBlocks.register(C.YZC_SEDIMENTARYROCK, "yzc_sedimentary_rock");
 		// CetiD
-		ExoBlocks.register(YzCetiD.YZD_LOOSE_SEDIMENT, "yzd_loose_sediment");
-		ExoBlocks.register(YzCetiD.YZD_DARK_LOOSE_SEDIMENT, "yzd_dark_loose_sediment");
-		ExoBlocks.register(YzCetiD.YZD_GRAVEL, "yzd_gravel");
-		ExoBlocks.register(YzCetiD.YZD_IGNEOUS, "yzd_igneous");
-		ExoBlocks.register(YzCetiD.YZD_METAMORPHIC, "yzd_metamorphic");
-		ExoBlocks.register(YzCetiD.YZD_SEDIMENTARYROCK, "yzd_sedimentary_rock");
+		ExoBlocks.register(D.YZD_LOOSE_SEDIMENT, "yzd_loose_sediment");
+		ExoBlocks.register(D.YZD_DARK_LOOSE_SEDIMENT, "yzd_dark_loose_sediment");
+		ExoBlocks.register(D.YZD_GRAVEL, "yzd_gravel");
+		ExoBlocks.register(D.YZD_IGNEOUS, "yzd_igneous");
+		ExoBlocks.register(D.YZD_METAMORPHIC, "yzd_metamorphic");
+		ExoBlocks.register(D.YZD_SEDIMENTARYROCK, "yzd_sedimentary_rock");
+		ExoBlocks.register(D.YZD_MNT1, "yzd_mnt1");
+		ExoBlocks.register(D.YZD_MNT2, "yzd_mnt2");
+		ExoBlocks.register(D.YZD_STONE, "yzd_stone");
 	}
 
-	public static class YzCetiB {
+	public static class B {
 
-		public static Block YZB_LOOSE_SEDIMENT      = new BlockSediment();
-		public static Block YZB_DARK_LOOSE_SEDIMENT = new BlockSediment();
-		public static Block YZB_GRAVEL              = new BlockGravel();
-		public static Block YZB_IGNEOUS             = new BlockIgneousRock();
-		public static Block YZB_METAMORPHIC         = new BlockMetamorphicRock();
-		public static Block YZB_SEDIMENTARYROCK     = new BlockSedimentaryRock();
-
+		public static final Block	YZB_LOOSE_SEDIMENT		= new BlockSediment();
+		public static final Block	YZB_DARK_LOOSE_SEDIMENT	= new BlockSediment();
+		public static final Block	YZB_GRAVEL				= new BlockGravel();
+		public static final Block	YZB_IGNEOUS				= new BlockIgneousRock();
+		public static final Block	YZB_METAMORPHIC			= new BlockMetamorphicRock();
+		public static final Block	YZB_SEDIMENTARYROCK		= new BlockSedimentaryRock();
 	}
 
-	public static class YzCetiC {
+	public static class C {
 
-		public static Block YZC_LOOSE_SEDIMENT      = new BlockSediment();
-		public static Block YZC_DARK_LOOSE_SEDIMENT = new BlockSediment();
-		public static Block YZC_GRAVEL              = new BlockGravel();
-		public static Block YZC_IGNEOUS             = new BlockIgneousRock();
-		public static Block YZC_METAMORPHIC         = new BlockMetamorphicRock();
-		public static Block YZC_SEDIMENTARYROCK     = new BlockSedimentaryRock();
+		public static final Block	YZC_LOOSE_SEDIMENT		= new BlockSediment();
+		public static final Block	YZC_DARK_LOOSE_SEDIMENT	= new BlockSediment();
+		public static final Block	YZC_GRAVEL				= new BlockGravel();
+		public static final Block	YZC_IGNEOUS				= new BlockIgneousRock();
+		public static final Block	YZC_METAMORPHIC			= new BlockMetamorphicRock();
+		public static final Block	YZC_SEDIMENTARYROCK		= new BlockSedimentaryRock();
 	}
 
-	public static class YzCetiD {
+	public static class D {
 
-		public static Block YZD_LOOSE_SEDIMENT      = new BlockSediment();
-		public static Block YZD_DARK_LOOSE_SEDIMENT = new BlockSediment();
-		public static Block YZD_GRAVEL              = new BlockGravel();
-		public static Block YZD_IGNEOUS             = new BlockIgneousRock();
-		public static Block YZD_METAMORPHIC         = new BlockMetamorphicRock();
-		public static Block YZD_SEDIMENTARYROCK     = new BlockSedimentaryRock();
+		public static final Block	YZD_LOOSE_SEDIMENT		= new BlockSediment();
+		public static final Block	YZD_DARK_LOOSE_SEDIMENT	= new BlockSediment();
+		public static final Block	YZD_GRAVEL				= new BlockGravel();
+		public static final Block	YZD_IGNEOUS				= new BlockIgneousRock();
+		public static final Block	YZD_METAMORPHIC			= new BlockMetamorphicRock();
+		public static final Block	YZD_SEDIMENTARYROCK		= new BlockSedimentaryRock();
+		public static final Block	YZD_MNT1				= new BlockMetamorphicRock();
+		public static final Block	YZD_MNT2				= new BlockMetamorphicRock();
+		public static final Block   YZD_STONE				= new BlockMetamorphicRock();
 	}
 
 }

@@ -1,12 +1,11 @@
 package net.romvoid95.api.world.worldgen.feature;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.romvoid95.core.ExoBlock;
 
 public class ExoTreeFlatTop extends ExoTree {
@@ -16,7 +15,7 @@ public class ExoTreeFlatTop extends ExoTree {
 		this.setLogBlock(log.getDefaultState());
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
-		this.setMaxCrownSize(6);
+		this.setMaxCrownSize(5);
 		this.setMinCrownSize(3);
 		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
 	}
@@ -46,8 +45,8 @@ public class ExoTreeFlatTop extends ExoTree {
 			sh  = bh + rand.nextInt(4);
 			eh  = h - (int) ((h - sh) * 1f);
 			dir = rand.nextInt(360);
-			xd  = (float) Math.cos(dir * Math.PI / 180f) * 2f;
-			yd  = (float) Math.sin(dir * Math.PI / 180f) * 2f;
+			xd  = (float) Math.cos((dir * Math.PI) / 180f) * 2f;
+			yd  = (float) Math.sin((dir * Math.PI) / 180f) * 2f;
 			c   = 1;
 
 			while (sh < h) {
@@ -70,7 +69,7 @@ public class ExoTreeFlatTop extends ExoTree {
 			int j;
 			for (i = -2; i <= 2; i++) {
 				for (j = -2; j <= 2; j++) {
-					if (Math.abs(i) + Math.abs(j) < 4) {
+					if ((Math.abs(i) + Math.abs(j)) < 4) {
 						this.placeLeavesBlock(world, new BlockPos(x + i, y + 1, z
 								+ j), this.leavesBlock, this.generateFlag);
 					}
@@ -79,7 +78,7 @@ public class ExoTreeFlatTop extends ExoTree {
 
 			for (i = -3; i <= 3; i++) {
 				for (j = -3; j <= 3; j++) {
-					if (Math.abs(i) + Math.abs(j) < 5) {
+					if ((Math.abs(i) + Math.abs(j)) < 5) {
 						this.placeLeavesBlock(world, new BlockPos(x + i, y, z
 								+ j), this.leavesBlock, this.generateFlag);
 					}

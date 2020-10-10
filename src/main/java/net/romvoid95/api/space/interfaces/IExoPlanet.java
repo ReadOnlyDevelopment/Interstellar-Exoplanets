@@ -23,9 +23,10 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+
 import net.romvoid95.api.space.enums.EnumPlanetType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
-import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
+import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 
 /**
  * The Interface IExoPlanet.
@@ -37,7 +38,7 @@ public interface IExoPlanet {
 	 *
 	 * @return the planetName
 	 */
-	public String getPlanetName ();
+	public String getExoPlanetName ();
 
 	/**
 	 * Gets Solar System the planet belongs too.
@@ -142,5 +143,5 @@ public interface IExoPlanet {
 	 *
 	 * @return the planetProvider
 	 */
-	public WorldProviderExoPlanet getPlanetProvider ();
+	public WorldProviderWE_ExoPlanet getPlanetProvider ();
 }

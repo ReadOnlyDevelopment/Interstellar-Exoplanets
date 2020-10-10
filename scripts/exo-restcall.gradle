@@ -17,7 +17,7 @@ import groovy.json.JsonSlurper
 
 
 def String getTag(int tag) {
-	def get = new HttpGet('https://api.github.com/repos/ReadOnly-Mods/Interstellar-Exoplanets/tags')
+	def get = new HttpGet('https://api.github.com/repos/ReadOnlyDevelopment/Interstellar-Exoplanets/tags')
 	get.addHeader("content-type", "application/json")
 	def response = HttpClientBuilder.create().build().execute(get)
 	def bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))
@@ -46,7 +46,7 @@ task pushTag(type:Exec/* , dependsOn: createTag */) {
 task postRelease() {
 	doLast {
 		def body = ["tag_name": "${project.ext.v}", "target_commitish": "dev-1.12.2", "name": "${project.ext.v}","body": "${project.ext.v}", "prerelease": project.ext.dev]
-		def req = new URL('https://api.github.com/repos/ReadOnly-Mods/Interstellar-Exoplanets/releases').openConnection()
+		def req = new URL('https://api.github.com/repos/ReadOnlyDevelopment/Interstellar-Exoplanets/releases').openConnection()
 		req.setRequestMethod("POST")
 		req.setRequestProperty("Authorization","token " + findProperty('git_token').toString())
 		req.setDoOutput(true)

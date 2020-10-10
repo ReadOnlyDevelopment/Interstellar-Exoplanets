@@ -17,76 +17,37 @@
 
 package net.romvoid95.common.astronomy.yzceti.b.worldgen.biome.genlayer;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-
-import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
-import net.romvoid95.common.astronomy.ExoplanetBiomes;
-import net.romvoid95.common.utility.mc.CachedEnum;
 
-public class GenLayerYzCetiBBiomes extends GenLayerYzCetiB {
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 
-	@SuppressWarnings("unchecked")
-	private List<BiomeEntry>[] biomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
-	private ArrayList<BiomeEntry>[] biomesList = this.setupBiomes();
+import net.romvoid95.core.initialization.Planets;
 
-	public GenLayerYzCetiBBiomes(long seed) {
-		super(seed);
+public class GenLayerYzCetiBBiomes extends GenLayer {
+    private static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(Planets.yzcetib).toArray(new Biome[0]);
 
-		for (BiomeType type : CachedEnum.valuesBiomeCached()) {
-			ImmutableList<BiomeEntry> biomesToAdd = this.getBiomes(type);
-			int idx = type.ordinal();
+    public GenLayerYzCetiBBiomes(long l, GenLayer parent) {
+        super(l);
+        this.parent = parent;
+    }
 
-			if (this.biomes[idx] == null) {
-				this.biomes[idx] = new ArrayList<>();
-			}
-			if (biomesToAdd != null) {
-				this.biomes[idx].addAll(biomesToAdd);
-			}
-		}
-	}
+    public GenLayerYzCetiBBiomes(long l) {
+        super(l);
+    }
 
-	private ArrayList<BiomeEntry>[] setupBiomes() {
-		@SuppressWarnings("unchecked")
-		ArrayList<BiomeEntry>[] currentBiomes = new ArrayList[CachedEnum.valuesBiomeCached().length];
-		List<BiomeEntry> list = new ArrayList<>();
-		list.add(new BiomeEntry(ExoplanetBiomes.CETIB_BASE, 75));
-		list.add(new BiomeEntry(ExoplanetBiomes.CETIB_DIRTY, 70));
-		currentBiomes[BiomeType.WARM.ordinal()] = new ArrayList<>(list);
-		return currentBiomes;
-	}
+    @Override
+    public int[] getInts(int x, int z, int width, int depth) {
+        int[] dest = IntCache.getIntCache(width * depth);
 
-	private ImmutableList<BiomeEntry> getBiomes(BiomeType type) {
-		int idx = type.ordinal();
-		List<BiomeEntry> list = idx >= this.biomesList.length ? null : this.biomesList[idx];
-		return list != null ? ImmutableList.copyOf(list) : null;
-	}
+        for (int k = 0; k < depth; ++k) {
+            for (int i = 0; i < width; ++i) {
+                initChunkSeed(x + i, z + k);
+                dest[i + k * width] = Biome.getIdForBiome(biomes[nextInt(biomes.length)]);
+            }
+        }
 
-	@Override
-	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight) {
-		int[] dest = IntCache.getIntCache(areaWidth * areaHeight);
-
-		for (int dz = 0; dz < areaHeight; dz++) {
-			for (int dx = 0; dx < areaWidth; dx++) {
-				this.initChunkSeed(dx + areaX, dz + areaY);
-				dest[dx + dz * areaWidth] = Biome.getIdForBiome(this.getWeightedBiomeEntry(BiomeType.WARM).biome);
-			}
-		}
-		return dest;
-	}
-
-	protected BiomeEntry getWeightedBiomeEntry(BiomeType type) {
-		List<BiomeEntry> biomeList = this.biomes[type.ordinal()];
-		int totalWeight = WeightedRandom.getTotalWeight(biomeList);
-		int weight = BiomeManager.isTypeListModded(type) ? this.nextInt(totalWeight)
-				: this.nextInt(totalWeight / 10) * 10;
-		return WeightedRandom.getRandomItem(biomeList, weight);
-	}
+        return dest;
+    }
 }

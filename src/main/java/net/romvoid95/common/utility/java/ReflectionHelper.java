@@ -16,9 +16,7 @@
  */
 package net.romvoid95.common.utility.java;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -30,8 +28,9 @@ import org.objectweb.asm.tree.MethodNode;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
-import lombok.experimental.UtilityClass;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
+
+import lombok.experimental.UtilityClass;
 import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.core.ExoplanetsMod;
 
@@ -178,9 +177,10 @@ public class ReflectionHelper {
 			return f;
 		}
 		catch (ReflectiveOperationException e) {
-			if (!silenced)
+			if (!silenced) {
 				ExoplanetsMod.logger.error("Could not change access for field " + clazz.getSimpleName() + "."
 						+ (MCUtil.isDeobfuscated() ? srgName : fieldName), e);
+			}
 			return null;
 		}
 

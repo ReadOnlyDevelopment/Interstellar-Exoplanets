@@ -23,22 +23,28 @@ import java.util.Random;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
+
+import micdoodle8.mods.galacticraft.core.perlin.NoiseModule;
+import micdoodle8.mods.galacticraft.core.perlin.generator.Gradient;
+
+import net.romvoid95.common.world.cave.MapGeneExCaves;
+import net.romvoid95.common.world.cave.ravine.MapGenExRavine;
 import net.romvoid95.common.world.mapgen.MapGenBaseMeta;
 
 public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	protected Random rand;
 	protected World worldObj;
-	private double[] depthBuffer;
+	private double[] depthBuffer= new double[256];
 	private Biome[] biomesForGeneration;
+
+	private NoiseModule noiseGenSmooth1;
+
 	private NoiseGeneratorOctaves minLimitPerlinNoise;
 	private NoiseGeneratorOctaves maxLimitPerlinNoise;
 	private NoiseGeneratorOctaves mainPerlinNoise;
@@ -56,16 +62,21 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	protected IBlockState stoneBlock;
 	protected IBlockState waterBlock;
 
-	protected int seaLevel = 63;
+	protected int seaLevel = 53;
 	protected boolean seaIceLayer = false;
+
+	public static final double CHUNK_HEIGHT = 20.0D;
+
+	private MapGeneExCaves caveGenerator = new MapGeneExCaves();
+	private MapGenExRavine ravineGenerator = new MapGenExRavine();
 
 	private List<MapGenBaseMeta> worldGenerators;
 
 	public ExoChunkProviderMultiSpace(World world, long seed, boolean flag) {
 		super();
-		this.depthBuffer = new double[256];
 		this.worldObj = world;
 		this.rand = new Random(seed);
+
 		this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
 		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
 		this.mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
@@ -73,24 +84,32 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 		this.scaleNoise = new NoiseGeneratorOctaves(this.rand, 10);
 		this.depthNoise = new NoiseGeneratorOctaves(this.rand, 16);
 		this.forestNoise = new NoiseGeneratorOctaves(this.rand, 8);
+		this.noiseGenSmooth1 = new Gradient(this.rand.nextLong(), 4, 0.25F);
 		this.terrainCalcs = new double[825];
 		this.biomeWeights = new float[25];
 
 		for (int j = -2; j <= 2; j++) {
 			for (int k = -2; k <= 2; k++) {
-				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
-				this.biomeWeights[j + 2 + (k + 2) * 5] = f;
+				float f = 10.0F / MathHelper.sqrt((j * j) + (k * k) + 0.2F);
+				this.biomeWeights[j + 2 + ((k + 2) * 5)] = f;
 			}
 		}
+
+		NoiseGenerator[] noiseGens = { minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise };
+		this.minLimitPerlinNoise = (NoiseGeneratorOctaves) noiseGens[0];
+		this.maxLimitPerlinNoise = (NoiseGeneratorOctaves) noiseGens[1];
+		this.mainPerlinNoise = (NoiseGeneratorOctaves) noiseGens[2];
+		this.surfaceNoise = (NoiseGeneratorPerlin) noiseGens[3];
+		this.scaleNoise = (NoiseGeneratorOctaves) noiseGens[4];
+		this.depthNoise = (NoiseGeneratorOctaves) noiseGens[5];
+		this.forestNoise = (NoiseGeneratorOctaves) noiseGens[6];
 	}
 
 	@Override
 	public Chunk generateChunk(int chunkX, int chunkZ) {
-		this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
+		this.rand.setSeed((chunkX * 341873128712L) + (chunkZ * 132897987541L));
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
-		this.replaceBlocksForBiome(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
 
 		if (this.worldGenerators == null) {
 			this.worldGenerators = this.getWorldGenerators();
@@ -99,6 +118,12 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 		for (MapGenBaseMeta generator : this.worldGenerators) {
 			generator.generate(this.worldObj, chunkX, chunkZ, chunkprimer);
 		}
+
+		this.ravineGenerator.generate(worldObj, chunkX, chunkZ, chunkprimer);
+		this.caveGenerator.generate(worldObj, chunkX, chunkZ, chunkprimer);
+
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+		this.replaceBlocksForBiome(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
 
 		this.onChunkProvide(chunkX, chunkZ, chunkprimer);
 
@@ -111,9 +136,10 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 		return chunk;
 	}
 
-	public void setBlocksInChunk(int p_180518_1_, int p_180518_2_, ChunkPrimer p_180518_3_) {
-		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, p_180518_1_ * 4 - 2, p_180518_2_ * 4 - 2, 10, 10);
-		this.generateHeightMap(p_180518_1_ * 4, 0, p_180518_2_ * 4);
+	public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, (chunkX * 4) - 2, (chunkZ * 4) - 2, 10, 10);
+		this.generateHeightMap(chunkX * 4, 0, chunkZ * 4);
+		this.noiseGenSmooth1.setFrequency(0.015F);
 
 		for (int i = 0; i < 4; ++i) {
 			int j = i * 5;
@@ -149,12 +175,29 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 							double lvt_45_1_ = d10 - d16;
 
 							for (int l2 = 0; l2 < 4; ++l2) {
-								if ((lvt_45_1_ += d16) > 0.0D) {
-									p_180518_3_.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.stoneBlock);
-								} else if (i2 * 8 + j2 == (this.seaLevel - 1) && this.seaIceLayer) {
-									p_180518_3_.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, Blocks.ICE.getDefaultState());
-								} else if (i2 * 8 + j2 < (this.seaLevel - 1)) {
-									p_180518_3_.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.waterBlock);
+								int x = (i * 4) + k2;
+								int y = (i2 * 8) + j2;
+								int z = (l * 4) + l2;
+
+								double chunkHeightMod = CHUNK_HEIGHT;
+
+								Biome biome = worldObj.getBiome(new BlockPos(x, y, z));
+
+								double biomeHeight = biome.getBaseHeight() * 1.0D;
+								if (biomeHeight > 0.0D) {
+									chunkHeightMod = biomeHeight;
+								}
+
+
+								chunkHeightMod += biome.getBaseHeight();
+
+								float x16 = ((chunkX * 16) + x);
+								float z16 = ((chunkZ * 16) + z);
+
+								if ((lvt_45_1_ += d16) > (this.noiseGenSmooth1.getNoise((chunkX * 16) + ((i * 4) + k2), (chunkZ * 16) + ((l * 4) + l2)) * 20.0)) {
+									primer.setBlockState(x, y, z, stoneBlock);
+								} else if (y < seaLevel) {
+									primer.setBlockState(x, y, z, waterBlock);
 								}
 							}
 
@@ -173,10 +216,10 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	}
 
 	private void generateHeightMap(int chunkX, int chunkY, int chunkZ) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX, chunkZ, 5, 5, 200.0F, 200.0F, 8.5F);
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX, chunkZ, 5, 5, 2000.0, 2000.0, 0.5);
 		float f = 684.412F;
 		float f1 = 684.412F;
-		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, chunkX, chunkY, chunkZ, 5, 33, 5, f / 80.0F, f1 / 160.0F, f / 80.0F);
+		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, chunkX, chunkY, chunkZ, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
 		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, chunkX, chunkY, chunkZ, 5, 33, 5, f, f1, f);
 		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, chunkX, chunkY, chunkZ, 5, 33, 5, f, f1, f);
 		chunkZ = 0;
@@ -190,14 +233,14 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				int i1 = 2;
-				Biome biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
+				Biome biomegenbase = this.biomesForGeneration[k + 2 + ((l + 2) * 10)];
 
 				for (int j1 = -i1; j1 <= i1; ++j1) {
 					for (int k1 = -i1; k1 <= i1; ++k1) {
-						Biome biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
-						float f5 = 0.0F + biomegenbase1.getBaseHeight() * 1.0F;
-						float f6 = 0.0F + biomegenbase1.getHeightVariation() * 1.0F;
-						float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
+						Biome biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + ((l + k1 + 2) * 10)];
+						float f5 = 0.0F + (biomegenbase1.getBaseHeight() * 1.0F);
+						float f6 = 0.0F + (biomegenbase1.getHeightVariation() * 1.0F);
+						float f7 = this.biomeWeights[j1 + 2 + ((k1 + 2) * 5)] / (f5 + 2.0F);
 
 						if (biomegenbase1.getBaseHeight() > biomegenbase.getBaseHeight()) {
 							f7 /= 2.0F;
@@ -211,15 +254,15 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 
 				f2 = f2 / f4;
 				f3 = f3 / f4;
-				f2 = f2 * 0.9F + 0.1F;
-				f3 = (f3 * 4.0F - 1.0F) / 8.0F;
-				double d7 = this.depthRegion[j] / 8000.0D;
+				f2 = (f2 * 0.9F) + 0.1F;
+				f3 = ((f3 * 4.0F) - 1.0F) / 8.0F;
+				double d7 = this.depthRegion[j] / 4000.0D;
 
 				if (d7 < 0.0D) {
 					d7 = -d7 * 0.3D;
 				}
 
-				d7 = d7 * 3.0D - 2.0D;
+				d7 = (d7 * 3.0D) - 2.0D;
 
 				if (d7 < 0.0D) {
 					d7 = d7 / 2.0D;
@@ -241,12 +284,12 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 				++j;
 				double d8 = f3;
 				double d9 = f2;
-				d8 = d8 + d7 * 0.2D;
-				d8 = d8 * 8.5F / 8.0D;
-				double d0 = 8.5F + d8 * 4.0D;
+				d8 = d8 + (d7 * 0.2D);
+				d8 = (d8 * 8.5F) / 8.0D;
+				double d0 = 8.5F + (d8 * 4.0D);
 
 				for (int l1 = 0; l1 < 33; ++l1) {
-					double d1 = (l1 - d0) * 12.0F * 128.0D / 256.0D / d9;
+					double d1 = ((l1 - d0) * 12.0F * 128.0D) / 256.0D / d9;
 
 					if (d1 < 0.0D) {
 						d1 *= 4.0D;
@@ -254,12 +297,12 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 
 					double d2 = this.minLimitRegion[i] / 512.0F;
 					double d3 = this.maxLimitRegion[i] / 512.0F;
-					double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
+					double d4 = ((this.mainNoiseRegion[i] / 10.0D) + 1.0D) / 2.0D;
 					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 
 					if (l1 > 29) {
 						double d6 = (l1 - 29) / 3.0F;
-						d5 = d5 * (1.0D - d6) + -10.0D * d6;
+						d5 = (d5 * (1.0D - d6)) + (-10.0D * d6);
 					}
 
 					this.terrainCalcs[i] = d5;
@@ -273,28 +316,30 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 	 * Replaces the stone that was placed in with blocks that match the biome
 	 */
 	public void replaceBlocksForBiome(int chunkX, int chunkZ, ChunkPrimer chunk, Biome[] biomeGen) {
-		double d0 = 0.03125D;
-		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, chunkX * 16, chunkZ * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
 		for (int z = 0; z < 16; z++) {
 			for (int x = 0; x < 16; x++) {
-				Biome biomegenbase = biomeGen[x + z * 16];
-				biomegenbase.genTerrainBlocks(this.worldObj, this.rand, chunk, chunkX * 16 + z, chunkZ * 16 + x, this.depthBuffer[x + z * 16]);
+				Biome biomegenbase = biomeGen[x + (z * 16)];
+				biomegenbase.genTerrainBlocks(this.worldObj, this.rand, chunk, (chunkX * 16) + z, (chunkZ * 16) + x, this.depthBuffer[x + (z * 16)]);
 			}
 		}
 	}
 
 	@Override
-	public void populate(int x, int z) {
+	public void populate(int chunkX, int chunkZ) {
 		BlockFalling.fallInstantly = true;
-		int var4 = x * 16;
-		int var5 = z * 16;
-		this.worldObj.getBiome(new BlockPos(var4 + 16, 0, var5 + 16));
+		int x = chunkX * 16;
+		int z = chunkZ * 16;
+		BlockPos pos = new BlockPos(x, 0, z);
+		Biome biome = this.worldObj.getBiome(pos.add(16, 0, 16));
 		this.rand.setSeed(this.worldObj.getSeed());
-		final long var7 = this.rand.nextLong() / 2L * 2L + 1L;
-		final long var9 = this.rand.nextLong() / 2L * 2L + 1L;
-		this.rand.setSeed(x * var7 + z * var9 ^ this.worldObj.getSeed());
-		this.decoratePlanet(this.worldObj, this.rand, var4, var5);
+		long k = ((this.rand.nextLong() / 2L) * 2L) + 1L;
+		long l = ((this.rand.nextLong() / 2L) * 2L) + 1L;
+		this.rand.setSeed(((chunkX * k) + (chunkZ * l)) ^ this.worldObj.getSeed());
+		ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
+		this.populate(pos, chunkpos, biome, chunkX, chunkZ, x, z);
+		this.decoratePlanet(this.worldObj, this.rand, x, z);
 		this.onPopulate(x, z);
 
 		BlockFalling.fallInstantly = false;
@@ -313,7 +358,7 @@ public abstract class ExoChunkProviderMultiSpace extends ExoChunkProviderBase {
 
 	protected abstract List<MapGenBaseMeta> getWorldGenerators();
 
-	//protected abstract List<MapGenBase> getWorldGeneratorsOther();
+	protected abstract void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z);
 
 	protected abstract void onChunkProvide(int cX, int cZ, ChunkPrimer primer);
 

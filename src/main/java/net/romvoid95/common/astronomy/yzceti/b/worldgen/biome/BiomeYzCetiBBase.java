@@ -25,11 +25,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
+
 import net.romvoid95.common.astronomy.yzceti.b.worldgen.BiomeDecoratorYzCetiB;
 import net.romvoid95.common.world.biome.BiomeSpace;
 import net.romvoid95.common.world.helpers.EnumBiomeType;
 import net.romvoid95.core.ExoBlock;
-import net.romvoid95.core.initialization.Planets;
 
 public class BiomeYzCetiBBase extends BiomeSpace {
 
@@ -44,20 +44,18 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 	protected static final int SEA_LEVEL       = 63;
 	protected static final int SEA_FLOOR_LEVEL = 42;
 
-	public BiomeYzCetiBBase(String singleName, BiomeProperties props) {
-		super(singleName, props);
+	public BiomeYzCetiBBase(BiomeProperties props) {
+		super(props);
 		this.setTempCategory(TempCategory.COLD);
 		this.clearAllSpawning();
-		this.setPlanetForBiome(Planets.yzcetib);
 	}
 
 	public final void generateYzCetiBTerrain (World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		int i = worldIn.getSeaLevel();
-		//float biomeHeight = this.getBiomeHeight();
 		IBlockState topState  = this.topBlock;
 		IBlockState fillState = this.fillerBlock;
 		int         j         = -1;
-		int         k         = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+		int         k         = (int) ((noiseVal / 3.0D) + 3.0D + (rand.nextDouble() * 0.25D));
 		int         l         = x & 15;
 		int         i1        = z & 15;
 
@@ -91,21 +89,21 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 								topState  = AIR;
 								fillState = STONE;
 							}
-							else if (j1 >= i - 4 && j1 <= i + 1) {
+							else if ((j1 >= (i - 4)) && (j1 <= (i + 1))) {
 								topState  = this.topBlock;
 								fillState = this.fillerBlock;
 							}
 
-							if (j1 < i && (topState == null || topState.getMaterial() == Material.AIR)) {
+							if ((j1 < i) && ((topState == null) || (topState.getMaterial() == Material.AIR))) {
 								topState = ICE;
 							}
 
 							j = k;
 
-							if (j1 >= i - 1) {
+							if (j1 >= (i - 1)) {
 								chunkPrimerIn.setBlockState(i1, j1, l, topState);
 							}
-							else if (j1 < i - 7 - k) {
+							else if (j1 < (i - 7 - k)) {
 								topState  = AIR;
 								fillState = STONE;
 								chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);

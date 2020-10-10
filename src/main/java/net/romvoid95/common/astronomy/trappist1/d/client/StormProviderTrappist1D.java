@@ -6,8 +6,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.romvoid95.api.world.ExoWorldProvider;
+
+import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.world.weather.StormProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
@@ -19,7 +21,7 @@ public class StormProviderTrappist1D extends StormProvider {
 
 	@Override
 	public void updateStorm (World world) {
-		if (world != null && this.isStormActive(world)) {
+		if ((world != null) && this.isStormActive(world)) {
 			for (Object o : world.loadedEntityList.toArray()) {
 				if (o instanceof Entity) {
 					Entity entity = (Entity) o;
@@ -37,8 +39,9 @@ public class StormProviderTrappist1D extends StormProvider {
 
 	public static final Texture STORM_TEXTURE = new Texture(ExoInfo.MODID, "textures/enviroment/heavyrain.png");
 
+	@Override
 	public boolean isStormActive (World world) {
-		ExoWorldProvider provider = (ExoWorldProvider) world.provider;
+		WorldProviderWE_ExoPlanet provider = (WorldProviderWE_ExoPlanet) world.provider;
 		for (EntityLivingBase player : world.playerEntities) {
 			if (player.lastTickPosY < provider.getCloudHeight()) {
 				return true;

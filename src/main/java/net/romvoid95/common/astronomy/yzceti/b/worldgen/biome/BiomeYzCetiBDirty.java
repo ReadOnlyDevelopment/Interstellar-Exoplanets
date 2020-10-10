@@ -25,7 +25,7 @@ public class BiomeYzCetiBDirty extends BiomeYzCetiBBase {
 	public static int grassFoilageColorMultiplier = 0x000000;
 
 	public BiomeYzCetiBDirty(BiomeProperties props) {
-		super("dirty", props);
+		super(props);
 		props.setRainDisabled();
 		props.setBaseHeight(2.0F);
 		props.setHeightVariation(1.2F);

@@ -21,7 +21,7 @@ import java.util.Map;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.util.ResourceLocation;
-import net.romvoid95.common.config.SConfigCore;
+import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.core.ExoInfo;
 import net.romvoid95.core.ExoplanetsMod;
 
@@ -72,7 +72,7 @@ public class Assets {
 	}
 
 	public static ResourceLocation getCelestialTexture (String name) {
-		if (!SConfigCore.enableRealism) {
+		if (!ConfigCore.enableRealism) {
 			return getCelestial(name);
 		}
 		else {

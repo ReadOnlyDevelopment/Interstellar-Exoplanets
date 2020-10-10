@@ -14,9 +14,9 @@ project.ext {
 }
 
 def String artifacts = "scripts/artifacts.gradle"
-def String changelog = "scripts/changelog.gradle"
+//def String changelog = "scripts/changelog.gradle"
 def String deps = "scripts/exodep.gradle"
-def String restcall = "scripts/exo-restcall.gradle"
+//def String restcall = "scripts/exo-restcall.gradle"
 def String secret = "scripts/secret.gradle"
 
 apply from: secret
@@ -25,5 +25,5 @@ loadSecrets()
 
 apply from: artifacts
 apply from: deps
-apply from: restcall
-apply from: changelog
+//apply from: restcall
+//apply from: changelog

@@ -17,9 +17,7 @@
 
 package net.romvoid95.common.astronomy.yzceti.d.worldgen.biomes;
 
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
-import net.minecraft.world.gen.layer.GenLayerZoom;
+import net.minecraft.world.gen.layer.*;
 
 public abstract class GenLayerYzCetiD extends GenLayer {
 	public GenLayerYzCetiD(long l) {
@@ -33,10 +31,7 @@ public abstract class GenLayerYzCetiD extends GenLayer {
 		biomes = new GenLayerZoom(1002L, biomes);
 		biomes = new GenLayerZoom(1003L, biomes);
 		biomes = new GenLayerZoom(1004L, biomes);
-		biomes = new GenLayerZoom(1005L, biomes);
-		biomes = new GenLayerZoom(1006L, biomes);
-		biomes = new GenLayerZoom(1007L, biomes);
-		GenLayer genLayerVeronoiZoom = new GenLayerVoronoiZoom(10L, biomes);
+		GenLayer genLayerVeronoiZoom = new GenLayerVoronoiZoom(5L, biomes);
 		biomes.initWorldGenSeed(l);
 		genLayerVeronoiZoom.initWorldGenSeed(l);
 

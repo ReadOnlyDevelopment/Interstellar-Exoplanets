@@ -17,24 +17,23 @@
 
 package net.romvoid95.common.astronomy.yzceti.c.worldgen;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import javax.annotation.Nullable;
 
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
+
 import net.romvoid95.common.astronomy.yzceti.c.worldgen.biomes.genlayers.GenLayerYzCetiC;
 import net.romvoid95.core.initialization.Planets;
 
@@ -70,7 +69,7 @@ public class BiomeProviderYzCetiC extends BiomeProvider {
 
 	@Override
 	public Biome getBiome (BlockPos pos, Biome defaultBiome) {
-		BiomeAdaptive.setBodyMultiBiome(body);
+		BiomeAdaptive.setBodyMultiBiome(this.body);
 		return this.biomeCache.getBiome(pos.getX(), pos.getZ(), BiomeAdaptive.biomeDefault);
 	}
 
@@ -83,13 +82,13 @@ public class BiomeProviderYzCetiC extends BiomeProvider {
 	@Override
 	public Biome[] getBiomesForGeneration (Biome[] biomes, int x, int z, int length, int width) {
 		IntCache.resetIntCache();
-		BiomeAdaptive.setBodyMultiBiome(body);
+		BiomeAdaptive.setBodyMultiBiome(this.body);
 
 		if (biomes == null || biomes.length < length * width) {
 			biomes = new Biome[length * width];
 		}
 
-		int[] intArray = unzoomedBiomes.getInts(x, z, length, width);
+		int[] intArray = this.unzoomedBiomes.getInts(x, z, length, width);
 
 		for (int i = 0; i < length * width; ++i) {
 			if (intArray[i] >= 0) {
@@ -111,7 +110,7 @@ public class BiomeProviderYzCetiC extends BiomeProvider {
 	@Override
 	public Biome[] getBiomes (@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag) {
 		IntCache.resetIntCache();
-		BiomeAdaptive.setBodyMultiBiome(body);
+		BiomeAdaptive.setBodyMultiBiome(this.body);
 
 		if (listToReuse == null || listToReuse.length < length * width) {
 			listToReuse = new Biome[width * length];
@@ -123,7 +122,7 @@ public class BiomeProviderYzCetiC extends BiomeProvider {
 			return listToReuse;
 		}
 
-		int[] zoomed = zoomedBiomes.getInts(x, z, width, length);
+		int[] zoomed = this.zoomedBiomes.getInts(x, z, width, length);
 
 		for (int i = 0; i < width * length; ++i) {
 			if (zoomed[i] >= 0) {

@@ -17,19 +17,23 @@
 
 package net.romvoid95.common.astronomy.trappist1.e;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
-import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import net.romvoid95.client.Assets;
 
 public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		if (!this.mc.world.isRaining()) {
 			this.renderImage(Assets.getCelestialTexture("trappist1b"), 0, 0, this
 					.getCelestialAngle(getDayLenght()), 5.5F);

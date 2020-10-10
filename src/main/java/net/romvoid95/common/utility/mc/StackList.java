@@ -17,17 +17,13 @@
 
 package net.romvoid95.common.utility.mc;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.*;
 
 public final class StackList extends ArrayList<ItemStack> {
 

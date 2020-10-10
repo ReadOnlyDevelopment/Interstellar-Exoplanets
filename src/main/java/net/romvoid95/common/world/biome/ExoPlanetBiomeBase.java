@@ -17,10 +17,11 @@
 
 package net.romvoid95.common.world.biome;
 
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.Biome;
-import net.romvoid95.common.astronomy.ExoplanetBiomes;
+
+import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
+
 import net.romvoid95.common.world.helpers.EnumBiomeType;
 
 public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
@@ -42,7 +43,6 @@ public class ExoPlanetBiomeBase extends BiomeGenBaseGC {
 	public ExoPlanetBiomeBase(BiomeProperties properties) {
 		super(properties, true);
 		this.clearAllSpawning();
-		ExoplanetBiomes.biomeList.add(this);
 	}
 
 	public ExoPlanetBiomeBase(String singleName, BiomeProperties properties) {

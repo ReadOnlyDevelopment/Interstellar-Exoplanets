@@ -19,20 +19,28 @@ package net.romvoid95.common.world.biome;
 
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import net.minecraft.block.Block;
-import net.romvoid95.api.space.ExoPlanet;
+import net.minecraft.world.WorldProvider;
+
+import micdoodle8.mods.galacticraft.api.galaxies.Planet;
+
 import net.romvoid95.api.space.enums.EnumTPHClass;
-import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
+import net.romvoid95.api.space.prefab.ExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 
 	protected Planet planetForBiome = null;
-	protected WorldProviderExoPlanet spaceProvider = null;
+	protected WorldProvider spaceProvider = null;
+	protected Block planetGrassBlock = null;
 	public static int grassFoliageColor = 0x00ff00;
 
 	public BiomeSpace(BiomeProperties properties) {
 		super(properties);
+		this.init();
+	}
+	
+	public BiomeSpace(PropsBuilder props) {
+		super(props.build());
 		this.init();
 	}
 
@@ -65,13 +73,22 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 		return this.planetForBiome;
 	}
 
-	public BiomeSpace setSpaceProvider(WorldProviderExoPlanet provider) {
+	public BiomeSpace setSpaceProvider(WorldProvider provider) {
 		this.spaceProvider = provider;
 		return this;
 	}
 
-	public WorldProviderExoPlanet getSpaceProvider() {
+	public WorldProvider getSpaceProvider() {
 		return this.spaceProvider;
+	}
+
+	public BiomeSpace setPlanetGrassBlock(Block block) {
+		this.planetGrassBlock = block;
+		return this;
+	}
+
+	public Block getPlanetGrassBlock() {
+		return this.planetGrassBlock;
 	}
 
 	/**
@@ -137,9 +154,9 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 		float maxTemp = planetTemp + 25;
 		float minTemp = planetTemp - 25;
 
-		if (planet.getTphClass() == EnumTPHClass.HP || planet.getTphClass() == EnumTPHClass.P) {
+		if ((planet.getTphClass() == EnumTPHClass.HP) || (planet.getTphClass() == EnumTPHClass.P)) {
 			flucTemp -= biomeTemp;
-		} else if (planet.getTphClass() == EnumTPHClass.T || planet.getTphClass() == EnumTPHClass.HT) {
+		} else if ((planet.getTphClass() == EnumTPHClass.T) || (planet.getTphClass() == EnumTPHClass.HT)) {
 			flucTemp += biomeTemp;
 		} else {
 			flucTemp = planetTemp + biomeTemp;
@@ -155,4 +172,50 @@ public class BiomeSpace extends ExoPlanetBiomeBase {
 
 		return flucTemp;
 	}
+	
+    public static class PropsBuilder
+    {
+        private final String biomeName;
+        private float baseHeight = 0.1F;
+        private float heightVariation = 0.2F;
+        private float temperature = 0.5F;
+        private float rainfall = 0.5F;
+        private int waterColor = 16777215;
+        private boolean enableSnow = false;
+        private boolean enableRain = true;
+        private String baseBiomeRegName;
+
+        public PropsBuilder(String name) { this.biomeName = name; }
+
+        public PropsBuilder withTemperature(Float temperature) { if (temperature != null) this.temperature = temperature; return this; }
+        public PropsBuilder withRainfall(Float rainfall) { if (rainfall != null) this.rainfall = rainfall; return this; }
+        public PropsBuilder withBaseHeight(Float baseHeight) { if (baseHeight != null) this.baseHeight = baseHeight; return this; }
+        public PropsBuilder withHeightVariation(Float heightVariation) { if (heightVariation != null) this.heightVariation = heightVariation; return this; }
+        public PropsBuilder withRainDisabled() { this.enableRain = false; return this; }
+        public PropsBuilder withSnowEnabled() { this.enableSnow = true; return this; }
+        public PropsBuilder withWaterColor(Integer waterColor) { if (waterColor != null) this.waterColor = waterColor; return this; }
+        public PropsBuilder withBaseBiome(String name) { if (name != null) this.baseBiomeRegName = name; return this; }
+
+        public BiomeProps build()
+        {
+            return new BiomeProps(this.biomeName, this.temperature, this.rainfall, this.baseHeight, this.heightVariation, this.enableRain, this.enableSnow, this.waterColor, this.baseBiomeRegName);
+        }
+    }
+
+    public static class BiomeProps extends BiomeProperties
+    {
+        private BiomeProps(String name, float temperature, float rainfall, float baseHeight, float heightVariation, boolean enableRain, boolean enableSnow, int waterColor, String baseBiomeRegName)
+        {
+            super(name);
+
+            this.setTemperature(temperature);
+            this.setRainfall(rainfall);
+            this.setBaseHeight(baseHeight);
+            this.setHeightVariation(heightVariation);
+            if (!enableRain) this.setRainDisabled();
+            if (enableSnow) this.setSnowEnabled();
+            this.setWaterColor(waterColor);
+            this.setBaseBiome(baseBiomeRegName);
+        }
+    }
 }

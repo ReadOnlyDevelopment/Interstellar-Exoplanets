@@ -4,7 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
 import net.romvoid95.core.ExoBlock;
-import net.romvoid95.core.initialization.ExoDimensions;
+import net.romvoid95.api.world.ExoDimensions;
 
 public class OreHelper {
 
