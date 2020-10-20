@@ -19,13 +19,9 @@ package net.romvoid95.common.world;
 import java.util.List;
 import java.util.Random;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
-import net.minecraft.block.BlockDoor;
+import net.minecraft.block.*;
 import net.minecraft.block.BlockDoor.EnumHingePosition;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -34,11 +30,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.gen.structure.StructureVillagePieces.PieceWeight;
-import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
-import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
+import net.minecraft.world.gen.structure.StructureVillagePieces.*;
+
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
+
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 
 public class VillageAstronomerHouse extends Village { // NO_UCD (use default)
 	public VillageAstronomerHouse() {}

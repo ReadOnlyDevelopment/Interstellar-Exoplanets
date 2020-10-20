@@ -154,6 +154,8 @@ public class AstronomicalConstants {
 
 	/** Earth equatorial radius in km. IERS 2003 Conventions. */
 	public static final double EARTH_RADIUS = 6378.1366;
+	
+	public static final double JUPITER_RADIUS_IN_EARTHS = 11.209;
 
 	/** Earth orbit mean rate in rad/day (Gauss Gravitational constant). */
 	public static final double EARTH_MEAN_ORBIT_RATE = 0.01720209895;

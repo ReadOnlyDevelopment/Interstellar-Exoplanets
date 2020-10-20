@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import net.romvoid95.common.world.features.GenFeatureDome;
 
 public class Trappist1_E_Ocean extends WE_Biome {
 
@@ -68,7 +67,7 @@ public class Trappist1_E_Ocean extends WE_Biome {
 			if (!world.isAreaLoaded(pos, 16, false)) {
 				switch (rand.nextInt(2)) {
 					case 0:
-						new GenFeatureDome(true, Blocks.GLASS.getDefaultState(), 10, pos.getY());
+						//new GenFeatureBoulder(true, Blocks.GLASS.getDefaultState(), 10, pos.getY());
 						//new GenFeatureDome(true, Blocks.GLASS.getDefaultState(), 10, pos);
 						break;
 					case 1:

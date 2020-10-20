@@ -11,27 +11,23 @@ import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.YzCetiDBiomes;
-import net.romvoid95.common.world.biome.exo.WorldGenConstants;
+import net.romvoid95.common.world.biome.properties.BiomeData;
 import net.romvoid95.core.ExoBlock;
 
-public class BiomeGenCragCliffs extends YzCetiDBiomes implements WorldGenConstants {
+public class BiomeGenCragCliffs extends YzCetiDBiomes {
 
 	protected static final WorldGenBlockBlob	BOULDER_FEATURE	= new WorldGenBlockBlob(YzCetiBlocks.D.YZD_STONE, 5);
 	public static IBlockState					rock			= YzCetiBlocks.D.YZD_MNT2.getDefaultState();
 
 	public BiomeGenCragCliffs (String name, float height, float variation) {
-		super(new BiomeProperties(name)
-				.setRainfall(0F)
-				.setRainDisabled()
-				.setBaseHeight(height)
-				.setHeightVariation(variation));
+		super(new BiomeData.BiomeDataBuilder()
+				.biomeName(name)
+				.rainfall(0F)
+				.rainEnabled(false)
+				.baseHeight(height)
+				.heightVariation(variation));
 		this.topBlock = rock;
 		this.fillerBlock = YzCetiBlocks.D.YZD_MNT2.getDefaultState();
-		decorator.treesPerChunk = -999;
-		decorator.extraTreeChance = -999;
-		decorator.flowersPerChunk = -999;
-		decorator.grassPerChunk = 2;
-		decorator.generateFalls = false;
 	}
 
 	@Override
@@ -45,21 +41,6 @@ public class BiomeGenCragCliffs extends YzCetiDBiomes implements WorldGenConstan
 		}
 
 		super.decorate(worldIn, rand, pos);
-	}
-
-	@Override
-	public int getModdedBiomeGrassColor(int original) {
-		return super.getModdedBiomeGrassColor(0xFF90814D);
-	}
-
-	@Override
-	public int getSkyColorByTemp(float currentTemperature) {
-		return 0xFF88DDFF;
-	}
-
-	@Override
-	public int getModdedBiomeFoliageColor(int original) {
-		return super.getModdedBiomeFoliageColor(0xFF9E814D);
 	}
 
 	@Override

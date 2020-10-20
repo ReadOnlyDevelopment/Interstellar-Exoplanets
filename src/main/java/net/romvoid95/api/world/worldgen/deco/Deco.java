@@ -56,7 +56,6 @@ public abstract class Deco {
     }
 
     public Deco setMaxRiver(float maxRiver) {
-
         this.maxRiver = maxRiver;
         return this;
     }

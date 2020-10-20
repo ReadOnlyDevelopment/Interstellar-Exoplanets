@@ -22,19 +22,21 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-import net.romvoid95.common.world.chunk.ExoChunkProviderMultiSpace;
+import net.romvoid95.common.world.chunk.ExoChunkProvider;
 import net.romvoid95.common.world.mapgen.MapGenBaseMeta;
 import net.romvoid95.core.ExoBlock;
 
-public class ChunkProviderYzCetiC extends ExoChunkProviderMultiSpace {
+public class ChunkProviderYzCetiC extends ExoChunkProvider {
 
 
 	public ChunkProviderYzCetiC (World par1World, long seed, boolean mapFeaturesEnabled) {
@@ -74,16 +76,35 @@ public class ChunkProviderYzCetiC extends ExoChunkProviderMultiSpace {
 	}
 
 	@Override
-	protected int getCraterProbability() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void onPopulate(int cX, int cZ) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
+
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
+			boolean findUnexplored) {
+		return null;
+	}
+
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
+	}
+
+	@Override
+	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+		return null;
+	}
+
+	@Override
+	protected int getCraterProbability() {
+		return 0;
+	}
 
 }

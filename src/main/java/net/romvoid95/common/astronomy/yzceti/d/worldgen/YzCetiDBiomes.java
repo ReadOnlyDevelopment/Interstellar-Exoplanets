@@ -27,13 +27,14 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.d.BiomeDecoratorOther;
-import net.romvoid95.common.world.biome.BiomeSpace;
+import net.romvoid95.common.world.biome.ExoBiome;
+import net.romvoid95.common.world.biome.properties.BiomeData.BiomeDataBuilder;
 import net.romvoid95.core.initialization.Planets;
 
-public class YzCetiDBiomes extends BiomeSpace {
+public class YzCetiDBiomes extends ExoBiome {
 
-	protected YzCetiDBiomes(BiomeProperties properties) {
-		super(properties);
+	protected YzCetiDBiomes(BiomeDataBuilder biomeDataBuilder) {
+		super(biomeDataBuilder.generate());
 		setPlanetForBiome(Planets.yzcetid);
 	}
 

@@ -31,13 +31,13 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import net.romvoid95.api.world.ExoBiomes;
+import net.romvoid95.api.world.worldgen.feature.ExoFeatureBoulder;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.BiomeDecoratorYzCetiD;
-import net.romvoid95.common.world.chunk.ExoChunkProviderMultiSpace;
-import net.romvoid95.common.world.features.GenFeatureBoulder;
+import net.romvoid95.common.world.chunk.ExoChunkProvider;
 import net.romvoid95.common.world.mapgen.MapGenBaseMeta;
 import net.romvoid95.core.ExoBlock;
 
-public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
+public class ChunkProviderYzCetiD extends ExoChunkProvider {
 
 	private final BiomeDecoratorYzCetiD cetiDBiomeDecorator = new BiomeDecoratorYzCetiD();
 
@@ -77,8 +77,24 @@ public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
 	@Override
 	protected void populate(BlockPos pos, ChunkPos chunkpos, Biome biome, int chunkX, int chunkZ, int x, int z) {
 		for (int i = 0; i < 16; ++i) {
-			new GenFeatureBoulder(ExoBiomes.yzCeti_d_cliffs, 1, 3).generate(this.worldObj, this.rand, chunkpos);
+			new ExoFeatureBoulder(ExoBiomes.yzCeti_d_cliffs, 1, 3).generate(this.worldObj, this.rand, chunkpos);
 		}
 		this.cetiDBiomeDecorator.decorate(this.worldObj, rand, x, z);
+	}
+
+	@Override
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
+
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
+			boolean findUnexplored) {
+		return null;
+	}
+
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
 	}
 }

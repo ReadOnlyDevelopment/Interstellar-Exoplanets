@@ -27,16 +27,18 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.astronomy.yzceti.d.worldgen.YzCetiDBiomes;
+import net.romvoid95.common.world.biome.properties.BiomeData;
 import net.romvoid95.core.ExoBlock;
 
 public class BiomeGenYzCetiD extends YzCetiDBiomes {
 
 	public BiomeGenYzCetiD (String name, float height, float variation) {
-		super(new BiomeProperties(name)
-				.setRainfall(0F)
-				.setRainDisabled()
-				.setBaseHeight(height)
-				.setHeightVariation(variation));
+		super(new BiomeData.BiomeDataBuilder()
+				.biomeName(name)
+				.rainfall(0F)
+				.rainEnabled(false)
+				.baseHeight(height)
+				.heightVariation(variation));
 		this.topBlock = ExoBlock.YZD_IGNEOUS;
 		this.fillerBlock = YzCetiBlocks.D.YZD_LOOSE_SEDIMENT.getDefaultState();
 	}

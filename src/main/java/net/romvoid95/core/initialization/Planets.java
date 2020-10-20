@@ -33,11 +33,14 @@ import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.RelayStation;
+import net.romvoid95.api.space.stellarmathmatics.StarMath;
 import net.romvoid95.api.world.ExoBiomes;
 import net.romvoid95.common.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.romvoid95.common.astronomy.trappist1.c.WorldProviderTrappist1C;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.common.astronomy.trappist1.e.WorldProviderTrappist1E;
+import net.romvoid95.common.astronomy.wolf1061.d.TeleportTypeWolf1061D;
+import net.romvoid95.common.astronomy.wolf1061.d.WorldProviderWolf1061D;
 import net.romvoid95.common.astronomy.yzceti.b.WorldProviderYzCetiB;
 import net.romvoid95.common.astronomy.yzceti.c.WorldProviderYzCetiC;
 import net.romvoid95.common.astronomy.yzceti.d.WorldProviderYzCetiD;
@@ -89,6 +92,8 @@ public class Planets {
 		trappiste = Universe.pre("Trappist1E", trappist1);
 
 		kepler1649c = Universe.pre("Kepler1649C", kepler1649);
+		
+		wolf1061d = Universe.pre("Wolf1061D", wolf1061);
 
 	}
 
@@ -181,7 +186,14 @@ public class Planets {
 					wolf1061c = Universe.unreachable("Wolf1061C", wolf1061, 1.7264397F, WOLF_C_AU, WOLF_C_ORBIT);
 				}
 				if(!PlanetCoreConfig.disable_wolf_d) {
-					wolf1061d = Universe.unreachable("Wolf1061D", wolf1061, 7.132725F, WOLF_D_AU, WOLF_D_ORBIT);
+					Universe.planet(wolf1061d, 0.666F, WOLF_D_AU, WOLF_D_ORBIT, ConfigSystems.wolf_tier);
+					Universe.setBiomes(wolf1061d, ExoBiomes.wolf1061_d_main);
+					Universe.setExoPlanetData(wolf1061d, 5.0f, 7.7f, (float) StarMath.convertJupiterRadius(0.24));
+					Universe.setNormalOrbit(wolf1061d);
+					Universe.setAtmosphere(wolf1061d, 5.0, 0.0, NITROGEN, ARGON, HYDROGEN, CO2);
+					Universe.setSurfaceData(wolf1061d, 0.75, 32500L, ClassBody.GASGIANT);
+					Universe.setProvider(wolf1061d, WorldProviderWolf1061D.class, id_wolf_d);
+					//wolf1061d = Universe.unreachable("Wolf1061D", wolf1061, 7.132725F, WOLF_D_AU, WOLF_D_ORBIT);
 				}
 			}
 
@@ -230,6 +242,7 @@ public class Planets {
 		Planets.finishRegistry(trappistd, new TeleportTypeMoon());
 		Planets.finishRegistry(trappiste, new TeleportTypeMoon());
 		Planets.finishRegistry(kepler1649c, new TeleportTypeOverworld());
+		Planets.finishRegistry(wolf1061d, new TeleportTypeWolf1061D());
 
 	}
 

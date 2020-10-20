@@ -17,6 +17,18 @@
 
 package net.romvoid95.common.astronomy.wolf1061.d;
 
-public class Wolf1061D_Biomes {
+import net.romvoid95.common.world.biome.ExoBiome;
+import net.romvoid95.common.world.biome.properties.BiomeData.BiomeDataBuilder;
+
+public class Wolf1061D_Biomes extends ExoBiome {
+
+	public Wolf1061D_Biomes (BiomeDataBuilder properties) {
+		super(properties.generate());
+	}
+
+	@Override
+	public float getSpawningChance() {
+		return 0.01F;
+	}
 
 }

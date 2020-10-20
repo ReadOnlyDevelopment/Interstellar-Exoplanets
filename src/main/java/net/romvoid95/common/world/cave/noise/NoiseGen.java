@@ -40,7 +40,7 @@ public class NoiseGen {
 			// Create NoiseTuple for this block
 			NoiseTuple newTuple = new NoiseTuple();
 			for (int i = 0; i < numGenerators; i++)
-				newTuple.put(listNoiseGens.get(i).GetNoise(f.x, f.y, f.z));
+				newTuple.put(listNoiseGens.get(i).getNoise(f.x, f.y, f.z));
 
 			noiseColumn.put(y, newTuple);
 		}
@@ -64,8 +64,8 @@ public class NoiseGen {
 			NoiseTuple startTuple = new NoiseTuple();
 			NoiseTuple endTuple = new NoiseTuple();
 			for (int i = 0; i < numGenerators; i++) {
-				startTuple.put(listNoiseGens.get(i).GetNoise(subChunkStart.x, subChunkStart.y, subChunkStart.z));
-				endTuple.put(listNoiseGens.get(i).GetNoise(subChunkEnd.x, subChunkEnd.y, subChunkEnd.z));
+				startTuple.put(listNoiseGens.get(i).getNoise(subChunkStart.x, subChunkStart.y, subChunkStart.z));
+				endTuple.put(listNoiseGens.get(i).getNoise(subChunkEnd.x, subChunkEnd.y, subChunkEnd.z));
 			}
 			noiseColumn.put(startY, startTuple);
 			noiseColumn.put(endY, endTuple);

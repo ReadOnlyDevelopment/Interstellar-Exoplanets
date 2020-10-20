@@ -1,6 +1,7 @@
 package net.romvoid95.common.utility.mc;
 
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,50 @@ public final class BlockUtil {
 	public static final String  BLOCKSTATE_PATTERN = "^(?<" + GROUP_RESLOC + ">[a-z0-9_]*:[a-z0-9_]+)(?:(?:\\[)(?<"
 			+ GROUP_PROPERTIES + ">[a-z0-9_]+=[a-z0-9_]+(?:,[a-z0-9_]+=[a-z0-9_]+)*)?(?:\\]))?.*$";
 	public static final Pattern BLOCKSTATE_MATCHER = Pattern.compile(BLOCKSTATE_PATTERN);
+	
+    public static IBlockState getBlockStateFromCfgString(@Nullable final String configString, final IBlockState fallback) {
+        if (StringUtils.isEmpty(configString)) {
+            return fallback;
+        }
+        IBlockState blockState = getBlockStateFromCfgString(configString);
+        return (blockState != null) ? blockState : fallback;
+    }
+    
+    @Nullable
+    public static IBlockState getBlockStateFromCfgString(@Nullable final String configString) {
 
+        if (StringUtils.isEmpty(configString)) {
+            return null;
+        }
+
+        Matcher m = BLOCKSTATE_MATCHER.matcher(configString.replace(" ", ""));
+        if (!m.find()) {
+            return null;
+        }
+
+        final ResourceLocation resloc = new ResourceLocation(m.group(GROUP_RESLOC).trim());
+        if (!Block.REGISTRY.containsKey(resloc)) {
+            return null;
+        }
+        Block block = Block.REGISTRY.getObject(resloc);
+        IBlockState ret = block.getDefaultState();
+
+        String proplist = m.group(GROUP_PROPERTIES);
+        if (proplist == null) {
+            return ret;
+        }
+
+        for (String entry : proplist.split(",")) {
+            String prop = entry.split("=")[0];
+            String val = entry.split("=")[1];
+            IProperty<?> property = block.getBlockState().getProperty(prop);
+            if (property != null) {
+                ret = getPossibleState(ret, property, val);
+            }
+        }
+        return ret;
+    }
+	
 	/**
 	 * A shortcut to get a specific variant of {@code minecraft:sand}.
 	 *

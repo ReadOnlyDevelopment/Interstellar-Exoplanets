@@ -22,13 +22,13 @@ import net.romvoid95.common.CommonUtil;
 
 @EventBusSubscriber
 public abstract class CloudProvider extends IRenderHandler implements ICloudProvider {
-	protected float cloudSpeed = getMaxNormalCloudSpeed();
-	protected long  cloudTicks;
-	protected long  cloudTicksPrev;
+	protected float	cloudSpeed	= getMaxNormalCloudSpeed();
+	protected long	cloudTicks;
+	protected long	cloudTicksPrev;
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
-	public static void updateClouds (ClientTickEvent event) {
+	public static void updateClouds(ClientTickEvent event) {
 		World world = CommonUtil.getMinecraft().world;
 
 		if ((world != null) && !CommonUtil.getMinecraft().isGamePaused()) {
@@ -36,7 +36,7 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 				IClimateProvider weatherProvider = (IClimateProvider) world.provider;
 
 				if (weatherProvider.getCloudProvider() instanceof StormProvider) {
-					CloudProvider  clouds = (CloudProvider) weatherProvider.getCloudProvider();
+					CloudProvider clouds = (CloudProvider) weatherProvider.getCloudProvider();
 					IStormProvider storms = weatherProvider.getStormProvider();
 
 					if (clouds.areCloudsApplicableTo(world.provider) && (storms instanceof IStormProvider)) {
@@ -44,15 +44,14 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 							if (clouds.cloudSpeed < clouds.getMaxCloudSpeedDuringStorm()) {
 								clouds.cloudSpeed += 0.0125F;
 							}
-						}
-						else {
+						} else {
 							if (clouds.cloudSpeed > clouds.getMaxNormalCloudSpeed()) {
 								clouds.cloudSpeed -= 0.0125F;
 							}
 						}
 
-						clouds.cloudTicksPrev  = clouds.cloudTicks;
-						clouds.cloudTicks     += clouds.cloudSpeed;
+						clouds.cloudTicksPrev = clouds.cloudTicks;
+						clouds.cloudTicks += clouds.cloudSpeed;
 					}
 				}
 			}
@@ -61,10 +60,10 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void render (float partialTicks, WorldClient world, Minecraft mc) {
+	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		if (world.provider instanceof IClimateProvider) {
 			IClimateProvider weatherProvider = (IClimateProvider) world.provider;
-			ICloudProvider   clouds          = weatherProvider.getCloudProvider();
+			ICloudProvider clouds = weatherProvider.getCloudProvider();
 
 			if (clouds.areCloudsApplicableTo(world.provider)) {
 				if (CommonUtil.getMinecraft().gameSettings.shouldRenderClouds() >= 1) {
@@ -84,25 +83,25 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderClouds (float renderPartialTicks) {
+	public void renderClouds(float renderPartialTicks) {
 		GlStateManager.disableCull();
-		Entity        entity        = CommonUtil.getMinecraft().getRenderViewEntity();
-		float         yOffset       = (float) (entity.lastTickPosY
-				+ ((entity.posY - entity.lastTickPosY) * renderPartialTicks));
-		byte          cloudSections = 4;
-		Tessellator   tessellator   = Tessellator.getInstance();
-		BufferBuilder vertexbuffer  = tessellator.getBuffer();
-		double        viewX         = (entity.prevPosX + ((entity.posX - entity.prevPosX) * renderPartialTicks)
+		Entity entity = CommonUtil.getMinecraft().getRenderViewEntity();
+		float yOffset = (float) (entity.lastTickPosY + ((entity.posY - entity.lastTickPosY) * renderPartialTicks));
+		byte cloudSections = 4;
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder vertexbuffer = tessellator.getBuffer();
+		double viewX = (entity.prevPosX + ((entity.posX - entity.prevPosX) * renderPartialTicks)
 				+ (getCloudMovementX(entity.world, cloudTicksPrev, cloudTicks) * 0.029999999329447746D)) / 12.0D;
-		double        viewZ         = (entity.prevPosZ + ((entity.posZ - entity.prevPosZ) * renderPartialTicks)
+		double viewZ = (entity.prevPosZ + ((entity.posZ - entity.prevPosZ) * renderPartialTicks)
 				+ (getCloudMovementZ(entity.world, cloudTicksPrev, cloudTicks) * 0.029999999329447746D)) / 12.0D;
-		float         cloudHeight   = (CommonUtil.getMinecraft().world.provider.getCloudHeight() - yOffset) + 0.33F;
+		float cloudHeight = (CommonUtil.getMinecraft().world.provider.getCloudHeight() - yOffset) + 0.33F;
 		viewX = viewX - MathHelper.floor(viewX / 2048.0D) * 2048;
 		viewZ = viewZ - MathHelper.floor(viewZ / 2048.0D) * 2048;
 		getCloudTexture().bind();
 		GlStateManager.enableBlend();
-		GlStateManager
-		.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
+				GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE,
+				GlStateManager.DestFactor.ZERO);
 
 		WorldProviderWE_ExoPlanet provider = (WorldProviderWE_ExoPlanet) entity.world.provider;
 
@@ -119,8 +118,7 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 		for (int pass = 0; pass < 2; ++pass) {
 			if (pass == 0) {
 				GL11.glColorMask(false, false, false, false);
-			}
-			else {
+			} else {
 				GL11.glColorMask(true, true, true, true);
 			}
 
@@ -133,164 +131,100 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 					float cZ = cV - f20;
 
 					if (cloudHeight > -5.0F) {
-						vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + 8.0F)
-						.tex(((cU + 0.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
-						vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + 8.0F)
-						.tex(((cU + 8.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
-						vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + 0.0F)
-						.tex(((cU + 8.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
-						vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + 0.0F)
-						.tex(((cU + 0.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + 8.0F).tex(
+								((cU + 0.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + 8.0F).tex(
+								((cU + 8.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + 0.0F).tex(
+								((cU + 8.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + 0.0F).tex(
+								((cU + 0.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, -1.0F, 0.0F).endVertex();
 					}
 
 					if (cloudHeight <= 5.0F) {
-						vertexbuffer
-						.pos(cX + 0.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ
-								+ 8.0F)
-						.tex(((cU + 0.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
-						vertexbuffer
-						.pos(cX + 8.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ
-								+ 8.0F)
-						.tex(((cU + 8.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
-						vertexbuffer
-						.pos(cX + 8.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ
-								+ 0.0F)
-						.tex(((cU + 8.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
-						vertexbuffer
-						.pos(cX + 0.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ
-								+ 0.0F)
-						.tex(((cU + 0.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F)
-								+ f18)
-						.color(r, g, b, 1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 0.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ + 8.0F).tex(
+								((cU + 0.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 8.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ + 8.0F).tex(
+								((cU + 8.0F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 8.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ + 0.0F).tex(
+								((cU + 8.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
+						vertexbuffer.pos(cX + 0.0F, (cloudHeight + 4.0F) - 9.765625E-4F, cZ + 0.0F).tex(
+								((cU + 0.0F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r, g, b,
+										1.0F).normal(0.0F, 1.0F, 0.0F).endVertex();
 					}
 
 					if (x > -1) {
 						for (int v = 0; v < 8; ++v) {
-							vertexbuffer
-							.pos(cX + v + 0.0F, cloudHeight + 0.0F, cZ
-									+ 8.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 8.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos(cX + v + 0.0F, cloudHeight + 4.0F, cZ
-									+ 8.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 8.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos(cX + v + 0.0F, cloudHeight + 4.0F, cZ
-									+ 0.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 0.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos(cX + v + 0.0F, cloudHeight + 0.0F, cZ
-									+ 0.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 0.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos(cX + v + 0.0F, cloudHeight + 0.0F, cZ + 8.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos(cX + v + 0.0F, cloudHeight + 4.0F, cZ + 8.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos(cX + v + 0.0F, cloudHeight + 4.0F, cZ + 0.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos(cX + v + 0.0F, cloudHeight + 0.0F, cZ + 0.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(-1.0F, 0.0F, 0.0F).endVertex();
 						}
 					}
 
 					if (x <= 1) {
 						for (int v = 0; v < 8; ++v) {
-							vertexbuffer
-							.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight
-									+ 0.0F, cZ + 8.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 8.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight
-									+ 4.0F, cZ + 8.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 8.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight
-									+ 4.0F, cZ + 0.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 0.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
-							vertexbuffer
-							.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight
-									+ 0.0F, cZ + 0.0F)
-							.tex(((cU + v + 0.5F) * 0.00390625F)
-									+ f17, ((cV + 0.0F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight + 0.0F, cZ + 8.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight + 4.0F, cZ + 8.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 8.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight + 4.0F, cZ + 0.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
+							vertexbuffer.pos((cX + v + 1.0F) - 9.765625E-4F, cloudHeight + 0.0F, cZ + 0.0F).tex(
+									((cU + v + 0.5F) * 0.00390625F) + f17, ((cV + 0.0F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(1.0F, 0.0F, 0.0F).endVertex();
 						}
 					}
 
 					if (z > -1) {
 						for (int v = 0; v < 8; ++v) {
-							vertexbuffer
-							.pos(cX + 0.0F, cloudHeight + 4.0F, cZ + v
-									+ 0.0F)
-							.tex(((cU + 0.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 8.0F, cloudHeight + 4.0F, cZ + v
-									+ 0.0F)
-							.tex(((cU + 8.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + v
-									+ 0.0F)
-							.tex(((cU + 8.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + v
-									+ 0.0F)
-							.tex(((cU + 0.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
+							vertexbuffer.pos(cX + 0.0F, cloudHeight + 4.0F, cZ + v + 0.0F).tex(
+									((cU + 0.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
+							vertexbuffer.pos(cX + 8.0F, cloudHeight + 4.0F, cZ + v + 0.0F).tex(
+									((cU + 8.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
+							vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, cZ + v + 0.0F).tex(
+									((cU + 8.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
+							vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, cZ + v + 0.0F).tex(
+									((cU + 0.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, -1.0F).endVertex();
 						}
 					}
 
 					if (z <= 1) {
 						for (int v = 0; v < 8; ++v) {
-							vertexbuffer
-							.pos(cX + 0.0F, cloudHeight + 4.0F, (cZ + v
-									+ 1.0F) - 9.765625E-4F)
-							.tex(((cU + 0.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 8.0F, cloudHeight + 4.0F, (cZ + v
-									+ 1.0F) - 9.765625E-4F)
-							.tex(((cU + 8.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 8.0F, cloudHeight + 0.0F, (cZ + v
-									+ 1.0F) - 9.765625E-4F)
-							.tex(((cU + 8.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
-							vertexbuffer
-							.pos(cX + 0.0F, cloudHeight + 0.0F, (cZ + v
-									+ 1.0F) - 9.765625E-4F)
-							.tex(((cU + 0.0F) * 0.00390625F)
-									+ f17, ((cV + v + 0.5F) * 0.00390625F) + f18)
-							.color(r, g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
+							vertexbuffer.pos(cX + 0.0F, cloudHeight + 4.0F, (cZ + v + 1.0F) - 9.765625E-4F).tex(
+									((cU + 0.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
+							vertexbuffer.pos(cX + 8.0F, cloudHeight + 4.0F, (cZ + v + 1.0F) - 9.765625E-4F).tex(
+									((cU + 8.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
+							vertexbuffer.pos(cX + 8.0F, cloudHeight + 0.0F, (cZ + v + 1.0F) - 9.765625E-4F).tex(
+									((cU + 8.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
+							vertexbuffer.pos(cX + 0.0F, cloudHeight + 0.0F, (cZ + v + 1.0F) - 9.765625E-4F).tex(
+									((cU + 0.0F) * 0.00390625F) + f17, ((cV + v + 0.5F) * 0.00390625F) + f18).color(r,
+											g, b, 1.0F).normal(0.0F, 0.0F, 1.0F).endVertex();
 						}
 					}
 
@@ -304,7 +238,7 @@ public abstract class CloudProvider extends IRenderHandler implements ICloudProv
 	}
 
 	@Override
-	public float getCloudMovementSpeed (World world) {
+	public float getCloudMovementSpeed(World world) {
 		return cloudSpeed;
 	}
 

@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import net.romvoid95.common.world.mapgen.GenExoplanetLake;
+import net.romvoid95.api.world.worldgen.terrain.ExoGenLake;
 
 public class GenUtility {
 
@@ -74,13 +74,13 @@ public class GenUtility {
 	public static void generateLakeGenStone (World world, Random rand, BlockPos pos, Block fluid, Block block) {
 		IBlockState fState = fluid.getDefaultState();
 		IBlockState bState = block.getDefaultState();
-		new GenExoplanetLake(fState, bState, true);
+		new ExoGenLake(fState, bState, true);
 	}
 
 	public static void generateLake (World world, Random rand, BlockPos pos, Block fluid, Block block) {
 		IBlockState fState = fluid.getDefaultState();
 		IBlockState bState = block.getDefaultState();
-		new GenExoplanetLake(fState, bState, false);
+		new ExoGenLake(fState, bState, false);
 	}
 
 	public static HashMap<BlockPos, IBlockState> generateSphereHollow (IBlockState state, int size, BlockPos pos) {

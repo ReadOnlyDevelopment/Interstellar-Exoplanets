@@ -34,7 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 
-import net.romvoid95.common.astronomy.yzceti.b.worldgen.biome.genlayer.GenLayerYzCetiB;
+import net.romvoid95.common.astronomy.yzceti.b.worldgen.biomes.GenLayerYzCetiB;
 import net.romvoid95.core.initialization.Planets;
 
 public class BiomeProviderYzCetiB extends BiomeProvider {

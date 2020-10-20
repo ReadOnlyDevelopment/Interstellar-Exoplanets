@@ -24,6 +24,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,6 +33,7 @@ import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 
 import net.romvoid95.api.space.prefab.ExoSystem;
+import net.romvoid95.api.world.weather.MultiCloudProvider;
 import net.romvoid95.client.gui.screen.GuiBeta;
 import net.romvoid95.client.model.ModelUtil;
 import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
@@ -61,6 +63,22 @@ public class ClientEventHandler {
 
 		for (ModelNames m : ModelNames.getModels()) {
 			ModelUtil.registerTexture(event, m.modelName());
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void onTick(ClientTickEvent e) {
+		World world = FMLClientHandler.instance().getClient().world;
+		
+		if (world != null && !FMLClientHandler.instance().getClient().isGamePaused()) {
+			if(world.provider.getCloudRenderer() instanceof MultiCloudProvider)
+			{
+				MultiCloudProvider clouds = (MultiCloudProvider) world.provider.getCloudRenderer();
+				
+				clouds.cloudTicksPrev = clouds.cloudTicks;
+				clouds.cloudTicks += clouds.getCloudMovementSpeed(world);
+			}
 		}
 	}
 

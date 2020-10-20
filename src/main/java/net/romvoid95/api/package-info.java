@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-@API(owner = "Interstellar: Exoplanets", provides = "Interstellar API", apiVersion = APIProperties.API_VERSION)
+@API(owner = "exoplanets", provides = "exoplanetsapi", apiVersion = "1.0.0")
 package net.romvoid95.api;
 
 import net.minecraftforge.fml.common.API;

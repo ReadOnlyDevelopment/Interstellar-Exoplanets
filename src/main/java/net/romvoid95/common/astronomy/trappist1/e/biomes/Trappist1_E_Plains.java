@@ -26,8 +26,8 @@ import net.minecraft.world.World;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import net.romvoid95.api.world.worldgen.feature.ExoSempervirens;
-import net.romvoid95.api.world.worldgen.feature.ExoTreeFlatTop;
+import net.romvoid95.api.world.worldgen.feature.tree.ExoGenSempervirens;
+import net.romvoid95.api.world.worldgen.feature.tree.ExoGenTreeFlatTop;
 import net.romvoid95.core.ExoBlock;
 import net.romvoid95.core.initialization.ExoBlocks;
 
@@ -79,10 +79,10 @@ public class Trappist1_E_Plains extends WE_Biome {
 			if (cangen && (world.getBlockState(pos.down()) == ExoBlock.TRAP1E_GRASS)) {
 				switch (rand.nextInt(2)) {
 					case 0:
-						new ExoSempervirens(log, leaves).generate(world, rand, pos);
+						new ExoGenSempervirens(log, leaves).generate(world, rand, pos);
 						break;
 					case 1:
-						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
+						new ExoGenTreeFlatTop(log, leaves).generate(world, rand, pos);
 						break;
 				}
 			}
