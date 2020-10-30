@@ -1,8 +1,10 @@
 {
+	"forge_marker": 1,
+	"defaults": { "model": "cube_all"},
   "variants": {
-    "alloy=bronze": { "model": "exoplanets:blockbronze" },
-    "alloy=brass": { "model": "exoplanets:blockbrass" },
-    "alloy=steel": { "model": "exoplanets:blocksteel" },
-    "alloy=a2219": { "model": "exoplanets:blocka2219" }
+  	"alloy=bronze":  [{ "textures": {"all": "exoplanets:blocks/blockbronze" } }],
+  	"alloy=brass": [{ "textures": {"all": "exoplanets:blocks/blockbrass" } }],
+    "alloy=steel": [{ "textures": {"all": "exoplanets:blocks/blocksteel" } }],
+    "alloy=a2219": [{ "textures": {"all": "exoplanets:blocks/blocka2219" } }]
   }
 }

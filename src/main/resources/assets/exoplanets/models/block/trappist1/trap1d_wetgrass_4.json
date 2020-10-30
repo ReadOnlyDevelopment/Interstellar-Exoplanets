@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_all",
   "textures": {
   	"particle": "exoplanets:blocks/terrain/trappist1/trap1d_wetdirt",
     "up": "exoplanets:blocks/terrain/trappist1/trap1d_wetgrass_top_4",

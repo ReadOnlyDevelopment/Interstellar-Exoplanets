@@ -56,7 +56,9 @@ public final class ExoInfo {
 
 		// CORE CONFIG
 		public static final String	CATEGORY_CORE			= "Core Mod Settings";
-		public static final String	CATEGORY_CORE_LANGKEY	= "exoplanets.configgui.category.core";
+		public static final String	LGKEY_CATEGORY_CORE	= "exoplanets.configgui.category.core";
+		public static final String  CATEGORY_CORE_PERFORMANCE = "Performance Settings";
+		public static final String  LGKEY_CORE_PERFORMANCE = "exoplanets.configgui.category.core.performance";
 
 		// PLANET CONFIGS
 		public static final String	CATEGORY_PLANETS_DIMENSION_ID			= "Exoplanets Dimension ID's";

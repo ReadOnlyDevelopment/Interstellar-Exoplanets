@@ -17,18 +17,10 @@
 
 package net.romvoid95.common;
 
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
-
-import net.romvoid95.api.content.block.BlockDefinition;
-import net.romvoid95.client.Assets;
 
 public class CommonUtil {
 
@@ -53,38 +45,4 @@ public class CommonUtil {
 	public static void bindTexture (ResourceLocation texture) {
 		getMinecraft().getTextureManager().bindTexture(texture);
 	}
-
-	/**
-	 * Binds a texture using the specified domain and path.
-	 * 
-	 * @param domain The domain of the texture
-	 * @param path   The path to the texture
-	 */
-	public static void bindTexture (String domain, String path) {
-		String locationString = domain + ":" + path;
-		Assets.textures.computeIfAbsent(locationString, ResourceLocation::new);
-		getMinecraft().getTextureManager().bindTexture(Assets.textures.get(locationString));
-	}
-
-	/**
-	 * Binds a texture using specified location.
-	 * 
-	 * @param path The location to the texture
-	 */
-	public static void bindTexture (String path) {
-		String[] parts = ResourceLocation.splitObjectName(path);
-		bindTexture(parts[0], parts[1]);
-	}
-
-	public static Block getBlock (String modid, String name) {
-		List<BlockDefinition> blockList = new ArrayList<>();
-		for (BlockDefinition compound : blockList) {
-			if (compound.getRegistryName().equals(new ResourceLocation(modid, name))) {
-				return compound.getBlock();
-			}
-		}
-		throw new InvalidParameterException("Block '" + modid + ":" + name
-				+ "' cannot be found in the Shooting Star registry");
-	}
-
 }

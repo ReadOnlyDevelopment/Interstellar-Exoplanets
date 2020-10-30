@@ -25,7 +25,7 @@ import asmodeuscore.core.astronomy.BodiesRegistry;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.prefab.ExoStar;
 import net.romvoid95.api.space.prefab.ExoSystem;
-import net.romvoid95.common.config.systems.ConfigSystems;
+import net.romvoid95.common.config.ConfigSystems;
 
 public class SolarSystems {
 

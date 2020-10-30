@@ -17,17 +17,11 @@
 
 package net.romvoid95.api.space.prefab;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.storage.WorldInfo;
+import java.util.LinkedList;
+import java.util.List;
 
-import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IExitHeight;
@@ -35,14 +29,19 @@ import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import net.romvoid95.api.space.interfaces.IExoPlanetWorldProvider;
-import net.romvoid95.common.config.planet.PlanetConfig;
-import net.romvoid95.common.config.planet.PlanetConfig.PlanetFolder;
+import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.api.space.interfaces.IExoPlanet;
 
 public abstract class WorldProviderExoPlanet extends WorldProviderSpace
-implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
+implements ISolarLevel, IExitHeight {
 
 	private static WorldProviderExoPlanet instance;
 
@@ -73,14 +72,10 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 		return !ConfigManagerCore.forceOverworldRespawn;
 	}
 
-	@Override
 	public ExoPlanet getExoPlanet() {
-		return (ExoPlanet) this.getCelestialBody();
-	}
-
-	public PlanetConfig.PlanetFolder getPlanetFolder() {
-		PlanetFolder folder = new PlanetFolder(getExoPlanet().getPlanetSystem(), getExoPlanet());
-		return folder;
+		CelestialBody celestialBody = this.getCelestialBody();
+		ExoPlanet exoPlanet = (ExoPlanet) celestialBody;
+		return exoPlanet;
 	}
 
 	@Override
@@ -95,7 +90,11 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 
 	@Override
 	public long getDayLength() {
-		return this.getExoPlanet().getDayLength();
+		
+		if (this.getCelestialBody() instanceof IExoPlanet)
+			return ((IExoPlanet) this.getCelestialBody()).getDayLength();
+
+		return 24000L;
 	}
 
 	public int AtmosphericPressure() {
@@ -111,6 +110,7 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 	}
 
 	public ClassBody getClassBody() {
+		
 		return ClassBody.SELENA;
 	}
 
@@ -160,12 +160,12 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 
 	@Override
 	public float getGravity() {
-		return this.getExoPlanet().getGravity();
+		return instance().getExoPlanet().getGravity();
 	}
 
 	@Override
 	public boolean canSpaceshipTierPass(int tier) {
-		return tier >= this.getExoPlanet().getTierRequirement();
+		return tier >= instance().getExoPlanet().getTierRequirement();
 	}
 
 	@Override
@@ -174,7 +174,7 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 	}
 
 	public float getPlanetTemp() {
-		ExoPlanet planet = this.getExoPlanet();
+		ExoPlanet planet = instance().getExoPlanet();
 		float planetTemp = (float) planet.getPlanetTemp();
 
 		if (this.isDaytime()) {
@@ -219,15 +219,21 @@ implements ISolarLevel, IExitHeight, IExoPlanetWorldProvider {
 
 		return (var3 * var3 * 0.5F) + 0.3F;
 	}
+	
+	@Override
+	public Vector3 getSkyColor () {
+		return new Vector3(0, 0, 0);
+	}
+	
+	@Override
+	public List<Block> getSurfaceBlocks() {
+		List<Block> list = new LinkedList<>();
+		return list;
+	}
+	
 
 	@Override
-	public abstract float getSolarSize();
-
-	@Override
-	public abstract double getMeteorFrequency();
-
-	@Override
-	public abstract Class<? extends IChunkGenerator> getChunkProviderClass();
-
-	public abstract Block getPlanetGrassBlock();
+	public ResourceLocation getDungeonChestType() {
+		return null;
+	}
 }

@@ -1,9 +1,0 @@
-{
-   "parent": "block/cube_all",
-   "textures": {
-		"particle": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
-        "bottom": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
-        "top": "exoplanets:blocks/terrain/trappist1/trap1e_stone",
-        "side": "exoplanets:blocks/terrain/trappist1/trap1e_stone"
-   }
-}

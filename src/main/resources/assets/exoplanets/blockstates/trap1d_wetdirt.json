@@ -1,5 +1,16 @@
 {
-   "variants": {
-      "normal": {"model":"exoplanets:trappist1/trap1d_wetdirt"}
-   }
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube_all",
+		"textures": { "all": "exoplanets:blocks/terrain/trappist1/trap1d_wetdirt" }
+	},
+	"variants": {
+		"inventory": { "transform": "forge:default-block" },
+		"normal": [
+			{ "y": 0, "x": 0 },
+			{ "y": 90, "x": 90 },
+			{ "y": 180, "x": 180 },
+			{ "y": 270, "x": 270 }
+		]
+	}
 }

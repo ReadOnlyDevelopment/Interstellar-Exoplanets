@@ -18,33 +18,29 @@ package net.romvoid95.client.gui.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import java.nio.*;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.texture.ITextureObject;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import net.romvoid95.common.CommonUtil;
-import net.romvoid95.common.lib.tile.IRotatableXAxis;
-import net.romvoid95.common.lib.tile.IRotatableYAxis;
+import net.romvoid95.common.lib.tile.IRotateable.IRotatableXAxis;
+import net.romvoid95.common.lib.tile.IRotateable.IRotatableYAxis;
 
 public class OpenGL {
 
-	public static ArrayList<Framebuffer> frameBuffers = new ArrayList<Framebuffer>();
+	public static ArrayList<Framebuffer> frameBuffers = new ArrayList<>();
 
 	public static boolean lightmapTexUnitTextureEnable;
 

@@ -1,14 +1,12 @@
 package net.romvoid95.api.world.worldgen.feature.tree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.romvoid95.core.ExoBlock;
 
 public class ExoGenSempervirens extends ExoGenTreeBase {
 
@@ -17,7 +15,7 @@ public class ExoGenSempervirens extends ExoGenTreeBase {
 		this.setLogBlock(log.withRotation(log.getDefaultState(), Rotation.CLOCKWISE_90));
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
-		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
+		this.setValidGroundBlocks(new ArrayList<>());
 	}
 
 	@Override

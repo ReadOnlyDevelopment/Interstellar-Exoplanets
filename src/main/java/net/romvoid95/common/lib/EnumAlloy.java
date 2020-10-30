@@ -71,7 +71,7 @@ public enum EnumAlloy implements IStringSerializable, IMetal {
 	}
 
 	public ItemStack getBlock () {
-		return new ItemStack(ExoBlocks.alloyBlock, 1, meta);
+		return new ItemStack(ExoBlocks.ALLOYBLOCK, 1, meta);
 	}
 
 	public ItemStack getIngot () {

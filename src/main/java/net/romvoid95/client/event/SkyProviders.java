@@ -30,25 +30,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 
-import net.romvoid95.common.astronomy.kepler1649.c.SkyProviderKepler1649c;
-import net.romvoid95.common.astronomy.kepler1649.c.WorldProviderKepler1649c;
-import net.romvoid95.common.astronomy.trappist1.c.SkyProviderTrappist1C;
-import net.romvoid95.common.astronomy.trappist1.c.WorldProviderTrappist1C;
-import net.romvoid95.common.astronomy.trappist1.d.SkyProviderTrappist1D;
-import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
-import net.romvoid95.common.astronomy.trappist1.d.client.CloudProviderTrappist1D;
-import net.romvoid95.common.astronomy.trappist1.d.client.WeatherRendererTrappistD;
-import net.romvoid95.common.astronomy.trappist1.e.SkyProviderTrappist1E;
-import net.romvoid95.common.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.romvoid95.common.astronomy.wolf1061.d.*;
-import net.romvoid95.common.astronomy.yzceti.b.SkyProviderB;
-import net.romvoid95.common.astronomy.yzceti.b.WorldProviderYzCetiB;
-import net.romvoid95.common.astronomy.yzceti.c.SkyProviderC;
-import net.romvoid95.common.astronomy.yzceti.c.WorldProviderYzCetiC;
-import net.romvoid95.common.astronomy.yzceti.d.SkyProviderD;
-import net.romvoid95.common.astronomy.yzceti.d.WorldProviderYzCetiD;
 import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.core.ExoInfo;
+import net.romvoid95.space.kepler1649.c.SkyProviderKepler1649c;
+import net.romvoid95.space.kepler1649.c.WorldProviderKepler1649c;
+import net.romvoid95.space.trappist1.c.SkyProviderTrappist1C;
+import net.romvoid95.space.trappist1.c.WorldProviderTrappist1C;
+import net.romvoid95.space.trappist1.d.SkyProviderTrappist1D;
+import net.romvoid95.space.trappist1.d.WorldProviderTrappist1D;
+import net.romvoid95.space.trappist1.d.client.CloudProviderTrappist1D;
+import net.romvoid95.space.trappist1.d.client.WeatherRendererTrappistD;
+import net.romvoid95.space.trappist1.e.SkyProviderTrappist1E;
+import net.romvoid95.space.trappist1.e.WorldProviderTrappist1E;
+import net.romvoid95.space.wolf1061.d.*;
+import net.romvoid95.space.yzceti.b.SkyProviderB;
+import net.romvoid95.space.yzceti.b.WorldProviderYzCetiB;
+import net.romvoid95.space.yzceti.c.SkyProviderC;
+import net.romvoid95.space.yzceti.c.WorldProviderYzCetiC;
+import net.romvoid95.space.yzceti.d.SkyProviderD;
+import net.romvoid95.space.yzceti.d.WorldProviderYzCetiD;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class SkyProviders {

@@ -42,8 +42,8 @@ public class ExoplanetsPlugin implements IModPlugin {
 
 		reg.addRecipeClickArea(GuiAlloyRefinery.class, 80, 34, 25, 16, AlloyRefineryRecipeCategory.UID);
 
-		ItemStack metalFurnace = new ItemStack(ExoBlocks.metalFurnace);
-		ItemStack alloySmelter = new ItemStack(ExoBlocks.alloyRefinery);
+		ItemStack metalFurnace = new ItemStack(ExoBlocks.METALFURNACE);
+		ItemStack alloySmelter = new ItemStack(ExoBlocks.ALLOYREFINERY);
 
 		reg.addRecipeCatalyst(metalFurnace, VanillaRecipeCategoryUid.FUEL, VanillaRecipeCategoryUid.SMELTING);
 		reg.addRecipeCatalyst(alloySmelter, AlloyRefineryRecipeCategory.UID);

@@ -1,14 +1,16 @@
 {
+	"forge_marker": 1,
+	"defaults": { "model": "cube_all"},
   "variants": {
-    "metal=copper": { "model": "exoplanets:blockcopper" },
-    "metal=tin": { "model": "exoplanets:blocktin" },
-    "metal=lead": { "model": "exoplanets:blocklead" },
-    "metal=nickel": { "model": "exoplanets:blocknickel" },
-    "metal=platinum": { "model": "exoplanets:blockplatinum" },
-    "metal=aluminium": { "model": "exoplanets:blockaluminium" },
-    "metal=titanium": { "model": "exoplanets:blocktitanium" },
-	"metal=tungsten": { "model": "exoplanets:blocktungsten" },
-	"metal=silver": { "model": "exoplanets:blocksilver" },
-	"metal=zinc": { "model": "exoplanets:blockzinc" }
+  	"metal=aluminium":  [{ "textures": {"all": "exoplanets:blocks/blockaluminium" } }],
+  	"metal=copper": [{ "textures": {"all": "exoplanets:blocks/blockcopper" } }],
+    "metal=tin": [{ "textures": {"all": "exoplanets:blocks/blocktin" } }],
+    "metal=lead": [{ "textures": {"all": "exoplanets:blocks/blocklead" } }],
+    "metal=nickel": [{ "textures": {"all": "exoplanets:blocks/blocknickel" } }],
+    "metal=platinum": [{ "textures": {"all": "exoplanets:blocks/blockplatinum" } }],
+    "metal=titanium": [{ "textures": {"all": "exoplanets:blocks/blocktitanium" } }],
+	"metal=tungsten": [{ "textures": {"all": "exoplanets:blocks/blocktungsten" } }],
+	"metal=silver": [{ "textures": {"all": "exoplanets:blocks/blocksilver" } }],
+	"metal=zinc": [{ "textures": {"all": "exoplanets:blocks/blockzinc" } }]
   }
 }

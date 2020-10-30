@@ -20,8 +20,6 @@ package net.romvoid95.common.config;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
-
-import net.romvoid95.common.config.systems.ConfigSystems;
 import net.romvoid95.core.ExoplanetsMod;
 
 public class ExoConfigs {
@@ -32,8 +30,9 @@ public class ExoConfigs {
 	public static void init() {
 
 		register(new ConfigCore(new File(mainFolder + "/Core.cfg")));
-		register(new PlanetCoreConfig(new File(mainFolder + "/PlanetsCore.cfg")));
+		register(new ConfigPlanets(new File(mainFolder + "/PlanetsCore.cfg")));
 		register(new ConfigSystems(new File(mainFolder + "/SystemsCore.cfg")));
+
 	}
 
 	public static void register(Object handler) {

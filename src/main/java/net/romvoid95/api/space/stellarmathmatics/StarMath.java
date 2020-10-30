@@ -133,7 +133,7 @@ public class StarMath {
 		return g;
 	}
 	
-	public static double convertJupiterRadius(double radius) {
+	public static double toEarthRadi(double radius) {
 		return (AstronomicalConstants.JUPITER_RADIUS_IN_EARTHS * radius);
 	}
 

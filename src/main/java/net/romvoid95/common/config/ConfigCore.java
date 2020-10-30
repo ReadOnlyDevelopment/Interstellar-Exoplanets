@@ -20,13 +20,19 @@ package net.romvoid95.common.config;
 import static net.romvoid95.core.ExoInfo.Constants.*;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import net.minecraftforge.common.config.*;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import net.romvoid95.core.ExoInfo;
 import net.romvoid95.core.ExoplanetsMod;
 
@@ -46,6 +52,7 @@ public class ConfigCore {
 
 	public static boolean warnBetaBuild;
 	public static int     configVersion;
+	public static int 	  leavesLightOpacity;
 
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
@@ -60,8 +67,9 @@ public class ConfigCore {
 				}
 			}
 
+			config.addCustomCategoryComment(CATEGORY_CORE_PERFORMANCE, CATEGORY_CORE_PERFORMANCE);
 			config.addCustomCategoryComment(CATEGORY_CORE, CATEGORY_CORE);
-			config.setCategoryLanguageKey(CATEGORY_CORE, CATEGORY_CORE_LANGKEY);
+			config.setCategoryLanguageKey(CATEGORY_CORE, LGKEY_CATEGORY_CORE);
 			config.setCategoryRequiresMcRestart(CATEGORY_CORE, true);
 
 			prop = getConfig(CATEGORY_CORE, "enableCheckVersion", true);
@@ -87,6 +95,15 @@ public class ConfigCore {
 			prop.setLanguageKey("exoplanets.configgui.guiBeta");
 			warnBetaBuild = prop.getBoolean(true);
 			finishProp(prop);
+			
+			prop = getConfig(CATEGORY_CORE_PERFORMANCE, "leavesLightOpacity", 1);
+			prop.setComment("controls the opacity of leaves, changing the amount of light blocked. \nCan be used to decrease complexity in some lighting checks.");
+			prop.setLanguageKey("exoplanets.configgui.leavesLightOpacity");
+			prop.setMinValue(0);
+			prop.setMaxValue(255);
+			leavesLightOpacity = prop.getInt(1);
+			finishProp(prop);
+
 
 			// Cleanup older GC config files
 			// cleanConfig(config, propOrder);
@@ -128,6 +145,12 @@ public class ConfigCore {
 	}
 
 	private static Property getConfig (String cat, String key, boolean defaultValue) {
+		config.moveProperty(CATEGORY_CORE, key, cat);
+		currentCat = cat;
+		return config.get(cat, key, defaultValue);
+	}
+	
+	private static Property getConfig (String cat, String key, int defaultValue) {
 		config.moveProperty(CATEGORY_CORE, key, cat);
 		currentCat = cat;
 		return config.get(cat, key, defaultValue);

@@ -136,18 +136,44 @@ tile.exoplanets.yzd_gravel.name=(§bYz Ceti D§r) Gravel
 tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Igneous Rock
 tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Metamorphic Rock
 tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Sedimentary Rock
+tile.exoplanets.yzd_mnt1.name=(§bYz Ceti D§r) Mountain Stone Type 1
+tile.exoplanets.yzd_mnt2.name=(§bYz Ceti D§r) Mountain Stone Type 2
+tile.exoplanets.yzd_stone.name=(§bYz Ceti D§r) Stone
 
-tile.exoplanets.trap1c_top.name=(§9Trappist1 1c§r) Surface Rock
-tile.exoplanets.trap1e_cobblestone.name=(§aTrappist1 1e§r)
-tile.exoplanets.trap1e_dirt.name=(§aTrappist1 1e§r) Dirt
-tile.exoplanets.trap1e_grass.name=(§aTrappist1 1e§r) Strange Grass
-tile.exoplanets.trap1e_stone.name=(§aTrappist1 1e§r) Planetary Stone
-tile.exoplanets.trap1c_dirt.name=(§9Trappist1 1c§r) Dirt
-tile.exoplanets.trap1c_dirt_1.name=(§9Trappist1 1c§r) Dirt
+tile.exoplanets.trap1c_top.name=(§9Trappist 1c§r) Surface Rock
+tile.exoplanets.trap1c_dirt_1.name=(§9Trappist 1c§r) Dirt Type 1
+tile.exoplanets.trap1c_dirt_2.name=(§9Trappist 1c§r) Dirt Type 2
+
+tile.exoplanets.trap1e_cobblestone.name=(§aTrappist 1e§r) Planetary Cobbletone
+tile.exoplanets.trap1e_dirt.name=(§aTrappist 1e§r) Dirt
+tile.exoplanets.trap1e_grass.name=(§aTrappist 1e§r) Strange Grass
+tile.exoplanets.trap1e_stone.name=(§aTrappist 1e§r) Planetary Stone
+
+tile.exoplanets.trap1d_oceanfloor.name=(§dTrappist 1d§r) Ocean Floor
+tile.exoplanets.trap1d_stone1.name=(§dTrappist 1d§r) Stone Type 1
+tile.exoplanets.trap1d_stone2.name=(§dTrappist 1d§r) Stone Type 2
+tile.exoplanets.trap1d_softstone.name=(§dTrappist 1d§r) Soft Stone
+tile.exoplanets.compressed_diamond.name=(§dTrappist 1d§r) Compressed Diamond
+tile.exoplanets.trap1d_wetgrass.name=(§dTrappist 1d§r) Grass
+tile.exoplanets.trap1d_wetdirt.name=(§dTrappist 1d§r) Dirt
 
 tile.exoplanets.trap1_dark_hot.name=§cVolcanic Cooled Chunk
 tile.exoplanets.trap1_bright_solid_hot.name=§cVolcanic Molten Chunk
 tile.exoplanets.trap1_solid_hot.name=§cVolcanic Ash Surface
+
+tile.exoplanets.wolfb_cobblestone.name=(§eWolf 1061 b§r) Planetary Cobbletone
+tile.exoplanets.wolfb_stone.name=(§eWolf 1061 b§r) Planetary Stone
+
+tile.exoplanets.wolfc_cobblestone.name=(§dWolf 1061 c§r) Planetary Cobbletone
+tile.exoplanets.wolfc_stone.name=(§dWolf 1061 c§r) Planetary Stone
+
+tile.exoplanets.log_a.name=Log §aType A
+tile.exoplanets.log_a_dark1.name=Dark Log §aType A
+tile.exoplanets.log_a_dark2.name=Darker Log §aType A
+tile.exoplanets.log_a_rough.name=Rough Log §aType A
+tile.exoplanets.log_b.name=Log §cType B
+tile.exoplanets.log_b_other.name=Dark Log §cType B
+tile.exoplanets.log_b_rough.name=Rough Log §cType B
 
 tile.exoplanets.metal_diagonal.name=Slanted Horizontal Block
 tile.exoplanets.roof_stairs.name=Slanted Roof

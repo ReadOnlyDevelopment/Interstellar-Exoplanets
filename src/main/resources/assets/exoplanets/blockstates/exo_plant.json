@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "inventory_mosspatch":     [{ "model": "builtin/generated", "textures": { "layer0": "twilightforest:blocks/patch/moss"                                                    
+    }}],
+    "inventory_mayapple":      [{ "model": "builtin/generated", "textures": { "layer0": "twilightforest:blocks/mayapple"                                                      
+    }}],
+    "variant=forestgrass": [{ "model": "tall_grass" }],
+    "variant=deadbush": [{ "model": "dead_bush" }]
+    }
+}

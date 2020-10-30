@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2020 Interstellar:  Exoplanets
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.romvoid95.client.event;
 
 import java.util.List;
@@ -36,12 +52,12 @@ import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.api.world.weather.MultiCloudProvider;
 import net.romvoid95.client.gui.screen.GuiBeta;
 import net.romvoid95.client.model.ModelUtil;
-import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.constants.ModelNames;
 import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.core.ExoInfo;
 import net.romvoid95.core.initialization.SolarSystems;
+import net.romvoid95.space.trappist1.d.WorldProviderTrappist1D;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class ClientEventHandler {
@@ -119,18 +135,30 @@ public class ClientEventHandler {
 		}
 	}
 
+//	@SideOnly(Side.CLIENT)
+//	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
+//	public void onRenderFogDensity(EntityViewRenderEvent.FogDensity event) {
+//		if (event.getEntity().world.provider instanceof WorldProviderTrappist1D) {
+//			event.setDensity(0.09f);
+//			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+//			event.setCanceled(true);
+//		} else {
+//			event.setDensity(0);
+//			event.setCanceled(true);
+//		}
+//	}
+	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public void onRenderFogDensity(EntityViewRenderEvent.FogDensity event) {
 		if (event.getEntity().world.provider instanceof WorldProviderTrappist1D) {
-			event.setDensity(0.09f);
-			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+			GL11.glFogf(GL11.GL_FOG_DENSITY, 0.09f);
 			event.setCanceled(true);
 		}
 	}
 
 	public void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, ExoSystem solarSystem) {
-
+		
 		Vector3f mapPos = solarSystem.getMapPosition().toVector3f();
 
 		float xX = mapPos.x;

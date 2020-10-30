@@ -26,7 +26,6 @@ import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 
 import net.romvoid95.api.space.enums.EnumPlanetType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
-import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 
 /**
  * The Interface IExoPlanet.
@@ -138,10 +137,4 @@ public interface IExoPlanet {
 	 */
 	public ArrayList<EnumAtmosphericGas> getAtmosGasses ();
 
-	/**
-	 * Gets the planet provider.
-	 *
-	 * @return the planetProvider
-	 */
-	public WorldProviderWE_ExoPlanet getPlanetProvider ();
 }

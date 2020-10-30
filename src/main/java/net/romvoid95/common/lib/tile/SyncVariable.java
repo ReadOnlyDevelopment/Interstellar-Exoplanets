@@ -17,23 +17,21 @@
 
 package net.romvoid95.common.lib.tile;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import javax.activation.UnsupportedDataTypeException;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
 import net.romvoid95.common.lib.interfaces.tile.INBTSerializer;
+
 @SuppressWarnings("rawtypes")
 @Retention(RUNTIME)
 @Target(FIELD)
@@ -59,18 +57,10 @@ public @interface SyncVariable {
      */
     boolean onPacket() default true;
 
-    /**
-     * Used together with onRead, onWrite, and onPacket to determine when a variable should be
-     * saved/loaded. In most cases, you should probably just sync everything at all times.
-     */
     enum Type {
         READ, WRITE, PACKET
     }
 
-    /**
-     * Reads/writes sync variables for any object. Used by TileEntitySL in Lib. Gems uses this in
-     * PlayerDataHandler.
-     */
     final class Helper {
 		static final Map<Class, Function<NBTTagCompound, ?>> READERS = new HashMap<>();
         static final Map<Class, Function<?, NBTTagCompound>> WRITERS = new HashMap<>();
@@ -103,19 +93,16 @@ public @interface SyncVariable {
          */
         public static void readSyncVars(Object obj, NBTTagCompound tags) {
 
-            // Try to read from NBT for fields marked with SyncVariable.
             for (Field field : obj.getClass().getDeclaredFields()) {
                 for (Annotation annotation : field.getDeclaredAnnotations()) {
                     if (annotation instanceof SyncVariable) {
                         SyncVariable sync = (SyncVariable) annotation;
 
                         try {
-                            // Set fields accessible if necessary.
                             if (!field.isAccessible())
                                 field.setAccessible(true);
                             String name = sync.name();
 
-                            //noinspection ChainOfInstanceofChecks
                             if (field.getType() == int.class)
                                 field.setInt(obj, tags.getInteger(name));
                             else if (field.getType() == float.class)
@@ -156,25 +143,21 @@ public @interface SyncVariable {
          * @param syncType The sync type (WRITE or PACKET).
          * @return The modified tags.
          */
-        @SuppressWarnings("unchecked") // from serializer
-        public static NBTTagCompound writeSyncVars(Object obj, NBTTagCompound tags, Type syncType) {
+        @SuppressWarnings("unchecked")
+		public static NBTTagCompound writeSyncVars(Object obj, NBTTagCompound tags, Type syncType) {
 
-            // Try to write to NBT for fields marked with SyncVariable.
             for (Field field : obj.getClass().getDeclaredFields()) {
                 for (Annotation annotation : field.getDeclaredAnnotations()) {
                     if (annotation instanceof SyncVariable) {
                         SyncVariable sync = (SyncVariable) annotation;
 
-                        // Does variable allow writing in this case?
                         if (syncType == SyncVariable.Type.WRITE && sync.onWrite()
                                 || syncType == SyncVariable.Type.PACKET && sync.onPacket()) {
                             try {
-                                // Set fields accessible if necessary.
                                 if (!field.isAccessible())
                                     field.setAccessible(true);
                                 String name = sync.name();
 
-                                //noinspection ChainOfInstanceofChecks
                                 if (field.getType() == int.class)
                                     tags.setInteger(name, field.getInt(obj));
                                 else if (field.getType() == float.class)

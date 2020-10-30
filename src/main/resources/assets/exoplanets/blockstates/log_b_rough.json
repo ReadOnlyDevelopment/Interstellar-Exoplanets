@@ -3,7 +3,7 @@
   "defaults": {
     "model": "cube_column",
     "textures": {
-      "end": "exoplanets:blocks/wood/log_b_rough_top",
+      "end": "exoplanets:blocks/wood/log_b_top",
       "side": "exoplanets:blocks/wood/log_b_rough"
     }
   },

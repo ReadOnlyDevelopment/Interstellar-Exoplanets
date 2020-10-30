@@ -58,7 +58,7 @@ public class BlockAlloyRefinery extends BlockMachine implements IAddRecipe, IBlo
 
     		ItemStack metalBlocks = metals.getBlock();
             ItemStack result = new ItemStack(this);
-            recipes.addShaped("alloy_refinery", result, "iii", "afa", "bab", 'i', "sheetTitanium", 'a', "sheetPlatinum", 'b', metalBlocks, 'f' , ExoBlocks.metalFurnace);
+            recipes.addShaped("alloy_refinery", result, "iii", "afa", "bab", 'i', "sheetTitanium", 'a', "sheetPlatinum", 'b', metalBlocks, 'f' , ExoBlocks.METALFURNACE);
     	}
 
 

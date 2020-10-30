@@ -3,26 +3,31 @@ package net.romvoid95.api.space;
 import java.util.ArrayList;
 import java.util.List;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.core.astronomy.BodiesRegistry;
+import lombok.Getter;
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
+import micdoodle8.mods.galacticraft.api.galaxies.Moon;
+import micdoodle8.mods.galacticraft.api.galaxies.Planet;
+import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
+import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
-
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
-import micdoodle8.mods.galacticraft.api.galaxies.*;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.api.world.*;
-
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.core.astronomy.BodiesRegistry;
-import net.romvoid95.api.space.prefab.*;
+import net.romvoid95.api.space.prefab.ExoPlanet;
+import net.romvoid95.api.space.prefab.ExoStar;
+import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.client.Assets;
 import net.romvoid95.core.ExoInfo;
 
 public class Universe {
 
 	public static List<ExoSystem> enabledSystems = new ArrayList<>();
-	public static List<ExoPlanet> enabledPlanets = new ArrayList<>();
+	
 
 	/**
 	 * Builds the exo star.
@@ -58,25 +63,7 @@ public class Universe {
 		body.setMainStar(exoStar);
 		body.setMapPosition(pos);
 		exoStar.setBodyIcon(Assets.getCelestialTexture(exoStar.getName()));
-		enabledSystems.add(body);
 		return body;
-	}
-
-	public static ExoPlanet pre(String name, ExoSystem system) {
-		ExoPlanet planet = new ExoPlanet(name).setPlanetSystem(system);
-		enabledPlanets.add(planet);
-		return planet;
-	}
-
-	public static ExoPlanet planet (ExoPlanet planet, float phaseShift, float distance, float orbitTime, int tier) {
-		planet.setPhaseShift(phaseShift);
-		planet.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
-		planet.setRelativeOrbitTime(orbitTime);
-		planet.setRelativeSize(1.0F);
-		planet.setTierRequired(tier);
-		planet.setBodyIcon(Assets.getCelestialTexture(planet.getName()));
-		planet.setTierRequired(tier);
-		return planet;
 	}
 
 	/**
@@ -88,110 +75,17 @@ public class Universe {
 	 * @param  au          the au
 	 * @return             the planet
 	 */
-	public static ExoPlanet unreachable (String planetName, SolarSystem solarSystem, float randomPhase, float distance, float orbitTime) {
-		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
-		unreachable.setBodyIcon(Assets.getCelestialTexture(planetName));
-		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
-		unreachable.setRelativeOrbitTime(orbitTime);
-		unreachable.setPhaseShift(randomPhase);
-		unreachable.setRelativeSize(1.0F);
-		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
-		GalaxyRegistry.registerPlanet(unreachable);
-		return unreachable;
-	}
-
-	public static Moon createMoon (String name, Planet planet, float phaseShift, float distance, float orbitTime, float size, int tier, int id, Class<? extends WorldProvider> provider) {
-		Moon moon = new Moon(name).setParentPlanet(planet);
-		moon.setDimensionInfo(id, provider);
-		moon.setPhaseShift(phaseShift);
-		moon.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
-		moon.setRelativeOrbitTime(orbitTime);
-		moon.setRelativeSize(size);
-		moon.setTierRequired(tier);
-		moon.setBodyIcon(Assets.getCelestialTexture(name));
-		return moon;
-	}
-
-	public static Satellite createSpaceStation (String name, Planet planet, float phaseShift, float distance, float orbitTime, float size, int tier) {
-		Satellite satellite = new Satellite(name).setParentBody(planet);
-		satellite.setPhaseShift(phaseShift);
-		satellite.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
-		satellite.setRelativeOrbitTime(orbitTime);
-		satellite.setRelativeSize(size);
-		satellite.setTierRequired(tier);
-		satellite.setBodyIcon(Assets.getCelestialTexture(name));
-		return satellite;
-	}
-
-	public static void setBiomes (CelestialBody planet, Biome... biomes) {
-		if (biomes != null) {
-			planet.setBiomeInfo(biomes);
-		}
-	}
-
-	public static void setProvider (ExoPlanet planet, Class<? extends WorldProvider> provider, int dimId) {
-		planet.setProvider(provider);
-		planet.setDimensionInfo(dimId, provider);
-	}
-
-	public static void setExoPlanetData (CelestialBody planet, float temp, float mass, float radius) {
-		((ExoPlanet) planet).setPlanetTemp(temp);
-		((ExoPlanet) planet).setPlanetMass(mass);
-		((ExoPlanet) planet).setPlanetRadius(radius);
-	}
-
-	/**
-	 * Sets the normal orbit.
-	 *
-	 * @param body the new normal orbit
-	 */
-	public static void setNormalOrbit (CelestialBody planet) {
-		BodiesRegistry.setOrbitData(planet, planet.getPhaseShift(), 1.0f, planet.getRelativeOrbitTime());
-
-	}
-
-	/**
-	 * Sets the orbit.
-	 *
-	 * @param body          the body
-	 * @param eccentricityX the eccentricity X
-	 * @param eccentricityY the eccentricity Y
-	 * @param orbitOffsetX  the orbit offset X
-	 * @param orbitOffsetY  the orbit offset Y
-	 */
-	public static void setOrbit (CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
-		((ExoPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
-		((ExoPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
-		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body.getRelativeOrbitTime());
-
-	}
-
-	public static void setAtmosphere (CelestialBody body, double relativeTemp, double windLevel, EnumAtmosphericGas... gasses) {
-		boolean canBreathe = false;
-		boolean canRain    = false;
-		boolean isCorr     = false;
-		float   d          = 0.0f;
-		for (EnumAtmosphericGas enumAtmosphericGas : gasses) {
-			d++;
-			body.atmosphereComponent(enumAtmosphericGas);
-			if (enumAtmosphericGas == EnumAtmosphericGas.OXYGEN) {
-				canBreathe = true;
-			}
-			if (enumAtmosphericGas == EnumAtmosphericGas.CO2) {
-				canRain = true;
-			}
-			if (enumAtmosphericGas == EnumAtmosphericGas.METHANE) {
-				isCorr = true;
-			}
-		}
-		body.setAtmosphere(new AtmosphereInfo(canBreathe, canRain, isCorr, (float) relativeTemp, (float) windLevel, d));
-	}
-
-	public static void setSurfaceData (ExoPlanet body, double gravity, long dayLength, ClassBody clazz) {
-		body.setPlanetGravity((float) gravity);
-		body.setDayLength(dayLength);
-		body.setClassBody(clazz);
-	}
+//	public static ExoPlanet unreachable (String planetName, SolarSystem solarSystem, float randomPhase, float distance, float orbitTime) {
+//		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
+//		unreachable.setBodyIcon(Assets.getCelestialTexture(planetName));
+//		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
+//		unreachable.setRelativeOrbitTime(orbitTime);
+//		unreachable.setPhaseShift(randomPhase);
+//		unreachable.setRelativeSize(1.0F);
+//		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
+//		GalaxyRegistry.registerPlanet(unreachable);
+//		return unreachable;
+//	}
 
 	public static void registerProvider (String name, int id, int staticId, Class<? extends WorldProvider> provider) {
 		GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), staticId, provider, true);
@@ -220,5 +114,178 @@ public class Universe {
 	public static void registerRocketGui (Class<? extends WorldProvider> clazz, String planetString) {
 		GalacticraftRegistry.registerRocketGui(clazz, new ResourceLocation(ExoInfo.MODID, "textures/gui/rocketgui/"
 				+ planetString + ".png"));
+	}
+	
+	public static class ExoPlanetBuilder {
+		
+		private static ExoPlanet planet;
+		
+		ExoPlanetBuilder (ExoPlanet planet) {
+			ExoPlanetBuilder.planet = planet;
+		}
+		
+		public static Builder build(ExoPlanet planet) {
+			new ExoPlanetBuilder(planet);
+			return new Builder();
+		}
+		
+		public static ExoPlanet build(float phaseShift, int tier, float temp, double windLevel, EnumAtmosphericGas[] gasses, Biome[] biomes, ClassBody clazz, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY, double gravity, long dayLength) {
+			planet.setPhaseShift(phaseShift);
+			planet.setRelativeSize(1.0F);
+			planet.setTierRequired(tier);
+			planet.setBodyIcon(Assets.getCelestialTexture(planet.getName()));
+			planet.setTierRequired(tier);
+			planet.setPlanetTemp(temp);
+			planet.setBiomeInfo(biomes);
+			planet.setClassBody(clazz);
+			planet.setPlanetGravity((float) gravity);
+			planet.setDayLength(dayLength);
+			planet.setOrbitEccentricity(eccentricityX, eccentricityY);
+			planet.setOrbitOffset(orbitOffsetX, orbitOffsetY);
+			setAtmosphere(temp, windLevel, gasses);
+			BodiesRegistry.setOrbitData(planet, phaseShift, 1.0f, (float) planet.getOrbitPeriod());
+			return planet;
+		}
+		
+		public static ExoPlanet build(float phaseShift, int tier, float temp, double windLevel, EnumAtmosphericGas[] gasses, Biome[] biomes, ClassBody clazz, double gravity, long dayLength) {
+			planet.setPhaseShift(phaseShift);
+			planet.setRelativeSize(1.0F);
+			planet.setTierRequired(tier);
+			planet.setBodyIcon(Assets.getCelestialTexture(planet.getName()));
+			planet.setTierRequired(tier);
+			planet.setBiomeInfo(biomes);
+			planet.setPlanetTemp(temp);
+			planet.setClassBody(clazz);
+			planet.setPlanetGravity((float) gravity);
+			planet.setDayLength(dayLength);
+			setAtmosphere(temp, windLevel, gasses);
+			BodiesRegistry.setOrbitData(planet, phaseShift, 1.0f, (float) planet.getOrbitPeriod());
+			return planet;
+		}
+		
+		public static ExoPlanet build(float phaseShift) {
+			planet.setBodyIcon(Assets.getCelestialTexture(planet.getExoPlanetName()));
+			planet.setPhaseShift(phaseShift);
+			planet.setRelativeSize(1.0F);
+			planet.setRingColorRGB(0.8F, 0.0F, 0.0F);
+			planet.setUnreachable();
+			return planet;
+		}
+		
+		private static void setAtmosphere (double relativeTemp, double windLevel, EnumAtmosphericGas... gasses) {
+			boolean canBreathe = false;
+			boolean canRain    = false;
+			boolean isCorr     = false;
+			float   d          = 0.0f;
+			for (EnumAtmosphericGas enumAtmosphericGas : gasses) {
+				d++;
+				planet.atmosphereComponent(enumAtmosphericGas);
+				if (enumAtmosphericGas == EnumAtmosphericGas.OXYGEN) {
+					canBreathe = true;
+				}
+				if (enumAtmosphericGas == EnumAtmosphericGas.CO2) {
+					canRain = true;
+				}
+				if (enumAtmosphericGas == EnumAtmosphericGas.METHANE) {
+					isCorr = true;
+				}
+			}
+			planet.setAtmosphere(new AtmosphereInfo(canBreathe, canRain, isCorr, (float) relativeTemp, (float) windLevel, d));
+		}
+		
+		@Getter
+		public static class Builder {
+			private float phaseShift;
+			private int tier;
+			private float temp;
+			private float windLevel;
+			private EnumAtmosphericGas[] gasses;
+			private Biome[] biomes;
+			private boolean normalOrbit = true;
+			private float eccentricityX;
+			private float eccentricityY; 
+			private float orbitOffsetX;
+			private float orbitOffsetY;
+			private ClassBody clazz;
+			private double gravity;
+			private long dayLength;
+			private boolean unreachable;
+			
+			public Builder () {}
+
+			public Builder unreachable(boolean unreachable) {
+				this.unreachable = unreachable;
+				return this;
+			}
+			
+			public Builder gravity(double gravity) {
+				this.gravity = gravity;
+				return this;
+			}
+			
+			public Builder dayLength(long dayLength) {
+				this.dayLength = dayLength;
+				return this;
+			}
+			
+			public Builder eccentricities(float eccentricityX, float eccentricityY) {
+				this.eccentricityX = eccentricityX;
+				this.eccentricityY = eccentricityY;
+				return this;
+			}
+			
+			public Builder orbitOffsets(float orbitOffsetX, float orbitOffsetY) {
+				this.orbitOffsetX = orbitOffsetX;
+				this.orbitOffsetY = orbitOffsetY;
+				return this;
+			}
+
+			public Builder clazz(ClassBody clazz) {
+				this.clazz = clazz;
+				return this;
+			}
+			public Builder normalOrbit(boolean normalOrbit) {
+				this.normalOrbit = normalOrbit;
+				return this;
+			}
+			public Builder phaseShift(float phaseShift) {
+				this.phaseShift = phaseShift;
+				return this;
+			}
+			public Builder tier(int tier) {
+				this.tier = tier;
+				return this;
+			}
+			public Builder tempWind(float temp, float windLevel) {
+				this.temp = temp;
+				this.windLevel = windLevel;
+				return this;
+			}
+
+			public Builder gasses(EnumAtmosphericGas... gasses) {
+				this.gasses = gasses;
+				return this;
+			}
+			public Builder biomes(Biome... biomes) {
+				this.biomes = biomes;
+				return this;
+			}
+			
+			public ExoPlanet genUnreachable() {
+				return build(this.phaseShift);
+			}
+
+			public ExoPlanet generate() {
+				if(unreachable) {
+					return build(this.phaseShift);
+				} else {
+					if(!normalOrbit) {
+						return build(this.phaseShift, this.tier, this.temp, this.windLevel, this.gasses, this.biomes, this.clazz, this.eccentricityX, this.eccentricityY, this.orbitOffsetX, this.orbitOffsetY, this.gravity, this.dayLength);
+					} else {
+						return build(this.phaseShift, this.tier, this.temp, this.windLevel, this.gasses, this.biomes, this.clazz, this.gravity, this.dayLength);
+					}
+				}
+			}
+		}
 	}
 }

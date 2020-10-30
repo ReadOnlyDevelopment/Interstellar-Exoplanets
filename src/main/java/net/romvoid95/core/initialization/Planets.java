@@ -18,245 +18,308 @@
 package net.romvoid95.core.initialization;
 
 import static micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas.*;
-import static net.romvoid95.api.space.PlanetConstants.AU.*;
-import static net.romvoid95.api.space.PlanetConstants.Orbit.*;
-import static net.romvoid95.common.config.PlanetCoreConfig.*;
-import static net.romvoid95.core.initialization.SolarSystems.*;
+import static net.romvoid95.api.world.ExoBiomes.*;
 
-import micdoodle8.mods.galacticraft.api.world.ITeleportType;
-import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
-import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
-import asmodeuscore.core.prefab.celestialbody.ExPlanet;
+import micdoodle8.mods.galacticraft.api.world.ITeleportType;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.RelayStation;
-import net.romvoid95.api.space.stellarmathmatics.StarMath;
-import net.romvoid95.api.world.ExoBiomes;
-import net.romvoid95.common.astronomy.kepler1649.c.WorldProviderKepler1649c;
-import net.romvoid95.common.astronomy.trappist1.c.WorldProviderTrappist1C;
-import net.romvoid95.common.astronomy.trappist1.d.WorldProviderTrappist1D;
-import net.romvoid95.common.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.romvoid95.common.astronomy.wolf1061.d.TeleportTypeWolf1061D;
-import net.romvoid95.common.astronomy.wolf1061.d.WorldProviderWolf1061D;
-import net.romvoid95.common.astronomy.yzceti.b.WorldProviderYzCetiB;
-import net.romvoid95.common.astronomy.yzceti.c.WorldProviderYzCetiC;
-import net.romvoid95.common.astronomy.yzceti.d.WorldProviderYzCetiD;
-import net.romvoid95.common.config.PlanetCoreConfig;
-import net.romvoid95.common.config.systems.ConfigSystems;
+import net.romvoid95.common.config.ConfigPlanets;
+import net.romvoid95.common.config.ConfigSystems;
+import net.romvoid95.space.Exoplanets;
 
 public class Planets {
+	
+	public static List<ExoPlanet> planets = new ArrayList<>();
 
-	public static ExoPlanet yzcetib;
-	public static ExoPlanet yzcetic;
-	public static ExoPlanet yzcetid;
-
-	public static ExoPlanet wolf1061b;
-	public static ExoPlanet wolf1061c;
-	public static ExoPlanet wolf1061d;
-
-	public static ExoPlanet trappistb;
-	public static ExoPlanet trappistc;
-	public static ExoPlanet trappistd;
-	public static ExoPlanet trappiste;
-	public static ExoPlanet trappistf;
-	public static ExoPlanet trappistg;
-	public static ExoPlanet trappisth;
-
-	public static ExoPlanet kepler1649b;
-	public static ExoPlanet kepler1649c;
-
+	public static ExoPlanet YZCETIB;
+	public static ExoPlanet YZCETIC;
+	public static ExoPlanet YZCETID;
+	public static ExoPlanet WOLF1061B;
+	public static ExoPlanet WOLF1061C;
+	public static ExoPlanet WOLF1061D;
+	public static ExoPlanet TRAPPIST1B;
+	public static ExoPlanet TRAPPIST1C;
+	public static ExoPlanet TRAPPIST1D;
+	public static ExoPlanet TRAPPIST1E;
+	public static ExoPlanet TRAPPIST1F;
+	public static ExoPlanet TRAPPIST1G;
+	public static ExoPlanet TRAPPIST1H;
+	public static ExoPlanet KEPLER1649B;
+	public static ExoPlanet KEPLER1649C;
 	public static RelayStation station;
 
-	public static void pre() {
-		Planets.preBuild();
-	}
+	public static void init() {
 
-	public static void init () {
-
-		Planets.initPlanets();
-		Planets.initStation();
-		Planets.registerPlanets();
-
-	}
-
-	public static void preBuild() {
-		yzcetib = Universe.pre("YzCetiB", yzCeti);
-		yzcetic = Universe.pre("YzCetiC", yzCeti);
-		yzcetid = Universe.pre("YzCetiD", yzCeti);
-
-		trappistc = Universe.pre("Trappist1C", trappist1);
-		trappistd = Universe.pre("Trappist1D", trappist1);
-		trappiste = Universe.pre("Trappist1E", trappist1);
-
-		kepler1649c = Universe.pre("Kepler1649C", kepler1649);
 		
-		wolf1061d = Universe.pre("Wolf1061D", wolf1061);
-
+		YZCETIB = Exoplanets.YZCETIB.getExoPlanet();
+		YZCETIC = Exoplanets.YZCETIC.getExoPlanet();
+		YZCETID = Exoplanets.YZCETID.getExoPlanet();
+		TRAPPIST1B = Exoplanets.TRAPPIST1B.get();
+		TRAPPIST1C = Exoplanets.TRAPPIST1C.getExoPlanet();
+		TRAPPIST1D = Exoplanets.TRAPPIST1D.getExoPlanet();
+		TRAPPIST1E = Exoplanets.TRAPPIST1E.getExoPlanet();
+		TRAPPIST1F = Exoplanets.TRAPPIST1F.get();
+		TRAPPIST1G = Exoplanets.TRAPPIST1G.get();
+		TRAPPIST1H = Exoplanets.TRAPPIST1H.get();
+		WOLF1061D = Exoplanets.WOLF1061D.getExoPlanet();
+		WOLF1061C = Exoplanets.WOLF1061C.getExoPlanet();
+		WOLF1061B = Exoplanets.WOLF1061B.getExoPlanet();
+		KEPLER1649B = Exoplanets.KEPLER1649B.get();
+		KEPLER1649C = Exoplanets.KEPLER1649C.get();
+		
+		Planets.initPlanets();
+		
+		Planets.register(YZCETIB, new TeleportTypeMoon());
+		Planets.register(YZCETIC, new TeleportTypeMoon());
+		Planets.register(YZCETID, new TeleportTypeMoon());
+		Planets.register(TRAPPIST1B);
+		Planets.register(TRAPPIST1C, new TeleportTypeMoon());
+		Planets.register(TRAPPIST1D, new TeleportTypeMoon());
+		Planets.register(TRAPPIST1E, new TeleportTypeMoon());
+		Planets.register(TRAPPIST1F);
+		Planets.register(TRAPPIST1G);
+		Planets.register(TRAPPIST1H);
+		Planets.register(WOLF1061B, new TeleportTypeMoon());
+		Planets.register(WOLF1061C, new TeleportTypeMoon());
+		Planets.register(WOLF1061D, new TeleportTypeMoon());
+		Planets.register(KEPLER1649B);
+		Planets.register(KEPLER1649C);
+		
+		createDebugFile();
 	}
 
-	public static void initPlanets () {
-
+	private static void initPlanets () {
 		if (SolarSystems.buildyzCeti) {
-			if(!PlanetCoreConfig.disable_yz_b) {
-				Universe.planet(yzcetib, 0.5F, CETI_B_AU, CETI_B_ORBIT, ConfigSystems.yzceti_tier);
-				Universe.setBiomes(yzcetib, ExoBiomes.yzCeti_b_base, ExoBiomes.yzCeti_b_dirty);
-				Universe.setExoPlanetData(yzcetib, 50.0f, 0.75f, 0.93f);
-				Universe.setNormalOrbit(yzcetib);
-				Universe.setAtmosphere(yzcetib, 5.0, 0.0, NITROGEN, ARGON);
-				Universe.setSurfaceData(yzcetib, 0.50, 21500L, ClassBody.SELENA);
-				Universe.setProvider(yzcetib, WorldProviderYzCetiB.class, id_yz_b);
+			if(!ConfigPlanets.disable_yz_b) {
+				Universe.ExoPlanetBuilder
+				.build(YZCETIB)
+				.phaseShift(1.24511554657878988F)
+				.tier(ConfigSystems.yzceti_tier)
+				.biomes(YZCETIB_PLAINS, YZCETIB_HIGHPLAINS)
+				.tempWind(4.50f, 2.0f)
+				.gasses(NITROGEN, ARGON)
+				.clazz(ClassBody.SELENA)
+				.gravity(0.0650)
+				.dayLength(32500L)
+				.generate();				
 			}
-
-			if(!PlanetCoreConfig.disable_yz_c) {
-				Universe.planet(yzcetic, 0.5F, CETI_C_AU, CETI_C_ORBIT, ConfigSystems.yzceti_tier);
-				Universe.setBiomes(yzcetic, ExoBiomes.yzCeti_c_base, ExoBiomes.yzCeti_c_unknown);
-				Universe.setExoPlanetData(yzcetic, 26.5f, 0.9f, 1.0f);
-				Universe.setNormalOrbit(yzcetic);
-				Universe.setAtmosphere(yzcetic, 5.0, 0.0, WATER, NITROGEN, ARGON);
-				Universe.setSurfaceData(yzcetic, 0.65, 26500L, ClassBody.SELENA);
-				Universe.setProvider(yzcetic, WorldProviderYzCetiC.class, id_yz_c);
+			if(!ConfigPlanets.disable_yz_c) {
+				Universe.ExoPlanetBuilder
+				.build(YZCETIC)
+				.phaseShift(2.04511554657878988F)
+				.tier(ConfigSystems.yzceti_tier)
+				.biomes(YZCETIC_DUNES, YZCETIC_HIGHLANDS)
+				.tempWind(8.0F, 2.0F)
+				.gasses(NITROGEN, ARGON)
+				.clazz(ClassBody.SELENA)
+				.gravity(0.0650)
+				.dayLength(32500L)
+				.generate();				
 			}
-
-			if(!PlanetCoreConfig.disable_yz_d) {
-				Universe.planet(yzcetid, 0.5F, CETI_D_AU, CETI_D_ORBIT, ConfigSystems.yzceti_tier);
-				Universe.setBiomes(yzcetid, ExoBiomes.yzCeti_d_plains, ExoBiomes.yzCeti_d_hills, ExoBiomes.yzCeti_d_cliffs, ExoBiomes.yzCeti_d_sea);
-				Universe.setExoPlanetData(yzcetid, 5.0f, 1.14f, 1.05f);
-				Universe.setNormalOrbit(yzcetib);
-				Universe.setAtmosphere(yzcetid, 5.0, 0.0, NITROGEN, ARGON);
-				Universe.setSurfaceData(yzcetid, 0.75, 32500L, ClassBody.SELENA);
-				Universe.setProvider(yzcetid, WorldProviderYzCetiD.class, id_yz_d);
+			if(!ConfigPlanets.disable_yz_d) {
+				Universe.ExoPlanetBuilder
+				.build(YZCETID)
+				.phaseShift(0.014511554657878988F)
+				.tier(ConfigSystems.yzceti_tier)
+				.biomes(YZCETID_PLAINS, YZCETID_HILLS, YZCETID_CLIFFS, YZCETID_SEA)
+				.tempWind(2.0F, 0.0F)
+				.gasses(NITROGEN, ARGON)
+				.clazz(ClassBody.SELENA)
+				.normalOrbit(false)
+				.eccentricities(1.0f, 0.0f)
+				.orbitOffsets(5.0f, 0.0f)
+				.gravity(0.0650)
+				.dayLength(32500L)
+				.generate();				
 			}
 		}
-
 		if (SolarSystems.buildtrappist1) {
-			if(!PlanetCoreConfig.disable_trap_c) {
-				Universe.planet(trappistc, 0.5F, TRAPPIST_C_AU, TRAPPIST_C_ORBIT, ConfigSystems.trap_tier);
-				Universe.setBiomes(trappistc, ACBiome.ACSpace);
-				Universe.setExoPlanetData(trappistc, 5.0f, 1.14f, 1.05f);
-				Universe.setNormalOrbit(trappistc);
-				Universe.setAtmosphere(trappistc, 5.0, 0.0, NITROGEN, ARGON);
-				Universe.setSurfaceData(trappistc, 0.75, 32500L, ClassBody.SELENA);
-				Universe.setProvider(trappistc, WorldProviderTrappist1C.class, id_trap_c);
+			if(!ConfigPlanets.disable_trap_c) {
+				Universe.ExoPlanetBuilder
+				.build(TRAPPIST1C)
+				.phaseShift(2.24511554657878988F)
+				.tier(ConfigSystems.trap_tier)
+				.biomes(ACBiome.ACSpace)
+				.tempWind(2.0F, 2.0F)
+				.gasses(NITROGEN, ARGON)
+				.clazz(ClassBody.SELENA)
+				.gravity(0.0650)
+				.dayLength(32500L)
+				.generate();				
 			}
-			if(!PlanetCoreConfig.disable_trap_d) {
-				Universe.planet(trappistd, 0.5F, TRAPPIST_D_AU, TRAPPIST_D_ORBIT, ConfigSystems.trap_tier);
-				Universe.setBiomes(trappistd, ACBiome.ACSpace);
-				Universe.setExoPlanetData(trappistd, 5.0f, 1.14f, 1.05f);
-				Universe.setNormalOrbit(trappistd);
-				Universe.setAtmosphere(trappistd, 5.0, 0.0, WATER);
-				Universe.setSurfaceData(trappistd, 0.75, 32500L, ClassBody.OCEANIDE);
-				Universe.setProvider(trappistd, WorldProviderTrappist1D.class, id_trap_d);
+			if(!ConfigPlanets.disable_trap_d) {
+				Universe.ExoPlanetBuilder
+				.build(TRAPPIST1D)
+				.phaseShift(0.24511554657878988F)
+				.tier(ConfigSystems.trap_tier)
+				.biomes(ACBiome.ACSpace)
+				.tempWind(2.0F, 2.0F)
+				.gasses(WATER)
+				.clazz(ClassBody.OCEANIDE)
+				.gravity(0.0650)
+				.dayLength(32500L)
+				.generate();			
 			}
-			if(!PlanetCoreConfig.disable_trap_e) {
-				Universe.planet(trappiste, 0.5F, TRAPPIST_E_AU, TRAPPIST_E_ORBIT, ConfigSystems.trap_tier);
-				Universe.setBiomes(trappiste, ACBiome.ACSpace);
-				Universe.setExoPlanetData(trappiste, 5.0f, 1.14f, 1.05f);
-				Universe.setNormalOrbit(trappiste);
-				Universe.setAtmosphere(trappiste, 5.0, 0.0, NITROGEN, ARGON);
-				Universe.setSurfaceData(trappiste, 0.015, 32500L, ClassBody.SELENA);
-				Universe.setProvider(trappiste, WorldProviderTrappist1E.class, id_trap_e);
+			if(!ConfigPlanets.disable_trap_e) {
+				Universe.ExoPlanetBuilder
+				.build(TRAPPIST1E)
+				.phaseShift(0.6451158F)
+				.tier(ConfigSystems.trap_tier)
+				.biomes(ACBiome.ACSpace)
+				.tempWind(5.0F, 0.0F)
+				.gasses(NITROGEN, ARGON)
+				.clazz(ClassBody.SELENA)
+				.gravity(0.0650)
+				.dayLength(24500L)
+				.generate();				
 			}
 
 			if (!ConfigSystems.hideUnfinishedSystems) {
-				if(!PlanetCoreConfig.disable_trap_b) {
-					trappistb = Universe.unreachable("Trappist1B", trappist1, 3.254752F, TRAPPIST_B_AU, TRAPPIST_B_ORBIT);
+				if(!ConfigPlanets.disable_trap_b) {
+					Universe.ExoPlanetBuilder
+					.build(TRAPPIST1B)
+					.unreachable(true)
+					.phaseShift(3.254752F)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_trap_f) {
-					trappistf = Universe.unreachable("Trappist1F", trappist1, 0.6451158F, TRAPPIST_F_AU, TRAPPIST_F_ORBIT);
+				if(!ConfigPlanets.disable_trap_f) {
+					Universe.ExoPlanetBuilder
+					.build(TRAPPIST1F)
+					.unreachable(true)
+					.phaseShift(6.254752F)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_trap_g) {
-					trappistg = Universe.unreachable("Trappist1G", trappist1, 0.6451158F, TRAPPIST_G_AU, TRAPPIST_G_ORBIT);
+				if(!ConfigPlanets.disable_trap_g) {
+					Universe.ExoPlanetBuilder
+					.build(TRAPPIST1G)
+					.unreachable(true)
+					.phaseShift(1.54752F)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_trap_h) {
-					trappisth = Universe.unreachable("Trappist1H", trappist1, 0.896365F, TRAPPIST_H_AU, TRAPPIST_H_ORBIT);
+				if(!ConfigPlanets.disable_trap_h) {
+					Universe.ExoPlanetBuilder
+					.build(TRAPPIST1H)
+					.unreachable(true)
+					.phaseShift(0.254752F)
+					.generate();
 				}
 			}
 		}
 
 		if (SolarSystems.buildwolf1061) {
-
 			if (!ConfigSystems.hideUnfinishedSystems) {
-				if(!PlanetCoreConfig.disable_wolf_b) {
-					wolf1061b = Universe.unreachable("Wolf1061B", wolf1061, 2.9495497F, WOLF_B_AU, WOLF_B_ORBIT);
+				if(!ConfigPlanets.disable_wolf_b) {
+					Universe.ExoPlanetBuilder
+					.build(WOLF1061B)
+					.phaseShift(0.6451158F)
+					.tier(ConfigSystems.wolf_tier)
+					.biomes(WOLF1061B_PLAINS, WOLF1061B_SEA, WOLF1061B_HILLS, WOLF1061B_CLIFFS)
+					.tempWind(2.0F, 0.0F)
+					.gasses(NITROGEN, ARGON)
+					.clazz(ClassBody.TITAN)
+					.normalOrbit(false)
+					.eccentricities(0.0f, 0.0f)
+					.orbitOffsets(0.0f, -4.0f)
+					.gravity(0.030)
+					.dayLength(24500L)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_wolf_c) {
-					wolf1061c = Universe.unreachable("Wolf1061C", wolf1061, 1.7264397F, WOLF_C_AU, WOLF_C_ORBIT);
+				if(!ConfigPlanets.disable_wolf_c) {
+					Universe.ExoPlanetBuilder
+					.build(WOLF1061C)
+					.phaseShift(4.254752F)
+					.tier(ConfigSystems.wolf_tier)
+					.biomes(WOLF1061C_PLAINS)
+					.tempWind(2.0F, 0.0F)
+					.gasses(NITROGEN, ARGON)
+					.clazz(ClassBody.TITAN)
+					.normalOrbit(false)
+					.eccentricities(0.0f, 0.0f)
+					.orbitOffsets(0.0f, -4.5f)
+					.gravity(0.030)
+					.dayLength(24500L)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_wolf_d) {
-					Universe.planet(wolf1061d, 0.666F, WOLF_D_AU, WOLF_D_ORBIT, ConfigSystems.wolf_tier);
-					Universe.setBiomes(wolf1061d, ExoBiomes.wolf1061_d_main);
-					Universe.setExoPlanetData(wolf1061d, 5.0f, 7.7f, (float) StarMath.convertJupiterRadius(0.24));
-					Universe.setNormalOrbit(wolf1061d);
-					Universe.setAtmosphere(wolf1061d, 5.0, 0.0, NITROGEN, ARGON, HYDROGEN, CO2);
-					Universe.setSurfaceData(wolf1061d, 0.75, 32500L, ClassBody.GASGIANT);
-					Universe.setProvider(wolf1061d, WorldProviderWolf1061D.class, id_wolf_d);
-					//wolf1061d = Universe.unreachable("Wolf1061D", wolf1061, 7.132725F, WOLF_D_AU, WOLF_D_ORBIT);
+				if(!ConfigPlanets.disable_wolf_d) {
+					Universe.ExoPlanetBuilder
+					.build(WOLF1061D)
+					.phaseShift(0.6451158F)
+					.tier(ConfigSystems.wolf_tier)
+					.biomes(WOLF1061D_ATMOSPHERE)
+					.tempWind(2.0F, 0.0F)
+					.gasses(NITROGEN, ARGON, HYDROGEN, CO2)
+					.normalOrbit(false)
+					.eccentricities(0.9f, 1.05f)
+					.orbitOffsets(0.0f, -90.0f)
+					.clazz(ClassBody.GASGIANT)
+					.gravity(0.030)
+					.dayLength(24500L)
+					.generate();
+					
 				}
 			}
-
 		}
-
 		if (SolarSystems.buildkepler1649) {
-
 			if (!ConfigSystems.hideUnfinishedSystems) {
-				if(!PlanetCoreConfig.disable_kepler_c) {
-					Universe.planet(trappiste, 0.5F, KEPLER_C_AU, KEPLER_C_ORBIT, ConfigSystems.k1649_tier);
-					Universe.setBiomes(kepler1649c, ACBiome.ACSpace);
-					Universe.setExoPlanetData(kepler1649c, 5.0f, 1.14f, 1.05f);
-					Universe.setNormalOrbit(kepler1649c);
-					Universe.setAtmosphere(kepler1649c, 5.0, 0.0, NITROGEN, ARGON);
-					Universe.setSurfaceData(kepler1649c, 0.75, 32500L, ClassBody.SELENA);
-					Universe.setProvider(kepler1649c, WorldProviderKepler1649c.class, id_kepler_c);
+				if(!ConfigPlanets.disable_kepler_b) {
+					Universe.ExoPlanetBuilder
+					.build(KEPLER1649B)
+					.unreachable(true)
+					.phaseShift(1.932375F)
+					.generate();
 				}
-				if(!PlanetCoreConfig.disable_kepler_b) {
-					kepler1649b = Universe.unreachable("Kepler1649B", kepler1649, 1.932375F, KEPLER_B_AU, KEPLER_B_ORBIT);
+				if(!ConfigPlanets.disable_kepler_c) {
+					Universe.ExoPlanetBuilder
+					.build(KEPLER1649C)
+					.unreachable(true)
+					.phaseShift(0.932375F)
+					.generate();
 				}
 			}
 		}
 	}
 
-	public static void initStation () {
-
-		//		station = new RelayStation("relaystation1", GalacticraftCore.solarSystemSol
-		//				.getMainStar(), GalacticraftCore.solarSystemSol);
-		//		station.setRelativeDistanceFromCenter(20.0f);
-		//		station.setRelativeOrbitTime(11.5F);
-		//		station.setPhaseShift(1.65F);
-		//		station.setRelativeSize(1.0f);
-		//		station.setRingColorRGB(0.0F, 0.4F, 0.9F);
-		//		station.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
-		//		SpaceData.registerCelestialBody(station);
-		//		ExoSpaceRegistry.registerRelayStation(station);
-
-	}
-
-	private static void registerPlanets () {
-
-		Planets.finishRegistry(yzcetib, new TeleportTypeMoon());
-		Planets.finishRegistry(yzcetic, new TeleportTypeMoon());
-		Planets.finishRegistry(yzcetid, new TeleportTypeMoon());
-		Planets.finishRegistry(trappistc, new TeleportTypeMoon());
-		Planets.finishRegistry(trappistd, new TeleportTypeMoon());
-		Planets.finishRegistry(trappiste, new TeleportTypeMoon());
-		Planets.finishRegistry(kepler1649c, new TeleportTypeOverworld());
-		Planets.finishRegistry(wolf1061d, new TeleportTypeWolf1061D());
-
-	}
-
-	private static void finishRegistry (ExoPlanet planet, ITeleportType type) {
+	private static void register (ExoPlanet planet, ITeleportType type) {
+		planets.add(planet);
 		Universe.registerPlanet(planet);
-		Universe.registerRocketGui(planet.getProvider(), planet.getName());
-		Universe.registerTeleportType(planet.getProvider(), type);
+		Universe.registerRocketGui(planet.getWorldProvider(), planet.getName());
+		Universe.registerTeleportType(planet.getWorldProvider(), type);
 	}
-
-	public static float getGravity (ExPlanet planet) {
-		return planet.getGravity();
+	
+	private static void register (ExoPlanet planet) {
+		planets.add(planet);
+		Universe.registerPlanet(planet);
 	}
-
-	public static long getDayLength (ExPlanet planet) {
-		return planet.getDayLength();
+	
+	private static boolean createDebugFile() {
+		File debugFile = new File("planets.txt");
+		if (debugFile.exists()) {
+			debugFile.delete();
+		}
+		try {
+			debugFile.createNewFile();
+			PrintWriter print_line = new PrintWriter(new FileWriter(debugFile));
+			for(ExoPlanet p : planets) {
+				if(p.equals(WOLF1061D)) {
+					print_line.println(p.toString());
+				}
+			}
+            print_line.flush();
+            print_line.close();
+            return true;
+		} catch (IOException localIOException) {
+            return false;
+        }
 	}
 }

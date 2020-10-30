@@ -41,7 +41,8 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
@@ -69,6 +70,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import net.romvoid95.api.crafting.RecipeBuilder;
+import net.romvoid95.api.math.FilledList;
 import net.romvoid95.common.lib.block.*;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.item.IColorItem;
@@ -80,13 +82,13 @@ import net.romvoid95.core.Logging;
 public class ExoRegistry {
 	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
 
-	public final List<Block>       BLOCKS = NonNullList.create();
-	public final List<Item>        ITEMS  = NonNullList.create();
-	public final List<IFluidBlock> FLUIDS = NonNullList.create();
+	public final List<Block>       BLOCKS = FilledList.make();
+	public final List<Item>        ITEMS  = FilledList.make();
+	public final List<IFluidBlock> FLUIDS = FilledList.make();
 
-	private final List<IAddRecipe> recipeAdders  = NonNullList.create();
-	private final List<Block>      coloredBlocks = NonNullList.create();
-	private final List<Item>       coloredItems  = NonNullList.create();
+	private final List<IAddRecipe> recipeAdders  = FilledList.make();
+	private final List<Block>      coloredBlocks = FilledList.make();
+	private final List<Item>       coloredItems  = FilledList.make();
 
 	private final Map<Class<? extends IForgeRegistryEntry<?>>, Consumer<ExoRegistry>> registrationHandlers = new HashMap<>();
 

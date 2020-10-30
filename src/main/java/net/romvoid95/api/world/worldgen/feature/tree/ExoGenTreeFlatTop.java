@@ -1,12 +1,11 @@
 package net.romvoid95.api.world.worldgen.feature.tree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import net.romvoid95.core.ExoBlock;
 
 public class ExoGenTreeFlatTop extends ExoGenTreeBase {
 
@@ -17,7 +16,7 @@ public class ExoGenTreeFlatTop extends ExoGenTreeBase {
 		this.trunkSize = 10;
 		this.setMaxCrownSize(5);
 		this.setMinCrownSize(3);
-		this.setValidGroundBlocks(new ArrayList<>(Arrays.asList(ExoBlock.TRAP1E_GRASS)));
+		this.setValidGroundBlocks(new ArrayList<>());
 	}
 
 	@Override

@@ -20,7 +20,6 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
@@ -28,8 +27,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+
+import micdoodle8.mods.galacticraft.core.GCItems;
+
 import net.romvoid95.core.ExoInfo;
 
 public class ExoVillagerHandler {

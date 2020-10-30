@@ -17,17 +17,19 @@
 
 package net.romvoid95.common.block.terrain;
 
-import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
-import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+
+import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+
 import net.romvoid95.client.CreativeExoTabs;
 
 public class BlockSediment extends BlockFalling implements ISortableBlock {
 	
 	public BlockSediment() {
-		super(Material.SAND);
+		super(Material.CLAY);
 		this.setSoundType(SoundType.SAND);
 		this.setCreativeTab(CreativeExoTabs.TERRAIN_TAB);
 

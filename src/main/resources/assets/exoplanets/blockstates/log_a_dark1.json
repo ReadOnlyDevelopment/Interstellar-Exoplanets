@@ -3,21 +3,16 @@
   "defaults": {
     "model": "cube_column",
     "textures": {
-      "end": "exoplanets:blocks/wood/log_b_top",
-      "side": "exoplanets:blocks/wood/log_b"
+      "side": "exoplanets:blocks/wood/log_b_top",
+      "end": "exoplanets:blocks/wood/log_b"
     }
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
     "axis": {
-      "x": {"x": 90, "y": 90},
       "y": {},
-      "z": {"x": 90},
-      "none": {
-        "model": "cube_all",
-        "textures": {"all": "exoplanets:blocks/wood/log_b"}
-      }
+      "z": { "x": 90 },
+      "x": { "x": 90, "y": 90 },
+      "none": { "model": "cube_all", "textures": { "all": "#side" } }
     }
   }
 }

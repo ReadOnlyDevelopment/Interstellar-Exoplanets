@@ -1,13 +1,14 @@
 {
 	"forge_marker": 1,
 	"defaults": {
+		"model": "exoplanets:dummy",
 	    "textures": {
 	        "particle": "exoplanets:blocks/stairs/roof",
 	        "texture": "exoplanets:blocks/stairs/179",
 	        "post": "exoplanets:blocks/stairs/roof"
 	    }
 	},
-"variants": {
+	"variants": {
     "facing=east,half=bottom,shape=straight":  { "model": "exoplanets:roof_stairs" },
     "facing=west,half=bottom,shape=straight":  { "model": "exoplanets:roof_stairs", "y": 180, "uvlock": true },
     "facing=south,half=bottom,shape=straight": { "model": "exoplanets:roof_stairs", "y": 90, "uvlock": true },

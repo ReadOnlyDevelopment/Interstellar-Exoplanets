@@ -1,7 +1,10 @@
 package net.romvoid95.api.world.worldgen.feature;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,14 +16,10 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-
 import net.romvoid95.api.space.Calculations;
-import net.romvoid95.common.astronomy.yzceti.YzCetiBlocks;
 import net.romvoid95.common.utility.mc.BlockUtil;
 import net.romvoid95.common.utility.mc.BlockUtil.MatchType;
-import net.romvoid95.core.ExoplanetsMod;
+import net.romvoid95.space.yzceti.YzCetiBlocks;
 
 public class ExoFeatureBoulder extends ExoGenFeature {
 
@@ -159,8 +158,6 @@ public class ExoFeatureBoulder extends ExoGenFeature {
 
 			if (targetBlock.isReplaceable(world, targetPos)) {
 				world.setBlockState(targetPos, boulderBlock, 4);
-				ExoplanetsMod.logger.info("Boulder block ({}) placed at {} {} {}",
-						boulderBlock.getBlock().getLocalizedName(), targetPos.getX(), targetPos.getY(), targetPos.getZ());
 
 				// Double-plant check.
 				if (world.getBlockState(mpos.move(EnumFacing.UP)).getBlock() == Blocks.DOUBLE_PLANT) {

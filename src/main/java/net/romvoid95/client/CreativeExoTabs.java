@@ -22,18 +22,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.common.astronomy.trappist1.TrappistBlocks;
+
 import net.romvoid95.common.lib.EnumMetal;
 import net.romvoid95.common.utility.mc.FluidUtility;
 import net.romvoid95.core.initialization.ExoBlocks;
 import net.romvoid95.core.initialization.ExoFluids;
+import net.romvoid95.space.trappist1.TrappistBlocks;
 
 public class CreativeExoTabs {
 
 	public static final CreativeTabs DECORATION_TAB = new Tab("tabDecoration", "tabDeco") {
 		@Override
 		public ItemStack getTabIconItem () {
-			return new ItemStack(ExoBlocks.roof_stairs);
+			return new ItemStack(ExoBlocks.ROOF_SLANTED);
 		}
 	};
 

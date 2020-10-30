@@ -21,9 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
+
 import net.romvoid95.api.registry.ExoRegistry;
 import net.romvoid95.core.ExoInfo;
 
@@ -31,21 +30,10 @@ public class ExoplanetSounds {
 
 	private static final List<SoundEvent> ALL = new ArrayList<>();
 
-	public static final SoundEvent SPACEDOOR_OPEN   = create("space_door_open");
-	public static final SoundEvent SPACEDOOR_CLOSE  = create("space_door_close");
-	public static final SoundEvent HYDOOR_OPEN      = create("hydoor_open");
-	public static final SoundEvent HYDOOR_CLOSE     = create("hydoor_close");
-	public static final SoundEvent CUSTOMDOOR_OPEN  = create("customdoor_open");
-	public static final SoundEvent CUSTOMDOOR_CLOSE = create("customdoor_close");
 	public static final SoundEvent CUSTOM_THUNDER   = create("thunder");
 
 	public static void registerAll (ExoRegistry registry) {
-		registry.registerSoundEvent(SPACEDOOR_CLOSE, "space_door_open");
-		registry.registerSoundEvent(SPACEDOOR_OPEN, "space_door_close");
-		registry.registerSoundEvent(HYDOOR_OPEN, "hydoor_open");
-		registry.registerSoundEvent(HYDOOR_CLOSE, "hydoor_close");
-		registry.registerSoundEvent(CUSTOMDOOR_OPEN, "customdoor_open");
-		registry.registerSoundEvent(CUSTOMDOOR_CLOSE, "customdoor_close");
+
 		registry.registerSoundEvent(CUSTOM_THUNDER, "thunder");
 	}
 

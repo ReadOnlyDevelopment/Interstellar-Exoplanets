@@ -83,7 +83,7 @@ public enum EnumMetal implements IMetal {
 	}
 
 	public IBlockState getOre () {
-		return ExoBlocks.metalOre.getDefaultState().withProperty(BlockOreMetal.METAL, this);
+		return ExoBlocks.OVERWORLD_ORE.getDefaultState().withProperty(BlockOreMetal.METAL, this);
 	}
 
 	public IBlockState getOre (Block ore) {
@@ -106,7 +106,7 @@ public enum EnumMetal implements IMetal {
 
 	@Override
 	public ItemStack getBlock () {
-		return new ItemStack(ExoBlocks.metalBlock, 1, meta);
+		return new ItemStack(ExoBlocks.METALBLOCK, 1, meta);
 	}
 
 	@Override

@@ -19,25 +19,23 @@ package net.romvoid95.api.space.prefab;
 
 import java.util.ArrayList;
 
-import net.minecraft.world.WorldProvider;
-
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.space.IExBody;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.api.space.IExBody;
 import net.romvoid95.api.space.Calculations;
 import net.romvoid95.api.space.enums.EnumPlanetType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
 import net.romvoid95.api.space.interfaces.IExoPlanet;
 
+
 public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 
 	private EnumTPHClass					habibilityClass;
 	private EnumPlanetType					planetType;
-	private String							planetName;
+	private String							exoplanetName;
 	private Star							planetHost;
 	private ExoSystem						planetSystem;
 	private double							orbitPeriod;
@@ -51,18 +49,21 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 	private boolean							rains;
 	private AtmosphereInfo					atmos;
 	private ArrayList<EnumAtmosphericGas>	atmosGasses	= new ArrayList<>();
-	private Class<? extends WorldProvider>	provider;
 	private ClassBody						classBody;
 	private float							orbit_eccentricityX, orbit_eccentricityY;
 	private float							orbit_offsetX, orbit_offsetY;
 
 	public ExoPlanet (String planetName) {
 		super(planetName.toLowerCase());
-		this.planetName = planetName;
+		this.setExoPlanetName(planetName);
 		this.setAtmos();
 		this.addChecklistKeys("thermal_padding", "equip_oxygen_suit", "equip_parachute");
 		this.setPlanetType();
 		this.setTHPClass();
+	}
+	
+	public ExoPlanet getExoPlanet() {
+		return this;
 	}
 
 	public ExoPlanet setTHPClass() {
@@ -92,8 +93,8 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 		return this;
 	}
 
-	public ExoPlanet setDayLength(float dayLength) {
-		this.dayLength = (long) (24000L * dayLength);
+	public ExoPlanet setDayLength(long dayLength) {
+		this.dayLength = dayLength;
 		return this;
 	}
 
@@ -197,18 +198,14 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 		return this;
 	}
 
-	public ExoPlanet setProvider(Class<? extends WorldProvider> provider) {
-		this.provider = provider;
+	public ExoPlanet setExoPlanetName(String name) {
+		exoplanetName = name;
 		return this;
-	}
-
-	public Class<? extends WorldProvider> getProvider() {
-		return this.provider;
 	}
 
 	@Override
 	public String getExoPlanetName() {
-		return this.planetName.replace(getPlanetSystem().getSolarSystemName(), "");
+		return this.exoplanetName;
 	}
 
 	@Override
@@ -282,11 +279,6 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 	}
 
 	@Override
-	public WorldProviderWE_ExoPlanet getPlanetProvider() {
-		return null;
-	}
-
-	@Override
 	public float getAtmosphericPressure() {
 		return 0.0F;
 	}
@@ -321,6 +313,7 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 	public void setAtmosphericPressure(int pressure) {
 
 	}
+
 
 	public ExoPlanet setOrbitEccentricity(float eccentricityX, float eccentricityY) {
 		this.orbit_eccentricityX = eccentricityX;
@@ -357,5 +350,28 @@ public class ExoPlanet extends Planet implements IExoPlanet, IExBody {
 	@Override
 	public float getWaterPressure() {
 		return 0;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ExoPlanet [ ");
+		builder.append(getExoPlanetName());
+		builder.append(" ]\n");
+		builder.append("ExoPlanet is an instance of IExBody = ");
+		if(getExoPlanet() instanceof IExBody) {
+			builder.append("TRUE");
+			builder.append("\n");
+			builder.append("orbit_offsetX = " + getXOrbitOffset());
+			builder.append("\n");
+			builder.append("orbit_offsetY = " + getYOrbitOffset());
+			builder.append("\n");
+			builder.append("orbit_eccentricityX = " + getXOrbitEccentricity());
+			builder.append("\n");
+			builder.append("orbit_eccentricityY = " + getYOrbitEccentricity());
+		}  else {
+			builder.append("FALSE");
+		}
+		return builder.toString();
 	}
 }

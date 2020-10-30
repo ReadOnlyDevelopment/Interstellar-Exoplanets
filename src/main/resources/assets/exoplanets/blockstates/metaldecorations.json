@@ -1,0 +1,34 @@
+{
+	"forge_marker": 1,
+	"defaults": { "model": "cube_all" },
+	"variants": {
+		"type": {
+			"grating": {
+				"textures": {
+					"all": "exoplanets:blocks/grating" } },
+			"grating_stripe": {
+				"textures": {
+					"all": "exoplanets:blocks/grating_stripe" } },
+			"heavy_border_metal": {
+				"textures": {
+					"all": "exoplanets:blocks/heavy_border_metal" } },
+			"light_border_metal": {
+				"textures": {
+					"all": "exoplanets:blocks/light_border_metal" } },
+			"pattern_metal": {
+				"textures": {
+					"all": "exoplanets:blocks/pattern_metal" } },
+			"pattern_metal_1": {
+				"textures": {
+					"all": "exoplanets:blocks/pattern_metal_1" } },
+			"rivet_metal": {
+				"textures": {
+					"all": "exoplanets:blocks/rivet_metal" } },
+			"metal_fan": {
+				"textures": {
+					"all": "exoplanets:blocks/metal_fan" 
+					} 
+			} 
+		} 
+	} 
+}

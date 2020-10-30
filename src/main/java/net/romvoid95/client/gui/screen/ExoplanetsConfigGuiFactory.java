@@ -28,7 +28,7 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 import net.romvoid95.common.config.ConfigCore;
-import net.romvoid95.common.config.PlanetCoreConfig;
+import net.romvoid95.common.config.ConfigPlanets;
 import net.romvoid95.core.ExoInfo;
 
 public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
@@ -38,7 +38,7 @@ public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
 		public ExoCoreConfGui(GuiScreen parent) {
 			super(parent, ConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
 					GCCoreUtil.translate("exoplanets.configgui.coretitle"));
-			this.configElements.addAll(PlanetCoreConfig.getConfigElements());
+			this.configElements.addAll(ConfigPlanets.getConfigElements());
 			//this.configElements.addAll(SConfigSystems.getConfigElements());
 		}
 	}

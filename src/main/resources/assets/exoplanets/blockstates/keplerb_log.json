@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column",
+    "textures": {
+      "side": "exoplanets:blocks/terrain/kepler1649/keplerb_swamp_bark",
+      "end": "exoplanets:blocks/terrain/kepler1649/keplerb_swamp_log"
+    }
+  },
+  "variants": {
+    "axis": {
+      "y": {},
+      "z": { "x": 90 },
+      "x": { "x": 90, "y": 90 },
+      "none": { "model": "cube_all", "textures": { "all": "#side" } }
+    }
+  }
+}
