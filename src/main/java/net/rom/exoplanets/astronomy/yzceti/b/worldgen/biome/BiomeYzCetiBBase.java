@@ -48,7 +48,7 @@ public class BiomeYzCetiBBase extends BiomeSpace {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.COLD);
 		this.clearAllSpawning();
-		this.setPlanetForBiome(Planets.yzcetib);
+		this.setPlanetForBiome(Planets.YZCETID);
 	}
 
 	public final void generateYzCetiBTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {

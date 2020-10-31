@@ -29,7 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.conf.ConfigCore;
 import net.rom.exoplanets.content.block.machine.container.ContainerMetalFurnace;
 import net.rom.exoplanets.content.tile.TileEntityMetalFurnace;
 
@@ -66,7 +66,7 @@ public class GuiMetalFurnace extends GuiContainer {
         i1 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
 
-        if (SConfigCore.enableDebug)
+        if (ConfigCore.enableDebug)
             drawDebugInfo();
     }
 

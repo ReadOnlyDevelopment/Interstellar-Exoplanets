@@ -43,7 +43,7 @@ public class TrappistBlocks {
 		ExoBlocks.register(TrappistE.trap1e_dirt, "trap1e_dirt");
 		ExoBlocks.register(TrappistE.trap1e_cobblestone, "trap1e_cobblestone");
 		ExoBlocks.register(TrappistE.trap1e_stone, "trap1e_stone");
-		ExoBlocks.register(TrappistE.trap1eore, "trap1eore", new BlockOreMetal.ItemBlock(TrappistE.trap1eore));
+		ExoBlocks.register(TrappistE.trap1eore, "trap1eore");
 
 	}
 

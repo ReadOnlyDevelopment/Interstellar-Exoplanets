@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2020 Interstellar:  Exoplanets
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,6 +25,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 
+import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResource;
@@ -33,7 +34,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
+import net.rom.exoplanets.ExoplanetsMod;
 
 public class ExoModelLoader implements ICustomModelLoader {
 	public static final ExoModelLoader instance = new ExoModelLoader();
@@ -47,6 +50,7 @@ public class ExoModelLoader implements ICustomModelLoader {
 
 	public void addDomain(String domain) {
 		enabledDomains.add(domain.toLowerCase());
+		ExoplanetsMod.logger.info("Added " + domain.toLowerCase() + " to OBJ domain list");
 	}
 
 	@Override

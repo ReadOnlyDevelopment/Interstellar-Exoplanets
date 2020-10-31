@@ -21,7 +21,9 @@ import java.util.Random;
 
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3i;
+import net.rom.exoplanets.internal.annotations.UtilClass;
 
+@UtilClass
 public final class MathUtils {
 	private static final double DOUBLES_EQUAL_PRECISION = 0.000000001;
 	private static final Random RANDOM                  = new Random();

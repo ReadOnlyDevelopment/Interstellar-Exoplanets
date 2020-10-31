@@ -35,12 +35,10 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.screen.button.GuiDiscordButton;
 import net.rom.exoplanets.util.RGB;
 import net.rom.exoplanets.util.ReflectionHelper;
@@ -48,30 +46,32 @@ import net.rom.exoplanets.util.ReflectionHelper;
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {
 
-	private static final Logger				log			= LogManager.getLogger();
-	private final GuiMainMenu				guiMainMenu;
+	private static final Logger log = LogManager.getLogger();
+	private final GuiMainMenu   guiMainMenu;
 
 	public GuiBeta(GuiMainMenu guiMainMenu) {
 		this.guiMainMenu = guiMainMenu;
 	}
 
 	@Override
-	public void initGui() {
+	public void initGui () {
 		super.initGui();
 		this.buttonList.clear();
-		GuiButton toMenu = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n.format("gui.done"));
-		GuiDiscordButton discord = new GuiDiscordButton(1, this.width / 2 - 200, this.height / 4 + 160, 150, 35, 268, 55, "");
+		GuiButton        toMenu  = new GuiButton(0, this.width / 2 + 160, this.height / 4 + 180, I18n
+				.format("gui.done"));
+		GuiDiscordButton discord = new GuiDiscordButton(1, this.width / 2 - 200, this.height / 4
+				+ 160, 150, 35, 268, 55, "");
 		toMenu.setWidth(50);
 
 		this.buttonList.addAll(Arrays.asList(toMenu, discord));
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 
 		mc.renderEngine.bindTexture(Assets.getTexture("GuiBetaBackground"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		Tessellator tessellator = Tessellator.getInstance();
+		Tessellator   tessellator  = Tessellator.getInstance();
 		BufferBuilder vertexbuffer = tessellator.getBuffer();
 		vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX);
 		vertexbuffer.pos(0 + 0, 0 + height, zLevel).tex(0, 1).endVertex();
@@ -89,41 +89,42 @@ public class GuiBeta extends GuiScreen {
 			this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);
 			y += 12;
 		}
-		this.drawCenteredString(this.fontRenderer, "Running Version: " + ExoInfo.FULL_VERSION, x, y, 0xFFFFFF);
-		
-		if(ExoplanetsMod.isDevBuild) {
-			for (int i = 0; i < 3; i++) {
-				int yy = y + 24;
-				String s = I18n.format("information.dev." + ExoInfo.MODID + ":beta." + (i + 1));
-				this.drawCenteredString(this.fontRenderer, s, x, yy, 0xFFFFFF);
-				y += 12;
-			}
-		}
+		this.drawCenteredString(this.fontRenderer, "Running Version: " + ExoInfo.VERSION, x, y, 0xFFFFFF);
+
+//		if (ExoplanetsMod.isDevBuild) {
+//			for (int i = 0; i < 3; i++) {
+//				int    yy = y + 24;
+//				String s  = I18n.format("information.dev." + ExoInfo.MODID + ":beta." + (i + 1));
+//				this.drawCenteredString(this.fontRenderer, s, x, yy, 0xFFFFFF);
+//				y += 12;
+//			}
+//		}
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	@Override
-	protected void actionPerformed(GuiButton button) {
+	protected void actionPerformed (GuiButton button) {
 
 		switch (button.id) {
-			case 0:
-				Minecraft.getMinecraft().displayGuiScreen(this.guiMainMenu);
-				break;
-			case 1:
-				try {
-					String discordUrl = "https://discord.gg/fscJ2gG";
-					ReflectionHelper.findField(GuiScreen.class, "clickedLinkURI", "field_175286_t").set(this, new URI(discordUrl));
-					//ObfuscationReflectionHelper.findField(GuiScreen.class, "clickedLinkURI").set(this, new URI(discordUrl));
-					mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
-				} catch (IllegalArgumentException | IllegalAccessException | URISyntaxException e) {
-					log.error("Exception when discord link menu button clicked:", e);
-					button.displayString = I18n.format("exoplanets.gui.failed");
-					button.enabled = false;
-					e.printStackTrace();
-				}
-			default:
-				break;
+		case 0:
+			Minecraft.getMinecraft().displayGuiScreen(this.guiMainMenu);
+			break;
+		case 1:
+			try {
+				String discordUrl = "https://discord.gg/fscJ2gG";
+				ReflectionHelper.findField(GuiScreen.class, "clickedLinkURI", "field_175286_t")
+						.set(this, new URI(discordUrl));
+				mc.displayGuiScreen(new GuiConfirmOpenLink(this, discordUrl, 31102009, false));
+			}
+			catch (IllegalArgumentException | IllegalAccessException | URISyntaxException e) {
+				log.error("Exception when discord link menu button clicked:", e);
+				button.displayString = I18n.format("exoplanets.gui.failed");
+				button.enabled       = false;
+				e.printStackTrace();
+			}
+		default:
+			break;
 
 		}
 	}

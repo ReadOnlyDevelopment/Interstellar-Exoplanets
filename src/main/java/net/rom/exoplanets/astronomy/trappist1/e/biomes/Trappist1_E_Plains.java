@@ -24,13 +24,11 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.rom.exoplanets.astronomy.trappist1.TrappistBlocks;
 import net.rom.exoplanets.init.ExoBlocks;
 import net.rom.exoplanets.internal.world.gen.feature.ExoSempervirens;
 import net.rom.exoplanets.internal.world.gen.feature.ExoTreeFlatTop;
-import net.rom.exoplanets.internal.world.gen.feature.ExoTreeWillow;
 
 public class Trappist1_E_Plains extends WE_Biome {
 
@@ -60,68 +58,65 @@ public class Trappist1_E_Plains extends WE_Biome {
 
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public void decorateBiome (World world, Random rand, int x, int z) {
-		int randPosX = x + rand.nextInt(16) + 8;
-		int randPosZ = z + rand.nextInt(16) + 8;
-		BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
-		
+		int      randPosX = x + rand.nextInt(16) + 8;
+		int      randPosZ = z + rand.nextInt(16) + 8;
+		BlockPos pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
 		boolean cangen = true;
-		Block log = ExoBlocks.log_a_rough;
-		Block leaves = Blocks.LEAVES2;
-		
-		for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-			if(world.isAirBlock(pos1)) 
+		Block   log    = ExoBlocks.log_a;
+		Block   leaves = Blocks.LEAVES2;
+
+		for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
+			if (world.isAirBlock(pos1))
 				cangen = false;
-		
-		if(!world.isAreaLoaded(pos, 16, false))
-			if(cangen && world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
-			{
-				switch(rand.nextInt(2))
-				{
-					case 0:
-						new ExoSempervirens(log, leaves).generate(world, rand, pos);
-				    	break;
-					case 1:
-						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
-						break;
+
+		if (!world.isAreaLoaded(pos, 16, false))
+			if (cangen && world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState()) {
+				switch (rand.nextInt(2)) {
+				case 0:
+					new ExoSempervirens(log, leaves).generate(world, rand, pos);
+					break;
+				case 1:
+					new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
+					break;
 				}
 			}
 
-		for(int i = 0; i < 8; i++){
+		for (int i = 0; i < 8; i++) {
 			randPosX = x + rand.nextInt(16) + 8;
 			randPosZ = z + rand.nextInt(16) + 8;
-			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
-			
+			pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
 			cangen = true;
-			for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-				if(world.isAirBlock(pos1) || world.getBlockState(pos1) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
+			for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
+				if (world.isAirBlock(pos1)
+						|| world.getBlockState(pos1) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
 					cangen = false;
-			
-    		if(!world.isAreaLoaded(pos, 16, false))
-	    		if(cangen && world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
-	    		{
-	    			switch(rand.nextInt(2))
-					{
+
+			if (!world.isAreaLoaded(pos, 16, false))
+				if (cangen
+						&& world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState()) {
+					switch (rand.nextInt(2)) {
 					case 0:
 						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
-				    	break;
+						break;
 					case 1:
 						new ExoTreeFlatTop(log, leaves).generate(world, rand, pos);
 						break;
 					}
 				}
 		}
-		
-		for(int i = 0; i < 3; i++){
-    		randPosX = x + rand.nextInt(16) + 8;
+
+		for (int i = 0; i < 3; i++) {
+			randPosX = x + rand.nextInt(16) + 8;
 			//randPosY = this.rand.nextInt(256);
 			randPosZ = z + rand.nextInt(16) + 8;
-			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
-			
-			if(world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
-    			world.setBlockState(pos, Blocks.DEADBUSH.getDefaultState());
-    	}
+			pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
+			if (world.getBlockState(pos.down()) == TrappistBlocks.TrappistE.trap1e_grass.getDefaultState())
+				world.setBlockState(pos, Blocks.DEADBUSH.getDefaultState());
+		}
 	}
 }

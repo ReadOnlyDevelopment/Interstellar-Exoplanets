@@ -32,56 +32,56 @@ public class CelestialAssets {
 
 	private static void registerNormal () {
 
-		put("yzcetistar", YZCETI, "star");
-		put("kepler1649star", KELPER1649, "star");
-		put("trappist1star", TRAPPIST, "star");
-		put("wolf1061star", WOLF1061, "star");
-		put("yzcetib", YZCETI, "b");
-		put("yzcetic", YZCETI, "c");
-		put("yzcetid", YZCETI, "d");
-		put("kepler1649b", KELPER1649, "b");
-		put("kepler1649c", KELPER1649, "c");
-		put("trappist1b", TRAPPIST, "b");
-		put("trappist1c", TRAPPIST, "c");
-		put("trappist1d", TRAPPIST, "d");
-		put("trappist1e", TRAPPIST, "e");
-		put("trappist1f", TRAPPIST, "f");
-		put("trappist1g", TRAPPIST, "g");
-		put("trappist1h", TRAPPIST, "h");
-		put("wolf1061b", WOLF1061, "b");
-		put("wolf1061c", WOLF1061, "c");
-		put("wolf1061d", WOLF1061, "d");
+		put("yzcetistar", YZCETI);
+		put("kepler1649star", KELPER1649);
+		put("trappist1star", TRAPPIST);
+		put("wolf1061star", WOLF1061);
+		put("yzcetib", YZCETI);
+		put("yzcetic", YZCETI);
+		put("yzcetid", YZCETI);
+		put("kepler1649b", KELPER1649);
+		put("kepler1649c", KELPER1649);
+		put("trappist1b", TRAPPIST);
+		put("trappist1c", TRAPPIST);
+		put("trappist1d", TRAPPIST);
+		put("trappist1e", TRAPPIST);
+		put("trappist1f", TRAPPIST);
+		put("trappist1g", TRAPPIST);
+		put("trappist1h", TRAPPIST);
+		put("wolf1061b", WOLF1061);
+		put("wolf1061c", WOLF1061);
+		put("wolf1061d", WOLF1061);
 
 	}
 
 	private static void registerRealistic () {
-		putRealistic("realyzcetistar", YZCETI, "star");
-		putRealistic("realkepler1649star", KELPER1649, "star");
-		putRealistic("realtrappist1star", TRAPPIST, "star");
-		putRealistic("realwolf1061star", WOLF1061, "star");
-		putRealistic("realyzcetib", YZCETI, "b");
-		putRealistic("realyzcetic", YZCETI, "c");
-		putRealistic("realyzcetid", YZCETI, "d");
-		putRealistic("realkepler1649b", KELPER1649, "b");
-		putRealistic("realkepler1649c", KELPER1649, "c");
-		putRealistic("realtrappist1b", TRAPPIST, "b");
-		putRealistic("realtrappist1c", TRAPPIST, "c");
-		putRealistic("realtrappist1d", TRAPPIST, "d");
-		putRealistic("realtrappist1e", TRAPPIST, "e");
-		putRealistic("realtrappist1f", TRAPPIST, "f");
-		putRealistic("realtrappist1g", TRAPPIST, "g");
-		putRealistic("realtrappist1h", TRAPPIST, "h");
-		putRealistic("realwolf1061b", WOLF1061, "b");
-		putRealistic("realwolf1061c", WOLF1061, "c");
-		putRealistic("realwolf1061d", WOLF1061, "d");
+		putRealistic("realyzcetistar", YZCETI);
+		putRealistic("realkepler1649star", KELPER1649);
+		putRealistic("realtrappist1star", TRAPPIST);
+		putRealistic("realwolf1061star", WOLF1061);
+		putRealistic("realyzcetib", YZCETI);
+		putRealistic("realyzcetic", YZCETI);
+		putRealistic("realyzcetid", YZCETI);
+		putRealistic("realkepler1649b", KELPER1649);
+		putRealistic("realkepler1649c", KELPER1649);
+		putRealistic("realtrappist1b", TRAPPIST);
+		putRealistic("realtrappist1c", TRAPPIST);
+		putRealistic("realtrappist1d", TRAPPIST);
+		putRealistic("realtrappist1e", TRAPPIST);
+		putRealistic("realtrappist1f", TRAPPIST);
+		putRealistic("realtrappist1g", TRAPPIST);
+		putRealistic("realtrappist1h", TRAPPIST);
+		putRealistic("realwolf1061b", WOLF1061);
+		putRealistic("realwolf1061c", WOLF1061);
+		putRealistic("realwolf1061d", WOLF1061);
 
 	}
 
-	private static void put (String name, String systemName, String planetName) {
-		Assets.addCelestialTexture(name, systemName, planetName);
+	private static void put (String name, String systemName) {
+		Assets.addCelestialTexture(name, systemName);
 	}
 
-	private static void putRealistic (String name, String systemName, String planetName) {
-		Assets.addRealisticCelestialTexture(name, systemName, planetName);
+	private static void putRealistic (String name, String systemName) {
+		Assets.addRealisticCelestialTexture(name, systemName);
 	}
 }

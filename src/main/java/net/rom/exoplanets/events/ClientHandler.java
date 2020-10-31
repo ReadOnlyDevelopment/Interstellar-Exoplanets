@@ -75,7 +75,7 @@ public class ClientHandler {
 				if (minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && MCUtil.isDeobfuscated()) {
 					String dev     = "ReadOnlyDev | Developer Environment";
 					String dis     = "[ Non-Distributable Dev Build ]";
-					String version = ExoInfo.NAME + " " + ExoInfo.FULL_VERSION;
+					String version = ExoInfo.NAME + " " + ExoInfo.VERSION;
 
 					int center = EnumScreenAnchor.TOP_CENTER.getX(mc.displayWidth / 2);
 					GL11.glPushMatrix();
@@ -92,7 +92,7 @@ public class ClientHandler {
 	}
 
 	public void registerTexture (TextureStitchEvent.Pre event, String texture) {
-		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "model/" + texture));
+		event.getMap().registerSprite(new ResourceLocation(ExoInfo.MODID, "models/" + texture));
 	}
 
 	private void replaceModelDefault (ModelBakeEvent event, String resLoc, String objLoc, List<String> visibleGroups, Class<? extends ModelTransWrapper> clazz, IModelState parentState, String... variants) {

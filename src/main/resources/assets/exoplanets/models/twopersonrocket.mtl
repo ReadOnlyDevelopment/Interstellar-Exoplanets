@@ -2,4 +2,4 @@ newmtl RocketMaterial
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
 d 1
-map_Kd exoplanets:model/twopersonrocket
+map_Kd exoplanets:models/twopersonrocket

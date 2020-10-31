@@ -50,9 +50,10 @@ import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+import net.rom.api.space.ExoPlanet;
+import net.rom.api.space.ExoSystem;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
+import net.rom.exoplanets.conf.ConfigCore;
 import net.rom.exoplanets.internal.world.star.ExoStar;
 
 /**
@@ -60,7 +61,7 @@ import net.rom.exoplanets.internal.world.star.ExoStar;
  */
 public class AstroBuilder {
 
-	public static final boolean REALISM = SConfigCore.enableRealism;
+	public static final boolean REALISM = ConfigCore.enableRealism;
 
 	/** The modid. */
 	private String modid;
@@ -128,13 +129,12 @@ public class AstroBuilder {
 	 * @param  exoStar the exo star
 	 * @return         the solar system
 	 */
-	public SolarSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
-		SolarSystem body = new SolarSystem(name, "milky_way");
-		body.setMapPosition(new Vector3(pos));
+	public ExoSystem buildSolarSystem (String name, ExoStar exoStar, Vector3 pos) {
+		ExoSystem body = new ExoSystem(name, "milky_way");
 		exoStar.setParentSolarSystem(body);
 		body.setMainStar(exoStar);
+		body.setMapPosition(pos);
 		exoStar.setBodyIcon(Assets.getCelestialTexture(exoStar.getName()));
-
 		return body;
 	}
 
@@ -143,7 +143,7 @@ public class AstroBuilder {
 		body.setPhaseShift(phase);
 		body.setRingColorRGB(0.1F, 0.9F, 2.6F);
 		body.setRelativeSize(1.0F);
-
+		body.setBodyIcon(Assets.getCelestialTexture(name));
 		body.addChecklistKeys("equipOxygenSuit");
 		return body;
 	}
@@ -227,12 +227,12 @@ public class AstroBuilder {
 	 * @param day      the day
 	 */
 	public void setData (CelestialBody body, ClassBody clazz, float distance, float gravity, float orbit, int pressure, long day) {
-		((ExPlanet) body).setClassPlanet(clazz);
+		((ExoPlanet) body).setClassBody(clazz);
 		body.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
 		body.setRelativeOrbitTime(orbit);
 		body.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		((ExoPlanet) body).setPlanetGravity(gravity);
-		((ExPlanet) body).setAtmosphericPressure(pressure);
+		((ExoPlanet) body).setAtmosphericPressure(pressure);
 		BodiesRegistry.setPlanetData(body, 0, day, BodiesRegistry.calculateGravity(gravity), false);
 
 	}
@@ -271,8 +271,8 @@ public class AstroBuilder {
 	 * @param orbitOffsetY  the orbit offset Y
 	 */
 	public void setOrbit (CelestialBody body, float eccentricityX, float eccentricityY, float orbitOffsetX, float orbitOffsetY) {
-		((ExPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
-		((ExPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
+		((ExoPlanet) body).setOrbitEccentricity(eccentricityY, orbitOffsetX);
+		((ExoPlanet) body).setOrbitOffset(orbitOffsetX, orbitOffsetY);
 		BodiesRegistry.setOrbitData(body, body.getPhaseShift(), 1.0f, body
 				.getRelativeOrbitTime(), eccentricityX, eccentricityY, orbitOffsetX, orbitOffsetY);
 

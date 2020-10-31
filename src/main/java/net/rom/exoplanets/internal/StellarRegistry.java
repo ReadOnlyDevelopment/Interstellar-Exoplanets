@@ -87,7 +87,6 @@ import net.rom.exoplanets.internal.inerf.ICustomModel;
 import net.rom.exoplanets.internal.inerf.ITEBlock;
 import net.rom.exoplanets.internal.inerf.item.IColorItem;
 import net.rom.exoplanets.internal.inerf.item.ItemBlockMetaSubtypes;
-import net.rom.exoplanets.util.JsonUtil;
 
 public class StellarRegistry {
 	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
@@ -122,9 +121,6 @@ public class StellarRegistry {
 
 	@Nullable
 	private boolean registerJsonFiles;
-
-	@Nullable
-	private JsonUtil json = null;
 
 	@Nullable
 	private CreativeTabs creativeTab = null;
@@ -209,10 +205,6 @@ public class StellarRegistry {
 		this.blocks.add(block);
 		block.setUnlocalizedName(this.modId + "." + key);
 
-		if (this.registerJsonFiles) {
-			this.json = new JsonUtil(this.modId, block);
-		}
-
 		validateRegistryName(key);
 		ResourceLocation name = new ResourceLocation(this.modId, key);
 		safeSetRegistryName(block, name);
@@ -248,10 +240,6 @@ public class StellarRegistry {
 	public <T extends Block> T registerBlock (T block, String key, ItemBlock itemBlock, String path) {
 		this.blocks.add(block);
 		block.setUnlocalizedName(this.modId + "." + key);
-
-		if (this.registerJsonFiles) {
-			this.json = new JsonUtil(this.modId, block, path);
-		}
 
 		validateRegistryName(key);
 		ResourceLocation name = new ResourceLocation(this.modId, key);

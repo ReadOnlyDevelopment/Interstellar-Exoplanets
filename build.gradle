@@ -1,9 +1,7 @@
 buildscript {
 
 	repositories {
-
 		jcenter()
-
 		maven {
 
 			url = 'http://files.minecraftforge.net/maven'
@@ -22,8 +20,6 @@ buildscript {
 
 plugins {
 	id 'com.matthewprenger.cursegradle' version '1.4.0'
-	id "com.wynprice.cursemaven" version "2.1.5"
-	id 'com.github.spotbugs' version '1.6.9'
 	id "io.freefair.lombok" version "2.9.5"
 	id "maven-publish"
 	id 'jacoco'
@@ -34,86 +30,35 @@ apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-import org.gradle.util.GradleVersion
-project.afterEvaluate {
-	jacoco {
-		toolVersion = '0.8.3'
-		reportsDir = file("$buildDir/reports")
-	}
+def versionBuild = 0
+if (System.getenv("BUILD_NUMBER") != null)
+	versionBuild = System.getenv("BUILD_NUMBER")
+	
 
-	project.task(type: JacocoReport, 'junitPlatformJacocoReport', {
-		if (GradleVersion.current() >= GradleVersion.version('5.0')) {
-			getSourceDirectories().from(files('./src/main'))
-			getClassDirectories().from(files("${project.buildDir}/classes/main"))
-		} else {
-			sourceDirectories = files('./src/main')
-			classDirectories = files("${project.buildDir}/classes/main")
-		}
-	})
-}
-
-
-spotbugs {
-	ignoreFailures = true
-	toolVersion = '3.1.6'
-	effort = 'max'
-	reportLevel = 'low'
-}
-
-tasks.withType(com.github.spotbugs.SpotBugsTask) {
-	reports {
-		xml.enabled = false
-		html.enabled = true
-	}
-}
-
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-	options.compilerArgs = ['-Xlint:unchecked', // deprecation, rawtypes, cast, unchecked, all
-	]
-	compileJava.options.compilerArgs += '-proc:none'
-}
-
-tasks.withType(Test) {
-	compileTestJava.options.compilerArgs += '-proc:none'
-}
-
-class Secrets {
-	Map m_data = null
-
-	final String getProperty(final String key) {
-		return (m_data && (m_data[key] != null)) ? m_data[key] : ''
-	}
-}
-
-final def secretFile
-if (System.getenv('SECRET_FILE')) {
-	secretFile = file System.getenv().SECRET_FILE
-} else {
-	secretFile = file 'secret.json'
-}
-
-import groovy.json.JsonSlurper
-project.ext.secret = new Secrets()
-secretFile.withReader {
-	project.secret.m_data = new JsonSlurper().parse it
-}
-
+def devBuild = false
+def ver
 def short_version = "${mod_version}"
-version = "${mod_version}." + getBuildNumber()// + ".dev"
+if(devBuild) {
+	ver = "${mod_version}." + getBuildNumber() + "-dev." + versionBuild
+} else {
+	ver = "${mod_version}." + getBuildNumber()
+}
+version = "0.1.1-compatfix"//ver
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
 ext {
-	v = "${mod_version}." + getBuildNumber()
+	dev = devBuild
+	v = ver
+	apiFiles = ['net/rom/api/**']
+	coreFiles = ['net/rom/exoplanets/**']
 }
 
-apply from: 'scripts/artifacts.gradle'
-apply from: 'scripts/deps.gradle'
-apply from: 'scripts/restcall.gradle'
-apply from: 'scripts/changelog.gradle'
+apply from: 'scripts/websource.gradle'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
 
 eclipse.project {
 	buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
@@ -134,9 +79,13 @@ minecraft {
 	version = "${forge_mc_version}-${forge_version}"
 	mappings = "${mcp_mappings_version}"
 	runDir = 'run'
-
+	if(devBuild) {
+		makeObfSourceJar = false
+	} else {
+		makeObfSourceJar = true
+	}
 	replace '@BUILD@', getBuildNumber()
-	replace '@VERSION@', short_version
+	replace '@VERSION@', "0.1.1-compatfix"
 	replace '@FINGERPRINT@', project.findProperty('signSHA1')
 	replaceIn "${mod_class}.java"
 }
@@ -179,21 +128,12 @@ publishing {
 			groupId project.mod_group
 			version project.version
 			from components.java
-			if (getBooleanProperty('create_source_jar')) {
-				artifact sourceJar {
-					classifier 'sources'
-				}
-			}
-			if (getBooleanProperty('create_api_jar')) {
 				artifact apiJar {
 					classifier 'api'
 				}
-			}
-			if (getBooleanProperty('create_deobf_jar')) {
 				artifact deobfJar {
 					classifier 'dev'
 				}
-			}
 
 			pom {
 				name = project.POM_NAME
@@ -241,14 +181,6 @@ publishing {
 	}
 	repositories {
 		maven {
-			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/ROMVoid95/Interstellar-Exoplanets")
-			credentials {
-				username = secret.NAME
-				password = secret.GHTOKEN
-			}
-		}
-		maven {
 			name = "LocalMaven"
 			url = "file://Z:/"
 		}
@@ -257,17 +189,11 @@ publishing {
 
 curseforge {
 	if (project.hasProperty('curseforge_project_id')) {
-		apiKey = secret.curseforgeAPIKey
+		apiKey = findProperty('curse_auth') ?: 0
 		project {
 			id = project.curseforge_project_id
-			if (project.hasProperty('curseforge_changelog_filename')) {
-				changelog = file(project.curseforge_changelog_filename)
-			} else {
-				changelog = ''
-			}
-			if (project.hasProperty('curseforge_changelog_type')) {
-				changelogType = project.curseforge_changelog_type
-			}
+			changelog = file("changelogs/CHANGELOG-"+project.ext.v+".md")
+			changelogType = "markdown"
 			if ((project.hasProperty('curseforge_release_type')) && ((project.curseforge_release_type == 'alpha') || (project.curseforge_release_type == 'beta') || (project.curseforge_release_type == 'release'))) {
 				releaseType = project.curseforge_release_type
 			} else {
@@ -414,7 +340,6 @@ task incrementBuild {
 }
 
 build.dependsOn signJar
-build.finalizedBy incrementBuild // only increment on successful builds
 tasks.build.dependsOn signJar
 tasks.publish.dependsOn build
-tasks.curseforge.dependsOn build, postRelease
+tasks.curseforge.dependsOn build

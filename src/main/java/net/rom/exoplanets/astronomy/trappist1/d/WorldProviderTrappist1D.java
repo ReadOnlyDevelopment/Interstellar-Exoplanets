@@ -51,7 +51,7 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 
 	@Override
 	public CelestialBody getCelestialBody () {
-		return Planets.trappistd;
+		return Planets.TRAPPIST1D;
 	}
 
 	@Override
@@ -67,11 +67,6 @@ public class WorldProviderTrappist1D extends WE_WorldProviderSpace {
 	@Override
 	public List<Block> getSurfaceBlocks () {
 		return null;
-	}
-
-	@Override
-	public ClassBody getClassBody () {
-		return ClassBody.OCEANIDE;
 	}
 
 	@Override

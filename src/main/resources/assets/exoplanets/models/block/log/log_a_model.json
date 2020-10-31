@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "exoplanets:blocks/wood/log_a_top",
-        "side": "exoplanets:blocks/wood/log_a"
+        "end": "exoplanets:blocks/wood/log_a",
+        "side": "exoplanets:blocks/wood/log_a_top"
     }
 }

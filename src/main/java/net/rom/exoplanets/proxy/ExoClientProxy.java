@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.client.render.BlockHandler;
 import net.rom.exoplanets.client.render.RocketRenderer;
 import net.rom.exoplanets.content.entity.EntityTwoPlayerRocket;
 import net.rom.exoplanets.events.BetaGuiHandler;
@@ -49,15 +48,14 @@ public class ExoClientProxy extends ExoCommonProxy {
 		super.preInit(registry, event);
 		ModelLoaderRegistry.registerLoader(ExoModelLoader.instance);
 		ExoModelLoader.instance.addDomain(ExoInfo.MODID);
-		registerEventHandler(this);
+		register_event(this);
 
 		registerVarients();
 		RenderingRegistry
 				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
-		registerEventHandler(new BetaGuiHandler());
-		registerEventHandler(new ClientHandler());
-		registerEventHandler(new BlockHandler());
-
+		register_event(new BetaGuiHandler());
+		register_event(new ClientHandler());
+		register_event(new SkyProviders());
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
 
@@ -66,7 +64,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
-		registerEventHandler(new SkyProviders());
+
 		registry.clientInit(event);
 	}
 
@@ -95,8 +93,9 @@ public class ExoClientProxy extends ExoCommonProxy {
 		return Minecraft.getMinecraft().player;
 	}
 
-	public static void registerEventHandler (Object handler) {
-		MinecraftForge.EVENT_BUS.register(handler);
+	@Override
+	public void register_event (Object obj) {
+		MinecraftForge.EVENT_BUS.register(obj);
 	}
 
 	public void registerVarients () {

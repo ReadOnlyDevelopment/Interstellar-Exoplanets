@@ -21,11 +21,13 @@ import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.astronomy.kepler1649.c.SkyProviderKepler1649c;
 import net.rom.exoplanets.astronomy.kepler1649.c.WorldProviderKepler1649c;
 import net.rom.exoplanets.astronomy.trappist1.c.SkyProviderTrappist1C;
@@ -34,14 +36,15 @@ import net.rom.exoplanets.astronomy.trappist1.d.SkyProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.d.WorldProviderTrappist1D;
 import net.rom.exoplanets.astronomy.trappist1.e.SkyProviderTrappist1E;
 import net.rom.exoplanets.astronomy.trappist1.e.WorldProviderTrappist1E;
-import net.rom.exoplanets.astronomy.yzceti.b.SkyProviderB;
+import net.rom.exoplanets.astronomy.yzceti.b.SkyProviderYzCetiB;
 import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
-import net.rom.exoplanets.astronomy.yzceti.c.SkyProviderC;
+import net.rom.exoplanets.astronomy.yzceti.c.SkyProviderYzCetiC;
 import net.rom.exoplanets.astronomy.yzceti.c.WorldProviderYzCetiC;
-import net.rom.exoplanets.astronomy.yzceti.d.SkyProviderD;
+import net.rom.exoplanets.astronomy.yzceti.d.SkyProviderYzCetiD;
 import net.rom.exoplanets.astronomy.yzceti.d.WorldProviderYzCetiD;
 import net.rom.exoplanets.internal.MCUtil;
 
+@Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class SkyProviders {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
@@ -54,7 +57,7 @@ public class SkyProviders {
 			// Planets
 			if (world.provider instanceof WorldProviderYzCetiB) {
 				if (world.provider.getSkyRenderer() == null) {
-					world.provider.setSkyRenderer(new SkyProviderB());
+					world.provider.setSkyRenderer(new SkyProviderYzCetiB());
 				}
 
 				if (world.provider.getCloudRenderer() == null) {
@@ -63,7 +66,7 @@ public class SkyProviders {
 			}
 			if (world.provider instanceof WorldProviderYzCetiC) {
 				if (world.provider.getSkyRenderer() == null) {
-					world.provider.setSkyRenderer(new SkyProviderC());
+					world.provider.setSkyRenderer(new SkyProviderYzCetiC());
 				}
 
 				if (world.provider.getCloudRenderer() == null) {
@@ -72,7 +75,7 @@ public class SkyProviders {
 			}
 			if (world.provider instanceof WorldProviderYzCetiD) {
 				if (world.provider.getSkyRenderer() == null) {
-					world.provider.setSkyRenderer(new SkyProviderD());
+					world.provider.setSkyRenderer(new SkyProviderYzCetiD());
 				}
 
 				if (world.provider.getCloudRenderer() == null) {

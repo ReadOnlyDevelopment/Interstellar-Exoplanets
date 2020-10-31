@@ -26,14 +26,13 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.util.RGB;
 
 public class SkyProviderTrappist1D extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
 		GL11.glEnable(GL11.GL_BLEND);
-
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
@@ -69,8 +68,7 @@ public class SkyProviderTrappist1D extends SkyProviderBase {
 
 	@Override
 	protected Vector3 getAtmosphereColor () {
-		RGB c = RGB.parse("SkyBlue");
-		return new Vector3(c.getRed(), c.getGreen(), c.getBlue());
+		return ((WorldProviderTrappist1D)this.mc.world.provider).getSkyColor();
 	}
 
 	@Override

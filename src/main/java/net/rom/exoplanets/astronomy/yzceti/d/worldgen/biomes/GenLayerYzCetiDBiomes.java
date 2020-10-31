@@ -25,7 +25,7 @@ import net.rom.exoplanets.init.Planets;
 
 public class GenLayerYzCetiDBiomes extends GenLayer {
 
-    private static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(Planets.yzcetid).toArray(new Biome[0]);
+    private static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(Planets.YZCETID).toArray(new Biome[0]);
 
     public GenLayerYzCetiDBiomes(long l, GenLayer parent) {
         super(l);

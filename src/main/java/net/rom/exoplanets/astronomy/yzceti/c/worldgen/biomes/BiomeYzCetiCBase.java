@@ -49,7 +49,7 @@ public class BiomeYzCetiCBase extends BiomeSpace {
 		super(singleName, props);
 		this.setTempCategory(TempCategory.MEDIUM);
 		this.setStoneBlock(YzCetiBlocks.CetiC.C_METAMORPHIC);
-		this.setPlanetForBiome(Planets.yzcetic);
+		this.setPlanetForBiome(Planets.YZCETIC);
 	}
 
 	public final void generateYzCetiCTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,

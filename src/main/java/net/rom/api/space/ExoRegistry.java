@@ -13,7 +13,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
@@ -21,10 +20,10 @@ public class ExoRegistry {
 
 	private ExoRegistry() {}
 
-	static int                                 maxRelayID = 0;
-	static TreeMap<String, RelayStation>       relays     = Maps.newTreeMap();
-	static BiMap<String, Integer>              relayIDs   = HashBiMap.create();
-	static HashMap<Planet, List<RelayStation>> relayList  = Maps.newHashMap();
+	static int                                        maxRelayID = 0;
+	static TreeMap<String, RelayStation>              relays     = Maps.newTreeMap();
+	static BiMap<String, Integer>                     relayIDs   = HashBiMap.create();
+	static HashMap<CelestialBody, List<RelayStation>> relayList  = Maps.newHashMap();
 
 	public static RelayStation getRelayStationFromDimensionID (int dimensionID) {
 		for (RelayStation relay : ExoRegistry.relays.values()) {
@@ -39,13 +38,13 @@ public class ExoRegistry {
 		ExoRegistry.relayList.clear();
 
 		for (RelayStation relay : ExoRegistry.getRegisteredRelayStations().values()) {
-			Planet             planet              = relay.getParentPlanet();
-			List<RelayStation> listOfRelayStations = ExoRegistry.relayList.get(planet);
+			CelestialBody      body                = relay.getParent();
+			List<RelayStation> listOfRelayStations = ExoRegistry.relayList.get(body);
 			if (listOfRelayStations == null) {
 				listOfRelayStations = new ArrayList<RelayStation>();
 			}
 			listOfRelayStations.add(relay);
-			ExoRegistry.relayList.put(planet, listOfRelayStations);
+			ExoRegistry.relayList.put(body, listOfRelayStations);
 		}
 	}
 

@@ -1,0 +1,20 @@
+repositories {
+	ivy {
+		url "https://micdoodle8.com/new-builds/"
+		layout 'pattern', {
+			artifact "[organization]/${project.GCBuild}/[module]-[revision].jar"
+		}
+		metadataSources {
+			artifact()
+		}
+	}
+}
+
+dependencies {
+
+	compile "GC-1.12-dev:GalacticraftCore-Dev:${project.GCVersion}"
+	compile "GC-1.12-dev:Galacticraft-API:${project.GCVersion}"
+	compile "GC-1.12-dev:Galacticraft-Planets-Dev:${project.GCVersion}"
+	compile "GC-1.12-dev:MicdoodleCore-Dev:${project.GCVersion}"
+
+}

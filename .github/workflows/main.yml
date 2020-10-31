@@ -1,0 +1,17 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the dev-1.12.2 branch
+on:
+  release:
+    types: [prereleased]
+    branches: [ dev-1.12.2 ]
+    
+jobs:
+  trigger:	
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build Dev
+      uses: enflo/curl-action@v1.2
+      with:
+        curl: -X POST https://jenkins.romvoid.dev/generic-webhook-trigger/invoke?token=${{ secrets.JENKINS_TOKEN }}

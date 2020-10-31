@@ -21,9 +21,9 @@ import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import net.minecraft.block.Block;
+import net.rom.api.space.ExoPlanet;
 import net.rom.exoplanets.internal.enums.EnumTPHClass;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class BiomeSpace extends ExoPlanetBiomeBase {
 
