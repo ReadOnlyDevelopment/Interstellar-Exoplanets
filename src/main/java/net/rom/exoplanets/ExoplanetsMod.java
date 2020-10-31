@@ -39,24 +39,22 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.rom.api.research.Researches;
 import net.rom.exoplanets.astronomy.CelestialAssets;
 import net.rom.exoplanets.astronomy.ExoplanetBiomes;
 import net.rom.exoplanets.astronomy.kepler1649.Kepler1649Dimensions;
 import net.rom.exoplanets.astronomy.trappist1.TrappistDimensions;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
-import net.rom.exoplanets.command.CommandDownloadUpdate;
-import net.rom.exoplanets.conf.InitConfigFiles;
-import net.rom.exoplanets.conf.SConfigDimensionID;
+import net.rom.exoplanets.conf.ConfigPlanets;
+import net.rom.exoplanets.conf.ExoConfigs;
 import net.rom.exoplanets.events.GuiHandlerExo;
 import net.rom.exoplanets.events.HabitableZoneClientHandler;
 import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoRecipes;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.init.RegistrationHandler;
-import net.rom.exoplanets.init.Researching;
 import net.rom.exoplanets.init.SolarSystems;
 import net.rom.exoplanets.internal.LogHelper;
+import net.rom.exoplanets.internal.MCUtil;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.proxy.ExoCommonProxy;
 import net.rom.exoplanets.util.TranslateUtil;
@@ -65,7 +63,7 @@ import net.rom.exoplanets.world.OverworldOreGen;
 @Mod(
 		modid = ExoInfo.MODID,
 		name = ExoInfo.NAME,
-		version = ExoInfo.FULL_VERSION,
+		version = ExoInfo.VERSION,
 		dependencies = ExoInfo.DEPENDENCIES_MODS,
 		acceptedMinecraftVersions = ExoInfo.ACCEPTED_MC_VERSION,
 		guiFactory = "net.rom.exoplanets.client.screen.ExoplanetsConfigGuiFactory",
@@ -86,24 +84,26 @@ public class ExoplanetsMod {
 			serverSide = "net.rom.exoplanets.proxy.ExoCommonProxy")
 	public static ExoCommonProxy   proxy;
 	public static Random           random    = new Random();
+	public static String exoPlanetsDirectory;
 
-	public static final boolean isDevBuild = false;
+	public static final boolean isDevBuild = MCUtil.isDeobfuscated();
 
-	public static final Researches RESEARCH;
+	//public static final Researches RESEARCH;
 
 	static {
 		FluidRegistry.enableUniversalBucket();
-		RESEARCH = new Researches();
+		//RESEARCH = new Researches();
 	}
 
 	@EventHandler
 	public void preInit (FMLPreInitializationEvent event) {
+		exoPlanetsDirectory = event.getModConfigurationDirectory() + "/Exoplanets/";
 		REGISTRY.setMod(this);
 		REGISTRY.getRecipeMaker();
 		BodiesRegistry.setMaxTier(3);
 
 		// CONFIGS
-		InitConfigFiles.init(event);
+		ExoConfigs.init();
 
 		// BLOCKS, ITEMS, ENTITIES, ETC
 		ExoFluids.init();
@@ -112,15 +112,9 @@ public class ExoplanetsMod {
 		// TEXTURES
 		CelestialAssets.init();
 
-		// OVERWORLD ORE GEN
-		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
-
 		ExoplanetBiomes.init();
 		SolarSystems.init();
 		Planets.init();
-
-		// RESEARCH SYSTEM
-		Researching.register(RESEARCH);
 
 		// GUI STUFF
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerExo());
@@ -131,6 +125,9 @@ public class ExoplanetsMod {
 
 	@EventHandler
 	public static void init (FMLInitializationEvent event) {
+		
+		// OVERWORLD ORE GEN
+		GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
 
 		proxy.registerRender();
 		//ExoVillagerHandler.initVillageAstronomerHouse();
@@ -145,26 +142,28 @@ public class ExoplanetsMod {
 	public static void postInit (FMLPostInitializationEvent event) {
 		//ExoDimensions.init();
 		ExoRecipes.alloySmelterRecipes();
-		YzCetiDimensions.YZCETIB          = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_b);
-		YzCetiDimensions.YZCETIC          = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_c);
-		YzCetiDimensions.YZCETID          = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_yz_d);
-		TrappistDimensions.TRAPPIST_1C    = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_c);
-		TrappistDimensions.TRAPPIST_1D    = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_d);
-		TrappistDimensions.TRAPPIST_1E    = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_trap_e);
-		Kepler1649Dimensions.KEPLER1649_C = WorldUtil.getDimensionTypeById(SConfigDimensionID.id_kepler_c);
+		YzCetiDimensions.YZCETIB          = WorldUtil.getDimensionTypeById(ConfigPlanets.id_yz_b);
+		YzCetiDimensions.YZCETIC          = WorldUtil.getDimensionTypeById(ConfigPlanets.id_yz_c);
+		YzCetiDimensions.YZCETID          = WorldUtil.getDimensionTypeById(ConfigPlanets.id_yz_d);
+		TrappistDimensions.TRAPPIST_1C    = WorldUtil.getDimensionTypeById(ConfigPlanets.id_trap_c);
+		TrappistDimensions.TRAPPIST_1D    = WorldUtil.getDimensionTypeById(ConfigPlanets.id_trap_d);
+		TrappistDimensions.TRAPPIST_1E    = WorldUtil.getDimensionTypeById(ConfigPlanets.id_trap_e);
+		Kepler1649Dimensions.KEPLER1649_C = WorldUtil.getDimensionTypeById(ConfigPlanets.id_kepler_c);
 		proxy.postInit(REGISTRY, event);
 	}
 
 	@EventHandler
 	public void onServerStarting (FMLServerStartingEvent event) {
-		event.registerServerCommand(new CommandDownloadUpdate());
 	}
 
 	@EventHandler
-	public void onFingerprintViolation (FMLFingerprintViolationEvent event) {
-
-		logger.warn("Invalid fingerprint detected! The file " + event.getSource().getName()
-				+ " may have been tampered with. This version will NOT be supported by the author!");
+	public void onFingerprintViolation(FMLFingerprintViolationEvent event) {
+		if (!MCUtil.isDeobfuscated()) {
+			logger.warn("Invalid fingerprint detected! The file " + event.getSource().getName()
+					+ " may have been tampered with. This version will NOT be supported by the author!");
+		} else {
+			logger.info("Ignoring fingerprint signing since we are in a Development Environment");
+		}
 	}
 
 }

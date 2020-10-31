@@ -1,0 +1,53 @@
+def math3 = "3.6.1"
+def collections4 = "4.4"
+
+repositories {
+	mavenCentral()
+	ivy {
+		url "https://micdoodle8.com/new-builds/"
+		layout 'pattern', {
+			artifact "[organization]/${project.GCBuild}/[module]-[revision].jar"
+		}
+		metadataSources {
+			artifact()
+		}
+	}
+	maven {	
+		url "https://www.cursemaven.com"
+	}
+	maven {
+    		// location of the maven that hosts JEI files
+    		name = "Progwml6 maven"
+    		url = "https://dvs1.progwml6.com/files/maven/"
+  	}
+}
+
+
+dependencies {
+
+	compile "GC-1.12-dev:GalacticraftCore-Dev:${project.GCVersion}"
+	compile "GC-1.12-dev:Galacticraft-API:${project.GCVersion}"
+	compile "GC-1.12-dev:Galacticraft-Planets-Dev:${project.GCVersion}"
+	compile "GC-1.12-dev:MicdoodleCore-Dev:${project.GCVersion}"
+	
+	if(project.useAC) {
+		compile "curse.maven:${project.ACDev}"
+	}
+	if(project.usePP) {
+		compile "curse.maven:${project.PlanetProgAPI}"
+	}
+	if(project.useEP) {
+		compile "curse.maven:${project.ExtraPlanetsAPI}"
+	}
+	compile "mezz.jei:jei_${mc_version}:${project.Jei}:api"
+	runtime "mezz.jei:jei_${mc_version}:${project.Jei}"
+	
+	compile "org.apache.commons:commons-math3:${math3}"
+	compile "org.apache.commons:commons-collections4:${collections4}"
+	
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+}

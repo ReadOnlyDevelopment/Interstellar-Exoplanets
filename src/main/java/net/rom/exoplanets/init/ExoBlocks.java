@@ -46,7 +46,7 @@ import net.rom.exoplanets.content.block.stairs.BlockConcreteStairs;
 import net.rom.exoplanets.content.block.stairs.BlockRoofStairs;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzMetalFrame;
 import net.rom.exoplanets.content.block.stairs.BlockSpaceQuartzStair;
-import net.rom.exoplanets.content.block.terrain.ExoLog;
+import net.rom.exoplanets.content.block.terrain.BlockExoLog;
 import net.rom.exoplanets.internal.StellarRegistry;
 
 public class ExoBlocks {
@@ -107,13 +107,13 @@ public class ExoBlocks {
 	public static final Block inset_lamp_lit  = new BlockInsetLamp(true);
 
 	// LOGS
-	public static final Block log_a_dark1 = new ExoLog();
-	public static final Block log_a       = new ExoLog();
-	public static final Block log_a_rough = new ExoLog();
-	public static final Block log_a_dark2 = new ExoLog();
-	public static final Block log_b       = new ExoLog();
-	public static final Block log_b_other = new ExoLog();
-	public static final Block log_b_rough = new ExoLog();
+	public static final Block log_a_dark1 = new BlockExoLog();
+	public static final Block log_a       = new BlockExoLog();
+	public static final Block log_a_rough = new BlockExoLog();
+	public static final Block log_a_dark2 = new BlockExoLog();
+	public static final Block log_b       = new BlockExoLog();
+	public static final Block log_b_other = new BlockExoLog();
+	public static final Block log_b_rough = new BlockExoLog();
 
 	public static LinkedList<Block> blocksList = new LinkedList<>();
 

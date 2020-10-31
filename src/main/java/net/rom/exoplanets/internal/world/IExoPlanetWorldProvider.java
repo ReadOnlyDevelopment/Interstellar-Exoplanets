@@ -17,7 +17,7 @@
 package net.rom.exoplanets.internal.world;
 
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
+import net.rom.api.space.ExoPlanet;
 
 public interface IExoPlanetWorldProvider extends IGalacticraftWorldProvider {
 

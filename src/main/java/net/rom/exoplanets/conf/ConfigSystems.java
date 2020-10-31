@@ -1,31 +1,4 @@
-/**
- * Copyright (C) 2020 Interstellar:  Exoplanets
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package net.rom.exoplanets.conf;
-
-import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_GENERAL;
-import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_MAP_POSITION;
-import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_SYSTEMS_WIDE_TIERS;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_GENERAL_COMMENT;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_GENERAL_LANGKEY;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_MAP_LANGKEY;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_MAP_POSITION_COMMENT;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_TIER_LANGKEY;
-import static net.rom.exoplanets.ExoInfo.Constants.SYSTEMS_WIDE_TIERS_COMMENT;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,14 +17,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 
-public class SConfigSystems {
+public class ConfigSystems {
+	public static Configuration config;
 
-	static Configuration config;
-
-	public SConfigSystems(File file) {
-		SConfigSystems.config = new Configuration((file), "1.1");
-		SConfigSystems.syncConfig(true);
-
+	public ConfigSystems (File file) {
+		config = new Configuration((file));
+		ConfigSystems.syncConfig(true);
 	}
 
 	// SYSTEMS
@@ -73,7 +44,7 @@ public class SConfigSystems {
 
 	// SYSTEMS MAP OFFSETS
 
-	public static double[] yzceti_map = { 1.9D, 2.4D };
+	public static double[] yzceti_map = { -2.7D, -2.6D };
 	public static double[] wolf_map   = { -2.0D, -1.5D };
 	public static double[] trap_map   = { 2.0D, -1.5D };
 	public static double[] k1649_map  = { 1.3D, -2.6D };
@@ -92,6 +63,18 @@ public class SConfigSystems {
 
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
+	
+	public static final String CATEGORY_SYSTEMS_GENERAL      = "General";
+	public static final String CATEGORY_SYSTEMS_WIDE_TIERS   = "Tier Requirements";
+	public static final String CATEGORY_SYSTEMS_MAP_POSITION = "Celestial Screen Position";
+
+	public static final String	SYSTEMS_GENERAL_COMMENT			= "General Solar System Configurations";
+	public static final String	SYSTEMS_WIDE_TIERS_COMMENT		= "Change to Set the Required Tier for Each Planet In A Solar System";
+	public static final String	SYSTEMS_MAP_POSITION_COMMENT	= "Change the Map Position of Exoplanets Solar Systems";
+
+	public static final String	SYSTEMS_GENERAL_LANGKEY	= "exoplanets.configgui.category.sysgeneral";
+	public static final String	SYSTEMS_TIER_LANGKEY	= "exoplanets.configgui.category.systier";
+	public static final String	SYSTEMS_MAP_LANGKEY		= "exoplanets.configgui.category.sysmap";
 
 	public static void syncConfig (boolean load) {
 		try {
@@ -175,7 +158,7 @@ public class SConfigSystems {
 			k1649_tier = prop.getInt(3);
 			finishProp(prop);
 
-			prop = getConfig(CATEGORY_SYSTEMS_MAP_POSITION, "Yz Ceti System Coords", new double[] { -1.0D, -1.1D });
+			prop = getConfig(CATEGORY_SYSTEMS_MAP_POSITION, "Yz Ceti System Coords", new double[] { -2.5D, 2.6D });
 			prop.setComment("Map Coords for Yz Ceti");
 			prop.setLanguageKey("exoplanets.configgui.yzceticoord");
 			yzceti_map = prop.getDoubleList();
@@ -260,7 +243,7 @@ public class SConfigSystems {
 	}
 
 	public static List<IConfigElement> getConfigElements () {
-		List<IConfigElement> list = new ArrayList<IConfigElement>();
+		List<IConfigElement> list = new ArrayList<>();
 
 		ConfigCategory configSystemsMain = config.getCategory(CATEGORY_SYSTEMS_GENERAL);
 		configSystemsMain.setComment("Solar System Settings");
@@ -283,5 +266,4 @@ public class SConfigSystems {
 			config.save();
 		}
 	}
-
 }

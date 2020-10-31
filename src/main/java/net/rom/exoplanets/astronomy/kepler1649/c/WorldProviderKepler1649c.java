@@ -19,7 +19,6 @@ package net.rom.exoplanets.astronomy.kepler1649.c;
 
 import java.util.List;
 
-import asmodeuscore.api.space.IExBody;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -89,7 +88,7 @@ public class WorldProviderKepler1649c extends WE_WorldProviderSpace {
 
 	@Override
 	public CelestialBody getCelestialBody() {
-		return Planets.kepler1649c;
+		return Planets.KEPLER1649C;
 	}
 
 	@Override

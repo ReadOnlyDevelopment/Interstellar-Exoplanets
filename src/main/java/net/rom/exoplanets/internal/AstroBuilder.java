@@ -50,9 +50,10 @@ import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+import net.rom.api.space.ExoPlanet;
+import net.rom.api.space.ExoSystem;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
+import net.rom.exoplanets.conf.ConfigCore;
 import net.rom.exoplanets.internal.world.star.ExoStar;
 
 /**
@@ -60,7 +61,7 @@ import net.rom.exoplanets.internal.world.star.ExoStar;
  */
 public class AstroBuilder {
 
-	public static final boolean REALISM = SConfigCore.enableRealism;
+	public static final boolean REALISM = ConfigCore.enableRealism;
 
 	/** The modid. */
 	private String modid;
@@ -128,13 +129,12 @@ public class AstroBuilder {
 	 * @param  exoStar the exo star
 	 * @return         the solar system
 	 */
-	public SolarSystem buildSolarSystem (String name, Vector3 pos, ExoStar exoStar) {
-		SolarSystem body = new SolarSystem(name, "milky_way");
-		body.setMapPosition(new Vector3(pos));
+	public ExoSystem buildSolarSystem (String name, ExoStar exoStar, Vector3 pos) {
+		ExoSystem body = new ExoSystem(name, "milky_way");
 		exoStar.setParentSolarSystem(body);
 		body.setMainStar(exoStar);
+		body.setMapPosition(pos);
 		exoStar.setBodyIcon(Assets.getCelestialTexture(exoStar.getName()));
-
 		return body;
 	}
 

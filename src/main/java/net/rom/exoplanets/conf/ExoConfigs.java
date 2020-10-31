@@ -20,21 +20,22 @@ package net.rom.exoplanets.conf;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.rom.exoplanets.ExoplanetsMod;
 
-public class InitConfigFiles {
+public class ExoConfigs {
 
-	public static void init (FMLPreInitializationEvent event) {
+	private static String	mainFolder		= ExoplanetsMod.exoPlanetsDirectory;
+	public static String	systemFolder	= ExoplanetsMod.exoPlanetsDirectory + "/Systems/";
 
-		registerEventHandler(new SConfigSystems(new File(event
-				.getModConfigurationDirectory(), "Exoplanets/systems.cfg")));
-		registerEventHandler(new SConfigDimensionID(new File(event
-				.getModConfigurationDirectory(), "Exoplanets/dimensions.cfg")));
-		registerEventHandler(new SConfigCore(new File(event.getModConfigurationDirectory(), "Exoplanets/core.cfg")));
+	public static void init() {
+
+		register(new ConfigCore(new File(mainFolder + "/Core.cfg")));
+		register(new ConfigPlanets(new File(mainFolder + "/PlanetsCore.cfg")));
+		register(new ConfigSystems(new File(mainFolder + "/SystemsCore.cfg")));
 
 	}
 
-	public static void registerEventHandler (Object handler) {
+	public static void register(Object handler) {
 		MinecraftForge.EVENT_BUS.register(handler);
 	}
 }

@@ -39,7 +39,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.rom.exoplanets.Assets;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.screen.button.GuiDiscordButton;
 import net.rom.exoplanets.util.RGB;
 import net.rom.exoplanets.util.ReflectionHelper;
@@ -90,16 +89,16 @@ public class GuiBeta extends GuiScreen {
 			this.drawCenteredString(this.fontRenderer, s, x, y, 0xFFFFFF);
 			y += 12;
 		}
-		this.drawCenteredString(this.fontRenderer, "Running Version: " + ExoInfo.FULL_VERSION, x, y, 0xFFFFFF);
+		this.drawCenteredString(this.fontRenderer, "Running Version: " + ExoInfo.VERSION, x, y, 0xFFFFFF);
 
-		if (ExoplanetsMod.isDevBuild) {
-			for (int i = 0; i < 3; i++) {
-				int    yy = y + 24;
-				String s  = I18n.format("information.dev." + ExoInfo.MODID + ":beta." + (i + 1));
-				this.drawCenteredString(this.fontRenderer, s, x, yy, 0xFFFFFF);
-				y += 12;
-			}
-		}
+//		if (ExoplanetsMod.isDevBuild) {
+//			for (int i = 0; i < 3; i++) {
+//				int    yy = y + 24;
+//				String s  = I18n.format("information.dev." + ExoInfo.MODID + ":beta." + (i + 1));
+//				this.drawCenteredString(this.fontRenderer, s, x, yy, 0xFFFFFF);
+//				y += 12;
+//			}
+//		}
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}

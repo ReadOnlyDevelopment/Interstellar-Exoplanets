@@ -75,7 +75,7 @@ public class ClientHandler {
 				if (minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && MCUtil.isDeobfuscated()) {
 					String dev     = "ReadOnlyDev | Developer Environment";
 					String dis     = "[ Non-Distributable Dev Build ]";
-					String version = ExoInfo.NAME + " " + ExoInfo.FULL_VERSION;
+					String version = ExoInfo.NAME + " " + ExoInfo.VERSION;
 
 					int center = EnumScreenAnchor.TOP_CENTER.getX(mc.displayWidth / 2);
 					GL11.glPushMatrix();

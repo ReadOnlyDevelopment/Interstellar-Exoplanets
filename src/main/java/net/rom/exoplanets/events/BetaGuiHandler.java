@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 import net.rom.exoplanets.client.screen.GuiBeta;
-import net.rom.exoplanets.conf.SConfigCore;;
+import net.rom.exoplanets.conf.ConfigCore;;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class BetaGuiHandler {
@@ -36,10 +36,10 @@ public class BetaGuiHandler {
 	@SubscribeEvent
 	public static void onGuiOpen (GuiOpenEvent event) {
 		GuiScreen gui = event.getGui();
-		if (SConfigCore.warnBetaBuild && gui instanceof GuiMainMenu) {
+		if (ConfigCore.warnBetaBuild && gui instanceof GuiMainMenu) {
 
 			event.setGui(new GuiBeta((GuiMainMenu) gui));
-			SConfigCore.warnBetaBuild = false;
+			ConfigCore.warnBetaBuild = false;
 			MinecraftForge.EVENT_BUS
 					.post(new ConfigChangedEvent.OnConfigChangedEvent(ExoInfo.MODID, ExoInfo.NAME, false, false));
 

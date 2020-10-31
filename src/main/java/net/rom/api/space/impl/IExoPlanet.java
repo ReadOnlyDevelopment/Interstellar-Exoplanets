@@ -15,141 +15,125 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rom.exoplanets.internal.world.planet;
+package net.rom.api.space.impl;
 
 import java.util.ArrayList;
 
-import asmodeuscore.api.space.IExBody;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import net.rom.exoplanets.internal.enums.EnumDiscMethod;
 import net.rom.exoplanets.internal.enums.EnumPlanetType;
 import net.rom.exoplanets.internal.enums.EnumTPHClass;
-import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
 
 /**
  * The Interface IExoPlanet.
  */
-public interface IExoPlanet extends IExBody {
-		
+public interface IExoPlanet {
+
 	/**
 	 * Gets the planet name.
 	 *
 	 * @return the planetName
 	 */
-	public String getPlanetName();
-	
+	public String getExoPlanetName ();
+
 	/**
 	 * Gets Solar System the planet belongs too.
 	 *
 	 * @return the planetSystem
 	 */
-	public SolarSystem getPlanetSystem();
-	
+	public SolarSystem getPlanetSystem ();
+
 	/**
 	 * Gets planets Host star.
 	 *
 	 * @return the planetHost
 	 */
-	public Star getPlanetHost();
-	
-	/**
-	 * Gets the method.
-	 *
-	 * @return the method
-	 */
-	public EnumDiscMethod getDiscoveryMethod();
-	
+	public Star getPlanetHost ();
+
 	/**
 	 * Gets the EnumTPHClass.
 	 *
 	 * @return the method
 	 */
-	public EnumTPHClass getTphClass();
-	
+	public EnumTPHClass getTphClass ();
+
 	/**
 	 * Gets the EnumPlanetType.
 	 *
 	 * @return the method
 	 */
-	public EnumPlanetType getPlanetType();
-	
+	public EnumPlanetType getPlanetType ();
+
 	/**
 	 * Gets the orbit period.
 	 *
 	 * @return the orbitPeriod
 	 */
-	public double getOrbitPeriod();
-	
+	public double getOrbitPeriod ();
+
 	/**
 	 * Gets the planet mass.
 	 *
 	 * @return the planetMass
 	 */
-	public double getPlanetMass();
-	
+	public double getPlanetMass ();
+
 	/**
 	 * Gets the planet radius.
 	 *
 	 * @return the planetMass
 	 */
-	public double getPlanetRadius();
-	
+	public double getPlanetRadius ();
+
 	/**
 	 * Gets the planet temp.
 	 *
 	 * @return the planetTemp
 	 */
-	public double getPlanetTemp();
-	
+	public double getPlanetTemp ();
+
 	/**
 	 * Gets the planets gravity.
 	 *
 	 * @return the gravity
 	 */
-	public float getGravity();
-	
+	public float getGravity ();
+
 	/**
 	 * Gets the planets day length.
 	 *
 	 * @return the day length
 	 */
-	public long getDayLength();
-	
+	public long getDayLength ();
+
 	/**
 	 * Checks if is breathable.
 	 *
 	 * @return the isBreathable
 	 */
-	public boolean isBreathable();
-	
+	public boolean isBreathable ();
+
 	/**
 	 * Checks if is does rain.
 	 *
 	 * @return the doesRain
 	 */
-	public boolean isDoesRain();
-	
+	public boolean isDoesRain ();
+
 	/**
 	 * Gets the atmos.
 	 *
 	 * @return the atmos
 	 */
-	public AtmosphereInfo getAtmos();
-	
+	public AtmosphereInfo getAtmos ();
+
 	/**
 	 * Gets the atmos gasses.
 	 *
 	 * @return the atmosGasses
 	 */
-	public ArrayList<EnumAtmosphericGas> getAtmosGasses();
-	
-	/**
-	 * Gets the planet provider.
-	 *
-	 * @return the planetProvider
-	 */
-	public WorldProviderExoPlanet getPlanetProvider();
+	public ArrayList<EnumAtmosphericGas> getAtmosGasses ();
+
 }

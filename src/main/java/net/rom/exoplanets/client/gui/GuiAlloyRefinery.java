@@ -27,7 +27,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.conf.ConfigCore;
 import net.rom.exoplanets.content.block.machine.container.ContainerAlloyRefinery;
 import net.rom.exoplanets.content.tile.TileEntityAlloyRefinery;
 
@@ -63,7 +63,7 @@ public class GuiAlloyRefinery extends GuiContainer {
         i1 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
 
-        if (SConfigCore.enableDebug)
+        if (ConfigCore.enableDebug)
             drawDebugInfo();
     }
 

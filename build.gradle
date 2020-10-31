@@ -1,9 +1,7 @@
 buildscript {
 
 	repositories {
-
 		jcenter()
-
 		maven {
 
 			url = 'http://files.minecraftforge.net/maven'
@@ -37,7 +35,7 @@ if (System.getenv("BUILD_NUMBER") != null)
 	versionBuild = System.getenv("BUILD_NUMBER")
 	
 
-def devBuild = true
+def devBuild = false
 def ver
 def short_version = "${mod_version}"
 if(devBuild) {
@@ -45,7 +43,7 @@ if(devBuild) {
 } else {
 	ver = "${mod_version}." + getBuildNumber()
 }
-version = ver
+version = "0.1.1-compatfix"//ver
 group = "${mod_group}"
 archivesBaseName = "${mod_name}-${forge_mc_version}"
 
@@ -87,7 +85,7 @@ minecraft {
 		makeObfSourceJar = true
 	}
 	replace '@BUILD@', getBuildNumber()
-	replace '@VERSION@', short_version
+	replace '@VERSION@', "0.1.1-compatfix"
 	replace '@FINGERPRINT@', project.findProperty('signSHA1')
 	replaceIn "${mod_class}.java"
 }
@@ -344,4 +342,4 @@ task incrementBuild {
 build.dependsOn signJar
 tasks.build.dependsOn signJar
 tasks.publish.dependsOn build
-tasks.curseforge.dependsOn build, postRelease
+tasks.curseforge.dependsOn build

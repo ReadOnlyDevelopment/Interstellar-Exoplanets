@@ -28,8 +28,11 @@ import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.rom.exoplanets.astronomy.kepler1649.KeplerBlocks;
@@ -144,6 +147,24 @@ public class ChunkProviderKepler1649c extends ChunkProviderSpaceLakes {
 	@Override
 	protected GenType getGenType() {
 		return GenType.VANILLA;
+	}
+
+	@Override
+	public Chunk generateChunk(int x, int z) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void populate(int x, int z) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

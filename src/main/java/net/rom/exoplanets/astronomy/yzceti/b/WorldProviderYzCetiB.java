@@ -24,21 +24,23 @@ import asmodeuscore.api.dimension.IAdvancedSpace;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.api.space.ExoPlanet;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzceti.b.worldgen.BiomeProviderYzCetiB;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.AstronomicalConstants;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdvancedSpace {
 
@@ -84,7 +86,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 
 	@Override
 	public CelestialBody getCelestialBody () {
-		return Planets.yzcetib;
+		return Planets.YZCETID;
 	}
 
 	@Override
@@ -160,7 +162,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 
 	@Override
 	public Class<? extends BiomeProvider> getBiomeProviderClass () {
-		BiomeAdaptive.setBodyMultiBiome(Planets.yzcetib);
+		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETID);
 		return BiomeProviderYzCetiB.class;
 	}
 
@@ -228,5 +230,25 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	public ExoPlanet getExoPlanet () {
 		return (ExoPlanet) getCelestialBody();
 	}
+	
+    @Override
+    public IRenderHandler getCloudRenderer(){
+    	
+    	if(super.getCloudRenderer() == null)
+    		this.setCloudRenderer(new CloudRenderer());
+    	
+        return super.getCloudRenderer();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer()
+    {
+    	if (super.getSkyRenderer() == null)
+		{
+			this.setSkyRenderer(new SkyProviderYzCetiB());
+		}
+    	
+		return super.getSkyRenderer();
+    }
 
 }

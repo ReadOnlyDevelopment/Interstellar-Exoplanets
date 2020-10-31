@@ -33,36 +33,9 @@ public final class ExoInfo {
 	public static final String BUILD                = "@BUILD@";
 	public static final String VERSION              = "@VERSION@";
 	public static final String FINGERPRINT          = "@FINGERPRINT@";
-	public static final String FULL_VERSION         = VERSION + "." + BUILD;
 	public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
 	public static final String ACCEPTED_MC_VERSION  = ForgeVersion.mcVersion;
-	public static final String DEPENDENCIES_MODS    = "required-after:galacticraftcore@[4.0.2.261,];required-after:galacticraftplanets;required-after:asmodeuscore@[0.0.17,]";
+	public static final String DEPENDENCIES_MODS    = "required-after:galacticraftcore@[4.0.2.261,];required-after:galacticraftplanets;required-after:asmodeuscore@[0.0.21,]";
 	public static final String RESOURCE_PREFIX      = MODID + ":";
-
-	public final class Constants {
-
-		// SYSTEMS CONFIG
-		public static final String CATEGORY_SYSTEMS_GENERAL      = "General";
-		public static final String CATEGORY_SYSTEMS_WIDE_TIERS   = "Tier Requirements";
-		public static final String CATEGORY_SYSTEMS_MAP_POSITION = "Celestial Screen Position";
-
-		public static final String SYSTEMS_GENERAL_COMMENT      = "General Solar System Configurations";
-		public static final String SYSTEMS_WIDE_TIERS_COMMENT   = "Change to Set the Required Tier for Each Planet In A Solar System";
-		public static final String SYSTEMS_MAP_POSITION_COMMENT = "Change the Map Position of Exoplanets Solar Systems";
-
-		public static final String SYSTEMS_GENERAL_LANGKEY = "exoplanets.configgui.category.sysgeneral";
-		public static final String SYSTEMS_TIER_LANGKEY    = "exoplanets.configgui.category.systier";
-		public static final String SYSTEMS_MAP_LANGKEY     = "exoplanets.configgui.category.sysmap";
-
-		// CORE CONFIG
-		public static final String CATEGORY_CORE         = "Core Mod Settings";
-		public static final String CATEGORY_CORE_LANGKEY = "exoplanets.configgui.category.core";
-
-		// PLANET CONFIGS
-		public static final String CATEGORY_PLANETS_DIMENSION_ID         = "Exoplanets Dimension ID's";
-		public static final String CATEGORY_PLANETS_DIMENSION_ID_LANGKEY = "exoplanets.configgui.category.dimensionids";
-		public static final String CATEGORY_PLANETS_DIMENSION_ID_COMMENT = "Change the Dimension IDs of Exoplanets if Conflicts Arise";
-
-	}
 
 }

@@ -21,7 +21,7 @@ import java.util.Map;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.rom.exoplanets.conf.SConfigCore;
+import net.rom.exoplanets.conf.ConfigCore;
 
 public class Assets {
 	/**
@@ -74,7 +74,7 @@ public class Assets {
 	}
 
 	public static ResourceLocation getCelestialTexture (String name) {
-		if (!SConfigCore.enableRealism) {
+		if (!ConfigCore.enableRealism) {
 			return getCelestial(name);
 		}
 		else {

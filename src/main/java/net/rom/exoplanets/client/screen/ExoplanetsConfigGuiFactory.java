@@ -25,19 +25,19 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.rom.exoplanets.ExoInfo;
-import net.rom.exoplanets.conf.SConfigCore;
-import net.rom.exoplanets.conf.SConfigDimensionID;
-import net.rom.exoplanets.conf.SConfigSystems;
+import net.rom.exoplanets.conf.ConfigCore;
+import net.rom.exoplanets.conf.ConfigPlanets;
+import net.rom.exoplanets.conf.ConfigSystems;
 
 public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
 
 	public static class ExoCoreConfGui extends GuiConfig {
 
 		public ExoCoreConfGui(GuiScreen parent) {
-			super(parent, SConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
+			super(parent, ConfigCore.getConfigElements(), ExoInfo.MODID, false, true,
 					GCCoreUtil.translate("exoplanets.configgui.coretitle"));
-			this.configElements.addAll(SConfigDimensionID.getConfigElements());
-			this.configElements.addAll(SConfigSystems.getConfigElements());
+			this.configElements.addAll(ConfigPlanets.getConfigElements());
+			this.configElements.addAll(ConfigSystems.getConfigElements());
 		}
 	}
 

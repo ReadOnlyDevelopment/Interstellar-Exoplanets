@@ -24,10 +24,8 @@ import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.Assets;
-import net.rom.exoplanets.internal.MCUtil;
 
 public class SkyProviderTrappist1C extends SkyProviderBase {
 	
@@ -35,13 +33,13 @@ public class SkyProviderTrappist1C extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-        GL11.glEnable(GL11.GL_BLEND);
-        
+        //GL11.glEnable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
         if(!this.mc.world.isRaining()) {
         	this.renderImage(Assets.getCelestialTexture("trappist1b"), 0, 0, this.getCelestialAngle(getDayLenght()), 5.5F);
         	this.renderImage(Assets.getCelestialTexture("trappist1d"), 40, 0, this.getCelestialAngle((long) (getDayLenght() * 1.2)) + 80F, 1.5F);
         }
-        GL11.glDisable(GL11.GL_BLEND);
+       // GL11.glDisable(GL11.GL_BLEND);
 	}
 	
 
@@ -77,7 +75,7 @@ public class SkyProviderTrappist1C extends SkyProviderBase {
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return null;
+		return ((WorldProviderTrappist1C)this.mc.world.provider).getSkyColor();
 	}
 	
 	@Override

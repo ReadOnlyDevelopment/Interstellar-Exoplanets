@@ -107,7 +107,7 @@ public class CoreUtil {
 						newModel = clazz.getConstructor(IBakedModel.class).newInstance(newModel);
 					}
 					catch (Exception e) {
-						ExoplanetsMod.logger.bigFatal("ItemModel constructor problem for " + modelResourceLocation);
+						ExoplanetsMod.logger.bigFatal(true,"ItemModel constructor problem for  %s-->%s", modelResourceLocation, variants);
 						e.printStackTrace();
 					}
 				}

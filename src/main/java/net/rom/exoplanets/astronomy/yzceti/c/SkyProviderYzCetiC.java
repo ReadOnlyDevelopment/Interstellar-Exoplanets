@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rom.exoplanets.astronomy.yzceti.d;
+package net.rom.exoplanets.astronomy.yzceti.c;
 
 import org.lwjgl.opengl.GL11;
 
@@ -26,54 +26,50 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.rom.exoplanets.Assets;
+import net.rom.exoplanets.astronomy.yzceti.b.WorldProviderYzCetiB;
 
-public class SkyProviderD extends SkyProviderBase {
-
-	@Override
-	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
-		GL11.glEnable(GL11.GL_BLEND);
-
-		GL11.glDisable(GL11.GL_BLEND);
-	}
+public class SkyProviderYzCetiC extends SkyProviderBase {
 
 	@Override
-	protected ModeLight modeLight () {
-		return ModeLight.DEFAULT;
-	}
-
-	@Override
-	protected boolean enableBaseImages () {
-		return true;
-	}
-
-	@Override
-	protected float sunSize () {
-		return 5.0F;
-	}
-
-	@Override
-	protected ResourceLocation sunImage () {
-		return Assets.getCelestialTexture("yzcetistar");
-	}
-
-	@Override
-	protected boolean enableStar () {
-		return true;
-	}
-
-	@Override
-	protected StarColor colorSunAura () {
+	protected StarColor colorSunAura() {
 		return StarColor.RED;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor () {
-		return null;
+	protected boolean enableBaseImages() {
+		return true;
 	}
 
 	@Override
-	public int expandSizeAura () {
-		return 10;
+	protected boolean enableStar() {
+		return true;
+	}
+
+	@Override
+	protected Vector3 getAtmosphereColor() {
+		return ((WorldProviderYzCetiB)this.mc.world.provider).getSkyColor();
+	}
+
+	@Override
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
+	}
+
+	@Override
+	protected void rendererSky(Tessellator arg0, BufferBuilder arg1, float arg2, float arg3) {
+		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glPopMatrix();
+	}
+
+	@Override
+	protected ResourceLocation sunImage() {
+		return Assets.getCelestialTexture("yzcetistar");
+	}
+
+	@Override
+	protected float sunSize() {
+		return 6;
 	}
 
 }

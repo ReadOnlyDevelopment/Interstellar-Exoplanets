@@ -17,9 +17,6 @@
 
 package net.rom.exoplanets.conf;
 
-import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_CORE;
-import static net.rom.exoplanets.ExoInfo.Constants.CATEGORY_CORE_LANGKEY;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -37,13 +34,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.rom.exoplanets.ExoInfo;
 import net.rom.exoplanets.ExoplanetsMod;
 
-public class SConfigCore {
+public class ConfigCore {
 
 	static Configuration config;
 
-	public SConfigCore(File file) {
-		SConfigCore.config = new Configuration((file), "1.0");
-		SConfigCore.syncConfig(true);
+	public ConfigCore(File file) {
+		ConfigCore.config = new Configuration((file), "1.0");
+		ConfigCore.syncConfig(true);
 	}
 
 	public static boolean enableCheckVersion;
@@ -56,6 +53,9 @@ public class SConfigCore {
 
 	private static Map<String, List<String>> propOrder = new TreeMap<>();
 	private static String                    currentCat;
+	
+	public static final String CATEGORY_CORE         = "Core Mod Settings";
+	public static final String CATEGORY_CORE_LANGKEY = "exoplanets.configgui.category.core";
 
 	public static void syncConfig (boolean load) {
 		try {
@@ -103,7 +103,7 @@ public class SConfigCore {
 			}
 		}
 		catch (final Exception e) {
-			ExoplanetsMod.logger.bigError("Intersteller Core Config had an issue loading the config file!");
+			ExoplanetsMod.logger.bigError(true, "Intersteller Core Config had an issue loading the config file!");
 		}
 	}
 

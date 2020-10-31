@@ -23,19 +23,23 @@ import java.util.List;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.rom.api.space.ExoPlanet;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiBlocks;
 import net.rom.exoplanets.astronomy.yzceti.YzCetiDimensions;
 import net.rom.exoplanets.astronomy.yzceti.d.worldgen.BiomeProviderYzCetiD;
 import net.rom.exoplanets.astronomy.yzceti.d.worldgen.ChunkProviderYzCetiD;
-import net.rom.exoplanets.conf.SConfigSystems;
+import net.rom.exoplanets.conf.ConfigSystems;
 import net.rom.exoplanets.init.Planets;
 import net.rom.exoplanets.internal.world.WorldProviderExoPlanet;
-import net.rom.exoplanets.internal.world.planet.ExoPlanet;
 
 public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
@@ -66,7 +70,7 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
 	@Override
 	public Class<? extends BiomeProvider> getBiomeProviderClass () {
-		BiomeAdaptive.setBodyMultiBiome(Planets.yzcetid);
+		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETID);
 		return BiomeProviderYzCetiD.class;
 	}
 
@@ -107,7 +111,7 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
 	@Override
 	public boolean canSpaceshipTierPass (int tier) {
-		return tier >= SConfigSystems.yzceti_tier;
+		return tier >= ConfigSystems.yzceti_tier;
 	}
 
 	@Override
@@ -118,7 +122,7 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 
 	@Override
 	public CelestialBody getCelestialBody () {
-		return Planets.yzcetid;
+		return Planets.YZCETID;
 	}
 
 	@Override
@@ -164,5 +168,26 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	public ExoPlanet getExoPlanet () {
 		return (ExoPlanet) getCelestialBody();
 	}
+
+	
+    @Override
+    public IRenderHandler getCloudRenderer(){
+    	
+    	if(super.getCloudRenderer() == null)
+    		this.setCloudRenderer(new CloudRenderer());
+    	
+        return super.getCloudRenderer();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer()
+    {
+    	if (super.getSkyRenderer() == null)
+		{
+			this.setSkyRenderer(new SkyProviderYzCetiD());
+		}
+    	
+		return super.getSkyRenderer();
+    }
 
 }

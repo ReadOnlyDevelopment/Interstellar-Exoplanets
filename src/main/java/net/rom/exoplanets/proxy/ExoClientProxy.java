@@ -40,7 +40,6 @@ import net.rom.exoplanets.init.ExoFluids;
 import net.rom.exoplanets.init.ExoItems;
 import net.rom.exoplanets.internal.StellarRegistry;
 import net.rom.exoplanets.internal.client.ExoModelLoader;
-import net.rom.exoplanets.util.version.VersionChecker;
 
 public class ExoClientProxy extends ExoCommonProxy {
 
@@ -56,7 +55,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 				.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, (RenderManager manager) -> new RocketRenderer(manager));
 		register_event(new BetaGuiHandler());
 		register_event(new ClientHandler());
-
+		register_event(new SkyProviders());
 		registry.clientPreInit(event);
 		ExoFluids.bakeModels();
 
@@ -65,8 +64,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void init (StellarRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
-		register_event(new SkyProviders());
-		VersionChecker.init();
+
 		registry.clientInit(event);
 	}
 

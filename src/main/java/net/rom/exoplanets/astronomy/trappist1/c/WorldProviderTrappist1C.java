@@ -66,7 +66,7 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 
 	@Override
 	public CelestialBody getCelestialBody() {
-		return Planets.trappistc;
+		return Planets.TRAPPIST1C;
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class BiomeProviderYzCetiC extends BiomeProvider {
 	private CelestialBody body;
 
 	protected BiomeProviderYzCetiC() {
-		body = Planets.yzcetic;
+		body = Planets.YZCETIC;
 		biomeCache = new BiomeCache(this);
 		biomesToSpawnIn = new ArrayList<>();
 	}
