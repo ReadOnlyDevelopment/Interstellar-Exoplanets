@@ -1,48 +1,48 @@
 ## ASTRONOMY ##
-solarsystem.yzceti=Yz Ceti
-solarsystem.wolf1061=Wolf 1061
-solarsystem.trappist1=Trappist 1
-solarsystem.kepler1649=Kepler 1649
+solarsystem.yzceti=Yz Кита
+solarsystem.wolf1061=Волк 1061
+solarsystem.trappist1=Траппист 1
+solarsystem.kepler1649=Кеплер 1649
 
-star.yzcetistar=Yz Ceti A
+star.yzcetistar=Yz Кита A
 star.trappist1star=Trappist 1 A
-star.wolf1061star=Wolf 1061  A
-star.kepler1649star=Kepler 1649 A
+star.wolf1061star=Волк 1061  A
+star.kepler1649star=Кеплер 1649 A
 
-planet.yzcetib=Yz Ceti B
-planet.yzcetic=Yz Ceti C
-planet.yzcetid=Yz Ceti D
+planet.yzcetib=Yz Кита B
+planet.yzcetic=Yz Кита C
+planet.yzcetid=Yz Кита D
 
-planet.wolf1061b=Wolf 1061 B
-planet.wolf1061c=Wolf 1061 C
-planet.wolf1061d=Wolf 1061 D
+planet.wolf1061b=Волк 1061 B
+planet.wolf1061c=Волк 1061 C
+planet.wolf1061d=Волк 1061 D
 
-planet.trappist1b=Trappist 1 B
-planet.trappist1c=Trappist 1 C
-planet.trappist1d=Trappist 1 D
-planet.trappist1e=Trappist 1 E
-planet.trappist1f=Trappist 1 F
-planet.trappist1g=Trappist 1 G
-planet.trappist1h=Trappist 1 H
+planet.trappist1b=Траппист 1 B
+planet.trappist1c=Траппист 1 C
+planet.trappist1d=Траппист 1 D
+planet.trappist1e=Траппист 1 E
+planet.trappist1f=Траппист 1 F
+planet.trappist1g=Траппист 1 G
+planet.trappist1h=Траппист 1 H
 
-planet.kepler1649b=Kepler 1649b
-planet.kepler1649c=Kepler 1649c
+planet.kepler1649b=Кеплер  1649b
+planet.kepler1649c=Кеплер  1649c
 
 galaxy.wormhole=Червоточина
 
 # Messages
 information.dev.exoplanets:beta.1=§c С Продолжением Вы принимаете наши сроки  что  вы не будете
 information.dev.exoplanets:beta.2=§c нарушать правила,  до тех  пор
-information.dev.exoplanets:beta.3=§c пока выщое право не получено. Â§r
+information.dev.exoplanets:beta.3=§c пока выщое право не получено. §r
 
 information.exoplanets:beta.1=§b Текущая версия ExoPlanets досихпор  в Раннем доступе §r
 information.exoplanets:beta.2=Это означает что в моде есть вещи которые не работают как преднозначено.
 information.exoplanets:beta.3=Это сделано намеренно, поскольку оно может быть незавершенным  / или неоптимизированным.
 information.exoplanets:beta.4=Если вы нашли баг или какую то проблему. Пожалуйста свяжитесь с нами через Дискорд.
 information.exoplanets:beta.5=И опишите проблему .
-information.exoplanets:beta.6=§e(Чтобы Отключить  это окно от появление Установите , §6B:warnOnBetaBuildÂ§r§e на  false в  §bcore.cfg§r§e  в  configs)§r
+information.exoplanets:beta.6=§e(Чтобы Отключить  это окно от появление Установите , §6B:warnOnBetaBuild§r§e на  false в  §bcore.cfg§r§e  в  configs)§r
 
-exoplanets.gui.discordLink=Discord Invite
+exoplanets.gui.discordLink=Приглашение Discord.
 exoplanets.gui.failed=Произошла ошибка из за которой не получилась открыть Ссылку  для инвайта 
 
 # VERSIONING
@@ -106,7 +106,7 @@ itemGroup.terrain=§ aExo местность §r
 itemGroup.items=§e Exo Предметы §r
 
 ## BLOCKS ##
-tile.exoplanets.com_relay.name=Коммуникационное реле
+tile.exoplanets.com_relay.name=Коммуникационное релё
 tile.exoplanets.raidcluster.name=RAID кластер
 tile.exoplanets.raidcontroller.name=RAID Контроллер 
 tile.exoplanets.lower_raidcontroller.name=Нижний  RAID Контроллер 
@@ -137,13 +137,13 @@ tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Вулканическая п
 tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Метаморфическая порода
 tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Осадочная порода
 
-tile.exoplanets.trap1c_top.name=(§9Trappist1 1c§r) Поверхностный Камень
-tile.exoplanets.trap1e_cobblestone.name=(§aTrappist1 1e§r)
-tile.exoplanets.trap1e_dirt.name=(§aTrappist1 1e§r) Грязь
-tile.exoplanets.trap1e_grass.name=(§aTrappist1 1e§r) Странная трава
-tile.exoplanets.trap1e_stone.name=(§aTrappist1 1e§r) Планетарный  Камень
-tile.exoplanets.trap1c_dirt.name=(§9Trappist1 1c§r) Грязь
-tile.exoplanets.trap1c_dirt_1.name=(§9Trappist1 1c§r) Грязь
+tile.exoplanets.trap1c_top.name=(§9Траппист 1ц§r) Поверхностный Камень
+tile.exoplanets.trap1e_cobblestone.name=(§aТраппист 1e§r)
+tile.exoplanets.trap1e_dirt.name=(§aТраппист 1e§r) Грязь
+tile.exoplanets.trap1e_grass.name=(§aТраппист 1е§r) Странная трава
+tile.exoplanets.trap1e_stone.name=(§aТраппист 1е§r) Планетарный  Камень
+tile.exoplanets.trap1c_dirt.name=(§9Траппист 1ц§r) Грязь
+tile.exoplanets.trap1c_dirt_1.name=(§9Траппист 1ц§r) Грязь
 
 tile.exoplanets.trap1_dark_hot.name=§cЗастывший вулканический осколок
 tile.exoplanets.trap1_bright_solid_hot.name=§cВулканический Расплавленный Осколок
