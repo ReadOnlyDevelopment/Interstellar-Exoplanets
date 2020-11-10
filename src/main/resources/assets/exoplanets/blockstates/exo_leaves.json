@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": { "model": "leaves" },
+  "variants": {
+    "variant": {
+      "light":  { "textures": { "all": "exoplanets:blocks/leaves/light_leaves"    } },
+      "dark":   { "textures": { "all": "exoplanets:blocks/leaves/dark_leaves"     } },
+      "mold":   { "textures": { "all": "exoplanets:blocks/leaves/swamp_leaves_0"  } }
+    }
+  }
+}

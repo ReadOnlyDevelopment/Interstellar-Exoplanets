@@ -28,8 +28,7 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.model.*;
 import net.minecraftforge.client.model.obj.OBJModel;
-
-import net.romvoid95.core.ExoplanetsMod;
+import net.romvoid95.ExoplanetsMod;
 
 public class RocketModelLoader implements ICustomModelLoader {
 	public static final RocketModelLoader instance = new RocketModelLoader();

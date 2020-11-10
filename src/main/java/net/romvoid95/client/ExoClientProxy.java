@@ -19,21 +19,19 @@ package net.romvoid95.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import net.romvoid95.api.registry.ExoRegistry;
-import net.romvoid95.client.event.ClientEventHandler;
 import net.romvoid95.client.event.SkyProviders;
 import net.romvoid95.client.model.RocketModelLoader;
 import net.romvoid95.client.render.RocketRenderer;
@@ -59,9 +57,8 @@ public class ExoClientProxy extends ExoCommonProxy {
 		RocketModelLoader.instance.addDomain(ExoInfo.MODID);
 		register_event(this);
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class,
-				(RenderManager manager) -> new RocketRenderer(manager));
-		register_event(new ClientEventHandler());
+		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, RocketRenderer::new);
+		//register_event(new ClientEventHandler());
 
 		registry.clientPreInit(event);
 

@@ -21,11 +21,9 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import net.romvoid95.api.world.weather.MultiCloudProvider;
 import net.romvoid95.client.RGB;
 import net.romvoid95.client.gui.rendering.CloudTexture;

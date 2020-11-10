@@ -16,168 +16,118 @@
  */
 package net.romvoid95.space.astrogeneration.biome;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class BiomeData extends BiomeProperties {
-
-	private final String biomeName;
+	
+	private String biomeName;
 	private float baseHeight;
 	private float heightVariation;
 	private float temperature;
-	private float rainfall;
-	private int waterColor;
-	private boolean snowEnabled;
-	private boolean rainEnabled;
+	
+	private BiomeData(String name, float temperature, float rainfall, float baseHeight, float heightVariation,
+			boolean enableRain, boolean enableSnow, int waterColor, String baseBiomeRegName) {
+		super(name);
 
-	BiomeData (@Nonnull String biomeName, float baseHeight, float heightVariation, float temperature, float rainfall, int waterColor, boolean snowEnabled, boolean rainEnabled) {
-		super(biomeName);
-		this.biomeName = biomeName;
+		this.setTemperature(temperature);
+		this.setRainfall(rainfall);
+		this.setBaseHeight(baseHeight);
+		this.setHeightVariation(heightVariation);
+		if (!enableRain)
+			this.setRainDisabled();
+		if (enableSnow)
+			this.setSnowEnabled();
+		this.setWaterColor(waterColor);
+		this.setBaseBiome(baseBiomeRegName);
+		this.biomeName = name;
 		this.baseHeight = baseHeight;
 		this.heightVariation = heightVariation;
 		this.temperature = temperature;
-		this.rainfall = rainfall;
-		this.waterColor = waterColor;
-		this.snowEnabled = snowEnabled;
-		this.rainEnabled = rainEnabled;
+		
 	}
 
-	public static BiomeDataBuilder builder() {
-		return new BiomeDataBuilder();
+	protected String getBiomeName() {
+		return biomeName;
 	}
 
-	public static class BiomeDataBuilder {
-		private String biomeName;
-		private float baseHeight;
-		private float heightVariation;
-		private float temperature;
-		private float rainfall;
-		private int waterColor;
-		private boolean snowEnabled;
-		private boolean rainEnabled;
+	protected float getBaseHeight() {
+		return baseHeight;
+	}
 
-		public BiomeDataBuilder biomeName(@Nonnull String biomeName) {
-			this.biomeName = biomeName;
+	protected float getHeightVariation() {
+		return heightVariation;
+	}
+
+	protected float getTemperature() {
+		return temperature;
+	}
+
+	public static class DataValues {
+		private final String biomeName;
+		private float baseHeight = 0.1F;
+		private float heightVariation = 0.2F;
+		private float temperature = 0.5F;
+		private float rainfall = 0F;
+		private int waterColor = 16777215;
+		private boolean enableSnow = true;
+		private boolean enableRain = true;
+		private String baseBiomeRegName;
+
+		public DataValues(String name) {
+			this.biomeName = name;
+		}
+
+		public DataValues temperature(Float temperature) {
+			if (temperature != null)
+				this.temperature = temperature;
 			return this;
 		}
 
-		public BiomeDataBuilder baseHeight(float baseHeight) {
-			this.baseHeight = baseHeight;
+		public DataValues rainfall(Float rainfall) {
+			if (rainfall != null)
+				this.rainfall = rainfall;
 			return this;
 		}
 
-		public BiomeDataBuilder heightVariation(float heightVariation) {
-			this.heightVariation = heightVariation;
+		public DataValues baseHeight(Float baseHeight) {
+			if (baseHeight != null)
+				this.baseHeight = baseHeight;
 			return this;
 		}
 
-		public BiomeDataBuilder temperature(float temperature) {
-			this.temperature = temperature;
+		public DataValues heightVariation(Float heightVariation) {
+			if (heightVariation != null)
+				this.heightVariation = heightVariation;
 			return this;
 		}
 
-		public BiomeDataBuilder rainfall(float rainfall) {
-			this.rainfall = rainfall;
+		public DataValues disableRain() {
+			if(rainfall == 0)
+				this.enableRain = false;
 			return this;
 		}
 
-		public BiomeDataBuilder waterColor(int waterColor) {
-			this.waterColor = waterColor;
+		public DataValues disableSnow() {
+			if(!enableRain)
+				this.enableSnow = false;
 			return this;
 		}
 
-		public BiomeDataBuilder snowEnabled(boolean snowEnabled) {
-			this.snowEnabled = snowEnabled;
+		public DataValues waterColor(Integer waterColor) {
+			if (waterColor != null)
+				this.waterColor = waterColor;
 			return this;
 		}
 
-		public BiomeDataBuilder rainEnabled(boolean rainEnabled) {
-			this.rainEnabled = rainEnabled;
+		public DataValues baseBiome(String name) {
+			if (name != null)
+				this.baseBiomeRegName = name;
 			return this;
 		}
 
-		public BiomeData generate() {
-			return new BiomeData(this.biomeName, this.baseHeight, this.heightVariation, this.temperature, this.rainfall, this.waterColor, this.snowEnabled, this.rainEnabled);
+		public BiomeData finalzie() {
+			return new BiomeData(this.biomeName, this.temperature, this.rainfall, this.baseHeight, this.heightVariation,
+					this.enableRain, this.enableSnow, this.waterColor, this.baseBiomeRegName);
 		}
-
-		@Override
-		public String toString() {
-			return "BiomeSettings.BiomeDataBuilder(biomeName=" + this.biomeName + ", baseHeight=" + this.baseHeight
-					+ ", heightVariation=" + this.heightVariation + ", temperature=" + this.temperature + ", rainfall="
-					+ this.rainfall + ", waterColor=" + this.waterColor + ", snowEnabled=" + this.snowEnabled
-					+ ", rainEnabled=" + this.rainEnabled + ")";
-		}
-	}
-
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this)
-			return true;
-		if (!(o instanceof BiomeData))
-			return false;
-		BiomeData other = (BiomeData) o;
-		if (!other.canEqual(this))
-			return false;
-		Object this$biomeName = getBiomeName(), other$biomeName = other.getBiomeName();
-		return ((this$biomeName == null) ? (other$biomeName != null) : !this$biomeName.equals(other$biomeName)) ? false
-				: ((Float.compare(getBaseHeight(), other.getBaseHeight()) != 0) ? false
-						: ((Float.compare(getHeightVariation(), other.getHeightVariation()) != 0) ? false
-								: ((Float.compare(getTemperature(), other.getTemperature()) != 0) ? false
-										: ((Float.compare(getRainfall(), other.getRainfall()) != 0) ? false
-												: ((getWaterColor() != other.getWaterColor()) ? false
-														: ((isSnowEnabled() != other.isSnowEnabled()) ? false
-																: ((isRainEnabled() == other.isRainEnabled()))))))));
-	}
-
-	protected boolean canEqual(Object other) {
-		return other instanceof BiomeData;
-	}
-
-	@Override
-	public String toString() {
-		return "BiomeSettings(biomeName=" + getBiomeName() + ", baseHeight=" + getBaseHeight() + ", heightVariation="
-				+ getHeightVariation() + ", temperature=" + getTemperature() + ", rainfall=" + getRainfall()
-				+ ", waterColor=" + getWaterColor() + ", snowEnabled=" + isSnowEnabled() + ", rainEnabled="
-				+ isRainEnabled() + ")";
-	}
-
-	@Nonnull
-	public String getBiomeName() {
-		return this.biomeName;
-	}
-
-	public float getBaseHeight() {
-		return this.baseHeight;
-	}
-
-	public float getHeightVariation() {
-		return this.heightVariation;
-	}
-
-	public float getTemperature() {
-		return this.temperature;
-	}
-
-	public float getRainfall() {
-		return this.rainfall;
-	}
-
-	public int getWaterColor() {
-		return this.waterColor;
-	}
-
-	public boolean isSnowEnabled() {
-		return this.snowEnabled;
-	}
-
-	public boolean isRainEnabled() {
-		return this.rainEnabled;
-	}
-
-	public static BiomeData buildDefault(String nameIn) {
-		return builder().biomeName(nameIn).baseHeight(0.1F).heightVariation(0.2F).temperature(0.5F).rainfall(
-				0.0F).waterColor(16777215).rainEnabled(false).snowEnabled(false).generate();
 	}
 }

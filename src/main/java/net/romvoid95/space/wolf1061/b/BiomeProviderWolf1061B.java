@@ -16,25 +16,26 @@
  */
 package net.romvoid95.space.wolf1061.b;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
-
 import net.romvoid95.core.initialization.Planets;
-import net.romvoid95.space.yzceti.d.worldgen.layer.GenLayerYzCetiD;
+import net.romvoid95.space.wolf1061.b.worldgen.layers.GenLayerWolfB;
 
 public class BiomeProviderWolf1061B extends BiomeProvider {
 	private GenLayer      unzoomedBiomes;
@@ -51,7 +52,7 @@ public class BiomeProviderWolf1061B extends BiomeProvider {
 
 	public BiomeProviderWolf1061B(long seed, WorldType type) {
 		this();
-		GenLayer[] genLayers = GenLayerYzCetiD.createWorld(seed);
+		GenLayer[] genLayers = GenLayerWolfB.createWorld(seed);
 		this.unzoomedBiomes = genLayers[0];
 		this.zoomedBiomes   = genLayers[1];
 	}

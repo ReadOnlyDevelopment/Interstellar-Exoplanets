@@ -17,19 +17,18 @@
 
 package net.romvoid95.space.wolf1061.b.worldgen.biome;
 
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.wolf1061.Wolf1061Blocks;
 import net.romvoid95.space.wolf1061.b.worldgen.WolfBBiomes;
 
 public class BiomeGenWolfBPlains extends WolfBBiomes {
 
-	public BiomeGenWolfBPlains (String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenWolfBPlains () {
+        super(new DataValues("Wolf1061 B Plains")
+        		.temperature(0.8F)
+        		.baseHeight(0.1F)
+        		.heightVariation(0.025F)
+        		.finalzie());
 		this.topBlock    = Wolf1061Blocks.Wolf1061B.WOLFB_STONE.getDefaultState();
 		this.fillerBlock = Wolf1061Blocks.Wolf1061B.WOLFB_COBBLESTONE.getDefaultState();
 	}

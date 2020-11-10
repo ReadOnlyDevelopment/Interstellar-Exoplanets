@@ -24,7 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.wolf1061.Wolf1061Blocks;
 import net.romvoid95.space.wolf1061.b.worldgen.WolfBBiomes;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
@@ -33,13 +33,12 @@ public class BiomeGenWolfBSea extends WolfBBiomes {
 
 	public static IBlockState redRock = Blocks.RED_SANDSTONE.getDefaultState();
 
-	public BiomeGenWolfBSea (String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenWolfBSea () {
+        super(new DataValues("Wolf1061 B Sea")
+        		.temperature(0.25F)
+        		.baseHeight(-0.6F)
+        		.heightVariation(0.15F)
+        		.finalzie());
 		this.topBlock    = Wolf1061Blocks.Wolf1061B.WOLFB_STONE.getDefaultState();
 		this.fillerBlock = Wolf1061Blocks.Wolf1061B.WOLFB_COBBLESTONE.getDefaultState();
 	}

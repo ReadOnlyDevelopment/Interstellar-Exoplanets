@@ -33,8 +33,8 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.ExoplanetsMod;
 
 public class ConfigCore {
 
@@ -49,6 +49,7 @@ public class ConfigCore {
 	public static boolean enableOverworldOres;
 	public static boolean enableDebug;
 	public static boolean enableRealism;
+	public static int biomeCommandTimeout;
 
 	public static boolean warnBetaBuild;
 	public static int     configVersion;
@@ -102,6 +103,12 @@ public class ConfigCore {
 			prop.setMinValue(0);
 			prop.setMaxValue(255);
 			leavesLightOpacity = prop.getInt(1);
+			finishProp(prop);
+			
+			prop = getConfig(CATEGORY_CORE, "biomeCommandTimeout", 35000);
+			prop.setComment("How long, in ms, the /locatebiome command will search for biomes before timing out, normally 20000ms");
+			prop.setLanguageKey("exoplanets.configgui.biomeCommandTimeout");
+			biomeCommandTimeout = prop.getInt(35000);
 			finishProp(prop);
 
 

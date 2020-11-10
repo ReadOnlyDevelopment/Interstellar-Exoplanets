@@ -62,78 +62,24 @@ import net.romvoid95.space.trappist1.d.client.StormProviderTrappist1D;
 
 public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implements IWeatherProvider, IClimateProvider {
 
+	public static WE_ChunkProvider chunk;
 	private boolean                raining    = false;
 	private float                  targetRain = 0.0F;
 	private int                    rainTime   = 100;
 	private int                    rainChange = 100;
-	public static WE_ChunkProvider chunk;
 
 	private StormProviderTrappist1D storm           = new StormProviderTrappist1D();
 	private CloudProviderTrappist1D clouds          = new CloudProviderTrappist1D();
 	private IRenderHandler          climateProvider = clouds;
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public IRenderHandler getCloudRenderer () {
-		return climateProvider == null ? climateProvider = new CloudProviderTrappist1D() : climateProvider;
-
+	public boolean canDoRainSnowIce (net.minecraft.world.chunk.Chunk chunk) {
+		return true;
 	}
 
 	@Override
-	public double getFuelUsageMultiplier () {
-		return 0;
-	}
-
-	@Override
-	public float getFallDamageModifier () {
-		return 0;
-	}
-
-	@Override
-	public double getHorizon () {
-		return 1;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 24000L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.00015f;
-	}
-
-	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.TRAPPIST1D;
-	}
-
-	@Override
-	public int getDungeonSpacing () {
-		return 0;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
-	}
-
-	@Override
-	public List<Block> getSurfaceBlocks () {
-		return null;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getCloudHeight () {
-		return 250.0F;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Vec3d getCloudColor (float partialTicks) {
-		return new Vec3d(0.3D, 0.3D, 0.3D);
+	public boolean enableAdvancedThermalLevel () {
+		return false;
 	}
 
 	@Override
@@ -167,13 +113,170 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 	}
 
 	@Override
-	public float getSolarSize () {
-		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+	public CelestialBody getCelestialBody () {
+		return Planets.TRAPPIST1D;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return WE_ChunkProvider.class;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Vec3d getCloudColor (float partialTicks) {
+		return new Vec3d(0.3D, 0.3D, 0.3D);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getCloudHeight () {
+		return 250.0F;
+	}
+
+	@Override
+	public ICloudProvider getCloudProvider () {
+		return clouds;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IRenderHandler getCloudRenderer () {
+		return climateProvider == null ? climateProvider = new CloudProviderTrappist1D() : climateProvider;
+
+	}
+
+	@Override
+	public long getDayLength () {
+		return 24000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.TRAPPIST_1D;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing () {
+		return 0;
+	}
+
+	@Override
+	public float getFallDamageModifier () {
+		return 0;
+	}
+
+	@Override
+	public Vector3 getFogColor() {
+		float f = 1.0F - this.getStarBrightness(1.0F);
+		return new Vector3(250 / 255F * f, 192 / 255F * f, 115 / 255F * f);
+	}
+
+	@Override
+	public double getFuelUsageMultiplier () {
+		return 0;
+	}
+
+	@Override
+	public float getGravity () {
+		return 0.00015f;
+	}
+
+	@Override
+	public double getHorizon () {
+		return 1;
+	}
+
+	@Override
+	public double getMeteorFrequency() {
+		return 0;
 	}
 
 	@Override
 	public int getMoonPhase (long worldTime) {
 		return (int) (((worldTime / this.getDayLength()) % 8L) + 8L) % 8;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Particle getParticle (WorldClient world, double x, double y, double z) {
+		return null;
+	}
+
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
+	}
+
+	@Override
+	public Vector3 getSkyColor () {
+		float f = 1.0F - this.getStarBrightness(1.0F);
+		return new Vector3((156f / 255.0F) * f, (156f / 255.0F) * f, (156f / 255.0F) * f);
+	}
+
+	@Override
+	public float getSolarSize () {
+		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+	}
+
+	@Override
+	public int getSoundInterval (float rainStrength) {
+		int result = 80 - (int) (rainStrength * 88F);
+		return result > 0 ? result : 0;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getStarBrightness (float partialTicks) {
+		float angle = this.world.getCelestialAngle(partialTicks);
+		float value = 1.0F - ((MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.25F);
+		value = MathHelper.clamp(value, 0.0F, 1.0F);
+		return (value * value * 0.5F) + 0.3F;
+	}
+
+	@Override
+	public IStormProvider getStormProvider () {
+		return storm;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getSunBrightness (float partialTicks) {
+		float f1 = this.world.getCelestialAngle(1.0F);
+		float f2 = 1.0F - ((MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.2F);
+		f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
+		f2 = 1.2F - f2;
+		return f2 * 0.8F;
+	}
+
+	@Override
+	public List<Block> getSurfaceBlocks () {
+		return null;
+	}
+
+	@Override
+	protected float getThermalValueMod () {
+		return 0.0F;
+	}
+
+	@Override
+	public double getYCoordinateToTeleport () {
+		return 800.0D;
+	}
+
+	@Override
+	public boolean hasSunset () {
+		return false;
+	}
+
+	@Override
+	public boolean isSkyColored () {
+		return true;
 	}
 
 	@Override
@@ -188,90 +291,13 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 	public void recreateStructures (Chunk chunkIn, int x, int z) {}
 
 	@Override
-	public boolean shouldForceRespawn () {
-		return !ConfigManagerCore.forceOverworldRespawn;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return WE_ChunkProvider.class;
-	}
-
-	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.TRAPPIST_1D;
-	}
-
-	@Override
-	public boolean enableAdvancedThermalLevel () {
-		return false;
-	}
-
-	@Override
-	protected float getThermalValueMod () {
-		return 0.0F;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getStarBrightness (float partialTicks) {
-		float angle = this.world.getCelestialAngle(partialTicks);
-		float value = 1.0F - ((MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.25F);
-		value = MathHelper.clamp(value, 0.0F, 1.0F);
-		return (value * value * 0.5F) + 0.3F;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getSunBrightness (float partialTicks) {
-		float f1 = this.world.getCelestialAngle(1.0F);
-		float f2 = 1.0F - ((MathHelper.cos(f1 * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.2F);
-		f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
-		f2 = 1.2F - f2;
-		return f2 * 0.8F;
-	}
-
-	@Override
-	public Vector3 getFogColor () {
-		float f = 1.0F - this.getStarBrightness(1.0F);
-		return new Vector3((182f / 255F) * f, (182f / 255F) * f, (182f / 255F) * f);
-	}
-
-	@Override
-	public Vector3 getSkyColor () {
-		float f = 1.0F - this.getStarBrightness(1.0F);
-		return new Vector3((156f / 255.0F) * f, (156f / 255.0F) * f, (156f / 255.0F) * f);
-	}
-
-	@Override
-	public boolean isSkyColored () {
-		return true;
-	}
-
-	@Override
-	public boolean hasSunset () {
-		return false;
-	}
-
-	@Override
-	public double getYCoordinateToTeleport () {
-		return 800.0D;
-	}
-
-	@Override
 	public boolean shouldDisablePrecipitation () {
 		return false;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Particle getParticle (WorldClient world, double x, double y, double z) {
-		return null;
-	}
-
-	@Override
-	public boolean canDoRainSnowIce (net.minecraft.world.chunk.Chunk chunk) {
-		return true;
+	public boolean shouldForceRespawn () {
+		return !ConfigManagerCore.forceOverworldRespawn;
 	}
 
 	@Override
@@ -315,31 +341,4 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 					+ (random.nextFloat() * 0.06F) + (random.nextFloat() * 0.06F), false);
 		}
 	}
-
-	@Override
-	public int getSoundInterval (float rainStrength) {
-		int result = 80 - (int) (rainStrength * 88F);
-		return result > 0 ? result : 0;
-	}
-
-	@Override
-	public ICloudProvider getCloudProvider () {
-		return clouds;
-	}
-
-	@Override
-	public IStormProvider getStormProvider () {
-		return storm;
-	}
-
-	@Override
-	public double getMeteorFrequency() {
-		return 0;
-	}
-
-	@Override
-	public Block getPlanetGrassBlock() {
-		return null;
-	}
-
 }

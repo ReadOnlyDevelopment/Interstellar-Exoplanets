@@ -25,7 +25,6 @@ import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
@@ -43,96 +42,23 @@ implements ISolarLevel, IExitHeight {
 
 	private static WorldProviderWE_ExoPlanet instance;
 
-	public WorldProviderWE_ExoPlanet () {
-		instance = this;
-	}
-
 	public static WorldProviderWE_ExoPlanet instance() {
 		return instance;
 	}
 
-	@Override
-	public String getSaveFolder() {
-		return "exoplanets/" + this.getExoPlanet().getName();
-	}
-	
-	public ExoPlanet getExoPlanet() {
-		CelestialBody celestialBody = this.getCelestialBody();
-		ExoPlanet exoPlanet = (ExoPlanet) celestialBody;
-		return exoPlanet;
-	}
-
-	public World getWorldObj() {
-		return this.world;
-	}
-
-	@Override
-	public Vector3 getFogColor() {
-		return new Vector3(0, 0, 0);
-	}
-
-	@Override
-	public boolean shouldForceRespawn() {
-		return !ConfigManagerCore.forceOverworldRespawn;
-	}
-
-	@Override
-	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
-		return false;
-	}
-
-	@Override
-	public IRenderHandler getCloudRenderer() {
-		return new CloudRenderer();
-	}
-
-	@Override
-	public long getDayLength() {
-		return this.getExoPlanet().getDayLength();
+	public WorldProviderWE_ExoPlanet () {
+		instance = this;
 	}
 
 	public int AtmosphericPressure() {
 		return 5;
 	}
-
-	public boolean SolarRadiation() {
-		return true;
-	}
-
+	
 	@Override
-	public double getSolarWindMultiplier() {
-		return 0.6D;
+	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
+		return false;
 	}
-
-	public ClassBody getClassBody() {
-		return ClassBody.SELENA;
-	}
-
-	public float getSolarRadiationModify() {
-		return 5.0f;
-	}
-
-	@Override
-	public void updateWeather() {
-		World worldObj = this.getWorldObj();
-		WorldInfo worldInfo = worldObj.getWorldInfo();
-		if (!this.shouldDisablePrecipitation()) {
-			super.updateWeather();
-		} else {
-			worldInfo.setRainTime(0);
-			worldInfo.setRaining(false);
-			worldInfo.setThunderTime(0);
-			worldInfo.setThundering(false);
-			worldObj.rainingStrength = 0.0F;
-			worldObj.thunderingStrength = 0.0F;
-		}
-	}
-
-	@Override
-	public float getWindLevel() {
-		return 0.0F;
-	}
-
+	
 	@Override
 	public boolean canRespawnHere() {
 		if (EventHandlerGC.bedActivated) {
@@ -141,10 +67,11 @@ implements ISolarLevel, IExitHeight {
 		}
 		return false;
 	}
+	
 
 	@Override
-	public double getFuelUsageMultiplier() {
-		return 0.5D;
+	public boolean canSpaceshipTierPass(int tier) {
+		return tier >= this.getExoPlanet().getTierRequirement();
 	}
 
 	@Override
@@ -153,19 +80,42 @@ implements ISolarLevel, IExitHeight {
 	}
 
 	@Override
+	public abstract Class<? extends IChunkGenerator> getChunkProviderClass();
+
+	public ClassBody getClassBody() {
+		return ClassBody.SELENA;
+	}
+
+	@Override
+	public long getDayLength() {
+		return this.getExoPlanet().getDayLength();
+	}
+
+	public ExoPlanet getExoPlanet() {
+		CelestialBody celestialBody = this.getCelestialBody();
+		ExoPlanet exoPlanet = (ExoPlanet) celestialBody;
+		return exoPlanet;
+	}
+
+	@Override
+	public Vector3 getFogColor() {
+		return new Vector3(0, 0, 0);
+	}
+
+	@Override
+	public double getFuelUsageMultiplier() {
+		return 0.5D;
+	}
+
+	@Override
 	public float getGravity() {
 		return instance().getExoPlanet().getGravity();
 	}
 
 	@Override
-	public boolean canSpaceshipTierPass(int tier) {
-		return tier >= this.getExoPlanet().getTierRequirement();
-	}
+	public abstract double getMeteorFrequency();
 
-	@Override
-	public boolean hasSkyLight() {
-		return true;
-	}
+	public abstract Block getPlanetGrassBlock();
 
 	public float getPlanetTemp() {
 		ExoPlanet planet = this.getExoPlanet();
@@ -178,6 +128,46 @@ implements ISolarLevel, IExitHeight {
 		}
 
 		return planetTemp;
+	}
+
+	@Override
+	public String getSaveFolder() {
+		return "exoplanets/" + this.getExoPlanet().getName();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer() {
+		return null;
+	}
+
+	public float getSolarRadiationModify() {
+		return 5.0f;
+	}
+
+	@Override
+	public abstract float getSolarSize();
+
+	@Override
+	public double getSolarWindMultiplier() {
+		return 0.6D;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getStarBrightness(float par1) {
+		final float var2 = this.getWorldObj().getCelestialAngle(par1);
+		float var3 = 1.0F - ((MathHelper.cos(var2 * (float) Math.PI * 2.0F) * 2.0F) + 0.25F);
+
+		if (var3 < 0.0F) {
+			var3 = 0.0F;
+		}
+
+		if (var3 > 1.0F) {
+			var3 = 1.0F;
+		}
+
+		return (var3 * var3 * 0.5F) + 0.3F;
 	}
 
 	@Override
@@ -198,36 +188,47 @@ implements ISolarLevel, IExitHeight {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public float getStarBrightness(float par1) {
-		final float var2 = this.getWorldObj().getCelestialAngle(par1);
-		float var3 = 1.0F - ((MathHelper.cos(var2 * (float) Math.PI * 2.0F) * 2.0F) + 0.25F);
-
-		if (var3 < 0.0F) {
-			var3 = 0.0F;
-		}
-
-		if (var3 > 1.0F) {
-			var3 = 1.0F;
-		}
-
-		return (var3 * var3 * 0.5F) + 0.3F;
-	}
-	
-	@Override
 	public List<Block> getSurfaceBlocks() {
 		List<Block> list = new LinkedList<>();
 		return list;
 	}
 
 	@Override
-	public abstract float getSolarSize();
+	public float getWindLevel() {
+		return 0.0F;
+	}
+	
+	public World getWorldObj() {
+		return this.world;
+	}
 
 	@Override
-	public abstract double getMeteorFrequency();
+	public boolean hasSkyLight() {
+		return true;
+	}
 
 	@Override
-	public abstract Class<? extends IChunkGenerator> getChunkProviderClass();
+	public boolean shouldForceRespawn() {
+		return !ConfigManagerCore.forceOverworldRespawn;
+	}
 
-	public abstract Block getPlanetGrassBlock();
+	public boolean SolarRadiation() {
+		return true;
+	}
+
+	@Override
+	public void updateWeather() {
+		World worldObj = this.getWorldObj();
+		WorldInfo worldInfo = worldObj.getWorldInfo();
+		if (!this.shouldDisablePrecipitation()) {
+			super.updateWeather();
+		} else {
+			worldInfo.setRainTime(0);
+			worldInfo.setRaining(false);
+			worldInfo.setThunderTime(0);
+			worldInfo.setThundering(false);
+			worldObj.rainingStrength = 0.0F;
+			worldObj.thunderingStrength = 0.0F;
+		}
+	}
 }

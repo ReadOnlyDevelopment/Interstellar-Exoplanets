@@ -54,63 +54,8 @@ public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 	public static WE_ChunkProvider chunk;
 
 	@Override
-	public float getCloudHeight () {
-		return 63.0F;
-	}
-
-	@Override
 	public boolean enableAdvancedThermalLevel () {
 		return true;
-	}
-
-	@Override
-	protected float getThermalValueMod () {
-		return 0.2F;
-	}
-
-	@Override
-	public double getHorizon () {
-		return 44.0D;
-	}
-
-	@Override
-	public double getFuelUsageMultiplier () {
-		return 1.5;
-	}
-
-	@Override
-	public float getFallDamageModifier () {
-		return 0;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 24000L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.015f;
-	}
-
-	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.KEPLER1649C;
-	}
-
-	@Override
-	public int getDungeonSpacing () {
-		return 0;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
-	}
-
-	@Override
-	public List<Block> getSurfaceBlocks () {
-		return null;
 	}
 
 	@Override
@@ -152,13 +97,65 @@ public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 	}
 
 	@Override
-	public float getSolarSize () {
-		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+	public CelestialBody getCelestialBody () {
+		return Planets.KEPLER1649C;
 	}
 
 	@Override
-	public int getMoonPhase (long worldTime) {
-		return (int) (((worldTime / this.getDayLength()) % 8L) + 8L) % 8;
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return WE_ChunkProviderSpace.class;
+
+	}
+
+	@Override
+	public float getCloudHeight () {
+		return 63.0F;
+	}
+
+	@Override
+	public long getDayLength () {
+		return 24000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.KEPLER1649_C;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing () {
+		return 0;
+	}
+
+	@Override
+	public float getFallDamageModifier () {
+		return 0;
+	}
+
+	@Override
+	public Vector3 getFogColor () {
+		float f = 0.6F - this.getStarBrightness(1.0F);
+		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
+	}
+
+	@Override
+	public double getFuelUsageMultiplier () {
+		return 1.5;
+	}
+
+	@Override
+	public float getGravity () {
+		return 0.015f;
+	}
+
+	@Override
+	public double getHorizon () {
+		return 44.0D;
 	}
 
 	@Override
@@ -177,18 +174,30 @@ public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 	}
 
 	@Override
-	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {
+	public double getMeteorFrequency() {
+		return 0;
+	}
+
+	@Override
+	public int getMoonPhase (long worldTime) {
+		return (int) (((worldTime / this.getDayLength()) % 8L) + 8L) % 8;
+	}
+
+	@Override
+	public Block getPlanetGrassBlock() {
+		return null;
+	}
+
+	@Override
+	public Vector3 getSkyColor () {
+		float f = 0.3F - this.getStarBrightness(1.0F);
+		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
 
 	}
 
 	@Override
-	public void onPopulate (int cX, int cZ) {
-
-	}
-
-	@Override
-	public void recreateStructures (Chunk chunkIn, int x, int z) {
-
+	public float getSolarSize () {
+		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
 	}
 
 	@Override
@@ -211,16 +220,13 @@ public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 	}
 
 	@Override
-	public Vector3 getFogColor () {
-		float f = 0.6F - this.getStarBrightness(1.0F);
-		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
+	public List<Block> getSurfaceBlocks () {
+		return null;
 	}
 
 	@Override
-	public Vector3 getSkyColor () {
-		float f = 0.3F - this.getStarBrightness(1.0F);
-		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
-
+	protected float getThermalValueMod () {
+		return 0.2F;
 	}
 
 	@Override
@@ -229,30 +235,22 @@ public class WorldProviderKepler1649c extends WorldProviderWE_ExoPlanet {
 	}
 
 	@Override
+	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {
+
+	}
+
+	@Override
+	public void onPopulate (int cX, int cZ) {
+
+	}
+	
+	@Override
+	public void recreateStructures (Chunk chunkIn, int x, int z) {
+
+	}
+	
+	@Override
 	public boolean shouldForceRespawn () {
 		return !ConfigManagerCore.forceOverworldRespawn;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return WE_ChunkProviderSpace.class;
-
-	}
-
-	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.KEPLER1649_C;
-	}
-
-	@Override
-	public double getMeteorFrequency() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Block getPlanetGrassBlock() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -27,6 +27,7 @@ import net.romvoid95.core.ExoInfo;
 public class Universe {
 
 	public static List<ExoSystem> enabledSystems = new ArrayList<>();
+	public static List<ExoPlanet> exoPlanets = new ArrayList<ExoPlanet>();
 	
 
 	/**
@@ -66,26 +67,6 @@ public class Universe {
 		return body;
 	}
 
-	/**
-	 * Builds unreachable planet.
-	 *
-	 * @param  planetName  the planet name
-	 * @param  solarSystem the solar system
-	 * @param  randomPhase the random phase
-	 * @param  au          the au
-	 * @return             the planet
-	 */
-//	public static ExoPlanet unreachable (String planetName, SolarSystem solarSystem, float randomPhase, float distance, float orbitTime) {
-//		ExoPlanet unreachable = (ExoPlanet) new ExoPlanet(planetName).setParentSolarSystem(solarSystem);
-//		unreachable.setBodyIcon(Assets.getCelestialTexture(planetName));
-//		unreachable.setRelativeDistanceFromCenter(new ScalableDistance(distance, distance));
-//		unreachable.setRelativeOrbitTime(orbitTime);
-//		unreachable.setPhaseShift(randomPhase);
-//		unreachable.setRelativeSize(1.0F);
-//		unreachable.setRingColorRGB(0.8F, 0.0F, 0.0F);
-//		GalaxyRegistry.registerPlanet(unreachable);
-//		return unreachable;
-//	}
 
 	public static void registerProvider (String name, int id, int staticId, Class<? extends WorldProvider> provider) {
 		GalacticraftRegistry.registerDimension(name, "_" + name.toLowerCase(), staticId, provider, true);
@@ -122,6 +103,7 @@ public class Universe {
 		
 		ExoPlanetBuilder (ExoPlanet planet) {
 			ExoPlanetBuilder.planet = planet;
+			Universe.exoPlanets.add(planet);
 		}
 		
 		public static Builder build(ExoPlanet planet) {

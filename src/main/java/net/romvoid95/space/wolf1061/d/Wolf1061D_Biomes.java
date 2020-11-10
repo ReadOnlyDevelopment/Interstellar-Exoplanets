@@ -17,13 +17,13 @@
 
 package net.romvoid95.space.wolf1061.d;
 
+import net.romvoid95.space.astrogeneration.biome.BiomeData;
 import net.romvoid95.space.astrogeneration.biome.ExoBiome;
-import net.romvoid95.space.astrogeneration.biome.BiomeData.BiomeDataBuilder;
 
 public class Wolf1061D_Biomes extends ExoBiome {
 
-	public Wolf1061D_Biomes (BiomeDataBuilder properties) {
-		super(properties.generate());
+	public Wolf1061D_Biomes (BiomeData biomeData) {
+        super(biomeData);
 	}
 
 	@Override

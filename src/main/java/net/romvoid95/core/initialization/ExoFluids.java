@@ -7,9 +7,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.*;
-
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.block.fluid.BlockFluid;
 import net.romvoid95.core.ExoInfo;
@@ -50,7 +50,7 @@ public class ExoFluids {
 	}
 
 	private static void registerFluidBlock (Block block, Fluid fluid, String name) {
-		ExoBlocks.blocksList.add(block);
+		//ExoBlocks.blocksList.add(block);
 		ExoBlocks.register(block, name);
 		block.setCreativeTab(CreativeExoTabs.FLUIDS_TABS);
 		fluidBlocks.put(fluid, (IFluidBlock) block);

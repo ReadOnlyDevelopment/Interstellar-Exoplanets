@@ -41,23 +41,64 @@ import net.romvoid95.space.yzceti.c.worldgen.BiomeProviderYzCetiC;
 public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 
 	@Override
-	public float getSolarSize () {
-		return 1.0F;
+	public boolean canCoordinateBeSpawn (int var1, int var2) {
+		return true;
 	}
 
 	@Override
-	public double getMeteorFrequency () {
-		return 2.0;
+	public boolean canRespawnHere () {
+		return this.shouldForceRespawn();
 	}
 
 	@Override
-	public double getFuelUsageMultiplier () {
-		return 3.8D;
+	public int getAverageGroundLevel () {
+		return 65;
 	}
 
 	@Override
-	public boolean hasBreathableAtmosphere () {
-		return this.getExoPlanet().isBreathable();
+	public Class<? extends BiomeProvider> getBiomeProviderClass () {
+		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETIC);
+		return BiomeProviderYzCetiC.class;
+	}
+
+	@Override
+	public CelestialBody getCelestialBody () {
+		return Planets.YZCETIC;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return ChunkProviderYzCetiC.class;
+	}
+
+	@Override
+	public float getCloudHeight () {
+		return 128F;
+	}
+
+	@Override
+	public long getDayLength () {
+		return 28000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.YZCETIC;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing() {
+		return 0;
+	}
+
+	@Override
+	public ExoPlanet getExoPlanet () {
+		return (ExoPlanet) getCelestialBody();
 	}
 
 	@Override
@@ -66,13 +107,23 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public float getSoundVolReductionAmount () {
-		return 0.0F;
+	public double getFuelUsageMultiplier () {
+		return 3.8D;
 	}
 
 	@Override
-	public float getThermalLevelModifier () {
-		return 2.5F;
+	public float getGravity () {
+		return 0.030F;
+	}
+
+	@Override
+	public double getHorizon () {
+		return 44.0D;
+	}
+
+	@Override
+	public double getMeteorFrequency () {
+		return 2.0;
 	}
 
 	@Override
@@ -90,33 +141,23 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public double getSolarEnergyMultiplier () {
-		return 8.65;
-	}
-
-	@Override
-	public double getYCoordinateToTeleport () {
-		return 1500.0D;
-	}
-
-	@Override
-	public float getCloudHeight () {
-		return 128F;
-	}
-
-	@Override
 	public Vector3 getSkyColor () {
 		return new Vector3(0, 0, 0);
 	}
 
 	@Override
-	public boolean hasSunset () {
-		return true;
+	public double getSolarEnergyMultiplier () {
+		return 8.65;
 	}
 
 	@Override
-	public boolean canRespawnHere () {
-		return this.shouldForceRespawn();
+	public float getSolarSize () {
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolReductionAmount () {
+		return 0.0F;
 	}
 
 	@Override
@@ -151,31 +192,6 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.YZCETIC;
-	}
-
-	@Override
-	public double getHorizon () {
-		return 44.0D;
-	}
-
-	@Override
-	public int getAverageGroundLevel () {
-		return 65;
-	}
-
-	@Override
-	public boolean canCoordinateBeSpawn (int var1, int var2) {
-		return true;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
-	}
-
-	@Override
 	public List<Block> getSurfaceBlocks () {
 		ArrayList<Block> blockList = new ArrayList<>();
 		blockList.add(YzCetiBlocks.C.YZC_SEDIMENTARYROCK);
@@ -185,43 +201,27 @@ public class WorldProviderYzCetiC extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.YZCETIC;
+	public float getThermalLevelModifier () {
+		return 2.5F;
+	}
+
+	@Override
+	public double getYCoordinateToTeleport () {
+		return 1500.0D;
+	}
+
+	@Override
+	public boolean hasBreathableAtmosphere () {
+		return this.getExoPlanet().isBreathable();
+	}
+
+	@Override
+	public boolean hasSunset () {
+		return true;
 	}
 
 	@Override
 	public boolean isSkyColored () {
 		return true;
-	}
-
-	@Override
-	public Class<? extends BiomeProvider> getBiomeProviderClass () {
-		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETIC);
-		return BiomeProviderYzCetiC.class;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return ChunkProviderYzCetiC.class;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 28000L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.030F;
-	}
-
-	@Override
-	public ExoPlanet getExoPlanet () {
-		return (ExoPlanet) getCelestialBody();
-	}
-
-	@Override
-	public int getDungeonSpacing() {
-		return 0;
 	}
 }

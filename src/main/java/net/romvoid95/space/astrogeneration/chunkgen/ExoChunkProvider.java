@@ -38,7 +38,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.romvoid95.space.astrogeneration.terrain.ExoCaveGenerator;
 
-public abstract class ExoChunkProvider extends ChunkProviderBase implements IExoChunk {
+public abstract class ExoChunkProvider extends ChunkProviderBase {
 	protected Random rand;
 	protected World worldObj;
 	private double[] depthBuffer= new double[256];

@@ -20,9 +20,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
 import net.romvoid95.api.world.weather.CloudProvider;
 import net.romvoid95.client.gui.rendering.Texture;
 import net.romvoid95.core.ExoInfo;

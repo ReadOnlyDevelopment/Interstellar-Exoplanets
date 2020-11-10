@@ -16,15 +16,19 @@
  */
 package net.romvoid95.common.utility.mc;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
+import lombok.experimental.UtilityClass;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-
-import lombok.experimental.UtilityClass;
+import net.romvoid95.api.space.Calculations;
 
 /**
  * The Class Worlds.
@@ -107,6 +111,10 @@ public class WorldUtils {
 	public static BlockPos randPos (Random seed, BlockPos pos, int width, int height) {
 		return new BlockPos(pos.getX() + seed.nextInt(width), pos.getY() + seed.nextInt(height), pos.getZ()
 				+ seed.nextInt(width));
+	}
+	
+	public static int randInt(int max) {
+		return Calculations.getRandomNumberInRange(new Random(), 1, max);
 	}
 
 	/**

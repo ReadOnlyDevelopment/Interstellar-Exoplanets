@@ -37,23 +37,18 @@ import net.romvoid95.space.yzceti.d.worldgen.BiomeProviderYzCetiD;
 public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
  
 	@Override
-	public float getSolarSize () {
-		return 0.5F;
+	public boolean canCoordinateBeSpawn (int var1, int var2) {
+		return true;
 	}
 
 	@Override
-	public boolean hasSunset () {
-		return false;
+	public boolean canSpaceshipTierPass (int tier) {
+		return tier >= ConfigSystems.yzceti_tier;
 	}
 
 	@Override
-	public long getDayLength () {
-		return 35000L;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return ChunkProviderYzCetiD.class;
+	public int getAverageGroundLevel () {
+		return 44;
 	}
 
 	@Override
@@ -63,18 +58,49 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public double getHorizon () {
-		return 44.0D;
+	public CelestialBody getCelestialBody () {
+		return Planets.YZCETID;
 	}
 
 	@Override
-	public int getAverageGroundLevel () {
-		return 44;
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return ChunkProviderYzCetiD.class;
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn (int var1, int var2) {
-		return true;
+	public long getDayLength () {
+		return 35000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.YZCETID;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing () {
+		return 0;
+	}
+
+	@Override
+	public ExoPlanet getExoPlanet () {
+		return (ExoPlanet) getCelestialBody();
+	}
+
+	@Override
+	public float getFallDamageModifier () {
+		return 0.38F;
+
+	}
+
+	@Override
+	public double getFuelUsageMultiplier () {
+		return 1.2D;
 	}
 
 	@Override
@@ -88,34 +114,13 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	}
 
 	@Override
+	public double getHorizon () {
+		return 44.0D;
+	}
+
+	@Override
 	public double getMeteorFrequency () {
 		return 1.0D;
-	}
-
-	@Override
-	public double getFuelUsageMultiplier () {
-		return 1.2D;
-	}
-
-	@Override
-	public boolean canSpaceshipTierPass (int tier) {
-		return tier >= ConfigSystems.yzceti_tier;
-	}
-
-	@Override
-	public float getFallDamageModifier () {
-		return 0.38F;
-
-	}
-
-	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.YZCETID;
-	}
-
-	@Override
-	public float getThermalLevelModifier () {
-		return 5.0F;
 	}
 
 	@Override
@@ -124,18 +129,8 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	}
 
 	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.YZCETID;
-	}
-
-	@Override
-	public int getDungeonSpacing () {
-		return 0;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
+	public float getSolarSize () {
+		return 0.5F;
 	}
 
 	@Override
@@ -145,12 +140,17 @@ public class WorldProviderYzCetiD extends WorldProviderExoPlanet {
 	}
 
 	@Override
+	public float getThermalLevelModifier () {
+		return 5.0F;
+	}
+
+	@Override
 	public double getYCoordinateToTeleport () {
 		return 1500.0D;
 	}
 
 	@Override
-	public ExoPlanet getExoPlanet () {
-		return (ExoPlanet) getCelestialBody();
+	public boolean hasSunset () {
+		return false;
 	}
 }

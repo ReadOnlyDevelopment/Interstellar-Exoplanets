@@ -70,7 +70,7 @@ public class Trappist1_E_Plains extends WE_Biome {
 		BlockPos pos      = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 
 		boolean cangen = true;
-		Block   log    = ExoBlocks.LOG_B;
+		Block   log    = ExoBlocks.EXO_LOG;
 		Block   leaves = Blocks.LEAVES2;
 
 		for (BlockPos pos1 : BlockPos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3))) {

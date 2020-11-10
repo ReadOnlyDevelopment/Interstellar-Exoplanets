@@ -23,7 +23,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.wolf1061.Wolf1061Blocks;
 import net.romvoid95.space.wolf1061.b.worldgen.WolfBBiomes;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
@@ -35,13 +35,12 @@ public class BiomeGenWolfBHills extends WolfBBiomes {
 	public IBlockState topBlock;
 	public IBlockState fillerBlock;
 
-	public BiomeGenWolfBHills (String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenWolfBHills () {
+        super(new DataValues("Wolf1061 B Hills")
+        		.temperature(0.2F)
+        		.baseHeight(2.1F)
+        		.heightVariation(0.45F)
+        		.finalzie());
 		this.topBlock = YzCetiBlocks.D.YZD_STONE.getDefaultState();
 		this.subTopBlock = YzCetiBlocks.D.YZD_MNT2.getDefaultState();
 		this.lowerTopBlocks = YzCetiBlocks.D.YZD_SEDIMENTARYROCK.getDefaultState();

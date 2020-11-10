@@ -21,9 +21,9 @@ import java.util.Map;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.util.ResourceLocation;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
 public class Assets {

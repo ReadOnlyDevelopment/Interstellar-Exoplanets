@@ -4,8 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import net.romvoid95.core.ExoplanetsMod;
-
 public class ExoGenTreeData {
     public boolean firstLog = false;
     public boolean firstLeaves = false;
@@ -65,37 +63,6 @@ public class ExoGenTreeData {
         }
 
         updateRanges();
-    }
-
-    public void dumpTreeData() {
-
-        if (logRangeX > 16) {
-            ExoplanetsMod.logger.error("Log X range = {} to {} ({} blocks)", minXLog, maxXLog, logRangeX);
-        }
-        else {
-        	ExoplanetsMod.logger.info("Log X range = {} to {} ({} blocks)", minXLog, maxXLog, logRangeX);
-        }
-
-        if (logRangeZ > 16) {
-        	ExoplanetsMod.logger.error("Log Z range = {} to {} ({} blocks)", minZLog, maxZLog, logRangeZ);
-        }
-        else {
-            ExoplanetsMod.logger.info("Log Z range = {} to {} ({} blocks)", minZLog, maxZLog, logRangeZ);
-        }
-
-        if (leavesRangeX > 16) {
-        	ExoplanetsMod.logger.error("Leaves X range = {} to {} ({} blocks)", minXLeaves, maxXLeaves, leavesRangeX);
-        }
-        else {
-        	ExoplanetsMod.logger.info("Leaves X range = {} to {} ({} blocks)", minXLeaves, maxXLeaves, leavesRangeX);
-        }
-
-        if (leavesRangeZ > 16) {
-        	ExoplanetsMod.logger.error("Leaves Z range = {} to {} ({} blocks)", minZLeaves, maxZLeaves, leavesRangeZ);
-        }
-        else {
-        	ExoplanetsMod.logger.info("Leaves Z range = {} to {} ({} blocks)", minZLeaves, maxZLeaves, leavesRangeZ);
-        }
     }
 
     public void updateRanges() {

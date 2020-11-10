@@ -16,24 +16,32 @@
  */
 package net.romvoid95.client.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Function;
 
 import lombok.experimental.UtilityClass;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
 @SuppressWarnings("deprecation")
@@ -123,6 +131,26 @@ public final class ModelUtil {
 				}
 				event.getModelRegistry().putObject(modelResourceLocation, newModel);
 			}
+		}
+	}
+	
+	public static void registerToState(Block b, int itemMeta, IBlockState state) {
+		registerToState(b, itemMeta, state, new DefaultStateMapper());
+	}
+
+	public static void registerToState(Block b, int itemMeta, IBlockState state, IStateMapper stateMapper) {
+		ModelResourceLocation mrl = stateMapper.putStateModelLocations(state.getBlock()).get(state);
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(b), itemMeta, mrl);
+	}
+
+	public static <T extends Comparable<T>> void registerToStateSingleVariant(Block b, IProperty<T> variant) {
+		registerToStateSingleVariant(b, variant, new DefaultStateMapper());
+	}
+
+	public static <T extends Comparable<T>> void registerToStateSingleVariant(Block b, IProperty<T> variant, IStateMapper stateMapper) {
+		List<T> variants = new ArrayList<>(variant.getAllowedValues());
+		for (int i = 0; i < variants.size(); i++) {
+			registerToState(b, i, b.getDefaultState().withProperty(variant, variants.get(i)), stateMapper);
 		}
 	}
 }

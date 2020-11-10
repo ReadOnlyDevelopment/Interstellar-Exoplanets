@@ -19,10 +19,8 @@ package net.romvoid95.space.kepler1649;
 import net.minecraft.block.Block;
 import net.romvoid95.common.block.terrain.BlockCrust;
 import net.romvoid95.common.block.terrain.BlockCrust.RockType;
-import net.romvoid95.common.block.terrain.BlockExoFoliage;
-import net.romvoid95.common.block.terrain.BlockExoLog;
-import net.romvoid95.common.block.terrain.BlockExoPlanks;
 import net.romvoid95.common.block.terrain.BlockExoSand;
+import net.romvoid95.common.block.terrain.foliage.BlockExoFoliage;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class KeplerBlocks {
@@ -30,6 +28,10 @@ public class KeplerBlocks {
 	public static void registerAll() {
 
 		ExoBlocks.register(Kepler1649C.kepler_sand, "kepler_sand");
+		ExoBlocks.register(Kepler1649B.KEPLERB_STONE, "keplerb_stone");
+		ExoBlocks.register(Kepler1649B.KEPLERB_CLIFF_STONE, "keplerb_cliff_stone");
+		ExoBlocks.register(Kepler1649B.KEPLERB_FOLIAGE_TALL, "keplerb_foliage_tall");
+		
 
 	}
 
@@ -37,8 +39,7 @@ public class KeplerBlocks {
 		public static final Block KEPLERB_STONE = new BlockCrust(RockType.METAMORPHIC);
 		public static final Block KEPLERB_CLIFF_STONE = new BlockCrust(RockType.METAMORPHIC);
 		public static final Block KEPLERB_FOLIAGE_TALL = new BlockExoFoliage();
-		public static final Block KEPLERB_SWAMP_LOG = new BlockExoLog();
-		public static final Block KEPLERB_SWAMP_PLANKS = new BlockExoPlanks();
+		
 	}
 
 	public static class Kepler1649C {

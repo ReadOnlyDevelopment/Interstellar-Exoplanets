@@ -73,7 +73,7 @@ public class WorldGenCliffShrub extends WorldGenTrees {
 				}
 
 				// Place a smaller leaf bunch one block above
-				if (mattDistance <= maxLeafWidth - 1 && worldIn.rand.nextFloat() < this.upperLeafChance) {
+				if (mattDistance <= maxLeafWidth - 1 && worldIn.rand.nextFloat() < WorldGenCliffShrub.upperLeafChance) {
 					placeLeaf(blockpos.up(), worldIn);
 				}
 			}

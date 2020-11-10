@@ -7,8 +7,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.romvoid95.common.block.terrain.BlockDoubleFoliage;
 import net.romvoid95.common.block.terrain.IDoubleGrass;
+import net.romvoid95.common.block.terrain.foliage.BlockDoubleFoliage;
 
 public class WorldGenExoDoublePlant extends WorldGenerator {
 

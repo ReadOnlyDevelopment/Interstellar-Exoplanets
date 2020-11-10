@@ -16,29 +16,20 @@
  */
 package net.romvoid95.space.yzceti.c.worldgen.biomes;
 
-import net.minecraft.world.biome.Biome;
-
-import net.minecraftforge.common.BiomeDictionary;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.c.worldgen.YzCetiCBiomes;
 
 public class BiomeGenYzCetiC extends YzCetiCBiomes {
 
-	public BiomeGenYzCetiC(String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenYzCetiC() {
+        super(new DataValues("YzCeti C Highlands")
+        		.temperature(0.2F)
+        		.baseHeight(1.1F)
+        		.heightVariation(0.765F)
+        		.finalzie());
 		this.topBlock = YzCetiBlocks.C.YZC_METAMORPHIC.getDefaultState();
 		this.fillerBlock = YzCetiBlocks.C.YZC_IGNEOUS.getDefaultState();	
 		}
-	
-	@Override
-	public void registerTypes(Biome b) {
-		BiomeDictionary.addTypes(b, BiomeDictionary.Type.COLD, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.DEAD,
-				BiomeDictionary.Type.DRY);
-	}
+
 }

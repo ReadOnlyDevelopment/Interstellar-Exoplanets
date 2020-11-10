@@ -25,7 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import net.romvoid95.core.ExoplanetsMod;
+import net.romvoid95.ExoplanetsMod;
 
 public class Request {
 

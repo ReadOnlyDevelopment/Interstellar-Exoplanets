@@ -23,34 +23,25 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraftforge.common.BiomeDictionary;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.d.worldgen.YzCetiDBiomes;
 
 public class BiomeGenYzCetiD extends YzCetiDBiomes {
 
-	public BiomeGenYzCetiD (String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenYzCetiD () {
+        super(new DataValues("YzCeti D Plains")
+        		.temperature(0.8F)
+        		.baseHeight(0.125F)
+        		.heightVariation(0.085F)
+        		.finalzie());
 		this.topBlock = YzCetiBlocks.D.YZD_IGNEOUS.getDefaultState();
 		this.fillerBlock = YzCetiBlocks.D.YZD_LOOSE_SEDIMENT.getDefaultState();
 	}
 	
 	@Override
-	public void registerTypes(Biome b) {
-		BiomeDictionary.addTypes(b, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DENSE,
-				BiomeDictionary.Type.DRY);
-	}
-
-	@Override
-	public void generateBiomeSurface(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
+	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z,
 			double noiseVal) {
 		IBlockState iblockstate = this.topBlock;
 		IBlockState iblockstate1 = this.fillerBlock;

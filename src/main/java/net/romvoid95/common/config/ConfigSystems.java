@@ -26,9 +26,8 @@ import net.minecraftforge.common.config.*;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.ExoplanetsMod;
 
 public class ConfigSystems {
 

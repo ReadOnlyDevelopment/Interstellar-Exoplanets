@@ -19,14 +19,12 @@ package net.romvoid95.space.wolf1061.d;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
-
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
-import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import net.romvoid95.client.Assets;
 
 public class SkyProviderWolf1061D extends SkyProviderBase {

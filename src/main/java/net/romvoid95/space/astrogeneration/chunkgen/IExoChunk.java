@@ -4,6 +4,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public interface IExoChunk {
 	
-	public void setBlocksInChunk(int x, int z, ChunkPrimer primer);
+	public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer);
 
 }

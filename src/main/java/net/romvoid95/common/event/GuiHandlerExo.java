@@ -23,13 +23,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.client.gui.block.GuiAlloyRefinery;
 import net.romvoid95.client.gui.block.GuiMetalFurnace;
 import net.romvoid95.common.block.machine.container.ContainerAlloyRefinery;
 import net.romvoid95.common.block.machine.container.ContainerMetalFurnace;
 import net.romvoid95.common.tile.TileEntityAlloyRefinery;
 import net.romvoid95.common.tile.TileEntityMetalFurnace;
-import net.romvoid95.core.ExoplanetsMod;
 
 public class GuiHandlerExo implements IGuiHandler {
 	public static final int ID_METAL_FURNACE = 0;

@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.romvoid95.core.ExoplanetsMod;
+import net.romvoid95.ExoplanetsMod;
 
 public class GenSpaceStation extends WorldGenerator {
 

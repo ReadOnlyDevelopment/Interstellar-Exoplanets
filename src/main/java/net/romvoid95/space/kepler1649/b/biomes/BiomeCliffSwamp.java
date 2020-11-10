@@ -2,14 +2,10 @@ package net.romvoid95.space.kepler1649.b.biomes;
 
 import java.util.Random;
 
-import com.barribob.MaelstromMod.blocks.BlockModBush;
-import com.barribob.MaelstromMod.init.ModBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,37 +13,33 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
-import net.romvoid95.space.astrogeneration.biome.BiomeRandomStone;
+import net.romvoid95.api.world.worldgen.feature.tree.ExoGenSwampTree;
+import net.romvoid95.common.block.terrain.foliage.BlockDoubleFoliage;
+import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.astrogeneration.feature.foliage.WorldGenModFoliage;
-import net.romvoid95.space.kepler1649.KeplerBlocks;
 
 /**
  * 
  * Biome for the lower section of the cliff dimension
  *
  */
-public class BiomeCliffSwamp extends BiomeRandomStone {
-	public final static IBlockState log = KeplerBlocks.Kepler1649B.KEPLERB_SWAMP_LOG.getDefaultState();
-	public final static IBlockState leaf = ModBlocks.SWAMP_LEAVES.getDefaultState();
+public class BiomeCliffSwamp extends Kepler1649B_Biomes {
 
-	public BiomeCliffSwamp(String name) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.baseHeight(-1.5F)
-				.heightVariation(0.1F)
-				.temperature(0.8F)
-				.waterColor(4864285), 
-				Blocks.GRASS.getDefaultState().getBlock(), 
-				Blocks.DIRT);
-
+	public BiomeCliffSwamp() {
+		super(new DataValues("Kepler1649 B Valley")
+        		.temperature(0.2F)
+        		.baseHeight(-1.56F)
+        		.heightVariation(0.15F)
+        		.waterColor(4864285)
+        		.finalzie());
+		this.topBlock = Blocks.GRASS.getDefaultState();
+		this.fillerBlock = Blocks.DIRT.getDefaultState();
 		this.decorator.treesPerChunk = 8;
 		this.decorator.flowersPerChunk = 1;
 		this.decorator.deadBushPerChunk = 1;
@@ -59,36 +51,33 @@ public class BiomeCliffSwamp extends BiomeRandomStone {
 		this.decorator.sandPatchesPerChunk = 0;
 		this.decorator.gravelPatchesPerChunk = 0;
 		this.decorator.grassPerChunk = 8;
-
 	}
 
 	@Override
 	public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-		WorldGenAbstractTree jungleTree = new WorldGenTrees(false, 4 + rand.nextInt(7), log, leaf, true);
-		WorldGenAbstractTree bigJungleTree = new WorldGenMegaJungle(false, 8, 18, log, leaf);
-		//WorldGenAbstractTree swampTree = new WorldGenSwampTree(true);
+		//WorldGenAbstractTree jungleTree = new WorldGenTrees(false, 4 + rand.nextInt(7), log, leaf, true);
+		//WorldGenAbstractTree bigJungleTree = new WorldGenMegaJungle(false, 8, 18, log, leaf);
+		WorldGenAbstractTree swampTree = new ExoGenSwampTree(true, 8);
 
 		if (rand.nextFloat() > 0.96) {
-			return bigJungleTree;
-		} else if (rand.nextFloat() > 0.96) {
-			return jungleTree;
+			return swampTree;
 		} else if (rand.nextFloat() > 0.8) {
 			if (rand.nextInt() == 2) {
 				new WorldGenShrub(Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState());
 			}
-			return new WorldGenShrub(log, leaf);
+			return new WorldGenShrub(Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState());
 		} else if (rand.nextFloat() > 0.8) {
 			return new WorldGenBigTree(false);
 		} else if (rand.nextFloat() > 0.8) {
 			return new WorldGenCanopyTree(false);
 		}
-		return bigJungleTree;
+		return swampTree;
 	}
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 		if (rand.nextInt(3) == 0) {
-			return new WorldGenModFoliage(new BlockModBush[] { (BlockModBush) ModBlocks.FIRE_GRASS }, 128);
+			return new WorldGenModFoliage(new BlockDoubleFoliage[] { (BlockDoubleFoliage) ExoBlocks.EXO_TALL_PLANT}, 128);
 		}
 		return rand.nextInt(4) == 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN)
 				: new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
@@ -106,6 +95,8 @@ public class BiomeCliffSwamp extends BiomeRandomStone {
 		}
 		super.decorate(worldIn, rand, pos);
 	}
+	
+	
 
 	@Override
 	public void generateTopBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal,

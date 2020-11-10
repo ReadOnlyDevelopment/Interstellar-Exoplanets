@@ -16,15 +16,13 @@
  */
 package net.romvoid95.space.wolf1061.d.gen;
 
-import net.romvoid95.space.astrogeneration.biome.BiomeData.BiomeDataBuilder;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.wolf1061.d.Wolf1061D_Biomes;
 
 public class BiomeGenWolf1061D extends Wolf1061D_Biomes {
 
-	public BiomeGenWolf1061D (String name) {
-		super(new BiomeDataBuilder()
-				.biomeName(name)
-				.baseHeight(0.0f)
-				.heightVariation(0.0f));
+	public BiomeGenWolf1061D() {
+        super(new DataValues("Wolf1061 D Sky")
+        		.finalzie());
 	}
 }

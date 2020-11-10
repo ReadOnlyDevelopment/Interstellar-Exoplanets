@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column"
+  },
+  "variants": {
+    "axis": {
+      "y": {},
+      "z": { "x": 90 },
+      "x": { "x": 90, "y": 90 },
+      "none": { "model": "cube_all", "textures": { "all": "#side" } }
+    },
+    "type": {
+      "light":      { "textures": { "end":"exoplanets:blocks/wood/log_light", "side":"exoplanets:blocks/wood/log_light_bark" } },
+      "dark":       { "textures": { "end":"exoplanets:blocks/wood/log_dark" , "side":"exoplanets:blocks/wood/log_dark_bark"  } },
+      "rough":      { "textures": { "end":"exoplanets:blocks/wood/log_rough", "side":"exoplanets:blocks/wood/log_rough_bark" } },
+      "mold":       { "textures": { "end":"exoplanets:blocks/wood/log_swamp", "side":"exoplanets:blocks/wood/log_swamp_bark" } }
+    }
+  }
+}

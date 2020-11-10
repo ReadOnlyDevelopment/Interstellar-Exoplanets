@@ -24,16 +24,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
-
+import net.romvoid95.space.astrogeneration.biome.BiomeData;
 import net.romvoid95.space.astrogeneration.biome.ExoBiome;
-import net.romvoid95.space.astrogeneration.biome.BiomeData.BiomeDataBuilder;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.d.BiomeDecoratorOther;
 
 public class YzCetiCBiomes extends ExoBiome {
 
-	protected YzCetiCBiomes(BiomeDataBuilder biomeDataBuilder) {
-		super(biomeDataBuilder.generate());
+	protected YzCetiCBiomes(BiomeData biomeData) {
+        super(biomeData);
 	}
 
 	@Override

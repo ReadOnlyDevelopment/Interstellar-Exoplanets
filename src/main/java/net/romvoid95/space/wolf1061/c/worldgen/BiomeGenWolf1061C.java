@@ -16,17 +16,16 @@
  */
 package net.romvoid95.space.wolf1061.c.worldgen;
 
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 
 public class BiomeGenWolf1061C extends Wolf1061Biomes {
 
-	public BiomeGenWolf1061C(String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenWolf1061C() {
+        super(new DataValues("Wolf1061 C Plains")
+        		.temperature(0.2F)
+        		.baseHeight(2.5F)
+        		.heightVariation(0.645F)
+        		.finalzie());
 	}
 
 }

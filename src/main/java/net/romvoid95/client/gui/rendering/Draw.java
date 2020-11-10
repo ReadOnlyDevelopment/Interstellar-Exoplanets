@@ -42,10 +42,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.client.ClientUtil;
 import net.romvoid95.common.CommonUtil;
 import net.romvoid95.common.utility.mc.WorldUtils;
-import net.romvoid95.core.ExoplanetsMod;
 
 public class Draw {
 

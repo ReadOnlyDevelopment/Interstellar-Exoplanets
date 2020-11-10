@@ -18,8 +18,9 @@ package net.romvoid95.common.block.terrain;
 
 import java.util.Random;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -30,16 +31,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.common.block.BlockTerrain;
+import net.romvoid95.core.initialization.ExoMaterial;
 
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-
-public class BlockExoGrass extends Block implements IGrowable, ITerraformableBlock {
+public class BlockExoGrass extends BlockTerrain implements IGrowable, ITerraformableBlock {
 
 	public BlockExoGrass() {
-		super(Material.GRASS);
+		super(ExoMaterial.BIO);
 		this.setHardness(0.8F);
 		this.setSoundType(SoundType.GROUND);
 		this.setHarvestLevel("shovel", 0);

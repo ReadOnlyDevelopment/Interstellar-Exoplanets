@@ -1,9 +1,11 @@
 package net.romvoid95.space.astrogeneration.util;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Consumer;
 
 import lombok.experimental.UtilityClass;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -52,6 +54,19 @@ public class GenUtility {
 		for (int i = 0; i < n; ++i) {
 			int x = rand.nextInt(16) + 8;
 			int y = rand.nextInt(randY) + baseY;
+			int z = rand.nextInt(16) + 8;
+			gen.generate(worldIn, rand, pos.add(x, y, z));
+		}
+	}
+	
+	/*
+	 * Generates a generator n times in a chunk
+	 */
+	public static void generateN(World worldIn, Random rand, BlockPos pos, int n, int baseY,
+			WorldGenerator gen) {
+		for (int i = 0; i < n; ++i) {
+			int x = rand.nextInt(16) + 8;
+			int y = rand.nextInt(baseY);
 			int z = rand.nextInt(16) + 8;
 			gen.generate(worldIn, rand, pos.add(x, y, z));
 		}
@@ -131,6 +146,64 @@ public class GenUtility {
 		int j1 = chunkprimer.findGroundBlockIdx(7 + i, 7 + j);
 		int k1 = Math.min(Math.min(k, l), Math.min(i1, j1));
 		return k1;
+	}
+	
+	public static HashMap<BlockPos, IBlockState> generateDome(IBlockState state, int size, BlockPos pos) {
+		HashMap<BlockPos, IBlockState> blocks = new HashMap<BlockPos, IBlockState>();
+		int halfSize = (size / 2);
+		for (int i = 0; i <= halfSize; i++) {
+			for (int yy = 0; yy < (halfSize + 1); yy++) {
+				for (int zz = -halfSize; zz < (halfSize + 1); zz++) {
+					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
+						BlockPos loc = new BlockPos(xx, yy, zz);
+						double dist = Math.abs(loc.getDistance(0, 0, 0));
+						if (dist <= halfSize - i && dist > halfSize - (i + 1))
+							if (i == 0)
+								blocks.put(pos.add(xx, yy, zz), state);
+					}
+				}
+			}
+		}
+		return blocks;
+	}
+	
+	public static HashMap<BlockPos, IBlockState> generateSphere(IBlockState state1, IBlockState state2, int size, BlockPos pos) {
+		HashMap<BlockPos, IBlockState> blocks = new HashMap<BlockPos, IBlockState>();
+		int halfSize = (size / 2);
+		for (int i = 0; i <= halfSize; i++) {
+			for (int yy = -halfSize; yy < (halfSize + 1); yy++) {
+				for (int zz = -halfSize; zz < (halfSize + 1); zz++) {
+					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
+						BlockPos loc = new BlockPos(xx, yy, zz);
+						double dist = Math.abs(loc.getDistance(0, 0, 0));
+						if (dist <= halfSize - i && dist > halfSize - (i + 1))
+							if (i == 0)
+								blocks.put(pos.add(xx, yy, zz), state1);
+							else
+								blocks.put(pos.add(xx, yy, zz), state2);
+					}
+				}
+			}
+		}
+		return blocks;
+	}
+
+	public static HashMap<BlockPos, IBlockState> generateSphere(IBlockState state, int size, BlockPos pos) {
+		HashMap<BlockPos, IBlockState> blocks = new HashMap<BlockPos, IBlockState>();
+		int halfSize = (size / 2);
+		for (int i = 0; i <= halfSize; i++) {
+			for (int yy = -halfSize; yy < (halfSize + 1); yy++) {
+				for (int zz = -halfSize; zz < (halfSize + 1); zz++) {
+					for (int xx = -halfSize; xx < (halfSize + 1); xx++) {
+						BlockPos loc = new BlockPos(xx, yy, zz);
+						double dist = Math.abs(loc.getDistance(0, 0, 0));
+						if (dist <= halfSize - i && dist > halfSize - (i + 1))
+							blocks.put(pos.add(xx, yy, zz), state);
+					}
+				}
+			}
+		}
+		return blocks;
 	}
 
 	public static boolean checkValidSpawn(World world, BlockPos position, int checkSize, int loadedCheckSize) {

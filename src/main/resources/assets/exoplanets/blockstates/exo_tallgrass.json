@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "part=low":     { "model": "exoplanets:foliage/tall_bottom" },
+        "part=high":    { "model": "exoplanets:foliage/tall_top" }
+    }
+}

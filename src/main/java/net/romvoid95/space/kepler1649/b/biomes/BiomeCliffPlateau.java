@@ -5,19 +5,15 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenSavannaTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
-import net.romvoid95.space.astrogeneration.biome.BiomeRandomStone;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.kepler1649.KeplerBlocks;
 
 /**
@@ -25,15 +21,18 @@ import net.romvoid95.space.kepler1649.KeplerBlocks;
  * The biome for the tall part of the cliff dimension
  *
  */
-public class BiomeCliffPlateau extends BiomeRandomStone {
+public class BiomeCliffPlateau extends Kepler1649B_Biomes {
+
 	private static final WorldGenSavannaTree SAVANNA_TREE = new WorldGenSavannaTree(false);
 
-	public BiomeCliffPlateau(String name) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.baseHeight(11F).heightVariation(0.15F).temperature(1.2F)
-				.rainfall(0.0F), Blocks.GRASS, KeplerBlocks.Kepler1649B.KEPLERB_STONE);
-
+	public BiomeCliffPlateau() {
+        super(new DataValues("Kepler1649 B Cliffs")
+        		.temperature(0.5F)
+        		.baseHeight(7.05F)
+        		.heightVariation(0.215F)
+        		.finalzie());
+		this.topBlock = Blocks.GRASS.getDefaultState();
+		this.fillerBlock = KeplerBlocks.Kepler1649B.KEPLERB_STONE.getDefaultState();
 		this.decorator.treesPerChunk = 1;
 		this.decorator.grassPerChunk = 3;
 		this.decorator.flowersPerChunk = -999;
@@ -41,8 +40,6 @@ public class BiomeCliffPlateau extends BiomeRandomStone {
 		this.decorator.sandPatchesPerChunk = 0;
 		this.decorator.gravelPatchesPerChunk = 0;
 
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 12, 4, 4));
-		this.spawnableCaveCreatureList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
 	}
 
 	@Override

@@ -20,7 +20,7 @@ package net.romvoid95.common.config;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.romvoid95.core.ExoplanetsMod;
+import net.romvoid95.ExoplanetsMod;
 
 public class ExoConfigs {
 

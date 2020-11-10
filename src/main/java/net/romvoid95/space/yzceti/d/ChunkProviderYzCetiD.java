@@ -19,7 +19,6 @@ package net.romvoid95.space.yzceti.d;
 
 import java.util.Random;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -29,17 +28,18 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.romvoid95.api.world.ExoBiomes;
 import net.romvoid95.api.world.worldgen.feature.ExoFeatureBoulder;
-import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProvider;
+import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProviderMultiSpace;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.d.worldgen.BiomeDecoratorYzCetiD;
 
-public class ChunkProviderYzCetiD extends ExoChunkProvider {
+public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
 
 	private final BiomeDecoratorYzCetiD cetiDBiomeDecorator = new BiomeDecoratorYzCetiD();
 
 	public ChunkProviderYzCetiD(World par1World, long seed, boolean mapFeaturesEnabled) {
 		super(par1World, seed, mapFeaturesEnabled);
 		this.waterBlock = Blocks.PACKED_ICE.getDefaultState();
+		this.stoneBlock = YzCetiBlocks.D.YZD_SEDIMENTARYROCK.getDefaultState();
 	}
 
 	@Override
@@ -87,8 +87,4 @@ public class ChunkProviderYzCetiD extends ExoChunkProvider {
 		return false;
 	}
 
-	@Override
-	protected IBlockState getStoneBlock() {
-		return YzCetiBlocks.D.YZD_SEDIMENTARYROCK.getDefaultState();
-	}
 }

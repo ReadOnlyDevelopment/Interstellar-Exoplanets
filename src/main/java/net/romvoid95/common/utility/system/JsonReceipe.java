@@ -35,8 +35,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.common.lib.interfaces.IRSerializer;
-import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
 public final class JsonReceipe {

@@ -22,8 +22,10 @@ import net.minecraft.block.state.IBlockState;
 import net.romvoid95.common.block.BlockTerrain;
 import net.romvoid95.common.block.ore.BlockCompressedDiamond;
 import net.romvoid95.common.block.ore.BlockOreMetal;
-import net.romvoid95.common.block.terrain.*;
+import net.romvoid95.common.block.terrain.BlockCrust;
 import net.romvoid95.common.block.terrain.BlockCrust.RockType;
+import net.romvoid95.common.block.terrain.BlockExoDirt;
+import net.romvoid95.common.block.terrain.BlockExoGrass;
 import net.romvoid95.core.initialization.ExoBlocks;
 
 public class TrappistBlocks {

@@ -31,8 +31,8 @@ import com.google.common.base.Preconditions;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 
 import lombok.experimental.UtilityClass;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.common.utility.mc.MCUtil;
-import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
 public class ReflectionHelper {

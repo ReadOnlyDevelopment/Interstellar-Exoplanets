@@ -8,6 +8,7 @@ public class ExoMaterial extends Material {
 	
 		public static final ExoMaterial METAL = (new ExoMaterial(MapColor.GRAY_STAINED_HARDENED_CLAY)).setRequiresTool();
 		public static final ExoMaterial SLUDGE = (new ExoMaterial(MapColor.BROWN));
+		public static final ExoMaterial BIO = (new ExoMaterial(MapColor.GREEN));
 
 		private boolean				isTranslucent;
 		private final MapColor		materialMapColor;

@@ -40,10 +40,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.common.block.machine.container.ContainerMetalFurnace;
 import net.romvoid95.common.lib.tile.TileSidedInventoryExo;
 import net.romvoid95.common.utility.mc.StackHelper;
-import net.romvoid95.core.ExoplanetsMod;
 
 public class TileEntityMetalFurnace extends TileSidedInventoryExo implements ITickable {
 	public static final int COOK_TIME_NO_SECONDARY = 133;

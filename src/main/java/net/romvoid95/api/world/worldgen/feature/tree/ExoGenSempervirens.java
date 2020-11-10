@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.romvoid95.common.block.terrain.tree.BlockExoLog;
 
 public class ExoGenSempervirens extends ExoGenTreeBase {
 
 	public ExoGenSempervirens(Block log, Block leaves) {
 		super();
-		this.setLogBlock(log.withRotation(log.getDefaultState(), Rotation.CLOCKWISE_90));
+		this.setLogBlock(log.getDefaultState().withProperty(BlockExoLog.LOG_AXIS, BlockExoLog.EnumAxis.NONE));
 		this.setLeavesBlock(leaves.getDefaultState());
 		this.trunkSize = 10;
 		this.setValidGroundBlocks(new ArrayList<>());

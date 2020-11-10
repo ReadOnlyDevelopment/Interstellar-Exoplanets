@@ -26,6 +26,7 @@ import net.minecraft.world.WorldProvider;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
+import net.romvoid95.space.kepler1649.b.WorldProviderKepler1649B;
 import net.romvoid95.space.trappist1.c.WorldProviderTrappist1C;
 import net.romvoid95.space.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.space.trappist1.e.WorldProviderTrappist1E;
@@ -53,7 +54,7 @@ public enum Exoplanets implements IStringSerializable {
 	WOLF1061B		("Wolf1061B", 	wolf1061, 	id_wolf_b, 		0.3F, 	1.91, 	1.21, 		WorldProviderWolf1061B.class),
 	WOLF1061C		("Wolf1061C", 	wolf1061, 	id_wolf_c, 		0.6F, 	3.41, 	1.66, 		WorldProviderWolf1061C.class),
 	WOLF1061D		("Wolf1061D", 	wolf1061, 	id_wolf_d, 		2.5F, 	7.7, 	r(0.24), 	WorldProviderWolf1061D.class),
-	KEPLER1649B		("Kepler1649B", kepler1649, id_kepler_b, 	0.4F, 	1.03, 	1.017, 		null),
+	KEPLER1649B		("Kepler1649B", kepler1649, id_kepler_b, 	0.4F, 	1.03, 	1.017, 		WorldProviderKepler1649B.class),
 	KEPLER1649C		("Kepler1649C", kepler1649, id_kepler_c, 	0.8F, 	1.2, 	1.06, 		null);
 	// @formatter:on
 
@@ -62,7 +63,7 @@ public enum Exoplanets implements IStringSerializable {
 	private final int		dimensionId;
 	private final float		orbitalAu;
 	private final double	earthMass;
-	private final double	earthRadius;
+	private final double	earthRadius; 
 	private final Class<? extends WorldProvider> providerClass;
 
 	Exoplanets (String name, ExoSystem parentSystem, int dimensionId, float orbitalAu, double earthMass, double earthRadius, Class<? extends WorldProvider> providerClass) {

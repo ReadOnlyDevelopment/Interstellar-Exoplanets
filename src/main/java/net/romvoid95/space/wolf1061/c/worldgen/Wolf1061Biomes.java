@@ -16,12 +16,12 @@
  */
 package net.romvoid95.space.wolf1061.c.worldgen;
 
-import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
-import net.romvoid95.space.astrogeneration.biome.BiomeData.BiomeDataBuilder;
+import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.ExoBiome;
 
-public class Wolf1061Biomes extends BiomeGenBaseGC {
+public class Wolf1061Biomes extends ExoBiome {
 
-	protected Wolf1061Biomes(BiomeDataBuilder biomeDataBuilder) {
-		super(biomeDataBuilder.generate(), true);
+	protected Wolf1061Biomes(BiomeData biomeData) {
+        super(biomeData);
 	}
 }

@@ -20,7 +20,6 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-
 import net.romvoid95.space.astrogeneration.BiomeDecoratorExoBase;
 
 public class BiomeDecoratorWolf1061D extends BiomeDecoratorExoBase {

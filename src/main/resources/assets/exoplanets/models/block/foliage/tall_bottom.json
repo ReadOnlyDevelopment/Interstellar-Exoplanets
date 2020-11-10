@@ -1,0 +1,6 @@
+{
+    "parent": "exoplanets:block/foliage/tinted_cross",
+    "textures": {
+        "cross": "exoplanets:blocks/foliage/double_plant_bottom"
+    }
+}

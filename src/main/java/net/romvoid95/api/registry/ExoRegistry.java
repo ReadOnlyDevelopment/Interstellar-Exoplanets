@@ -17,7 +17,10 @@
 
 package net.romvoid95.api.registry;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -25,7 +28,9 @@ import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.advancements.*;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -51,38 +56,49 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraft.world.storage.loot.properties.EntityProperty;
 import net.minecraft.world.storage.loot.properties.EntityPropertyManager;
-
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.*;
-import net.minecraftforge.fml.client.registry.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.IFluidBlock;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.*;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.api.crafting.RecipeBuilder;
 import net.romvoid95.api.math.FilledList;
-import net.romvoid95.common.lib.block.*;
+import net.romvoid95.common.lib.block.BlockMetaSubtypes;
+import net.romvoid95.common.lib.block.IBlockTileEntity;
+import net.romvoid95.common.lib.block.IColorBlock;
+import net.romvoid95.common.lib.block.ICustomMesh;
+import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.item.IColorItem;
 import net.romvoid95.common.lib.interfaces.item.ItemBlockMetaSubtypes;
 import net.romvoid95.common.utility.mc.MCUtil;
-import net.romvoid95.core.ExoplanetsMod;
 import net.romvoid95.core.Logging;
 
 public class ExoRegistry {
 	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");
 
-	public final List<Block>       BLOCKS = FilledList.make();
+	public static final List<Block>       BLOCKS = FilledList.make();
 	public final List<Item>        ITEMS  = FilledList.make();
 	public final List<IFluidBlock> FLUIDS = FilledList.make();
 
@@ -186,7 +202,7 @@ public class ExoRegistry {
 	 * Register a Block. Its name registry name and ItemBlock must be provided.
 	 */
 	public <T extends Block> T registerBlock (T block, String key, ItemBlock itemBlock) {
-		this.BLOCKS.add(block);
+		ExoRegistry.BLOCKS.add(block);
 		block.setUnlocalizedName(this.modId + "." + key);
 
 		validateRegistryName(key);
@@ -222,7 +238,7 @@ public class ExoRegistry {
 	 * Register a Block. Its name registry name and ItemBlock must be provided.
 	 */
 	public <T extends Block> T registerBlock (T block, String key, ItemBlock itemBlock, String path) {
-		this.BLOCKS.add(block);
+		ExoRegistry.BLOCKS.add(block);
 		block.setUnlocalizedName(this.modId + "." + key);
 
 		validateRegistryName(key);
@@ -558,7 +574,7 @@ public class ExoRegistry {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
 	public void clientInit (FMLInitializationEvent event) {
-		for (Block block : this.BLOCKS) {
+		for (Block block : ExoRegistry.BLOCKS) {
 			if (block instanceof IBlockTileEntity) {
 				IBlockTileEntity                tileBlock = (IBlockTileEntity) block;
 				final TileEntitySpecialRenderer tesr      = tileBlock.getTileRenderer();
@@ -589,7 +605,7 @@ public class ExoRegistry {
 
 	@SideOnly(Side.CLIENT)
 	private void registerModels () {
-		for (Block block : this.BLOCKS) {
+		for (Block block : ExoRegistry.BLOCKS) {
 			if (block instanceof ICustomModel) {
 				((ICustomModel) block).registerModels();
 			}

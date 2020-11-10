@@ -20,7 +20,6 @@ package net.romvoid95.space.trappist1.c;
 import java.util.List;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
@@ -42,6 +41,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
@@ -50,48 +50,13 @@ import net.romvoid95.space.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.romvoid95.space.trappist1.c.worldegnine.Trappist1C_Plains;
 import net.romvoid95.space.trappist1.c.worldegnine.Trappist1C_River;
 
-public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
+public class WorldProviderTrappist1C extends WorldProviderWE_ExoPlanet {
 
 	public static WE_ChunkProvider chunk;
 
 	@Override
-	public double getFuelUsageMultiplier () {
-		return 0;
-	}
-
-	@Override
-	public float getFallDamageModifier () {
-		return 0;
-	}
-
-	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.TRAPPIST1C;
-	}
-
-	@Override
-	public int getDungeonSpacing () {
-		return 0;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 24000L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.015f;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
-	}
-
-	@Override
-	public List<Block> getSurfaceBlocks () {
-		return null;
+	public boolean enableAdvancedThermalLevel () {
+		return true;
 	}
 
 	@Override
@@ -142,13 +107,54 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 	}
 
 	@Override
-	public float getSolarSize () {
-		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+	public CelestialBody getCelestialBody () {
+		return Planets.TRAPPIST1C;
 	}
 
 	@Override
-	public int getMoonPhase (long worldTime) {
-		return (int) (worldTime / this.getDayLength() % 8L + 8L) % 8;
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return WE_ChunkProvider.class;
+	}
+
+	@Override
+	public long getDayLength () {
+		return 24000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.TRAPPIST_1C;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing () {
+		return 0;
+	}
+
+	@Override
+	public float getFallDamageModifier () {
+		return 0;
+	}
+
+	@Override
+	public Vector3 getFogColor () {
+		float f = 0.6F - this.getStarBrightness(1.0F);
+		return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);
+	}
+
+	@Override
+	public double getFuelUsageMultiplier () {
+		return 0;
+	}
+
+	@Override
+	public float getGravity () {
+		return 0.015f;
 	}
 
 	@Override
@@ -167,37 +173,30 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 	}
 
 	@Override
-	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {}
-
-	@Override
-	public void onPopulate (int cX, int cZ) {}
-
-	@Override
-	public void recreateStructures (Chunk chunkIn, int x, int z) {}
-
-	@Override
-	public boolean shouldForceRespawn () {
-		return !ConfigManagerCore.forceOverworldRespawn;
+	public double getMeteorFrequency() {
+		return 0;
 	}
 
 	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return WE_ChunkProvider.class;
+	public int getMoonPhase (long worldTime) {
+		return (int) (worldTime / this.getDayLength() % 8L + 8L) % 8;
 	}
 
 	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.TRAPPIST_1C;
+	public Block getPlanetGrassBlock() {
+		return null;
 	}
 
 	@Override
-	public boolean enableAdvancedThermalLevel () {
-		return true;
+	public Vector3 getSkyColor () {
+		float f = 0.3F - this.getStarBrightness(1.0F);
+		return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+
 	}
 
 	@Override
-	protected float getThermalValueMod () {
-		return 2.1F;
+	public float getSolarSize () {
+		return 0.3F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
 	}
 
 	@Override
@@ -220,16 +219,18 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 	}
 
 	@Override
-	public Vector3 getFogColor () {
-		float f = 0.6F - this.getStarBrightness(1.0F);
-		return new Vector3(213f / 255F * f, 72f / 255F * f, 3f / 255F * f);
+	public List<Block> getSurfaceBlocks () {
+		return null;
 	}
 
 	@Override
-	public Vector3 getSkyColor () {
-		float f = 0.3F - this.getStarBrightness(1.0F);
-		return new Vector3(228 / 255.0F * f, 75 / 255.0F * f, 1 / 255.0F * f);
+	protected float getThermalValueMod () {
+		return 2.1F;
+	}
 
+	@Override
+	public boolean hasSunset () {
+		return false;
 	}
 
 	@Override
@@ -238,8 +239,17 @@ public class WorldProviderTrappist1C extends WE_WorldProviderSpace {
 	}
 
 	@Override
-	public boolean hasSunset () {
-		return false;
+	public void onChunkProvider (int cX, int cZ, ChunkPrimer primer) {}
+
+	@Override
+	public void onPopulate (int cX, int cZ) {}
+
+	@Override
+	public void recreateStructures (Chunk chunkIn, int x, int z) {}
+
+	@Override
+	public boolean shouldForceRespawn () {
+		return !ConfigManagerCore.forceOverworldRespawn;
 	}
 
 }

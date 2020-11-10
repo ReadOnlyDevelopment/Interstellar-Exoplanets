@@ -18,20 +18,15 @@ package net.romvoid95.space.wolf1061.d;
 
 import java.util.List;
 
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-
 import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
 import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.config.ConfigSystems;
@@ -41,22 +36,16 @@ import net.romvoid95.space.wolf1061.d.gen.ChunkProviderWolf1061D;
 
 public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IGalacticraftWorldProvider {
 	
-	private CloudProviderWolf1061D clouds          = new CloudProviderWolf1061D();
+	private CloudProviderWolf1061D clouds = new CloudProviderWolf1061D();
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public IRenderHandler getCloudRenderer () {
-		return clouds;
+	public float calculateCelestialAngle(long p_76563_1_, float p_76563_3_) {
+			return super.calculateCelestialAngle(p_76563_1_, p_76563_3_);
 	}
 
 	@Override
-	public Vector3 getFogColor() {
-		return new Vector3(0, 0, 0);
-	}
-
-	@Override
-	public Vector3 getSkyColor() {
-		return new Vector3(0, 0, 0);
+	public boolean canCoordinateBeSpawn(int var1, int var2) {
+		return true;
 	}
 
 	@Override
@@ -65,33 +54,8 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public void updateWeather() {
-		super.updateWeather();
-	}
-
-	@Override
-	public boolean hasSunset() {
-		return false;
-	}
-
-	@Override
-	public long getDayLength() {
-		return 240000L;
-	}
-
-	@Override
-	public boolean shouldForceRespawn() {
-		return true;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass() {
-		return ChunkProviderWolf1061D.class;
-	}
-
-	@Override
-	public Class<? extends BiomeProvider> getBiomeProviderClass() {
-		return BiomeProviderWolf1061D.class;
+	public boolean canSpaceshipTierPass(int tier) {
+		return tier >= ConfigSystems.wolf_tier;
 	}
 
 	@Override
@@ -100,8 +64,58 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn(int var1, int var2) {
-		return true;
+	public Class<? extends BiomeProvider> getBiomeProviderClass() {
+		return BiomeProviderWolf1061D.class;
+	}
+
+	@Override
+	public CelestialBody getCelestialBody() {
+		return Planets.WOLF1061D;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass() {
+		return ChunkProviderWolf1061D.class;
+	}
+
+	@Override
+	public IRenderHandler getCloudRenderer () {
+		return clouds;
+	}
+
+	@Override
+	public long getDayLength() {
+		return 240000L;
+	}
+
+	@Override
+	public DimensionType getDimensionType() {
+		return ExoDimensions.WOLF1061_1D;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType() {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing() {
+		return 0;
+	}
+
+	@Override
+	public float getFallDamageModifier() {
+		return 0;
+	}
+
+	@Override
+	public Vector3 getFogColor() {
+		return new Vector3(0, 0, 0);
+	}
+
+	@Override
+	public double getFuelUsageMultiplier() {
+		return 0;
 	}
 
 	@Override
@@ -120,17 +134,17 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public double getFuelUsageMultiplier() {
+	public Vector3 getSkyColor() {
+		return new Vector3(0, 0, 0);
+	}
+
+	@Override
+	public double getSolarEnergyMultiplier() {
 		return 0;
 	}
 
 	@Override
-	public boolean canSpaceshipTierPass(int tier) {
-		return tier >= ConfigSystems.wolf_tier;
-	}
-
-	@Override
-	public float getFallDamageModifier() {
+	public float getSolarSize() {
 		return 0;
 	}
 
@@ -140,13 +154,8 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public CelestialBody getCelestialBody() {
-		return Planets.WOLF1061D;
-	}
-
-	@Override
-	public boolean hasBreathableAtmosphere() {
-		return false;
+	public List<Block> getSurfaceBlocks() {
+		return null;
 	}
 
 	@Override
@@ -160,18 +169,18 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public boolean shouldDisablePrecipitation() {
-		return true;
+	public double getYCoordinateToTeleport() {
+		return 0;
 	}
 
 	@Override
-	public boolean shouldCorrodeArmor() {
+	public boolean hasBreathableAtmosphere() {
 		return false;
 	}
 
 	@Override
-	public DimensionType getDimensionType() {
-		return ExoDimensions.WOLF1061_1D;
+	public boolean hasSunset() {
+		return false;
 	}
 
 	@Override
@@ -181,37 +190,22 @@ public class WorldProviderWolf1061D extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public int getDungeonSpacing() {
-		return 0;
+	public boolean shouldCorrodeArmor() {
+		return false;
 	}
 
 	@Override
-	public float calculateCelestialAngle(long p_76563_1_, float p_76563_3_) {
-			return super.calculateCelestialAngle(p_76563_1_, p_76563_3_);
+	public boolean shouldDisablePrecipitation() {
+		return true;
 	}
 
 	@Override
-	public ResourceLocation getDungeonChestType() {
-		return null;
+	public boolean shouldForceRespawn() {
+		return true;
 	}
 
 	@Override
-	public List<Block> getSurfaceBlocks() {
-		return null;
-	}
-
-	@Override
-	public double getSolarEnergyMultiplier() {
-		return 0;
-	}
-
-	@Override
-	public double getYCoordinateToTeleport() {
-		return 0;
-	}
-
-	@Override
-	public float getSolarSize() {
-		return 0;
+	public void updateWeather() {
+		super.updateWeather();
 	}
 }

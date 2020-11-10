@@ -2,7 +2,6 @@ package net.romvoid95.common.block.terrain;
 
 import java.util.Locale;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -15,10 +14,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.romvoid95.common.block.BlockTerrain;
 import net.romvoid95.common.block.ISustainsPlantType;
 import net.romvoid95.core.initialization.ExoMaterial;
 
-public class BlockExoMud extends Block implements ISustainsPlantType {
+public class BlockExoMud extends BlockTerrain implements ISustainsPlantType {
 
 	protected static final AxisAlignedBB MUD_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 

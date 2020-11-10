@@ -17,9 +17,8 @@
 
 package net.romvoid95.space.wolf1061.b.worldgen;
 
-import net.minecraft.world.World;
-
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
+import net.minecraft.world.World;
 
 public class BiomeDecoratorWolfB extends BiomeDecoratorSpace {
 

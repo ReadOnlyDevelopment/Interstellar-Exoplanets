@@ -18,12 +18,11 @@
 package net.romvoid95.client;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import net.romvoid95.common.lib.EnumMetal;
 import net.romvoid95.common.utility.mc.FluidUtility;
 import net.romvoid95.core.initialization.ExoBlocks;
 import net.romvoid95.core.initialization.ExoFluids;
@@ -48,7 +47,7 @@ public class CreativeExoTabs {
 	public static final CreativeTabs ITEMS_TABS = new Tab("tabItems", "tabItems") {
 		@Override
 		public ItemStack getTabIconItem () {
-			return new ItemStack(EnumMetal.PLATINUM.getSheet().getItem());
+			return new ItemStack(Blocks.FIRE);
 		}
 	};
 

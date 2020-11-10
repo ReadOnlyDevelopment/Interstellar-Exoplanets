@@ -31,6 +31,7 @@ import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeMoon;
+import micdoodle8.mods.galacticraft.core.dimension.TeleportTypeOverworld;
 import net.romvoid95.api.space.Universe;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.RelayStation;
@@ -75,7 +76,7 @@ public class Planets {
 		WOLF1061D = Exoplanets.WOLF1061D.getExoPlanet();
 		WOLF1061C = Exoplanets.WOLF1061C.getExoPlanet();
 		WOLF1061B = Exoplanets.WOLF1061B.getExoPlanet();
-		KEPLER1649B = Exoplanets.KEPLER1649B.get();
+		KEPLER1649B = Exoplanets.KEPLER1649B.getExoPlanet();
 		KEPLER1649C = Exoplanets.KEPLER1649C.get();
 		
 		Planets.initPlanets();
@@ -93,7 +94,7 @@ public class Planets {
 		Planets.register(WOLF1061B, new TeleportTypeMoon());
 		Planets.register(WOLF1061C, new TeleportTypeMoon());
 		Planets.register(WOLF1061D, new TeleportTypeMoon());
-		Planets.register(KEPLER1649B);
+		Planets.register(KEPLER1649B, new TeleportTypeOverworld());
 		Planets.register(KEPLER1649C);
 		
 		createDebugFile();
@@ -275,8 +276,14 @@ public class Planets {
 				if(!ConfigPlanets.disable_kepler_b) {
 					Universe.ExoPlanetBuilder
 					.build(KEPLER1649B)
-					.unreachable(true)
-					.phaseShift(1.932375F)
+					.phaseShift(0.04511554657878988F)
+					.tier(ConfigSystems.k1649_tier)
+					.biomes(KEPLER1649B_BOTTOM, KEPLER1649B_CLIFF)
+					.tempWind(8.0F, 2.0F)
+					.gasses(NITROGEN, ARGON)
+					.clazz(ClassBody.SELENA)
+					.gravity(0.0650)
+					.dayLength(32500L)
 					.generate();
 				}
 				if(!ConfigPlanets.disable_kepler_c) {

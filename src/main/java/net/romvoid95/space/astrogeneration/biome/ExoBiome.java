@@ -19,21 +19,22 @@ package net.romvoid95.space.astrogeneration.biome;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.world.BiomeGenBaseGC;
-import net.minecraft.world.WorldProvider;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.romvoid95.api.enums.EnumBiomeType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 
 public abstract class ExoBiome extends BiomeGenBaseGC {
 
-	protected TempCategory					tempBiomeCtg	= TempCategory.COLD;
-	protected EnumBiomeType					biomeType		= EnumBiomeType.SPACE;
-	private ExoPlanet						planetForBiome;
-	private Class<? extends WorldProvider>	spaceProvider;
-	private BiomeData						biomeData;
-	private boolean							hotBiome, coldBiome;
-	
-	public ExoBiome (BiomeData biomeData) {
+	protected TempCategory tempBiomeCtg = TempCategory.COLD;
+	protected EnumBiomeType biomeType = EnumBiomeType.SPACE;
+	private ExoPlanet planetForBiome;
+	private BiomeData biomeData;
+	private boolean hotBiome, coldBiome;
+
+	public ExoBiome(BiomeData biomeData) {
 		super(biomeData, true);
 		this.biomeData = biomeData;
 		this.spawnableCreatureList.clear();
@@ -42,6 +43,16 @@ public abstract class ExoBiome extends BiomeGenBaseGC {
 		this.spawnableWaterCreatureList.clear();
 
 	}
+//	
+//	public ExoBiome(BiomeData biomeData, boolean ad) {
+//		super(biomeData, ad);
+//		this.biomeData = biomeData;
+//		this.spawnableCreatureList.clear();
+//		this.spawnableMonsterList.clear();
+//		this.spawnableCaveCreatureList.clear();
+//		this.spawnableWaterCreatureList.clear();
+//
+//	}
 
 	public EnumBiomeType getBiomeType() {
 		return this.biomeType;
@@ -58,15 +69,6 @@ public abstract class ExoBiome extends BiomeGenBaseGC {
 
 	public ExoBiome setPlanetForBiome(ExoPlanet planetForBiome) {
 		this.planetForBiome = planetForBiome;
-		return this;
-	}
-
-	public Class<? extends WorldProvider> getSpaceProvider() {
-		return spaceProvider;
-	}
-
-	public ExoBiome setSpaceProvider(Class<? extends WorldProvider> spaceProvider) {
-		this.spaceProvider = spaceProvider;
 		return this;
 	}
 
@@ -114,5 +116,9 @@ public abstract class ExoBiome extends BiomeGenBaseGC {
 		}
 
 		return flucTemp;
+	}
+
+	public void generateTopBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal, Block stoneBlock) {
+
 	}
 }

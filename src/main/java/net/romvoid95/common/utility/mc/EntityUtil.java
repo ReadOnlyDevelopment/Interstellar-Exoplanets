@@ -45,9 +45,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import lombok.experimental.UtilityClass;
+import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.common.utility.java.ReflectionHelper;
 import net.romvoid95.common.utility.logic.Point;
-import net.romvoid95.core.ExoplanetsMod;
 
 @UtilityClass
 public class EntityUtil {

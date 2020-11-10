@@ -43,18 +43,64 @@ import net.romvoid95.space.yzceti.b.worldgen.BiomeProviderYzCetiB;
 public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdvancedSpace {
 
 	@Override
-	public double getMeteorFrequency () {
-		return 2.0;
+	public int AtmosphericPressure () {
+		return 5;
 	}
 
 	@Override
-	public float getSolarSize () {
-		return 2.5F;
+	public boolean canCoordinateBeSpawn (int var1, int var2) {
+		return true;
 	}
 
 	@Override
-	public double getFuelUsageMultiplier () {
-		return 1.4D;
+	public int getAverageGroundLevel () {
+		return 76;
+	}
+
+	@Override
+	public Class<? extends BiomeProvider> getBiomeProviderClass () {
+		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETIB);
+		return BiomeProviderYzCetiB.class;
+	}
+
+	@Override
+	public CelestialBody getCelestialBody () {
+		return Planets.YZCETIB;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass () {
+		return ChunkProviderYzCetiB.class;
+	}
+
+	@Override
+	public ClassBody getClassBody () {
+		return ClassBody.SELENA;
+	}
+
+	@Override
+	public long getDayLength () {
+		return 23500L;
+	}
+
+	@Override
+	public DimensionType getDimensionType () {
+		return ExoDimensions.YZCETIB;
+	}
+
+	@Override
+	public ResourceLocation getDungeonChestType () {
+		return null;
+	}
+
+	@Override
+	public int getDungeonSpacing() {
+		return 0;
+	}
+
+	@Override
+	public ExoPlanet getExoPlanet () {
+		return (ExoPlanet) getCelestialBody();
 	}
 
 	@Override
@@ -63,13 +109,29 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public float getSoundVolReductionAmount () {
-		return 1.0F;
+	public Vector3 getFogColor () {
+		float f = 0.6F - this.getStarBrightness(1.0F);
+		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
 	}
 
 	@Override
-	public float getThermalLevelModifier () {
-		return 5.5F;
+	public double getFuelUsageMultiplier () {
+		return 1.4D;
+	}
+
+	@Override
+	public float getGravity () {
+		return 0.030f;
+	}
+
+	@Override
+	public double getHorizon () {
+		return 44.0D;
+	}
+
+	@Override
+	public double getMeteorFrequency () {
+		return 2.0;
 	}
 
 	@Override
@@ -83,13 +145,35 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public CelestialBody getCelestialBody () {
-		return Planets.YZCETIB;
+	public Vector3 getSkyColor () {
+		float f = 0.3F - this.getStarBrightness(1.0F);
+		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
+
 	}
 
 	@Override
 	public double getSolarEnergyMultiplier () {
 		return 6.5F;
+	}
+
+	@Override
+	public float getSolarRadiationModify () {
+		return 5.0f;
+	}
+
+	@Override
+	public float getSolarSize () {
+		return 2.5F;
+	}
+
+	@Override
+	public double getSolarWindMultiplier () {
+		return 0.6D;
+	}
+
+	@Override
+	public float getSoundVolReductionAmount () {
+		return 1.0F;
 	}
 
 	@Override
@@ -112,39 +196,6 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public double getHorizon () {
-		return 44.0D;
-	}
-
-	@Override
-	public int getAverageGroundLevel () {
-		return 76;
-	}
-
-	@Override
-	public Vector3 getFogColor () {
-		float f = 0.6F - this.getStarBrightness(1.0F);
-		return new Vector3((213f / 255F) * f, (72f / 255F) * f, (3f / 255F) * f);
-	}
-
-	@Override
-	public Vector3 getSkyColor () {
-		float f = 0.3F - this.getStarBrightness(1.0F);
-		return new Vector3((228 / 255.0F) * f, (75 / 255.0F) * f, (1 / 255.0F) * f);
-
-	}
-
-	@Override
-	public boolean hasSunset () {
-		return false;
-	}
-
-	@Override
-	public ResourceLocation getDungeonChestType () {
-		return null;
-	}
-
-	@Override
 	public List<Block> getSurfaceBlocks () {
 		List<Block> list = new LinkedList<>();
 		list.add(YzCetiBlocks.B.YZB_METAMORPHIC);
@@ -154,14 +205,8 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public Class<? extends BiomeProvider> getBiomeProviderClass () {
-		BiomeAdaptive.setBodyMultiBiome(Planets.YZCETIB);
-		return BiomeProviderYzCetiB.class;
-	}
-
-	@Override
-	public DimensionType getDimensionType () {
-		return ExoDimensions.YZCETIB;
+	public float getThermalLevelModifier () {
+		return 5.5F;
 	}
 
 	@Override
@@ -170,8 +215,8 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn (int var1, int var2) {
-		return true;
+	public boolean hasSunset () {
+		return false;
 	}
 
 	@Override
@@ -180,52 +225,7 @@ public class WorldProviderYzCetiB extends WorldProviderExoPlanet implements IAdv
 	}
 
 	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass () {
-		return ChunkProviderYzCetiB.class;
-	}
-
-	@Override
-	public long getDayLength () {
-		return 23500L;
-	}
-
-	@Override
-	public float getGravity () {
-		return 0.030f;
-	}
-
-	@Override
-	public int AtmosphericPressure () {
-		return 5;
-	}
-
-	@Override
 	public boolean SolarRadiation () {
 		return true;
-	}
-
-	@Override
-	public double getSolarWindMultiplier () {
-		return 0.6D;
-	}
-
-	@Override
-	public ClassBody getClassBody () {
-		return ClassBody.SELENA;
-	}
-
-	@Override
-	public float getSolarRadiationModify () {
-		return 5.0f;
-	}
-
-	@Override
-	public ExoPlanet getExoPlanet () {
-		return (ExoPlanet) getCelestialBody();
-	}
-
-	@Override
-	public int getDungeonSpacing() {
-		return 0;
 	}
 }

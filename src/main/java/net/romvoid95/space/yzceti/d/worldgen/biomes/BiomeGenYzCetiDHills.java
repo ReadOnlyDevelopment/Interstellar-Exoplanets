@@ -22,10 +22,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraftforge.common.BiomeDictionary;
-import net.romvoid95.space.astrogeneration.biome.BiomeData;
+import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.d.worldgen.YzCetiDBiomes;
 
@@ -36,27 +34,20 @@ public class BiomeGenYzCetiDHills extends YzCetiDBiomes {
 	public IBlockState topBlock;
 	public IBlockState fillerBlock;
 
-	public BiomeGenYzCetiDHills (String name, float height, float variation) {
-		super(new BiomeData.BiomeDataBuilder()
-				.biomeName(name)
-				.rainfall(0F)
-				.rainEnabled(false)
-				.baseHeight(height)
-				.heightVariation(variation));
+	public BiomeGenYzCetiDHills () {
+        super(new DataValues("YzCeti D Highlands")
+        		.temperature(0.2F)
+        		.baseHeight(0.95F)
+        		.heightVariation(0.55F)
+        		.finalzie());
 		this.topBlock = YzCetiBlocks.D.YZD_STONE.getDefaultState();
 		this.subTopBlock = YzCetiBlocks.D.YZD_MNT2.getDefaultState();
 		this.lowerTopBlocks = YzCetiBlocks.D.YZD_SEDIMENTARYROCK.getDefaultState();
 		this.fillerBlock = YzCetiBlocks.D.YZD_MNT1.getDefaultState();
 	}
-	
-	@Override
-	public void registerTypes(Biome b) {
-		BiomeDictionary.addTypes(b, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS,
-				BiomeDictionary.Type.DRY);
-	}
 
 	@Override
-	public void generateBiomeSurface(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		IBlockState iblockstate = this.topBlock;
 		IBlockState iblockstate3 = this.subTopBlock;
 		IBlockState iblockstate4 = this.lowerTopBlocks;

@@ -17,9 +17,8 @@
 
 package net.romvoid95.space.yzceti.c.worldgen;
 
-import net.minecraft.world.World;
-
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
+import net.minecraft.world.World;
 
 public class BiomeDecoratorYzCetiC extends BiomeDecoratorSpace {
 

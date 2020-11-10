@@ -17,9 +17,8 @@
 
 package net.romvoid95.core.initialization;
 
-import java.util.LinkedList;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.item.ItemBlock;
 import net.romvoid95.api.registry.ExoRegistry;
 import net.romvoid95.common.block.decoration.BlockElectronic;
@@ -31,9 +30,11 @@ import net.romvoid95.common.block.machine.BlockAlloyRefinery;
 import net.romvoid95.common.block.machine.BlockMetalFurnace;
 import net.romvoid95.common.block.ore.BlockOreMetal;
 import net.romvoid95.common.block.stairs.BlockRoofStairs;
-import net.romvoid95.common.block.terrain.BlockExoFoliage;
-import net.romvoid95.common.block.terrain.BlockExoLog;
-import net.romvoid95.common.block.terrain.BlockExoSapling;
+import net.romvoid95.common.block.terrain.foliage.BlockDoubleFoliage;
+import net.romvoid95.common.block.terrain.foliage.BlockExoFoliage;
+import net.romvoid95.common.block.terrain.tree.BlockExoLeaves;
+import net.romvoid95.common.block.terrain.tree.BlockExoLog;
+import net.romvoid95.common.block.terrain.tree.BlockExoSapling;
 import net.romvoid95.space.kepler1649.KeplerBlocks;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 import net.romvoid95.space.wolf1061.Wolf1061Blocks;
@@ -76,21 +77,15 @@ public class ExoBlocks {
 	// public static final Block advAirlockControl = new BlockAdvAirLockController();
 
 	public static final Block ROOF_SLANTED = new BlockRoofStairs();
-
-	// LOGS
-	public static final Block	LOG_AD1	= new BlockExoLog();
-	public static final Block	LOG_A		= new BlockExoLog();
-	public static final Block	LOG_A_ROUGH	= new BlockExoLog();
-	public static final Block	LOG_AD2	= new BlockExoLog();
-	public static final Block	LOG_B		= new BlockExoLog();
-	public static final Block	LOG_B_ALT	= new BlockExoLog();
-	public static final Block	LOG_B_ROUGH	= new BlockExoLog();
 	
 	// PLANT
+	public static final Block EXO_LOG = new BlockExoLog();
 	public static final Block EXO_PLANT = new BlockExoFoliage();
-	public static final Block EXO_SAPLING = new BlockExoSapling();
+	public static final Block EXO_LEAVES = new BlockExoLeaves();
+	public static final BlockBush EXO_SAPLING = new BlockExoSapling();
+	public static final Block EXO_TALL_PLANT = new BlockDoubleFoliage();
 
-	public static LinkedList<Block> blocksList = new LinkedList<>();
+	//public static LinkedList<Block> blocksList = new LinkedList<>();
 
 	public static void registerAll(ExoRegistry reg) {
 		setReg(reg);
@@ -115,29 +110,25 @@ public class ExoBlocks {
 		register(DATAMONITOR, "datamonitor");
 		register(METAL_DIAGONAL, "metal_diagonal");
 		register(ROOF_SLANTED, "roof_slanted");
-		register(LOG_AD1, "log_a_dark1");
-		register(LOG_A, "log_a");
-		register(LOG_A_ROUGH, "log_a_rough");
-		register(LOG_AD2, "log_a_dark2");
-		register(LOG_B, "log_b");
-		register(LOG_B_ALT, "log_b_other");
-		register(LOG_B_ROUGH, "log_b_rough");
-		register(EXO_PLANT, "exo_plant");
+		//register(EXO_PLANT, "exo_plant");
+		register(EXO_LEAVES, "exo_leaves");
 		register(EXO_SAPLING, "exo_sapling");
+		register(EXO_LOG, "exo_log");
+		register(EXO_TALL_PLANT, "exo_tallplant");
 	}
 
 	public static void register(Block block, String blockName) {
-		blocksList.add(block);
+		//blocksList.add(block);
 		reg.registerBlock(block, blockName);
 	}
 
 	public static void register(Block block, String blockName, String path) {
-		blocksList.add(block);
+		//blocksList.add(block);
 		reg.registerBlock(block, blockName, path);
 	}
 
 	public static void register(Block block, String blockName, ItemBlock itemBlock) {
-		blocksList.add(block);
+		//blocksList.add(block);
 		reg.registerBlock(block, blockName, new ItemBlock(block));
 	}
 

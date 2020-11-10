@@ -17,13 +17,13 @@
 package net.romvoid95.common.block.terrain;
 
 import net.minecraft.block.BlockFalling;
-import net.minecraft.block.material.Material;
 import net.romvoid95.client.CreativeExoTabs;
+import net.romvoid95.core.initialization.ExoMaterial;
 
 public class BlockExoSand extends BlockFalling {
 	
 	public BlockExoSand() {
-		super(Material.SAND);
+		super(ExoMaterial.BIO);
 		this.setCreativeTab(CreativeExoTabs.TERRAIN_TAB);
 	}
 }

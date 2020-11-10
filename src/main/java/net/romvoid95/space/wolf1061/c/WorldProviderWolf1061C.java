@@ -30,69 +30,10 @@ import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.core.initialization.Planets;
 
 public class WorldProviderWolf1061C extends WorldProviderExoPlanet implements IGalacticraftWorldProvider {
-
-	@Override
-	public Vector3 getFogColor() {
-		float f = 1.0F - this.getStarBrightness(1.0F);
-			return new Vector3(0 / 255.0F * f, 0 / 255.0F * f, 0 / 255.0F * f);
-
-	}
-
-	@Override
-	public Vector3 getSkyColor() {
-		float f = 1.0F - this.getStarBrightness(1.0F);
-			return new Vector3(0 / 255.0F * f, 0 / 255.0F * f, 0 / 255.0F * f);
-
-	}
-
-	@Override
-	public boolean hasSunset() {
-		return false;
-	}
-
-	@Override
-	public long getDayLength() {
-		return 90000L;
-	}
-
-	@Override
-	public Class<? extends IChunkGenerator> getChunkProviderClass() {
-		return ChunkProviderWolf1061C.class;
-	}
-
-	@Override
-	public double getHorizon() {
-		return 44.0D;
-	}
-
-	@Override
-	public int getAverageGroundLevel() {
-		return 44;
-	}
-
+	
 	@Override
 	public boolean canCoordinateBeSpawn(int var1, int var2) {
 		return true;
-	}
-
-	@Override
-	public float getGravity() {
-			return 0.065F;
-	}
-
-	@Override
-	public int getHeight() {
-		return 800;
-	}
-
-	@Override
-	public double getMeteorFrequency() {
-		return 10.0D;
-	}
-
-	@Override
-	public double getFuelUsageMultiplier() {
-		return 1.9D;
 	}
 
 	@Override
@@ -101,13 +42,23 @@ public class WorldProviderWolf1061C extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public float getFallDamageModifier() {
-		return 0.38F;
+	public int getAverageGroundLevel() {
+		return 44;
 	}
-	
+
 	@Override
 	public CelestialBody getCelestialBody() {
 		return Planets.WOLF1061C;
+	}
+
+	@Override
+	public Class<? extends IChunkGenerator> getChunkProviderClass() {
+		return ChunkProviderWolf1061C.class;
+	}
+
+	@Override
+	public long getDayLength() {
+		return 90000L;
 	}
 
 	@Override
@@ -121,9 +72,47 @@ public class WorldProviderWolf1061C extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
-	public List<Block> getSurfaceBlocks() {
-		List<Block> list = new LinkedList<>();
-		return list;
+	public float getFallDamageModifier() {
+		return 0.38F;
+	}
+
+	@Override
+	public Vector3 getFogColor() {
+		float f = 1.0F - this.getStarBrightness(1.0F);
+			return new Vector3(0 / 255.0F * f, 0 / 255.0F * f, 0 / 255.0F * f);
+
+	}
+
+	@Override
+	public double getFuelUsageMultiplier() {
+		return 1.9D;
+	}
+
+	@Override
+	public float getGravity() {
+			return 0.065F;
+	}
+
+	@Override
+	public int getHeight() {
+		return 800;
+	}
+
+	@Override
+	public double getHorizon() {
+		return 44.0D;
+	}
+	
+	@Override
+	public double getMeteorFrequency() {
+		return 10.0D;
+	}
+
+	@Override
+	public Vector3 getSkyColor() {
+		float f = 1.0F - this.getStarBrightness(1.0F);
+			return new Vector3(0 / 255.0F * f, 0 / 255.0F * f, 0 / 255.0F * f);
+
 	}
 
 	@Override
@@ -132,8 +121,18 @@ public class WorldProviderWolf1061C extends WorldProviderExoPlanet implements IG
 	}
 
 	@Override
+	public List<Block> getSurfaceBlocks() {
+		List<Block> list = new LinkedList<>();
+		return list;
+	}
+
+	@Override
 	public double getYCoordinateToTeleport() {
 		return 1200 ;
 	}
 
+	@Override
+	public boolean hasSunset() {
+		return false;
+	}
 }

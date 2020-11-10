@@ -19,12 +19,11 @@ package net.romvoid95.space.trappist1.e.biomes;
 
 import java.util.Random;
 
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import asmodeuscore.core.utils.worldengine.WE_Biome;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 
 public class Trappist1_E_Ocean extends WE_Biome {
 
