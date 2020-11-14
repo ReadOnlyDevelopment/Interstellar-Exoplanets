@@ -31,7 +31,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.api.registry.ExoRegistry;
+import net.romvoid95.client.event.ClientEventHandler;
 import net.romvoid95.client.event.SkyProviders;
 import net.romvoid95.client.model.RocketModelLoader;
 import net.romvoid95.client.render.RocketRenderer;
@@ -39,9 +41,8 @@ import net.romvoid95.common.ExoCommonProxy;
 import net.romvoid95.common.entity.EntityTwoPlayerRocket;
 import net.romvoid95.common.utility.mc.FluidUtility;
 import net.romvoid95.common.version.VersionChecker;
-import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.initialization.ExoFluids;
-import net.romvoid95.core.initialization.ExoItems;
+import net.romvoid95.core.ExoFluids;
+import net.romvoid95.core.ExoItems;
 import net.romvoid95.space.trappist1.d.client.TickHandlerClientTrappistD;
 
 public class ExoClientProxy extends ExoCommonProxy {
@@ -58,7 +59,11 @@ public class ExoClientProxy extends ExoCommonProxy {
 		register_event(this);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTwoPlayerRocket.class, RocketRenderer::new);
-		//register_event(new ClientEventHandler());
+		registerTextureAssets();
+		register_event(new ClientEventHandler());
+		register_event(new SkyProviders());
+		register_event(new TickHandlerClientTrappistD());
+		//register_event(new StormProviderTrappist1D());
 
 		registry.clientPreInit(event);
 
@@ -67,8 +72,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void init(ExoRegistry registry, FMLInitializationEvent event) {
 		super.init(registry, event);
-		register_event(new SkyProviders());
-		register_event(new TickHandlerClientTrappistD());
+
 		VersionChecker.init();
 		registry.clientInit(event);
 	}
@@ -76,7 +80,7 @@ public class ExoClientProxy extends ExoCommonProxy {
 	@Override
 	public void postInit(ExoRegistry registry, FMLPostInitializationEvent event) {
 		super.postInit(registry, event);
-		registerTextureAssets();
+		
 		registry.clientPostInit(event);
 	}
 

@@ -20,10 +20,9 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
+import net.romvoid95.ExoInfo;
 import net.romvoid95.client.RGB;
 import net.romvoid95.common.CommonUtil;
-import net.romvoid95.core.ExoInfo;
 
 public class CloudTexture extends ResourceLocation {
 

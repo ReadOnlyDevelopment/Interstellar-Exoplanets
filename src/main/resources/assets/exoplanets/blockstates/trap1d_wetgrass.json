@@ -1,10 +1,10 @@
 {
     "variants": {
         "normal": [ 
-		{ "model": "exoplanets:trappist1/trap1d_wetgrass", "weight": 25 },
-		{ "model": "exoplanets:trappist1/trap1d_wetgrass_2", "weight": 25 },
-		{ "model": "exoplanets:trappist1/trap1d_wetgrass_3", "weight": 25 },
-		{ "model": "exoplanets:trappist1/trap1d_wetgrass_4", "weight": 25 }
+		{ "model": "exoplanets:trappist1/d/trap1d_wetgrass", "weight": 25 },
+		{ "model": "exoplanets:trappist1/d/trap1d_wetgrass_2", "weight": 25 },
+		{ "model": "exoplanets:trappist1/d/trap1d_wetgrass_3", "weight": 25 },
+		{ "model": "exoplanets:trappist1/d/trap1d_wetgrass_4", "weight": 25 }
 		]
     }
 }

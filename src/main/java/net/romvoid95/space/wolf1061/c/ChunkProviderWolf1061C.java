@@ -67,7 +67,7 @@ public class ChunkProviderWolf1061C extends ChunkProvdierNewSpace {
 
 	@Override
 	public double getHeightModifier() {
-		return 12;
+		return 34;
 	}
 
 	@Override
@@ -77,12 +77,12 @@ public class ChunkProviderWolf1061C extends ChunkProvdierNewSpace {
 
 	@Override
 	public double getMountainHeightModifier() {
-		return 95;
+		return 140;
 	}
 
 	@Override
 	public double getValleyHeightModifier() {
-		return 50;
+		return 35;
 	}
 
 	@Override

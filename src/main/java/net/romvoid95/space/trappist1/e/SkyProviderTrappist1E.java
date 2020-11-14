@@ -31,14 +31,16 @@ public class SkyProviderTrappist1E extends SkyProviderBase {
 
 	@Override
 	protected void rendererSky (Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {
+		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
+
 		if (!this.mc.world.isRaining()) {
 			this.renderImage(Assets.getCelestialTexture("trappist1b"), 0, 0, this
 					.getCelestialAngle(getDayLenght()), 5.5F);
 			this.renderImage(Assets.getCelestialTexture("trappist1d"), 40, 0, this
 					.getCelestialAngle((long) (getDayLenght() * 1.2)) + 80F, 1.5F);
 		}
-
+		GL11.glPopMatrix();
 	}
 
 	@Override

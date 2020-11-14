@@ -22,8 +22,8 @@ import java.util.Locale;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.romvoid95.common.lib.interfaces.IMetal;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoItems;
+import net.romvoid95.core.ExoBlocks;
+import net.romvoid95.core.ExoItems;
 
 public enum EnumAlloy implements IStringSerializable, IMetal {
 	BRONZE(0, "Bronze"),

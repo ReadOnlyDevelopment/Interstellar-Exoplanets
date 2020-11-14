@@ -48,17 +48,16 @@ import net.romvoid95.common.command.CommandFindBiome;
 import net.romvoid95.common.config.ExoConfigs;
 import net.romvoid95.common.event.GuiHandlerExo;
 import net.romvoid95.common.network.NetworkPipeline;
+import net.romvoid95.common.utility.logging.Logging;
 import net.romvoid95.common.utility.mc.MCUtil;
 import net.romvoid95.common.utility.system.TranslateUtil;
 import net.romvoid95.common.world.OverworldOreGen;
-import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.Logging;
-import net.romvoid95.core.initialization.ExoFluids;
-import net.romvoid95.core.initialization.ExoHandler;
-import net.romvoid95.core.initialization.ExoRecipes;
-import net.romvoid95.core.initialization.Planets;
-import net.romvoid95.core.initialization.SolarSystems;
-import net.romvoid95.core.initialization.WorldHandler;
+import net.romvoid95.core.ExoFluids;
+import net.romvoid95.core.ExoRecipes;
+import net.romvoid95.core.Planets;
+import net.romvoid95.core.SolarSystems;
+import net.romvoid95.core.modhandlers.ExoHandler;
+import net.romvoid95.core.modhandlers.WorldHandler;
 import net.romvoid95.space.CelestialAssets;
 
 @Mod(

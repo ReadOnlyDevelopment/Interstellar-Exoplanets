@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
 
 public class ThreadVersionChecker extends Thread {
 

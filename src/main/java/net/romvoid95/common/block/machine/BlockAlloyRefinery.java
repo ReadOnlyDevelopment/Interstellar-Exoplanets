@@ -33,7 +33,7 @@ import net.romvoid95.common.lib.block.IBlockTileEntity;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.IMetal;
 import net.romvoid95.common.tile.TileEntityAlloyRefinery;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class BlockAlloyRefinery extends BlockMachine implements IAddRecipe, IBlockTileEntity {
 

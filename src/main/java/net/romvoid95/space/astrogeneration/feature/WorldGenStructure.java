@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.space.astrogeneration.util.GenRandom;
 import net.romvoid95.space.astrogeneration.util.GenUtility;
 import net.romvoid95.space.astrogeneration.util.IStructure;

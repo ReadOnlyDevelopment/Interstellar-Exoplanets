@@ -43,7 +43,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoDimensions;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.kepler1649.c.biomes.Dunes;
 import net.romvoid95.space.kepler1649.c.biomes.TestHighMountains;
 import net.romvoid95.space.kepler1649.c.biomes.TestPlains;

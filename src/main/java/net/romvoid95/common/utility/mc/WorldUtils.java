@@ -28,7 +28,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.romvoid95.api.space.Calculations;
+import net.romvoid95.api.math.Calculations;
 
 /**
  * The Class Worlds.

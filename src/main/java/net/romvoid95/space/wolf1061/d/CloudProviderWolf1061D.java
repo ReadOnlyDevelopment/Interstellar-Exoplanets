@@ -32,9 +32,9 @@ import net.romvoid95.common.CommonUtil;
 @EventBusSubscriber
 public class CloudProviderWolf1061D extends MultiCloudProvider {
 
-	public static final CloudTexture	CLOUD	= new CloudTexture("textures/world/dense-clouds.png", 72.0F, 12, RGB.RED);
-	public static final CloudTexture	CLOUDS	= new CloudTexture("textures/world/clouds01.png", 86.0F, 6, RGB.DARKRED);
-	public static final CloudTexture	CLOUDS1	= new CloudTexture("textures/world/clouds11.png", 102.0F, 2, RGB.ORANGERED);
+	public static final CloudTexture	CLOUD	= new CloudTexture("textures/world/dense-clouds.png", 72.0F, 9, new RGB(0.6F, 0.5F, 0.1F));
+	public static final CloudTexture	CLOUDS	= new CloudTexture("textures/world/clouds01.png", 86.0F, 4, new RGB(0.8F, 0.2F, 0.0F));
+	public static final CloudTexture	CLOUDS1	= new CloudTexture("textures/world/clouds11.png", 102.0F, 7, new RGB(0.7F, 0.3F, 0.0F));
 
 	@Override
 	public float getCloudMovementSpeed(World world) {

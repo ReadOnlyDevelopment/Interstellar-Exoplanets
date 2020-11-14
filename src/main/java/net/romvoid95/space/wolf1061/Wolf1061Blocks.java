@@ -19,8 +19,8 @@ package net.romvoid95.space.wolf1061;
 import net.minecraft.block.Block;
 import net.romvoid95.common.block.terrain.BlockCrust;
 import net.romvoid95.common.block.terrain.BlockCrust.RockType;
+import net.romvoid95.core.ExoBlocks;
 import net.romvoid95.common.block.terrain.BlockSediment;
-import net.romvoid95.core.initialization.ExoBlocks;
 
 public class Wolf1061Blocks {
 

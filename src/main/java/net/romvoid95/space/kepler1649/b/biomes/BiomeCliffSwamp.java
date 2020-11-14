@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.world.worldgen.feature.tree.ExoGenSwampTree;
 import net.romvoid95.common.block.terrain.foliage.BlockDoubleFoliage;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 import net.romvoid95.space.astrogeneration.biome.BiomeData.DataValues;
 import net.romvoid95.space.astrogeneration.feature.foliage.WorldGenModFoliage;
 

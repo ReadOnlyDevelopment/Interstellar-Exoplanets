@@ -42,10 +42,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
-
+import net.romvoid95.ExoInfo;
 import net.romvoid95.client.model.RocketModelLoader;
 import net.romvoid95.common.entity.EntityTwoPlayerRocket;
-import net.romvoid95.core.ExoInfo;
 
 @SideOnly(Side.CLIENT)
 public class RocketRenderer extends Render<EntityTwoPlayerRocket> {

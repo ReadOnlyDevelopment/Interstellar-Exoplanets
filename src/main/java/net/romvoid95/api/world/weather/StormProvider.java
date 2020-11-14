@@ -1,9 +1,11 @@
 package net.romvoid95.api.world.weather;
 
+import java.lang.reflect.Field;
 import java.util.Random;
 
 import com.google.common.base.Predicate;
 
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -67,14 +69,13 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 					if (storm.stormX == null || storm.stormZ == null) {
 						storm.stormX = new float[s * s];
 						storm.stormZ = new float[s * s];
-
-						for (int zCoord = 0; zCoord < s; ++zCoord) {
-							for (int xCoord = 0; xCoord < s; ++xCoord) {
-								float x  = xCoord - 16;
-								float z  = zCoord - 16;
-								float sq = MathHelper.sqrt(x * x + z * z);
-								storm.stormX[zCoord << 5 | xCoord] = -z / sq;
-								storm.stormZ[zCoord << 5 | xCoord] = x / sq;
+						for (int i = 0; i < 32; ++i) {
+							float f1 = i - 16;
+							for (int j = 0; j < 32; ++j) {
+								float f  = j - 16;
+								float f2 = MathHelper.sqrt(f * f + f1 * f1);
+								storm.stormX[i << 5 | j] = -f1 / f2;
+								storm.stormZ[i << 5 | j] = f / f2;
 							}
 						}
 					}
@@ -83,12 +84,12 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 						storm.renderStorm = true;
 
 						if (storm.stormDensity < 1.0F) {
-							storm.stormDensity += 0.0025F;
+							//storm.stormDensity += 0.0025F;
 						}
 					}
 					else {
 						if (storm.stormDensity >= 0.0F) {
-							storm.stormDensity -= 0.0025F;
+							//storm.stormDensity -= 0.0025F;
 						}
 						else {
 							storm.renderStorm  = false;
@@ -124,8 +125,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 
 							for (int i = 0; i < passes; ++i) {
 								BlockPos    pos1  = world
-										.getPrecipitationHeight(blockpos.add(storm.random.nextInt(10) - storm.random
-												.nextInt(10), 0, storm.random.nextInt(10) - storm.random.nextInt(10)));
+										.getPrecipitationHeight(blockpos.add(storm.random.nextInt(10), 0, storm.random.nextInt(10)));
 								Biome       biome = world.getBiome(pos1);
 								BlockPos    pos2  = pos1.down();
 								IBlockState state = world.getBlockState(pos2);
@@ -141,14 +141,14 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 											++particleCount;
 
 											if (storm.random.nextInt(particleCount) == 0) {
-												x = (double) pos2.getX() + xOffset;
-												y = (double) ((float) pos2.getY() + 0.1F) + box.maxY - 1.0D;
-												z = (double) pos2.getZ() + zOffset;
+												x = pos2.getX();// + xOffset;
+												y = pos2.getY() + 0.1F + box.maxY - 1.0D;
+												z = pos2.getZ();// + zOffset;
 											}
 
-											double pX = (double) pos2.getX() + xOffset;
-											double pY = (double) ((float) pos2.getY() + 0.1F) + box.maxY;
-											double pZ = (double) pos2.getZ() + zOffset;
+											double pX = pos2.getX();// + xOffset;
+											double pY = pos2.getY() + 0.1F + box.maxY;
+											double pZ = pos2.getZ();// + zOffset;
 											if (storm.useGroundParticle()) {
 
 												ExoStormEvent stormEvent = new ExoStormEvent.Pre(storm);
@@ -168,8 +168,8 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 							if (particleCount > 0 && storm.random.nextInt(3) < storm.rainSoundCounter++) {
 								storm.rainSoundCounter = 0;
 
-								if (y > (double) (blockpos.getY() + 1) && world.getPrecipitationHeight(blockpos)
-										.getY() > MathHelper.floor((float) blockpos.getY())) {
+								if (y > blockpos.getY() + 1 && world.getPrecipitationHeight(blockpos)
+										.getY() > MathHelper.floor(blockpos.getY())) {
 									storm.playStormSound(world, x, y, z);
 								}
 								else {
@@ -191,6 +191,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		}
 	}
 
+	@Override
 	public void updateStorm (World world) {
 		if (world != null && this.isStormApplicableTo(world.provider) && this.isStormActive(world)) {
 			for (Object o : world.loadedEntityList.toArray()) {
@@ -221,16 +222,24 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 
 					return;
 
-				climate.getStormProvider().renderStorm(event
-						.getPartialTicks(), CommonUtil.getMinecraft().world, Minecraft.getMinecraft());
+				climate.getStormProvider().renderStorm(event.getPartialTicks(), CommonUtil.getMinecraft().world, Minecraft.getMinecraft());
 				ExoStormEvent stormEventPost = new ExoStormEvent.Post(storm);
 				MinecraftForge.EVENT_BUS.post(stormEventPost);
 			}
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void renderStorm (float partialTicks, WorldClient world, Minecraft mc) {
+		int rendererUpdateCount = 0;
+		try {
+			Field fieldRUC = mc.entityRenderer.getClass()
+					.getDeclaredField(GCCoreUtil.isDeobfuscated() ? "rendererUpdateCount" : "field_78529_t");
+			fieldRUC.setAccessible(true);
+			rendererUpdateCount = fieldRUC.getInt(mc.entityRenderer);
+		}
+		catch (Exception e) {}
 		if (!isStormActive(world) && !renderStorm) {
 			return;
 		}
@@ -258,9 +267,9 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 			OpenGL.disableLight();
 		}
 
-		double renderPartialX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) partialTicks;
-		double renderPartialY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) partialTicks;
-		double renderPartialZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks;
+		double renderPartialX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
+		double renderPartialY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
+		double renderPartialZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
 		int    renderYFloor   = MathHelper.floor(renderPartialY);
 		int    stormDepth     = 5;
 		int    stormHeight    = 6 + stormDepth;
@@ -275,10 +284,10 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
 		for (int z = posZ - stormDepth; z <= posZ + stormDepth; ++z) {
+			int    idx = (z - posZ + 16) * 32;
 			for (int x = posX - stormDepth; x <= posX + stormDepth; ++x) {
-				int    idx = (z - posZ + 16) * 32 + x - posX + 16;
-				double rX  = (double) this.stormX[idx] * 0.5D;
-				double rZ  = (double) this.stormZ[idx] * 0.5D;
+				double rX  = this.stormX[idx] * 0.5D;
+				double rZ  = this.stormZ[idx] * 0.5D;
 				pos.setPos(x, 0, z);
 				Biome biome = world.getBiome(pos);
 
@@ -302,8 +311,7 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 					}
 
 					if (minY != maxY) {
-						this.random.setSeed((long) (x * x * 3121 + x * 45238971 ^ z * z * 418711 + z * 13761));
-						pos.setPos(x, minY, z);
+						this.random.setSeed(x * x * 3121 + x * 45238971 ^ z * z * 418711 + z * 13761);
 						OpenGL.enableCullFace();
 
 						if (lastPass != 0) {
@@ -318,28 +326,29 @@ public abstract class StormProvider implements Predicate<Entity>, IStormProvider
 
 						float vTravel = -(((CommonUtil.getMinecraft().world.getWorldTime() + (x * x) + x + (z * z) + z)
 								& 31) + partialTicks) / getStormDownfallSpeed();
-						float hTravel = (((CommonUtil.getMinecraft().world.getWorldTime() + (x * x) + x + (z * z) + z)
-								& 31) + partialTicks) / getStormWindSpeed();
 
-						double offsetX  = (double) ((float) x + 0.5F) - entity.posX;
-						double offsetZ  = (double) ((float) z + 0.5F) - entity.posZ;
-						float  strength = MathHelper.sqrt(offsetX * offsetX + offsetZ * offsetZ) / (float) stormDepth;
+						int index = idx + x - posX +  16;
+						double offsetX  = this.stormX[index] + 0.5F;
+						double offsetZ  = this.stormZ[index] + 0.5F;
+						float  strength = MathHelper.sqrt(offsetX * offsetX + offsetZ * offsetZ) / stormDepth;
 						float  alpha    = ((1.0F - strength * strength) * 0.5F + 0.5F) * getStormDensity();
 						pos.setPos(x, vY, z);
 						int light     = world.getCombinedLight(pos, 0);
 						int lightmapX = light >> 16 & 65535;
 						int lightmapY = light & 65535;
-						buffer.pos((double) x - rX + 0.5D, (double) minY, (double) z - rZ + 0.5D + hTravel)
-								.tex(0.0D, (double) maxY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
+						double xx = x + 0.5D;
+						double zz = z + 0.5D;
+						buffer.pos(xx - offsetX, minY, zz - offsetZ)
+								.tex(0.0D, maxY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
 								.lightmap(lightmapX, lightmapY).endVertex();
-						buffer.pos((double) x + rX + 0.5D, (double) minY, (double) z + rZ + 0.5D + hTravel)
-								.tex(1.0D, (double) maxY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
+						buffer.pos(xx + offsetX, minY, zz + offsetZ)
+								.tex(1.0D, maxY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
 								.lightmap(lightmapX, lightmapY).endVertex();
-						buffer.pos((double) x + rX + 0.5D, (double) maxY, (double) z + rZ + 0.5D + hTravel)
-								.tex(1.0D, (double) minY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
+						buffer.pos(xx + offsetX, maxY, zz + offsetZ)
+								.tex(1.0D, minY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
 								.lightmap(lightmapX, lightmapY).endVertex();
-						buffer.pos((double) x - rX + 0.5D, (double) maxY, (double) z - rZ + 0.5D + hTravel)
-								.tex(0.0D, (double) minY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
+						buffer.pos(xx - offsetX, maxY, zz - offsetZ)
+								.tex(0.0D, minY * 0.25D + vTravel).color(1.0F, 1.0F, 1.0F, alpha)
 								.lightmap(lightmapX, lightmapY).endVertex();
 					}
 				}

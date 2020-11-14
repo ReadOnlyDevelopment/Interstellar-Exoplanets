@@ -2,7 +2,7 @@
 	"forge_marker": 1,
 	"defaults": {
 		"model": "cube_all",
-		"textures": { "all": "exoplanets:blocks/terrain/trappist1/trap1d_softstone" }
+		"textures": { "all": "exoplanets:blocks/terrain/trappist1/d/trap1d_softstone" }
 	},
 	"variants": {
 		"inventory": { "transform": "forge:default-block" },

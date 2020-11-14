@@ -10,52 +10,52 @@
     "metal": {
       "copper": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/copper"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/copper"
         }
       },
       "tin": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/tin"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/tin"
         }
       },
       "lead": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/lead"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/lead"
         }
       },
       "nickel": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/nickel"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/nickel"
         }
       },
       "platinum": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/platinum"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/platinum"
         }
       },
       "aluminium": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/aluminium"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/aluminium"
         }
       },
       "titanium": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/titanium"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/titanium"
         }
       },
       "tungsten": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/tungsten"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/tungsten"
         }
       },
       "silver": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/silver"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/silver"
         }
       },
       "zinc": {
         "textures": {
-          "all": "exoplanets:blocks/ores/trappist1e/zinc"
+          "all": "exoplanets:blocks/terrain/trappist1/e/ore/zinc"
         }
       }
     }

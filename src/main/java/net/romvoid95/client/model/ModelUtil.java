@@ -40,8 +40,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.ExoplanetsMod;
-import net.romvoid95.core.ExoInfo;
 
 @UtilityClass
 @SuppressWarnings("deprecation")

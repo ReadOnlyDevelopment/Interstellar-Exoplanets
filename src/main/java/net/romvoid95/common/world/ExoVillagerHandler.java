@@ -30,10 +30,8 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
-
+import net.romvoid95.ExoInfo;
 import micdoodle8.mods.galacticraft.core.GCItems;
-
-import net.romvoid95.core.ExoInfo;
 
 public class ExoVillagerHandler {
 	private static final VillagerRegistry             VILLAGER_REGISTRY = VillagerRegistry.instance();

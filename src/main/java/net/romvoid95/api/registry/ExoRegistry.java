@@ -92,8 +92,8 @@ import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.item.IColorItem;
 import net.romvoid95.common.lib.interfaces.item.ItemBlockMetaSubtypes;
+import net.romvoid95.common.utility.logging.Logging;
 import net.romvoid95.common.utility.mc.MCUtil;
-import net.romvoid95.core.Logging;
 
 public class ExoRegistry {
 	private static final Pattern PATTERN_REGISTRY_NAME = Pattern.compile("[^a-z0-9_]+");

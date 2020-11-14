@@ -46,6 +46,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.api.world.weather.MultiCloudProvider;
 import net.romvoid95.client.gui.screen.GuiBeta;
@@ -54,14 +55,13 @@ import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.config.ConfigPlanets;
 import net.romvoid95.common.constants.ModelNames;
 import net.romvoid95.common.utility.mc.MCUtil;
-import net.romvoid95.core.ExoInfo;
-import net.romvoid95.core.initialization.SolarSystems;
+import net.romvoid95.core.SolarSystems;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public final class ClientEventHandler {
 
 	@SubscribeEvent
-	public static void onModelBakeEvent(ModelBakeEvent event) {
+	public void onModelBakeEvent(ModelBakeEvent event) {
 
 		for (ModelNames m : ModelNames.getModels()) {
 			ModelUtil.replace(event, m.modelName(), m.objFile(), ImmutableList.of("Base"), m.modelClass(), TRSRTransformation.identity());
@@ -69,7 +69,7 @@ public final class ClientEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void loadTextures(TextureStitchEvent.Pre event) {
+	public void loadTextures(TextureStitchEvent.Pre event) {
 
 		for (ModelNames m : ModelNames.getModels()) {
 			ModelUtil.registerTexture(event, m.modelName());
@@ -77,7 +77,7 @@ public final class ClientEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void onTick(ClientTickEvent e) {
+	public void onTick(ClientTickEvent e) {
 		World world = FMLClientHandler.instance().getClient().world;
 		
 		if (world != null && !FMLClientHandler.instance().getClient().isGamePaused()) {
@@ -92,7 +92,7 @@ public final class ClientEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
+	public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent) {
 
 		ExoSystem system;
 
@@ -115,7 +115,7 @@ public final class ClientEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void onGuiOpen(GuiOpenEvent event) {
+	public void onGuiOpen(GuiOpenEvent event) {
 		GuiScreen gui = event.getGui();
 		if (ConfigCore.warnBetaBuild && (gui instanceof GuiMainMenu)) {
 
@@ -141,19 +141,17 @@ public final class ClientEventHandler {
 	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
-	public static void onRenderFogDensity(EntityViewRenderEvent.FogDensity event) {
+	public void onRenderFogDensity(EntityViewRenderEvent.FogDensity event) {
 		if(event.getEntity().isInLava() || event.getEntity().isInWater())
 			return;
 		if (event.getEntity().world.provider.getDimensionType().getId() == ConfigPlanets.id_trap_d) {
-			event.setDensity(0.09f);
+			event.setDensity(0.04f);
 			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
 			event.setCanceled(true);
-		} else {
-			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
 		}
 	}
 
-	public static void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, ExoSystem solarSystem) {
+	public void RingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent, ExoSystem solarSystem) {
 		
 		Vector3f mapPos = solarSystem.getMapPosition().toVector3f();
 
@@ -233,7 +231,7 @@ public final class ClientEventHandler {
 	}
 
 	@SubscribeEvent
-	public static void onEntityUpdate(LivingUpdateEvent event) {
+	public void onEntityUpdate(LivingUpdateEvent event) {
 		EntityLivingBase living = event.getEntityLiving();
 		World world = living.world;
 		if (living instanceof EntityPlayerMP) {

@@ -7,7 +7,7 @@ import org.apache.commons.collections4.map.HashedMap;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID)
 public class ExoplanetsTestWorld {

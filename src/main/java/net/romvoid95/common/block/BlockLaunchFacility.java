@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.common.lib.block.BlockExoTile;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class BlockLaunchFacility extends BlockExoTile implements IPartialSealableBlock, IShiftDescription, ISortableBlock {
 	

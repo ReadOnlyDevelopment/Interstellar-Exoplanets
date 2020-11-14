@@ -2,7 +2,7 @@
 	"forge_marker": 1,
 	"defaults": {
 		"model": "cube_all",
-		"textures": { "all": "exoplanets:blocks/terrain/trappist1/trap1c_dirt_1" }
+		"textures": { "all": "exoplanets:blocks/terrain/trappist1/c/trap1c_dirt_1" }
 	},
 	"variants": {
 		"inventory": { "transform": "forge:default-block" },

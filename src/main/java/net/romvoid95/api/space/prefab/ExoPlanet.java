@@ -25,7 +25,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
-import net.romvoid95.api.space.Calculations;
+import net.romvoid95.api.math.Calculations;
 import net.romvoid95.api.space.enums.EnumPlanetType;
 import net.romvoid95.api.space.enums.EnumTPHClass;
 import net.romvoid95.api.space.interfaces.IExoPlanet;

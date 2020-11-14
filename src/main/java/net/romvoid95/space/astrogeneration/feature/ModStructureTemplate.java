@@ -17,7 +17,7 @@ import net.minecraft.world.gen.structure.StructureComponentTemplate;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
 
 public abstract class ModStructureTemplate extends StructureComponentTemplate {
 	private static final PlacementSettings OVERWRITE = (new PlacementSettings()).setIgnoreEntities(true);

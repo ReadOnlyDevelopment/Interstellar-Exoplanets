@@ -45,7 +45,7 @@ import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.lib.EnumMetal;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 import net.romvoid95.space.trappist1.e.biomes.Trappist1_E_Dunes;
 import net.romvoid95.space.trappist1.e.biomes.Trappist1_E_Mountains;
@@ -265,4 +265,6 @@ public class WorldProviderTrappist1E extends WorldProviderWE_ExoPlanet {
 	public boolean shouldForceRespawn () {
 		return !ConfigManagerCore.forceOverworldRespawn;
 	}
+	
+	
 }

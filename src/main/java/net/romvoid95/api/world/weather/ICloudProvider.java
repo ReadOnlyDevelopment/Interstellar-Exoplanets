@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.api.space.Calculations;
+import net.romvoid95.api.math.Calculations;
 import net.romvoid95.client.gui.rendering.Texture;
 
 public interface ICloudProvider {

@@ -13,12 +13,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
+import net.romvoid95.api.content.ExoMaterial;
 import net.romvoid95.api.enums.LeafType;
 import net.romvoid95.api.enums.WoodType;
 import net.romvoid95.common.block.terrain.tree.BlockExoLeaves;
 import net.romvoid95.common.block.terrain.tree.BlockExoLog;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoMaterial;
+import net.romvoid95.core.ExoBlocks;
 
 public abstract class ExoTreeGenerator extends WorldGenAbstractTree implements IBlockSettable {
 	

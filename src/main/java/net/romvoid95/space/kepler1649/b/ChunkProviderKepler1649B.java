@@ -9,10 +9,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProviderMultiSpace;
+import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProviderExoplanet;
 import net.romvoid95.space.kepler1649.KeplerBlocks;
 
-public class ChunkProviderKepler1649B extends ExoChunkProviderMultiSpace {
+public class ChunkProviderKepler1649B extends ExoChunkProviderExoplanet {
 	
 	private static ChunkProviderKepler1649B instance;
 

@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.romvoid95.common.lib.fluid.FluidBlockBase;
-import net.romvoid95.core.initialization.ExoFluids;
+import net.romvoid95.core.ExoFluids;
 
 public class BlockFluid extends FluidBlockBase implements IFluidBlock {
 

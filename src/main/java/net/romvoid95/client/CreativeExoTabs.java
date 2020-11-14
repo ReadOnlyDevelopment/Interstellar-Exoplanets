@@ -24,8 +24,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.common.utility.mc.FluidUtility;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoFluids;
+import net.romvoid95.core.ExoBlocks;
+import net.romvoid95.core.ExoFluids;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 
 public class CreativeExoTabs {

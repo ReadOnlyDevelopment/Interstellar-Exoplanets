@@ -26,10 +26,9 @@ import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-
+import net.romvoid95.ExoInfo;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.config.ConfigPlanets;
-import net.romvoid95.core.ExoInfo;
 
 public class ExoplanetsConfigGuiFactory implements IModGuiFactory {
 

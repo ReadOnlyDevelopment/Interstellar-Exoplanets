@@ -10,7 +10,7 @@ import net.romvoid95.api.enums.LeafType;
 import net.romvoid95.api.enums.WoodType;
 import net.romvoid95.common.block.terrain.tree.BlockExoLeaves;
 import net.romvoid95.common.block.terrain.tree.BlockExoLog;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class FirTreeGenerator extends ExoTreeGenerator {
 

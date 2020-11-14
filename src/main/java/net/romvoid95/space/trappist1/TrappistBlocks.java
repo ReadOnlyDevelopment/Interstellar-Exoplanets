@@ -26,7 +26,7 @@ import net.romvoid95.common.block.terrain.BlockCrust;
 import net.romvoid95.common.block.terrain.BlockCrust.RockType;
 import net.romvoid95.common.block.terrain.BlockExoDirt;
 import net.romvoid95.common.block.terrain.BlockExoGrass;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class TrappistBlocks {
 
@@ -65,6 +65,9 @@ public class TrappistBlocks {
 	}
 
 	public static class TrappistB {
+		
+		public static final Block TRAP1B_STONE_1 = new BlockCrust(RockType.METAMORPHIC);
+		public static final Block TRAP1B_STONE_2 = new BlockCrust(RockType.IGNEOUS);
 
 	}
 
@@ -73,6 +76,7 @@ public class TrappistBlocks {
 		public static final Block TRAP1C_TOP    = new BlockTerrain();
 		public static final Block TRAP1C_DIRT_1 = new BlockTerrain();
 		public static final Block TRAP1C_DIRT_2 = new BlockTerrain();
+		
 	}
 
 	public static class TrappistD {

@@ -18,11 +18,11 @@ import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.ExoStar;
 import net.romvoid95.api.space.prefab.ExoSystem;
 import net.romvoid95.client.Assets;
-import net.romvoid95.core.ExoInfo;
 
 public class Universe {
 

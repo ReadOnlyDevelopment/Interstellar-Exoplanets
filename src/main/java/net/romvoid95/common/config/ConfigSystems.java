@@ -17,17 +17,24 @@
 
 package net.romvoid95.common.config;
 
-import static net.romvoid95.core.ExoInfo.Constants.*;
+import static net.romvoid95.ExoInfo.Constants.*;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import net.minecraftforge.common.config.*;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.ExoplanetsMod;
-import net.romvoid95.core.ExoInfo;
 
 public class ConfigSystems {
 

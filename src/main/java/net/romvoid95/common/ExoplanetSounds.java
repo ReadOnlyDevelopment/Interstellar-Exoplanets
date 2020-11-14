@@ -22,9 +22,8 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
-
+import net.romvoid95.ExoInfo;
 import net.romvoid95.api.registry.ExoRegistry;
-import net.romvoid95.core.ExoInfo;
 
 public class ExoplanetSounds {
 

@@ -31,7 +31,7 @@ import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.client.model.ModelUtil;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.lib.block.ICustomModel;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class BlockExoLeaves extends BlockLeaves implements ICustomModel {
 

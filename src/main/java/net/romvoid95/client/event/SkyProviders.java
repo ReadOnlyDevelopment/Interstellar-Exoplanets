@@ -25,30 +25,24 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
+import net.romvoid95.api.world.ExoRainRenderer;
+import net.romvoid95.common.config.ConfigPlanets;
 import net.romvoid95.space.kepler1649.b.SkyProviderKepler1649B;
 import net.romvoid95.space.kepler1649.b.WorldProviderKepler1649B;
 import net.romvoid95.space.kepler1649.c.SkyProviderKepler1649c;
-import net.romvoid95.space.kepler1649.c.WorldProviderKepler1649c;
 import net.romvoid95.space.trappist1.c.SkyProviderTrappist1C;
-import net.romvoid95.space.trappist1.c.WorldProviderTrappist1C;
 import net.romvoid95.space.trappist1.d.SkyProviderTrappist1D;
-import net.romvoid95.space.trappist1.d.WorldProviderTrappist1D;
 import net.romvoid95.space.trappist1.d.client.CloudProviderTrappist1D;
-import net.romvoid95.space.trappist1.d.client.WeatherRendererTrappistD;
 import net.romvoid95.space.trappist1.e.SkyProviderTrappist1E;
-import net.romvoid95.space.trappist1.e.WorldProviderTrappist1E;
 import net.romvoid95.space.wolf1061.d.CloudProviderWolf1061D;
 import net.romvoid95.space.wolf1061.d.SkyProviderWolf1061D;
-import net.romvoid95.space.wolf1061.d.WorldProviderWolf1061D;
 import net.romvoid95.space.yzceti.b.SkyProviderYzCetiB;
-import net.romvoid95.space.yzceti.b.WorldProviderYzCetiB;
 import net.romvoid95.space.yzceti.c.SkyProviderYzCetiC;
-import net.romvoid95.space.yzceti.c.WorldProviderYzCetiC;
 import net.romvoid95.space.yzceti.d.SkyProviderYzCetiD;
-import net.romvoid95.space.yzceti.d.WorldProviderYzCetiD;
 
 @Mod.EventBusSubscriber(modid = ExoInfo.MODID, value = Side.CLIENT)
 public class SkyProviders {
@@ -60,10 +54,10 @@ public class SkyProviders {
 		final WorldClient world = minecraft.world;
 		final EntityPlayerSP player = minecraft.player;
 
-		if(world != null) {   
+		if (event.phase == Phase.START && player != null && world != null) {
 			// Planets
 
-			if (world.provider instanceof WorldProviderYzCetiB) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_yz_b) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderYzCetiB());
 				}
@@ -72,7 +66,7 @@ public class SkyProviders {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 			}
-			if (world.provider instanceof WorldProviderYzCetiC) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_yz_c) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderYzCetiC());
 				}
@@ -81,7 +75,7 @@ public class SkyProviders {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 			}
-			if (world.provider instanceof WorldProviderYzCetiD) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_yz_d) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderYzCetiD());
 				}
@@ -90,17 +84,17 @@ public class SkyProviders {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 			}
-			if (world.provider instanceof WorldProviderTrappist1E) {
-				if (world.provider.getSkyRenderer() == null) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_trap_e) {
+				
 					world.provider.setSkyRenderer(new SkyProviderTrappist1E());
-				}
+				
 
 				if (world.provider.getCloudRenderer() == null) {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 
 			}
-			if (world.provider instanceof WorldProviderTrappist1C) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_trap_c) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderTrappist1C());
 				}
@@ -109,7 +103,7 @@ public class SkyProviders {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 			}
-			if (world.provider instanceof WorldProviderKepler1649c) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_kepler_c) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderKepler1649c());
 				}
@@ -118,7 +112,7 @@ public class SkyProviders {
 					world.provider.setCloudRenderer(new CloudRenderer());
 				}
 			}
-			if (world.provider instanceof WorldProviderTrappist1D) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_trap_d) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderTrappist1D());
 				}
@@ -126,16 +120,15 @@ public class SkyProviders {
 				if (world.provider.getCloudRenderer() == null) {
 					world.provider.setCloudRenderer(new CloudProviderTrappist1D());
 				}
-
-				if (world.provider.getWeatherRenderer() == null) {
-					world.provider.setWeatherRenderer(new WeatherRendererTrappistD());
+				if(world.provider.getWeatherRenderer() == null) {
+					world.provider.setWeatherRenderer(new ExoRainRenderer());
 				}
+
 			}
-			if (world.provider instanceof WorldProviderWolf1061D) {
+			if (world.provider.getDimensionType().getId() == ConfigPlanets.id_wolf_d) {
 				if (world.provider.getSkyRenderer() == null) {
 					world.provider.setSkyRenderer(new SkyProviderWolf1061D());
 				}
-
 				if (world.provider.getCloudRenderer() == null) {
 					world.provider.setCloudRenderer(new CloudProviderWolf1061D());
 				}

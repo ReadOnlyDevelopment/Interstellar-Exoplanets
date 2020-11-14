@@ -35,7 +35,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.block.EnumPlant;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class BlockExoFoliage extends BlockBush implements IShearable, IPlantable {
 

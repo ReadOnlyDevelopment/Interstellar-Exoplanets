@@ -26,10 +26,10 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.common.block.machine.container.ContainerAlloyRefinery;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.tile.TileEntityAlloyRefinery;
-import net.romvoid95.core.ExoInfo;
 
 public class GuiAlloyRefinery extends GuiContainer {
     private static final ResourceLocation guiTextures = new ResourceLocation(ExoInfo.MODID, "textures/gui/alloyrefinery.png");

@@ -16,7 +16,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.romvoid95.api.space.Calculations;
+import net.romvoid95.api.math.Calculations;
 import net.romvoid95.common.utility.mc.BlockUtil;
 import net.romvoid95.common.utility.mc.BlockUtil.MatchType;
 import net.romvoid95.space.yzceti.YzCetiBlocks;

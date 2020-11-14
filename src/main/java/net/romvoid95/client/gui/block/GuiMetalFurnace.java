@@ -28,10 +28,10 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.common.block.machine.container.ContainerMetalFurnace;
 import net.romvoid95.common.config.ConfigCore;
 import net.romvoid95.common.tile.TileEntityMetalFurnace;
-import net.romvoid95.core.ExoInfo;
 
 @SideOnly(Side.CLIENT)
 public class GuiMetalFurnace extends GuiContainer {

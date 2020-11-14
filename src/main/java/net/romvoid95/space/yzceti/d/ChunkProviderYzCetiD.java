@@ -28,11 +28,11 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.romvoid95.api.world.ExoBiomes;
 import net.romvoid95.api.world.worldgen.feature.ExoFeatureBoulder;
-import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProviderMultiSpace;
+import net.romvoid95.space.astrogeneration.chunkgen.ExoChunkProviderExoplanet;
 import net.romvoid95.space.yzceti.YzCetiBlocks;
 import net.romvoid95.space.yzceti.d.worldgen.BiomeDecoratorYzCetiD;
 
-public class ChunkProviderYzCetiD extends ExoChunkProviderMultiSpace {
+public class ChunkProviderYzCetiD extends ExoChunkProviderExoplanet {
 
 	private final BiomeDecoratorYzCetiD cetiDBiomeDecorator = new BiomeDecoratorYzCetiD();
 

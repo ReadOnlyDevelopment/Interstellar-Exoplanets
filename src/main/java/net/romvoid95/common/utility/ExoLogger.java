@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.romvoid95.core.ExoInfo;
+import net.romvoid95.ExoInfo;
 
 public class ExoLogger {
 	

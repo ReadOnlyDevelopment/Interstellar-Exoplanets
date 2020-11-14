@@ -32,7 +32,7 @@ import net.romvoid95.api.space.prefab.ExoPlanet;
 import net.romvoid95.api.space.prefab.WorldProviderExoPlanet;
 import net.romvoid95.api.world.ExoDimensions;
 import net.romvoid95.common.config.ConfigSystems;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 
 public class WorldProviderWolf1061B extends WorldProviderExoPlanet {
 	

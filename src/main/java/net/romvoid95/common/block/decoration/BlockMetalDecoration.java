@@ -24,7 +24,7 @@ import net.minecraft.item.ItemStack;
 
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
-
+import net.romvoid95.api.content.ExoMaterial;
 import net.romvoid95.api.crafting.RecipeBuilder;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.block.BlockGeneral;
@@ -32,8 +32,7 @@ import net.romvoid95.common.lib.EnumAlloy;
 import net.romvoid95.common.lib.EnumMetal;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.IMetal;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoMaterial;
+import net.romvoid95.core.ExoBlocks;
 
 public class BlockMetalDecoration extends BlockGeneral implements IAddRecipe, ISortableBlock {
 

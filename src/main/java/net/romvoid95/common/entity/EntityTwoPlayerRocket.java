@@ -61,7 +61,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.romvoid95.core.initialization.ExoItems;
+import net.romvoid95.core.ExoItems;
 
 public class EntityTwoPlayerRocket extends EntityTieredRocket {
 

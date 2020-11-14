@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoDimensions;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 import net.romvoid95.space.trappist1.c.worldegnine.Trappist1C_Mountains;
 import net.romvoid95.space.trappist1.c.worldegnine.Trappist1C_Plains;

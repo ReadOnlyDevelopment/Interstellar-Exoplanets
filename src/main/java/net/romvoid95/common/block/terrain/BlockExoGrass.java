@@ -33,8 +33,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.api.content.ExoMaterial;
 import net.romvoid95.common.block.BlockTerrain;
-import net.romvoid95.core.initialization.ExoMaterial;
 
 public class BlockExoGrass extends BlockTerrain implements IGrowable, ITerraformableBlock {
 

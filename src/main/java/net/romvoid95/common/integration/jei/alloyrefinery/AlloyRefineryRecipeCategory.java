@@ -27,10 +27,10 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.api.crafting.recipe.alloyrefinery.AlloyRefineryRecipeObject;
 import net.romvoid95.common.tile.TileEntityAlloyRefinery;
-import net.romvoid95.core.ExoInfo;
 
 // TODO: Auto-generated Javadoc
 /**

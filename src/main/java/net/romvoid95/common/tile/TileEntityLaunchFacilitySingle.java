@@ -22,7 +22,7 @@ import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.romvoid95.common.lib.tile.TileEntityExo;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class TileEntityLaunchFacilitySingle extends TileEntityExo implements ITickable {
 	

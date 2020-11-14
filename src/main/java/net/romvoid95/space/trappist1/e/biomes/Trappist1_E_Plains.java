@@ -28,7 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.romvoid95.api.world.worldgen.feature.tree.ExoGenSempervirens;
 import net.romvoid95.api.world.worldgen.feature.tree.ExoGenTreeFlatTop;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 
 public class Trappist1_E_Plains extends WE_Biome {

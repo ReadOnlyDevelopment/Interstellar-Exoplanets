@@ -19,11 +19,10 @@ package net.romvoid95.space.wolf1061.b.worldgen.layers;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-
+import net.romvoid95.core.Planets;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 
 import micdoodle8.mods.miccore.IntCache;
-import net.romvoid95.core.initialization.Planets;
 
 public class GenLayerWolfBBiomes extends GenLayer {
 

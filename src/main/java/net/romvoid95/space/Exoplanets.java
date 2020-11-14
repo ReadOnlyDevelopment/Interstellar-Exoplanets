@@ -17,7 +17,7 @@
 package net.romvoid95.space;
 
 import static net.romvoid95.common.config.ConfigPlanets.*;
-import static net.romvoid95.core.initialization.SolarSystems.*;
+import static net.romvoid95.core.SolarSystems.*;
 
 import java.util.Locale;
 

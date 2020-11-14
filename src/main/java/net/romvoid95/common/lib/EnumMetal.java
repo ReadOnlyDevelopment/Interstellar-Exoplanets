@@ -24,8 +24,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.romvoid95.common.block.ore.BlockOreMetal;
 import net.romvoid95.common.lib.interfaces.IMetal;
-import net.romvoid95.core.initialization.ExoBlocks;
-import net.romvoid95.core.initialization.ExoItems;
+import net.romvoid95.core.ExoBlocks;
+import net.romvoid95.core.ExoItems;
 
 public enum EnumMetal implements IMetal {
 	COPPER(0, "Copper"),

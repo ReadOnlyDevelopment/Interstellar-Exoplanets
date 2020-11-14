@@ -17,8 +17,8 @@
 package net.romvoid95.common.block.terrain;
 
 import net.minecraft.block.BlockFalling;
+import net.romvoid95.api.content.ExoMaterial;
 import net.romvoid95.client.CreativeExoTabs;
-import net.romvoid95.core.initialization.ExoMaterial;
 
 public class BlockExoSand extends BlockFalling {
 	

@@ -35,7 +35,7 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.kepler1649.b.layer.GenLayerKepler1649B;
 
 public class BiomeProviderKepler1649B extends BiomeProvider {

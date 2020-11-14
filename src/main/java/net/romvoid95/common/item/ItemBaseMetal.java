@@ -26,11 +26,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.oredict.OreDictionary;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.IMetal;
-import net.romvoid95.core.ExoInfo;
 
 public abstract class ItemBaseMetal extends ItemBaseExo implements IAddRecipe, ICustomModel {
 	String modelName;

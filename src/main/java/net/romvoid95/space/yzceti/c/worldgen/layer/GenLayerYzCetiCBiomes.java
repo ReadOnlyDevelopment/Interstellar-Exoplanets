@@ -18,11 +18,10 @@ package net.romvoid95.space.yzceti.c.worldgen.layer;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-
+import net.romvoid95.core.Planets;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 
 import micdoodle8.mods.miccore.IntCache;
-import net.romvoid95.core.initialization.Planets;
 
 public class GenLayerYzCetiCBiomes extends GenLayer {
 	public static final Biome[] biomes = BiomeAdaptive.getBiomesListFor(Planets.YZCETIC).toArray(new Biome[0]);

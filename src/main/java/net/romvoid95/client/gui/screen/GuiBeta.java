@@ -37,12 +37,12 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.ExoplanetsMod;
 import net.romvoid95.client.Assets;
 import net.romvoid95.client.RGB;
 import net.romvoid95.client.gui.screen.components.GuiDiscordButton;
 import net.romvoid95.common.utility.java.ReflectionHelper;
-import net.romvoid95.core.ExoInfo;
 
 @SideOnly(Side.CLIENT)
 public class GuiBeta extends GuiScreen {

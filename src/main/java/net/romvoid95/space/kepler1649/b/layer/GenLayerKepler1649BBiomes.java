@@ -21,7 +21,7 @@ import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.miccore.IntCache;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 
 public class GenLayerKepler1649BBiomes extends GenLayer {
 

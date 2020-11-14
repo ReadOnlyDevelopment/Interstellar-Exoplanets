@@ -33,7 +33,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -133,12 +132,6 @@ implements ISolarLevel, IExitHeight {
 	@Override
 	public String getSaveFolder() {
 		return "exoplanets/" + this.getExoPlanet().getName();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer() {
-		return null;
 	}
 
 	public float getSolarRadiationModify() {

@@ -21,7 +21,7 @@ import net.romvoid95.common.block.terrain.BlockCrust;
 import net.romvoid95.common.block.terrain.BlockCrust.RockType;
 import net.romvoid95.common.block.terrain.BlockExoSand;
 import net.romvoid95.common.block.terrain.foliage.BlockExoFoliage;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 public class KeplerBlocks {
 

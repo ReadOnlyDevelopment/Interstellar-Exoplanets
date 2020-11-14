@@ -24,7 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.astrogeneration.biome.BiomeData;
 import net.romvoid95.space.astrogeneration.biome.ExoBiome;
 import net.romvoid95.space.wolf1061.Wolf1061Blocks;

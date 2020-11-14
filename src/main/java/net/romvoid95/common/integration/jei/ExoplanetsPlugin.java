@@ -29,7 +29,7 @@ import net.romvoid95.client.gui.block.GuiAlloyRefinery;
 import net.romvoid95.common.integration.jei.alloyrefinery.AlloyRefineryRecipeCategory;
 import net.romvoid95.common.integration.jei.alloyrefinery.AlloyRefineryRecipeMaker;
 import net.romvoid95.common.integration.jei.alloyrefinery.AlloyRefineryRecipeWrapper;
-import net.romvoid95.core.initialization.ExoBlocks;
+import net.romvoid95.core.ExoBlocks;
 
 @JEIPlugin
 public class ExoplanetsPlugin implements IModPlugin {

@@ -28,8 +28,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.api.versioning.Version;
-import net.romvoid95.core.ExoInfo;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = ExoInfo.MODID)
 public final class VersionChecker {

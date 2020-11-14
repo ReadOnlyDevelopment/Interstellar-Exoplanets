@@ -14,9 +14,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.romvoid95.api.content.ExoMaterial;
 import net.romvoid95.common.block.BlockTerrain;
 import net.romvoid95.common.block.ISustainsPlantType;
-import net.romvoid95.core.initialization.ExoMaterial;
 
 public class BlockExoMud extends BlockTerrain implements ISustainsPlantType {
 

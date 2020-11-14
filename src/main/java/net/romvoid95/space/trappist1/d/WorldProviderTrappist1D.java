@@ -17,7 +17,6 @@
 package net.romvoid95.space.trappist1.d;
 
 import java.util.List;
-import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -26,20 +25,12 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.api.world.IWeatherProvider;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -49,18 +40,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.romvoid95.api.space.prefab.WorldProviderWE_ExoPlanet;
 import net.romvoid95.api.space.utility.AstronomicalConstants;
 import net.romvoid95.api.world.ExoDimensions;
-import net.romvoid95.api.world.weather.IClimateProvider;
 import net.romvoid95.api.world.weather.ICloudProvider;
-import net.romvoid95.api.world.weather.IStormProvider;
-import net.romvoid95.core.initialization.ExoFluids;
-import net.romvoid95.core.initialization.Planets;
+import net.romvoid95.core.ExoFluids;
+import net.romvoid95.core.Planets;
 import net.romvoid95.space.trappist1.TrappistBlocks;
 import net.romvoid95.space.trappist1.d.biomes.BiomeOceananic;
 import net.romvoid95.space.trappist1.d.biomes.Trap1D_Island;
 import net.romvoid95.space.trappist1.d.client.CloudProviderTrappist1D;
-import net.romvoid95.space.trappist1.d.client.StormProviderTrappist1D;
 
-public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implements IWeatherProvider, IClimateProvider {
+public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet {
 
 	public static WE_ChunkProvider chunk;
 	private boolean                raining    = false;
@@ -68,7 +56,6 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 	private int                    rainTime   = 100;
 	private int                    rainChange = 100;
 
-	private StormProviderTrappist1D storm           = new StormProviderTrappist1D();
 	private CloudProviderTrappist1D clouds          = new CloudProviderTrappist1D();
 	private IRenderHandler          climateProvider = clouds;
 
@@ -134,7 +121,6 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 		return 250.0F;
 	}
 
-	@Override
 	public ICloudProvider getCloudProvider () {
 		return clouds;
 	}
@@ -203,12 +189,6 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Particle getParticle (WorldClient world, double x, double y, double z) {
-		return null;
-	}
-
-	@Override
 	public Block getPlanetGrassBlock() {
 		return null;
 	}
@@ -225,23 +205,12 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 	}
 
 	@Override
-	public int getSoundInterval (float rainStrength) {
-		int result = 80 - (int) (rainStrength * 88F);
-		return result > 0 ? result : 0;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness (float partialTicks) {
 		float angle = this.world.getCelestialAngle(partialTicks);
 		float value = 1.0F - ((MathHelper.cos(angle * AstronomicalConstants.TWO_PI_F) * 2.0F) + 0.25F);
 		value = MathHelper.clamp(value, 0.0F, 1.0F);
 		return (value * value * 0.5F) + 0.3F;
-	}
-
-	@Override
-	public IStormProvider getStormProvider () {
-		return storm;
 	}
 
 	@Override
@@ -327,18 +296,6 @@ public class WorldProviderTrappist1D extends WorldProviderWE_ExoPlanet implement
 				strength -= 0.004F;
 			}
 			this.world.rainingStrength = MathHelper.clamp(strength, 0.0F, 0.6F);
-		}
-	}
-
-	@Override
-	public void weatherSounds (int j, Minecraft mc, World world, BlockPos blockpos, double xx, double yy, double zz, Random random) {
-		if (((int) yy >= (blockpos.getY() + 1)) && (world.getPrecipitationHeight(blockpos).getY() > blockpos.getY())) {
-			mc.world.playSound(xx, yy, zz, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.WEATHER, 0.025F, 0.6F
-					+ (random.nextFloat() * 0.2F), false);
-		}
-		else {
-			mc.world.playSound(xx, yy, zz, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.WEATHER, 0.04F, 0.8F
-					+ (random.nextFloat() * 0.06F) + (random.nextFloat() * 0.06F), false);
 		}
 	}
 }

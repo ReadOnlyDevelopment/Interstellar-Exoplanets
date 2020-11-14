@@ -57,16 +57,16 @@ public class BiomeGenYzCetiDHills extends YzCetiDBiomes {
 		int l = x & 15;
 		int i1 = z & 15;
 
-		for (int j1 = 255; j1 >= 0; --j1) {
-			if (j1 <= rand.nextInt(5)) {
-				chunkPrimerIn.setBlockState(i1, j1, l, Blocks.BEDROCK.getDefaultState());
+		for (int primerY = 255; primerY >= 0; --primerY) {
+			if (primerY <= rand.nextInt(5)) {
+				chunkPrimerIn.setBlockState(i1, primerY, l, Blocks.BEDROCK.getDefaultState());
 			} else {
-				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
-				if (iblockstate2.getMaterial() == Material.AIR) {
+				IBlockState blockAtPosition = chunkPrimerIn.getBlockState(i1, primerY, l);
+				if (blockAtPosition.getMaterial() == Material.AIR) {
 					j = -1;
-				} else if (iblockstate2.getBlock() == YzCetiBlocks.D.YZD_SEDIMENTARYROCK) {
+				} else if (blockAtPosition.getBlock() == YzCetiBlocks.D.YZD_SEDIMENTARYROCK) {
 					if (j == -1) {
-						if ((j1 >= (63 - 4)) && (j1 <= (63 + 1))) {
+						if ((primerY >= (63 - 4)) && (primerY <= (63 + 1))) {
 							iblockstate = this.topBlock;
 							iblockstate1 = this.fillerBlock;
 							iblockstate3 = this.subTopBlock;
@@ -75,32 +75,32 @@ public class BiomeGenYzCetiDHills extends YzCetiDBiomes {
 
 						j = k;
 
-						if (j1 >= (65 + 18)) {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
+						if (primerY >= (65 + 18)) {
+							chunkPrimerIn.setBlockState(i1, primerY, l, iblockstate);
 							iblockstate1 = iblockstate;
 							iblockstate3 = iblockstate;
 							iblockstate4 = iblockstate;
-						} else if (j1 >= (65 + 12)) {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate3);
+						} else if (primerY >= (65 + 12)) {
+							chunkPrimerIn.setBlockState(i1, primerY, l, iblockstate3);
 							iblockstate1 = iblockstate3;
 							iblockstate = iblockstate3;
 							iblockstate4 = iblockstate3;
-						} else if (j1 >= (65 + 4)) {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate4);
+						} else if (primerY >= (65 + 4)) {
+							chunkPrimerIn.setBlockState(i1, primerY, l, iblockstate4);
 							iblockstate1 = iblockstate4;
 							iblockstate = iblockstate4;
 							iblockstate3 = iblockstate4;
-						} else if (j1 < (63 - 7 - k)) {
+						} else if (primerY < (63 - 7 - k)) {
 							iblockstate = null;
 							iblockstate3 = null;
 							iblockstate1 = this.subTopBlock;
-							chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+							chunkPrimerIn.setBlockState(i1, primerY, l, Blocks.GRAVEL.getDefaultState());
 						} else {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+							chunkPrimerIn.setBlockState(i1, primerY, l, iblockstate1);
 						}
 					} else if (j > 0) {
 						--j;
-						chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+						chunkPrimerIn.setBlockState(i1, primerY, l, iblockstate1);
 					}
 				}
 			}

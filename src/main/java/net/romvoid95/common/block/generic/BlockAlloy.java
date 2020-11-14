@@ -32,13 +32,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.oredict.OreDictionary;
+import net.romvoid95.ExoInfo;
 import net.romvoid95.client.CreativeExoTabs;
 import net.romvoid95.common.lib.EnumAlloy;
 import net.romvoid95.common.lib.block.BlockMetaSubtypes;
 import net.romvoid95.common.lib.block.ICustomModel;
 import net.romvoid95.common.lib.interfaces.IAddRecipe;
 import net.romvoid95.common.lib.interfaces.IMetal;
-import net.romvoid95.core.ExoInfo;
 
 public class BlockAlloy extends BlockMetaSubtypes implements IAddRecipe, ICustomModel {
 	private static final PropertyEnum<EnumAlloy> ALLOY = PropertyEnum.create("alloy", EnumAlloy.class);
