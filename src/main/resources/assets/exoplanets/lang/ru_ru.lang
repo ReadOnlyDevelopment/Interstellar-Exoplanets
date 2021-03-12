@@ -10,46 +10,46 @@ star.wolf1061star=Волк 1061  A
 star.kepler1649star=Кеплер 1649 A
 
 planet.yzcetib=Yz Кита B
-planet.yzcetic=Yz Кита C
-planet.yzcetid=Yz Кита D
+planet.yzcetic=Yz Кита Ц
+planet.yzcetid=Yz Кита Д
 
-planet.wolf1061b=Волк 1061 B
+planet.wolf1061b=Волк 1061 б
 planet.wolf1061c=Волк 1061 C
-planet.wolf1061d=Волк 1061 D
+planet.wolf1061d=Волк 1061 Д
 
-planet.trappist1b=Траппист 1 B
-planet.trappist1c=Траппист 1 C
-planet.trappist1d=Траппист 1 D
+planet.trappist1b=Траппист 1 б
+planet.trappist1c=Траппист 1 Ц 
+planet.trappist1d=Траппист 1 Д
 planet.trappist1e=Траппист 1 E
-planet.trappist1f=Траппист 1 F
-planet.trappist1g=Траппист 1 G
-planet.trappist1h=Траппист 1 H
+planet.trappist1f=Траппист 1 Ф
+planet.trappist1g=Траппист 1 г
+planet.trappist1h=Траппист 1 ж
 
-planet.kepler1649b=Кеплер  1649b
-planet.kepler1649c=Кеплер  1649c
+planet.kepler1649b=Кеплер  1649 б
+planet.kepler1649c=Кеплер  1649 ц
 
 galaxy.wormhole=Червоточина
 
 # Messages
-information.dev.exoplanets:beta.1=§c С Продолжением Вы принимаете наши сроки  что  вы не будете
-information.dev.exoplanets:beta.2=§c нарушать правила,  до тех  пор
-information.dev.exoplanets:beta.3=§c пока выщое право не получено. §r
+information.dev.exoplanets:beta.1= С Продолжением Вы принимаете наши сроки  что  вы не будете
+information.dev.exoplanets:beta.2= нарушать правила,  до тех  пор
+information.dev.exoplanets:beta.3= пока выщое право не получено. 
 
-information.exoplanets:beta.1=§b Текущая версия ExoPlanets досихпор  в Раннем доступе §r
+information.exoplanets:beta.1= Текущая версия ExoPlanets досихпор  в Раннем доступе 
 information.exoplanets:beta.2=Это означает что в моде есть вещи которые не работают как преднозначено.
 information.exoplanets:beta.3=Это сделано намеренно, поскольку оно может быть незавершенным  / или неоптимизированным.
 information.exoplanets:beta.4=Если вы нашли баг или какую то проблему. Пожалуйста свяжитесь с нами через Дискорд.
 information.exoplanets:beta.5=И опишите проблему .
-information.exoplanets:beta.6=§e(Чтобы Отключить  это окно от появление Установите , §6B:warnOnBetaBuild§r§e на  false в  §bcore.cfg§r§e  в  configs)§r
+information.exoplanets:beta.6=(Чтобы Отключить  это окно от появление Установите , {B:warnOnBetaBuild} на  false в  core.cfg  в  configs)
 
 exoplanets.gui.discordLink=Приглашение Discord.
-exoplanets.gui.failed=Произошла ошибка из за которой не получилась открыть Ссылку  для инвайта 
+exoplanets.gui.failed=Произошла ошибка из за которой не получилась открыть Ссылку  для приглашение
 
 # VERSIONING
 exoplanets.versions.notify=Ей Игрок ! Новое Обновление  ! Exoplanets Обновился!
 exoplanets.versions.outdated0=§6****************************************
-exoplanets.versions.outdated1=§6* §aRunning......v§c%s
-exoplanets.versions.outdated2=§6* §aLatest.........v§9%s
+exoplanets.versions.outdated1=§6* §aНынешняя......v§c%s
+exoplanets.versions.outdated2=§6* §aПоследняя.........v§9%s
 exoplanets.versions.updateMessage=["Нажмите ... [",{"text":"Скачать ","color":"green","hoverEvent":{"action":"show_text","value":{"text":"Нажмите это чтобы установить новейшую версию ","color":"green"}},"clickEvent":{"action":"run_command","value":"/download-latest-exoplanets %version%"}},"]"]
 exoplanets.versions.startingDownload=[{"text":"Начинаем Скачивание . . . . . Пожалуйста не отключайте ваш жесткий диск. Наслаждайтесь ","color":"aqua"},{"text":"Exoplanets?","color":"green"}]
 exoplanets.versions.startingDownload2=[{"text":" Если можете Поддержите  ","color":"aqua"},{"text":"ROMVoid95","color":"light_purple"},{"text":" on [","color":"aqua"},{"text":"Patreon","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Нажмите это чтоб пройти на ROMvoid95 Patreon","color":"light_purple"}},"clickEvent":{"action":"open_url","value":"http://www.patreon.com/romvoid95"}},{"text":"]!","color":"aqua"}]
@@ -101,9 +101,9 @@ exoplanets.configgui.guiBeta=Предупреждения на Тестовой 
 ## tile.exoplanets..name=
 
 ## CREATIVE TAB ##
-itemGroup.decoration=§6 Exo Украшения §r
-itemGroup.terrain=§ aExo местность §r
-itemGroup.items=§e Exo Предметы §r
+itemGroup.decoration=Exo Украшения
+itemGroup.terrain=Exo местность 
+itemGroup.items=Exo Предметы 
 
 ## BLOCKS ##
 tile.exoplanets.com_relay.name=Коммуникационное релё
@@ -116,34 +116,34 @@ tile.exoplanets.deco0.name=Решетки
 tile.exoplanets.deco1.name=Полоса решетки
 tile.exoplanets.metaldecoration.name=Решетка для пола
 
-tile.exoplanets.yzb_loose_sediment.name=(§eYz Ceti B§r) Рыхлый осадок
-tile.exoplanets.yzb_dark_loose_sediment.name=(§eYz Ceti B§r) Рыхлый осадок 2
-tile.exoplanets.yzb_gravel.name=(§eYz Ceti B§r) Гравель
-tile.exoplanets.yzb_igneous.name=(§eYz Ceti B§r) Вулканическая порода
-tile.exoplanets.yzb_metamorphic.name=(§eYz Ceti B§r) Метаморфическая порода
-tile.exoplanets.yzb_sedimentary_rock.name=(§eYz Ceti B§r) Осадочная порода
+tile.exoplanets.yzb_loose_sediment.name=(Yz Ceti Б) Рыхлый осадок
+tile.exoplanets.yzb_dark_loose_sediment.name=(Yz Ceti Б) Рыхлый осадок 2
+tile.exoplanets.yzb_gravel.name=(Yz Ceti Б) Гравель
+tile.exoplanets.yzb_igneous.name=(Yz Ceti Б) Вулканическая порода
+tile.exoplanets.yzb_metamorphic.name=(Yz Ceti Б) Метаморфическая порода
+tile.exoplanets.yzb_sedimentary_rock.name=(Yz Ceti Б) Осадочная порода
 
-tile.exoplanets.yzc_loose_sediment.name=(§6Yz Ceti C§r) Рыхлый осадок
-tile.exoplanets.yzc_dark_loose_sediment.name=(§6Yz Ceti C§r) Рыхлый осадок 2
-tile.exoplanets.yzc_gravel.name=(§6Yz Ceti C§r) Гравель
-tile.exoplanets.yzc_igneous.name=(§6Yz Ceti C§r) Вулканическая порода
-tile.exoplanets.yzc_metamorphic.name=(§6Yz Ceti C§r) Метаморфическая порода
-tile.exoplanets.yzc_sedimentary_rock.name=(§6Yz Ceti C§r) Осадочная порода
+tile.exoplanets.yzc_loose_sediment.name=(Yz Ceti Ц) Рыхлый осадок
+tile.exoplanets.yzc_dark_loose_sediment.name=(Yz Ceti Ц) Рыхлый осадок 2
+tile.exoplanets.yzc_gravel.name=(Yz Ceti Ц) Гравель
+tile.exoplanets.yzc_igneous.name=(Yz Ceti Ц) Вулканическая порода
+tile.exoplanets.yzc_metamorphic.name=(Yz Ceti Ц) Метаморфическая порода
+tile.exoplanets.yzc_sedimentary_rock.name=(Yz Ceti Ц) Осадочная порода
 
-tile.exoplanets.yzd_loose_sediment.name=(§bYz Ceti D§r) Рыхлый осадок
-tile.exoplanets.yzd_dark_loose_sediment.name=(§bYz Ceti D§r) Рыхлый осадок 2
-tile.exoplanets.yzd_gravel.name=(§bYz Ceti D§r) Гравель
-tile.exoplanets.yzd_igneous.name=(§bYz Ceti D§r) Вулканическая порода
-tile.exoplanets.yzd_metamorphic.name=(§bYz Ceti D§r) Метаморфическая порода
-tile.exoplanets.yzd_sedimentary_rock.name=(§bYz Ceti D§r) Осадочная порода
+tile.exoplanets.yzd_loose_sediment.name=(Yz Ceti Д) Рыхлый осадок
+tile.exoplanets.yzd_dark_loose_sediment.name=(Yz Ceti Д) Рыхлый осадок 2
+tile.exoplanets.yzd_gravel.name=(Yz Ceti Д) Гравель
+tile.exoplanets.yzd_igneous.name=(Yz Ceti Д) Вулканическая порода
+tile.exoplanets.yzd_metamorphic.name=(Yz Ceti Д) Метаморфическая порода
+tile.exoplanets.yzd_sedimentary_rock.name=(Yz Ceti Д) Осадочная порода
 
-tile.exoplanets.trap1c_top.name=(§9Траппист 1ц§r) Поверхностный Камень
-tile.exoplanets.trap1e_cobblestone.name=(§aТраппист 1e§r)
-tile.exoplanets.trap1e_dirt.name=(§aТраппист 1e§r) Грязь
-tile.exoplanets.trap1e_grass.name=(§aТраппист 1е§r) Странная трава
-tile.exoplanets.trap1e_stone.name=(§aТраппист 1е§r) Планетарный  Камень
-tile.exoplanets.trap1c_dirt.name=(§9Траппист 1ц§r) Грязь
-tile.exoplanets.trap1c_dirt_1.name=(§9Траппист 1ц§r) Грязь
+tile.exoplanets.trap1c_top.name=(Траппист 1 Ц) Поверхностный Камень
+tile.exoplanets.trap1e_cobblestone.name=(Траппист 1 Е) булыжник
+tile.exoplanets.trap1e_dirt.name=(Траппист 1 Е) Грязь
+tile.exoplanets.trap1e_grass.name=(Траппист 1 Е) Странная трава
+tile.exoplanets.trap1e_stone.name=(Траппист 1 Е) Планетарный  Камень
+tile.exoplanets.trap1c_dirt.name=(Траппист 1 Ц) Грязь
+tile.exoplanets.trap1c_dirt_1.name=(Траппист 1 Ц) Грязь
 
 tile.exoplanets.trap1_dark_hot.name=§cЗастывший вулканический осколок
 tile.exoplanets.trap1_bright_solid_hot.name=§cВулканический Расплавленный Осколок
