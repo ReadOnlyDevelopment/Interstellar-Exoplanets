@@ -29,7 +29,7 @@ This is the release and very early beta of my new Galacticraft Addon. Every plan
 
 The addon will also feature material aimed at education into Astronomy. And other features and ideas that are not yet implemented.
 
-<h1 align="center">Mod Is being rewritten</h1>
+<h2 align="center">Mod Is being rewritten</h2>
 
 ## Thanks to YourKit
 ![YourKit](https://www.yourkit.com/images/yklogo.png)
