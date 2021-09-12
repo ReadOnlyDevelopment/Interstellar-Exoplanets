@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "exoplanets:kepler1649/keplerc_grass" },
+            { "model": "exoplanets:kepler1649/keplerc_grass", "y": 90 },
+            { "model": "exoplanets:kepler1649/keplerc_grass", "y": 180 },
+            { "model": "exoplanets:kepler1649/keplerc_grass", "y": 270 }
+        ]
+    }
+}
